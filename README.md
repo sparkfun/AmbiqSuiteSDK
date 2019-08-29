@@ -10,7 +10,7 @@ Git submodules can be used to reuse code between repositories. Some special prec
 - If you've already cloned a repo
   - ```git submodule update --init --recursive```
 - If you are about to clone the repo
-  - git clone --recursive <project url>
+  - ```git clone --recursive <project url>```
 
 Maintainers of this repo may also need to keep submodules updated.
 
