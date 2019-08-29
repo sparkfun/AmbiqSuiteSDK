@@ -15,8 +15,8 @@ Git submodules can be used to reuse code between repositories. Some special prec
 Maintainers of this repo may also need to keep submodules updated.
 
 Here are some more documents about submodules.
-[Working with Submodules by GitHub](https://github.blog/2016-02-01-working-with-submodules/)
-[Git Submodules by gitaarik](https://gist.github.com/gitaarik/8735255)
+- [Working with Submodules by GitHub](https://github.blog/2016-02-01-working-with-submodules/)
+- [Git Submodules by gitaarik](https://gist.github.com/gitaarik/8735255)
 
 This repo includes the following git submodules:
 - [SparkFun_Apollo3_AmbiqSuite_BSPs](https://github.com/sparkfun/SparkFun_Apollo3_AmbiqSuite_BSPs) : provides board definitions and examples for SparkFun Apollo3 boards
