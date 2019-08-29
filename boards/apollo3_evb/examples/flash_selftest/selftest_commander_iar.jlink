@@ -1,0 +1,70 @@
+//
+// selftest_commander.jlink
+//
+// This J-Link Commander batch file can be used to run the flash_selftest,
+//  which must execute from SRAM.
+// The results are stored at address 0x10030000.
+//	0xFAE00000 = Pass, the flash tested good.
+//	0xFAE0xxxx = Fail, where xxxx is a failure code.
+//
+
+//
+// Connect to the Ambiq Micro Apollo3 Blue device, then halt.
+//
+device AMA3B1KK-KBR
+si SWD
+speed 1000
+halt
+
+//
+// The SP and PC values can be found as the first words in the .bin.
+//	SP = Word 0
+//	PC = Word 1
+//
+
+//
+//  Load the IAR binary into SRAM
+//
+w4 10030000 0
+loadbin iar\bin\flash_selftest.bin 0x10000000
+
+//
+// Set the SP and PC.
+// IAR:
+// With PRINT_RESULTS enabled:  SP = 10005000, PC = 10002A79
+//
+wreg MSP, 0x10005000
+setPC 0x10002A45
+
+//
+// We're ready to go.
+// The flash self test will take almost 30 seconds to run on a good part.
+//
+g
+
+//
+// Periodically check the result
+//
+//sleep 500
+//mem32 0x10030000 1
+//sleep 10000
+//mem32 0x10030000 1
+//sleep 10000
+//mem32 0x10030000 1
+//sleep 5000
+//mem32 0x10030000 1
+//sleep 5000
+sleep 30000
+
+
+//
+// Halt the MCU and print the final results.
+//
+//halt
+mem32 0x10030000 1
+mem32 0x10030004 2
+
+//
+// Close J-Link and quit
+//
+qc

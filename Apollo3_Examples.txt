@@ -1,0 +1,3610 @@
+Name:
+=====
+ adc_vbatt
+
+
+Description:
+============
+ ADC VBATT voltage divider, BATT load, and temperature reading example.
+
+
+This example initializes the ADC, and a timer. Two times per second it
+reads the VBATT voltage divider and temperature sensor and prints them.
+It monitors button 0 and if pressed, it turns on the BATT LOAD resistor.
+One should monitor MCU current to see when the load is on or off.
+
+Printing takes place over the ITM at 1M Baud.
+
+
+******************************************************************************
+
+
+Name:
+=====
+ bc_boot_demo
+
+
+Description:
+============
+ Example that displays the timer count on the LEDs.
+
+
+This example is a copy of the "binary counter" demo compiled and linked to
+run at flash address 0x8000 instead of 0x0000. This is useful for users who
+would like to run their applications with a permanent bootloader program in
+the first page of flash.
+
+Please see the linker configuration files for an example of how this offset
+can be built into the compilation process.
+
+SWO is configured in 1M baud, 8-n-1 mode.
+
+
+******************************************************************************
+
+
+Name:
+=====
+ binary_counter
+
+
+Description:
+============
+ Example that displays the timer count on the LEDs.
+
+
+This example increments a variable on every timer interrupt. The global
+variable is used to set the state of the LEDs. The example sleeps otherwise.
+
+SWO is configured in 1M baud, 8-n-1 mode.
+
+
+******************************************************************************
+
+
+Name:
+=====
+ clkout
+
+
+Description:
+============
+ Enables a clock source to clkout and then tracks it on an LED array.
+
+
+This example enables the LFRC to a clkout pin then uses GPIO polling to
+track its rising edge and toggle an LED at 1 hertz.
+
+
+******************************************************************************
+
+
+Name:
+=====
+ deepsleep
+
+
+Description:
+============
+ Example demonstrating how to enter deepsleep.
+
+
+This example configures the device to go into a deep sleep mode. Once in
+sleep mode the device has no ability to wake up. This example is merely to
+provide the opportunity to measure deepsleep current without interrupts
+interfering with the measurement.
+
+The example begins by printing out a banner annoucement message through
+the UART, which is then completely disabled for the remainder of execution.
+
+Text is output to the UART at 115,200 BAUD, 8 bit, no parity.
+Please note that text end-of-line is a newline (LF) character only.
+Therefore, the UART terminal must be set to simulate a CR/LF.
+
+
+******************************************************************************
+
+
+Name:
+=====
+ deepsleep_wake
+
+
+Description:
+============
+ Example that goes to deepsleep and wakes from either the RTC or GPIO.
+
+
+This example configures the device to go into a deep sleep mode. Once in
+deep sleep the device has the ability to wake from button 0 or
+the RTC configured to interrupt every second. If the MCU woke from a button
+press, it will toggle LED0. If the MCU woke from the RTC, it will toggle
+LED1.
+
+The example begins by printing out a banner annoucement message through
+the UART, which is then completely disabled for the remainder of execution.
+
+Text is output to the UART at 115,200 BAUD, 8 bit, no parity.
+Please note that text end-of-line is a newline (LF) character only.
+Therefore, the UART terminal must be set to simulate a CR/LF.
+
+
+******************************************************************************
+
+
+Name:
+=====
+ flash_write
+
+
+Description:
+============
+ Flash write example.
+
+
+This example shows how to modify the internal Flash using HAL flash helper
+functions.
+
+This example works on instance 1 of the Flash, i.e. the portion of the
+Flash above 256KB/512KB.
+
+
+
+******************************************************************************
+
+
+Name:
+=====
+ freertos_lowpower
+
+
+Description:
+============
+ Example of the app running under FreeRTOS.
+
+
+This example implements LED task within the FreeRTOS framework. It monitors
+three On-board buttons, and toggles respective on-board LEDs in response.
+To save power, this application is compiled without print
+statements by default. To enable them, add the following project-level
+macro definitions.
+
+AM_DEBUG_PRINTF
+
+If enabled, debug messages will be sent over ITM.
+
+
+******************************************************************************
+
+
+Name:
+=====
+ hello_fault
+
+
+Description:
+============
+ A simple example that causes a hard-fault.
+
+
+This example demonstrates the extended hard fault handler which can
+assist the user in decoding a fault condition. The handler pulls the
+registers that the Cortex M4 automatically loads onto the stack and
+combines them with various other fault information into a single
+data structure saved locally.  It can optionally print out the fault
+data structure (assuming the stdio printf has previously been enabled
+and is still enabled at the time of the fault).
+
+
+******************************************************************************
+
+
+Name:
+=====
+ hello_world
+
+
+Description:
+============
+ A simple "Hello World" example.
+
+
+This example prints a "Hello World" message with some device info
+over SWO at 1M baud. To see the output of this program, run AMFlash,
+and configure the console for SWO. The example sleeps after it is done
+printing.
+
+
+******************************************************************************
+
+
+Name:
+=====
+ hello_world_uart
+
+
+Description:
+============
+ A simple "Hello World" example using the UART peripheral.
+
+
+This example prints a "Hello World" message with some device info
+over UART at 115200 baud. To see the output of this program, run AMFlash,
+and configure the console for UART. The example sleeps after it is done
+printing.
+
+
+******************************************************************************
+
+
+Name:
+=====
+ i2c_boot_host
+
+
+Description:
+============
+ An example to drive the IO Slave on a second board.
+
+
+This example acts as the boot host for spi_boot and multi_boot on Apollo
+and Apollo2 MCUs. It will deliver a predefined firmware image to a boot
+slave over an I2C protocol. The purpose of this demo is to show how a host
+processor might store, load, and update the firmware on an Apollo or
+Apollo2 device that is connected as a slave.
+
+Please see the multi_boot README.txt for more details on how to run the
+examples.
+
+PIN fly lead connections assumed by multi_boot:
+HOST                                    SLAVE (multi_boot target)
+--------                                --------
+GPIO[2]  GPIO Interrupt (slave to host) GPIO[4]  GPIO interrupt
+GPIO[4]  OVERRIDE pin   (host to slave) GPIO[18] Override pin or n/c
+GPIO[5]  IOM0 SPI CLK/I2C SCL           GPIO[0]  IOS SPI SCK/I2C SCL
+GPIO[6]  IOM0 SPI MISO/I2C SDA          GPIO[1]  IOS SPI MISO/I2C SDA
+GPIO[7]  IOM0 SPI MOSI                  GPIO[2]  IOS SPI MOSI
+GPIO[11] IOM0 SPI nCE                   GPIO[3]  IOS SPI nCE
+GPIO[17] Slave reset (host to slave)    Reset Pin or n/c
+GND                                     GND
+Reset and Override pin connections from Host are optional
+Keeping Button1 pressed on target has same effect as host driving override
+
+
+******************************************************************************
+
+
+Name:
+=====
+ ios_fifo
+
+
+Description:
+============
+ Example slave used for demonstrating the use of the IOS FIFO.
+
+
+This slave component runs on one EVB and is used in conjunction with
+the companion host example, ios_fifo_host, which runs on a second EVB.
+
+The ios_fifo example has no print output.
+The host example does use the ITM SWO to let the user know progress and
+status of the demonstration.
+
+This example implements the slave part of a protocol for data exchange with
+an Apollo IO Master (IOM).  The host sends one byte commands on SPI/I2C by
+writing to offset 0x80.
+
+The command is issued by the host to Start/Stop Data accumulation, and also
+to acknowledge read-complete of a block of data.
+
+On the IOS side, once it is asked to start accumulating data (using START
+command), two CTimer based events emulate sensors sending data to IOS.
+When IOS has some data for host, it implements a state machine,
+synchronizing with the host.
+
+The IOS interrupts the host to indicate data availability. The host then
+reads the available data (as indicated by FIFOCTR) by READing using IOS FIFO
+(at address 0x7F).  The IOS keeps accumulating any new data coming in the
+background.
+
+Host sends an acknowledgement to IOS once it has finished reading a block
+of data initiated by IOS (partitally or complete). IOS interrupts the host
+again if and when it has more data for the host to read, and the cycle
+repeats - till host indicates that it is no longer interested in receiving
+data by sending STOP command.
+
+In order to run this example, a host device (e.g. a second EVB) must be set
+up to run the host example, ios_fifo_host.  The two boards can be connected
+using fly leads between the two boards as follows.
+
+Pin connections for the I/O Master board to the I/O Slave board.
+
+HOST (ios_fifo_host)                    SLAVE (ios_fifo)
+--------------------                    ----------------
+GPIO[10] GPIO Interrupt (slave to host) GPIO[4]  GPIO interrupt
+GPIO[5]  IOM0 SPI CLK/I2C SCL           GPIO[0]  IOS SPI SCK/I2C SCL
+GPIO[6]  IOM0 SPI MISO/I2C SDA          GPIO[1]  IOS SPI MISO/I2C SDA
+GPIO[7]  IOM0 SPI MOSI                  GPIO[2]  IOS SPI MOSI
+GPIO[11] IOM0 SPI nCE                   GPIO[3]  IOS SPI nCE
+GND                                     GND
+
+
+******************************************************************************
+
+
+Name:
+=====
+ ios_fifo_host
+
+
+Description:
+============
+ Example host used for demonstrating the use of the IOS FIFO.
+
+
+This host component runs on one EVB and is used in conjunction with
+the companion slave example, ios_fifo, which runs on a second EVB.
+
+The host example uses the ITM SWO to let the user know progress and
+status of the demonstration.  The SWO is configured at 1M baud.
+The ios_fifo example has no print output.
+
+This example implements the host part of a protocol for data exchange with
+an Apollo IO Slave (IOS).  The host sends one byte commands on SPI/I2C by
+writing to offset 0x80.
+
+The command is issued by the host to Start/Stop Data accumulation, and also
+to acknowledge read-complete of a block of data.
+
+On the IOS side, once it is asked to start accumulating data (using START
+command), two CTimer based events emulate sensors sending data to IOS.
+When IOS has some data for host, it implements a state machine,
+synchronizing with the host.
+
+The IOS interrupts the host to indicate data availability. The host then
+reads the available data (as indicated by FIFOCTR) by READing using IOS FIFO
+(at address 0x7F).  The IOS keeps accumulating any new data coming in the
+background.
+
+Host sends an acknowledgement to IOS once it has finished reading a block
+of data initiated by IOS (partitally or complete). IOS interrupts the host
+again if and when it has more data for the host to read, and the cycle
+repeats - till host indicates that it is no longer interested in receiving
+data by sending STOP command.
+
+In order to run this example, a slave device (e.g. a second EVB) must be set
+up to run the companion example, ios_fifo.  The two boards can be connected
+using fly leads between the two boards as follows.
+
+Pin connections for the I/O Master board to the I/O Slave board.
+
+HOST (ios_fifo_host)                    SLAVE (ios_fifo)
+--------------------                    ----------------
+GPIO[10] GPIO Interrupt (slave to host) GPIO[4]  GPIO interrupt
+GPIO[5]  IOM0 SPI CLK/I2C SCL           GPIO[0]  IOS SPI SCK/I2C SCL
+GPIO[6]  IOM0 SPI MISO/I2C SDA          GPIO[1]  IOS SPI MISO/I2C SDA
+GPIO[7]  IOM0 SPI MOSI                  GPIO[2]  IOS SPI MOSI
+GPIO[11] IOM0 SPI nCE                   GPIO[3]  IOS SPI nCE
+GND                                     GND
+
+
+******************************************************************************
+
+
+Name:
+=====
+ itm_printf
+
+
+Description:
+============
+ Example that uses the ITM interface for printf.
+
+
+This example walks through the ASCII table (starting at character 033('!')
+and ending on 126('~')) and prints the character to the ARM ITM. This output
+can be decoded by running a terminal emulator (e.g. SEGGER J-Link SWO Viewer) 
+and configuring the console for SWO at 1M Baud. This example works by 
+configuring a timer and printing a new character after ever interrupt and 
+sleeps in between timer interrupts.
+
+
+******************************************************************************
+
+
+Name:
+=====
+ multi_boot
+
+
+Description:
+============
+ Bootloader program accepting multiple host protocols.
+
+
+Multiboot is a bootloader program that supports flash programming over UART,
+SPI, and I2C. The correct protocol is selected automatically at boot time.
+The messaging is expected to follow little-endian format, which is native to
+the Cortex M4 used in Apollo and Apollo2.
+
+If a valid image is already present on the target device, Multiboot will run
+that image.  Otherwise it will wait for a new image to be downloaded from
+the host.  A new image download can be forced on the target by using the
+"override" capability via one of the pins.
+
+Running this example requires 2 EVBs - one EVB to run multi_boot, the second
+to run a host example such as spi_boot_host or i2c_boot_host. The two EVBs
+are generally fly wired together as shown below.
+
+The most straightforward method of running the demonstration is to use two
+EVBs of the same type (i.e. 2 Apollo EVBs or 2 Apollo2 EVBs) as both the
+host and the target.  Then the pins on the two EVBs are connected as shown
+in the chart including the optional reset and override pins.  With these
+connections, the host controls everything and no user intervention is
+required other than the press the reset button on the host to initiate the
+process.
+
+The host downloads an executable (target) image to the slave that will run
+on the target.  By default that image is binary_counter, which is obvious
+to see running on the slave.
+
+In the default scenario (two boards of the same type), the image downloaded
+by the host is compatible with the host board type, so it will run without
+modification on the target.  In the case of the host device being different
+from the target, the image downloaded from the host must be modified to be
+compatible with the target (requires rebuilding the host example).
+
+The EVB Button1 (usually labelled BTN2 on the EVB silkscreen) is the manual
+override which can be used to force downloading of a new image even if a
+valid image already exists on the target. The host examples use the same
+"override" pin signal when downloading a new image.
+
+PIN fly lead connections assumed by multi_boot:
+HOST                                    SLAVE (multi_boot target)
+--------                                --------
+GPIO[2]  GPIO Interrupt (slave to host) GPIO[4]  GPIO interrupt
+GPIO[4]  OVERRIDE pin   (host to slave) GPIO[18] Override pin or n/c
+GPIO[5]  IOM0 SPI CLK/I2C SCL           GPIO[0]  IOS SPI SCK/I2C SCL
+GPIO[6]  IOM0 SPI MISO/I2C SDA          GPIO[1]  IOS SPI MISO/I2C SDA
+GPIO[7]  IOM0 SPI MOSI                  GPIO[2]  IOS SPI MOSI
+GPIO[11] IOM0 SPI nCE                   GPIO[3]  IOS SPI nCE
+GPIO[17] Slave reset (host to slave)    Reset Pin (NRST) or n/c
+GND                                     GND
+Reset and Override pin connections from Host are optional
+Keeping Button1 pressed on target has same effect as host driving override
+
+
+******************************************************************************
+
+
+Name:
+=====
+ multi_boot
+
+
+Description:
+============
+ Bootloader program accepting multiple host protocols.
+
+
+This is a bootloader program that supports flash programming over UART,
+SPI, and I2C. The correct protocol is selected automatically at boot time.
+The messaging is expected to follow little-endian format, which is native to
+Apollo1/2.
+This version of bootloader also supports security features -
+Image confidentiality, Authentication, and key revocation is supported
+using a simple CRC-CBC based encryption mechanism.
+
+Default override pin corresponds to Button1. So, even if a valid image is
+present in flash, bootloader can be forced to wait for new image from host.
+
+PIN fly lead connections assumed by multi_boot:
+HOST                                    SLAVE (multi_boot target)
+--------                                --------
+GPIO[2]  GPIO Interrupt (slave to host) GPIO[4]  GPIO interrupt
+GPIO[4]  OVERRIDE pin   (host to slave) GPIO[18] Override pin or n/c
+GPIO[5]  IOM0 SPI CLK/I2C SCL           GPIO[0]  IOS SPI SCK/I2C SCL
+GPIO[6]  IOM0 SPI MISO/I2C SDA          GPIO[1]  IOS SPI MISO/I2C SDA
+GPIO[7]  IOM0 SPI MOSI                  GPIO[2]  IOS SPI MOSI
+GPIO[11] IOM0 SPI nCE                   GPIO[3]  IOS SPI nCE
+GPIO[17] Slave reset (host to slave)    Reset Pin or n/c
+Reset and Override pin connections from Host are optional
+Keeping Button1 pressed on target has same effect as host driving override
+
+
+******************************************************************************
+
+
+Name:
+=====
+ pwm_gen
+
+
+Description:
+============
+ Breathing LED example.
+
+
+This example shows one way to vary the brightness of an LED using timers in
+PWM mode.
+
+
+******************************************************************************
+
+
+Name:
+=====
+ reset_states
+
+
+Description:
+============
+ Example of various reset options in Apollo.
+
+
+This example shows a simple configuration of the watchdog. It will print
+a banner message, configure the watchdog for both interrupt and reset
+generation, and immediately start the watchdog timer.
+The watchdog ISR provided will 'pet' the watchdog four times, printing
+a notification message from the ISR each time.
+On the fifth interrupt, the watchdog will not be pet, so the 'reset'
+action will eventually be allowed to occur.
+On the sixth timeout event, the WDT should issue a system reset, and the
+program should start over from the beginning.
+
+The program will repeat the following sequence on the console:
+(POI Reset) 5 Interrupts - (WDT Reset) 3 Interrupts - (POR Reset) 3 Interrupts
+
+
+******************************************************************************
+
+
+Name:
+=====
+ rtc_print
+
+
+Description:
+============
+ Example using the internal RTC.
+
+
+This example demonstrates how to interface with the RTC and prints the
+time over SWO.
+
+The example works by configuring a timer interrupt which will periodically
+wake the core from deep sleep. After every interrupt, it prints the current
+RTC time.
+
+
+
+******************************************************************************
+
+
+Name:
+=====
+ spi_boot_host
+
+
+Description:
+============
+ An example to drive the IO Slave on a second board.
+
+
+This example acts as the boot host for spi_boot and multi_boot on Apollo
+and Apollo2 MCUs. It will deliver a predefined firmware image to a boot
+slave over a SPI protocol. The purpose of this demo is to show how a host
+processor might store, load, and update the firmware on an Apollo or
+Apollo2 device that is connected as a slave.
+
+Please see the multi_boot README.txt for more details on how to run the
+examples.
+
+PIN fly lead connections assumed by multi_boot:
+HOST                                    SLAVE (multi_boot target)
+--------                                --------
+GPIO[2]  GPIO Interrupt (slave to host) GPIO[4]  GPIO interrupt
+GPIO[4]  OVERRIDE pin   (host to slave) GPIO[18] Override pin or n/c
+GPIO[5]  IOM0 SPI CLK/I2C SCL           GPIO[0]  IOS SPI SCK/I2C SCL
+GPIO[6]  IOM0 SPI MISO/I2C SDA          GPIO[1]  IOS SPI MISO/I2C SDA
+GPIO[7]  IOM0 SPI MOSI                  GPIO[2]  IOS SPI MOSI
+GPIO[11] IOM0 SPI nCE                   GPIO[3]  IOS SPI nCE
+GPIO[17] Slave reset (host to slave)    Reset Pin or n/c
+GND                                     GND
+Reset and Override pin connections from Host are optional
+Keeping Button1 pressed on target has same effect as host driving override
+
+
+******************************************************************************
+
+
+Name:
+=====
+
+
+
+Description:
+============
+ Example using a ctimer with interrupts.
+
+
+This example demonstrates how to setup the ctimer for counting and
+interrupts. It toggles LED 0 every interrupt.
+
+
+******************************************************************************
+
+
+Name:
+=====
+ uart_printf
+
+
+Description:
+============
+ Example that uses the UART interface for printf.
+
+
+This example walks through the ASCII table (starting at character 033('!')
+and ending on 126('~')) and prints the character to the UART. This output
+can be decoded by running AM Flash and configuring the console for UART at
+115200 Baud. This example works by configuring a timer and printing a new
+character after ever interrupt and sleeps in between timer interrupts.
+
+
+******************************************************************************
+
+
+Name:
+=====
+ watchdog
+
+
+Description:
+============
+ Example of a basic configuration of the watchdog.
+
+
+This example shows a simple configuration of the watchdog. It will print
+a banner message, configure the watchdog for both interrupt and reset
+generation, and immediately start the watchdog timer.
+The watchdog ISR provided will 'pet' the watchdog four times, printing
+a notification message from the ISR each time.
+On the fifth interrupt, the watchdog will not be pet, so the 'reset'
+action will eventually be allowed to occur.
+On the sixth timeout event, the WDT should issue a system reset, and the
+program should start over from the beginning.
+
+
+******************************************************************************
+
+
+Name:
+=====
+ binary_counter
+
+
+Description:
+============
+ Example that displays the timer count on the LEDs.
+
+
+This example increments a variable on every timer interrupt. The global
+variable is used to set the state of the LEDs. The example sleeps otherwise.
+
+SWO is configured in 1M baud, 8-n-1 mode.
+
+
+******************************************************************************
+
+
+Name:
+=====
+ cordio_beaconscanner
+
+
+Description:
+============
+ Cordio Beacon Scanner Example
+
+
+
+
+******************************************************************************
+
+
+Name:
+=====
+ cordio_datc
+
+
+Description:
+============
+ Cordio Data Client example.
+
+
+
+
+******************************************************************************
+
+
+Name:
+=====
+ cordio_dats
+
+
+Description:
+============
+ Cordio Data Server example.
+
+
+
+
+******************************************************************************
+
+
+Name:
+=====
+ cordio_eddystone_url
+
+
+Description:
+============
+ Cordio EddyStone URL Example
+
+
+
+
+******************************************************************************
+
+
+Name:
+=====
+ cordio_fcc_test
+
+
+Description:
+============
+ Cordio FCC test example
+
+
+
+
+******************************************************************************
+
+
+Name:
+=====
+ cordio_ibeacon
+
+
+Description:
+============
+ Cordio based iBeacon example.
+
+
+
+
+******************************************************************************
+
+
+Name:
+=====
+ cordio_power_cycle
+
+
+Description:
+============
+ Cordio Power Cycle EM9304 Example
+
+
+
+
+******************************************************************************
+
+
+Name:
+=====
+ cordio_tag
+
+
+Description:
+============
+ Cordio Proximity Tag Example
+
+
+
+
+******************************************************************************
+
+
+Name:
+=====
+ cordio_txpower_ctrl
+
+
+Description:
+============
+ Cordio Tx power control Example
+
+
+
+
+******************************************************************************
+
+
+Name:
+=====
+ cordio_watch
+
+
+Description:
+============
+ Concurrent Master/Slave Example.
+
+
+Purpose:
+========
+This example demonstrates an BLE application in the Central role.
+That is the BLE application operates as a slave to phone master and as the
+master of subordinate slave devices running freertos_fit example in this SDK.
+
+
+1. Printing takes place over the ITM at 1M Baud.
+2. When the example powers up, 
+2.A. it enters advertising mode by default to wait for connection from 
+smart phone with Time profile, Alert Notification profile and Phone
+Alert Status profile supported.
+2.B. when BTN2 on Apollo3 EVB is short-pressed, if advertising is on, it
+stops advertising first and then starts scanning when advertising is
+stopped; if scanning is on, it stops scanning and re-start advertising
+when scanning stops.
+2.C. During scanning, the device (if discovered) running freertos_fit
+example in this SDK will be connected and scanning will be stopped.
+2.D. Repeat 2.B. and 2.C. above to connect to a new slave device running 
+freertos_fit example (max slaves is 3).
+3. when phone (iPhone is used) connects to this example, the services of Time
+profile, Alert Notification profile and Phone Alert Status profile will be
+
+
+******************************************************************************
+
+
+Name:
+=====
+ deepsleep
+
+
+Description:
+============
+ Example demonstrating how to enter deepsleep.
+
+
+This example configures the device to go into a deep sleep mode. Once in
+sleep mode the device has no ability to wake up. This example is merely to
+provide the opportunity to measure deepsleep current without interrupts
+interfering with the measurement.
+
+The example begins by printing out a banner annoucement message through
+the UART, which is then completely disabled for the remainder of execution.
+
+Text is output to the UART at 115,200 BAUD, 8 bit, no parity.
+Please note that text end-of-line is a newline (LF) character only.
+Therefore, the UART terminal must be set to simulate a CR/LF.
+
+
+******************************************************************************
+
+
+Name:
+=====
+ em9304_test_bridge
+
+
+Description:
+============
+ UART-to-SPI bridge for Bluetooth Direct Mode testing of EM9304.
+
+
+This project implements a UART to SPI bridge for Direct Mode testing of
+the EM9304 BLE Controller.  The project uses UART0 and IOM5 in SPI mode.
+HCI packets are provided over the UART which the Apollo2 transfers via
+the SPI interface according to the EM9304 data sheet.  Responses from the
+EM9304 are read from the SPI interface and relayed over the UART.  The
+project uses the FIFOs and interrupts of the UART and IOM in order to
+implement non-blocking processing of the next received packet from either
+interface.
+
+
+******************************************************************************
+
+
+Name:
+=====
+ exactle_fit
+
+
+Description:
+============
+ ExactLE Fit example.
+
+
+This example application implements the standard BLE HRP profile using the
+ExactLE stack and the EM9304 BLE radio. This application is able to
+communicate with standard heart-rate applications running on recent model
+mobile devices.
+
+In this example implementation, the heart rate value is reported as a
+constant "78", and the "kCals consumed" value is reported as a single
+incrementing integer value. In a real application, these values could be
+supplied by a heart-rate sensor and context-tracking software.
+
+
+******************************************************************************
+
+
+Name:
+=====
+ freertos_amota_blinky
+
+
+Description:
+============
+ Example of an OTA-capable application.
+
+
+This example implements a BLE heart rate sensor within the FreeRTOS
+framework. To save power, this application is compiled without print
+statements by default. To enable them, add the following project-level
+macro definitions.
+
+AM_DEBUG_PRINTF
+WSF_TRACE_ENABLED=1
+
+If enabled, debug messages will be sent over ITM.
+
+
+******************************************************************************
+
+
+Name:
+=====
+ freertos_ancs
+
+
+Description:
+============
+ ANCS example.
+
+
+
+
+
+******************************************************************************
+
+
+Name:
+=====
+ freertos_fit
+
+
+Description:
+============
+ Example of the exactle_fit app running under FreeRTOS.
+
+
+This example implements a BLE heart rate sensor within the FreeRTOS
+framework. To save power, this application is compiled without print
+statements by default. To enable them, add the following project-level
+macro definitions.
+
+AM_DEBUG_PRINTF
+WSF_TRACE_ENABLED=1
+
+If enabled, debug messages will be sent over ITM.
+
+
+******************************************************************************
+
+
+Name:
+=====
+ freertos_fit
+
+
+Description:
+============
+ Example of the exactle_fit app running under FreeRTOS.
+
+
+This example implements a BLE heart rate sensor within the FreeRTOS
+framework. To save power, this application is compiled without print
+statements by default. To enable them, add the following project-level
+macro definitions.
+
+AM_DEBUG_PRINTF
+WSF_TRACE_ENABLED=1
+
+If enabled, debug messages will be sent over ITM.
+
+
+******************************************************************************
+
+
+Name:
+=====
+ adc_lpmode0
+
+
+Description:
+============
+ Example that takes samples with the ADC at high-speed.
+
+
+This example shows the CTIMER-A3 triggering repeated samples of an external
+input at 1.2Msps in LPMODE0.  The example uses the CTIMER-A3 to trigger
+ADC sampling.  Each data point is 128 sample average and is read from the
+ADC FIFO into an SRAM circular buffer.
+
+
+
+******************************************************************************
+
+
+Name:
+=====
+ adc_lpmode1
+
+
+Description:
+============
+ Example that periodically takes samples with the ADC.
+
+
+This example shows the CTIMER-A3 triggering repeated samples of the
+temperature sensor in low-power mode 1.
+
+SWO is configured in 1M baud, 8-n-1 mode.
+
+
+******************************************************************************
+
+
+Name:
+=====
+ adc_lpmode2
+
+
+Description:
+============
+ Example that takes samples with the ADC at 1Hz and powers off the
+
+ADC between samples.  CTIMER-A1 is used to drive the process.
+
+SWO is configured in 1M baud, 8-n-1 mode.
+
+
+******************************************************************************
+
+
+Name:
+=====
+ adc_vbatt
+
+
+Description:
+============
+ ADC VBATT voltage divider, BATT load, and temperature reading example.
+
+
+This example initializes the ADC, and a timer. Two times per second it
+reads the VBATT voltage divider and temperature sensor and prints them.
+It monitors button 0 and if pressed, it turns on the BATT LOAD resistor.
+One should monitor MCU current to see when the load is on or off.
+
+Printing takes place over the ITM at 1M Baud.
+
+
+******************************************************************************
+
+
+Name:
+=====
+ bc_boot_demo
+
+
+Description:
+============
+ Example that displays the timer count on the LEDs.
+
+
+This example is a copy of the "binary counter" demo compiled and linked to
+run at flash address 0x8000 instead of 0x0000. This is useful for users who
+would like to run their applications with a permanent bootloader program in
+the first page of flash.
+
+Please see the linker configuration files for an example of how this offset
+can be built into the compilation process.
+
+SWO is configured in 1M baud, 8-n-1 mode.
+
+
+******************************************************************************
+
+
+Name:
+=====
+ binary_counter
+
+
+Description:
+============
+ Example that displays the timer count on the LEDs.
+
+
+This example increments a variable on every timer interrupt. The global
+variable is used to set the state of the LEDs. The example sleeps otherwise.
+
+SWO is configured in 1M baud, 8-n-1 mode.
+
+
+******************************************************************************
+
+
+Name:
+=====
+ buckzx_demo
+
+
+Description:
+============
+ Demonstrate operation of the buck zero-cross implementation.
+
+
+See Errata ERR019 for additional details on this issue.
+
+Heavily based on deepsleep_wake, this example demonstrates the
+operation of the buck zero-cross implementation.
+
+The example uses 5 GPIOs in total for the demonstration as follows:
+GPIO 3: Shows the CTIMER A buck pulse.
+GPIO 4: Shows The CTIMER B buck pulse.
+GPIO 5: Demarcates the sleep cycle; high while sleeping,
+low when awake.
+GPIO 6: Demarcates am_ctimer_isr(), high when the ISR is
+entered, low on exit. Basically envelopes each of
+the buck pulses.
+GPIO 7: Toggling pattern of approximately 1us width during
+the time the bucks are being restored.
+
+To run the buckzx_demo example:
+- Connect an analyzer to GPIOs 3-7 on the apollo2_evb board with
+a trigger (high-to-low) on GPIO5.
+- Flash the example binary and reset.
+- As on deepsleep_wake, the Apollo2 will incur an RTC interrupt
+once every second. It will stay awake for one second, then it
+will deep sleep for one second.
+- The sleep time is indicated by GPIO 5 being high. The awake
+time is indicated by GPIO 5 being low.
+- Zooming in on the GPIO5 low-going pulse shows the buck handling
+in action.
+- GPIO 3 & 4 will each pulse once during the wake time. These
+pulses show the core and memory bucks.
+Note that the 2 signals occur differently depending on the
+CTIMER used.  CTIMERs 0 and 1 will see core buck on GPIO4
+(CTimer B) and mem buck on GPIO3 (CTimer A).  CTIMERs 2 and 3
+are vice-versa.
+- GPIO 6 pulses each time the CTIMER fires.  Therefore, there
+should be as many GPIO6 pulses as 3 & 4 combined.
+- GPIO 7 simply demonstrates MCU usage while the bucks are resumed.
+- Modify BUCK_TIMER (0 - 3) to change the timer that is actually
+used for the operation.
+
+
+******************************************************************************
+
+
+Name:
+=====
+ clkout
+
+
+Description:
+============
+ Enables a clock source to clkout and then tracks it on an LED array.
+
+
+This example enables the LFRC to a clkout pin then uses GPIO polling to
+track its rising edge and toggle an LED at 1 hertz.
+
+
+******************************************************************************
+
+
+Name:
+=====
+ deepsleep
+
+
+Description:
+============
+ Example demonstrating how to enter deepsleep.
+
+
+This example configures the device to go into a deep sleep mode. Once in
+sleep mode the device has no ability to wake up. This example is merely to
+provide the opportunity to measure deepsleep current without interrupts
+interfering with the measurement.
+
+The example begins by printing out a banner annoucement message through
+the UART, which is then completely disabled for the remainder of execution.
+
+Text is output to the UART at 115,200 BAUD, 8 bit, no parity.
+Please note that text end-of-line is a newline (LF) character only.
+Therefore, the UART terminal must be set to simulate a CR/LF.
+
+
+******************************************************************************
+
+
+Name:
+=====
+ deepsleep_wake
+
+
+Description:
+============
+ Example that goes to deepsleep and wakes from either the RTC or GPIO.
+
+
+This example configures the device to go into a deep sleep mode. Once in
+deep sleep the device has the ability to wake from button 0 or
+the RTC configured to interrupt every second. If the MCU woke from a button
+press, it will toggle LED0. If the MCU woke from the RTC, it will toggle
+LED1.
+
+The example begins by printing out a banner annoucement message through
+the UART, which is then completely disabled for the remainder of execution.
+
+Text is output to the UART at 115,200 BAUD, 8 bit, no parity.
+Please note that text end-of-line is a newline (LF) character only.
+Therefore, the UART terminal must be set to simulate a CR/LF.
+
+
+******************************************************************************
+
+
+Name:
+=====
+ flash_write
+
+
+Description:
+============
+ Flash write example.
+
+
+This example shows how to modify the internal Flash using HAL flash helper
+functions.
+
+This example works on instance 1 of the Flash, i.e. the portion of the
+Flash above 256KB/512KB.
+
+
+
+******************************************************************************
+
+
+Name:
+=====
+ flash_write_apollo2
+
+
+Description:
+============
+ Flash write example specifically for Apollo 2.
+
+
+This example shows how to modify the internal Flash using HAL flash helper
+functions.
+
+This example works on instance 1 of the Flash, i.e. the portion of the
+Flash above 512KB. It is intended to execute from instance 0.
+
+
+
+******************************************************************************
+
+
+Name:
+=====
+ freertos_lowpower
+
+
+Description:
+============
+ Example of the app running under FreeRTOS.
+
+
+This example implements LED task within the FreeRTOS framework. It monitors
+three On-board buttons, and toggles respective on-board LEDs in response.
+To save power, this application is compiled without print
+statements by default. To enable them, add the following project-level
+macro definitions.
+
+AM_DEBUG_PRINTF
+
+If enabled, debug messages will be sent over ITM.
+
+
+******************************************************************************
+
+
+Name:
+=====
+ hello_fault
+
+
+Description:
+============
+ A simple example that causes a hard-fault.
+
+
+This example demonstrates the extended hard fault handler which can
+assist the user in decoding a fault condition. The handler pulls the
+registers that the Cortex M4 automatically loads onto the stack and
+combines them with various other fault information into a single
+data structure saved locally.  It can optionally print out the fault
+data structure (assuming the stdio printf has previously been enabled
+and is still enabled at the time of the fault).
+
+
+******************************************************************************
+
+
+Name:
+=====
+ hello_world
+
+
+Description:
+============
+ A simple "Hello World" example.
+
+
+This example prints a "Hello World" message with some device info
+over SWO at 1M baud. To see the output of this program, run AMFlash,
+and configure the console for SWO. The example sleeps after it is done
+printing.
+
+
+******************************************************************************
+
+
+Name:
+=====
+ hello_world_uart
+
+
+Description:
+============
+ A simple "Hello World" example using the UART peripheral.
+
+
+This example prints a "Hello World" message with some device info
+over UART at 115200 baud. To see the output of this program, run AMFlash,
+and configure the console for UART. The example sleeps after it is done
+printing.
+
+
+******************************************************************************
+
+
+Name:
+=====
+ i2c_boot_host
+
+
+Description:
+============
+ An example to drive the IO Slave on a second board.
+
+
+This example acts as the boot host for spi_boot and multi_boot on Apollo
+and Apollo2 MCUs. It will deliver a predefined firmware image to a boot
+slave over an I2C protocol. The purpose of this demo is to show how a host
+processor might store, load, and update the firmware on an Apollo or
+Apollo2 device that is connected as a slave.
+
+Please see the multi_boot README.txt for more details on how to run the
+examples.
+
+PIN fly lead connections assumed by multi_boot:
+HOST                                    SLAVE (multi_boot target)
+--------                                --------
+GPIO[2]  GPIO Interrupt (slave to host) GPIO[4]  GPIO interrupt
+GPIO[4]  OVERRIDE pin   (host to slave) GPIO[18] Override pin or n/c
+GPIO[5]  IOM0 SPI CLK/I2C SCL           GPIO[0]  IOS SPI SCK/I2C SCL
+GPIO[6]  IOM0 SPI MISO/I2C SDA          GPIO[1]  IOS SPI MISO/I2C SDA
+GPIO[7]  IOM0 SPI MOSI                  GPIO[2]  IOS SPI MOSI
+GPIO[11] IOM0 SPI nCE                   GPIO[3]  IOS SPI nCE
+GPIO[17] Slave reset (host to slave)    Reset Pin or n/c
+GND                                     GND
+Reset and Override pin connections from Host are optional
+Keeping Button1 pressed on target has same effect as host driving override
+
+
+******************************************************************************
+
+
+Name:
+=====
+ i2c_loopback
+
+
+Description:
+============
+ Example of I2C operation using IOM #0 talking to the IOS over I2C
+
+
+SWO is configured in 1M baud, 8-n-1 mode.
+PIN Fly Lead Assumptions for the I/O Master (IOM):
+IOM0
+GPIO[5] == IOM4 I2C SCL
+GPIO[6] == IOM4 I2C SDA
+
+IOS
+PIN Fly Lead Assumptions for the I/O Slave (IOS):
+GPIO[0] == IOS I2C SCL
+GPIO[1] == IOS I2C SDA
+
+Connect IOM4 I2C pins to corresponding IOS I2C pins
+
+
+
+******************************************************************************
+
+
+Name:
+=====
+ ios_fifo
+
+
+Description:
+============
+ Example slave used for demonstrating the use of the IOS FIFO.
+
+
+This slave component runs on one EVB and is used in conjunction with
+the companion host example, ios_fifo_host, which runs on a second EVB.
+
+The ios_fifo example has no print output.
+The host example does use the ITM SWO to let the user know progress and
+status of the demonstration.
+
+This example implements the slave part of a protocol for data exchange with
+an Apollo IO Master (IOM).  The host sends one byte commands on SPI/I2C by
+writing to offset 0x80.
+
+The command is issued by the host to Start/Stop Data accumulation, and also
+to acknowledge read-complete of a block of data.
+
+On the IOS side, once it is asked to start accumulating data (using START
+command), two CTimer based events emulate sensors sending data to IOS.
+When IOS has some data for host, it implements a state machine,
+synchronizing with the host.
+
+The IOS interrupts the host to indicate data availability. The host then
+reads the available data (as indicated by FIFOCTR) by READing using IOS FIFO
+(at address 0x7F).  The IOS keeps accumulating any new data coming in the
+background.
+
+Host sends an acknowledgement to IOS once it has finished reading a block
+of data initiated by IOS (partitally or complete). IOS interrupts the host
+again if and when it has more data for the host to read, and the cycle
+repeats - till host indicates that it is no longer interested in receiving
+data by sending STOP command.
+
+In order to run this example, a host device (e.g. a second EVB) must be set
+up to run the host example, ios_fifo_host.  The two boards can be connected
+using fly leads between the two boards as follows.
+
+Pin connections for the I/O Master board to the I/O Slave board.
+
+HOST (ios_fifo_host)                    SLAVE (ios_fifo)
+--------------------                    ----------------
+GPIO[10] GPIO Interrupt (slave to host) GPIO[4]  GPIO interrupt
+GPIO[5]  IOM0 SPI CLK/I2C SCL           GPIO[0]  IOS SPI SCK/I2C SCL
+GPIO[6]  IOM0 SPI MISO/I2C SDA          GPIO[1]  IOS SPI MISO/I2C SDA
+GPIO[7]  IOM0 SPI MOSI                  GPIO[2]  IOS SPI MOSI
+GPIO[11] IOM0 SPI nCE                   GPIO[3]  IOS SPI nCE
+GND                                     GND
+
+
+******************************************************************************
+
+
+Name:
+=====
+ ios_fifo_host
+
+
+Description:
+============
+ Example host used for demonstrating the use of the IOS FIFO.
+
+
+This host component runs on one EVB and is used in conjunction with
+the companion slave example, ios_fifo, which runs on a second EVB.
+
+The host example uses the ITM SWO to let the user know progress and
+status of the demonstration.  The SWO is configured at 1M baud.
+The ios_fifo example has no print output.
+
+This example implements the host part of a protocol for data exchange with
+an Apollo IO Slave (IOS).  The host sends one byte commands on SPI/I2C by
+writing to offset 0x80.
+
+The command is issued by the host to Start/Stop Data accumulation, and also
+to acknowledge read-complete of a block of data.
+
+On the IOS side, once it is asked to start accumulating data (using START
+command), two CTimer based events emulate sensors sending data to IOS.
+When IOS has some data for host, it implements a state machine,
+synchronizing with the host.
+
+The IOS interrupts the host to indicate data availability. The host then
+reads the available data (as indicated by FIFOCTR) by READing using IOS FIFO
+(at address 0x7F).  The IOS keeps accumulating any new data coming in the
+background.
+
+Host sends an acknowledgement to IOS once it has finished reading a block
+of data initiated by IOS (partitally or complete). IOS interrupts the host
+again if and when it has more data for the host to read, and the cycle
+repeats - till host indicates that it is no longer interested in receiving
+data by sending STOP command.
+
+In order to run this example, a slave device (e.g. a second EVB) must be set
+up to run the companion example, ios_fifo.  The two boards can be connected
+using fly leads between the two boards as follows.
+
+Pin connections for the I/O Master board to the I/O Slave board.
+
+HOST (ios_fifo_host)                    SLAVE (ios_fifo)
+--------------------                    ----------------
+GPIO[10] GPIO Interrupt (slave to host) GPIO[4]  GPIO interrupt
+GPIO[5]  IOM0 SPI CLK/I2C SCL           GPIO[0]  IOS SPI SCK/I2C SCL
+GPIO[6]  IOM0 SPI MISO/I2C SDA          GPIO[1]  IOS SPI MISO/I2C SDA
+GPIO[7]  IOM0 SPI MOSI                  GPIO[2]  IOS SPI MOSI
+GPIO[11] IOM0 SPI nCE                   GPIO[3]  IOS SPI nCE
+GND                                     GND
+
+
+******************************************************************************
+
+
+Name:
+=====
+ itm_printf
+
+
+Description:
+============
+ Example that uses the ITM interface for printf.
+
+
+This example walks through the ASCII table (starting at character 033('!')
+and ending on 126('~')) and prints the character to the ARM ITM. This output
+can be decoded by running a terminal emulator (e.g. SEGGER J-Link SWO Viewer) 
+and configuring the console for SWO at 1M Baud. This example works by 
+configuring a timer and printing a new character after ever interrupt and 
+sleeps in between timer interrupts.
+
+
+******************************************************************************
+
+
+Name:
+=====
+ multi_boot
+
+
+Description:
+============
+ Bootloader program accepting multiple host protocols.
+
+
+Multiboot is a bootloader program that supports flash programming over UART,
+SPI, and I2C. The correct protocol is selected automatically at boot time.
+The messaging is expected to follow little-endian format, which is native to
+the Cortex M4 used in Apollo and Apollo2.
+
+If a valid image is already present on the target device, Multiboot will run
+that image.  Otherwise it will wait for a new image to be downloaded from
+the host.  A new image download can be forced on the target by using the
+"override" capability via one of the pins.
+
+Running this example requires 2 EVBs - one EVB to run multi_boot, the second
+to run a host example such as spi_boot_host or i2c_boot_host. The two EVBs
+are generally fly wired together as shown below.
+
+The most straightforward method of running the demonstration is to use two
+EVBs of the same type (i.e. 2 Apollo EVBs or 2 Apollo2 EVBs) as both the
+host and the target.  Then the pins on the two EVBs are connected as shown
+in the chart including the optional reset and override pins.  With these
+connections, the host controls everything and no user intervention is
+required other than the press the reset button on the host to initiate the
+process.
+
+The host downloads an executable (target) image to the slave that will run
+on the target.  By default that image is binary_counter, which is obvious
+to see running on the slave.
+
+In the default scenario (two boards of the same type), the image downloaded
+by the host is compatible with the host board type, so it will run without
+modification on the target.  In the case of the host device being different
+from the target, the image downloaded from the host must be modified to be
+compatible with the target (requires rebuilding the host example).
+
+The EVB Button1 (usually labelled BTN2 on the EVB silkscreen) is the manual
+override which can be used to force downloading of a new image even if a
+valid image already exists on the target. The host examples use the same
+"override" pin signal when downloading a new image.
+
+PIN fly lead connections assumed by multi_boot:
+HOST                                    SLAVE (multi_boot target)
+--------                                --------
+GPIO[2]  GPIO Interrupt (slave to host) GPIO[4]  GPIO interrupt
+GPIO[4]  OVERRIDE pin   (host to slave) GPIO[18] Override pin or n/c
+GPIO[5]  IOM0 SPI CLK/I2C SCL           GPIO[0]  IOS SPI SCK/I2C SCL
+GPIO[6]  IOM0 SPI MISO/I2C SDA          GPIO[1]  IOS SPI MISO/I2C SDA
+GPIO[7]  IOM0 SPI MOSI                  GPIO[2]  IOS SPI MOSI
+GPIO[11] IOM0 SPI nCE                   GPIO[3]  IOS SPI nCE
+GPIO[17] Slave reset (host to slave)    Reset Pin (NRST) or n/c
+GND                                     GND
+Reset and Override pin connections from Host are optional
+Keeping Button1 pressed on target has same effect as host driving override
+
+
+******************************************************************************
+
+
+Name:
+=====
+ multi_boot
+
+
+Description:
+============
+ Bootloader program accepting multiple host protocols.
+
+
+This is a bootloader program that supports flash programming over UART,
+SPI, and I2C. The correct protocol is selected automatically at boot time.
+The messaging is expected to follow little-endian format, which is native to
+Apollo1/2.
+This version of bootloader also supports security features -
+Image confidentiality, Authentication, and key revocation is supported
+using a simple CRC-CBC based encryption mechanism.
+
+Default override pin corresponds to Button1. So, even if a valid image is
+present in flash, bootloader can be forced to wait for new image from host.
+
+PIN fly lead connections assumed by multi_boot:
+HOST                                    SLAVE (multi_boot target)
+--------                                --------
+GPIO[2]  GPIO Interrupt (slave to host) GPIO[4]  GPIO interrupt
+GPIO[4]  OVERRIDE pin   (host to slave) GPIO[18] Override pin or n/c
+GPIO[5]  IOM0 SPI CLK/I2C SCL           GPIO[0]  IOS SPI SCK/I2C SCL
+GPIO[6]  IOM0 SPI MISO/I2C SDA          GPIO[1]  IOS SPI MISO/I2C SDA
+GPIO[7]  IOM0 SPI MOSI                  GPIO[2]  IOS SPI MOSI
+GPIO[11] IOM0 SPI nCE                   GPIO[3]  IOS SPI nCE
+GPIO[17] Slave reset (host to slave)    Reset Pin or n/c
+Reset and Override pin connections from Host are optional
+Keeping Button1 pressed on target has same effect as host driving override
+
+
+******************************************************************************
+
+
+Name:
+=====
+ prime
+
+
+Description:
+============
+ Example that displays the timer count on the LEDs.
+
+
+This example consists of a non-optimized, brute-force routine for computing
+the number of prime numbers between 1 and a given value, N. The routine
+uses modulo operations to determine whether a value is prime or not. While
+obviously not optimal, it is very useful for exercising the core.
+
+For this example, N is 100000, for which the answer is 9592.
+
+For Apollo3 at 48MHz, the time to compute the answer for Keil and IAR:
+IAR v8.11.1:        1:43.
+Keil ARMCC 4060528: 1:55.
+
+Apollo2 at 48MHz takes less than 2 1/4 minutes to determine that answer
+when compiled with IAR v8.11.
+
+The goal of this example is to measure current consumption while the core
+is working to compute the answer. Power and energy can then be derived
+knowing the current and run time.
+
+The example prints an initial banner to the UART port.  After each prime
+loop, it enables the UART long enough to print the answer, disables the
+UART and starts the computation again.
+
+Text is output to the UART at 115,200 BAUD, 8 bit, no parity.
+Please note that text end-of-line is a newline (LF) character only.
+Therefore, the UART terminal must be set to simulate a CR/LF.
+
+Note: For minimum power, disable the printing by setting PRINT_UART to 0.
+
+The prime_number() routine is open source and is used here under the
+GNU LESSER GENERAL PUBLIC LICENSE Version 3, 29 June 2007.  Details,
+documentation, and the full license for this routine can be found in
+the third_party/prime_mpi/ directory of the SDK.
+
+
+
+******************************************************************************
+
+
+Name:
+=====
+ pwm_gen
+
+
+Description:
+============
+ Breathing LED example.
+
+
+This example shows one way to vary the brightness of an LED using timers in
+PWM mode.
+
+
+******************************************************************************
+
+
+Name:
+=====
+ reset_states
+
+
+Description:
+============
+ Example of various reset options in Apollo.
+
+
+This example shows a simple configuration of the watchdog. It will print
+a banner message, configure the watchdog for both interrupt and reset
+generation, and immediately start the watchdog timer.
+The watchdog ISR provided will 'pet' the watchdog four times, printing
+a notification message from the ISR each time.
+On the fifth interrupt, the watchdog will not be pet, so the 'reset'
+action will eventually be allowed to occur.
+On the sixth timeout event, the WDT should issue a system reset, and the
+program should start over from the beginning.
+
+The program will repeat the following sequence on the console:
+(POI Reset) 5 Interrupts - (WDT Reset) 3 Interrupts - (POR Reset) 3 Interrupts
+
+
+******************************************************************************
+
+
+Name:
+=====
+ rtc_print
+
+
+Description:
+============
+ Example using the internal RTC.
+
+
+This example demonstrates how to interface with the RTC and prints the
+time over SWO.
+
+The example works by configuring a timer interrupt which will periodically
+wake the core from deep sleep. After every interrupt, it prints the current
+RTC time.
+
+
+
+******************************************************************************
+
+
+Name:
+=====
+ spi_boot_host
+
+
+Description:
+============
+ An example to drive the IO Slave on a second board.
+
+
+This example acts as the boot host for spi_boot and multi_boot on Apollo
+and Apollo2 MCUs. It will deliver a predefined firmware image to a boot
+slave over a SPI protocol. The purpose of this demo is to show how a host
+processor might store, load, and update the firmware on an Apollo or
+Apollo2 device that is connected as a slave.
+
+Please see the multi_boot README.txt for more details on how to run the
+examples.
+
+PIN fly lead connections assumed by multi_boot:
+HOST                                    SLAVE (multi_boot target)
+--------                                --------
+GPIO[2]  GPIO Interrupt (slave to host) GPIO[4]  GPIO interrupt
+GPIO[4]  OVERRIDE pin   (host to slave) GPIO[18] Override pin or n/c
+GPIO[5]  IOM0 SPI CLK/I2C SCL           GPIO[0]  IOS SPI SCK/I2C SCL
+GPIO[6]  IOM0 SPI MISO/I2C SDA          GPIO[1]  IOS SPI MISO/I2C SDA
+GPIO[7]  IOM0 SPI MOSI                  GPIO[2]  IOS SPI MOSI
+GPIO[11] IOM0 SPI nCE                   GPIO[3]  IOS SPI nCE
+GPIO[17] Slave reset (host to slave)    Reset Pin or n/c
+GND                                     GND
+Reset and Override pin connections from Host are optional
+Keeping Button1 pressed on target has same effect as host driving override
+
+
+******************************************************************************
+
+
+Name:
+=====
+ stimer
+
+
+Description:
+============
+ Example using a stimer with interrupts.
+
+
+This example demonstrates how to setup the stimer for counting and
+interrupts. It toggles LED 0 every interrupt, which is set for 1 sec.
+
+
+******************************************************************************
+
+
+Name:
+=====
+ uart_printf
+
+
+Description:
+============
+ Example that uses the UART interface for printf.
+
+
+This example demonstrates the use of SW Buffer for UART.
+It listens to the UART, and loops back the received data on the Tx
+6
+The UART is set at 115,200 BAUD, 8 bit, no parity.
+
+Finally, a banner, transmit, and receive status information is
+printed to the ITM/SWO.
+
+
+******************************************************************************
+
+
+Name:
+=====
+ uart_printf
+
+
+Description:
+============
+ Example that uses the UART interface for printf.
+
+
+This example walks through the ASCII table (starting at character 033('!')
+and ending on 126('~')) and prints the character to the UART. This output
+can be decoded by running AM Flash and configuring the console for UART at
+115200 Baud. This example works by configuring a timer and printing a new
+character after ever interrupt and sleeps in between timer interrupts.
+
+
+******************************************************************************
+
+
+Name:
+=====
+ watchdog
+
+
+Description:
+============
+ Example of a basic configuration of the watchdog.
+
+
+This example shows a simple configuration of the watchdog. It will print
+a banner message, configure the watchdog for both interrupt and reset
+generation, and immediately start the watchdog timer.
+The watchdog ISR provided will 'pet' the watchdog four times, printing
+a notification message from the ISR each time.
+On the fifth interrupt, the watchdog will not be pet, so the 'reset'
+action will eventually be allowed to occur.
+On the sixth timeout event, the WDT should issue a system reset, and the
+program should start over from the beginning.
+
+
+******************************************************************************
+
+
+Name:
+=====
+ adc_lpmode0_dma
+
+
+Description:
+============
+ This example takes samples with the ADC at high-speed using DMA.
+
+
+Purpose:
+========
+This example shows the CTIMER-A3 triggering repeated samples of an external
+input at 1.2Msps in LPMODE0.  The example uses the CTIMER-A3 to trigger
+ADC sampling.  Each data point is 128 sample average and is transferred
+from the ADC FIFO into an SRAM buffer using DMA.
+
+Printing takes place over the ITM at 1M Baud.
+
+
+
+******************************************************************************
+
+
+Name:
+=====
+ adc_lpmode2
+
+
+Description:
+============
+ This example takes samples with the ADC at 1Hz in lowest power mode.
+
+
+Purpose:
+========
+To demonstrate the lowest possible power usage of the ADC.  The
+example powers off the ADC between samples.  CTIMER-A1 is used to drive the 
+process.  The CTIMER ISR reconfigures the ADC from scratch and triggers each 
+sample.  The ADC ISR stores the sample and shuts down the ADC.
+
+Additional Information:
+=======================
+The ADC_EXAMPLE_DEBUG flag is used to display information in the example to
+show that it is operating.  This should be set to 0 for true low power 
+operation.
+
+Printing takes place over the ITM at 1M Baud.
+
+
+
+******************************************************************************
+
+
+Name:
+=====
+ adc_vbatt
+
+
+Description:
+============
+ Example of ADC sampling VBATT voltage divider, BATT load, and temperature.
+
+
+Purpose:
+========
+This example initializes the ADC, and a timer. Two times per second it
+reads the VBATT voltage divider and temperature sensor and prints them.
+It monitors button 0 and if pressed, it turns on the BATT LOAD resistor.
+One should monitor MCU current to see when the load is on or off.
+
+Printing takes place over the ITM at 1M Baud.
+
+
+******************************************************************************
+
+
+Name:
+=====
+ apollo3_secbl
+
+
+Description:
+============
+ A simple secondary bootloader program example for Apollo3
+
+
+Purpose:
+========
+This program is an example template for a secondary bootloader program for Apollo3.
+It demonstrates how to access info0 key area. It demonstrates how to use the Ambiq SBL OTA 
+framework for customer specific OTAs, e.g. to support external flash, or to support more 
+advanced auth/enc schemes. It demonstrates how to validate & transfer control to the real 
+main program image (assumed to be at address specified by MAIN_PROGRAM_ADDR_IN_FLASH in flash)
+after locking the info0 area before exiting
+
+Printing takes place over the ITM at 1M Baud.
+
+Additional Information:
+=======================
+To exercise this program:
+Flash the main program at 0x10000 (MAIN_PROGRAM_ADDR_IN_FLASH)
+Link this program at the address suitable for SBL nonsecure (0xC000) or secure (0xC100)
+configuration
+To test OTA - construct images using magic numbers in the range matching
+AM_IMAGE_MAGIC_CUST
+To test INFO0 key area access - need to keep INFO0->Security->PLONEXIT as 0
+
+
+
+******************************************************************************
+
+
+Name:
+=====
+ b0_hfadj
+
+
+Description:
+============
+ B0 HFADJ (ERR00x) SW Workaround Example.
+
+
+Purpose:
+========
+This example demonstrates how to update a customer application to
+workaround ERR00x.
+
+Printing takes place over the ITM at 1M Baud.
+
+
+
+******************************************************************************
+
+
+Name:
+=====
+ binary_counter
+
+
+Description:
+============
+ Example that displays the timer count on the LEDs.
+
+
+Purpose:
+========
+This example increments a variable on every timer interrupt. The global
+variable is used to set the state of the LEDs. The example sleeps otherwise.
+
+Printing takes place over the ITM at 1M Baud.
+
+
+
+******************************************************************************
+
+
+Name:
+=====
+ ble_cordio_power_cycle
+
+
+Description:
+============
+ ARM Cordio BLE - Power Cycling Apollo3 BLE Controller Example
+
+
+Purpose:
+========
+This example demonstrates how to properly shutdown and restart the
+BLE Controller in an operational system.  This includes the steps to restart
+the ARM Cordio Host Stack in order to resynchronize with the BLE Controller.
+The shutdown/restart process is driven by a 10 second WSF (Cordio) timer.
+
+Printing takes place over the ITM at 1M Baud.
+
+
+
+******************************************************************************
+
+
+Name:
+=====
+ ble_cordio_tag
+
+
+Description:
+============
+ ARM Cordio BLE - Proximity Tag Example
+
+
+Purpose:
+========
+This is a standard BLE Proximity Profile example.
+
+Printing takes place over the ITM at 1M Baud.
+
+
+
+******************************************************************************
+
+
+Name:
+=====
+ ble_cordio_txpower_ctrl
+
+
+Description:
+============
+ ARM Cordio BLE - Transmit Power Control Example
+
+
+Purpose:
+========
+This example demonstrates the control of BLE TX power level based
+on pressing Button #0 on the Apollo3 EVB.
+
+Printing takes place over the ITM at 1M Baud.
+
+
+
+******************************************************************************
+
+
+Name:
+=====
+ ble_freertos_amdtpc
+
+
+Description:
+============
+ ARM Cordio BLE - AMDTP Client (Master) Example.
+
+
+Purpose:
+========
+This example is the client (master) for the BLE Ambiq Micro
+Data Transfer Protocol.  This example is meant to run on an Apollo3 EVB
+along with another Apollo3 EVB serving as the server. This example provides 
+a UART command line interface with a simple menu that allows the user to scan, 
+connect and initiate data transfers from either M->S or S->M direction.
+
+Printing takes place over the ITM at 1M Baud.
+
+
+
+******************************************************************************
+
+
+Name:
+=====
+ ble_freertos_amdtps
+
+
+Description:
+============
+ ARM Cordio BLE - AMDTP Server (Slave) Example.
+
+
+Purpose:
+========
+This example is the server (slave) for the BLE Ambiq Micro
+Data Transfer Protocol.  This example is meant to run on an Apollo3 EVB
+along with another Apollo3 EVB serving as the client.  This example waits
+for connection and initiation of data transfers by the client (master).
+
+Printing takes place over the ITM at 1M Baud.
+
+
+
+******************************************************************************
+
+
+Name:
+=====
+ ble_freertos_amota
+
+
+Description:
+============
+ ARM Cordio BLE - Ambiq Micro Over the Air (AMOTA) Example.
+
+
+Purpose:
+========
+This example implements Ambiq Micro Over-the-Air (OTA) slave.  This
+example is designed to allow loading of a binary software update from either
+and iOS or Android phone running Ambiq's application.  This example works
+with the Apollo3 Secure Bootloader (SBL) to place the image in flash and then 
+reset the Apollo3 to allow SBL to validate and install the image.
+
+AM_DEBUG_PRINTF
+WSF_TRACE_ENABLED=1
+
+If enabled, debug messages will be sent over ITM at 1M Baud.
+
+Additional Information:
+=======================
+The directory \tools\apollo3_amota\scripts contains a Makefile which will
+build the OTA binary.
+
+The directory \docs\app_notes\amota explains how to use the Ambiq iOS and
+Android applications.
+
+
+******************************************************************************
+
+
+Name:
+=====
+ ble_freertos_ancs
+
+
+Description:
+============
+ ARM Cordio BLE - Apple Notification Center Service (ANCS) Example.
+
+
+Purpose:
+========
+This example implements a BLE Apple Notification Center Service
+profile.
+
+Printing takes place over the ITM at 1M Baud.
+
+
+******************************************************************************
+
+
+Name:
+=====
+ ble_freertos_fit
+
+
+Description:
+============
+ ARM Cordio BLE - Fit Application Example.
+
+
+Purpose:
+========
+This example implements a BLE heart rate sensor within the FreeRTOS
+framework. To minimize power usage, this application is compiled without
+debug printing by default (the "lp" version of this example excludes
+them by default).  
+
+Additional Information:
+=======================
+To enable debug printing, add the following project-level macro definitions.
+
+AM_DEBUG_PRINTF
+WSF_TRACE_ENABLED=1
+
+When defined, debug messages will be sent over ITM/SWO at 1M Baud.
+
+Note that when these macros are defined, the device will never achieve deep
+sleep, only normal sleep, due to the ITM (and thus the HFRC) being enabled.
+
+
+******************************************************************************
+
+
+Name:
+=====
+ ble_freertos_fit_lp
+
+
+Description:
+============
+ ARM Cordio BLE - Fit Application Example at lowest possible power.
+
+
+Purpose:
+========
+This example implements a BLE heart rate sensor within the FreeRTOS
+framework. To minimize power usage, this application is compiled without
+debug printing by default (the non-"lp" version of this example enables
+them by default).  
+
+Additional Information:
+=======================
+To enable debug printing, add the following project-level macro definitions.
+
+AM_DEBUG_PRINTF
+WSF_TRACE_ENABLED=1
+
+When defined, debug messages will be sent over ITM/SWO at 1M Baud.
+
+Note that when these macros are defined, the device will never achieve deep
+sleep, only normal sleep, due to the ITM (and thus the HFRC) being enabled.
+
+
+******************************************************************************
+
+
+Name:
+=====
+ ble_freertos_vole
+
+
+Description:
+============
+ ARM Cordio BLE - VOLE Server (Slave) Example.
+
+
+Purpose:
+========
+This example is the server (slave) for the BLE Ambiq Micro
+Data Transfer Protocol.  This example is meant to run on an Apollo3 EVB
+along with another Apollo3 EVB serving as the client.  This example waits
+for connection and initiation of data transfers by the client (master).
+
+Printing takes place over the ITM at 1M Baud.
+
+
+
+******************************************************************************
+
+
+Name:
+=====
+ ble_freertos_watch
+
+
+Description:
+============
+ ARM Cordio BLE - Concurrent Master/Slave Example.
+
+
+Purpose:
+========
+This example demonstrates an BLE application in the Central role.
+That is the BLE application operates as a slave to phone master and as the
+master of subordinate slave devices running freertos_fit example in this SDK.
+
+Additional Information:
+=======================
+1. Printing takes place over the ITM at 1M Baud.
+2. When the example powers up, 
+2.A. it enters advertising mode by default to wait for connection from 
+smart phone with Time profile, Alert Notification profile and Phone
+Alert Status profile supported.
+2.B. when BTN2 on Apollo3 EVB is short-pressed, if advertising is on, it
+stops advertising first and then starts scanning when advertising is
+stopped; if scanning is on, it stops scanning and re-start advertising
+when scanning stops.
+2.C. During scanning, the device (if discovered) running freertos_fit
+example in this SDK will be connected and scanning will be stopped.
+2.D. Repeat 2.B. and 2.C. above to connect to a new slave device running 
+freertos_fit example (max slaves is 3).
+3. when phone (iPhone is used) connects to this example, the services of Time
+profile, Alert Notification profile and Phone Alert Status profile will be
+
+
+******************************************************************************
+
+
+Name:
+=====
+ burst_mode
+
+
+Description:
+============
+ Example demonstrates the usage of Burst mode (a.k.a. TurboSpot) HAL.
+
+
+Purpose:
+========
+This example shows how to detect if Burst Mode is available.  If so,
+it sets the Apollo3 into Normal (48MHz) mode, then times a calculation of 
+prime numbers, displaying the elapsed time.  Next, it switches the Apollo3
+into Burst mode, performs the same calculation, then displays the elapsed
+time which should be roughly 50% of Normal mode.
+
+Printing takes place over the ITM at 1M Baud.
+
+
+
+******************************************************************************
+
+
+Name:
+=====
+ cache_monitor
+
+
+Description:
+============
+ Example to show the performance of cache.
+
+
+Purpose:
+========
+This example provides a demonstration of the cache monitor to check
+the cache hit rate and cache miss number.
+
+
+
+******************************************************************************
+
+
+Name:
+=====
+ coremark
+
+
+Description:
+============
+ EEMBC COREMARK test.
+
+
+Purpose:
+========
+This example runs the official EEMBC COREMARK test.
+
+The Coremark run begins by first outputing a banner (to the UART)
+indicating that it has started.  It then does a complete disable
+and power down of the UART for accurate power measuring during the run.
+
+The Coremkark implementation performs 2000 ITERATIONS (specified in
+ambiq_core_config.h), which is plenty of time for correct operation
+of the benchmark.
+
+Once the run has completed, the UART is reenabled and the results printed.
+
+Text is output to the UART at 115,200 BAUD, 8 bit, no parity.
+Please note that text end-of-line is a newline (LF) character only.
+Therefore, the UART terminal must be set to simulate a CR/LF.
+
+
+******************************************************************************
+
+
+Name:
+=====
+ ctimer_multi_bidirectional_stepper
+
+
+Description:
+============
+ CTimer multiple bidirectional stepper motors Example,
+
+
+Purpose:
+========
+This example demonstrates how to create arbitrary patterns on multiple
+CTimers.  TMR6 A is used to create base timing for the patterns.  TMR0 B
+TMR1 A and TMR1 B are configured to dual edge trigger on TMR6 with separate
+counting patterns. All timers are configured to run and then synchronized
+off of the global timer enable.  
+
+Printing takes place over the ITM at 1M Baud.
+
+Additional Information:
+=======================
+The patterns are output as follows:
+Pin12 - TMR6 A dual edge trigger pulse
+Pin13 - TMR0 B positive pattern
+Pin18   TMR1 A negative pattern
+Pin19   TMR1 B inactive pattern
+
+
+******************************************************************************
+
+
+Name:
+=====
+ ctimer_pwm_output
+
+
+Description:
+============
+ Breathing LED example.
+
+
+Purpose:
+========
+This example shows one way to vary the brightness of an LED using a timer
+in PWM mode.  The timer can be clocked from either the XTAL (default) or
+the LFRC, selectable by a define, USE_XTAL.
+
+Printing takes place over the ITM at 1M Baud.
+
+
+
+******************************************************************************
+
+
+Name:
+=====
+ ctimer_repeated_pattern
+
+
+Description:
+============
+ CTimer Repeated Pattern Example
+
+
+Purpose:
+========
+This example demonstrates how to create arbitrary repeated pattern on
+CTimer.  TMR0 A is used to create base timing for the pattern.  TMR0 B
+is configured to terminated on TMR0. All timers are configured to run and 
+then synchronized off of the global timer enable.  
+
+Printing takes place over the ITM at 1M Baud.
+
+Additional Information:
+=======================
+The patterns are output as follows:
+Pin12 - TMR0 A terminate pulse
+Pin13 - TMR0 B pattern
+
+
+
+******************************************************************************
+
+
+Name:
+=====
+ ctimer_stepper_synch_32bit_pattern
+
+
+Description:
+============
+ CTimer Stepper Motor Synchronized 32 bit Pattern Example
+
+
+Purpose:
+========
+This example demonstrates how to create arbitrary patterns on multiple
+CTimers.  TMR0 A is used to create base timing for the patterns.  TMR0 B
+and TMR1 A/B are configured to trigger on TMR0 with separate counting 
+patterns.  All timers are configured to run and then synchronized off of 
+the global timer enable.  
+
+Printing takes place over the ITM at 1M Baud.
+
+Additional Information:
+=======================
+The patterns are output as follows:
+Pin12 - TMR0 A trigger pulse
+Pin13 - TMR0 B pattern1
+Pin18 - TMR1 A pattern2
+Pin19 - TMR1 B pattern3
+
+
+
+******************************************************************************
+
+
+Name:
+=====
+ ctimer_stepper_synch_64bit_pattern
+
+
+Description:
+============
+ CTimer Stepper Motor Synchronized 64 bit Pattern Example
+
+
+Purpose:
+========
+This example demonstrates how to create arbitrary patterns on
+CTimer.  TMR0 A is used to create base timing for the pattern.
+and TMR1 A is configured to trigger on TMR0.
+All timers are configured to run and then synchronized off of 
+the global timer enable.  
+
+Printing takes place over the ITM at 1M Baud.
+
+Additional Information:
+=======================
+The patterns are output as follows:
+Pin12 - TMR0 A trigger pulse
+Pin18 - TMR1 A pattern
+
+
+
+******************************************************************************
+
+
+Name:
+=====
+ deepsleep
+
+
+Description:
+============
+ Example demonstrating how to enter deepsleep.
+
+
+Purpose:
+========
+This example configures the device to go into a deep sleep mode. Once in
+sleep mode the device has no ability to wake up. This example is merely to
+provide the opportunity to measure deepsleep current without interrupts
+interfering with the measurement.
+
+The example begins by printing out a banner announcement message through
+the UART, which is then completely disabled for the remainder of execution.
+
+Text is output to the UART at 115,200 BAUD, 8 bit, no parity.
+Please note that text end-of-line is a newline (LF) character only.
+Therefore, the UART terminal must be set to simulate a CR/LF.
+
+
+******************************************************************************
+
+
+Name:
+=====
+ deepsleep_wake
+
+
+Description:
+============
+ Example that goes to deepsleep and wakes from either the RTC or GPIO.
+
+
+Purpose:
+========
+This example configures the device to go into a deep sleep mode. Once in
+deep sleep the RTC peripheral will wake the device every second, check to
+see if 5 seconds has elapsed and then toggle LED1.
+
+Alternatively, it will awake when button 0 is pressed and toggle LED0.
+
+The example begins by printing out a banner annoucement message through
+the UART, which is then completely disabled for the remainder of execution.
+
+Text is output to the UART at 115,200 BAUD, 8 bit, no parity.
+Please note that text end-of-line is a newline (LF) character only.
+Therefore, the UART terminal must be set to simulate a CR/LF.
+
+
+******************************************************************************
+
+
+Name:
+=====
+ fast_gpio
+
+
+Description:
+============
+ Example that demonstrates how to use the Fast GPIO feature of Apollo3.
+
+
+Purpose:
+========
+This example demonstrates how to use Fast GPIO on Apollo3.  The example
+updates the LEDs with waveforms that can be observed with a logic analyzer.
+
+Printing takes place over the ITM at 1M Baud.
+
+
+
+******************************************************************************
+
+
+Name:
+=====
+ flash_selftest
+
+
+Description:
+============
+ An example to test all onboard flash.
+
+
+Purpose:
+========
+This example runs a series of test patterns on both instances of the device
+flash.  It performs many of the same tests that the hardware BIST (built
+in self test) uses at production test.
+
+Results are saved in coded form to a defined data word (g_result) which
+tracks any failure.  Further, g_result can be given an absolute address
+location so that an outside system will know where to find the results.
+
+Results output is also configurable such that the simplified results
+(pass/fail, done, etc.) can be output to GPIO bits.
+
+The test must be loaded and executed in SRAM.  Therefore a J-Link Commander
+batch file is provided here to assist with that.
+Alternatively the program can be loaded with a debugger and run from there.
+
+Printing takes place over the ITM at 1M Baud.
+
+Additional Information:
+=======================
+Using the J-Link Commander batch file on an Apollo3 Blue EVB:
+- The Commander script file is one of either selftest_commander_gcc.jlink,
+selftest_commander_iar.jlink, or selftest_commander_keil.jlink.
+- Requires Segger J-Link v6.34 or later.
+- The Command script may need an update of the SP and PC.  Check the first
+two word values in the vector table of your compiled binary to determine
+the current values.
+- Use the following command line at a DOS prompt.
+jlink -CommanderScript selftest_command_xxx.jlink
+- The flash self test stores results to address 0x10030000.
+0xFAE00000 = Pass, the flash tested good.
+0xFAE0xxxx = Fail, where xxxx is a failure code.
+- If USE_TIMER is enabled, the run time of the selftest is stored in two
+words at 0x10030004 and 0x1003008.  The first word is the whole number
+of seconds, the second is the fractional part to 3 decimals.  Therefore
+the two values show the total run time in the form:  ss.fff
+- Total run time is around 27.1s (Keil) or 26.8s (IAR).
+
+
+
+******************************************************************************
+
+
+Name:
+=====
+ flash_write
+
+
+Description:
+============
+ Flash write example.
+
+
+Purpose:
+========
+This example shows how to modify the internal Flash using HAL flash helper
+functions.
+
+This example works on instance 1 of the Flash, i.e. the portion of the
+Flash above 256KB/512KB.
+
+Printing takes place over the ITM at 1M Baud.
+
+
+
+******************************************************************************
+
+
+Name:
+=====
+ freertos_lowpower
+
+
+Description:
+============
+ Example of the app running under FreeRTOS.
+
+
+This example implements LED task within the FreeRTOS framework. It monitors
+three On-board buttons, and toggles respective on-board LEDs in response.
+To save power, this application is compiled without print
+statements by default. To enable them, add the following project-level
+macro definitions.
+
+AM_DEBUG_PRINTF
+
+If enabled, debug messages will be sent over ITM.
+
+
+******************************************************************************
+
+
+Name:
+=====
+ hello_fault
+
+
+Description:
+============
+ A simple example that causes a hard-fault.
+
+
+Purpose:
+========
+This example demonstrates the extended hard fault handler which can
+assist the user in decoding a fault condition. The handler pulls the
+registers that the Cortex M4 automatically loads onto the stack and
+combines them with various other fault information into a single
+data structure saved locally.  It can optionally print out the fault
+data structure (assuming the stdio printf has previously been enabled
+and is still enabled at the time of the fault).
+
+Printing takes place over the ITM at 1M Baud.
+
+
+******************************************************************************
+
+
+Name:
+=====
+ hello_world
+
+
+Description:
+============
+ A simple "Hello World" example.
+
+
+Purpose:
+========
+This example prints a "Hello World" message with some device info.
+
+Printing takes place over the ITM at 1M Baud.
+
+
+
+******************************************************************************
+
+
+Name:
+=====
+ hello_world_uart
+
+
+Description:
+============
+ A simple "Hello World" example using the UART peripheral.
+
+
+Purpose:
+========
+This example prints a "Hello World" message with some device info
+over UART at 115200 baud. To see the output of this program, run AMFlash,
+and configure the console for UART. The example sleeps after it is done
+printing.
+
+
+******************************************************************************
+
+
+Name:
+=====
+ iom_fram
+
+
+Description:
+============
+ Example that demonstrates IOM, connecting to a SPI or I2C FRAM
+
+Purpose:
+========
+FRAM is initialized with a known pattern data using Blocking IOM Write.
+This example starts a 1 second timer. At each 1 second period, it initiates
+reading a fixed size block from the FRAM device using Non-Blocking IOM
+Read, and comparing against the predefined pattern
+
+Printing takes place over the ITM at 1M Baud.
+
+Additional Information:
+=======================
+Define one of FRAM_DEVICE_ macros to select the FRAM device
+
+
+
+******************************************************************************
+
+
+Name:
+=====
+ ios_fifo
+
+
+Description:
+============
+ Example slave used for demonstrating the use of the IOS FIFO.
+
+
+Purpose:
+========
+This slave component runs on one EVB and is used in conjunction with
+the companion host example, ios_fifo_host, which runs on a second EVB.
+
+The ios_fifo example has no print output.
+The host example does use the ITM SWO to let the user know progress and
+status of the demonstration.
+
+This example implements the slave part of a protocol for data exchange with
+an Apollo IO Master (IOM).  The host sends one byte commands on SPI/I2C by
+writing to offset 0x80.
+
+The command is issued by the host to Start/Stop Data accumulation, and also
+to acknowledge read-complete of a block of data.
+
+On the IOS side, once it is asked to start accumulating data (using START
+command), two CTimer based events emulate sensors sending data to IOS.
+When IOS has some data for host, it implements a state machine,
+synchronizing with the host.
+
+The IOS interrupts the host to indicate data availability. The host then
+reads the available data (as indicated by FIFOCTR) by READing using IOS FIFO
+(at address 0x7F).  The IOS keeps accumulating any new data coming in the
+background.
+
+Host sends an acknowledgment to IOS once it has finished reading a block
+of data initiated by IOS (partially or complete). IOS interrupts the host
+again if and when it has more data for the host to read, and the cycle
+repeats - till host indicates that it is no longer interested in receiving
+data by sending STOP command.
+
+Printing takes place over the ITM at 1M Baud.
+
+Additional Information:
+=======================
+In order to run this example, a host device (e.g. a second EVB) must be set
+up to run the host example, ios_fifo_host.  The two boards can be connected
+using fly leads between the two boards as follows.
+
+Pin connections for the I/O Master board to the I/O Slave board.
+SPI:
+HOST (ios_fifo_host)                    SLAVE (ios_fifo)
+--------------------                    ----------------
+GPIO[10] GPIO Interrupt (slave to host) GPIO[4]  GPIO interrupt
+GPIO[5]  IOM0 SPI SCK                   GPIO[0]  IOS SPI SCK
+GPIO[7]  IOM0 SPI MOSI                  GPIO[1]  IOS SPI MOSI
+GPIO[6]  IOM0 SPI MISO                  GPIO[2]  IOS SPI MISO
+GPIO[11] IOM0 SPI nCE                   GPIO[3]  IOS SPI nCE
+GND                                     GND
+
+I2C:
+HOST (ios_fifo_host)                    SLAVE (ios_fifo)
+--------------------                    ----------------
+GPIO[10] GPIO Interrupt (slave to host) GPIO[4]  GPIO interrupt
+GPIO[5]  IOM0 I2C SCL                   GPIO[0]  IOS I2C SCL
+GPIO[6]  IOM0 I2C SDA                   GPIO[1]  IOS I2C SDA
+GND                                     GND
+
+
+******************************************************************************
+
+
+Name:
+=====
+ ios_fifo_host
+
+
+Description:
+============
+ Example host used for demonstrating the use of the IOS FIFO.
+
+
+Purpose:
+========
+This host component runs on one EVB and is used in conjunction with
+the companion slave example, ios_fifo, which runs on a second EVB.
+
+The host example uses the ITM SWO to let the user know progress and
+status of the demonstration.  The SWO is configured at 1M baud.
+The ios_fifo example has no print output.
+
+This example implements the host part of a protocol for data exchange with
+an Apollo IO Slave (IOS).  The host sends one byte commands on SPI/I2C by
+writing to offset 0x80.
+
+The command is issued by the host to Start/Stop Data accumulation, and also
+to acknowledge read-complete of a block of data.
+
+On the IOS side, once it is asked to start accumulating data (using START
+command), two CTimer based events emulate sensors sending data to IOS.
+When IOS has some data for host, it implements a state machine,
+synchronizing with the host.
+
+The IOS interrupts the host to indicate data availability. The host then
+reads the available data (as indicated by FIFOCTR) by READing using IOS FIFO
+(at address 0x7F).  The IOS keeps accumulating any new data coming in the
+background.
+
+Host sends an acknowledgement to IOS once it has finished reading a block
+of data initiated by IOS (partitally or complete). IOS interrupts the host
+again if and when it has more data for the host to read, and the cycle
+repeats - till host indicates that it is no longer interested in receiving
+data by sending STOP command.
+
+Additional Information:
+=======================
+In order to run this example, a slave device (e.g. a second EVB) must be set
+up to run the companion example, ios_fifo.  The two boards can be connected
+using fly leads between the two boards as follows.
+
+Pin connections for the I/O Master board to the I/O Slave board.
+SPI:
+HOST (ios_fifo_host)                    SLAVE (ios_fifo)
+--------------------                    ----------------
+GPIO[10] GPIO Interrupt (slave to host) GPIO[4]  GPIO interrupt
+GPIO[5]  IOM0 SPI SCK                   GPIO[0]  IOS SPI SCK
+GPIO[7]  IOM0 SPI MOSI                  GPIO[1]  IOS SPI MOSI
+GPIO[6]  IOM0 SPI MISO                  GPIO[2]  IOS SPI MISO
+GPIO[11] IOM0 SPI nCE                   GPIO[3]  IOS SPI nCE
+GND                                     GND
+
+I2C:
+HOST (ios_fifo_host)                    SLAVE (ios_fifo)
+--------------------                    ----------------
+GPIO[10] GPIO Interrupt (slave to host) GPIO[4]  GPIO interrupt
+GPIO[5]  IOM0 I2C SCL                   GPIO[0]  IOS I2C SCL
+GPIO[6]  IOM0 I2C SDA                   GPIO[1]  IOS I2C SDA
+GND                                     GND
+
+
+******************************************************************************
+
+
+Name:
+=====
+ ios_lram
+
+
+Description:
+============
+ Example slave used for demonstrating the use of the IOS lram.
+
+
+Purpose:
+========
+This slave component runs on one EVB and is used in conjunction with
+the companion host example, ios_lram_host, which runs on a second EVB.
+
+Printing takes place over the ITM at 1M Baud.
+
+Additional Information:
+=======================
+In order to run this example, a host device (e.g. a second EVB) must be set
+up to run the host example, ios_lram_host.  The two boards can be connected
+using fly leads between the two boards as follows.
+
+Pin connections for the I/O Master board to the I/O Slave board.
+SPI:
+HOST (ios_lram_host)                    SLAVE (ios_lram)
+--------------------                    ----------------
+GPIO[10] GPIO Interrupt (slave to host) GPIO[4]  GPIO interrupt
+GPIO[5]  IOM0 SPI SCK                   GPIO[0]  IOS SPI SCK
+GPIO[7]  IOM0 SPI MOSI                  GPIO[1]  IOS SPI MOSI
+GPIO[6]  IOM0 SPI MISO                  GPIO[2]  IOS SPI MISO
+GPIO[11] IOM0 SPI nCE                   GPIO[3]  IOS SPI nCE
+GND                                     GND
+
+I2C:
+HOST (ios_lram_host)                    SLAVE (ios_lram)
+--------------------                    ----------------
+GPIO[10] GPIO Interrupt (slave to host) GPIO[4]  GPIO interrupt
+GPIO[5]  IOM0 I2C SCL                   GPIO[0]  IOS I2C SCL
+GPIO[6]  IOM0 I2C SDA                   GPIO[1]  IOS I2C SDA
+GND                                     GND
+
+
+******************************************************************************
+
+
+Name:
+=====
+ ios_lram_host
+
+
+Description:
+============
+ Example host used for demonstrating the use of the IOS LRAM.
+
+
+Purpose:
+========
+This host component runs on one EVB and is used in conjunction with
+the companion slave example, ios_lram, which runs on a second EVB.
+
+The host example uses the ITM SWO to let the user know progress and
+status of the demonstration.  The SWO is configured at 1M baud.
+
+Printing takes place over the ITM at 1M Baud.
+
+Additional Information:
+=======================
+In order to run this example, a slave device (e.g. a second EVB) must be set
+up to run the companion example, ios_lram.  The two boards can be connected
+using fly leads between the two boards as follows.
+
+Pin connections for the I/O Master board to the I/O Slave board.
+SPI:
+HOST (ios_lram_host)                    SLAVE (ios_lram)
+--------------------                    ----------------
+GPIO[10] GPIO Interrupt (slave to host) GPIO[4]  GPIO interrupt
+GPIO[5]  IOM0 SPI SCK                   GPIO[0]  IOS SPI SCK
+GPIO[7]  IOM0 SPI MOSI                  GPIO[1]  IOS SPI MOSI
+GPIO[6]  IOM0 SPI MISO                  GPIO[2]  IOS SPI MISO
+GPIO[11] IOM0 SPI nCE                   GPIO[3]  IOS SPI nCE
+GND                                     GND
+
+I2C:
+HOST (ios_lram_host)                    SLAVE (ios_lram)
+--------------------                    ----------------
+GPIO[10] GPIO Interrupt (slave to host) GPIO[4]  GPIO interrupt
+GPIO[5]  IOM0 I2C SCL                   GPIO[0]  IOS I2C SCL
+GPIO[6]  IOM0 I2C SDA                   GPIO[1]  IOS I2C SDA
+GND                                     GND
+
+
+******************************************************************************
+
+
+Name:
+=====
+ mspi_flash_loader
+
+
+Description:
+============
+ MSPI External Flash Loading and Execution Example 
+
+
+Purpose:
+========
+This example demonstrates loading a binary image from internal 
+flash to MSPI external quad flash, then executing the program using 
+XIP from the external flash.
+
+Printing takes place over the ITM at 1M Baud.
+
+Additional Information:
+=======================
+The binary must be linked to run from MSPI flash address range
+(as specified by BIN_INSTALL_ADDR). The location and size of the binary
+in internal flash are specified using BIN_ADDR_FLASH & BIN_SIZE
+
+This example has been enhanced to use the new 'binary patching' feature
+This example will not build if proper startup/linker files are not used.
+
+Prepare the example as follows:
+1. Generate hello_world example to load and execute at MSPI Flash XIP location 0x04000000.
+i. In the /examples/hello_world/iar directory modify the FLASH region as follows:
+change "define region FLASH = mem:[from 0x0000C000 to 0x000FC000];"
+to "define region FLASH = mem:[from 0x04000000 to 0x040F0000];"
+ii. Execute "make" in the /examples/hello_world/iar directory to rebuild the project.
+2. Copy /examples/hello_world/iar/bin/hello_world.bin into /boards/common3/examples/mspi_flash_loader/
+3. Create the binary with mspi_flash_loader + external executable from Step #1.
+./mspi_loader_binary_combiner.py --loaderbin iar/bin/mspi_flash_loader.bin --appbin hello_world.bin --install-address 0x04000000 --flags 0x2 --outbin loader_hello_world --loader-address 0x0000C000
+4. Open the J-Link SWO Viewer to the target board.
+5. Open the J-Flash Lite program.  Select the /examples/mspi_flash_loader/loader_hello_world.bin file and program at 0x0000C000 offset.
+
+
+******************************************************************************
+
+
+Name:
+=====
+ mspi_iom_xfer
+
+
+Description:
+============
+ Example demonstrating the hardware assisted MSPI to IOM transfer
+
+
+Purpose:
+========
+This example demonstrates transferring a large buffer from a flash device
+connected on MSPI, to a FRAM device connected to IOM, using hardware
+handshaking in Apollo3 - with minimal CPU involvement.
+
+At initialization, both the FRAM and Flash are initialized and a set pattern
+data is written to the flash for transfer to FRAM.
+
+The FRAM is connected to IOM using SPI interface, and hence the transactions
+are limited in size to 4095 Bytes.
+The program here creates a command queue for both the MSPI and IOM, to
+create a sequence of transactions - each reading a segment of the source
+buffer to a temp buffer in internal SRAM, and then writing the same to the
+FRAM using the IOM. It uses hardware handshaking so that the IOM transaction
+is started only once the segement is read out completely from MSPI Flash.
+
+To best utilize the buses, a ping-pong model is used using two temporary
+buffers in SRAM. This allows the interfaces to not idle while waiting for
+other to finish - essentially achieving close to the bandwidth achieved by
+the slower of the two.
+
+Printing takes place over the ITM at 1M Baud.
+
+Additional Information:
+=======================
+Configurable parameters at compile time:
+IOM to use (FRAM_IOM_MODULE)
+FRAM device to use (define one of FRAM_DEVICE_* to 1)
+MSPI Flash to use - uses compile time definitions from am_device_mspi_flash.h
+BLOCK_SIZE - total size of transaction
+SPI_TXN_SIZE - size of temporary ping-pong buffer
+CPU_SLEEP_GPIO - tracks CPU sleeping on analyzer
+VERIFY_DATA - Enables reading back of the data from IOM to check & verify the accuracy
+This can only be enabled if SEQLOOP is not being used
+
+Operating modes:
+SEQLOOP not defined - The CQ is programmed each iteration
+SEQLOOP - Advanced mode, to create sequence once, which repeats when triggered by callback at the end of each iteration
+SEQLOOP - RUN_AUTONOMOUS - Sequence created once, and it repeats indefintely till paused (as a result of timer)
+CQ_RAW - Uses Preconstructed CQ for IOM and MSPI - to save on the time to program the same at run time
+
+Best way to see the example in action is to connect logic analyzer and monitor the signals
+Apart from the IO signals below, one can also monitor CPU_SLEEP_GPIO to monitor CPU in deep sleep
+Pin connections:
+IOM:
+Particular IOM to use for this example is controlled by macro FRAM_IOM_MODULE
+This example use apollo3_eb board connected to a fireball
+Fireball is populated with MB85RS1MT SPI FRAM devices on each of the IOM's
+with respective pin definitions in the BSP
+Default pin settings for this example using IOM1 are:
+#define AM_BSP_GPIO_IOM1_CS             14
+#define AM_BSP_IOM1_CS_CHNL             2
+#define AM_BSP_GPIO_IOM1_MISO           9
+#define AM_BSP_GPIO_IOM1_MOSI           10
+#define AM_BSP_GPIO_IOM1_SCK            8
+
+MSPI:
+The MSPI flash device uses is controlled by macro FRAM_DEVICE_* (set one of them to 1)
+This example uses apollo3_eb board connected to a fireball
+Fireball is populated with CYPRESS_S25FS064S flash on CE0
+#define AM_BSP_GPIO_MSPI_CE0            19
+#define AM_BSP_MSPI_CE0_CHNL            0
+#define AM_BSP_GPIO_MSPI_D0             22
+#define AM_BSP_GPIO_MSPI_D1             26
+#define AM_BSP_GPIO_MSPI_D2             4
+#define AM_BSP_GPIO_MSPI_D3             23
+#define AM_BSP_GPIO_MSPI_SCK            24
+
+
+
+******************************************************************************
+
+
+Name:
+=====
+ mspi_octal_example
+
+
+Description:
+============
+ Example of the MSPI operation with Octal SPI Flash.
+
+
+Purpose:
+========
+This example configures an MSPI connected flash device in Octal mode
+and performs various operations - verifying the correctness of the same
+Operations include - Erase, Write, Read, and XIP
+
+Printing takes place over the ITM at 1M Baud.
+
+
+
+******************************************************************************
+
+
+Name:
+=====
+ mspi_quad_example
+
+
+Description:
+============
+ Example of the MSPI operation with Quad SPI Flash.
+
+
+Purpose:
+========
+This example configures an MSPI connected flash device in Quad mode
+and performs various operations - verifying the correctness of the same
+Operations include - Erase, Write, Read, Read using XIP Apperture and XIP.
+
+Printing takes place over the ITM at 1M Baud.
+
+
+
+******************************************************************************
+
+
+Name:
+=====
+ pdm_fft
+
+
+Description:
+============
+ An example to show basic PDM operation.
+
+
+Purpose:
+========
+This example enables the PDM interface to record audio signals from an
+external microphone. The required pin connections are:
+
+Printing takes place over the ITM at 1M Baud.
+
+GPIO 10 - PDM DATA
+GPIO 11 - PDM CLK
+
+
+******************************************************************************
+
+
+Name:
+=====
+ prime
+
+
+Description:
+============
+ Example that displays the timer count on the LEDs.
+
+
+Purpose:
+========
+This example consists of a non-optimized, brute-force routine for computing
+the number of prime numbers between 1 and a given value, N. The routine
+uses modulo operations to determine whether a value is prime or not. While
+obviously not optimal, it is very useful for exercising the core.
+
+For this example, N is 100000, for which the answer is 9592.
+
+For Apollo3 at 48MHz, the time to compute the answer for Keil and IAR:
+IAR v8.11.1:        1:43.
+Keil ARMCC 4060528: 1:55.
+
+Printing takes place over the ITM at 1M Baud.
+
+Additional Information:
+=======================
+The goal of this example is to measure current consumption while the core
+is working to compute the answer. Power and energy can then be derived
+knowing the current and run time.
+
+The example prints an initial banner to the UART port.  After each prime
+loop, it enables the UART long enough to print the answer, disables the
+UART and starts the computation again.
+
+Text is output to the UART at 115,200 BAUD, 8 bit, no parity.
+Please note that text end-of-line is a newline (LF) character only.
+Therefore, the UART terminal must be set to simulate a CR/LF.
+
+Note: For minimum power, disable the printing by setting PRINT_UART to 0.
+
+The prime_number() routine is open source and is used here under the
+GNU LESSER GENERAL PUBLIC LICENSE Version 3, 29 June 2007.  Details,
+documentation, and the full license for this routine can be found in
+the third_party/prime_mpi/ directory of the SDK.
+
+
+
+******************************************************************************
+
+
+Name:
+=====
+ reset_states
+
+
+Description:
+============
+ Example of various reset options in Apollo.
+
+
+Purpose:
+========
+This example shows a simple configuration of the watchdog. It will print
+a banner message, configure the watchdog for both interrupt and reset
+generation, and immediately start the watchdog timer.
+The watchdog ISR provided will 'pet' the watchdog four times, printing
+a notification message from the ISR each time.
+On the fifth interrupt, the watchdog will not be pet, so the 'reset'
+action will eventually be allowed to occur.
+On the sixth timeout event, the WDT should issue a system reset, and the
+program should start over from the beginning.
+
+The program will repeat the following sequence on the console:
+(POI Reset) 5 Interrupts - (WDT Reset) 3 Interrupts - (POR Reset) 3 Interrupts
+
+Printing takes place over the ITM at 1M Baud.
+
+
+
+******************************************************************************
+
+
+Name:
+=====
+ stimer
+
+
+Description:
+============
+ Example using a stimer with interrupts.
+
+
+Purpose:
+========
+This example demonstrates how to setup the stimer for counting and
+interrupts. It toggles LED 0 to 4 every interrupt, which is set for 1 sec.
+
+Printing takes place over the ITM at 1M Baud.
+
+
+
+******************************************************************************
+
+
+Name:
+=====
+ uart_ble_bridge
+
+
+Description:
+============
+ Converts UART HCI commands to SPI.
+
+
+Purpose:
+========
+ This example is primarily designed to enable DTM testing with the
+Apollo3 EVB. The example accepts HCI commands over the UART at 115200 baud
+and sends them using the BLEIF to the Apollo3 BLE Controller.  Responses from
+the BLE Controller are accepted over the BLEIF and sent over the UART.
+
+Printing takes place over the ITM at 1M Baud.
+
+
+
+******************************************************************************
+
+
+Name:
+=====
+ uart_boot_host
+
+
+Description:
+============
+ Converts UART Wired transfer commands to SPI for use with SBL SPI testing.
+
+
+Purpose:
+========
+This example running on an intermediate board, along with the standard
+uart_wired_update script running on host PC, can be used as a way to
+communicate to Apollo3 SBL using SPI mode.
+
+Printing takes place over the ITM at 1M Baud.
+
+Additional Information:
+=======================
+PIN fly lead connections assumed:
+HOST (this board)                       SLAVE (Apollo3 SBL target)
+--------                                --------
+Apollo3 SPI or I2C common connections:
+GPIO[2]  GPIO Interrupt (slave to host) GPIO[4]  GPIO interrupt
+GPIO[4]  OVERRIDE pin   (host to slave) GPIO[47] Override pin or n/c
+GPIO[17] Slave reset (host to slave)    Reset Pin or n/c
+GND                                     GND
+
+Apollo3 SPI additional connections:
+GPIO[5]  IOM0 SPI CLK                   GPIO[0]  IOS SPI SCK
+GPIO[6]  IOM0 SPI MISO                  GPIO[2]  IOS SPI MISO
+GPIO[7]  IOM0 SPI MOSI                  GPIO[1]  IOS SPI MOSI
+GPIO[11] IOM0 SPI nCE                   GPIO[3]  IOS SPI nCE
+
+Apollo3 I2C additional connections:
+GPIO[5]  I2C SCL                        GPIO[0]  I2C SCL
+GPIO[6]  I2C SDA                        GPIO[1]  I2C SDA
+
+Reset and Override pin connections from Host are optional, but using them
+automates the entire process.
+
+SPI or I2C mode can be handled in a couple of ways:
+- SPI mode is the default (i.e. don't press buttons or tie pins low).
+- For I2C, press button2 during reset and hold it until the program begins,
+i.e. you see the "I2C clock = " msg.
+Alternatively the button2 pin can be tied low.
+- Note that on the Apollo3 EVB, button2 is labelled as 'BTN4', which is
+the button located nearest the end of the board.
+Also on the Apollo3 EVB, BTN4 uses pin 19.  It happens that the header
+pin for pin 19 on the EVB is adjacent to a ground pin, so a jumper can
+be used to assert I2C mode.
+
+
+
+******************************************************************************
+
+
+Name:
+=====
+ watchdog
+
+
+Description:
+============
+ Example of a basic configuration of the watchdog.
+
+
+Purpose:
+========
+This example shows a simple configuration of the watchdog. It will print
+a banner message, configure the watchdog for both interrupt and reset
+generation, and immediately start the watchdog timer.
+The watchdog ISR provided will 'pet' the watchdog four times, printing
+a notification message from the ISR each time.
+On the fifth interrupt, the watchdog will not be pet, so the 'reset'
+action will eventually be allowed to occur.
+On the sixth timeout event, the WDT should issue a system reset, and the
+program should start over from the beginning.
+
+Printing takes place over the ITM at 1M Baud.
+
+
+
+******************************************************************************
+
+
+Name:
+=====
+ while
+
+
+Description:
+============
+ Example to emulate a polling loop.
+
+
+Purpose:
+========
+This example provides a demonstration of the power required while
+executing in a tight loop on the Apollo3 MCU.
+
+
+
+******************************************************************************
+
+
+This directory holds the *.emp files generated by the EM Micro tools (e.g. EM9304 Configuration Editor) or EM Micro developers (code patches).
+
+All *.emp files contained in this directory will result in the generation of a patch or patches to be
+applied to the EM9304.
+
+The script emp2include.py has the following usage:
+
+$ ./emp2include.py --help
+usage: emp2include.py [-h] [-o MEMORY]
+
+Convert multiple EM9304 *.emp files to the em9304_patches.* files.
+
+optional arguments:
+  -h, --help  show this help message and exit
+  -o MEMORY   Destination memory (IRAM or OTP)
+
+Patches can be applied temporarily to IRAM and then permanently applied to OTP (one-time programable) memory 
+as needed.  The default is IRAM.
+
+The files em9304_patches.h and em9304_patches.c will be generated in the following directory:
+
+/third_party/exactle/sw/hci/ambiq/em9304
+
+Patches are uniquely identified by the following meta-data embedded in *.emp files:
+	* Format Version - Container format version (increments as container is updated)
+	* Patch ID - Unique identifier for the container/patch (assigned by patch creator)
+	* Build number - EM9304 ROM minor revision supported by patch
+	* User Build - User defined number (assigned by patch creator)
+		=> 0, 1: Reserved by EM
+		=> 2, 3: Reserved by Ambiq Micro
+		=> 4+  : Available for customer
+
+
+Note: 0001642_PROD_boot_overhead.emp is built into 0000000_META_hci_patches_v7.emp, there's only a single emp from EM in the future.

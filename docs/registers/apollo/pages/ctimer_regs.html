@@ -1,0 +1,3960 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=9" />
+    <meta name="generator" content="AmbiqMicro" />
+    <title>AmbiqSuite User Guide: AmbiqSuite Apollo Device Register Overview</title>
+    <link href="../resources/tabs.css" rel="stylesheet" type="text/css" />
+    <link href="../resources/bootstrap.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="../resources/jquery.js"></script>
+    <script type="text/javascript" src="../resources/dynsections.js"></script>
+    <link href="search/search.css" rel="stylesheet" type="text/css" />
+    <link href="../resources/customdoxygen.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+    <div id="top">
+        <!-- do not remove this div, it is closed by doxygen! -->
+        <div id="titlearea">
+            <table cellspacing="0" cellpadding="0">
+                <tbody>
+                    <tr style="height: 56px;">
+                        <td id="projectlogo">
+                            <img alt="Logo" src="../resources/am_logo.png" />
+                        </td>
+                        <td style="padding-left: 0.5em;">
+                            <div id="projectname">Apollo Register Documentation &#160;<span id="projectnumber">v2.2.0</span></div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <!-- end header part -->
+        <div id="navrow1" class="tabs">
+            <ul class="tablist">
+                <li class="current"><a href="../index.html"><span>Main&#160;Page</span></a>
+                </li>
+        </div>
+        </li>
+        </ul>
+    </div>
+    </div>
+    <!-- top -->
+    <!-- window showing the filter options -->
+    <div class="header">
+        <div class="headertitle">
+            <div class="title">CTIMER - Counter/Timer</div>
+        </div>
+    </div>
+    <!--header-->
+    <body>
+        <br>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title"> CTIMER Register Index</h3>
+            </div>
+            <div class="panel-body">
+                <table>
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x00000000:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <a class="el" href="#TMR0" target="_self">TMR0 - Counter/Timer Register</a>
+                        </td>
+                    </tr>
+
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x00000004:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <a class="el" href="#CMPRA0" target="_self">CMPRA0 - Counter/Timer A0 Compare Registers</a>
+                        </td>
+                    </tr>
+
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x00000008:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <a class="el" href="#CMPRB0" target="_self">CMPRB0 - Counter/Timer B0 Compare Registers</a>
+                        </td>
+                    </tr>
+
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x0000000C:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <a class="el" href="#CTRL0" target="_self">CTRL0 - Counter/Timer Control</a>
+                        </td>
+                    </tr>
+
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x00000010:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <a class="el" href="#TMR1" target="_self">TMR1 - Counter/Timer Register</a>
+                        </td>
+                    </tr>
+
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x00000014:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <a class="el" href="#CMPRA1" target="_self">CMPRA1 - Counter/Timer A1 Compare Registers</a>
+                        </td>
+                    </tr>
+
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x00000018:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <a class="el" href="#CMPRB1" target="_self">CMPRB1 - Counter/Timer B1 Compare Registers</a>
+                        </td>
+                    </tr>
+
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x0000001C:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <a class="el" href="#CTRL1" target="_self">CTRL1 - Counter/Timer Control</a>
+                        </td>
+                    </tr>
+
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x00000020:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <a class="el" href="#TMR2" target="_self">TMR2 - Counter/Timer Register</a>
+                        </td>
+                    </tr>
+
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x00000024:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <a class="el" href="#CMPRA2" target="_self">CMPRA2 - Counter/Timer A2 Compare Registers</a>
+                        </td>
+                    </tr>
+
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x00000028:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <a class="el" href="#CMPRB2" target="_self">CMPRB2 - Counter/Timer B2 Compare Registers</a>
+                        </td>
+                    </tr>
+
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x0000002C:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <a class="el" href="#CTRL2" target="_self">CTRL2 - Counter/Timer Control</a>
+                        </td>
+                    </tr>
+
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x00000030:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <a class="el" href="#TMR3" target="_self">TMR3 - Counter/Timer Register</a>
+                        </td>
+                    </tr>
+
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x00000034:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <a class="el" href="#CMPRA3" target="_self">CMPRA3 - Counter/Timer A3 Compare Registers</a>
+                        </td>
+                    </tr>
+
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x00000038:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <a class="el" href="#CMPRB3" target="_self">CMPRB3 - Counter/Timer B3 Compare Registers</a>
+                        </td>
+                    </tr>
+
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x0000003C:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <a class="el" href="#CTRL3" target="_self">CTRL3 - Counter/Timer Control</a>
+                        </td>
+                    </tr>
+
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x00000200:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <a class="el" href="#INTEN" target="_self">INTEN - Counter/Timer Interrupts: Enable</a>
+                        </td>
+                    </tr>
+
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x00000204:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <a class="el" href="#INTSTAT" target="_self">INTSTAT - Counter/Timer Interrupts: Status</a>
+                        </td>
+                    </tr>
+
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x00000208:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <a class="el" href="#INTCLR" target="_self">INTCLR - Counter/Timer Interrupts: Clear</a>
+                        </td>
+                    </tr>
+
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x0000020C:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <a class="el" href="#INTSET" target="_self">INTSET - Counter/Timer Interrupts: Set</a>
+                        </td>
+                    </tr>
+
+                </table>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 id="TMR0" class="panel-title">TMR0 - Counter/Timer Register</h3>
+            </div>
+            <div class="panel-body">
+                <h3>Address:</h3>
+                <table style="margin:10px">
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">Instance 0 Address:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x40008000</span>
+                        </td>
+                    </tr>
+
+                </table>
+                <h3>Description:</h3>
+                <p>This register holds the running time or event count, either for each 16 bit half or for the whole 32 bit count when the pair is linked.</p>
+                <h3>Example Macro Usage:</h3>
+                <pre style="margin:10px" class="language-pascal"><span style='color:#3f7f59; '>//
+// All macro-based register writes follow the same basic format. For
+// single-instance modules, you may use the simpler AM_REG macro. For
+// multi-instance macros, you will need to specify the instance number using
+// the AM_REGn macro format.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+// AM_REGn(&lt;MODULE&gt;, &lt;INSTANCE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+//
+// For registers that do not have specific enumeration values, you may use this alternate format instead.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;(&lt;NUMBER&gt;);
+//
+// For example, the following three lines of code are equivalent methods of
+// writing the value for 12MHZ to the CLKSEL field in the ADC_CFG register.
+//</span>
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REGn(ADC, 0, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
+                <h3>Register Fields:</h3>
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>31</th>
+                            <th>30</th>
+                            <th>29</th>
+                            <th>28</th>
+                            <th>27</th>
+                            <th>26</th>
+                            <th>25</th>
+                            <th>24</th>
+                            <th>23</th>
+                            <th>22</th>
+                            <th>21</th>
+                            <th>20</th>
+                            <th>19</th>
+                            <th>18</th>
+                            <th>17</th>
+                            <th>16</th>
+                            <th>15</th>
+                            <th>14</th>
+                            <th>13</th>
+                            <th>12</th>
+                            <th>11</th>
+                            <th>10</th>
+                            <th>9</th>
+                            <th>8</th>
+                            <th>7</th>
+                            <th>6</th>
+                            <th>5</th>
+                            <th>4</th>
+                            <th>3</th>
+                            <th>2</th>
+                            <th>1</th>
+                            <th>0</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td align="center" colspan="16">CTTMRB0
+                                <br>0x0</td>
+
+                            <td align="center" colspan="16">CTTMRA0
+                                <br>0x0</td>
+
+                        </tr>
+                    </tbody>
+                </table>
+                <br>
+
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>Bits</th>
+                            <th>Name</th>
+                            <th>RW</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>31:16</td>
+                            <td>CTTMRB0</td>
+                            <td>RO</td>
+                            <td>Counter/Timer B0.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>15:0</td>
+                            <td>CTTMRA0</td>
+                            <td>RO</td>
+                            <td>Counter/Timer A0.<br><br>
+                                </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+                <br>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 id="CMPRA0" class="panel-title">CMPRA0 - Counter/Timer A0 Compare Registers</h3>
+            </div>
+            <div class="panel-body">
+                <h3>Address:</h3>
+                <table style="margin:10px">
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">Instance 0 Address:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x40008004</span>
+                        </td>
+                    </tr>
+
+                </table>
+                <h3>Description:</h3>
+                <p>Compare limits for timer half A.</p>
+                <h3>Example Macro Usage:</h3>
+                <pre style="margin:10px" class="language-pascal"><span style='color:#3f7f59; '>//
+// All macro-based register writes follow the same basic format. For
+// single-instance modules, you may use the simpler AM_REG macro. For
+// multi-instance macros, you will need to specify the instance number using
+// the AM_REGn macro format.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+// AM_REGn(&lt;MODULE&gt;, &lt;INSTANCE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+//
+// For registers that do not have specific enumeration values, you may use this alternate format instead.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;(&lt;NUMBER&gt;);
+//
+// For example, the following three lines of code are equivalent methods of
+// writing the value for 12MHZ to the CLKSEL field in the ADC_CFG register.
+//</span>
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REGn(ADC, 0, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
+                <h3>Register Fields:</h3>
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>31</th>
+                            <th>30</th>
+                            <th>29</th>
+                            <th>28</th>
+                            <th>27</th>
+                            <th>26</th>
+                            <th>25</th>
+                            <th>24</th>
+                            <th>23</th>
+                            <th>22</th>
+                            <th>21</th>
+                            <th>20</th>
+                            <th>19</th>
+                            <th>18</th>
+                            <th>17</th>
+                            <th>16</th>
+                            <th>15</th>
+                            <th>14</th>
+                            <th>13</th>
+                            <th>12</th>
+                            <th>11</th>
+                            <th>10</th>
+                            <th>9</th>
+                            <th>8</th>
+                            <th>7</th>
+                            <th>6</th>
+                            <th>5</th>
+                            <th>4</th>
+                            <th>3</th>
+                            <th>2</th>
+                            <th>1</th>
+                            <th>0</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td align="center" colspan="16">CMPR1A0
+                                <br>0x0</td>
+
+                            <td align="center" colspan="16">CMPR0A0
+                                <br>0x0</td>
+
+                        </tr>
+                    </tbody>
+                </table>
+                <br>
+
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>Bits</th>
+                            <th>Name</th>
+                            <th>RW</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>31:16</td>
+                            <td>CMPR1A0</td>
+                            <td>RW</td>
+                            <td>Counter/Timer A0 Compare Register 1. Holds the upper limit for timer half A.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>15:0</td>
+                            <td>CMPR0A0</td>
+                            <td>RW</td>
+                            <td>Counter/Timer A0 Compare Register 0. Holds the lower limit for timer half A.<br><br>
+                                </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+                <br>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 id="CMPRB0" class="panel-title">CMPRB0 - Counter/Timer B0 Compare Registers</h3>
+            </div>
+            <div class="panel-body">
+                <h3>Address:</h3>
+                <table style="margin:10px">
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">Instance 0 Address:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x40008008</span>
+                        </td>
+                    </tr>
+
+                </table>
+                <h3>Description:</h3>
+                <p>Compare limits for timer half B.</p>
+                <h3>Example Macro Usage:</h3>
+                <pre style="margin:10px" class="language-pascal"><span style='color:#3f7f59; '>//
+// All macro-based register writes follow the same basic format. For
+// single-instance modules, you may use the simpler AM_REG macro. For
+// multi-instance macros, you will need to specify the instance number using
+// the AM_REGn macro format.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+// AM_REGn(&lt;MODULE&gt;, &lt;INSTANCE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+//
+// For registers that do not have specific enumeration values, you may use this alternate format instead.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;(&lt;NUMBER&gt;);
+//
+// For example, the following three lines of code are equivalent methods of
+// writing the value for 12MHZ to the CLKSEL field in the ADC_CFG register.
+//</span>
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REGn(ADC, 0, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
+                <h3>Register Fields:</h3>
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>31</th>
+                            <th>30</th>
+                            <th>29</th>
+                            <th>28</th>
+                            <th>27</th>
+                            <th>26</th>
+                            <th>25</th>
+                            <th>24</th>
+                            <th>23</th>
+                            <th>22</th>
+                            <th>21</th>
+                            <th>20</th>
+                            <th>19</th>
+                            <th>18</th>
+                            <th>17</th>
+                            <th>16</th>
+                            <th>15</th>
+                            <th>14</th>
+                            <th>13</th>
+                            <th>12</th>
+                            <th>11</th>
+                            <th>10</th>
+                            <th>9</th>
+                            <th>8</th>
+                            <th>7</th>
+                            <th>6</th>
+                            <th>5</th>
+                            <th>4</th>
+                            <th>3</th>
+                            <th>2</th>
+                            <th>1</th>
+                            <th>0</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td align="center" colspan="16">CMPR1B0
+                                <br>0x0</td>
+
+                            <td align="center" colspan="16">CMPR0B0
+                                <br>0x0</td>
+
+                        </tr>
+                    </tbody>
+                </table>
+                <br>
+
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>Bits</th>
+                            <th>Name</th>
+                            <th>RW</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>31:16</td>
+                            <td>CMPR1B0</td>
+                            <td>RW</td>
+                            <td>Counter/Timer B0 Compare Register 1. Holds the upper limit for timer half B.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>15:0</td>
+                            <td>CMPR0B0</td>
+                            <td>RW</td>
+                            <td>Counter/Timer B0 Compare Register 0. Holds the lower limit for timer half B.<br><br>
+                                </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+                <br>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 id="CTRL0" class="panel-title">CTRL0 - Counter/Timer Control</h3>
+            </div>
+            <div class="panel-body">
+                <h3>Address:</h3>
+                <table style="margin:10px">
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">Instance 0 Address:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x4000800C</span>
+                        </td>
+                    </tr>
+
+                </table>
+                <h3>Description:</h3>
+                <p>Control bit fields for both halves of timer 0.</p>
+                <h3>Example Macro Usage:</h3>
+                <pre style="margin:10px" class="language-pascal"><span style='color:#3f7f59; '>//
+// All macro-based register writes follow the same basic format. For
+// single-instance modules, you may use the simpler AM_REG macro. For
+// multi-instance macros, you will need to specify the instance number using
+// the AM_REGn macro format.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+// AM_REGn(&lt;MODULE&gt;, &lt;INSTANCE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+//
+// For registers that do not have specific enumeration values, you may use this alternate format instead.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;(&lt;NUMBER&gt;);
+//
+// For example, the following three lines of code are equivalent methods of
+// writing the value for 12MHZ to the CLKSEL field in the ADC_CFG register.
+//</span>
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REGn(ADC, 0, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
+                <h3>Register Fields:</h3>
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>31</th>
+                            <th>30</th>
+                            <th>29</th>
+                            <th>28</th>
+                            <th>27</th>
+                            <th>26</th>
+                            <th>25</th>
+                            <th>24</th>
+                            <th>23</th>
+                            <th>22</th>
+                            <th>21</th>
+                            <th>20</th>
+                            <th>19</th>
+                            <th>18</th>
+                            <th>17</th>
+                            <th>16</th>
+                            <th>15</th>
+                            <th>14</th>
+                            <th>13</th>
+                            <th>12</th>
+                            <th>11</th>
+                            <th>10</th>
+                            <th>9</th>
+                            <th>8</th>
+                            <th>7</th>
+                            <th>6</th>
+                            <th>5</th>
+                            <th>4</th>
+                            <th>3</th>
+                            <th>2</th>
+                            <th>1</th>
+                            <th>0</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td align="center" colspan="1">CTLINK0
+                                <br>0x0</td>
+
+                            <td align="center" colspan="2">RSVD
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">TMRB0POL
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">TMRB0CLR
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">TMRB0PE
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">TMRB0IE
+                                <br>0x0</td>
+
+                            <td align="center" colspan="3">TMRB0FN
+                                <br>0x0</td>
+
+                            <td align="center" colspan="5">TMRB0CLK
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">TMRB0EN
+                                <br>0x0</td>
+
+                            <td align="center" colspan="3">RSVD
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">TMRA0POL
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">TMRA0CLR
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">TMRA0PE
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">TMRA0IE
+                                <br>0x0</td>
+
+                            <td align="center" colspan="3">TMRA0FN
+                                <br>0x0</td>
+
+                            <td align="center" colspan="5">TMRA0CLK
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">TMRA0EN
+                                <br>0x0</td>
+
+                        </tr>
+                    </tbody>
+                </table>
+                <br>
+
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>Bits</th>
+                            <th>Name</th>
+                            <th>RW</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>31</td>
+                            <td>CTLINK0</td>
+                            <td>RW</td>
+                            <td>Counter/Timer A0/B0 Link bit.<br><br>
+                                 TWO_16BIT_TIMERS     = 0x0 - Use A0/B0 timers as two independent 16-bit timers (default).<br>
+                             32BIT_TIMER          = 0x1 - Link A0/B0 timers into a single 32-bit timer.</td>
+                        </tr>
+
+                        <tr>
+                            <td>30:29</td>
+                            <td>RSVD</td>
+                            <td>RO</td>
+                            <td>RESERVED<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>28</td>
+                            <td>TMRB0POL</td>
+                            <td>RW</td>
+                            <td>Counter/Timer B0 output polarity.<br><br>
+                                 NORMAL               = 0x0 - The polarity of the TMRPINB0 pin is the same as the timer output.<br>
+                             INVERTED             = 0x1 - The polarity of the TMRPINB0 pin is the inverse of the timer output.</td>
+                        </tr>
+
+                        <tr>
+                            <td>27</td>
+                            <td>TMRB0CLR</td>
+                            <td>RW</td>
+                            <td>Counter/Timer B0 Clear bit.<br><br>
+                                 RUN                  = 0x0 - Allow counter/timer B0 to run<br>
+                             CLEAR                = 0x1 - Holds counter/timer B0 at 0x0000.</td>
+                        </tr>
+
+                        <tr>
+                            <td>26</td>
+                            <td>TMRB0PE</td>
+                            <td>RW</td>
+                            <td>Counter/Timer B0 Output Enable bit.<br><br>
+                                 DIS                  = 0x0 - Counter/Timer B holds the TMRPINB signal at the value TMRB0POL.<br>
+                             EN                   = 0x1 - Enable counter/timer B0 to generate a signal on TMRPINB.</td>
+                        </tr>
+
+                        <tr>
+                            <td>25</td>
+                            <td>TMRB0IE</td>
+                            <td>RW</td>
+                            <td>Counter/Timer B0 Interrupt Enable bit.<br><br>
+                                 DIS                  = 0x0 - Disable counter/timer B0 from generating an interrupt.<br>
+                             EN                   = 0x1 - Enable counter/timer B0 to generate an interrupt.</td>
+                        </tr>
+
+                        <tr>
+                            <td>24:22</td>
+                            <td>TMRB0FN</td>
+                            <td>RW</td>
+                            <td>Counter/Timer B0 Function Select.<br><br>
+                                 SINGLECOUNT          = 0x0 - Single count (output toggles and sticks).  Count to CMPR0B0, stop.<br>
+                             REPEATEDCOUNT        = 0x1 - Repeated count (periodic 1-clock-cycle-wide pulses).  Count to CMPR0B0, restart.<br>
+                             PULSE_ONCE           = 0x2 - Pulse once (aka one-shot).  Count to CMPR0B0, assert, count to CMPR1B, deassert, stop.<br>
+                             PULSE_CONT           = 0x3 - Pulse continously.  Count to CMPR0B0, assert, count to CMPR1B0, deassert, restart.<br>
+                             CONTINUOUS           = 0x4 - Continuous run (aka Free Run).  Count continuously.</td>
+                        </tr>
+
+                        <tr>
+                            <td>21:17</td>
+                            <td>TMRB0CLK</td>
+                            <td>RW</td>
+                            <td>Counter/Timer B0 Clock Select.<br><br>
+                                 TMRPIN               = 0x0 - Clock source is TMRPINB.<br>
+                             HFRC                 = 0x1 - Clock source is the HFRC<br>
+                             HFRC_DIV8            = 0x2 - Clock source is HFRC / 8<br>
+                             HFRC_DIV128          = 0x3 - Clock source is HFRC / 128<br>
+                             HFRC_DIV512          = 0x4 - Clock source is HFRC / 512<br>
+                             HFRC_DIV2K           = 0x5 - Clock source is HFRC / 2048<br>
+                             XT                   = 0x6 - Clock source is the XT (uncalibrated).<br>
+                             XT_DIV2              = 0x7 - Clock source is XT / 2<br>
+                             XT_DIV16             = 0x8 - Clock source is XT / 16<br>
+                             XT_DIV256            = 0x9 - Clock source is XT / 256<br>
+                             LFRC_DIV2            = 0xA - Clock source is LFRC / 2<br>
+                             LFRC_DIV32           = 0xB - Clock source is LFRC / 32<br>
+                             LFRC_DIV1K           = 0xC - Clock source is LFRC / 1024<br>
+                             LFRC                 = 0xD - Clock source is LFRC / 16K<br>
+                             RTC_100HZ            = 0xE - Clock source is 100 Hz from the current RTC oscillator.<br>
+                             HCLK                 = 0xF - Clock source is HCLK.<br>
+                             BUCKB                = 0x10 - Clock source is buck converter stream B.</td>
+                        </tr>
+
+                        <tr>
+                            <td>16</td>
+                            <td>TMRB0EN</td>
+                            <td>RW</td>
+                            <td>Counter/Timer B0 Enable bit.<br><br>
+                                 DIS                  = 0x0 - Counter/Timer B0 Disable.<br>
+                             EN                   = 0x1 - Counter/Timer B0 Enable.</td>
+                        </tr>
+
+                        <tr>
+                            <td>15:13</td>
+                            <td>RSVD</td>
+                            <td>RO</td>
+                            <td>RESERVED<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>12</td>
+                            <td>TMRA0POL</td>
+                            <td>RW</td>
+                            <td>Counter/Timer A0 output polarity.<br><br>
+                                 NORMAL               = 0x0 - The polarity of the TMRPINA0 pin is the same as the timer output.<br>
+                             INVERTED             = 0x1 - The polarity of the TMRPINA0 pin is the inverse of the timer output.</td>
+                        </tr>
+
+                        <tr>
+                            <td>11</td>
+                            <td>TMRA0CLR</td>
+                            <td>RW</td>
+                            <td>Counter/Timer A0 Clear bit.<br><br>
+                                 RUN                  = 0x0 - Allow counter/timer A0 to run<br>
+                             CLEAR                = 0x1 - Holds counter/timer A0 at 0x0000.</td>
+                        </tr>
+
+                        <tr>
+                            <td>10</td>
+                            <td>TMRA0PE</td>
+                            <td>RW</td>
+                            <td>Counter/Timer A0 Output Enable bit.<br><br>
+                                 DIS                  = 0x0 - Counter/Timer A holds the TMRPINA signal at the value TMRA0POL.<br>
+                             EN                   = 0x1 - Enable counter/timer B0 to generate a signal on TMRPINB.</td>
+                        </tr>
+
+                        <tr>
+                            <td>9</td>
+                            <td>TMRA0IE</td>
+                            <td>RW</td>
+                            <td>Counter/Timer A0 Interrupt Enable bit.<br><br>
+                                 DIS                  = 0x0 - Disable counter/timer A0 from generating an interrupt.<br>
+                             EN                   = 0x1 - Enable counter/timer A0 to generate an interrupt.</td>
+                        </tr>
+
+                        <tr>
+                            <td>8:6</td>
+                            <td>TMRA0FN</td>
+                            <td>RW</td>
+                            <td>Counter/Timer A0 Function Select.<br><br>
+                                 SINGLECOUNT          = 0x0 - Single count (output toggles and sticks).  Count to CMPR0A0, stop.<br>
+                             REPEATEDCOUNT        = 0x1 - Repeated count (periodic 1-clock-cycle-wide pulses).  Count to CMPR0A0, restart.<br>
+                             PULSE_ONCE           = 0x2 - Pulse once (aka one-shot).  Count to CMPR0A0, assert, count to CMPR1B, deassert, stop.<br>
+                             PULSE_CONT           = 0x3 - Pulse continously.  Count to CMPR0A0, assert, count to CMPR1A0, deassert, restart.<br>
+                             CONTINUOUS           = 0x4 - Continuous run (aka Free Run).  Count continuously.</td>
+                        </tr>
+
+                        <tr>
+                            <td>5:1</td>
+                            <td>TMRA0CLK</td>
+                            <td>RW</td>
+                            <td>Counter/Timer A0 Clock Select.<br><br>
+                                 TMRPIN               = 0x0 - Clock source is TMRPINA.<br>
+                             HFRC                 = 0x1 - Clock source is the HFRC<br>
+                             HFRC_DIV8            = 0x2 - Clock source is HFRC / 8<br>
+                             HFRC_DIV128          = 0x3 - Clock source is HFRC / 128<br>
+                             HFRC_DIV512          = 0x4 - Clock source is HFRC / 512<br>
+                             HFRC_DIV2K           = 0x5 - Clock source is HFRC / 2048<br>
+                             XT                   = 0x6 - Clock source is the XT (uncalibrated).<br>
+                             XT_DIV2              = 0x7 - Clock source is XT / 2<br>
+                             XT_DIV16             = 0x8 - Clock source is XT / 16<br>
+                             XT_DIV256            = 0x9 - Clock source is XT / 256<br>
+                             LFRC_DIV2            = 0xA - Clock source is LFRC / 2<br>
+                             LFRC_DIV32           = 0xB - Clock source is LFRC / 32<br>
+                             LFRC_DIV1K           = 0xC - Clock source is LFRC / 1024<br>
+                             LFRC                 = 0xD - Clock source is LFRC / 16K<br>
+                             RTC_100HZ            = 0xE - Clock source is 100 Hz from the current RTC oscillator.<br>
+                             HCLK                 = 0xF - Clock source is HCLK.<br>
+                             BUCKA                = 0x10 - Clock source is buck converter stream A.</td>
+                        </tr>
+
+                        <tr>
+                            <td>0</td>
+                            <td>TMRA0EN</td>
+                            <td>RW</td>
+                            <td>Counter/Timer A0 Enable bit.<br><br>
+                                 DIS                  = 0x0 - Counter/Timer A0 Disable.<br>
+                             EN                   = 0x1 - Counter/Timer A0 Enable.</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+                <br>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 id="TMR1" class="panel-title">TMR1 - Counter/Timer Register</h3>
+            </div>
+            <div class="panel-body">
+                <h3>Address:</h3>
+                <table style="margin:10px">
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">Instance 0 Address:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x40008010</span>
+                        </td>
+                    </tr>
+
+                </table>
+                <h3>Description:</h3>
+                <p>This register holds the running time or event count, either for each 16 bit half or for the whole 32 bit count when the pair is linked.</p>
+                <h3>Example Macro Usage:</h3>
+                <pre style="margin:10px" class="language-pascal"><span style='color:#3f7f59; '>//
+// All macro-based register writes follow the same basic format. For
+// single-instance modules, you may use the simpler AM_REG macro. For
+// multi-instance macros, you will need to specify the instance number using
+// the AM_REGn macro format.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+// AM_REGn(&lt;MODULE&gt;, &lt;INSTANCE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+//
+// For registers that do not have specific enumeration values, you may use this alternate format instead.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;(&lt;NUMBER&gt;);
+//
+// For example, the following three lines of code are equivalent methods of
+// writing the value for 12MHZ to the CLKSEL field in the ADC_CFG register.
+//</span>
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REGn(ADC, 0, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
+                <h3>Register Fields:</h3>
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>31</th>
+                            <th>30</th>
+                            <th>29</th>
+                            <th>28</th>
+                            <th>27</th>
+                            <th>26</th>
+                            <th>25</th>
+                            <th>24</th>
+                            <th>23</th>
+                            <th>22</th>
+                            <th>21</th>
+                            <th>20</th>
+                            <th>19</th>
+                            <th>18</th>
+                            <th>17</th>
+                            <th>16</th>
+                            <th>15</th>
+                            <th>14</th>
+                            <th>13</th>
+                            <th>12</th>
+                            <th>11</th>
+                            <th>10</th>
+                            <th>9</th>
+                            <th>8</th>
+                            <th>7</th>
+                            <th>6</th>
+                            <th>5</th>
+                            <th>4</th>
+                            <th>3</th>
+                            <th>2</th>
+                            <th>1</th>
+                            <th>0</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td align="center" colspan="16">CTTMRB1
+                                <br>0x0</td>
+
+                            <td align="center" colspan="16">CTTMRA1
+                                <br>0x0</td>
+
+                        </tr>
+                    </tbody>
+                </table>
+                <br>
+
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>Bits</th>
+                            <th>Name</th>
+                            <th>RW</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>31:16</td>
+                            <td>CTTMRB1</td>
+                            <td>RO</td>
+                            <td>Counter/Timer B1.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>15:0</td>
+                            <td>CTTMRA1</td>
+                            <td>RO</td>
+                            <td>Counter/Timer A1.<br><br>
+                                </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+                <br>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 id="CMPRA1" class="panel-title">CMPRA1 - Counter/Timer A1 Compare Registers</h3>
+            </div>
+            <div class="panel-body">
+                <h3>Address:</h3>
+                <table style="margin:10px">
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">Instance 0 Address:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x40008014</span>
+                        </td>
+                    </tr>
+
+                </table>
+                <h3>Description:</h3>
+                <p>This register holds the compare limits for timer half A.</p>
+                <h3>Example Macro Usage:</h3>
+                <pre style="margin:10px" class="language-pascal"><span style='color:#3f7f59; '>//
+// All macro-based register writes follow the same basic format. For
+// single-instance modules, you may use the simpler AM_REG macro. For
+// multi-instance macros, you will need to specify the instance number using
+// the AM_REGn macro format.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+// AM_REGn(&lt;MODULE&gt;, &lt;INSTANCE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+//
+// For registers that do not have specific enumeration values, you may use this alternate format instead.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;(&lt;NUMBER&gt;);
+//
+// For example, the following three lines of code are equivalent methods of
+// writing the value for 12MHZ to the CLKSEL field in the ADC_CFG register.
+//</span>
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REGn(ADC, 0, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
+                <h3>Register Fields:</h3>
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>31</th>
+                            <th>30</th>
+                            <th>29</th>
+                            <th>28</th>
+                            <th>27</th>
+                            <th>26</th>
+                            <th>25</th>
+                            <th>24</th>
+                            <th>23</th>
+                            <th>22</th>
+                            <th>21</th>
+                            <th>20</th>
+                            <th>19</th>
+                            <th>18</th>
+                            <th>17</th>
+                            <th>16</th>
+                            <th>15</th>
+                            <th>14</th>
+                            <th>13</th>
+                            <th>12</th>
+                            <th>11</th>
+                            <th>10</th>
+                            <th>9</th>
+                            <th>8</th>
+                            <th>7</th>
+                            <th>6</th>
+                            <th>5</th>
+                            <th>4</th>
+                            <th>3</th>
+                            <th>2</th>
+                            <th>1</th>
+                            <th>0</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td align="center" colspan="16">CMPR1A1
+                                <br>0x0</td>
+
+                            <td align="center" colspan="16">CMPR0A1
+                                <br>0x0</td>
+
+                        </tr>
+                    </tbody>
+                </table>
+                <br>
+
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>Bits</th>
+                            <th>Name</th>
+                            <th>RW</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>31:16</td>
+                            <td>CMPR1A1</td>
+                            <td>RW</td>
+                            <td>Counter/Timer A1 Compare Register 1.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>15:0</td>
+                            <td>CMPR0A1</td>
+                            <td>RW</td>
+                            <td>Counter/Timer A1 Compare Register 0.<br><br>
+                                </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+                <br>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 id="CMPRB1" class="panel-title">CMPRB1 - Counter/Timer B1 Compare Registers</h3>
+            </div>
+            <div class="panel-body">
+                <h3>Address:</h3>
+                <table style="margin:10px">
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">Instance 0 Address:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x40008018</span>
+                        </td>
+                    </tr>
+
+                </table>
+                <h3>Description:</h3>
+                <p>This register holds the compare limits for timer half B.</p>
+                <h3>Example Macro Usage:</h3>
+                <pre style="margin:10px" class="language-pascal"><span style='color:#3f7f59; '>//
+// All macro-based register writes follow the same basic format. For
+// single-instance modules, you may use the simpler AM_REG macro. For
+// multi-instance macros, you will need to specify the instance number using
+// the AM_REGn macro format.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+// AM_REGn(&lt;MODULE&gt;, &lt;INSTANCE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+//
+// For registers that do not have specific enumeration values, you may use this alternate format instead.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;(&lt;NUMBER&gt;);
+//
+// For example, the following three lines of code are equivalent methods of
+// writing the value for 12MHZ to the CLKSEL field in the ADC_CFG register.
+//</span>
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REGn(ADC, 0, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
+                <h3>Register Fields:</h3>
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>31</th>
+                            <th>30</th>
+                            <th>29</th>
+                            <th>28</th>
+                            <th>27</th>
+                            <th>26</th>
+                            <th>25</th>
+                            <th>24</th>
+                            <th>23</th>
+                            <th>22</th>
+                            <th>21</th>
+                            <th>20</th>
+                            <th>19</th>
+                            <th>18</th>
+                            <th>17</th>
+                            <th>16</th>
+                            <th>15</th>
+                            <th>14</th>
+                            <th>13</th>
+                            <th>12</th>
+                            <th>11</th>
+                            <th>10</th>
+                            <th>9</th>
+                            <th>8</th>
+                            <th>7</th>
+                            <th>6</th>
+                            <th>5</th>
+                            <th>4</th>
+                            <th>3</th>
+                            <th>2</th>
+                            <th>1</th>
+                            <th>0</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td align="center" colspan="16">CMPR1B1
+                                <br>0x0</td>
+
+                            <td align="center" colspan="16">CMPR0B1
+                                <br>0x0</td>
+
+                        </tr>
+                    </tbody>
+                </table>
+                <br>
+
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>Bits</th>
+                            <th>Name</th>
+                            <th>RW</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>31:16</td>
+                            <td>CMPR1B1</td>
+                            <td>RW</td>
+                            <td>Counter/Timer B1 Compare Register 1.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>15:0</td>
+                            <td>CMPR0B1</td>
+                            <td>RW</td>
+                            <td>Counter/Timer B1 Compare Register 0.<br><br>
+                                </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+                <br>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 id="CTRL1" class="panel-title">CTRL1 - Counter/Timer Control</h3>
+            </div>
+            <div class="panel-body">
+                <h3>Address:</h3>
+                <table style="margin:10px">
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">Instance 0 Address:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x4000801C</span>
+                        </td>
+                    </tr>
+
+                </table>
+                <h3>Description:</h3>
+                <p>This register holds the control bit fields for both halves of timer 1.</p>
+                <h3>Example Macro Usage:</h3>
+                <pre style="margin:10px" class="language-pascal"><span style='color:#3f7f59; '>//
+// All macro-based register writes follow the same basic format. For
+// single-instance modules, you may use the simpler AM_REG macro. For
+// multi-instance macros, you will need to specify the instance number using
+// the AM_REGn macro format.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+// AM_REGn(&lt;MODULE&gt;, &lt;INSTANCE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+//
+// For registers that do not have specific enumeration values, you may use this alternate format instead.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;(&lt;NUMBER&gt;);
+//
+// For example, the following three lines of code are equivalent methods of
+// writing the value for 12MHZ to the CLKSEL field in the ADC_CFG register.
+//</span>
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REGn(ADC, 0, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
+                <h3>Register Fields:</h3>
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>31</th>
+                            <th>30</th>
+                            <th>29</th>
+                            <th>28</th>
+                            <th>27</th>
+                            <th>26</th>
+                            <th>25</th>
+                            <th>24</th>
+                            <th>23</th>
+                            <th>22</th>
+                            <th>21</th>
+                            <th>20</th>
+                            <th>19</th>
+                            <th>18</th>
+                            <th>17</th>
+                            <th>16</th>
+                            <th>15</th>
+                            <th>14</th>
+                            <th>13</th>
+                            <th>12</th>
+                            <th>11</th>
+                            <th>10</th>
+                            <th>9</th>
+                            <th>8</th>
+                            <th>7</th>
+                            <th>6</th>
+                            <th>5</th>
+                            <th>4</th>
+                            <th>3</th>
+                            <th>2</th>
+                            <th>1</th>
+                            <th>0</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td align="center" colspan="1">CTLINK1
+                                <br>0x0</td>
+
+                            <td align="center" colspan="2">RSVD
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">TMRB1POL
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">TMRB1CLR
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">TMRB1PE
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">TMRB1IE
+                                <br>0x0</td>
+
+                            <td align="center" colspan="3">TMRB1FN
+                                <br>0x0</td>
+
+                            <td align="center" colspan="5">TMRB1CLK
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">TMRB1EN
+                                <br>0x0</td>
+
+                            <td align="center" colspan="3">RSVD
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">TMRA1POL
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">TMRA1CLR
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">TMRA1PE
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">TMRA1IE
+                                <br>0x0</td>
+
+                            <td align="center" colspan="3">TMRA1FN
+                                <br>0x0</td>
+
+                            <td align="center" colspan="5">TMRA1CLK
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">TMRA1EN
+                                <br>0x0</td>
+
+                        </tr>
+                    </tbody>
+                </table>
+                <br>
+
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>Bits</th>
+                            <th>Name</th>
+                            <th>RW</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>31</td>
+                            <td>CTLINK1</td>
+                            <td>RW</td>
+                            <td>Counter/Timer A1/B1 Link bit.<br><br>
+                                 TWO_16BIT_TIMERS     = 0x0 - Use A0/B0 timers as two independent 16-bit timers (default).<br>
+                             32BIT_TIMER          = 0x1 - Link A1/B1 timers into a single 32-bit timer.</td>
+                        </tr>
+
+                        <tr>
+                            <td>30:29</td>
+                            <td>RSVD</td>
+                            <td>RO</td>
+                            <td>RESERVED<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>28</td>
+                            <td>TMRB1POL</td>
+                            <td>RW</td>
+                            <td>Counter/Timer B1 output polarity.<br><br>
+                                 NORMAL               = 0x0 - The polarity of the TMRPINB1 pin is the same as the timer output.<br>
+                             INVERTED             = 0x1 - The polarity of the TMRPINB1 pin is the inverse of the timer output.</td>
+                        </tr>
+
+                        <tr>
+                            <td>27</td>
+                            <td>TMRB1CLR</td>
+                            <td>RW</td>
+                            <td>Counter/Timer B1 Clear bit.<br><br>
+                                 RUN                  = 0x0 - Allow counter/timer B1 to run<br>
+                             CLEAR                = 0x1 - Holds counter/timer B1 at 0x0000.</td>
+                        </tr>
+
+                        <tr>
+                            <td>26</td>
+                            <td>TMRB1PE</td>
+                            <td>RW</td>
+                            <td>Counter/Timer B1 Output Enable bit.<br><br>
+                                 DIS                  = 0x0 - Counter/Timer B holds the TMRPINB signal at the value TMRB1POL.<br>
+                             EN                   = 0x1 - Enable counter/timer B1 to generate a signal on TMRPINB.</td>
+                        </tr>
+
+                        <tr>
+                            <td>25</td>
+                            <td>TMRB1IE</td>
+                            <td>RW</td>
+                            <td>Counter/Timer B1 Interrupt Enable bit.<br><br>
+                                 DIS                  = 0x0 - Disable counter/timer B1 from generating an interrupt.<br>
+                             EN                   = 0x1 - Enable counter/timer B1 to generate an interrupt.</td>
+                        </tr>
+
+                        <tr>
+                            <td>24:22</td>
+                            <td>TMRB1FN</td>
+                            <td>RW</td>
+                            <td>Counter/Timer B1 Function Select.<br><br>
+                                 SINGLECOUNT          = 0x0 - Single count (output toggles and sticks).  Count to CMPR0B1, stop.<br>
+                             REPEATEDCOUNT        = 0x1 - Repeated count (periodic 1-clock-cycle-wide pulses).  Count to CMPR0B1, restart.<br>
+                             PULSE_ONCE           = 0x2 - Pulse once (aka one-shot).  Count to CMPR0B1, assert, count to CMPR1B, deassert, stop.<br>
+                             PULSE_CONT           = 0x3 - Pulse continously.  Count to CMPR0B1, assert, count to CMPR1B1, deassert, restart.<br>
+                             CONTINUOUS           = 0x4 - Continuous run (aka Free Run).  Count continuously.</td>
+                        </tr>
+
+                        <tr>
+                            <td>21:17</td>
+                            <td>TMRB1CLK</td>
+                            <td>RW</td>
+                            <td>Counter/Timer B1 Clock Select.<br><br>
+                                 TMRPIN               = 0x0 - Clock source is TMRPINB.<br>
+                             HFRC                 = 0x1 - Clock source is the HFRC<br>
+                             HFRC_DIV8            = 0x2 - Clock source is HFRC / 8<br>
+                             HFRC_DIV128          = 0x3 - Clock source is HFRC / 128<br>
+                             HFRC_DIV512          = 0x4 - Clock source is HFRC / 512<br>
+                             HFRC_DIV2K           = 0x5 - Clock source is HFRC / 2048<br>
+                             XT                   = 0x6 - Clock source is the XT (uncalibrated).<br>
+                             XT_DIV2              = 0x7 - Clock source is XT / 2<br>
+                             XT_DIV16             = 0x8 - Clock source is XT / 16<br>
+                             XT_DIV256            = 0x9 - Clock source is XT / 256<br>
+                             LFRC_DIV2            = 0xA - Clock source is LFRC / 2<br>
+                             LFRC_DIV32           = 0xB - Clock source is LFRC / 32<br>
+                             LFRC_DIV1K           = 0xC - Clock source is LFRC / 1024<br>
+                             LFRC                 = 0xD - Clock source is LFRC / 16K<br>
+                             RTC_100HZ            = 0xE - Clock source is 100 Hz from the current RTC oscillator.<br>
+                             HCLK                 = 0xF - Clock source is HCLK.<br>
+                             BUCKB                = 0x10 - Clock source is buck converter stream B.</td>
+                        </tr>
+
+                        <tr>
+                            <td>16</td>
+                            <td>TMRB1EN</td>
+                            <td>RW</td>
+                            <td>Counter/Timer B1 Enable bit.<br><br>
+                                 DIS                  = 0x0 - Counter/Timer B1 Disable.<br>
+                             EN                   = 0x1 - Counter/Timer B1 Enable.</td>
+                        </tr>
+
+                        <tr>
+                            <td>15:13</td>
+                            <td>RSVD</td>
+                            <td>RO</td>
+                            <td>RESERVED<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>12</td>
+                            <td>TMRA1POL</td>
+                            <td>RW</td>
+                            <td>Counter/Timer A1 output polarity.<br><br>
+                                 NORMAL               = 0x0 - The polarity of the TMRPINA1 pin is the same as the timer output.<br>
+                             INVERTED             = 0x1 - The polarity of the TMRPINA1 pin is the inverse of the timer output.</td>
+                        </tr>
+
+                        <tr>
+                            <td>11</td>
+                            <td>TMRA1CLR</td>
+                            <td>RW</td>
+                            <td>Counter/Timer A1 Clear bit.<br><br>
+                                 RUN                  = 0x0 - Allow counter/timer A1 to run<br>
+                             CLEAR                = 0x1 - Holds counter/timer A1 at 0x0000.</td>
+                        </tr>
+
+                        <tr>
+                            <td>10</td>
+                            <td>TMRA1PE</td>
+                            <td>RW</td>
+                            <td>Counter/Timer A1 Output Enable bit.<br><br>
+                                 DIS                  = 0x0 - Counter/Timer A holds the TMRPINA signal at the value TMRA1POL.<br>
+                             EN                   = 0x1 - Enable counter/timer A1 to generate a signal on TMRPINA.</td>
+                        </tr>
+
+                        <tr>
+                            <td>9</td>
+                            <td>TMRA1IE</td>
+                            <td>RW</td>
+                            <td>Counter/Timer A1 Interrupt Enable bit.<br><br>
+                                 DIS                  = 0x0 - Disable counter/timer A1 from generating an interrupt.<br>
+                             EN                   = 0x1 - Enable counter/timer A1 to generate an interrupt.</td>
+                        </tr>
+
+                        <tr>
+                            <td>8:6</td>
+                            <td>TMRA1FN</td>
+                            <td>RW</td>
+                            <td>Counter/Timer A1 Function Select.<br><br>
+                                 SINGLECOUNT          = 0x0 - Single count (output toggles and sticks).  Count to CMPR0A1, stop.<br>
+                             REPEATEDCOUNT        = 0x1 - Repeated count (periodic 1-clock-cycle-wide pulses).  Count to CMPR0A1, restart.<br>
+                             PULSE_ONCE           = 0x2 - Pulse once (aka one-shot).  Count to CMPR0A1, assert, count to CMPR1B, deassert, stop.<br>
+                             PULSE_CONT           = 0x3 - Pulse continously.  Count to CMPR0A1, assert, count to CMPR1A1, deassert, restart.<br>
+                             CONTINUOUS           = 0x4 - Continuous run (aka Free Run).  Count continuously.</td>
+                        </tr>
+
+                        <tr>
+                            <td>5:1</td>
+                            <td>TMRA1CLK</td>
+                            <td>RW</td>
+                            <td>Counter/Timer A1 Clock Select.<br><br>
+                                 TMRPIN               = 0x0 - Clock source is TMRPINA.<br>
+                             HFRC                 = 0x1 - Clock source is the HFRC<br>
+                             HFRC_DIV8            = 0x2 - Clock source is the HFRC / 8<br>
+                             HFRC_DIV128          = 0x3 - Clock source is HFRC / 128<br>
+                             HFRC_DIV512          = 0x4 - Clock source is HFRC / 512<br>
+                             HFRC_DIV2K           = 0x5 - Clock source is HFRC / 2048<br>
+                             XT                   = 0x6 - Clock source is the XT (uncalibrated).<br>
+                             XT_DIV2              = 0x7 - Clock source is XT / 2<br>
+                             XT_DIV16             = 0x8 - Clock source is XT / 16<br>
+                             XT_DIV256            = 0x9 - Clock source is XT / 256<br>
+                             LFRC_DIV2            = 0xA - Clock source is LFRC / 2<br>
+                             LFRC_DIV32           = 0xB - Clock source is LFRC / 32<br>
+                             LFRC_DIV1K           = 0xC - Clock source is LFRC / 1024<br>
+                             LFRC                 = 0xD - Clock source is LFRC / 16K<br>
+                             RTC_100HZ            = 0xE - Clock source is 100 Hz from the current RTC oscillator.<br>
+                             HCLK                 = 0xF - Clock source is HCLK.<br>
+                             BUCKA                = 0x10 - Clock source is buck converter stream A.</td>
+                        </tr>
+
+                        <tr>
+                            <td>0</td>
+                            <td>TMRA1EN</td>
+                            <td>RW</td>
+                            <td>Counter/Timer A1 Enable bit.<br><br>
+                                 DIS                  = 0x0 - Counter/Timer A1 Disable.<br>
+                             EN                   = 0x1 - Counter/Timer A1 Enable.</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+                <br>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 id="TMR2" class="panel-title">TMR2 - Counter/Timer Register</h3>
+            </div>
+            <div class="panel-body">
+                <h3>Address:</h3>
+                <table style="margin:10px">
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">Instance 0 Address:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x40008020</span>
+                        </td>
+                    </tr>
+
+                </table>
+                <h3>Description:</h3>
+                <p>Counter/Timer Register</p>
+                <h3>Example Macro Usage:</h3>
+                <pre style="margin:10px" class="language-pascal"><span style='color:#3f7f59; '>//
+// All macro-based register writes follow the same basic format. For
+// single-instance modules, you may use the simpler AM_REG macro. For
+// multi-instance macros, you will need to specify the instance number using
+// the AM_REGn macro format.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+// AM_REGn(&lt;MODULE&gt;, &lt;INSTANCE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+//
+// For registers that do not have specific enumeration values, you may use this alternate format instead.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;(&lt;NUMBER&gt;);
+//
+// For example, the following three lines of code are equivalent methods of
+// writing the value for 12MHZ to the CLKSEL field in the ADC_CFG register.
+//</span>
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REGn(ADC, 0, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
+                <h3>Register Fields:</h3>
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>31</th>
+                            <th>30</th>
+                            <th>29</th>
+                            <th>28</th>
+                            <th>27</th>
+                            <th>26</th>
+                            <th>25</th>
+                            <th>24</th>
+                            <th>23</th>
+                            <th>22</th>
+                            <th>21</th>
+                            <th>20</th>
+                            <th>19</th>
+                            <th>18</th>
+                            <th>17</th>
+                            <th>16</th>
+                            <th>15</th>
+                            <th>14</th>
+                            <th>13</th>
+                            <th>12</th>
+                            <th>11</th>
+                            <th>10</th>
+                            <th>9</th>
+                            <th>8</th>
+                            <th>7</th>
+                            <th>6</th>
+                            <th>5</th>
+                            <th>4</th>
+                            <th>3</th>
+                            <th>2</th>
+                            <th>1</th>
+                            <th>0</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td align="center" colspan="16">CTTMRB2
+                                <br>0x0</td>
+
+                            <td align="center" colspan="16">CTTMRA2
+                                <br>0x0</td>
+
+                        </tr>
+                    </tbody>
+                </table>
+                <br>
+
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>Bits</th>
+                            <th>Name</th>
+                            <th>RW</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>31:16</td>
+                            <td>CTTMRB2</td>
+                            <td>RO</td>
+                            <td>Counter/Timer B2.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>15:0</td>
+                            <td>CTTMRA2</td>
+                            <td>RO</td>
+                            <td>Counter/Timer A2.<br><br>
+                                </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+                <br>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 id="CMPRA2" class="panel-title">CMPRA2 - Counter/Timer A2 Compare Registers</h3>
+            </div>
+            <div class="panel-body">
+                <h3>Address:</h3>
+                <table style="margin:10px">
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">Instance 0 Address:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x40008024</span>
+                        </td>
+                    </tr>
+
+                </table>
+                <h3>Description:</h3>
+                <p>This register holds the compare limits for timer half A.</p>
+                <h3>Example Macro Usage:</h3>
+                <pre style="margin:10px" class="language-pascal"><span style='color:#3f7f59; '>//
+// All macro-based register writes follow the same basic format. For
+// single-instance modules, you may use the simpler AM_REG macro. For
+// multi-instance macros, you will need to specify the instance number using
+// the AM_REGn macro format.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+// AM_REGn(&lt;MODULE&gt;, &lt;INSTANCE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+//
+// For registers that do not have specific enumeration values, you may use this alternate format instead.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;(&lt;NUMBER&gt;);
+//
+// For example, the following three lines of code are equivalent methods of
+// writing the value for 12MHZ to the CLKSEL field in the ADC_CFG register.
+//</span>
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REGn(ADC, 0, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
+                <h3>Register Fields:</h3>
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>31</th>
+                            <th>30</th>
+                            <th>29</th>
+                            <th>28</th>
+                            <th>27</th>
+                            <th>26</th>
+                            <th>25</th>
+                            <th>24</th>
+                            <th>23</th>
+                            <th>22</th>
+                            <th>21</th>
+                            <th>20</th>
+                            <th>19</th>
+                            <th>18</th>
+                            <th>17</th>
+                            <th>16</th>
+                            <th>15</th>
+                            <th>14</th>
+                            <th>13</th>
+                            <th>12</th>
+                            <th>11</th>
+                            <th>10</th>
+                            <th>9</th>
+                            <th>8</th>
+                            <th>7</th>
+                            <th>6</th>
+                            <th>5</th>
+                            <th>4</th>
+                            <th>3</th>
+                            <th>2</th>
+                            <th>1</th>
+                            <th>0</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td align="center" colspan="16">CMPR1A2
+                                <br>0x0</td>
+
+                            <td align="center" colspan="16">CMPR0A2
+                                <br>0x0</td>
+
+                        </tr>
+                    </tbody>
+                </table>
+                <br>
+
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>Bits</th>
+                            <th>Name</th>
+                            <th>RW</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>31:16</td>
+                            <td>CMPR1A2</td>
+                            <td>RW</td>
+                            <td>Counter/Timer A2 Compare Register 1.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>15:0</td>
+                            <td>CMPR0A2</td>
+                            <td>RW</td>
+                            <td>Counter/Timer A2 Compare Register 0.<br><br>
+                                </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+                <br>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 id="CMPRB2" class="panel-title">CMPRB2 - Counter/Timer B2 Compare Registers</h3>
+            </div>
+            <div class="panel-body">
+                <h3>Address:</h3>
+                <table style="margin:10px">
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">Instance 0 Address:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x40008028</span>
+                        </td>
+                    </tr>
+
+                </table>
+                <h3>Description:</h3>
+                <p>This register holds the compare limits for timer half B.</p>
+                <h3>Example Macro Usage:</h3>
+                <pre style="margin:10px" class="language-pascal"><span style='color:#3f7f59; '>//
+// All macro-based register writes follow the same basic format. For
+// single-instance modules, you may use the simpler AM_REG macro. For
+// multi-instance macros, you will need to specify the instance number using
+// the AM_REGn macro format.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+// AM_REGn(&lt;MODULE&gt;, &lt;INSTANCE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+//
+// For registers that do not have specific enumeration values, you may use this alternate format instead.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;(&lt;NUMBER&gt;);
+//
+// For example, the following three lines of code are equivalent methods of
+// writing the value for 12MHZ to the CLKSEL field in the ADC_CFG register.
+//</span>
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REGn(ADC, 0, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
+                <h3>Register Fields:</h3>
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>31</th>
+                            <th>30</th>
+                            <th>29</th>
+                            <th>28</th>
+                            <th>27</th>
+                            <th>26</th>
+                            <th>25</th>
+                            <th>24</th>
+                            <th>23</th>
+                            <th>22</th>
+                            <th>21</th>
+                            <th>20</th>
+                            <th>19</th>
+                            <th>18</th>
+                            <th>17</th>
+                            <th>16</th>
+                            <th>15</th>
+                            <th>14</th>
+                            <th>13</th>
+                            <th>12</th>
+                            <th>11</th>
+                            <th>10</th>
+                            <th>9</th>
+                            <th>8</th>
+                            <th>7</th>
+                            <th>6</th>
+                            <th>5</th>
+                            <th>4</th>
+                            <th>3</th>
+                            <th>2</th>
+                            <th>1</th>
+                            <th>0</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td align="center" colspan="16">CMPR1B2
+                                <br>0x0</td>
+
+                            <td align="center" colspan="16">CMPR0B2
+                                <br>0x0</td>
+
+                        </tr>
+                    </tbody>
+                </table>
+                <br>
+
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>Bits</th>
+                            <th>Name</th>
+                            <th>RW</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>31:16</td>
+                            <td>CMPR1B2</td>
+                            <td>RW</td>
+                            <td>Counter/Timer B2 Compare Register 1.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>15:0</td>
+                            <td>CMPR0B2</td>
+                            <td>RW</td>
+                            <td>Counter/Timer B2 Compare Register 0.<br><br>
+                                </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+                <br>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 id="CTRL2" class="panel-title">CTRL2 - Counter/Timer Control</h3>
+            </div>
+            <div class="panel-body">
+                <h3>Address:</h3>
+                <table style="margin:10px">
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">Instance 0 Address:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x4000802C</span>
+                        </td>
+                    </tr>
+
+                </table>
+                <h3>Description:</h3>
+                <p>This register holds the control bit fields for both halves of timer 2.</p>
+                <h3>Example Macro Usage:</h3>
+                <pre style="margin:10px" class="language-pascal"><span style='color:#3f7f59; '>//
+// All macro-based register writes follow the same basic format. For
+// single-instance modules, you may use the simpler AM_REG macro. For
+// multi-instance macros, you will need to specify the instance number using
+// the AM_REGn macro format.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+// AM_REGn(&lt;MODULE&gt;, &lt;INSTANCE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+//
+// For registers that do not have specific enumeration values, you may use this alternate format instead.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;(&lt;NUMBER&gt;);
+//
+// For example, the following three lines of code are equivalent methods of
+// writing the value for 12MHZ to the CLKSEL field in the ADC_CFG register.
+//</span>
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REGn(ADC, 0, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
+                <h3>Register Fields:</h3>
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>31</th>
+                            <th>30</th>
+                            <th>29</th>
+                            <th>28</th>
+                            <th>27</th>
+                            <th>26</th>
+                            <th>25</th>
+                            <th>24</th>
+                            <th>23</th>
+                            <th>22</th>
+                            <th>21</th>
+                            <th>20</th>
+                            <th>19</th>
+                            <th>18</th>
+                            <th>17</th>
+                            <th>16</th>
+                            <th>15</th>
+                            <th>14</th>
+                            <th>13</th>
+                            <th>12</th>
+                            <th>11</th>
+                            <th>10</th>
+                            <th>9</th>
+                            <th>8</th>
+                            <th>7</th>
+                            <th>6</th>
+                            <th>5</th>
+                            <th>4</th>
+                            <th>3</th>
+                            <th>2</th>
+                            <th>1</th>
+                            <th>0</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td align="center" colspan="1">CTLINK2
+                                <br>0x0</td>
+
+                            <td align="center" colspan="2">RSVD
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">TMRB2POL
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">TMRB2CLR
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">TMRB2PE
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">TMRB2IE
+                                <br>0x0</td>
+
+                            <td align="center" colspan="3">TMRB2FN
+                                <br>0x0</td>
+
+                            <td align="center" colspan="5">TMRB2CLK
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">TMRB2EN
+                                <br>0x0</td>
+
+                            <td align="center" colspan="3">RSVD
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">TMRA2POL
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">TMRA2CLR
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">TMRA2PE
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">TMRA2IE
+                                <br>0x0</td>
+
+                            <td align="center" colspan="3">TMRA2FN
+                                <br>0x0</td>
+
+                            <td align="center" colspan="5">TMRA2CLK
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">TMRA2EN
+                                <br>0x0</td>
+
+                        </tr>
+                    </tbody>
+                </table>
+                <br>
+
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>Bits</th>
+                            <th>Name</th>
+                            <th>RW</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>31</td>
+                            <td>CTLINK2</td>
+                            <td>RW</td>
+                            <td>Counter/Timer A2/B2 Link bit.<br><br>
+                                 TWO_16BIT_TIMERS     = 0x0 - Use A0/B0 timers as two independent 16-bit timers (default).<br>
+                             32BIT_TIMER          = 0x1 - Link A2/B2 timers into a single 32-bit timer.</td>
+                        </tr>
+
+                        <tr>
+                            <td>30:29</td>
+                            <td>RSVD</td>
+                            <td>RO</td>
+                            <td>RESERVED<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>28</td>
+                            <td>TMRB2POL</td>
+                            <td>RW</td>
+                            <td>Counter/Timer B2 output polarity.<br><br>
+                                 NORMAL               = 0x0 - The polarity of the TMRPINB2 pin is the same as the timer output.<br>
+                             INVERTED             = 0x1 - The polarity of the TMRPINB2 pin is the inverse of the timer output.</td>
+                        </tr>
+
+                        <tr>
+                            <td>27</td>
+                            <td>TMRB2CLR</td>
+                            <td>RW</td>
+                            <td>Counter/Timer B2 Clear bit.<br><br>
+                                 RUN                  = 0x0 - Allow counter/timer B2 to run<br>
+                             CLEAR                = 0x1 - Holds counter/timer B2 at 0x0000.</td>
+                        </tr>
+
+                        <tr>
+                            <td>26</td>
+                            <td>TMRB2PE</td>
+                            <td>RW</td>
+                            <td>Counter/Timer B2 Output Enable bit.<br><br>
+                                 DIS                  = 0x0 - Counter/Timer B holds the TMRPINB signal at the value TMRB2POL.<br>
+                             EN                   = 0x1 - Enable counter/timer B2 to generate a signal on TMRPINB.</td>
+                        </tr>
+
+                        <tr>
+                            <td>25</td>
+                            <td>TMRB2IE</td>
+                            <td>RW</td>
+                            <td>Counter/Timer B2 Interrupt Enable bit.<br><br>
+                                 DIS                  = 0x0 - Disable counter/timer B2 from generating an interrupt.<br>
+                             EN                   = 0x1 - Enable counter/timer B2 to generate an interrupt.</td>
+                        </tr>
+
+                        <tr>
+                            <td>24:22</td>
+                            <td>TMRB2FN</td>
+                            <td>RW</td>
+                            <td>Counter/Timer B2 Function Select.<br><br>
+                                 SINGLECOUNT          = 0x0 - Single count (output toggles and sticks).  Count to CMPR0B2, stop.<br>
+                             REPEATEDCOUNT        = 0x1 - Repeated count (periodic 1-clock-cycle-wide pulses).  Count to CMPR0B2, restart.<br>
+                             PULSE_ONCE           = 0x2 - Pulse once (aka one-shot).  Count to CMPR0B2, assert, count to CMPR1B, deassert, stop.<br>
+                             PULSE_CONT           = 0x3 - Pulse continously.  Count to CMPR0B2, assert, count to CMPR1B2, deassert, restart.<br>
+                             CONTINUOUS           = 0x4 - Continuous run (aka Free Run).  Count continuously.</td>
+                        </tr>
+
+                        <tr>
+                            <td>21:17</td>
+                            <td>TMRB2CLK</td>
+                            <td>RW</td>
+                            <td>Counter/Timer B2 Clock Select.<br><br>
+                                 TMRPIN               = 0x0 - Clock source is TMRPINB.<br>
+                             HFRC                 = 0x1 - Clock source is the HFRC<br>
+                             HFRC_DIV8            = 0x2 - Clock source is HFRC / 8<br>
+                             HFRC_DIV128          = 0x3 - Clock source is HFRC / 128<br>
+                             HFRC_DIV512          = 0x4 - Clock source is HFRC / 512<br>
+                             HFRC_DIV2K           = 0x5 - Clock source is HFRC / 2048<br>
+                             XT                   = 0x6 - Clock source is the XT (uncalibrated).<br>
+                             XT_DIV2              = 0x7 - Clock source is XT / 2<br>
+                             XT_DIV16             = 0x8 - Clock source is XT / 16<br>
+                             XT_DIV256            = 0x9 - Clock source is XT / 256<br>
+                             LFRC_DIV2            = 0xA - Clock source is LFRC / 2<br>
+                             LFRC_DIV32           = 0xB - Clock source is LFRC / 32<br>
+                             LFRC_DIV1K           = 0xC - Clock source is LFRC / 1024<br>
+                             LFRC                 = 0xD - Clock source is LFRC / 16K<br>
+                             RTC_100HZ            = 0xE - Clock source is 100 Hz from the current RTC oscillator.<br>
+                             HCLK                 = 0xF - Clock source is HCLK.<br>
+                             BUCKA                = 0x10 - Clock source is buck converter stream A.</td>
+                        </tr>
+
+                        <tr>
+                            <td>16</td>
+                            <td>TMRB2EN</td>
+                            <td>RW</td>
+                            <td>Counter/Timer B2 Enable bit.<br><br>
+                                 DIS                  = 0x0 - Counter/Timer B2 Disable.<br>
+                             EN                   = 0x1 - Counter/Timer B2 Enable.</td>
+                        </tr>
+
+                        <tr>
+                            <td>15:13</td>
+                            <td>RSVD</td>
+                            <td>RO</td>
+                            <td>RESERVED<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>12</td>
+                            <td>TMRA2POL</td>
+                            <td>RW</td>
+                            <td>Counter/Timer A2 output polarity.<br><br>
+                                 NORMAL               = 0x0 - The polarity of the TMRPINA2 pin is the same as the timer output.<br>
+                             INVERTED             = 0x1 - The polarity of the TMRPINA2 pin is the inverse of the timer output.</td>
+                        </tr>
+
+                        <tr>
+                            <td>11</td>
+                            <td>TMRA2CLR</td>
+                            <td>RW</td>
+                            <td>Counter/Timer A2 Clear bit.<br><br>
+                                 RUN                  = 0x0 - Allow counter/timer A2 to run<br>
+                             CLEAR                = 0x1 - Holds counter/timer A2 at 0x0000.</td>
+                        </tr>
+
+                        <tr>
+                            <td>10</td>
+                            <td>TMRA2PE</td>
+                            <td>RW</td>
+                            <td>Counter/Timer A2 Output Enable bit.<br><br>
+                                 DIS                  = 0x0 - Counter/Timer A holds the TMRPINA signal at the value TMRA2POL.<br>
+                             EN                   = 0x1 - Enable counter/timer A2 to generate a signal on TMRPINA.</td>
+                        </tr>
+
+                        <tr>
+                            <td>9</td>
+                            <td>TMRA2IE</td>
+                            <td>RW</td>
+                            <td>Counter/Timer A2 Interrupt Enable bit.<br><br>
+                                 DIS                  = 0x0 - Disable counter/timer A2 from generating an interrupt.<br>
+                             EN                   = 0x1 - Enable counter/timer A2 to generate an interrupt.</td>
+                        </tr>
+
+                        <tr>
+                            <td>8:6</td>
+                            <td>TMRA2FN</td>
+                            <td>RW</td>
+                            <td>Counter/Timer A2 Function Select.<br><br>
+                                 SINGLECOUNT          = 0x0 - Single count (output toggles and sticks).  Count to CMPR0A2, stop.<br>
+                             REPEATEDCOUNT        = 0x1 - Repeated count (periodic 1-clock-cycle-wide pulses).  Count to CMPR0A2, restart.<br>
+                             PULSE_ONCE           = 0x2 - Pulse once (aka one-shot).  Count to CMPR0A2, assert, count to CMPR1B, deassert, stop.<br>
+                             PULSE_CONT           = 0x3 - Pulse continously.  Count to CMPR0A2, assert, count to CMPR1A2, deassert, restart.<br>
+                             CONTINUOUS           = 0x4 - Continuous run (aka Free Run).  Count continuously.</td>
+                        </tr>
+
+                        <tr>
+                            <td>5:1</td>
+                            <td>TMRA2CLK</td>
+                            <td>RW</td>
+                            <td>Counter/Timer A2 Clock Select.<br><br>
+                                 TMRPIN               = 0x0 - Clock source is TMRPINA.<br>
+                             HFRC                 = 0x1 - Clock source is the HFRC<br>
+                             HFRC_DIV8            = 0x2 - Clock source is HFRC / 8<br>
+                             HFRC_DIV128          = 0x3 - Clock source is HFRC / 128<br>
+                             HFRC_DIV512          = 0x4 - Clock source is HFRC / 512<br>
+                             HFRC_DIV2K           = 0x5 - Clock source is HFRC / 2048<br>
+                             XT                   = 0x6 - Clock source is the XT (uncalibrated).<br>
+                             XT_DIV2              = 0x7 - Clock source is XT / 2<br>
+                             XT_DIV16             = 0x8 - Clock source is XT / 16<br>
+                             XT_DIV256            = 0x9 - Clock source is XT / 256<br>
+                             LFRC_DIV2            = 0xA - Clock source is LFRC / 2<br>
+                             LFRC_DIV32           = 0xB - Clock source is LFRC / 32<br>
+                             LFRC_DIV1K           = 0xC - Clock source is LFRC / 1024<br>
+                             LFRC                 = 0xD - Clock source is LFRC / 16K<br>
+                             RTC_100HZ            = 0xE - Clock source is 100 Hz from the current RTC oscillator.<br>
+                             HCLK                 = 0xF - Clock source is HCLK.<br>
+                             BUCKB                = 0x10 - Clock source is buck converter stream B.</td>
+                        </tr>
+
+                        <tr>
+                            <td>0</td>
+                            <td>TMRA2EN</td>
+                            <td>RW</td>
+                            <td>Counter/Timer A2 Enable bit.<br><br>
+                                 DIS                  = 0x0 - Counter/Timer A2 Disable.<br>
+                             EN                   = 0x1 - Counter/Timer A2 Enable.</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+                <br>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 id="TMR3" class="panel-title">TMR3 - Counter/Timer Register</h3>
+            </div>
+            <div class="panel-body">
+                <h3>Address:</h3>
+                <table style="margin:10px">
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">Instance 0 Address:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x40008030</span>
+                        </td>
+                    </tr>
+
+                </table>
+                <h3>Description:</h3>
+                <p>Counter/Timer Register</p>
+                <h3>Example Macro Usage:</h3>
+                <pre style="margin:10px" class="language-pascal"><span style='color:#3f7f59; '>//
+// All macro-based register writes follow the same basic format. For
+// single-instance modules, you may use the simpler AM_REG macro. For
+// multi-instance macros, you will need to specify the instance number using
+// the AM_REGn macro format.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+// AM_REGn(&lt;MODULE&gt;, &lt;INSTANCE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+//
+// For registers that do not have specific enumeration values, you may use this alternate format instead.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;(&lt;NUMBER&gt;);
+//
+// For example, the following three lines of code are equivalent methods of
+// writing the value for 12MHZ to the CLKSEL field in the ADC_CFG register.
+//</span>
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REGn(ADC, 0, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
+                <h3>Register Fields:</h3>
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>31</th>
+                            <th>30</th>
+                            <th>29</th>
+                            <th>28</th>
+                            <th>27</th>
+                            <th>26</th>
+                            <th>25</th>
+                            <th>24</th>
+                            <th>23</th>
+                            <th>22</th>
+                            <th>21</th>
+                            <th>20</th>
+                            <th>19</th>
+                            <th>18</th>
+                            <th>17</th>
+                            <th>16</th>
+                            <th>15</th>
+                            <th>14</th>
+                            <th>13</th>
+                            <th>12</th>
+                            <th>11</th>
+                            <th>10</th>
+                            <th>9</th>
+                            <th>8</th>
+                            <th>7</th>
+                            <th>6</th>
+                            <th>5</th>
+                            <th>4</th>
+                            <th>3</th>
+                            <th>2</th>
+                            <th>1</th>
+                            <th>0</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td align="center" colspan="16">CTTMRB3
+                                <br>0x0</td>
+
+                            <td align="center" colspan="16">CTTMRA3
+                                <br>0x0</td>
+
+                        </tr>
+                    </tbody>
+                </table>
+                <br>
+
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>Bits</th>
+                            <th>Name</th>
+                            <th>RW</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>31:16</td>
+                            <td>CTTMRB3</td>
+                            <td>RO</td>
+                            <td>Counter/Timer B3.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>15:0</td>
+                            <td>CTTMRA3</td>
+                            <td>RO</td>
+                            <td>Counter/Timer A3.<br><br>
+                                </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+                <br>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 id="CMPRA3" class="panel-title">CMPRA3 - Counter/Timer A3 Compare Registers</h3>
+            </div>
+            <div class="panel-body">
+                <h3>Address:</h3>
+                <table style="margin:10px">
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">Instance 0 Address:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x40008034</span>
+                        </td>
+                    </tr>
+
+                </table>
+                <h3>Description:</h3>
+                <p>This register holds the compare limits for timer half A.</p>
+                <h3>Example Macro Usage:</h3>
+                <pre style="margin:10px" class="language-pascal"><span style='color:#3f7f59; '>//
+// All macro-based register writes follow the same basic format. For
+// single-instance modules, you may use the simpler AM_REG macro. For
+// multi-instance macros, you will need to specify the instance number using
+// the AM_REGn macro format.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+// AM_REGn(&lt;MODULE&gt;, &lt;INSTANCE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+//
+// For registers that do not have specific enumeration values, you may use this alternate format instead.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;(&lt;NUMBER&gt;);
+//
+// For example, the following three lines of code are equivalent methods of
+// writing the value for 12MHZ to the CLKSEL field in the ADC_CFG register.
+//</span>
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REGn(ADC, 0, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
+                <h3>Register Fields:</h3>
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>31</th>
+                            <th>30</th>
+                            <th>29</th>
+                            <th>28</th>
+                            <th>27</th>
+                            <th>26</th>
+                            <th>25</th>
+                            <th>24</th>
+                            <th>23</th>
+                            <th>22</th>
+                            <th>21</th>
+                            <th>20</th>
+                            <th>19</th>
+                            <th>18</th>
+                            <th>17</th>
+                            <th>16</th>
+                            <th>15</th>
+                            <th>14</th>
+                            <th>13</th>
+                            <th>12</th>
+                            <th>11</th>
+                            <th>10</th>
+                            <th>9</th>
+                            <th>8</th>
+                            <th>7</th>
+                            <th>6</th>
+                            <th>5</th>
+                            <th>4</th>
+                            <th>3</th>
+                            <th>2</th>
+                            <th>1</th>
+                            <th>0</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td align="center" colspan="16">CMPR1A3
+                                <br>0x0</td>
+
+                            <td align="center" colspan="16">CMPR0A3
+                                <br>0x0</td>
+
+                        </tr>
+                    </tbody>
+                </table>
+                <br>
+
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>Bits</th>
+                            <th>Name</th>
+                            <th>RW</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>31:16</td>
+                            <td>CMPR1A3</td>
+                            <td>RW</td>
+                            <td>Counter/Timer A3 Compare Register 1.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>15:0</td>
+                            <td>CMPR0A3</td>
+                            <td>RW</td>
+                            <td>Counter/Timer A3 Compare Register 0.<br><br>
+                                </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+                <br>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 id="CMPRB3" class="panel-title">CMPRB3 - Counter/Timer B3 Compare Registers</h3>
+            </div>
+            <div class="panel-body">
+                <h3>Address:</h3>
+                <table style="margin:10px">
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">Instance 0 Address:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x40008038</span>
+                        </td>
+                    </tr>
+
+                </table>
+                <h3>Description:</h3>
+                <p>This register holds the compare limits for timer half B.</p>
+                <h3>Example Macro Usage:</h3>
+                <pre style="margin:10px" class="language-pascal"><span style='color:#3f7f59; '>//
+// All macro-based register writes follow the same basic format. For
+// single-instance modules, you may use the simpler AM_REG macro. For
+// multi-instance macros, you will need to specify the instance number using
+// the AM_REGn macro format.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+// AM_REGn(&lt;MODULE&gt;, &lt;INSTANCE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+//
+// For registers that do not have specific enumeration values, you may use this alternate format instead.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;(&lt;NUMBER&gt;);
+//
+// For example, the following three lines of code are equivalent methods of
+// writing the value for 12MHZ to the CLKSEL field in the ADC_CFG register.
+//</span>
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REGn(ADC, 0, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
+                <h3>Register Fields:</h3>
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>31</th>
+                            <th>30</th>
+                            <th>29</th>
+                            <th>28</th>
+                            <th>27</th>
+                            <th>26</th>
+                            <th>25</th>
+                            <th>24</th>
+                            <th>23</th>
+                            <th>22</th>
+                            <th>21</th>
+                            <th>20</th>
+                            <th>19</th>
+                            <th>18</th>
+                            <th>17</th>
+                            <th>16</th>
+                            <th>15</th>
+                            <th>14</th>
+                            <th>13</th>
+                            <th>12</th>
+                            <th>11</th>
+                            <th>10</th>
+                            <th>9</th>
+                            <th>8</th>
+                            <th>7</th>
+                            <th>6</th>
+                            <th>5</th>
+                            <th>4</th>
+                            <th>3</th>
+                            <th>2</th>
+                            <th>1</th>
+                            <th>0</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td align="center" colspan="16">CMPR1B3
+                                <br>0x0</td>
+
+                            <td align="center" colspan="16">CMPR0B3
+                                <br>0x0</td>
+
+                        </tr>
+                    </tbody>
+                </table>
+                <br>
+
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>Bits</th>
+                            <th>Name</th>
+                            <th>RW</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>31:16</td>
+                            <td>CMPR1B3</td>
+                            <td>RW</td>
+                            <td>Counter/Timer B3 Compare Register 1.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>15:0</td>
+                            <td>CMPR0B3</td>
+                            <td>RW</td>
+                            <td>Counter/Timer B3 Compare Register 0.<br><br>
+                                </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+                <br>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 id="CTRL3" class="panel-title">CTRL3 - Counter/Timer Control</h3>
+            </div>
+            <div class="panel-body">
+                <h3>Address:</h3>
+                <table style="margin:10px">
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">Instance 0 Address:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x4000803C</span>
+                        </td>
+                    </tr>
+
+                </table>
+                <h3>Description:</h3>
+                <p>This register holds the control bit fields for both halves of timer 3.</p>
+                <h3>Example Macro Usage:</h3>
+                <pre style="margin:10px" class="language-pascal"><span style='color:#3f7f59; '>//
+// All macro-based register writes follow the same basic format. For
+// single-instance modules, you may use the simpler AM_REG macro. For
+// multi-instance macros, you will need to specify the instance number using
+// the AM_REGn macro format.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+// AM_REGn(&lt;MODULE&gt;, &lt;INSTANCE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+//
+// For registers that do not have specific enumeration values, you may use this alternate format instead.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;(&lt;NUMBER&gt;);
+//
+// For example, the following three lines of code are equivalent methods of
+// writing the value for 12MHZ to the CLKSEL field in the ADC_CFG register.
+//</span>
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REGn(ADC, 0, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
+                <h3>Register Fields:</h3>
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>31</th>
+                            <th>30</th>
+                            <th>29</th>
+                            <th>28</th>
+                            <th>27</th>
+                            <th>26</th>
+                            <th>25</th>
+                            <th>24</th>
+                            <th>23</th>
+                            <th>22</th>
+                            <th>21</th>
+                            <th>20</th>
+                            <th>19</th>
+                            <th>18</th>
+                            <th>17</th>
+                            <th>16</th>
+                            <th>15</th>
+                            <th>14</th>
+                            <th>13</th>
+                            <th>12</th>
+                            <th>11</th>
+                            <th>10</th>
+                            <th>9</th>
+                            <th>8</th>
+                            <th>7</th>
+                            <th>6</th>
+                            <th>5</th>
+                            <th>4</th>
+                            <th>3</th>
+                            <th>2</th>
+                            <th>1</th>
+                            <th>0</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td align="center" colspan="1">CTLINK3
+                                <br>0x0</td>
+
+                            <td align="center" colspan="2">RSVD
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">TMRB3POL
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">TMRB3CLR
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">TMRB3PE
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">TMRB3IE
+                                <br>0x0</td>
+
+                            <td align="center" colspan="3">TMRB3FN
+                                <br>0x0</td>
+
+                            <td align="center" colspan="5">TMRB3CLK
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">TMRB3EN
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">ADCEN
+                                <br>0x0</td>
+
+                            <td align="center" colspan="2">RSVD
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">TMRA3POL
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">TMRA3CLR
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">TMRA3PE
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">TMRA3IE
+                                <br>0x0</td>
+
+                            <td align="center" colspan="3">TMRA3FN
+                                <br>0x0</td>
+
+                            <td align="center" colspan="5">TMRA3CLK
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">TMRA3EN
+                                <br>0x0</td>
+
+                        </tr>
+                    </tbody>
+                </table>
+                <br>
+
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>Bits</th>
+                            <th>Name</th>
+                            <th>RW</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>31</td>
+                            <td>CTLINK3</td>
+                            <td>RW</td>
+                            <td>Counter/Timer A/B Link bit.<br><br>
+                                 TWO_16BIT_TIMERS     = 0x0 - Use A0/B0 timers as two independent 16-bit timers (default).<br>
+                             32BIT_TIMER          = 0x1 - Link A3/B3 timers into a single 32-bit timer.</td>
+                        </tr>
+
+                        <tr>
+                            <td>30:29</td>
+                            <td>RSVD</td>
+                            <td>RO</td>
+                            <td>RESERVED<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>28</td>
+                            <td>TMRB3POL</td>
+                            <td>RW</td>
+                            <td>Counter/Timer B3 output polarity.<br><br>
+                                 NORMAL               = 0x0 - The polarity of the TMRPINB3 pin is the same as the timer output.<br>
+                             INVERTED             = 0x1 - The polarity of the TMRPINB3 pin is the inverse of the timer output.</td>
+                        </tr>
+
+                        <tr>
+                            <td>27</td>
+                            <td>TMRB3CLR</td>
+                            <td>RW</td>
+                            <td>Counter/Timer B3 Clear bit.<br><br>
+                                 RUN                  = 0x0 - Allow counter/timer B3 to run.<br>
+                             CLEAR                = 0x1 - Holds counter/timer B3 at 0x0000.</td>
+                        </tr>
+
+                        <tr>
+                            <td>26</td>
+                            <td>TMRB3PE</td>
+                            <td>RW</td>
+                            <td>Counter/Timer B3 Output Enable bit.<br><br>
+                                 DIS                  = 0x0 - Counter/Timer B holds the TMRPINB signal at the value TMRB3POL.<br>
+                             EN                   = 0x1 - Enable counter/timer B3 to generate a signal on TMRPINB.</td>
+                        </tr>
+
+                        <tr>
+                            <td>25</td>
+                            <td>TMRB3IE</td>
+                            <td>RW</td>
+                            <td>Counter/Timer B3 Interrupt Enable bit.<br><br>
+                                 DIS                  = 0x0 - Disable counter/timer B3 from generating an interrupt.<br>
+                             EN                   = 0x1 - Enable counter/timer B3 to generate an interrupt.</td>
+                        </tr>
+
+                        <tr>
+                            <td>24:22</td>
+                            <td>TMRB3FN</td>
+                            <td>RW</td>
+                            <td>Counter/Timer B3 Function Select.<br><br>
+                                 SINGLECOUNT          = 0x0 - Single count (output toggles and sticks).  Count to CMPR0B3, stop.<br>
+                             REPEATEDCOUNT        = 0x1 - Repeated count (periodic 1-clock-cycle-wide pulses).  Count to CMPR0B3, restart.<br>
+                             PULSE_ONCE           = 0x2 - Pulse once (aka one-shot).  Count to CMPR0B3, assert, count to CMPR1B, deassert, stop.<br>
+                             PULSE_CONT           = 0x3 - Pulse continously.  Count to CMPR0B3, assert, count to CMPR1B3, deassert, restart.<br>
+                             CONTINUOUS           = 0x4 - Continuous run (aka Free Run).  Count continuously.</td>
+                        </tr>
+
+                        <tr>
+                            <td>21:17</td>
+                            <td>TMRB3CLK</td>
+                            <td>RW</td>
+                            <td>Counter/Timer B3 Clock Select.<br><br>
+                                 TMRPIN               = 0x0 - Clock source is TMRPINB.<br>
+                             HFRC                 = 0x1 - Clock source is the HFRC<br>
+                             HFRC_DIV8            = 0x2 - Clock source is HFRC / 8<br>
+                             HFRC_DIV128          = 0x3 - Clock source is HFRC / 128<br>
+                             HFRC_DIV512          = 0x4 - Clock source is HFRC / 512<br>
+                             HFRC_DIV2K           = 0x5 - Clock source is HFRC / 2048<br>
+                             XT                   = 0x6 - Clock source is the XT (uncalibrated).<br>
+                             XT_DIV2              = 0x7 - Clock source is XT / 2<br>
+                             XT_DIV16             = 0x8 - Clock source is XT / 16<br>
+                             XT_DIV256            = 0x9 - Clock source is XT / 256<br>
+                             LFRC_DIV2            = 0xA - Clock source is LFRC / 2<br>
+                             LFRC_DIV32           = 0xB - Clock source is LFRC / 32<br>
+                             LFRC_DIV1K           = 0xC - Clock source is LFRC / 1024<br>
+                             LFRC                 = 0xD - Clock source is LFRC / 16K<br>
+                             RTC_100HZ            = 0xE - Clock source is 100 Hz from the current RTC oscillator.<br>
+                             HCLK                 = 0xF - Clock source is HCLK.<br>
+                             BUCKA                = 0x10 - Clock source is buck converter stream A.</td>
+                        </tr>
+
+                        <tr>
+                            <td>16</td>
+                            <td>TMRB3EN</td>
+                            <td>RW</td>
+                            <td>Counter/Timer B3 Enable bit.<br><br>
+                                 DIS                  = 0x0 - Counter/Timer B3 Disable.<br>
+                             EN                   = 0x1 - Counter/Timer B3 Enable.</td>
+                        </tr>
+
+                        <tr>
+                            <td>15</td>
+                            <td>ADCEN</td>
+                            <td>RW</td>
+                            <td>Special Timer A3 enable for ADC function.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>14:13</td>
+                            <td>RSVD</td>
+                            <td>RO</td>
+                            <td>RESERVED<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>12</td>
+                            <td>TMRA3POL</td>
+                            <td>RW</td>
+                            <td>Counter/Timer A3 output polarity.<br><br>
+                                 NORMAL               = 0x0 - The polarity of the TMRPINA3 pin is the same as the timer output.<br>
+                             INVERTED             = 0x1 - The polarity of the TMRPINA3 pin is the inverse of the timer output.</td>
+                        </tr>
+
+                        <tr>
+                            <td>11</td>
+                            <td>TMRA3CLR</td>
+                            <td>RW</td>
+                            <td>Counter/Timer A3 Clear bit.<br><br>
+                                 CLEAR                = 0x1 - Holds counter/timer A3 at 0x0000.</td>
+                        </tr>
+
+                        <tr>
+                            <td>10</td>
+                            <td>TMRA3PE</td>
+                            <td>RW</td>
+                            <td>Counter/Timer A3 Output Enable bit.<br><br>
+                                 DIS                  = 0x0 - Counter/Timer A holds the TMRPINA signal at the value TMRA3POL.<br>
+                             EN                   = 0x1 - Enable counter/timer A3 to generate a signal on TMRPINA.</td>
+                        </tr>
+
+                        <tr>
+                            <td>9</td>
+                            <td>TMRA3IE</td>
+                            <td>RW</td>
+                            <td>Counter/Timer A3 Interrupt Enable bit.<br><br>
+                                 DIS                  = 0x0 - Disable counter/timer A3 from generating an interrupt.<br>
+                             EN                   = 0x1 - Enable counter/timer A3 to generate an interrupt.</td>
+                        </tr>
+
+                        <tr>
+                            <td>8:6</td>
+                            <td>TMRA3FN</td>
+                            <td>RW</td>
+                            <td>Counter/Timer A3 Function Select.<br><br>
+                                 SINGLECOUNT          = 0x0 - Single count (output toggles and sticks).  Count to CMPR0A3, stop.<br>
+                             REPEATEDCOUNT        = 0x1 - Repeated count (periodic 1-clock-cycle-wide pulses).  Count to CMPR0A3, restart.<br>
+                             PULSE_ONCE           = 0x2 - Pulse once (aka one-shot).  Count to CMPR0A3, assert, count to CMPR1B, deassert, stop.<br>
+                             PULSE_CONT           = 0x3 - Pulse continously.  Count to CMPR0A3, assert, count to CMPR1A3, deassert, restart.<br>
+                             CONTINUOUS           = 0x4 - Continuous run (aka Free Run).  Count continuously.</td>
+                        </tr>
+
+                        <tr>
+                            <td>5:1</td>
+                            <td>TMRA3CLK</td>
+                            <td>RW</td>
+                            <td>Counter/Timer A3 Clock Select.<br><br>
+                                 TMRPIN               = 0x0 - Clock source is TMRPINA.<br>
+                             HFRC                 = 0x1 - Clock source is the HFRC<br>
+                             HFRC_DIV8            = 0x2 - Clock source is HFRC / 8<br>
+                             HFRC_DIV128          = 0x3 - Clock source is HFRC / 128<br>
+                             HFRC_DIV512          = 0x4 - Clock source is HFRC / 512<br>
+                             HFRC_DIV2K           = 0x5 - Clock source is HFRC / 2048<br>
+                             XT                   = 0x6 - Clock source is the XT (uncalibrated).<br>
+                             XT_DIV2              = 0x7 - Clock source is XT / 2<br>
+                             XT_DIV16             = 0x8 - Clock source is XT / 16<br>
+                             XT_DIV256            = 0x9 - Clock source is XT / 256<br>
+                             LFRC_DIV2            = 0xA - Clock source is LFRC / 2<br>
+                             LFRC_DIV32           = 0xB - Clock source is LFRC / 32<br>
+                             LFRC_DIV1K           = 0xC - Clock source is LFRC / 1024<br>
+                             LFRC                 = 0xD - Clock source is LFRC / 16K<br>
+                             RTC_100HZ            = 0xE - Clock source is 100 Hz from the current RTC oscillator.<br>
+                             HCLK                 = 0xF - Clock source is HCLK.<br>
+                             BUCKB                = 0x10 - Clock source is buck converter stream B.</td>
+                        </tr>
+
+                        <tr>
+                            <td>0</td>
+                            <td>TMRA3EN</td>
+                            <td>RW</td>
+                            <td>Counter/Timer A3 Enable bit.<br><br>
+                                 DIS                  = 0x0 - Counter/Timer A3 Disable.<br>
+                             EN                   = 0x1 - Counter/Timer A3 Enable.</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+                <br>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 id="INTEN" class="panel-title">INTEN - Counter/Timer Interrupts: Enable</h3>
+            </div>
+            <div class="panel-body">
+                <h3>Address:</h3>
+                <table style="margin:10px">
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">Instance 0 Address:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x40008200</span>
+                        </td>
+                    </tr>
+
+                </table>
+                <h3>Description:</h3>
+                <p>Set bits in this register to allow this module to generate the corresponding interrupt.</p>
+                <h3>Example Macro Usage:</h3>
+                <pre style="margin:10px" class="language-pascal"><span style='color:#3f7f59; '>//
+// All macro-based register writes follow the same basic format. For
+// single-instance modules, you may use the simpler AM_REG macro. For
+// multi-instance macros, you will need to specify the instance number using
+// the AM_REGn macro format.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+// AM_REGn(&lt;MODULE&gt;, &lt;INSTANCE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+//
+// For registers that do not have specific enumeration values, you may use this alternate format instead.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;(&lt;NUMBER&gt;);
+//
+// For example, the following three lines of code are equivalent methods of
+// writing the value for 12MHZ to the CLKSEL field in the ADC_CFG register.
+//</span>
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REGn(ADC, 0, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
+                <h3>Register Fields:</h3>
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>31</th>
+                            <th>30</th>
+                            <th>29</th>
+                            <th>28</th>
+                            <th>27</th>
+                            <th>26</th>
+                            <th>25</th>
+                            <th>24</th>
+                            <th>23</th>
+                            <th>22</th>
+                            <th>21</th>
+                            <th>20</th>
+                            <th>19</th>
+                            <th>18</th>
+                            <th>17</th>
+                            <th>16</th>
+                            <th>15</th>
+                            <th>14</th>
+                            <th>13</th>
+                            <th>12</th>
+                            <th>11</th>
+                            <th>10</th>
+                            <th>9</th>
+                            <th>8</th>
+                            <th>7</th>
+                            <th>6</th>
+                            <th>5</th>
+                            <th>4</th>
+                            <th>3</th>
+                            <th>2</th>
+                            <th>1</th>
+                            <th>0</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td align="center" colspan="24">RSVD
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">CTMRB3INT
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">CTMRA3INT
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">CTMRB2INT
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">CTMRA2INT
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">CTMRB1INT
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">CTMRA1INT
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">CTMRB0INT
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">CTMRA0INT
+                                <br>0x0</td>
+
+                        </tr>
+                    </tbody>
+                </table>
+                <br>
+
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>Bits</th>
+                            <th>Name</th>
+                            <th>RW</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>31:8</td>
+                            <td>RSVD</td>
+                            <td>RO</td>
+                            <td>RESERVED<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>7</td>
+                            <td>CTMRB3INT</td>
+                            <td>RW</td>
+                            <td>Counter/Timer B3 interrupt.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>6</td>
+                            <td>CTMRA3INT</td>
+                            <td>RW</td>
+                            <td>Counter/Timer A3 interrupt.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>5</td>
+                            <td>CTMRB2INT</td>
+                            <td>RW</td>
+                            <td>Counter/Timer B2 interrupt.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>4</td>
+                            <td>CTMRA2INT</td>
+                            <td>RW</td>
+                            <td>Counter/Timer A2 interrupt.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>3</td>
+                            <td>CTMRB1INT</td>
+                            <td>RW</td>
+                            <td>Counter/Timer B1 interrupt.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>2</td>
+                            <td>CTMRA1INT</td>
+                            <td>RW</td>
+                            <td>Counter/Timer A1 interrupt.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>1</td>
+                            <td>CTMRB0INT</td>
+                            <td>RW</td>
+                            <td>Counter/Timer B0 interrupt.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>0</td>
+                            <td>CTMRA0INT</td>
+                            <td>RW</td>
+                            <td>Counter/Timer A0 interrupt.<br><br>
+                                </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+                <br>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 id="INTSTAT" class="panel-title">INTSTAT - Counter/Timer Interrupts: Status</h3>
+            </div>
+            <div class="panel-body">
+                <h3>Address:</h3>
+                <table style="margin:10px">
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">Instance 0 Address:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x40008204</span>
+                        </td>
+                    </tr>
+
+                </table>
+                <h3>Description:</h3>
+                <p>Read bits from this register to discover the cause of a recent interrupt.</p>
+                <h3>Example Macro Usage:</h3>
+                <pre style="margin:10px" class="language-pascal"><span style='color:#3f7f59; '>//
+// All macro-based register writes follow the same basic format. For
+// single-instance modules, you may use the simpler AM_REG macro. For
+// multi-instance macros, you will need to specify the instance number using
+// the AM_REGn macro format.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+// AM_REGn(&lt;MODULE&gt;, &lt;INSTANCE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+//
+// For registers that do not have specific enumeration values, you may use this alternate format instead.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;(&lt;NUMBER&gt;);
+//
+// For example, the following three lines of code are equivalent methods of
+// writing the value for 12MHZ to the CLKSEL field in the ADC_CFG register.
+//</span>
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REGn(ADC, 0, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
+                <h3>Register Fields:</h3>
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>31</th>
+                            <th>30</th>
+                            <th>29</th>
+                            <th>28</th>
+                            <th>27</th>
+                            <th>26</th>
+                            <th>25</th>
+                            <th>24</th>
+                            <th>23</th>
+                            <th>22</th>
+                            <th>21</th>
+                            <th>20</th>
+                            <th>19</th>
+                            <th>18</th>
+                            <th>17</th>
+                            <th>16</th>
+                            <th>15</th>
+                            <th>14</th>
+                            <th>13</th>
+                            <th>12</th>
+                            <th>11</th>
+                            <th>10</th>
+                            <th>9</th>
+                            <th>8</th>
+                            <th>7</th>
+                            <th>6</th>
+                            <th>5</th>
+                            <th>4</th>
+                            <th>3</th>
+                            <th>2</th>
+                            <th>1</th>
+                            <th>0</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td align="center" colspan="24">RSVD
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">CTMRB3INT
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">CTMRA3INT
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">CTMRB2INT
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">CTMRA2INT
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">CTMRB1INT
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">CTMRA1INT
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">CTMRB0INT
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">CTMRA0INT
+                                <br>0x0</td>
+
+                        </tr>
+                    </tbody>
+                </table>
+                <br>
+
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>Bits</th>
+                            <th>Name</th>
+                            <th>RW</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>31:8</td>
+                            <td>RSVD</td>
+                            <td>RO</td>
+                            <td>RESERVED<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>7</td>
+                            <td>CTMRB3INT</td>
+                            <td>RW</td>
+                            <td>Counter/Timer B3 interrupt.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>6</td>
+                            <td>CTMRA3INT</td>
+                            <td>RW</td>
+                            <td>Counter/Timer A3 interrupt.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>5</td>
+                            <td>CTMRB2INT</td>
+                            <td>RW</td>
+                            <td>Counter/Timer B2 interrupt.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>4</td>
+                            <td>CTMRA2INT</td>
+                            <td>RW</td>
+                            <td>Counter/Timer A2 interrupt.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>3</td>
+                            <td>CTMRB1INT</td>
+                            <td>RW</td>
+                            <td>Counter/Timer B1 interrupt.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>2</td>
+                            <td>CTMRA1INT</td>
+                            <td>RW</td>
+                            <td>Counter/Timer A1 interrupt.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>1</td>
+                            <td>CTMRB0INT</td>
+                            <td>RW</td>
+                            <td>Counter/Timer B0 interrupt.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>0</td>
+                            <td>CTMRA0INT</td>
+                            <td>RW</td>
+                            <td>Counter/Timer A0 interrupt.<br><br>
+                                </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+                <br>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 id="INTCLR" class="panel-title">INTCLR - Counter/Timer Interrupts: Clear</h3>
+            </div>
+            <div class="panel-body">
+                <h3>Address:</h3>
+                <table style="margin:10px">
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">Instance 0 Address:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x40008208</span>
+                        </td>
+                    </tr>
+
+                </table>
+                <h3>Description:</h3>
+                <p>Write a 1 to a bit in this register to clear the interrupt status associated with that bit.</p>
+                <h3>Example Macro Usage:</h3>
+                <pre style="margin:10px" class="language-pascal"><span style='color:#3f7f59; '>//
+// All macro-based register writes follow the same basic format. For
+// single-instance modules, you may use the simpler AM_REG macro. For
+// multi-instance macros, you will need to specify the instance number using
+// the AM_REGn macro format.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+// AM_REGn(&lt;MODULE&gt;, &lt;INSTANCE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+//
+// For registers that do not have specific enumeration values, you may use this alternate format instead.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;(&lt;NUMBER&gt;);
+//
+// For example, the following three lines of code are equivalent methods of
+// writing the value for 12MHZ to the CLKSEL field in the ADC_CFG register.
+//</span>
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REGn(ADC, 0, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
+                <h3>Register Fields:</h3>
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>31</th>
+                            <th>30</th>
+                            <th>29</th>
+                            <th>28</th>
+                            <th>27</th>
+                            <th>26</th>
+                            <th>25</th>
+                            <th>24</th>
+                            <th>23</th>
+                            <th>22</th>
+                            <th>21</th>
+                            <th>20</th>
+                            <th>19</th>
+                            <th>18</th>
+                            <th>17</th>
+                            <th>16</th>
+                            <th>15</th>
+                            <th>14</th>
+                            <th>13</th>
+                            <th>12</th>
+                            <th>11</th>
+                            <th>10</th>
+                            <th>9</th>
+                            <th>8</th>
+                            <th>7</th>
+                            <th>6</th>
+                            <th>5</th>
+                            <th>4</th>
+                            <th>3</th>
+                            <th>2</th>
+                            <th>1</th>
+                            <th>0</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td align="center" colspan="24">RSVD
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">CTMRB3INT
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">CTMRA3INT
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">CTMRB2INT
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">CTMRA2INT
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">CTMRB1INT
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">CTMRA1INT
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">CTMRB0INT
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">CTMRA0INT
+                                <br>0x0</td>
+
+                        </tr>
+                    </tbody>
+                </table>
+                <br>
+
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>Bits</th>
+                            <th>Name</th>
+                            <th>RW</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>31:8</td>
+                            <td>RSVD</td>
+                            <td>RO</td>
+                            <td>RESERVED<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>7</td>
+                            <td>CTMRB3INT</td>
+                            <td>RW</td>
+                            <td>Counter/Timer B3 interrupt.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>6</td>
+                            <td>CTMRA3INT</td>
+                            <td>RW</td>
+                            <td>Counter/Timer A3 interrupt.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>5</td>
+                            <td>CTMRB2INT</td>
+                            <td>RW</td>
+                            <td>Counter/Timer B2 interrupt.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>4</td>
+                            <td>CTMRA2INT</td>
+                            <td>RW</td>
+                            <td>Counter/Timer A2 interrupt.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>3</td>
+                            <td>CTMRB1INT</td>
+                            <td>RW</td>
+                            <td>Counter/Timer B1 interrupt.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>2</td>
+                            <td>CTMRA1INT</td>
+                            <td>RW</td>
+                            <td>Counter/Timer A1 interrupt.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>1</td>
+                            <td>CTMRB0INT</td>
+                            <td>RW</td>
+                            <td>Counter/Timer B0 interrupt.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>0</td>
+                            <td>CTMRA0INT</td>
+                            <td>RW</td>
+                            <td>Counter/Timer A0 interrupt.<br><br>
+                                </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+                <br>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 id="INTSET" class="panel-title">INTSET - Counter/Timer Interrupts: Set</h3>
+            </div>
+            <div class="panel-body">
+                <h3>Address:</h3>
+                <table style="margin:10px">
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">Instance 0 Address:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x4000820C</span>
+                        </td>
+                    </tr>
+
+                </table>
+                <h3>Description:</h3>
+                <p>Write a 1 to a bit in this register to instantly generate an interrupt from this module. (Generally used for testing purposes).</p>
+                <h3>Example Macro Usage:</h3>
+                <pre style="margin:10px" class="language-pascal"><span style='color:#3f7f59; '>//
+// All macro-based register writes follow the same basic format. For
+// single-instance modules, you may use the simpler AM_REG macro. For
+// multi-instance macros, you will need to specify the instance number using
+// the AM_REGn macro format.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+// AM_REGn(&lt;MODULE&gt;, &lt;INSTANCE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+//
+// For registers that do not have specific enumeration values, you may use this alternate format instead.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;(&lt;NUMBER&gt;);
+//
+// For example, the following three lines of code are equivalent methods of
+// writing the value for 12MHZ to the CLKSEL field in the ADC_CFG register.
+//</span>
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REGn(ADC, 0, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
+                <h3>Register Fields:</h3>
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>31</th>
+                            <th>30</th>
+                            <th>29</th>
+                            <th>28</th>
+                            <th>27</th>
+                            <th>26</th>
+                            <th>25</th>
+                            <th>24</th>
+                            <th>23</th>
+                            <th>22</th>
+                            <th>21</th>
+                            <th>20</th>
+                            <th>19</th>
+                            <th>18</th>
+                            <th>17</th>
+                            <th>16</th>
+                            <th>15</th>
+                            <th>14</th>
+                            <th>13</th>
+                            <th>12</th>
+                            <th>11</th>
+                            <th>10</th>
+                            <th>9</th>
+                            <th>8</th>
+                            <th>7</th>
+                            <th>6</th>
+                            <th>5</th>
+                            <th>4</th>
+                            <th>3</th>
+                            <th>2</th>
+                            <th>1</th>
+                            <th>0</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td align="center" colspan="24">RSVD
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">CTMRB3INT
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">CTMRA3INT
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">CTMRB2INT
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">CTMRA2INT
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">CTMRB1INT
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">CTMRA1INT
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">CTMRB0INT
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">CTMRA0INT
+                                <br>0x0</td>
+
+                        </tr>
+                    </tbody>
+                </table>
+                <br>
+
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>Bits</th>
+                            <th>Name</th>
+                            <th>RW</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>31:8</td>
+                            <td>RSVD</td>
+                            <td>RO</td>
+                            <td>RESERVED<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>7</td>
+                            <td>CTMRB3INT</td>
+                            <td>RW</td>
+                            <td>Counter/Timer B3 interrupt.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>6</td>
+                            <td>CTMRA3INT</td>
+                            <td>RW</td>
+                            <td>Counter/Timer A3 interrupt.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>5</td>
+                            <td>CTMRB2INT</td>
+                            <td>RW</td>
+                            <td>Counter/Timer B2 interrupt.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>4</td>
+                            <td>CTMRA2INT</td>
+                            <td>RW</td>
+                            <td>Counter/Timer A2 interrupt.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>3</td>
+                            <td>CTMRB1INT</td>
+                            <td>RW</td>
+                            <td>Counter/Timer B1 interrupt.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>2</td>
+                            <td>CTMRA1INT</td>
+                            <td>RW</td>
+                            <td>Counter/Timer A1 interrupt.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>1</td>
+                            <td>CTMRB0INT</td>
+                            <td>RW</td>
+                            <td>Counter/Timer B0 interrupt.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>0</td>
+                            <td>CTMRA0INT</td>
+                            <td>RW</td>
+                            <td>Counter/Timer A0 interrupt.<br><br>
+                                </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+                <br>
+            </div>
+        </div>
+
+    </body>
+
+    <hr size="1">
+    <body>
+        <div id="footer" align="right">
+            <small>
+                AmbiqSuite Register Documentation&nbsp;
+                <a href="http://www.ambiqmicro.com">
+                <img class="footer" src="../resources/ambiqmicro_logo.png" alt="Ambiq Micro"/></a>&nbsp&nbsp Copyright &copy; 2014&nbsp&nbsp<br />
+                This documentation is licensed and distributed under the <a rel="license" href="http://opensource.org/licenses/BSD-3-Clause">BSD 3-Clause License</a>.&nbsp&nbsp<br/>
+            </small>
+        </div>
+    </body>
+</html>
+

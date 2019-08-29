@@ -1,0 +1,3589 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=9" />
+    <meta name="generator" content="AmbiqMicro" />
+    <title>AmbiqSuite User Guide: AmbiqSuite Apollo Device Register Overview</title>
+    <link href="../resources/tabs.css" rel="stylesheet" type="text/css" />
+    <link href="../resources/bootstrap.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="../resources/jquery.js"></script>
+    <script type="text/javascript" src="../resources/dynsections.js"></script>
+    <link href="search/search.css" rel="stylesheet" type="text/css" />
+    <link href="../resources/customdoxygen.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+    <div id="top">
+        <!-- do not remove this div, it is closed by doxygen! -->
+        <div id="titlearea">
+            <table cellspacing="0" cellpadding="0">
+                <tbody>
+                    <tr style="height: 56px;">
+                        <td id="projectlogo">
+                            <img alt="Logo" src="../resources/am_logo.png" />
+                        </td>
+                        <td style="padding-left: 0.5em;">
+                            <div id="projectname">Apollo Register Documentation &#160;<span id="projectnumber">v2.2.0</span></div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <!-- end header part -->
+        <div id="navrow1" class="tabs">
+            <ul class="tablist">
+                <li class="current"><a href="../index.html"><span>Main&#160;Page</span></a>
+                </li>
+        </div>
+        </li>
+        </ul>
+    </div>
+    </div>
+    <!-- top -->
+    <!-- window showing the filter options -->
+    <div class="header">
+        <div class="headertitle">
+            <div class="title">ADC - Analog Digital Converter Control</div>
+        </div>
+    </div>
+    <!--header-->
+    <body>
+        <br>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title"> ADC Register Index</h3>
+            </div>
+            <div class="panel-body">
+                <table>
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x00000000:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <a class="el" href="#CFG" target="_self">CFG - Configuration Register</a>
+                        </td>
+                    </tr>
+
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x00000004:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <a class="el" href="#STAT" target="_self">STAT - ADC Power Status</a>
+                        </td>
+                    </tr>
+
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x00000008:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <a class="el" href="#SWT" target="_self">SWT - Software trigger</a>
+                        </td>
+                    </tr>
+
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x0000000C:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <a class="el" href="#SL0CFG" target="_self">SL0CFG - Slot 0 Configuration Register</a>
+                        </td>
+                    </tr>
+
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x00000010:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <a class="el" href="#SL1CFG" target="_self">SL1CFG - Slot 1 Configuration Register</a>
+                        </td>
+                    </tr>
+
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x00000014:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <a class="el" href="#SL2CFG" target="_self">SL2CFG - Slot 2 Configuration Register</a>
+                        </td>
+                    </tr>
+
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x00000018:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <a class="el" href="#SL3CFG" target="_self">SL3CFG - Slot 3 Configuration Register</a>
+                        </td>
+                    </tr>
+
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x0000001C:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <a class="el" href="#SL4CFG" target="_self">SL4CFG - Slot 4 Configuration Register</a>
+                        </td>
+                    </tr>
+
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x00000020:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <a class="el" href="#SL5CFG" target="_self">SL5CFG - Slot 5 Configuration Register</a>
+                        </td>
+                    </tr>
+
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x00000024:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <a class="el" href="#SL6CFG" target="_self">SL6CFG - Slot 6 Configuration Register</a>
+                        </td>
+                    </tr>
+
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x00000028:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <a class="el" href="#SL7CFG" target="_self">SL7CFG - Slot 7 Configuration Register</a>
+                        </td>
+                    </tr>
+
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x0000002C:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <a class="el" href="#WLIM" target="_self">WLIM - Window Comparator Limits Register</a>
+                        </td>
+                    </tr>
+
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x00000030:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <a class="el" href="#FIFO" target="_self">FIFO - FIFO Data and Valid Count Register</a>
+                        </td>
+                    </tr>
+
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x00000200:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <a class="el" href="#INTEN" target="_self">INTEN - ADC Interrupt registers: Enable</a>
+                        </td>
+                    </tr>
+
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x00000204:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <a class="el" href="#INTSTAT" target="_self">INTSTAT - ADC Interrupt registers: Status</a>
+                        </td>
+                    </tr>
+
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x00000208:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <a class="el" href="#INTCLR" target="_self">INTCLR - ADC Interrupt registers: Clear</a>
+                        </td>
+                    </tr>
+
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x0000020C:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <a class="el" href="#INTSET" target="_self">INTSET - ADC Interrupt registers: Set</a>
+                        </td>
+                    </tr>
+
+                </table>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 id="CFG" class="panel-title">CFG - Configuration Register</h3>
+            </div>
+            <div class="panel-body">
+                <h3>Address:</h3>
+                <table style="margin:10px">
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">Instance 0 Address:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x50008000</span>
+                        </td>
+                    </tr>
+
+                </table>
+                <h3>Description:</h3>
+                <p>The ADC Configuration Register contains the software control for selecting the clock frequency used for the SAR conversions, the trigger polarity, the trigger select, the reference voltage select, the operating mode (current control for high  frequency conversions), the low power mode, the operating mode (single scan per trigger vs. repeating mode), temperature sensor enable and ADC enable.</p>
+                <h3>Example Macro Usage:</h3>
+                <pre style="margin:10px" class="language-pascal"><span style='color:#3f7f59; '>//
+// All macro-based register writes follow the same basic format. For
+// single-instance modules, you may use the simpler AM_REG macro. For
+// multi-instance macros, you will need to specify the instance number using
+// the AM_REGn macro format.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+// AM_REGn(&lt;MODULE&gt;, &lt;INSTANCE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+//
+// For registers that do not have specific enumeration values, you may use this alternate format instead.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;(&lt;NUMBER&gt;);
+//
+// For example, the following three lines of code are equivalent methods of
+// writing the value for 12MHZ to the CLKSEL field in the ADC_CFG register.
+//</span>
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REGn(ADC, 0, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
+                <h3>Register Fields:</h3>
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>31</th>
+                            <th>30</th>
+                            <th>29</th>
+                            <th>28</th>
+                            <th>27</th>
+                            <th>26</th>
+                            <th>25</th>
+                            <th>24</th>
+                            <th>23</th>
+                            <th>22</th>
+                            <th>21</th>
+                            <th>20</th>
+                            <th>19</th>
+                            <th>18</th>
+                            <th>17</th>
+                            <th>16</th>
+                            <th>15</th>
+                            <th>14</th>
+                            <th>13</th>
+                            <th>12</th>
+                            <th>11</th>
+                            <th>10</th>
+                            <th>9</th>
+                            <th>8</th>
+                            <th>7</th>
+                            <th>6</th>
+                            <th>5</th>
+                            <th>4</th>
+                            <th>3</th>
+                            <th>2</th>
+                            <th>1</th>
+                            <th>0</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td align="center" colspan="5">RSVD
+                                <br>0x0</td>
+
+                            <td align="center" colspan="3">CLKSEL
+                                <br>0x0</td>
+
+                            <td align="center" colspan="3">RSVD
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">TRIGPOL
+                                <br>0x0</td>
+
+                            <td align="center" colspan="4">TRIGSEL
+                                <br>0x0</td>
+
+                            <td align="center" colspan="6">RSVD
+                                <br>0x0</td>
+
+                            <td align="center" colspan="2">REFSEL
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">BATTLOAD
+                                <br>0x0</td>
+
+                            <td align="center" colspan="2">OPMODE
+                                <br>0x0</td>
+
+                            <td align="center" colspan="2">LPMODE
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">RPTEN
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">TMPSPWR
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">ADCEN
+                                <br>0x0</td>
+
+                        </tr>
+                    </tbody>
+                </table>
+                <br>
+
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>Bits</th>
+                            <th>Name</th>
+                            <th>RW</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>31:27</td>
+                            <td>RSVD</td>
+                            <td>RO</td>
+                            <td>RESERVED.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>26:24</td>
+                            <td>CLKSEL</td>
+                            <td>RW</td>
+                            <td>Select the source and frequency for the ADC clock.  All values not enumerated below are undefined.<br><br>
+                                 OFF                  = 0x0 - Low Power Mode.<br>
+                             12MHZ                = 0x1 - 12 MHz ADC clock.<br>
+                             6MHZ                 = 0x2 - 6 MHz ADC clock.<br>
+                             3MHZ                 = 0x3 - 12 MHz ADC clock.<br>
+                             1_5MHZ               = 0x4 - 1.5 MHz ADC clock.</td>
+                        </tr>
+
+                        <tr>
+                            <td>23:21</td>
+                            <td>RSVD</td>
+                            <td>RO</td>
+                            <td>RESERVED.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>20</td>
+                            <td>TRIGPOL</td>
+                            <td>RW</td>
+                            <td>This bit selects the ADC trigger polarity for external off chip triggers.<br><br>
+                                 RISING_EDGE          = 0x0 - Trigger on rising edge.<br>
+                             FALLING_EDGE         = 0x1 - Trigger on falling edge.</td>
+                        </tr>
+
+                        <tr>
+                            <td>19:16</td>
+                            <td>TRIGSEL</td>
+                            <td>RW</td>
+                            <td>Select the ADC trigger source.<br><br>
+                                 EXT0                 = 0x0 - Off chip External Trigger0 (ADC_ET0)<br>
+                             EXT1                 = 0x1 - Off chip External Trigger1 (ADC_ET1)<br>
+                             EXT2                 = 0x2 - Off chip External Trigger2 (ADC_ET2)<br>
+                             EXT3                 = 0x3 - Off chip External Trigger3 (ADC_ET3)<br>
+                             EXT4                 = 0x4 - Off chip External Trigger4 (ADC_ET4)<br>
+                             EXT5                 = 0x5 - Off chip External Trigger5 (ADC_ET5)<br>
+                             EXT6                 = 0x6 - Off chip External Trigger6 (ADC_ET6)<br>
+                             EXT7                 = 0x7 - Off chip External Trigger7 (ADC_ET7)<br>
+                             SWT                  = 0x8 - Software Trigger</td>
+                        </tr>
+
+                        <tr>
+                            <td>15:10</td>
+                            <td>RSVD</td>
+                            <td>RO</td>
+                            <td>RESERVED.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>9:8</td>
+                            <td>REFSEL</td>
+                            <td>RW</td>
+                            <td>Select the ADC reference voltage.<br><br>
+                                 INTERNAL             = 0x0 - Internal Bandgap Reference Voltage<br>
+                             VDD                  = 0x1 - Select VDD as the ADEC reference voltage.<br>
+                             ADCREF               = 0x2 - Off Chip Reference (ADC_REF)<br>
+                             UNDEFINED            = 0x3 - Reserved</td>
+                        </tr>
+
+                        <tr>
+                            <td>7</td>
+                            <td>BATTLOAD</td>
+                            <td>RW</td>
+                            <td>Control 500 Ohm battery load resistor.<br><br>
+                                 DIS                  = 0x0 - Disable battery load.<br>
+                             EN                   = 0x1 - Enable battery load.</td>
+                        </tr>
+
+                        <tr>
+                            <td>6:5</td>
+                            <td>OPMODE</td>
+                            <td>RW</td>
+                            <td>Select the sample rate mode. It adjusts the current in the ADC for higher sample rates. A 12MHz ADC clock can result in a sample rate up to 1Msps depending on the trigger or repeating mode rate. A 1.5MHz ADC clock can result in a sample rate up 125K sps.  NOTE: All other values not specified below are undefined.<br><br>
+                                 SAMPLE_RATE_LE_125KSPS = 0x0 - Sample Rate &lt;= 125K sps<br>
+                             SAMPLE_RATE_125K_1MSPS = 0x2 - Sample Rate 125K to 1M sps</td>
+                        </tr>
+
+                        <tr>
+                            <td>4:3</td>
+                            <td>LPMODE</td>
+                            <td>RW</td>
+                            <td>Select power mode to enter between active scans.<br><br>
+                                 MODE0                = 0x0 - Low Power Mode 0 (2'b00).  Leaves the ADC fully powered between scans with no latency between a trigger event and sample data collection.<br>
+                             MODE1                = 0x1 - Low Power Mode 1 (2'b01).  Enables a low power mode for the ADC between scans requiring 50us initialization time (latency) between a trigger event and the scan (assuming the HFRC remains running and the MCU is not in deepsleep mode in which case additional startup latency for HFRC startup is required).<br>
+                             MODE2                = 0x2 - Low Power Mode 2 (2'b10).  Disconnects power and clocks to the ADC effectively eliminating all active power associated with the ADC between scans. This mode requires 150us initialization (again, assuming the HFRC remains running and the MCU is not in deepsleep mode in which case additional startup latency for HFRC startup is required).<br>
+                             MODE_UNDEFINED       = 0x3 - Undefined Mode (2'b11)</td>
+                        </tr>
+
+                        <tr>
+                            <td>2</td>
+                            <td>RPTEN</td>
+                            <td>RWx</td>
+                            <td>This bit enables Repeating Scan Mode.<br><br>
+                                 SINGLE_SCAN          = 0x0 - In Single Scan Mode, the ADC will complete a single scan upon each trigger event.<br>
+                             REPEATING_SCAN       = 0x1 - In Repeating Scan Mode, the ADC will complete it's first scan upon the initial trigger event and all subsequent scans will occur at regular intervals defined by the configuration programmed for the CTTMRA3 internal timer until the timer is disabled or the ADC is disabled.</td>
+                        </tr>
+
+                        <tr>
+                            <td>1</td>
+                            <td>TMPSPWR</td>
+                            <td>RW</td>
+                            <td>This enables power to the temperature sensor module.  After setting this bit, the temperature sensor will remain powered down while the ADC is power is disconnected (i.e, when the ADC PWDSTAT is 2'b10).<br><br>
+                                 DIS                  = 0x0 - Power down the temperature sensor.<br>
+                             EN                   = 0x1 - Enable the temperature sensor when the ADC is in it's active state.</td>
+                        </tr>
+
+                        <tr>
+                            <td>0</td>
+                            <td>ADCEN</td>
+                            <td>RW</td>
+                            <td>This bit enables the ADC module. While the ADC is enabled, the ADCCFG and SLOT Configuration regsiter settings must remain stable and unchanged.<br><br>
+                                 DIS                  = 0x0 - Disable the ADC module.<br>
+                             EN                   = 0x1 - Enable the ADC module.</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+                <br>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 id="STAT" class="panel-title">STAT - ADC Power Status</h3>
+            </div>
+            <div class="panel-body">
+                <h3>Address:</h3>
+                <table style="margin:10px">
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">Instance 0 Address:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x50008004</span>
+                        </td>
+                    </tr>
+
+                </table>
+                <h3>Description:</h3>
+                <p>This register indicates the power status for the ADC.  ADC power mode 0 indicates the ADC is in it's full power state and is ready to process scans.  ADC Power mode 1 indicated the ADC power switch is on, but the ADC SAR module is in a low power state.  From this state, a trigger will bring the ADC into it's active state after a 50us calibration period.  ADC power mode 2 indicates the ADC is in it's lowest power state.</p>
+                <h3>Example Macro Usage:</h3>
+                <pre style="margin:10px" class="language-pascal"><span style='color:#3f7f59; '>//
+// All macro-based register writes follow the same basic format. For
+// single-instance modules, you may use the simpler AM_REG macro. For
+// multi-instance macros, you will need to specify the instance number using
+// the AM_REGn macro format.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+// AM_REGn(&lt;MODULE&gt;, &lt;INSTANCE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+//
+// For registers that do not have specific enumeration values, you may use this alternate format instead.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;(&lt;NUMBER&gt;);
+//
+// For example, the following three lines of code are equivalent methods of
+// writing the value for 12MHZ to the CLKSEL field in the ADC_CFG register.
+//</span>
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REGn(ADC, 0, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
+                <h3>Register Fields:</h3>
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>31</th>
+                            <th>30</th>
+                            <th>29</th>
+                            <th>28</th>
+                            <th>27</th>
+                            <th>26</th>
+                            <th>25</th>
+                            <th>24</th>
+                            <th>23</th>
+                            <th>22</th>
+                            <th>21</th>
+                            <th>20</th>
+                            <th>19</th>
+                            <th>18</th>
+                            <th>17</th>
+                            <th>16</th>
+                            <th>15</th>
+                            <th>14</th>
+                            <th>13</th>
+                            <th>12</th>
+                            <th>11</th>
+                            <th>10</th>
+                            <th>9</th>
+                            <th>8</th>
+                            <th>7</th>
+                            <th>6</th>
+                            <th>5</th>
+                            <th>4</th>
+                            <th>3</th>
+                            <th>2</th>
+                            <th>1</th>
+                            <th>0</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td align="center" colspan="30">RSVD
+                                <br>0x0</td>
+
+                            <td align="center" colspan="2">PWDSTAT
+                                <br>0x0</td>
+
+                        </tr>
+                    </tbody>
+                </table>
+                <br>
+
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>Bits</th>
+                            <th>Name</th>
+                            <th>RW</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>31:2</td>
+                            <td>RSVD</td>
+                            <td>RO</td>
+                            <td>RESERVED.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>1:0</td>
+                            <td>PWDSTAT</td>
+                            <td>RO</td>
+                            <td>Indicates the power-status of the ADC.<br><br>
+                                 ON                   = 0x0 - Powered on.<br>
+                             SWITCH_ON_SAR_OFF    = 0x1 - Power switch on, ADC Low Power Mode 1.<br>
+                             POWER_SWITCH_OFF     = 0x2 - Power switch off, ADC disabled.</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+                <br>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 id="SWT" class="panel-title">SWT - Software trigger</h3>
+            </div>
+            <div class="panel-body">
+                <h3>Address:</h3>
+                <table style="margin:10px">
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">Instance 0 Address:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x50008008</span>
+                        </td>
+                    </tr>
+
+                </table>
+                <h3>Description:</h3>
+                <p>This register enables initiating an ADC scan through software.</p>
+                <h3>Example Macro Usage:</h3>
+                <pre style="margin:10px" class="language-pascal"><span style='color:#3f7f59; '>//
+// All macro-based register writes follow the same basic format. For
+// single-instance modules, you may use the simpler AM_REG macro. For
+// multi-instance macros, you will need to specify the instance number using
+// the AM_REGn macro format.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+// AM_REGn(&lt;MODULE&gt;, &lt;INSTANCE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+//
+// For registers that do not have specific enumeration values, you may use this alternate format instead.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;(&lt;NUMBER&gt;);
+//
+// For example, the following three lines of code are equivalent methods of
+// writing the value for 12MHZ to the CLKSEL field in the ADC_CFG register.
+//</span>
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REGn(ADC, 0, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
+                <h3>Register Fields:</h3>
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>31</th>
+                            <th>30</th>
+                            <th>29</th>
+                            <th>28</th>
+                            <th>27</th>
+                            <th>26</th>
+                            <th>25</th>
+                            <th>24</th>
+                            <th>23</th>
+                            <th>22</th>
+                            <th>21</th>
+                            <th>20</th>
+                            <th>19</th>
+                            <th>18</th>
+                            <th>17</th>
+                            <th>16</th>
+                            <th>15</th>
+                            <th>14</th>
+                            <th>13</th>
+                            <th>12</th>
+                            <th>11</th>
+                            <th>10</th>
+                            <th>9</th>
+                            <th>8</th>
+                            <th>7</th>
+                            <th>6</th>
+                            <th>5</th>
+                            <th>4</th>
+                            <th>3</th>
+                            <th>2</th>
+                            <th>1</th>
+                            <th>0</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td align="center" colspan="24">RSVD
+                                <br>0x0</td>
+
+                            <td align="center" colspan="8">SWT
+                                <br>0x0</td>
+
+                        </tr>
+                    </tbody>
+                </table>
+                <br>
+
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>Bits</th>
+                            <th>Name</th>
+                            <th>RW</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>31:8</td>
+                            <td>RSVD</td>
+                            <td>RO</td>
+                            <td>RESERVED.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>7:0</td>
+                            <td>SWT</td>
+                            <td>RW</td>
+                            <td>Writing 0x37 to this register generates a software trigger.<br><br>
+                                 GEN_SW_TRIGGER       = 0x37 - Writing this value generates a software trigger.</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+                <br>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 id="SL0CFG" class="panel-title">SL0CFG - Slot 0 Configuration Register</h3>
+            </div>
+            <div class="panel-body">
+                <h3>Address:</h3>
+                <table style="margin:10px">
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">Instance 0 Address:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x5000800C</span>
+                        </td>
+                    </tr>
+
+                </table>
+                <h3>Description:</h3>
+                <p>Slot 0 Configuration Register</p>
+                <h3>Example Macro Usage:</h3>
+                <pre style="margin:10px" class="language-pascal"><span style='color:#3f7f59; '>//
+// All macro-based register writes follow the same basic format. For
+// single-instance modules, you may use the simpler AM_REG macro. For
+// multi-instance macros, you will need to specify the instance number using
+// the AM_REGn macro format.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+// AM_REGn(&lt;MODULE&gt;, &lt;INSTANCE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+//
+// For registers that do not have specific enumeration values, you may use this alternate format instead.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;(&lt;NUMBER&gt;);
+//
+// For example, the following three lines of code are equivalent methods of
+// writing the value for 12MHZ to the CLKSEL field in the ADC_CFG register.
+//</span>
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REGn(ADC, 0, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
+                <h3>Register Fields:</h3>
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>31</th>
+                            <th>30</th>
+                            <th>29</th>
+                            <th>28</th>
+                            <th>27</th>
+                            <th>26</th>
+                            <th>25</th>
+                            <th>24</th>
+                            <th>23</th>
+                            <th>22</th>
+                            <th>21</th>
+                            <th>20</th>
+                            <th>19</th>
+                            <th>18</th>
+                            <th>17</th>
+                            <th>16</th>
+                            <th>15</th>
+                            <th>14</th>
+                            <th>13</th>
+                            <th>12</th>
+                            <th>11</th>
+                            <th>10</th>
+                            <th>9</th>
+                            <th>8</th>
+                            <th>7</th>
+                            <th>6</th>
+                            <th>5</th>
+                            <th>4</th>
+                            <th>3</th>
+                            <th>2</th>
+                            <th>1</th>
+                            <th>0</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td align="center" colspan="5">RSVD
+                                <br>0x0</td>
+
+                            <td align="center" colspan="3">ADSEL0
+                                <br>0x0</td>
+
+                            <td align="center" colspan="5">RSVD
+                                <br>0x0</td>
+
+                            <td align="center" colspan="3">THSEL0
+                                <br>0x0</td>
+
+                            <td align="center" colspan="4">RSVD
+                                <br>0x0</td>
+
+                            <td align="center" colspan="4">CHSEL0
+                                <br>0x0</td>
+
+                            <td align="center" colspan="6">RSVD
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">WCEN0
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">SLEN0
+                                <br>0x0</td>
+
+                        </tr>
+                    </tbody>
+                </table>
+                <br>
+
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>Bits</th>
+                            <th>Name</th>
+                            <th>RW</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>31:27</td>
+                            <td>RSVD</td>
+                            <td>RO</td>
+                            <td>RESERVED.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>26:24</td>
+                            <td>ADSEL0</td>
+                            <td>RW</td>
+                            <td>Select the number of measurements to average in the accumulate divide module for this slot.<br><br>
+                                 AVG_1_MSRMT          = 0x0 - Average in 1 measurement in the accumulate divide module for this slot.<br>
+                             AVG_2_MSRMTS         = 0x1 - Average in 2 measurements in the accumulate divide module for this slot.<br>
+                             AVG_4_MSRMTS         = 0x2 - Average in 4 measurements in the accumulate divide module for this slot.<br>
+                             AVG_8_MSRMT          = 0x3 - Average in 8 measurements in the accumulate divide module for this slot.<br>
+                             AVG_16_MSRMTS        = 0x4 - Average in 16 measurements in the accumulate divide module for this slot.<br>
+                             AVG_32_MSRMTS        = 0x5 - Average in 32 measurements in the accumulate divide module for this slot.<br>
+                             AVG_64_MSRMTS        = 0x6 - Average in 64 measurements in the accumulate divide module for this slot.<br>
+                             AVG_128_MSRMTS       = 0x7 - Average in 128 measurements in the accumulate divide module for this slot.</td>
+                        </tr>
+
+                        <tr>
+                            <td>23:19</td>
+                            <td>RSVD</td>
+                            <td>RO</td>
+                            <td>RESERVED.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>18:16</td>
+                            <td>THSEL0</td>
+                            <td>RW</td>
+                            <td>Select the track and hold delay for this slot.  NOTE: The track and hold delay must be less than 50us for correct operation.  When the ADC is configured to use the 1.5Mhz clock, the track and hold delay cannot exceed 64 clocks.<br><br>
+                                 1_ADC_CLK            = 0x0 - 1 ADC clock cycle.<br>
+                             2_ADC_CLKS           = 0x1 - 2 ADC clock cycles.<br>
+                             4_ADC_CLKS           = 0x2 - 4 ADC clock cycles.<br>
+                             8_ADC_CLKS           = 0x3 - 8 ADC clock cycles.<br>
+                             16_ADC_CLKS          = 0x4 - 16 ADC clock cycles.<br>
+                             32_ADC_CLKS          = 0x5 - 32 ADC clock cycles.<br>
+                             64_ADC_CLKS          = 0x6 - 64 ADC clock cycles.<br>
+                             128_ADC_CLKS         = 0x7 - 128 ADC clock cycles.</td>
+                        </tr>
+
+                        <tr>
+                            <td>15:12</td>
+                            <td>RSVD</td>
+                            <td>RO</td>
+                            <td>RESERVED.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>11:8</td>
+                            <td>CHSEL0</td>
+                            <td>RW</td>
+                            <td>Select one of the 13 channel inputs for this slot.<br><br>
+                                 EXT0                 = 0x0 - ADC_EXT0 external GPIO pin connection.<br>
+                             EXT1                 = 0x1 - ADC_EXT1 external GPIO pin connection.<br>
+                             EXT2                 = 0x2 - ADC_EXT2 external GPIO pin connection.<br>
+                             EXT3                 = 0x3 - ADC_EXT3 external GPIO pin connection.<br>
+                             EXT4                 = 0x4 - ADC_EXT4 external GPIO pin connection.<br>
+                             EXT5                 = 0x5 - ADC_EXT5 external GPIO pin connection.<br>
+                             EXT6                 = 0x6 - ADC_EXT6 external GPIO pin connection.<br>
+                             EXT7                 = 0x7 - ADC_EXT7 external GPIO pin connection.<br>
+                             TEMP                 = 0x8 - ADC_TEMP internal temperature sensor.<br>
+                             VDD                  = 0x9 - ADC_VDD internal power rail connection.<br>
+                             VSS                  = 0xA - ADC_VSS internal ground connection.<br>
+                             VBATT                = 0xC - ADC_VBATT internal voltage divide-by-3 connection to input power rail.</td>
+                        </tr>
+
+                        <tr>
+                            <td>7:2</td>
+                            <td>RSVD</td>
+                            <td>RO</td>
+                            <td>RESERVED.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>1</td>
+                            <td>WCEN0</td>
+                            <td>RW</td>
+                            <td>This bit enables the window compare function for slot 0.<br><br>
+                                 WCEN                 = 0x1 - Enable the window compare for slot 0.</td>
+                        </tr>
+
+                        <tr>
+                            <td>0</td>
+                            <td>SLEN0</td>
+                            <td>RW</td>
+                            <td>This bit enables slot 0 for ADC conversions.<br><br>
+                                 SLEN                 = 0x1 - Enable slot 0 for ADC conversions.</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+                <br>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 id="SL1CFG" class="panel-title">SL1CFG - Slot 1 Configuration Register</h3>
+            </div>
+            <div class="panel-body">
+                <h3>Address:</h3>
+                <table style="margin:10px">
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">Instance 0 Address:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x50008010</span>
+                        </td>
+                    </tr>
+
+                </table>
+                <h3>Description:</h3>
+                <p>Slot 1 Configuration Register</p>
+                <h3>Example Macro Usage:</h3>
+                <pre style="margin:10px" class="language-pascal"><span style='color:#3f7f59; '>//
+// All macro-based register writes follow the same basic format. For
+// single-instance modules, you may use the simpler AM_REG macro. For
+// multi-instance macros, you will need to specify the instance number using
+// the AM_REGn macro format.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+// AM_REGn(&lt;MODULE&gt;, &lt;INSTANCE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+//
+// For registers that do not have specific enumeration values, you may use this alternate format instead.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;(&lt;NUMBER&gt;);
+//
+// For example, the following three lines of code are equivalent methods of
+// writing the value for 12MHZ to the CLKSEL field in the ADC_CFG register.
+//</span>
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REGn(ADC, 0, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
+                <h3>Register Fields:</h3>
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>31</th>
+                            <th>30</th>
+                            <th>29</th>
+                            <th>28</th>
+                            <th>27</th>
+                            <th>26</th>
+                            <th>25</th>
+                            <th>24</th>
+                            <th>23</th>
+                            <th>22</th>
+                            <th>21</th>
+                            <th>20</th>
+                            <th>19</th>
+                            <th>18</th>
+                            <th>17</th>
+                            <th>16</th>
+                            <th>15</th>
+                            <th>14</th>
+                            <th>13</th>
+                            <th>12</th>
+                            <th>11</th>
+                            <th>10</th>
+                            <th>9</th>
+                            <th>8</th>
+                            <th>7</th>
+                            <th>6</th>
+                            <th>5</th>
+                            <th>4</th>
+                            <th>3</th>
+                            <th>2</th>
+                            <th>1</th>
+                            <th>0</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td align="center" colspan="5">RSVD
+                                <br>0x0</td>
+
+                            <td align="center" colspan="3">ADSEL1
+                                <br>0x0</td>
+
+                            <td align="center" colspan="5">RSVD
+                                <br>0x0</td>
+
+                            <td align="center" colspan="3">THSEL1
+                                <br>0x0</td>
+
+                            <td align="center" colspan="4">RSVD
+                                <br>0x0</td>
+
+                            <td align="center" colspan="4">CHSEL1
+                                <br>0x0</td>
+
+                            <td align="center" colspan="6">RSVD
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">WCEN1
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">SLEN1
+                                <br>0x0</td>
+
+                        </tr>
+                    </tbody>
+                </table>
+                <br>
+
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>Bits</th>
+                            <th>Name</th>
+                            <th>RW</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>31:27</td>
+                            <td>RSVD</td>
+                            <td>RO</td>
+                            <td>RESERVED.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>26:24</td>
+                            <td>ADSEL1</td>
+                            <td>RW</td>
+                            <td>Select the number of measurements to average in the accumulate divide module for this slot.<br><br>
+                                 AVG_1_MSRMT          = 0x0 - Average in 1 measurement in the accumulate divide module for this slot.<br>
+                             AVG_2_MSRMTS         = 0x1 - Average in 2 measurements in the accumulate divide module for this slot.<br>
+                             AVG_4_MSRMTS         = 0x2 - Average in 4 measurements in the accumulate divide module for this slot.<br>
+                             AVG_8_MSRMT          = 0x3 - Average in 8 measurements in the accumulate divide module for this slot.<br>
+                             AVG_16_MSRMTS        = 0x4 - Average in 16 measurements in the accumulate divide module for this slot.<br>
+                             AVG_32_MSRMTS        = 0x5 - Average in 32 measurements in the accumulate divide module for this slot.<br>
+                             AVG_64_MSRMTS        = 0x6 - Average in 64 measurements in the accumulate divide module for this slot.<br>
+                             AVG_128_MSRMTS       = 0x7 - Average in 128 measurements in the accumulate divide module for this slot.</td>
+                        </tr>
+
+                        <tr>
+                            <td>23:19</td>
+                            <td>RSVD</td>
+                            <td>RO</td>
+                            <td>RESERVED.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>18:16</td>
+                            <td>THSEL1</td>
+                            <td>RW</td>
+                            <td>Select the track and hold delay for this slot.  NOTE: The track and hold delay must be less than 50us for correct operation.  When the ADC is configured to use the 1.5 Mhz clock, the track and hold delay cannot exceed 64 clocks.<br><br>
+                                 1_ADC_CLK            = 0x0 - 1 ADC clock cycle.<br>
+                             2_ADC_CLKS           = 0x1 - 2 ADC clock cycles.<br>
+                             4_ADC_CLKS           = 0x2 - 4 ADC clock cycles.<br>
+                             8_ADC_CLKS           = 0x3 - 8 ADC clock cycles.<br>
+                             16_ADC_CLKS          = 0x4 - 16 ADC clock cycles.<br>
+                             32_ADC_CLKS          = 0x5 - 32 ADC clock cycles.<br>
+                             64_ADC_CLKS          = 0x6 - 64 ADC clock cycles.<br>
+                             128_ADC_CLKS         = 0x7 - 128 ADC clock cycles.</td>
+                        </tr>
+
+                        <tr>
+                            <td>15:12</td>
+                            <td>RSVD</td>
+                            <td>RO</td>
+                            <td>RESERVED.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>11:8</td>
+                            <td>CHSEL1</td>
+                            <td>RW</td>
+                            <td>Select one of the 13 channel inputs for this slot.<br><br>
+                                 EXT0                 = 0x0 - ADC_EXT0 external GPIO pin connection.<br>
+                             EXT1                 = 0x1 - ADC_EXT1 external GPIO pin connection.<br>
+                             EXT2                 = 0x2 - ADC_EXT2 external GPIO pin connection.<br>
+                             EXT3                 = 0x3 - ADC_EXT3 external GPIO pin connection.<br>
+                             EXT4                 = 0x4 - ADC_EXT4 external GPIO pin connection.<br>
+                             EXT5                 = 0x5 - ADC_EXT5 external GPIO pin connection.<br>
+                             EXT6                 = 0x6 - ADC_EXT6 external GPIO pin connection.<br>
+                             EXT7                 = 0x7 - ADC_EXT7 external GPIO pin connection.<br>
+                             TEMP                 = 0x8 - ADC_TEMP internal temperature sensor.<br>
+                             VDD                  = 0x9 - ADC_VDD internal power rail connection.<br>
+                             VSS                  = 0xA - ADC_VSS internal ground connection.<br>
+                             VBATT                = 0xC - ADC_VBATT internal voltage divide-by-3 connection to input power rail.</td>
+                        </tr>
+
+                        <tr>
+                            <td>7:2</td>
+                            <td>RSVD</td>
+                            <td>RO</td>
+                            <td>RESERVED.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>1</td>
+                            <td>WCEN1</td>
+                            <td>RW</td>
+                            <td>This bit enables the window compare function for slot 1.<br><br>
+                                 WCEN                 = 0x1 - Enable the window compare for slot 1.</td>
+                        </tr>
+
+                        <tr>
+                            <td>0</td>
+                            <td>SLEN1</td>
+                            <td>RW</td>
+                            <td>This bit enables slot 1 for ADC conversions.<br><br>
+                                 SLEN                 = 0x1 - Enable slot 1 for ADC conversions.</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+                <br>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 id="SL2CFG" class="panel-title">SL2CFG - Slot 2 Configuration Register</h3>
+            </div>
+            <div class="panel-body">
+                <h3>Address:</h3>
+                <table style="margin:10px">
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">Instance 0 Address:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x50008014</span>
+                        </td>
+                    </tr>
+
+                </table>
+                <h3>Description:</h3>
+                <p>Slot 2 Configuration Register</p>
+                <h3>Example Macro Usage:</h3>
+                <pre style="margin:10px" class="language-pascal"><span style='color:#3f7f59; '>//
+// All macro-based register writes follow the same basic format. For
+// single-instance modules, you may use the simpler AM_REG macro. For
+// multi-instance macros, you will need to specify the instance number using
+// the AM_REGn macro format.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+// AM_REGn(&lt;MODULE&gt;, &lt;INSTANCE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+//
+// For registers that do not have specific enumeration values, you may use this alternate format instead.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;(&lt;NUMBER&gt;);
+//
+// For example, the following three lines of code are equivalent methods of
+// writing the value for 12MHZ to the CLKSEL field in the ADC_CFG register.
+//</span>
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REGn(ADC, 0, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
+                <h3>Register Fields:</h3>
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>31</th>
+                            <th>30</th>
+                            <th>29</th>
+                            <th>28</th>
+                            <th>27</th>
+                            <th>26</th>
+                            <th>25</th>
+                            <th>24</th>
+                            <th>23</th>
+                            <th>22</th>
+                            <th>21</th>
+                            <th>20</th>
+                            <th>19</th>
+                            <th>18</th>
+                            <th>17</th>
+                            <th>16</th>
+                            <th>15</th>
+                            <th>14</th>
+                            <th>13</th>
+                            <th>12</th>
+                            <th>11</th>
+                            <th>10</th>
+                            <th>9</th>
+                            <th>8</th>
+                            <th>7</th>
+                            <th>6</th>
+                            <th>5</th>
+                            <th>4</th>
+                            <th>3</th>
+                            <th>2</th>
+                            <th>1</th>
+                            <th>0</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td align="center" colspan="5">RSVD
+                                <br>0x0</td>
+
+                            <td align="center" colspan="3">ADSEL2
+                                <br>0x0</td>
+
+                            <td align="center" colspan="5">RSVD
+                                <br>0x0</td>
+
+                            <td align="center" colspan="3">THSEL2
+                                <br>0x0</td>
+
+                            <td align="center" colspan="4">RSVD
+                                <br>0x0</td>
+
+                            <td align="center" colspan="4">CHSEL2
+                                <br>0x0</td>
+
+                            <td align="center" colspan="6">RSVD
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">WCEN2
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">SLEN2
+                                <br>0x0</td>
+
+                        </tr>
+                    </tbody>
+                </table>
+                <br>
+
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>Bits</th>
+                            <th>Name</th>
+                            <th>RW</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>31:27</td>
+                            <td>RSVD</td>
+                            <td>RO</td>
+                            <td>RESERVED.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>26:24</td>
+                            <td>ADSEL2</td>
+                            <td>RW</td>
+                            <td>Select the number of measurements to average in the accumulate divide module for this slot.<br><br>
+                                 AVG_1_MSRMT          = 0x0 - Average in 1 measurement in the accumulate divide module for this slot.<br>
+                             AVG_2_MSRMTS         = 0x1 - Average in 2 measurements in the accumulate divide module for this slot.<br>
+                             AVG_4_MSRMTS         = 0x2 - Average in 4 measurements in the accumulate divide module for this slot.<br>
+                             AVG_8_MSRMT          = 0x3 - Average in 8 measurements in the accumulate divide module for this slot.<br>
+                             AVG_16_MSRMTS        = 0x4 - Average in 16 measurements in the accumulate divide module for this slot.<br>
+                             AVG_32_MSRMTS        = 0x5 - Average in 32 measurements in the accumulate divide module for this slot.<br>
+                             AVG_64_MSRMTS        = 0x6 - Average in 64 measurements in the accumulate divide module for this slot.<br>
+                             AVG_128_MSRMTS       = 0x7 - Average in 128 measurements in the accumulate divide module for this slot.</td>
+                        </tr>
+
+                        <tr>
+                            <td>23:19</td>
+                            <td>RSVD</td>
+                            <td>RO</td>
+                            <td>RESERVED.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>18:16</td>
+                            <td>THSEL2</td>
+                            <td>RW</td>
+                            <td>Select the track and hold delay for this slot.  NOTE: The track and hold delay must be less than 50us for correct operation.  When the ADC is configured to use the 1.5Mhz clock, the track and hold delay cannot exceed 64 clocks.<br><br>
+                                 1_ADC_CLK            = 0x0 - 1 ADC clock cycle.<br>
+                             2_ADC_CLKS           = 0x1 - 2 ADC clock cycles.<br>
+                             4_ADC_CLKS           = 0x2 - 4 ADC clock cycles.<br>
+                             8_ADC_CLKS           = 0x3 - 8 ADC clock cycles.<br>
+                             16_ADC_CLKS          = 0x4 - 16 ADC clock cycles.<br>
+                             32_ADC_CLKS          = 0x5 - 32 ADC clock cycles.<br>
+                             64_ADC_CLKS          = 0x6 - 64 ADC clock cycles.<br>
+                             128_ADC_CLKS         = 0x7 - 128 ADC clock cycles.</td>
+                        </tr>
+
+                        <tr>
+                            <td>15:12</td>
+                            <td>RSVD</td>
+                            <td>RO</td>
+                            <td>RESERVED.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>11:8</td>
+                            <td>CHSEL2</td>
+                            <td>RW</td>
+                            <td>Select one of the 13 channel inputs for this slot.<br><br>
+                                 EXT0                 = 0x0 - ADC_EXT0 external GPIO pin connection.<br>
+                             EXT1                 = 0x1 - ADC_EXT1 external GPIO pin connection.<br>
+                             EXT2                 = 0x2 - ADC_EXT2 external GPIO pin connection.<br>
+                             EXT3                 = 0x3 - ADC_EXT3 external GPIO pin connection.<br>
+                             EXT4                 = 0x4 - ADC_EXT4 external GPIO pin connection.<br>
+                             EXT5                 = 0x5 - ADC_EXT5 external GPIO pin connection.<br>
+                             EXT6                 = 0x6 - ADC_EXT6 external GPIO pin connection.<br>
+                             EXT7                 = 0x7 - ADC_EXT7 external GPIO pin connection.<br>
+                             TEMP                 = 0x8 - ADC_TEMP internal temperature sensor.<br>
+                             VDD                  = 0x9 - ADC_VDD internal power rail connection.<br>
+                             VSS                  = 0xA - ADC_VSS internal ground connection.<br>
+                             VBATT                = 0xC - ADC_VBATT internal voltage divide-by-3 connection to input power rail.</td>
+                        </tr>
+
+                        <tr>
+                            <td>7:2</td>
+                            <td>RSVD</td>
+                            <td>RO</td>
+                            <td>RESERVED.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>1</td>
+                            <td>WCEN2</td>
+                            <td>RW</td>
+                            <td>This bit enables the window compare function for slot 2.<br><br>
+                                 WCEN                 = 0x1 - Enable the window compare for slot 2.</td>
+                        </tr>
+
+                        <tr>
+                            <td>0</td>
+                            <td>SLEN2</td>
+                            <td>RW</td>
+                            <td>This bit enables slot 2 for ADC conversions.<br><br>
+                                 SLEN                 = 0x1 - Enable slot 2 for ADC conversions.</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+                <br>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 id="SL3CFG" class="panel-title">SL3CFG - Slot 3 Configuration Register</h3>
+            </div>
+            <div class="panel-body">
+                <h3>Address:</h3>
+                <table style="margin:10px">
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">Instance 0 Address:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x50008018</span>
+                        </td>
+                    </tr>
+
+                </table>
+                <h3>Description:</h3>
+                <p>Slot 3 Configuration Register</p>
+                <h3>Example Macro Usage:</h3>
+                <pre style="margin:10px" class="language-pascal"><span style='color:#3f7f59; '>//
+// All macro-based register writes follow the same basic format. For
+// single-instance modules, you may use the simpler AM_REG macro. For
+// multi-instance macros, you will need to specify the instance number using
+// the AM_REGn macro format.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+// AM_REGn(&lt;MODULE&gt;, &lt;INSTANCE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+//
+// For registers that do not have specific enumeration values, you may use this alternate format instead.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;(&lt;NUMBER&gt;);
+//
+// For example, the following three lines of code are equivalent methods of
+// writing the value for 12MHZ to the CLKSEL field in the ADC_CFG register.
+//</span>
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REGn(ADC, 0, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
+                <h3>Register Fields:</h3>
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>31</th>
+                            <th>30</th>
+                            <th>29</th>
+                            <th>28</th>
+                            <th>27</th>
+                            <th>26</th>
+                            <th>25</th>
+                            <th>24</th>
+                            <th>23</th>
+                            <th>22</th>
+                            <th>21</th>
+                            <th>20</th>
+                            <th>19</th>
+                            <th>18</th>
+                            <th>17</th>
+                            <th>16</th>
+                            <th>15</th>
+                            <th>14</th>
+                            <th>13</th>
+                            <th>12</th>
+                            <th>11</th>
+                            <th>10</th>
+                            <th>9</th>
+                            <th>8</th>
+                            <th>7</th>
+                            <th>6</th>
+                            <th>5</th>
+                            <th>4</th>
+                            <th>3</th>
+                            <th>2</th>
+                            <th>1</th>
+                            <th>0</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td align="center" colspan="5">RSVD
+                                <br>0x0</td>
+
+                            <td align="center" colspan="3">ADSEL3
+                                <br>0x0</td>
+
+                            <td align="center" colspan="5">RSVD
+                                <br>0x0</td>
+
+                            <td align="center" colspan="3">THSEL3
+                                <br>0x0</td>
+
+                            <td align="center" colspan="4">RSVD
+                                <br>0x0</td>
+
+                            <td align="center" colspan="4">CHSEL3
+                                <br>0x0</td>
+
+                            <td align="center" colspan="6">RSVD
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">WCEN3
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">SLEN3
+                                <br>0x0</td>
+
+                        </tr>
+                    </tbody>
+                </table>
+                <br>
+
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>Bits</th>
+                            <th>Name</th>
+                            <th>RW</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>31:27</td>
+                            <td>RSVD</td>
+                            <td>RO</td>
+                            <td>RESERVED.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>26:24</td>
+                            <td>ADSEL3</td>
+                            <td>RW</td>
+                            <td>Select the number of measurements to average in the accumulate divide module for this slot.<br><br>
+                                 AVG_1_MSRMT          = 0x0 - Average in 1 measurement in the accumulate divide module for this slot.<br>
+                             AVG_2_MSRMTS         = 0x1 - Average in 2 measurements in the accumulate divide module for this slot.<br>
+                             AVG_4_MSRMTS         = 0x2 - Average in 4 measurements in the accumulate divide module for this slot.<br>
+                             AVG_8_MSRMT          = 0x3 - Average in 8 measurements in the accumulate divide module for this slot.<br>
+                             AVG_16_MSRMTS        = 0x4 - Average in 16 measurements in the accumulate divide module for this slot.<br>
+                             AVG_32_MSRMTS        = 0x5 - Average in 32 measurements in the accumulate divide module for this slot.<br>
+                             AVG_64_MSRMTS        = 0x6 - Average in 64 measurements in the accumulate divide module for this slot.<br>
+                             AVG_128_MSRMTS       = 0x7 - Average in 128 measurements in the accumulate divide module for this slot.</td>
+                        </tr>
+
+                        <tr>
+                            <td>23:19</td>
+                            <td>RSVD</td>
+                            <td>RO</td>
+                            <td>RESERVED.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>18:16</td>
+                            <td>THSEL3</td>
+                            <td>RW</td>
+                            <td>Select the track and hold delay for this slot.  NOTE: The track and hold delay must be less than 50us for correct operation.  When the ADC is configured to use the 1.5Mhz clock, the track and hold delay cannot exceed 64 clocks.<br><br>
+                                 1_ADC_CLK            = 0x0 - 1 ADC clock cycle.<br>
+                             2_ADC_CLKS           = 0x1 - 2 ADC clock cycles.<br>
+                             4_ADC_CLKS           = 0x2 - 4 ADC clock cycles.<br>
+                             8_ADC_CLKS           = 0x3 - 8 ADC clock cycles.<br>
+                             16_ADC_CLKS          = 0x4 - 16 ADC clock cycles.<br>
+                             32_ADC_CLKS          = 0x5 - 32 ADC clock cycles.<br>
+                             64_ADC_CLKS          = 0x6 - 64 ADC clock cycles.<br>
+                             128_ADC_CLKS         = 0x7 - 128 ADC clock cycles.</td>
+                        </tr>
+
+                        <tr>
+                            <td>15:12</td>
+                            <td>RSVD</td>
+                            <td>RO</td>
+                            <td>RESERVED.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>11:8</td>
+                            <td>CHSEL3</td>
+                            <td>RW</td>
+                            <td>Select one of the 13 channel inputs for this slot.<br><br>
+                                 EXT0                 = 0x0 - ADC_EXT0 external GPIO pin connection.<br>
+                             EXT1                 = 0x1 - ADC_EXT1 external GPIO pin connection.<br>
+                             EXT2                 = 0x2 - ADC_EXT2 external GPIO pin connection.<br>
+                             EXT3                 = 0x3 - ADC_EXT3 external GPIO pin connection.<br>
+                             EXT4                 = 0x4 - ADC_EXT4 external GPIO pin connection.<br>
+                             EXT5                 = 0x5 - ADC_EXT5 external GPIO pin connection.<br>
+                             EXT6                 = 0x6 - ADC_EXT6 external GPIO pin connection.<br>
+                             EXT7                 = 0x7 - ADC_EXT7 external GPIO pin connection.<br>
+                             TEMP                 = 0x8 - ADC_TEMP internal temperature sensor.<br>
+                             VDD                  = 0x9 - ADC_VDD internal power rail connection.<br>
+                             VSS                  = 0xA - ADC_VSS internal ground connection.<br>
+                             VBATT                = 0xC - ADC_VBATT internal voltage divide-by-3 connection to input power rail.</td>
+                        </tr>
+
+                        <tr>
+                            <td>7:2</td>
+                            <td>RSVD</td>
+                            <td>RO</td>
+                            <td>RESERVED.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>1</td>
+                            <td>WCEN3</td>
+                            <td>RW</td>
+                            <td>This bit enables the window compare function for slot 3.<br><br>
+                                 WCEN                 = 0x1 - Enable the window compare for slot 3.</td>
+                        </tr>
+
+                        <tr>
+                            <td>0</td>
+                            <td>SLEN3</td>
+                            <td>RW</td>
+                            <td>This bit enables slot 3 for ADC conversions.<br><br>
+                                 SLEN                 = 0x1 - Enable slot 3 for ADC conversions.</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+                <br>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 id="SL4CFG" class="panel-title">SL4CFG - Slot 4 Configuration Register</h3>
+            </div>
+            <div class="panel-body">
+                <h3>Address:</h3>
+                <table style="margin:10px">
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">Instance 0 Address:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x5000801C</span>
+                        </td>
+                    </tr>
+
+                </table>
+                <h3>Description:</h3>
+                <p>Slot 4 Configuration Register</p>
+                <h3>Example Macro Usage:</h3>
+                <pre style="margin:10px" class="language-pascal"><span style='color:#3f7f59; '>//
+// All macro-based register writes follow the same basic format. For
+// single-instance modules, you may use the simpler AM_REG macro. For
+// multi-instance macros, you will need to specify the instance number using
+// the AM_REGn macro format.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+// AM_REGn(&lt;MODULE&gt;, &lt;INSTANCE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+//
+// For registers that do not have specific enumeration values, you may use this alternate format instead.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;(&lt;NUMBER&gt;);
+//
+// For example, the following three lines of code are equivalent methods of
+// writing the value for 12MHZ to the CLKSEL field in the ADC_CFG register.
+//</span>
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REGn(ADC, 0, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
+                <h3>Register Fields:</h3>
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>31</th>
+                            <th>30</th>
+                            <th>29</th>
+                            <th>28</th>
+                            <th>27</th>
+                            <th>26</th>
+                            <th>25</th>
+                            <th>24</th>
+                            <th>23</th>
+                            <th>22</th>
+                            <th>21</th>
+                            <th>20</th>
+                            <th>19</th>
+                            <th>18</th>
+                            <th>17</th>
+                            <th>16</th>
+                            <th>15</th>
+                            <th>14</th>
+                            <th>13</th>
+                            <th>12</th>
+                            <th>11</th>
+                            <th>10</th>
+                            <th>9</th>
+                            <th>8</th>
+                            <th>7</th>
+                            <th>6</th>
+                            <th>5</th>
+                            <th>4</th>
+                            <th>3</th>
+                            <th>2</th>
+                            <th>1</th>
+                            <th>0</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td align="center" colspan="5">RSVD
+                                <br>0x0</td>
+
+                            <td align="center" colspan="3">ADSEL4
+                                <br>0x0</td>
+
+                            <td align="center" colspan="5">RSVD
+                                <br>0x0</td>
+
+                            <td align="center" colspan="3">THSEL4
+                                <br>0x0</td>
+
+                            <td align="center" colspan="4">RSVD
+                                <br>0x0</td>
+
+                            <td align="center" colspan="4">CHSEL4
+                                <br>0x0</td>
+
+                            <td align="center" colspan="6">RSVD
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">WCEN4
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">SLEN4
+                                <br>0x0</td>
+
+                        </tr>
+                    </tbody>
+                </table>
+                <br>
+
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>Bits</th>
+                            <th>Name</th>
+                            <th>RW</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>31:27</td>
+                            <td>RSVD</td>
+                            <td>RO</td>
+                            <td>RESERVED.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>26:24</td>
+                            <td>ADSEL4</td>
+                            <td>RW</td>
+                            <td>Select the number of measurements to average in the accumulate divide module for this slot.<br><br>
+                                 AVG_1_MSRMT          = 0x0 - Average in 1 measurement in the accumulate divide module for this slot.<br>
+                             AVG_2_MSRMTS         = 0x1 - Average in 2 measurements in the accumulate divide module for this slot.<br>
+                             AVG_4_MSRMTS         = 0x2 - Average in 4 measurements in the accumulate divide module for this slot.<br>
+                             AVG_8_MSRMT          = 0x3 - Average in 8 measurements in the accumulate divide module for this slot.<br>
+                             AVG_16_MSRMTS        = 0x4 - Average in 16 measurements in the accumulate divide module for this slot.<br>
+                             AVG_32_MSRMTS        = 0x5 - Average in 32 measurements in the accumulate divide module for this slot.<br>
+                             AVG_64_MSRMTS        = 0x6 - Average in 64 measurements in the accumulate divide module for this slot.<br>
+                             AVG_128_MSRMTS       = 0x7 - Average in 128 measurements in the accumulate divide module for this slot.</td>
+                        </tr>
+
+                        <tr>
+                            <td>23:19</td>
+                            <td>RSVD</td>
+                            <td>RO</td>
+                            <td>RESERVED.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>18:16</td>
+                            <td>THSEL4</td>
+                            <td>RW</td>
+                            <td>Select the track and hold delay for this slot.  NOTE: The track and hold delay must be less than 50us for correct operation.  When the ADC is configured to use the 1.5Mhz clock, the track and hold delay cannot exceed 64 clocks.<br><br>
+                                 1_ADC_CLK            = 0x0 - 1 ADC clock cycle.<br>
+                             2_ADC_CLKS           = 0x1 - 2 ADC clock cycles.<br>
+                             4_ADC_CLKS           = 0x2 - 4 ADC clock cycles.<br>
+                             8_ADC_CLKS           = 0x3 - 8 ADC clock cycles.<br>
+                             16_ADC_CLKS          = 0x4 - 16 ADC clock cycles.<br>
+                             32_ADC_CLKS          = 0x5 - 32 ADC clock cycles.<br>
+                             64_ADC_CLKS          = 0x6 - 64 ADC clock cycles.<br>
+                             128_ADC_CLKS         = 0x7 - 128 ADC clock cycles.</td>
+                        </tr>
+
+                        <tr>
+                            <td>15:12</td>
+                            <td>RSVD</td>
+                            <td>RO</td>
+                            <td>RESERVED.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>11:8</td>
+                            <td>CHSEL4</td>
+                            <td>RW</td>
+                            <td>Select one of the 13 channel inputs for this slot.<br><br>
+                                 EXT0                 = 0x0 - ADC_EXT0 external GPIO pin connection.<br>
+                             EXT1                 = 0x1 - ADC_EXT1 external GPIO pin connection.<br>
+                             EXT2                 = 0x2 - ADC_EXT2 external GPIO pin connection.<br>
+                             EXT3                 = 0x3 - ADC_EXT3 external GPIO pin connection.<br>
+                             EXT4                 = 0x4 - ADC_EXT4 external GPIO pin connection.<br>
+                             EXT5                 = 0x5 - ADC_EXT5 external GPIO pin connection.<br>
+                             EXT6                 = 0x6 - ADC_EXT6 external GPIO pin connection.<br>
+                             EXT7                 = 0x7 - ADC_EXT7 external GPIO pin connection.<br>
+                             TEMP                 = 0x8 - ADC_TEMP internal temperature sensor.<br>
+                             VDD                  = 0x9 - ADC_VDD internal power rail connection.<br>
+                             VSS                  = 0xA - ADC_VSS internal ground connection.<br>
+                             VBATT                = 0xC - ADC_VBATT internal voltage divide-by-3 connection to input power rail.</td>
+                        </tr>
+
+                        <tr>
+                            <td>7:2</td>
+                            <td>RSVD</td>
+                            <td>RO</td>
+                            <td>RESERVED.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>1</td>
+                            <td>WCEN4</td>
+                            <td>RW</td>
+                            <td>This bit enables the window compare function for slot 4.<br><br>
+                                 WCEN                 = 0x1 - Enable the window compare for slot 4.</td>
+                        </tr>
+
+                        <tr>
+                            <td>0</td>
+                            <td>SLEN4</td>
+                            <td>RW</td>
+                            <td>This bit enables slot 4 for ADC conversions.<br><br>
+                                 SLEN                 = 0x1 - Enable slot 4 for ADC conversions.</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+                <br>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 id="SL5CFG" class="panel-title">SL5CFG - Slot 5 Configuration Register</h3>
+            </div>
+            <div class="panel-body">
+                <h3>Address:</h3>
+                <table style="margin:10px">
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">Instance 0 Address:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x50008020</span>
+                        </td>
+                    </tr>
+
+                </table>
+                <h3>Description:</h3>
+                <p>Slot 5 Configuration Register</p>
+                <h3>Example Macro Usage:</h3>
+                <pre style="margin:10px" class="language-pascal"><span style='color:#3f7f59; '>//
+// All macro-based register writes follow the same basic format. For
+// single-instance modules, you may use the simpler AM_REG macro. For
+// multi-instance macros, you will need to specify the instance number using
+// the AM_REGn macro format.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+// AM_REGn(&lt;MODULE&gt;, &lt;INSTANCE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+//
+// For registers that do not have specific enumeration values, you may use this alternate format instead.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;(&lt;NUMBER&gt;);
+//
+// For example, the following three lines of code are equivalent methods of
+// writing the value for 12MHZ to the CLKSEL field in the ADC_CFG register.
+//</span>
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REGn(ADC, 0, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
+                <h3>Register Fields:</h3>
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>31</th>
+                            <th>30</th>
+                            <th>29</th>
+                            <th>28</th>
+                            <th>27</th>
+                            <th>26</th>
+                            <th>25</th>
+                            <th>24</th>
+                            <th>23</th>
+                            <th>22</th>
+                            <th>21</th>
+                            <th>20</th>
+                            <th>19</th>
+                            <th>18</th>
+                            <th>17</th>
+                            <th>16</th>
+                            <th>15</th>
+                            <th>14</th>
+                            <th>13</th>
+                            <th>12</th>
+                            <th>11</th>
+                            <th>10</th>
+                            <th>9</th>
+                            <th>8</th>
+                            <th>7</th>
+                            <th>6</th>
+                            <th>5</th>
+                            <th>4</th>
+                            <th>3</th>
+                            <th>2</th>
+                            <th>1</th>
+                            <th>0</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td align="center" colspan="5">RSVD
+                                <br>0x0</td>
+
+                            <td align="center" colspan="3">ADSEL5
+                                <br>0x0</td>
+
+                            <td align="center" colspan="5">RSVD
+                                <br>0x0</td>
+
+                            <td align="center" colspan="3">THSEL5
+                                <br>0x0</td>
+
+                            <td align="center" colspan="4">RSVD
+                                <br>0x0</td>
+
+                            <td align="center" colspan="4">CHSEL5
+                                <br>0x0</td>
+
+                            <td align="center" colspan="6">RSVD
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">WCEN5
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">SLEN5
+                                <br>0x0</td>
+
+                        </tr>
+                    </tbody>
+                </table>
+                <br>
+
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>Bits</th>
+                            <th>Name</th>
+                            <th>RW</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>31:27</td>
+                            <td>RSVD</td>
+                            <td>RO</td>
+                            <td>RESERVED.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>26:24</td>
+                            <td>ADSEL5</td>
+                            <td>RW</td>
+                            <td>Select number of measurements to average in the accumulate divide module for this slot.<br><br>
+                                 AVG_1_MSRMT          = 0x0 - Average in 1 measurement in the accumulate divide module for this slot.<br>
+                             AVG_2_MSRMTS         = 0x1 - Average in 2 measurements in the accumulate divide module for this slot.<br>
+                             AVG_4_MSRMTS         = 0x2 - Average in 4 measurements in the accumulate divide module for this slot.<br>
+                             AVG_8_MSRMT          = 0x3 - Average in 8 measurements in the accumulate divide module for this slot.<br>
+                             AVG_16_MSRMTS        = 0x4 - Average in 16 measurements in the accumulate divide module for this slot.<br>
+                             AVG_32_MSRMTS        = 0x5 - Average in 32 measurements in the accumulate divide module for this slot.<br>
+                             AVG_64_MSRMTS        = 0x6 - Average in 64 measurements in the accumulate divide module for this slot.<br>
+                             AVG_128_MSRMTS       = 0x7 - Average in 128 measurements in the accumulate divide module for this slot.</td>
+                        </tr>
+
+                        <tr>
+                            <td>23:19</td>
+                            <td>RSVD</td>
+                            <td>RO</td>
+                            <td>RESERVED.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>18:16</td>
+                            <td>THSEL5</td>
+                            <td>RW</td>
+                            <td>Select track and hold delay for this slot.  NOTE: The track and hold delay must be less than 50us for correct operation.  When the ADC is configured to use the 1.5Mhz clock, the track and hold delay cannot exceed 64 clocks.<br><br>
+                                 1_ADC_CLK            = 0x0 - 1 ADC clock cycle.<br>
+                             2_ADC_CLKS           = 0x1 - 2 ADC clock cycles.<br>
+                             4_ADC_CLKS           = 0x2 - 4 ADC clock cycles.<br>
+                             8_ADC_CLKS           = 0x3 - 8 ADC clock cycles.<br>
+                             16_ADC_CLKS          = 0x4 - 16 ADC clock cycles.<br>
+                             32_ADC_CLKS          = 0x5 - 32 ADC clock cycles.<br>
+                             64_ADC_CLKS          = 0x6 - 64 ADC clock cycles.<br>
+                             128_ADC_CLKS         = 0x7 - 128 ADC clock cycles.</td>
+                        </tr>
+
+                        <tr>
+                            <td>15:12</td>
+                            <td>RSVD</td>
+                            <td>RO</td>
+                            <td>RESERVED.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>11:8</td>
+                            <td>CHSEL5</td>
+                            <td>RW</td>
+                            <td>Select one of the 13 channel inputs for this slot.<br><br>
+                                 EXT0                 = 0x0 - ADC_EXT0 external GPIO pin connection.<br>
+                             EXT1                 = 0x1 - ADC_EXT1 external GPIO pin connection.<br>
+                             EXT2                 = 0x2 - ADC_EXT2 external GPIO pin connection.<br>
+                             EXT3                 = 0x3 - ADC_EXT3 external GPIO pin connection.<br>
+                             EXT4                 = 0x4 - ADC_EXT4 external GPIO pin connection.<br>
+                             EXT5                 = 0x5 - ADC_EXT5 external GPIO pin connection.<br>
+                             EXT6                 = 0x6 - ADC_EXT6 external GPIO pin connection.<br>
+                             EXT7                 = 0x7 - ADC_EXT7 external GPIO pin connection.<br>
+                             TEMP                 = 0x8 - ADC_TEMP internal temperature sensor.<br>
+                             VDD                  = 0x9 - ADC_VDD internal power rail connection.<br>
+                             VSS                  = 0xA - ADC_VSS internal ground connection.<br>
+                             VBATT                = 0xC - ADC_VBATT internal voltage divide-by-3 connection to input power rail.</td>
+                        </tr>
+
+                        <tr>
+                            <td>7:2</td>
+                            <td>RSVD</td>
+                            <td>RO</td>
+                            <td>RESERVED.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>1</td>
+                            <td>WCEN5</td>
+                            <td>RW</td>
+                            <td>This bit enables the window compare function for slot 5.<br><br>
+                                 WCEN                 = 0x1 - Enable the window compare for slot 5.</td>
+                        </tr>
+
+                        <tr>
+                            <td>0</td>
+                            <td>SLEN5</td>
+                            <td>RW</td>
+                            <td>This bit enables slot 5 for ADC conversions.<br><br>
+                                 SLEN                 = 0x1 - Enable slot 5 for ADC conversions.</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+                <br>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 id="SL6CFG" class="panel-title">SL6CFG - Slot 6 Configuration Register</h3>
+            </div>
+            <div class="panel-body">
+                <h3>Address:</h3>
+                <table style="margin:10px">
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">Instance 0 Address:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x50008024</span>
+                        </td>
+                    </tr>
+
+                </table>
+                <h3>Description:</h3>
+                <p>Slot 6 Configuration Register</p>
+                <h3>Example Macro Usage:</h3>
+                <pre style="margin:10px" class="language-pascal"><span style='color:#3f7f59; '>//
+// All macro-based register writes follow the same basic format. For
+// single-instance modules, you may use the simpler AM_REG macro. For
+// multi-instance macros, you will need to specify the instance number using
+// the AM_REGn macro format.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+// AM_REGn(&lt;MODULE&gt;, &lt;INSTANCE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+//
+// For registers that do not have specific enumeration values, you may use this alternate format instead.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;(&lt;NUMBER&gt;);
+//
+// For example, the following three lines of code are equivalent methods of
+// writing the value for 12MHZ to the CLKSEL field in the ADC_CFG register.
+//</span>
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REGn(ADC, 0, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
+                <h3>Register Fields:</h3>
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>31</th>
+                            <th>30</th>
+                            <th>29</th>
+                            <th>28</th>
+                            <th>27</th>
+                            <th>26</th>
+                            <th>25</th>
+                            <th>24</th>
+                            <th>23</th>
+                            <th>22</th>
+                            <th>21</th>
+                            <th>20</th>
+                            <th>19</th>
+                            <th>18</th>
+                            <th>17</th>
+                            <th>16</th>
+                            <th>15</th>
+                            <th>14</th>
+                            <th>13</th>
+                            <th>12</th>
+                            <th>11</th>
+                            <th>10</th>
+                            <th>9</th>
+                            <th>8</th>
+                            <th>7</th>
+                            <th>6</th>
+                            <th>5</th>
+                            <th>4</th>
+                            <th>3</th>
+                            <th>2</th>
+                            <th>1</th>
+                            <th>0</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td align="center" colspan="5">RSVD
+                                <br>0x0</td>
+
+                            <td align="center" colspan="3">ADSEL6
+                                <br>0x0</td>
+
+                            <td align="center" colspan="5">RSVD
+                                <br>0x0</td>
+
+                            <td align="center" colspan="3">THSEL6
+                                <br>0x0</td>
+
+                            <td align="center" colspan="4">RSVD
+                                <br>0x0</td>
+
+                            <td align="center" colspan="4">CHSEL6
+                                <br>0x0</td>
+
+                            <td align="center" colspan="6">RSVD
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">WCEN6
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">SLEN6
+                                <br>0x0</td>
+
+                        </tr>
+                    </tbody>
+                </table>
+                <br>
+
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>Bits</th>
+                            <th>Name</th>
+                            <th>RW</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>31:27</td>
+                            <td>RSVD</td>
+                            <td>RO</td>
+                            <td>RESERVED.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>26:24</td>
+                            <td>ADSEL6</td>
+                            <td>RW</td>
+                            <td>Select the number of measurements to average in the accumulate divide module for this slot.<br><br>
+                                 AVG_1_MSRMT          = 0x0 - Average in 1 measurement in the accumulate divide module for this slot.<br>
+                             AVG_2_MSRMTS         = 0x1 - Average in 2 measurements in the accumulate divide module for this slot.<br>
+                             AVG_4_MSRMTS         = 0x2 - Average in 4 measurements in the accumulate divide module for this slot.<br>
+                             AVG_8_MSRMT          = 0x3 - Average in 8 measurements in the accumulate divide module for this slot.<br>
+                             AVG_16_MSRMTS        = 0x4 - Average in 16 measurements in the accumulate divide module for this slot.<br>
+                             AVG_32_MSRMTS        = 0x5 - Average in 32 measurements in the accumulate divide module for this slot.<br>
+                             AVG_64_MSRMTS        = 0x6 - Average in 64 measurements in the accumulate divide module for this slot.<br>
+                             AVG_128_MSRMTS       = 0x7 - Average in 128 measurements in the accumulate divide module for this slot.</td>
+                        </tr>
+
+                        <tr>
+                            <td>23:19</td>
+                            <td>RSVD</td>
+                            <td>RO</td>
+                            <td>RESERVED.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>18:16</td>
+                            <td>THSEL6</td>
+                            <td>RW</td>
+                            <td>Select track and hold delay for this slot.  NOTE: The track and hold delay must be less than 50us for correct operation.  When the ADC is configured to use the 1.5Mhz clock, the track and hold delay cannot exceed 64 clocks.<br><br>
+                                 1_ADC_CLK            = 0x0 - 1 ADC clock cycle.<br>
+                             2_ADC_CLKS           = 0x1 - 2 ADC clock cycles.<br>
+                             4_ADC_CLKS           = 0x2 - 4 ADC clock cycles.<br>
+                             8_ADC_CLKS           = 0x3 - 8 ADC clock cycles.<br>
+                             16_ADC_CLKS          = 0x4 - 16 ADC clock cycles.<br>
+                             32_ADC_CLKS          = 0x5 - 32 ADC clock cycles.<br>
+                             64_ADC_CLKS          = 0x6 - 64 ADC clock cycles.<br>
+                             128_ADC_CLKS         = 0x7 - 128 ADC clock cycles.</td>
+                        </tr>
+
+                        <tr>
+                            <td>15:12</td>
+                            <td>RSVD</td>
+                            <td>RO</td>
+                            <td>RESERVED.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>11:8</td>
+                            <td>CHSEL6</td>
+                            <td>RW</td>
+                            <td>Select one of the 13 channel inputs for this slot.<br><br>
+                                 EXT0                 = 0x0 - ADC_EXT0 external GPIO pin connection.<br>
+                             EXT1                 = 0x1 - ADC_EXT1 external GPIO pin connection.<br>
+                             EXT2                 = 0x2 - ADC_EXT2 external GPIO pin connection.<br>
+                             EXT3                 = 0x3 - ADC_EXT3 external GPIO pin connection.<br>
+                             EXT4                 = 0x4 - ADC_EXT4 external GPIO pin connection.<br>
+                             EXT5                 = 0x5 - ADC_EXT5 external GPIO pin connection.<br>
+                             EXT6                 = 0x6 - ADC_EXT6 external GPIO pin connection.<br>
+                             EXT7                 = 0x7 - ADC_EXT7 external GPIO pin connection.<br>
+                             TEMP                 = 0x8 - ADC_TEMP internal temperature sensor.<br>
+                             VDD                  = 0x9 - ADC_VDD internal power rail connection.<br>
+                             VSS                  = 0xA - ADC_VSS internal ground connection.<br>
+                             VBATT                = 0xC - ADC_VBATT internal voltage divide-by-3 connection to input power rail.</td>
+                        </tr>
+
+                        <tr>
+                            <td>7:2</td>
+                            <td>RSVD</td>
+                            <td>RO</td>
+                            <td>RESERVED.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>1</td>
+                            <td>WCEN6</td>
+                            <td>RW</td>
+                            <td>This bit enables the window compare function for slot 6.<br><br>
+                                 WCEN                 = 0x1 - Enable the window compare for slot 6.</td>
+                        </tr>
+
+                        <tr>
+                            <td>0</td>
+                            <td>SLEN6</td>
+                            <td>RW</td>
+                            <td>This bit enables slot 6 for ADC conversions.<br><br>
+                                 SLEN                 = 0x1 - Enable slot 6 for ADC conversions.</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+                <br>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 id="SL7CFG" class="panel-title">SL7CFG - Slot 7 Configuration Register</h3>
+            </div>
+            <div class="panel-body">
+                <h3>Address:</h3>
+                <table style="margin:10px">
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">Instance 0 Address:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x50008028</span>
+                        </td>
+                    </tr>
+
+                </table>
+                <h3>Description:</h3>
+                <p>Slot 7 Configuration Register</p>
+                <h3>Example Macro Usage:</h3>
+                <pre style="margin:10px" class="language-pascal"><span style='color:#3f7f59; '>//
+// All macro-based register writes follow the same basic format. For
+// single-instance modules, you may use the simpler AM_REG macro. For
+// multi-instance macros, you will need to specify the instance number using
+// the AM_REGn macro format.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+// AM_REGn(&lt;MODULE&gt;, &lt;INSTANCE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+//
+// For registers that do not have specific enumeration values, you may use this alternate format instead.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;(&lt;NUMBER&gt;);
+//
+// For example, the following three lines of code are equivalent methods of
+// writing the value for 12MHZ to the CLKSEL field in the ADC_CFG register.
+//</span>
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REGn(ADC, 0, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
+                <h3>Register Fields:</h3>
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>31</th>
+                            <th>30</th>
+                            <th>29</th>
+                            <th>28</th>
+                            <th>27</th>
+                            <th>26</th>
+                            <th>25</th>
+                            <th>24</th>
+                            <th>23</th>
+                            <th>22</th>
+                            <th>21</th>
+                            <th>20</th>
+                            <th>19</th>
+                            <th>18</th>
+                            <th>17</th>
+                            <th>16</th>
+                            <th>15</th>
+                            <th>14</th>
+                            <th>13</th>
+                            <th>12</th>
+                            <th>11</th>
+                            <th>10</th>
+                            <th>9</th>
+                            <th>8</th>
+                            <th>7</th>
+                            <th>6</th>
+                            <th>5</th>
+                            <th>4</th>
+                            <th>3</th>
+                            <th>2</th>
+                            <th>1</th>
+                            <th>0</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td align="center" colspan="5">RSVD
+                                <br>0x0</td>
+
+                            <td align="center" colspan="3">ADSEL7
+                                <br>0x0</td>
+
+                            <td align="center" colspan="5">RSVD
+                                <br>0x0</td>
+
+                            <td align="center" colspan="3">THSEL7
+                                <br>0x0</td>
+
+                            <td align="center" colspan="4">RSVD
+                                <br>0x0</td>
+
+                            <td align="center" colspan="4">CHSEL7
+                                <br>0x0</td>
+
+                            <td align="center" colspan="6">RSVD
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">WCEN7
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">SLEN7
+                                <br>0x0</td>
+
+                        </tr>
+                    </tbody>
+                </table>
+                <br>
+
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>Bits</th>
+                            <th>Name</th>
+                            <th>RW</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>31:27</td>
+                            <td>RSVD</td>
+                            <td>RO</td>
+                            <td>RESERVED.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>26:24</td>
+                            <td>ADSEL7</td>
+                            <td>RW</td>
+                            <td>Select the number of measurements to average in the accumulate divide module for this slot.<br><br>
+                                 AVG_1_MSRMT          = 0x0 - Average in 1 measurement in the accumulate divide module for this slot.<br>
+                             AVG_2_MSRMTS         = 0x1 - Average in 2 measurements in the accumulate divide module for this slot.<br>
+                             AVG_4_MSRMTS         = 0x2 - Average in 4 measurements in the accumulate divide module for this slot.<br>
+                             AVG_8_MSRMT          = 0x3 - Average in 8 measurements in the accumulate divide module for this slot.<br>
+                             AVG_16_MSRMTS        = 0x4 - Average in 16 measurements in the accumulate divide module for this slot.<br>
+                             AVG_32_MSRMTS        = 0x5 - Average in 32 measurements in the accumulate divide module for this slot.<br>
+                             AVG_64_MSRMTS        = 0x6 - Average in 64 measurements in the accumulate divide module for this slot.<br>
+                             AVG_128_MSRMTS       = 0x7 - Average in 128 measurements in the accumulate divide module for this slot.</td>
+                        </tr>
+
+                        <tr>
+                            <td>23:19</td>
+                            <td>RSVD</td>
+                            <td>RO</td>
+                            <td>RESERVED.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>18:16</td>
+                            <td>THSEL7</td>
+                            <td>RW</td>
+                            <td>Select track and hold delay for this slot.  NOTE: The track and hold delay must be less than 50us for correct operation.  When the ADC is configured to use the 1.5Mhz clock, the track and hold delay cannot exceed 64 clocks.<br><br>
+                                 1_ADC_CLK            = 0x0 - 1 ADC clock cycle.<br>
+                             2_ADC_CLKS           = 0x1 - 2 ADC clock cycles.<br>
+                             4_ADC_CLKS           = 0x2 - 4 ADC clock cycles.<br>
+                             8_ADC_CLKS           = 0x3 - 8 ADC clock cycles.<br>
+                             16_ADC_CLKS          = 0x4 - 16 ADC clock cycles.<br>
+                             32_ADC_CLKS          = 0x5 - 32 ADC clock cycles.<br>
+                             64_ADC_CLKS          = 0x6 - 64 ADC clock cycles.<br>
+                             128_ADC_CLKS         = 0x7 - 128 ADC clock cycles.</td>
+                        </tr>
+
+                        <tr>
+                            <td>15:12</td>
+                            <td>RSVD</td>
+                            <td>RO</td>
+                            <td>RESERVED.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>11:8</td>
+                            <td>CHSEL7</td>
+                            <td>RW</td>
+                            <td>Select one of the 13 channel inputs for this slot.<br><br>
+                                 EXT0                 = 0x0 - ADC_EXT0 external GPIO pin connection.<br>
+                             EXT1                 = 0x1 - ADC_EXT1 external GPIO pin connection.<br>
+                             EXT2                 = 0x2 - ADC_EXT2 external GPIO pin connection.<br>
+                             EXT3                 = 0x3 - ADC_EXT3 external GPIO pin connection.<br>
+                             EXT4                 = 0x4 - ADC_EXT4 external GPIO pin connection.<br>
+                             EXT5                 = 0x5 - ADC_EXT5 external GPIO pin connection.<br>
+                             EXT6                 = 0x6 - ADC_EXT6 external GPIO pin connection.<br>
+                             EXT7                 = 0x7 - ADC_EXT7 external GPIO pin connection.<br>
+                             TEMP                 = 0x8 - ADC_TEMP internal temperature sensor.<br>
+                             VDD                  = 0x9 - ADC_VDD internal power rail connection.<br>
+                             VSS                  = 0xA - ADC_VSS internal ground connection.<br>
+                             VBATT                = 0xC - ADC_VBATT internal voltage divide-by-3 connection to input power rail.</td>
+                        </tr>
+
+                        <tr>
+                            <td>7:2</td>
+                            <td>RSVD</td>
+                            <td>RO</td>
+                            <td>RESERVED.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>1</td>
+                            <td>WCEN7</td>
+                            <td>RW</td>
+                            <td>This bit enables the window compare function for slot 7.<br><br>
+                                 WCEN                 = 0x1 - Enable the window compare for slot 7.</td>
+                        </tr>
+
+                        <tr>
+                            <td>0</td>
+                            <td>SLEN7</td>
+                            <td>RW</td>
+                            <td>This bit enables slot 7 for ADC conversions.<br><br>
+                                 SLEN                 = 0x1 - Enable slot 7 for ADC conversions.</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+                <br>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 id="WLIM" class="panel-title">WLIM - Window Comparator Limits Register</h3>
+            </div>
+            <div class="panel-body">
+                <h3>Address:</h3>
+                <table style="margin:10px">
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">Instance 0 Address:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x5000802C</span>
+                        </td>
+                    </tr>
+
+                </table>
+                <h3>Description:</h3>
+                <p>Window Comparator Limits Register</p>
+                <h3>Example Macro Usage:</h3>
+                <pre style="margin:10px" class="language-pascal"><span style='color:#3f7f59; '>//
+// All macro-based register writes follow the same basic format. For
+// single-instance modules, you may use the simpler AM_REG macro. For
+// multi-instance macros, you will need to specify the instance number using
+// the AM_REGn macro format.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+// AM_REGn(&lt;MODULE&gt;, &lt;INSTANCE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+//
+// For registers that do not have specific enumeration values, you may use this alternate format instead.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;(&lt;NUMBER&gt;);
+//
+// For example, the following three lines of code are equivalent methods of
+// writing the value for 12MHZ to the CLKSEL field in the ADC_CFG register.
+//</span>
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REGn(ADC, 0, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
+                <h3>Register Fields:</h3>
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>31</th>
+                            <th>30</th>
+                            <th>29</th>
+                            <th>28</th>
+                            <th>27</th>
+                            <th>26</th>
+                            <th>25</th>
+                            <th>24</th>
+                            <th>23</th>
+                            <th>22</th>
+                            <th>21</th>
+                            <th>20</th>
+                            <th>19</th>
+                            <th>18</th>
+                            <th>17</th>
+                            <th>16</th>
+                            <th>15</th>
+                            <th>14</th>
+                            <th>13</th>
+                            <th>12</th>
+                            <th>11</th>
+                            <th>10</th>
+                            <th>9</th>
+                            <th>8</th>
+                            <th>7</th>
+                            <th>6</th>
+                            <th>5</th>
+                            <th>4</th>
+                            <th>3</th>
+                            <th>2</th>
+                            <th>1</th>
+                            <th>0</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td align="center" colspan="16">ULIM
+                                <br>0x0</td>
+
+                            <td align="center" colspan="16">LLIM
+                                <br>0x0</td>
+
+                        </tr>
+                    </tbody>
+                </table>
+                <br>
+
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>Bits</th>
+                            <th>Name</th>
+                            <th>RW</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>31:16</td>
+                            <td>ULIM</td>
+                            <td>RW</td>
+                            <td>Sets the upper limit for the wondow comparator.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>15:0</td>
+                            <td>LLIM</td>
+                            <td>RW</td>
+                            <td>Sets the lower limit for the wondow comparator.<br><br>
+                                </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+                <br>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 id="FIFO" class="panel-title">FIFO - FIFO Data and Valid Count Register</h3>
+            </div>
+            <div class="panel-body">
+                <h3>Address:</h3>
+                <table style="margin:10px">
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">Instance 0 Address:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x50008030</span>
+                        </td>
+                    </tr>
+
+                </table>
+                <h3>Description:</h3>
+                <p>The ADC FIFO Register contains the slot number and fifo data for the oldest conversion data in the FIFO.  The COUNT field indicates the total number of valid entries in the FIFO.  A write to this register will pop one of the FIFO entries off the FIFO and decrease the COUNT by 1 if the COUNT is greater than zero.</p>
+                <h3>Example Macro Usage:</h3>
+                <pre style="margin:10px" class="language-pascal"><span style='color:#3f7f59; '>//
+// All macro-based register writes follow the same basic format. For
+// single-instance modules, you may use the simpler AM_REG macro. For
+// multi-instance macros, you will need to specify the instance number using
+// the AM_REGn macro format.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+// AM_REGn(&lt;MODULE&gt;, &lt;INSTANCE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+//
+// For registers that do not have specific enumeration values, you may use this alternate format instead.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;(&lt;NUMBER&gt;);
+//
+// For example, the following three lines of code are equivalent methods of
+// writing the value for 12MHZ to the CLKSEL field in the ADC_CFG register.
+//</span>
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REGn(ADC, 0, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
+                <h3>Register Fields:</h3>
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>31</th>
+                            <th>30</th>
+                            <th>29</th>
+                            <th>28</th>
+                            <th>27</th>
+                            <th>26</th>
+                            <th>25</th>
+                            <th>24</th>
+                            <th>23</th>
+                            <th>22</th>
+                            <th>21</th>
+                            <th>20</th>
+                            <th>19</th>
+                            <th>18</th>
+                            <th>17</th>
+                            <th>16</th>
+                            <th>15</th>
+                            <th>14</th>
+                            <th>13</th>
+                            <th>12</th>
+                            <th>11</th>
+                            <th>10</th>
+                            <th>9</th>
+                            <th>8</th>
+                            <th>7</th>
+                            <th>6</th>
+                            <th>5</th>
+                            <th>4</th>
+                            <th>3</th>
+                            <th>2</th>
+                            <th>1</th>
+                            <th>0</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td align="center" colspan="5">RSVD_27
+                                <br>0x0</td>
+
+                            <td align="center" colspan="3">SLOTNUM
+                                <br>0x0</td>
+
+                            <td align="center" colspan="4">RSVD_20
+                                <br>0x0</td>
+
+                            <td align="center" colspan="4">COUNT
+                                <br>0x0</td>
+
+                            <td align="center" colspan="16">DATA
+                                <br>0x0</td>
+
+                        </tr>
+                    </tbody>
+                </table>
+                <br>
+
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>Bits</th>
+                            <th>Name</th>
+                            <th>RW</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>31:27</td>
+                            <td>RSVD_27</td>
+                            <td>RO</td>
+                            <td>RESERVED.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>26:24</td>
+                            <td>SLOTNUM</td>
+                            <td>RO</td>
+                            <td>Slot number associated with this FIFO data.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>23:20</td>
+                            <td>RSVD_20</td>
+                            <td>RO</td>
+                            <td>RESERVED.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>19:16</td>
+                            <td>COUNT</td>
+                            <td>RO</td>
+                            <td>Number of valid entries in the ADC FIFO.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>15:0</td>
+                            <td>DATA</td>
+                            <td>RO</td>
+                            <td>Oldest data in the FIFO.<br><br>
+                                </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+                <br>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 id="INTEN" class="panel-title">INTEN - ADC Interrupt registers: Enable</h3>
+            </div>
+            <div class="panel-body">
+                <h3>Address:</h3>
+                <table style="margin:10px">
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">Instance 0 Address:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x50008200</span>
+                        </td>
+                    </tr>
+
+                </table>
+                <h3>Description:</h3>
+                <p>Set bits in this register to allow this module to generate the corresponding interrupt.</p>
+                <h3>Example Macro Usage:</h3>
+                <pre style="margin:10px" class="language-pascal"><span style='color:#3f7f59; '>//
+// All macro-based register writes follow the same basic format. For
+// single-instance modules, you may use the simpler AM_REG macro. For
+// multi-instance macros, you will need to specify the instance number using
+// the AM_REGn macro format.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+// AM_REGn(&lt;MODULE&gt;, &lt;INSTANCE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+//
+// For registers that do not have specific enumeration values, you may use this alternate format instead.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;(&lt;NUMBER&gt;);
+//
+// For example, the following three lines of code are equivalent methods of
+// writing the value for 12MHZ to the CLKSEL field in the ADC_CFG register.
+//</span>
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REGn(ADC, 0, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
+                <h3>Register Fields:</h3>
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>31</th>
+                            <th>30</th>
+                            <th>29</th>
+                            <th>28</th>
+                            <th>27</th>
+                            <th>26</th>
+                            <th>25</th>
+                            <th>24</th>
+                            <th>23</th>
+                            <th>22</th>
+                            <th>21</th>
+                            <th>20</th>
+                            <th>19</th>
+                            <th>18</th>
+                            <th>17</th>
+                            <th>16</th>
+                            <th>15</th>
+                            <th>14</th>
+                            <th>13</th>
+                            <th>12</th>
+                            <th>11</th>
+                            <th>10</th>
+                            <th>9</th>
+                            <th>8</th>
+                            <th>7</th>
+                            <th>6</th>
+                            <th>5</th>
+                            <th>4</th>
+                            <th>3</th>
+                            <th>2</th>
+                            <th>1</th>
+                            <th>0</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td align="center" colspan="26">RSVD
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">WCINC
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">WCEXC
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">FIFOOVR2
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">FIFOOVR1
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">SCNCMP
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">CNVCMP
+                                <br>0x0</td>
+
+                        </tr>
+                    </tbody>
+                </table>
+                <br>
+
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>Bits</th>
+                            <th>Name</th>
+                            <th>RW</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>31:6</td>
+                            <td>RSVD</td>
+                            <td>RO</td>
+                            <td>RESERVED.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>5</td>
+                            <td>WCINC</td>
+                            <td>RW</td>
+                            <td>Window comparator voltage incursion interrupt.<br><br>
+                                 WCINCINT             = 0x1 - Window comparitor voltage incursion interrupt.</td>
+                        </tr>
+
+                        <tr>
+                            <td>4</td>
+                            <td>WCEXC</td>
+                            <td>RW</td>
+                            <td>Window comparator voltage excursion interrupt.<br><br>
+                                 WCEXCINT             = 0x1 - Window comparitor voltage excursion interrupt.</td>
+                        </tr>
+
+                        <tr>
+                            <td>3</td>
+                            <td>FIFOOVR2</td>
+                            <td>RW</td>
+                            <td>FIFO 100% full interrupt.<br><br>
+                                 FIFOFULLINT          = 0x1 - FIFO 100% full interrupt.</td>
+                        </tr>
+
+                        <tr>
+                            <td>2</td>
+                            <td>FIFOOVR1</td>
+                            <td>RW</td>
+                            <td>FIFO 75% full interrupt.<br><br>
+                                 FIFO75INT            = 0x1 - FIFO 75% full interrupt.</td>
+                        </tr>
+
+                        <tr>
+                            <td>1</td>
+                            <td>SCNCMP</td>
+                            <td>RW</td>
+                            <td>ADC scan complete interrupt.<br><br>
+                                 SCNCMPINT            = 0x1 - ADC scan complete interrupt.</td>
+                        </tr>
+
+                        <tr>
+                            <td>0</td>
+                            <td>CNVCMP</td>
+                            <td>RW</td>
+                            <td>ADC conversion complete interrupt.<br><br>
+                                 CNVCMPINT            = 0x1 - ADC conversion complete interrupt.</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+                <br>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 id="INTSTAT" class="panel-title">INTSTAT - ADC Interrupt registers: Status</h3>
+            </div>
+            <div class="panel-body">
+                <h3>Address:</h3>
+                <table style="margin:10px">
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">Instance 0 Address:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x50008204</span>
+                        </td>
+                    </tr>
+
+                </table>
+                <h3>Description:</h3>
+                <p>Read bits from this register to discover the cause of a recent interrupt.</p>
+                <h3>Example Macro Usage:</h3>
+                <pre style="margin:10px" class="language-pascal"><span style='color:#3f7f59; '>//
+// All macro-based register writes follow the same basic format. For
+// single-instance modules, you may use the simpler AM_REG macro. For
+// multi-instance macros, you will need to specify the instance number using
+// the AM_REGn macro format.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+// AM_REGn(&lt;MODULE&gt;, &lt;INSTANCE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+//
+// For registers that do not have specific enumeration values, you may use this alternate format instead.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;(&lt;NUMBER&gt;);
+//
+// For example, the following three lines of code are equivalent methods of
+// writing the value for 12MHZ to the CLKSEL field in the ADC_CFG register.
+//</span>
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REGn(ADC, 0, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
+                <h3>Register Fields:</h3>
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>31</th>
+                            <th>30</th>
+                            <th>29</th>
+                            <th>28</th>
+                            <th>27</th>
+                            <th>26</th>
+                            <th>25</th>
+                            <th>24</th>
+                            <th>23</th>
+                            <th>22</th>
+                            <th>21</th>
+                            <th>20</th>
+                            <th>19</th>
+                            <th>18</th>
+                            <th>17</th>
+                            <th>16</th>
+                            <th>15</th>
+                            <th>14</th>
+                            <th>13</th>
+                            <th>12</th>
+                            <th>11</th>
+                            <th>10</th>
+                            <th>9</th>
+                            <th>8</th>
+                            <th>7</th>
+                            <th>6</th>
+                            <th>5</th>
+                            <th>4</th>
+                            <th>3</th>
+                            <th>2</th>
+                            <th>1</th>
+                            <th>0</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td align="center" colspan="26">RSVD
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">WCINC
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">WCEXC
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">FIFOOVR2
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">FIFOOVR1
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">SCNCMP
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">CNVCMP
+                                <br>0x0</td>
+
+                        </tr>
+                    </tbody>
+                </table>
+                <br>
+
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>Bits</th>
+                            <th>Name</th>
+                            <th>RW</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>31:6</td>
+                            <td>RSVD</td>
+                            <td>RO</td>
+                            <td>RESERVED.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>5</td>
+                            <td>WCINC</td>
+                            <td>RW</td>
+                            <td>Window comparator voltage incursion interrupt.<br><br>
+                                 WCINCINT             = 0x1 - Window comparitor voltage incursion interrupt.</td>
+                        </tr>
+
+                        <tr>
+                            <td>4</td>
+                            <td>WCEXC</td>
+                            <td>RW</td>
+                            <td>Window comparator voltage excursion interrupt.<br><br>
+                                 WCEXCINT             = 0x1 - Window comparitor voltage excursion interrupt.</td>
+                        </tr>
+
+                        <tr>
+                            <td>3</td>
+                            <td>FIFOOVR2</td>
+                            <td>RW</td>
+                            <td>FIFO 100% full interrupt.<br><br>
+                                 FIFOFULLINT          = 0x1 - FIFO 100% full interrupt.</td>
+                        </tr>
+
+                        <tr>
+                            <td>2</td>
+                            <td>FIFOOVR1</td>
+                            <td>RW</td>
+                            <td>FIFO 75% full interrupt.<br><br>
+                                 FIFO75INT            = 0x1 - FIFO 75% full interrupt.</td>
+                        </tr>
+
+                        <tr>
+                            <td>1</td>
+                            <td>SCNCMP</td>
+                            <td>RW</td>
+                            <td>ADC scan complete interrupt.<br><br>
+                                 SCNCMPINT            = 0x1 - ADC scan complete interrupt.</td>
+                        </tr>
+
+                        <tr>
+                            <td>0</td>
+                            <td>CNVCMP</td>
+                            <td>RW</td>
+                            <td>ADC conversion complete interrupt.<br><br>
+                                 CNVCMPINT            = 0x1 - ADC conversion complete interrupt.</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+                <br>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 id="INTCLR" class="panel-title">INTCLR - ADC Interrupt registers: Clear</h3>
+            </div>
+            <div class="panel-body">
+                <h3>Address:</h3>
+                <table style="margin:10px">
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">Instance 0 Address:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x50008208</span>
+                        </td>
+                    </tr>
+
+                </table>
+                <h3>Description:</h3>
+                <p>Write a 1 to a bit in this register to clear the interrupt status associated with that bit.</p>
+                <h3>Example Macro Usage:</h3>
+                <pre style="margin:10px" class="language-pascal"><span style='color:#3f7f59; '>//
+// All macro-based register writes follow the same basic format. For
+// single-instance modules, you may use the simpler AM_REG macro. For
+// multi-instance macros, you will need to specify the instance number using
+// the AM_REGn macro format.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+// AM_REGn(&lt;MODULE&gt;, &lt;INSTANCE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+//
+// For registers that do not have specific enumeration values, you may use this alternate format instead.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;(&lt;NUMBER&gt;);
+//
+// For example, the following three lines of code are equivalent methods of
+// writing the value for 12MHZ to the CLKSEL field in the ADC_CFG register.
+//</span>
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REGn(ADC, 0, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
+                <h3>Register Fields:</h3>
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>31</th>
+                            <th>30</th>
+                            <th>29</th>
+                            <th>28</th>
+                            <th>27</th>
+                            <th>26</th>
+                            <th>25</th>
+                            <th>24</th>
+                            <th>23</th>
+                            <th>22</th>
+                            <th>21</th>
+                            <th>20</th>
+                            <th>19</th>
+                            <th>18</th>
+                            <th>17</th>
+                            <th>16</th>
+                            <th>15</th>
+                            <th>14</th>
+                            <th>13</th>
+                            <th>12</th>
+                            <th>11</th>
+                            <th>10</th>
+                            <th>9</th>
+                            <th>8</th>
+                            <th>7</th>
+                            <th>6</th>
+                            <th>5</th>
+                            <th>4</th>
+                            <th>3</th>
+                            <th>2</th>
+                            <th>1</th>
+                            <th>0</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td align="center" colspan="26">RSVD
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">WCINC
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">WCEXC
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">FIFOOVR2
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">FIFOOVR1
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">SCNCMP
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">CNVCMP
+                                <br>0x0</td>
+
+                        </tr>
+                    </tbody>
+                </table>
+                <br>
+
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>Bits</th>
+                            <th>Name</th>
+                            <th>RW</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>31:6</td>
+                            <td>RSVD</td>
+                            <td>RO</td>
+                            <td>RESERVED.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>5</td>
+                            <td>WCINC</td>
+                            <td>RW</td>
+                            <td>Window comparator voltage incursion interrupt.<br><br>
+                                 WCINCINT             = 0x1 - Window comparitor voltage incursion interrupt.</td>
+                        </tr>
+
+                        <tr>
+                            <td>4</td>
+                            <td>WCEXC</td>
+                            <td>RW</td>
+                            <td>Window comparator voltage excursion interrupt.<br><br>
+                                 WCEXCINT             = 0x1 - Window comparitor voltage excursion interrupt.</td>
+                        </tr>
+
+                        <tr>
+                            <td>3</td>
+                            <td>FIFOOVR2</td>
+                            <td>RW</td>
+                            <td>FIFO 100% full interrupt.<br><br>
+                                 FIFOFULLINT          = 0x1 - FIFO 100% full interrupt.</td>
+                        </tr>
+
+                        <tr>
+                            <td>2</td>
+                            <td>FIFOOVR1</td>
+                            <td>RW</td>
+                            <td>FIFO 75% full interrupt.<br><br>
+                                 FIFO75INT            = 0x1 - FIFO 75% full interrupt.</td>
+                        </tr>
+
+                        <tr>
+                            <td>1</td>
+                            <td>SCNCMP</td>
+                            <td>RW</td>
+                            <td>ADC scan complete interrupt.<br><br>
+                                 SCNCMPINT            = 0x1 - ADC scan complete interrupt.</td>
+                        </tr>
+
+                        <tr>
+                            <td>0</td>
+                            <td>CNVCMP</td>
+                            <td>RW</td>
+                            <td>ADC conversion complete interrupt.<br><br>
+                                 CNVCMPINT            = 0x1 - ADC conversion complete interrupt.</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+                <br>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 id="INTSET" class="panel-title">INTSET - ADC Interrupt registers: Set</h3>
+            </div>
+            <div class="panel-body">
+                <h3>Address:</h3>
+                <table style="margin:10px">
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">Instance 0 Address:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x5000820C</span>
+                        </td>
+                    </tr>
+
+                </table>
+                <h3>Description:</h3>
+                <p>Write a 1 to a bit in this register to instantly generate an interrupt from this module. (Generally used for testing purposes).</p>
+                <h3>Example Macro Usage:</h3>
+                <pre style="margin:10px" class="language-pascal"><span style='color:#3f7f59; '>//
+// All macro-based register writes follow the same basic format. For
+// single-instance modules, you may use the simpler AM_REG macro. For
+// multi-instance macros, you will need to specify the instance number using
+// the AM_REGn macro format.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+// AM_REGn(&lt;MODULE&gt;, &lt;INSTANCE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+//
+// For registers that do not have specific enumeration values, you may use this alternate format instead.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;(&lt;NUMBER&gt;);
+//
+// For example, the following three lines of code are equivalent methods of
+// writing the value for 12MHZ to the CLKSEL field in the ADC_CFG register.
+//</span>
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REGn(ADC, 0, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
+                <h3>Register Fields:</h3>
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>31</th>
+                            <th>30</th>
+                            <th>29</th>
+                            <th>28</th>
+                            <th>27</th>
+                            <th>26</th>
+                            <th>25</th>
+                            <th>24</th>
+                            <th>23</th>
+                            <th>22</th>
+                            <th>21</th>
+                            <th>20</th>
+                            <th>19</th>
+                            <th>18</th>
+                            <th>17</th>
+                            <th>16</th>
+                            <th>15</th>
+                            <th>14</th>
+                            <th>13</th>
+                            <th>12</th>
+                            <th>11</th>
+                            <th>10</th>
+                            <th>9</th>
+                            <th>8</th>
+                            <th>7</th>
+                            <th>6</th>
+                            <th>5</th>
+                            <th>4</th>
+                            <th>3</th>
+                            <th>2</th>
+                            <th>1</th>
+                            <th>0</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td align="center" colspan="26">RSVD
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">WCINC
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">WCEXC
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">FIFOOVR2
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">FIFOOVR1
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">SCNCMP
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">CNVCMP
+                                <br>0x0</td>
+
+                        </tr>
+                    </tbody>
+                </table>
+                <br>
+
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>Bits</th>
+                            <th>Name</th>
+                            <th>RW</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>31:6</td>
+                            <td>RSVD</td>
+                            <td>RO</td>
+                            <td>RESERVED.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>5</td>
+                            <td>WCINC</td>
+                            <td>RW</td>
+                            <td>Window comparator voltage incursion interrupt.<br><br>
+                                 WCINCINT             = 0x1 - Window comparitor voltage incursion interrupt.</td>
+                        </tr>
+
+                        <tr>
+                            <td>4</td>
+                            <td>WCEXC</td>
+                            <td>RW</td>
+                            <td>Window comparator voltage excursion interrupt.<br><br>
+                                 WCEXCINT             = 0x1 - Window comparitor voltage excursion interrupt.</td>
+                        </tr>
+
+                        <tr>
+                            <td>3</td>
+                            <td>FIFOOVR2</td>
+                            <td>RW</td>
+                            <td>FIFO 100% full interrupt.<br><br>
+                                 FIFOFULLINT          = 0x1 - FIFO 100% full interrupt.</td>
+                        </tr>
+
+                        <tr>
+                            <td>2</td>
+                            <td>FIFOOVR1</td>
+                            <td>RW</td>
+                            <td>FIFO 75% full interrupt.<br><br>
+                                 FIFO75INT            = 0x1 - FIFO 75% full interrupt.</td>
+                        </tr>
+
+                        <tr>
+                            <td>1</td>
+                            <td>SCNCMP</td>
+                            <td>RW</td>
+                            <td>ADC scan complete interrupt.<br><br>
+                                 SCNCMPINT            = 0x1 - ADC scan complete interrupt.</td>
+                        </tr>
+
+                        <tr>
+                            <td>0</td>
+                            <td>CNVCMP</td>
+                            <td>RW</td>
+                            <td>ADC conversion complete interrupt.<br><br>
+                                 CNVCMPINT            = 0x1 - ADC conversion complete interrupt.</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+                <br>
+            </div>
+        </div>
+
+    </body>
+
+    <hr size="1">
+    <body>
+        <div id="footer" align="right">
+            <small>
+                AmbiqSuite Register Documentation&nbsp;
+                <a href="http://www.ambiqmicro.com">
+                <img class="footer" src="../resources/ambiqmicro_logo.png" alt="Ambiq Micro"/></a>&nbsp&nbsp Copyright &copy; 2014&nbsp&nbsp<br />
+                This documentation is licensed and distributed under the <a rel="license" href="http://opensource.org/licenses/BSD-3-Clause">BSD 3-Clause License</a>.&nbsp&nbsp<br/>
+            </small>
+        </div>
+    </body>
+</html>
+
