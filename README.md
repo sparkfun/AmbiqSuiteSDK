@@ -4,6 +4,30 @@ A copy of the AmbiqSuite SDK available on GitHub. Can be used to include AmbiqSu
 # Current Version
 2.2.0
 
+# Getting Started
+
+First make sure that the necessary tools are available at your command line. They are:
+- Git 
+  - ```git```
+- Make 
+  - ```make```
+- ARM GCC 
+  - ```arm-none-eabi-xxx``` (preferably 2018-q4-major or later)
+- Python3 
+  - ```python3```
+
+Then follow these steps
+```
+git clone https://github.com/sparkfun/AmbiqSuiteSDK
+cd AmbiqSuiteSDK
+git submodule update --recursive
+cd boards_sfe/{board}/examples/{example}/gcc
+make              # build project
+make bootload     # equivalent to 'bootload_svl'
+make bootload_svl # bootloads using the SparkFun Variable Loader
+make bootload_asb # bootloads using the Ambiq Secure Bootloader - overwrites SparkFun Variable Loader
+```
+
 # Submodules
 Git submodules can be used to reuse code between repositories. Some special precautions can be necessary when working with them -- most notably the need to clone the contents of submodules explicitly. Here's how to do that:
 
