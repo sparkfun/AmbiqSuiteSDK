@@ -18,9 +18,8 @@ First make sure that the necessary tools are available at your command line. The
 
 Then follow these steps
 ```
-git clone https://github.com/sparkfun/AmbiqSuiteSDK
+git clone --recursive https://github.com/sparkfun/AmbiqSuiteSDK
 cd AmbiqSuiteSDK
-git submodule update --recursive
 cd boards_sfe/{board}/examples/{example}/gcc
 make              # build project
 make bootload     # equivalent to 'bootload_svl'
