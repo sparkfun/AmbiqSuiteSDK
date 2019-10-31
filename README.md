@@ -12,7 +12,7 @@ First make sure that the necessary tools are available at your command line. The
 - Make 
   - ```make```
 - ARM GCC 
-  - ```arm-none-eabi-xxx``` (preferably 2018-q4-major or later)
+  - ```arm-none-eabi-xxx``` (preferably [8-2018-q4-major](https://developer.arm.com/tools-and-software/open-source-software/developer-tools/gnu-toolchain/gnu-rm/downloads#panel2a) - there is a known problem with 8-2019-q3-update for example)
 - Python3 
   - ```python3```
 
