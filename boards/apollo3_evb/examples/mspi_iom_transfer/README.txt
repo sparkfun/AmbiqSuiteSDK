@@ -77,6 +77,14 @@ Fireball is populated with CYPRESS_S25FS064S flash on CE0
 #define AM_BSP_GPIO_MSPI_D3             23
 #define AM_BSP_GPIO_MSPI_SCK            24
 
+And if the fireball device card is used, this example can work on:
+Apollo3_eb + Fireball
+Apollo3_eb + Fireball2
+Recommend to use 1.8V power supply voltage.
+Define FIREBALL_CARD or FIREBALL2_CARD in the config-template.ini file to select.
+Define CYPRESS_S25FS064S or ADESTO_ATXP032 for Fireball
+Define ADESTO_ATXP032 for Fireball2
+
 
 
 ******************************************************************************

@@ -44,7 +44,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
-// This is part of revision v2.2.0-7-g63f7c2ba1 of the AmbiqSuite Development Package.
+// This is part of revision 2.3.2 of the AmbiqSuite Development Package.
 //
 //*****************************************************************************
 
@@ -556,18 +556,10 @@ am_hal_ble_power_control(void *pHandle, uint32_t ui32PowerState)
     uint32_t ui32Module;
 
     //
-    // Enable the BLE buck trim values
+    // BLE buck is shared by Burst as well
+    // Enable the BLE buck trim values if in use
     //
-    if ( APOLLO3_GE_A1 )
-    {
-        CLKGEN->BLEBUCKTONADJ =
-            _VAL2FLD(CLKGEN_BLEBUCKTONADJ_ZEROLENDETECTEN, CLKGEN_BLEBUCKTONADJ_ZEROLENDETECTEN_EN)         |
-            _VAL2FLD(CLKGEN_BLEBUCKTONADJ_ZEROLENDETECTTRIM, CLKGEN_BLEBUCKTONADJ_ZEROLENDETECTTRIM_SetF)   |
-            _VAL2FLD(CLKGEN_BLEBUCKTONADJ_TONADJUSTEN, CLKGEN_BLEBUCKTONADJ_TONADJUSTEN_EN)                 |
-            _VAL2FLD(CLKGEN_BLEBUCKTONADJ_TONADJUSTPERIOD, CLKGEN_BLEBUCKTONADJ_TONADJUSTPERIOD_HFRC_94KHz) |
-            _VAL2FLD(CLKGEN_BLEBUCKTONADJ_TONHIGHTHRESHOLD, 0x10)                                           |
-            _VAL2FLD(CLKGEN_BLEBUCKTONADJ_TONLOWTHRESHOLD, 0xF);
-    }
+    am_hal_pwrctrl_blebuck_trim();
 
     //
     // Check the handle.

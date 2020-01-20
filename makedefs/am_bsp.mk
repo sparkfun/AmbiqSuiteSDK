@@ -34,18 +34,24 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 #
-# This is part of revision v2.2.0-7-g63f7c2ba1 of the AmbiqSuite Development Package.
+# This is part of revision 2.3.2 of the AmbiqSuite Development Package.
 #
 #******************************************************************************
 
 # Make "all" the default target.
-all: bsp_pins.src am_bsp_pins.c am_bsp_pins.h
+all: bsp_pins.src am_bsp_pins.c am_bsp_pins.h $(SWROOT)/mcu/$(FAMILY)/hal/am_hal_pin.h
 
 am_bsp_pins.c: bsp_pins.src
-	$(SWROOT)/tools/bsp_generator/pinconfig.py bsp_pins.src C >am_bsp_pins.c
+	python3 $(SWROOT)/tools/bsp_generator/pinconfig.py bsp_pins.src C >am_bsp_pins.c
 
 am_bsp_pins.h: bsp_pins.src
-	$(SWROOT)/tools/bsp_generator/pinconfig.py bsp_pins.src H >am_bsp_pins.h
+	python3 $(SWROOT)/tools/bsp_generator/pinconfig.py bsp_pins.src H >am_bsp_pins.h
+
+$(SWROOT)/mcu/apollo3/hal/am_hal_pin.h:
+	$(MAKE) -C $(SWROOT)/mcu/apollo3/hal am_hal_pin.h
+
+$(SWROOT)/mcu/apollo4/hal/am_hal_pin.h:
+	$(MAKE) -C $(SWROOT)/mcu/apollo4/hal am_hal_pin.h
 
 # All makefiles use this to find the top level directory.
 SWROOT?=..

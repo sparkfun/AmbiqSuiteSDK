@@ -7,6 +7,12 @@
 //! Purpose: This example provides a demonstration of the cache monitor to check
 //! the cache hit rate and cache miss number.
 //!
+//! Additional Information:
+//! If the fireball device card is used, this example can work on:
+//! Apollo3_eb + Fireball2
+//! Recommend to use 3.3V power supply voltage.
+//! Define FIREBALL_CARD and APS6404L in the config-template.ini file to select.
+//!
 //*****************************************************************************
 
 //*****************************************************************************
@@ -43,14 +49,16 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
-// This is part of revision v2.2.0-7-g63f7c2ba1 of the AmbiqSuite Development Package.
+// This is part of revision 2.3.2 of the AmbiqSuite Development Package.
 //
 //*****************************************************************************
 
 #include "am_mcu_apollo.h"
 #include "am_bsp.h"
 #include "am_util.h"
+#if FIREBALL_CARD
 #include "am_devices_fireball.h"
+#endif
 #include "am_devices_mspi_psram.h"
 #include <string.h>
 
@@ -514,12 +522,14 @@ main(void)
     am_util_stdio_printf("HAL compiled with %s-style registers\n",
                          g_ui32HALversion.s.bAMREGS ? "AM_REG" : "CMSIS");
 
+#if FIREBALL_CARD
     iRet = fireball_init();
     if (iRet)
     {
         am_util_stdio_printf("Unable to initialize fireball\n");
         while(1);
     }
+#endif
     // Initialize the MSPI PSRAM
     iRet = mspi_psram_init();
     if (iRet)

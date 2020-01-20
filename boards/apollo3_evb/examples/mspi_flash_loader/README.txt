@@ -37,6 +37,15 @@ ii. Execute "make" in the /examples/hello_world/iar directory to rebuild the pro
 4. Open the J-Link SWO Viewer to the target board.
 5. Open the J-Flash Lite program.  Select the /examples/mspi_flash_loader/loader_hello_world.bin file and program at 0x0000C000 offset.
 
+And if the fireball device card is used, this example can work on:
+Apollo3_eb + Fireball
+Apollo3_eb + Fireball2
+Recommend to use 1.8V power supply voltage.
+Define FIREBALL_CARD or FIREBALL2_CARD in the config-template.ini file to select.
+Define CYPRESS_S25FS064S or ADESTO_ATXP032 for Fireball
+Define ADESTO_ATXP032 for Fireball2
+
+
 
 ******************************************************************************
 

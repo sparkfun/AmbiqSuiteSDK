@@ -43,7 +43,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
-// This is part of revision v2.2.0-7-g63f7c2ba1 of the AmbiqSuite Development Package.
+// This is part of revision 2.3.2 of the AmbiqSuite Development Package.
 //
 //*****************************************************************************
 
@@ -68,6 +68,7 @@
 #include "svc_amdtp.h"
 
 #include "am_util.h"
+#include "gatt_api.h"
 
 /**************************************************************************************************
   Macros
@@ -133,7 +134,7 @@ static const appUpdateCfg_t amdtpUpdateCfg =
   3000,                                   /*! Connection idle period in ms before attempting
                                               connection parameter update; set to zero to disable */
  /* W/A: Apollo2-Blue has issues with interval 7.5ms */
-#ifdef AM_PART_APOLLO3
+#if defined(AM_PART_APOLLO3) || defined(AM_PART_APOLLO3P)
   6,                                      /*! 7.5ms */
   15,                                     /*! 18.75ms */
 #else
@@ -541,7 +542,9 @@ static void amdtpProcMsg(amdtpMsg_t *pMsg)
       //AttcMtuReq((dmConnId_t)(pMsg->hdr.param), 480);//ATT_MAX_MTU);//83); //fixme
       break;
     case DM_RESET_CMPL_IND:
+      AttsCalculateDbHash();
       DmSecGenerateEccKeyReq();
+      amdtpSetup(pMsg);
       uiEvent = APP_UI_RESET_CMPL;
       break;
 
@@ -588,6 +591,8 @@ static void amdtpProcMsg(amdtpMsg_t *pMsg)
       break;
 
     case DM_SEC_PAIR_CMPL_IND:
+      DmSecGenerateEccKeyReq();
+
       uiEvent = APP_UI_SEC_PAIR_CMPL;
 
       bPairingCompleted = true;
@@ -595,6 +600,8 @@ static void amdtpProcMsg(amdtpMsg_t *pMsg)
       break;
 
     case DM_SEC_PAIR_FAIL_IND:
+      DmSecGenerateEccKeyReq();
+    
       APP_TRACE_INFO1("DM_SEC_PAIR_FAIL_IND, status = 0x%x", pMsg->dm.pairCmpl.hdr.status);
       bPairingCompleted = false;
 
@@ -615,13 +622,15 @@ static void amdtpProcMsg(amdtpMsg_t *pMsg)
 
     case DM_SEC_ECC_KEY_IND:
       DmSecSetEccKey(&pMsg->dm.eccMsg.data.key);
-      amdtpSetup(pMsg);
       break;
 
     case DM_SEC_COMPARE_IND:
       AppHandleNumericComparison(&pMsg->dm.cnfInd);
       break;
 
+    case DM_HW_ERROR_IND:
+       uiEvent = APP_UI_HW_ERROR;
+       break;
     case DM_VENDOR_SPEC_CMD_CMPL_IND:
       {
         #if defined(AM_PART_APOLLO) || defined(AM_PART_APOLLO2)
@@ -749,7 +758,7 @@ void AmdtpHandlerInit(wsfHandlerId_t handlerId)
 
   /* Initialize application framework */
   AppSlaveInit();
-
+  AppServerInit();
   /* Set stack configuration pointers */
   pSmpCfg = (smpCfg_t *) &amdtpSmpCfg;
 
@@ -780,10 +789,17 @@ void AmdtpHandler(wsfEventMask_t event, wsfMsgHdr_t *pMsg)
   {
     // APP_TRACE_INFO1("Amdtp got evt %d", pMsg->event);
 
-    if (pMsg->event >= DM_CBACK_START && pMsg->event <= DM_CBACK_END)
-    {
-      /* process advertising and connection-related messages */
-      AppSlaveProcDmMsg((dmEvt_t *) pMsg);
+        /* process ATT messages */
+        if (pMsg->event >= ATT_CBACK_START && pMsg->event <= ATT_CBACK_END)
+        {
+          /* process server-related ATT messages */
+          AppServerProcAttMsg(pMsg);
+        }
+        /* process DM messages */
+        else if (pMsg->event >= DM_CBACK_START && pMsg->event <= DM_CBACK_END)
+        {
+            /* process advertising and connection-related messages */
+            AppSlaveProcDmMsg((dmEvt_t *) pMsg);
 
       /* process security-related messages */
       AppSlaveSecProcDmMsg((dmEvt_t *) pMsg);
@@ -816,11 +832,14 @@ void AmdtpStart(void)
   AppUiBtnRegister(amdtpBtnCback);
 
   /* Initialize attribute server database */
+  SvcCoreGattCbackRegister(GattReadCback, GattWriteCback);
   SvcCoreAddGroup();
   SvcDisAddGroup();
   SvcAmdtpsCbackRegister(NULL, amdtps_write_cback);
   SvcAmdtpsAddGroup();
 
+  /* Set Service Changed CCCD index. */
+  GattSetSvcChangedIdx(AMDTP_GATT_SC_CCC_IDX);
   /* Reset the device */
   DmDevReset();
 }

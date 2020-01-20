@@ -701,12 +701,13 @@ SWO is configured in 1M baud, 8-n-1 mode.
 
 Name:
 =====
- cordio_beaconscanner
+ freertos_amdtp
 
 
 Description:
 ============
- Cordio Beacon Scanner Example
+ AMDTP example.
+
 
 
 
@@ -716,12 +717,13 @@ Description:
 
 Name:
 =====
- cordio_datc
+ freertos_amdtp
 
 
 Description:
 ============
- Cordio Data Client example.
+ AMDTP example.
+
 
 
 
@@ -731,7 +733,101 @@ Description:
 
 Name:
 =====
- cordio_dats
+ ble_freertos_amota
+
+
+Description:
+============
+ Example of the freertos amota app running under FreeRTOS.
+
+
+This example implements a BLE heart rate sensor within the FreeRTOS
+framework. To save power, this application is compiled without print
+statements by default. To enable them, add the following project-level
+macro definitions.
+
+AM_DEBUG_PRINTF
+WSF_TRACE_ENABLED=1
+
+If enabled, debug messages will be sent over ITM.
+
+
+******************************************************************************
+
+
+Name:
+=====
+ ble_freertos_amota_blinky
+
+
+Description:
+============
+ Example of an OTA-capable application.
+
+
+This example implements a BLE heart rate sensor within the FreeRTOS
+framework. To save power, this application is compiled without print
+statements by default. To enable them, add the following project-level
+macro definitions.
+
+AM_DEBUG_PRINTF
+WSF_TRACE_ENABLED=1
+
+If enabled, debug messages will be sent over ITM.
+
+
+******************************************************************************
+
+
+Name:
+=====
+ ble_freertos_ancs
+
+
+Description:
+============
+ ANCS example.
+
+
+
+
+
+******************************************************************************
+
+
+Name:
+=====
+ ble_freertos_beaconscanner
+
+
+Description:
+============
+ BLE Freertos Beacon Scanner Example
+
+
+
+
+******************************************************************************
+
+
+Name:
+=====
+ ble_freertos_datc
+
+
+Description:
+============
+ BLE FreeRTOS Cordio Data Client example.
+
+
+
+
+******************************************************************************
+
+
+Name:
+=====
+ ble_freertos_dats
 
 
 Description:
@@ -746,7 +842,7 @@ Description:
 
 Name:
 =====
- cordio_eddystone_url
+ ble_freertos_eddystone_url
 
 
 Description:
@@ -761,37 +857,7 @@ Description:
 
 Name:
 =====
- cordio_fcc_test
-
-
-Description:
-============
- Cordio FCC test example
-
-
-
-
-******************************************************************************
-
-
-Name:
-=====
- cordio_ibeacon
-
-
-Description:
-============
- Cordio based iBeacon example.
-
-
-
-
-******************************************************************************
-
-
-Name:
-=====
- cordio_power_cycle
+ ble_freertos_power_cycle
 
 
 Description:
@@ -806,7 +872,115 @@ Description:
 
 Name:
 =====
- cordio_tag
+ freertos_fit
+
+
+Description:
+============
+ Example of the exactle_fit app running under FreeRTOS.
+
+
+This example implements a BLE heart rate sensor within the FreeRTOS
+framework. To save power, this application is compiled without print
+statements by default. To enable them, add the following project-level
+macro definitions.
+
+AM_DEBUG_PRINTF
+WSF_TRACE_ENABLED=1
+
+If enabled, debug messages will be sent over ITM.
+
+
+******************************************************************************
+
+
+Name:
+=====
+ ble_freertos_hid
+
+
+Description:
+============
+ Example of the hid app running under FreeRTOS.
+
+
+This example implements a BLE heart rate sensor within the FreeRTOS
+framework. To save power, this application is compiled without print
+statements by default. To enable them, add the following project-level
+macro definitions.
+
+AM_DEBUG_PRINTF
+WSF_TRACE_ENABLED=1
+
+If enabled, debug messages will be sent over ITM.
+
+
+******************************************************************************
+
+
+Name:
+=====
+ ble_freertos_ibeacon
+
+
+Description:
+============
+ Cordio based iBeacon example.
+
+
+
+
+******************************************************************************
+
+
+Name:
+=====
+ ble_freertos_power_cycle
+
+
+Description:
+============
+ Cordio Power Cycle EM9304 Example
+
+
+
+
+******************************************************************************
+
+
+Name:
+=====
+ ble_freertos_prodtest_datc
+
+
+Description:
+============
+ BLE FreeRTOS Cordio Data Client example.
+
+
+
+
+******************************************************************************
+
+
+Name:
+=====
+ ble_freertos_prodtest_dats
+
+
+Description:
+============
+ Cordio Data Server example.
+
+
+
+
+******************************************************************************
+
+
+Name:
+=====
+ ble_freertos_tag
 
 
 Description:
@@ -821,7 +995,7 @@ Description:
 
 Name:
 =====
- cordio_txpower_ctrl
+ ble_freertos_txpower_ctrl
 
 
 Description:
@@ -836,7 +1010,7 @@ Description:
 
 Name:
 =====
- cordio_watch
+ ble_freertos_watch
 
 
 Description:
@@ -915,118 +1089,6 @@ EM9304 are read from the SPI interface and relayed over the UART.  The
 project uses the FIFOs and interrupts of the UART and IOM in order to
 implement non-blocking processing of the next received packet from either
 interface.
-
-
-******************************************************************************
-
-
-Name:
-=====
- exactle_fit
-
-
-Description:
-============
- ExactLE Fit example.
-
-
-This example application implements the standard BLE HRP profile using the
-ExactLE stack and the EM9304 BLE radio. This application is able to
-communicate with standard heart-rate applications running on recent model
-mobile devices.
-
-In this example implementation, the heart rate value is reported as a
-constant "78", and the "kCals consumed" value is reported as a single
-incrementing integer value. In a real application, these values could be
-supplied by a heart-rate sensor and context-tracking software.
-
-
-******************************************************************************
-
-
-Name:
-=====
- freertos_amota_blinky
-
-
-Description:
-============
- Example of an OTA-capable application.
-
-
-This example implements a BLE heart rate sensor within the FreeRTOS
-framework. To save power, this application is compiled without print
-statements by default. To enable them, add the following project-level
-macro definitions.
-
-AM_DEBUG_PRINTF
-WSF_TRACE_ENABLED=1
-
-If enabled, debug messages will be sent over ITM.
-
-
-******************************************************************************
-
-
-Name:
-=====
- freertos_ancs
-
-
-Description:
-============
- ANCS example.
-
-
-
-
-
-******************************************************************************
-
-
-Name:
-=====
- freertos_fit
-
-
-Description:
-============
- Example of the exactle_fit app running under FreeRTOS.
-
-
-This example implements a BLE heart rate sensor within the FreeRTOS
-framework. To save power, this application is compiled without print
-statements by default. To enable them, add the following project-level
-macro definitions.
-
-AM_DEBUG_PRINTF
-WSF_TRACE_ENABLED=1
-
-If enabled, debug messages will be sent over ITM.
-
-
-******************************************************************************
-
-
-Name:
-=====
- freertos_fit
-
-
-Description:
-============
- Example of the exactle_fit app running under FreeRTOS.
-
-
-This example implements a BLE heart rate sensor within the FreeRTOS
-framework. To save power, this application is compiled without print
-statements by default. To enable them, add the following project-level
-macro definitions.
-
-AM_DEBUG_PRINTF
-WSF_TRACE_ENABLED=1
-
-If enabled, debug messages will be sent over ITM.
 
 
 ******************************************************************************
@@ -1979,14 +2041,14 @@ Description:
 Purpose:
 ========
 To demonstrate the lowest possible power usage of the ADC.  The
-example powers off the ADC between samples.  CTIMER-A1 is used to drive the 
-process.  The CTIMER ISR reconfigures the ADC from scratch and triggers each 
+example powers off the ADC between samples.  CTIMER-A1 is used to drive the
+process.  The CTIMER ISR reconfigures the ADC from scratch and triggers each
 sample.  The ADC ISR stores the sample and shuts down the ADC.
 
 Additional Information:
 =======================
 The ADC_EXAMPLE_DEBUG flag is used to display information in the example to
-show that it is operating.  This should be set to 0 for true low power 
+show that it is operating.  This should be set to 0 for true low power
 operation.
 
 Printing takes place over the ITM at 1M Baud.
@@ -2101,73 +2163,6 @@ Printing takes place over the ITM at 1M Baud.
 
 Name:
 =====
- ble_cordio_power_cycle
-
-
-Description:
-============
- ARM Cordio BLE - Power Cycling Apollo3 BLE Controller Example
-
-
-Purpose:
-========
-This example demonstrates how to properly shutdown and restart the
-BLE Controller in an operational system.  This includes the steps to restart
-the ARM Cordio Host Stack in order to resynchronize with the BLE Controller.
-The shutdown/restart process is driven by a 10 second WSF (Cordio) timer.
-
-Printing takes place over the ITM at 1M Baud.
-
-
-
-******************************************************************************
-
-
-Name:
-=====
- ble_cordio_tag
-
-
-Description:
-============
- ARM Cordio BLE - Proximity Tag Example
-
-
-Purpose:
-========
-This is a standard BLE Proximity Profile example.
-
-Printing takes place over the ITM at 1M Baud.
-
-
-
-******************************************************************************
-
-
-Name:
-=====
- ble_cordio_txpower_ctrl
-
-
-Description:
-============
- ARM Cordio BLE - Transmit Power Control Example
-
-
-Purpose:
-========
-This example demonstrates the control of BLE TX power level based
-on pressing Button #0 on the Apollo3 EVB.
-
-Printing takes place over the ITM at 1M Baud.
-
-
-
-******************************************************************************
-
-
-Name:
-=====
  ble_freertos_amdtpc
 
 
@@ -2230,7 +2225,7 @@ Purpose:
 This example implements Ambiq Micro Over-the-Air (OTA) slave.  This
 example is designed to allow loading of a binary software update from either
 and iOS or Android phone running Ambiq's application.  This example works
-with the Apollo3 Secure Bootloader (SBL) to place the image in flash and then 
+with the Apollo3 Secure Bootloader (SBL) to place the image in flash and then
 reset the Apollo3 to allow SBL to validate and install the image.
 
 AM_DEBUG_PRINTF
@@ -2286,7 +2281,7 @@ Purpose:
 This example implements a BLE heart rate sensor within the FreeRTOS
 framework. To minimize power usage, this application is compiled without
 debug printing by default (the "lp" version of this example excludes
-them by default).  
+them by default).
 
 Additional Information:
 =======================
@@ -2319,7 +2314,7 @@ Purpose:
 This example implements a BLE heart rate sensor within the FreeRTOS
 framework. To minimize power usage, this application is compiled without
 debug printing by default (the non-"lp" version of this example enables
-them by default).  
+them by default).
 
 Additional Information:
 =======================
@@ -2332,6 +2327,73 @@ When defined, debug messages will be sent over ITM/SWO at 1M Baud.
 
 Note that when these macros are defined, the device will never achieve deep
 sleep, only normal sleep, due to the ITM (and thus the HFRC) being enabled.
+
+
+******************************************************************************
+
+
+Name:
+=====
+ ble_freertos_power_cycle
+
+
+Description:
+============
+ ARM Cordio BLE - Power Cycling Apollo3 BLE Controller Example
+
+
+Purpose:
+========
+This example demonstrates how to properly shutdown and restart the
+BLE Controller in an operational system.  This includes the steps to restart
+the ARM Cordio Host Stack in order to resynchronize with the BLE Controller.
+The shutdown/restart process is driven by a 10 second WSF (Cordio) timer.
+
+Printing takes place over the ITM at 1M Baud.
+
+
+
+******************************************************************************
+
+
+Name:
+=====
+ ble_freertos_tag
+
+
+Description:
+============
+ ARM Cordio BLE - Proximity Tag Example
+
+
+Purpose:
+========
+This is a standard BLE Proximity Profile example.
+
+Printing takes place over the ITM at 1M Baud.
+
+
+
+******************************************************************************
+
+
+Name:
+=====
+ ble_freertos_txpower_ctrl
+
+
+Description:
+============
+ ARM Cordio BLE - Transmit Power Control Example
+
+
+Purpose:
+========
+This example demonstrates the control of BLE TX power level based
+on pressing Button #0 on the Apollo3 EVB.
+
+Printing takes place over the ITM at 1M Baud.
+
 
 
 ******************************************************************************
@@ -2401,21 +2463,21 @@ profile, Alert Notification profile and Phone Alert Status profile will be
 
 Name:
 =====
- burst_mode
+ turbomode
 
 
 Description:
 ============
- Example demonstrates the usage of Burst mode (a.k.a. TurboSpot) HAL.
+ Example demonstrates the usage of TurboSPOT (aka burst mode) HAL.
 
 
 Purpose:
 ========
-This example shows how to detect if Burst Mode is available.  If so,
-it sets the Apollo3 into Normal (48MHz) mode, then times a calculation of 
-prime numbers, displaying the elapsed time.  Next, it switches the Apollo3
-into Burst mode, performs the same calculation, then displays the elapsed
-time which should be roughly 50% of Normal mode.
+This example shows how to detect if TurboSPOT Mode is available.
+If so, it sets the Apollo3 into Normal (48MHz) mode, then times a
+calculation of prime numbers, displaying the elapsed time.  Next, it
+switches the Apollo3 into Burst mode, performs the same calculation, then
+displays the elapsed time, which should be roughly 50% of Normal mode.
 
 Printing takes place over the ITM at 1M Baud.
 
@@ -2438,6 +2500,13 @@ Purpose:
 ========
 This example provides a demonstration of the cache monitor to check
 the cache hit rate and cache miss number.
+
+Additional Information:
+=======================
+If the fireball device card is used, this example can work on:
+Apollo3_eb + Fireball2
+Recommend to use 3.3V power supply voltage.
+Define FIREBALL_CARD and APS6404L in the config-template.ini file to select.
 
 
 
@@ -2895,7 +2964,13 @@ Printing takes place over the ITM at 1M Baud.
 
 Additional Information:
 =======================
+Define USE_SPI to select SPI or I2C
 Define one of FRAM_DEVICE_ macros to select the FRAM device
+And if the fireball device card is used, this example can work on:
+Apollo3_eb + Fireball
+Apollo3_eb + Fireball2
+Recommend to use 1.8V power supply voltage.
+Define FIREBALL_CARD or FIREBALL2_CARD in the config-template.ini file to select.
 
 
 
@@ -3180,6 +3255,15 @@ ii. Execute "make" in the /examples/hello_world/iar directory to rebuild the pro
 4. Open the J-Link SWO Viewer to the target board.
 5. Open the J-Flash Lite program.  Select the /examples/mspi_flash_loader/loader_hello_world.bin file and program at 0x0000C000 offset.
 
+And if the fireball device card is used, this example can work on:
+Apollo3_eb + Fireball
+Apollo3_eb + Fireball2
+Recommend to use 1.8V power supply voltage.
+Define FIREBALL_CARD or FIREBALL2_CARD in the config-template.ini file to select.
+Define CYPRESS_S25FS064S or ADESTO_ATXP032 for Fireball
+Define ADESTO_ATXP032 for Fireball2
+
+
 
 ******************************************************************************
 
@@ -3263,6 +3347,14 @@ Fireball is populated with CYPRESS_S25FS064S flash on CE0
 #define AM_BSP_GPIO_MSPI_D3             23
 #define AM_BSP_GPIO_MSPI_SCK            24
 
+And if the fireball device card is used, this example can work on:
+Apollo3_eb + Fireball
+Apollo3_eb + Fireball2
+Recommend to use 1.8V power supply voltage.
+Define FIREBALL_CARD or FIREBALL2_CARD in the config-template.ini file to select.
+Define CYPRESS_S25FS064S or ADESTO_ATXP032 for Fireball
+Define ADESTO_ATXP032 for Fireball2
+
 
 
 ******************************************************************************
@@ -3286,6 +3378,15 @@ Operations include - Erase, Write, Read, and XIP
 
 Printing takes place over the ITM at 1M Baud.
 
+Additional Information:
+=======================
+If the fireball device card is used, this example can work on:
+Apollo3_eb + Fireball
+Apollo3_eb + Fireball2
+Recommend to use 1.8V power supply voltage.
+Define FIREBALL_CARD or FIREBALL2_CARD in the config-template.ini file to select.
+Define ADESTO_ATXP032
+
 
 
 ******************************************************************************
@@ -3308,6 +3409,16 @@ and performs various operations - verifying the correctness of the same
 Operations include - Erase, Write, Read, Read using XIP Apperture and XIP.
 
 Printing takes place over the ITM at 1M Baud.
+
+Additional Information:
+=======================
+If the fireball device card is used, this example can work on:
+Apollo3_eb + Fireball
+Apollo3_eb + Fireball2
+Recommend to use 1.8V power supply voltage.
+Define FIREBALL_CARD in the config-template.ini file to select.
+Define CYPRESS_S25FS064S or ADESTO_ATXP032 for Fireball
+Define ADESTO_ATXP032 for Fireball2
 
 
 
@@ -3574,6 +3685,214 @@ executing in a tight loop on the Apollo3 MCU.
 ******************************************************************************
 
 
+micro-ecc
+==========
+
+A small and fast ECDH and ECDSA implementation for 8-bit, 32-bit, and 64-bit processors.
+
+The old version of micro-ecc can be found in the "old" branch.
+
+Features
+--------
+
+ * Resistant to known side-channel attacks.
+ * Written in C, with optional GCC inline assembly for AVR, ARM and Thumb platforms.
+ * Supports 8, 32, and 64-bit architectures.
+ * Small code size.
+ * No dynamic memory allocation.
+ * Support for 4 standard curves: secp160r1, secp192r1, secp256r1, and secp256k1.
+ * BSD 2-clause license.
+
+Usage Notes
+-----------
+### Point Representation ###
+Compressed points are represented in the standard format as defined in http://www.secg.org/collateral/sec1_final.pdf; uncompressed points are represented in standard format, but without the `0x04` prefix. `uECC_make_key()`, `uECC_shared_secret()`, `uECC_sign()`, and `uECC_verify()` only handle uncompressed points; you can use `uECC_compress()` and `uECC_decompress()` to convert between compressed and uncompressed point representations.
+
+Private keys are represented in the standard format.
+
+### Using the Code ###
+
+I recommend just copying (or symlink) uECC.h, uECC.c, and the appropriate asm\_&lt;arch&gt;\_.inc (if any) into your project. Then just `#include "uECC.h"` to use the micro-ecc functions.
+
+For use with Arduino, you can just create a symlink to the `uECC` directory in your Arduino `libraries` directory. You can then use uECC just like any other Arduino library (uECC should show up in the **Sketch**=>**Import Library** submenu).
+
+See uECC.h for documentation for each function.
+
+### Compilation Notes ###
+
+ * Should compile with any C/C++ compiler that supports stdint.h (this includes Visual Studio 2013).
+ * If you want to change the defaults for `uECC_CURVE` and `uECC_ASM`, you must change them in your Makefile or similar so that uECC.c is compiled with the desired values (ie, compile uECC.c with `-DuECC_CURVE=uECC_secp256r1` or whatever).
+ * When compiling for a Thumb-1 platform with inline assembly enabled (ie, `uECC_ASM` is defined to `uECC_asm_small` or `uECC_asm_fast`), you must use the `-fomit-frame-pointer` GCC option (this is enabled by default when compiling with `-O1` or higher).
+ * When compiling for an ARM/Thumb-2 platform with fast inline assembly enabled (ie, `uECC_ASM` is defined to `uECC_asm_fast`), you must use the `-fomit-frame-pointer` GCC option (this is enabled by default when compiling with `-O1` or higher).
+ * When compiling for AVR with inline assembly enabled, you must have optimizations enabled (compile with `-O1` or higher).
+ * When building for Windows, you will need to link in the `advapi32.lib` system library.
+
+ARM Performance
+---------------
+
+All tests were built using gcc 4.8.2 with `-O3`, and were run on a Raspberry Pi B+. `uECC_ASM` was defined to `uECC_asm_fast` and `ECC_SQUARE_FUNC` was defined to `1` in all cases. All times are in milliseconds.
+
+<table>
+	<tr>
+		<th></th>
+		<th>secp160r1</th>
+		<th>secp192r1</th>
+		<th>secp256r1</th>
+		<th>secp256k1</th>
+	</tr>
+	<tr>
+		<td><em>ECDH:</em></td>
+		<td>2.3</td>
+		<td>2.7</td>
+		<td>7.9</td>
+		<td>6.5</td>
+	</tr>
+	<tr>
+		<td><em>ECDSA sign:</em></td>
+		<td>2.8</td>
+		<td>3.1</td>
+		<td>8.6</td>
+		<td>7.2</td>
+	</tr>
+	<tr>
+		<td><em>ECDSA verify:</em></td>
+		<td>2.7</td>
+		<td>3.2</td>
+		<td>9.2</td>
+		<td>7.0</td>
+	</tr>
+</table>
+
+AVR Performance
+---------------
+
+All tests were built using avr-gcc 4.8.1 with `-Os`, and were run on a 16 MHz ATmega256RFR2. Code size refers to the space used by micro-ecc code and data.
+
+#### ECDH (fast) ####
+
+In these tests, `uECC_ASM` was defined to `uECC_asm_fast` and `ECC_SQUARE_FUNC` was defined to `1` in all cases.
+
+<table>
+	<tr>
+		<th></th>
+		<th>secp160r1</th>
+		<th>secp192r1</th>
+		<th>secp256r1</th>
+		<th>secp256k1</th>
+	</tr>
+	<tr>
+		<td><em>ECDH time (ms):</em></td>
+		<td>470</td>
+		<td>810</td>
+		<td>2220</td>
+		<td>1615</td>
+	</tr>
+	<tr>
+		<td><em>Code size (bytes):</em></td>
+		<td>10768</td>
+		<td>13112</td>
+		<td>20886</td>
+		<td>21126</td>
+	</tr>
+</table>
+
+#### ECDH (small) ####
+
+In these tests, `uECC_ASM` was defined to `uECC_asm_small` and `ECC_SQUARE_FUNC` was defined to `0` in all cases.
+
+<table>
+	<tr>
+		<th></th>
+		<th>secp160r1</th>
+		<th>secp192r1</th>
+		<th>secp256r1</th>
+		<th>secp256k1</th>
+	</tr>
+	<tr>
+		<td><em>ECDH time (ms):</em></td>
+		<td>1250</td>
+		<td>1810</td>
+		<td>4790</td>
+		<td>4700</td>
+	</tr>
+	<tr>
+		<td><em>Code size (bytes):</em></td>
+		<td>3244</td>
+		<td>3400</td>
+		<td>5274</td>
+		<td>3426</td>
+	</tr>
+</table>
+
+#### ECDSA (fast) ####
+
+In these tests, `uECC_ASM` was defined to `uECC_asm_fast` and `ECC_SQUARE_FUNC` was defined to `1` in all cases.
+
+<table>
+	<tr>
+		<th></th>
+		<th>secp160r1</th>
+		<th>secp192r1</th>
+		<th>secp256r1</th>
+		<th>secp256k1</th>
+	</tr>
+	<tr>
+		<td><em>ECDSA sign time (ms):</em></td>
+		<td>555</td>
+		<td>902</td>
+		<td>2386</td>
+		<td>1773</td>
+	</tr>
+	<tr>
+		<td><em>ECDSA verify time (ms):</em></td>
+		<td>590</td>
+		<td>990</td>
+		<td>2650</td>
+		<td>1800</td>
+	</tr>
+	<tr>
+		<td><em>Code size (bytes):</em></td>
+		<td>13246</td>
+		<td>14798</td>
+		<td>22594</td>
+		<td>22826</td>
+	</tr>
+</table>
+
+#### ECDSA (small) ####
+
+In these tests, `uECC_ASM` was defined to `uECC_asm_small` and `ECC_SQUARE_FUNC` was defined to `0` in all cases.
+
+<table>
+	<tr>
+		<th></th>
+		<th>secp160r1</th>
+		<th>secp192r1</th>
+		<th>secp256r1</th>
+		<th>secp256k1</th>
+	</tr>
+	<tr>
+		<td><em>ECDSA sign time (ms):</em></td>
+		<td>1359</td>
+		<td>1931</td>
+		<td>4998</td>
+		<td>4904</td>
+	</tr>
+	<tr>
+		<td><em>ECDSA verify time (ms):</em></td>
+		<td>1515</td>
+		<td>2160</td>
+		<td>5700</td>
+		<td>5220</td>
+	</tr>
+	<tr>
+		<td><em>Code size (bytes):</em></td>
+		<td>5690</td>
+		<td>5054</td>
+		<td>6980</td>
+		<td>5080</td>
+	</tr>
+</table>
 This directory holds the *.emp files generated by the EM Micro tools (e.g. EM9304 Configuration Editor) or EM Micro developers (code patches).
 
 All *.emp files contained in this directory will result in the generation of a patch or patches to be

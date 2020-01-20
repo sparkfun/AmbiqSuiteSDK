@@ -40,7 +40,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
-// This is part of revision v2.2.0-7-g63f7c2ba1 of the AmbiqSuite Development Package.
+// This is part of revision 2.3.2 of the AmbiqSuite Development Package.
 //
 //*****************************************************************************
 #ifndef AM_UTIL_ID_H
@@ -99,6 +99,7 @@ am_util_id_t;
 // definitions.
 //
 //*****************************************************************************
+#define AM_UTIL_MCUCTRL_CHIP_INFO_PARTNUM_APOLLO3P    0x07000000
 #define AM_UTIL_MCUCTRL_CHIP_INFO_PARTNUM_APOLLO3     0x06000000
 #define AM_UTIL_MCUCTRL_CHIP_INFO_PARTNUM_APOLLOBL    0x05000000
 #define AM_UTIL_MCUCTRL_CHIP_INFO_PARTNUM_APOLLO2     0x03000000
@@ -113,7 +114,8 @@ am_util_id_t;
 #define AM_UTIL_ID_UNKNOWN      0
 #define AM_UTIL_ID_APOLLO       0x0001
 #define AM_UTIL_ID_APOLLO2      0x0002
-#define AM_UTIL_ID_APOLLO3      0x0003
+#define AM_UTIL_ID_APOLLO3      0x0003      // Apollo3 Blue
+#define AM_UTIL_ID_APOLLO3P     0x0103      // Apollo3 Blue Plus
 
 //*****************************************************************************
 //

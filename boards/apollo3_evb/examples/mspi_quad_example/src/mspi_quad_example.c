@@ -10,7 +10,15 @@
 //!
 //! Printing takes place over the ITM at 1M Baud.
 //!
-//
+//! Additional Information:
+//! If the fireball device card is used, this example can work on:
+//! Apollo3_eb + Fireball
+//! Apollo3_eb + Fireball2
+//! Recommend to use 1.8V power supply voltage.
+//! Define FIREBALL_CARD in the config-template.ini file to select.
+//! Define CYPRESS_S25FS064S or ADESTO_ATXP032 for Fireball
+//! Define ADESTO_ATXP032 for Fireball2
+//!
 //*****************************************************************************
 
 //*****************************************************************************
@@ -47,7 +55,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
-// This is part of revision v2.2.0-7-g63f7c2ba1 of the AmbiqSuite Development Package.
+// This is part of revision 2.3.2 of the AmbiqSuite Development Package.
 //
 //*****************************************************************************
 
@@ -56,7 +64,7 @@
 #include "am_devices_mspi_flash.h"
 #include "am_util.h"
 
-#if FIREBALL_CARD
+#ifdef FIREBALL_CARD
 //
 // The Fireball device card multiplexes various devices including each of an SPI
 // and I2C FRAM. The Fireball device driver controls access to these devices.
@@ -78,7 +86,12 @@
 
 #define MSPI_TEST_MODULE        0
 
+#if (AM_PART_APOLLO3)
 #define MSPI_XIP_BASE_ADDRESS 0x04000000
+#endif
+#if (AM_PART_APOLLO3P)
+#define MSPI_XIP_BASE_ADDRESS 0x02000000
+#endif
 
 //#define START_SPEED_INDEX       0
 //#define END_SPEED_INDEX         11
@@ -105,7 +118,7 @@ const am_hal_mspi_dev_config_t      MSPI_Flash_Serial_CE0_MSPIConfig =
   .eAddrCfg             = AM_HAL_MSPI_ADDR_3_BYTE,
 #elif defined (ADESTO_ATXP032)
   .ui8TurnAround        = 8,
-  .eAddrCfg             = AM_HAL_MSPI_ADDR_4_BYTE,  
+  .eAddrCfg             = AM_HAL_MSPI_ADDR_4_BYTE,
 #endif
   .eInstrCfg            = AM_HAL_MSPI_INSTR_1_BYTE,
   .eDeviceConfig        = AM_HAL_MSPI_FLASH_SERIAL_CE0,
@@ -136,7 +149,7 @@ const am_hal_mspi_dev_config_t      MSPI_Flash_Quad_CE0_MSPIConfig =
   .eAddrCfg             = AM_HAL_MSPI_ADDR_3_BYTE,
 #elif defined (ADESTO_ATXP032)
   .ui8TurnAround        = 8,
-  .eAddrCfg             = AM_HAL_MSPI_ADDR_4_BYTE,  
+  .eAddrCfg             = AM_HAL_MSPI_ADDR_4_BYTE,
 #endif
   .eInstrCfg            = AM_HAL_MSPI_INSTR_1_BYTE,
   .eDeviceConfig        = AM_HAL_MSPI_FLASH_QUAD_CE0,
@@ -334,62 +347,58 @@ main(void)
     am_util_stdio_terminal_clear();
     am_util_stdio_printf("Apollo3 Quad MSPI Example\n\n");
 
-#if FIREBALL_CARD
+#ifdef FIREBALL_CARD
     //
     // Set the MUX for the Flash Device
     //
-    uint32_t ui32Ret, ui32ID;
+    uint32_t ui32Ret[3], ui32FBgen, ui32FBid, ui32FBver;
 
-#if 1
     //
     // Get Fireball ID and Rev info.
     //
-    ui32Ret = am_devices_fireball_control(AM_DEVICES_FIREBALL_STATE_ID_GET, &ui32ID);
-    if ( ui32Ret != 0 )
+    ui32Ret[0] = am_devices_fireball_control(AM_DEVICES_FIREBALL_STATE_FBGEN_GET, &ui32FBgen);
+    ui32Ret[1] = am_devices_fireball_control(AM_DEVICES_FIREBALL_STATE_ID_GET, &ui32FBid);
+    ui32Ret[2] = am_devices_fireball_control(AM_DEVICES_FIREBALL_STATE_VER_GET, &ui32FBver);
+    if ( ui32Ret[0]  ||  ui32Ret[1]  ||  ui32Ret[2] )
     {
-        am_util_stdio_printf("FAIL: am_devices_fireball_control(%d) returned 0x%X.\n",
-                             AM_DEVICES_FIREBALL_STATE_ID_GET, ui32Ret);
+        am_util_stdio_printf("FAIL: am_devices_fireball_control(%d) returned %d.\n"
+                             "      am_devices_fireball_control(%d) returned %d.\n",
+                             "      am_devices_fireball_control(%d) returned %d.\n",
+                             AM_DEVICES_FIREBALL_STATE_FBGEN_GET, ui32Ret[0],
+                             AM_DEVICES_FIREBALL_STATE_ID_GET,    ui32Ret[1],
+                             AM_DEVICES_FIREBALL_STATE_VER_GET,   ui32Ret[2]);
         return -1;
     }
-    else if ( ui32ID == FIREBALL_ID )
+
+    if ( ui32FBgen < 10 )   // The value 10 is arbitrary
     {
-        am_util_stdio_printf("Fireball found, ID is 0x%X.\n", ui32ID);
+        am_util_stdio_printf("Fireball%d (fwver=%d) found, ID is 0x%X.\n",
+                             ui32FBgen, ui32FBver, ui32FBid);
+        if ( ui32FBgen < 3 )
+        {
+            am_util_stdio_printf("ERROR!  This example requires Fireball3.\n");
+            am_util_stdio_printf("        Exiting example.\n");
+            return -1;
+        }
     }
     else
     {
-        am_util_stdio_printf("Unknown device returned ID as 0x%X.\n", ui32ID);
+        am_util_stdio_printf("Unknown Fireball device returned ID as 0x%X.\n", ui32FBid);
+        return -1;
     }
 
-    ui32Ret = am_devices_fireball_control(AM_DEVICES_FIREBALL_STATE_VER_GET, &ui32ID);
-    if ( ui32Ret != 0 )
-    {
-        am_util_stdio_printf("FAIL: am_devices_fireball_control(%d) returned 0x%X.\n",
-                             AM_DEVICES_FIREBALL_STATE_VER_GET, ui32Ret);
-        return -1;
-    }
-    else
-    {
-        am_util_stdio_printf("Fireball Version is 0x%X.\n", ui32ID);
-    }
-#endif
+    am_util_stdio_printf("Setting the FB3 mux to the MSPIO0 flash...\n\n");
 
-#if !defined(ADESTO_ATXP032)
-    ui32Ret = am_devices_fireball_control(AM_DEVICES_FIREBALL_STATE_TWIN_QUAD_CE0_CE1, 0);
-    if ( ui32Ret != 0 )
+    //
+    // Set the Fireball3 MUX to the MSPI0 flash.
+    //
+    ui32Ret[0] = am_devices_fireball_control(AM_DEVICES_FIREBALL3_STATE_MSPI0_FLASH_1P8, 0);
+    if ( ui32Ret[0] != 0 )
     {
         am_util_stdio_printf("FAIL: am_devices_fireball_control(%d) returned 0x%X.\n",
-                             AM_DEVICES_FIREBALL_STATE_TWIN_QUAD_CE0_CE1, ui32Ret);
+                             AM_DEVICES_FIREBALL3_STATE_MSPI0_FLASH_1P8, ui32Ret[0]);
         return -1;
     }
-#else
-    ui32Ret = am_devices_fireball_control(AM_DEVICES_FIREBALL_STATE_OCTAL_FLASH_CE0, 0);
-    if ( ui32Ret != 0 )
-    {
-        am_util_stdio_printf("FAIL: am_devices_fireball_control(%d) returned 0x%X.\n",
-                             AM_DEVICES_FIREBALL_STATE_OCTAL_FLASH_CE0, ui32Ret);
-        return -1;
-    }
-#endif
 #endif // FIREBALL_CARD
 
     //
@@ -431,7 +440,7 @@ main(void)
     //
     // Check to see that the sector is actually erased.
     //
-    uint32_t    *pui32Address = (uint32_t *)(MSPI_XIP_BASE_ADDRESS + MSPI_TARGET_SECTOR * AM_DEVICES_MSPI_FLASH_SECTOR_SIZE);
+    uint32_t    *pui32Address = (uint32_t *)(MSPI_XIP_BASE_ADDRESS + (MSPI_TARGET_SECTOR << 16));
     for (uint32_t i = 0; i < AM_DEVICES_MSPI_FLASH_SECTOR_SIZE / 4; i++)
     {
         if ( *pui32Address != 0xFFFFFFFF )
@@ -553,6 +562,14 @@ main(void)
     //  End banner.
     //
     am_util_stdio_printf("Apollo3 MSPI Example Complete\n");
+
+#ifdef FIREBALL_CARD
+    //
+    // Blink the Fireball LED a few times to indicate we're done.
+    //
+    uint32_t ui32LEDblink = 10;
+    am_devices_fireball_control(AM_DEVICES_FIREBALL_STATE_LED_BLINK, &ui32LEDblink);
+#endif // FIREBALL_CARD
 
     //
     // Loop forever while sleeping.

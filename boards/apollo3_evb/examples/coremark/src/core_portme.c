@@ -199,7 +199,6 @@ const am_hal_cachectrl_config_t am_hal_cachectrl_benchmark =
     //
     // Turn off unneeded flash
     //
-
     if ( am_hal_pwrctrl_memory_enable(AM_HAL_PWRCTRL_MEM_FLASH_MIN) )
     {
         am_util_stdio_printf("Failed to reconfigure Flash for minimum.\n");

@@ -34,7 +34,7 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 #
-# This is part of revision v2.2.0-7-g63f7c2ba1 of the AmbiqSuite Development Package.
+# This is part of revision 2.3.2 of the AmbiqSuite Development Package.
 #
 #******************************************************************************
 TARGET := freertos_lowpower
@@ -80,26 +80,27 @@ all clean:
 else
 
 DEFINES = -DPART_$(PART)
-DEFINES+= -DAM_DEBUG_PRINTF
 DEFINES+= -DAM_PACKAGE_BGA
 DEFINES+= -DAM_FREERTOS
+DEFINES+= -DAM_DEBUG_PRINTF
 DEFINES+= -DAM_PART_APOLLO2
+DEFINES+= -Dgcc
 
-INCLUDES = -I../../../../..
+INCLUDES = -I../../../../../third_party/FreeRTOSv10.1.1/Source/portable/GCC/AMapollo2
 INCLUDES+= -I../../../../../devices
-INCLUDES+= -I../../../../../third_party/FreeRTOSv10.1.1/Source/portable/GCC/AMapollo2
-INCLUDES+= -I../../../../../mcu/apollo2
-INCLUDES+= -I../../../bsp
-INCLUDES+= -I../../../../../utils
-INCLUDES+= -I../src
 INCLUDES+= -I../../../../../third_party/FreeRTOSv10.1.1/Source/include
+INCLUDES+= -I../src
+INCLUDES+= -I../../../../..
+INCLUDES+= -I../../../../../utils
+INCLUDES+= -I../../../bsp
+INCLUDES+= -I../../../../../mcu/apollo2
 
-VPATH = ../../../../../devices
-VPATH+=:../../../../../third_party/FreeRTOSv10.1.1/Source/portable/GCC/AMapollo2
-VPATH+=:../../../../../third_party/FreeRTOSv10.1.1/Source/portable/MemMang
-VPATH+=:../../../../../third_party/FreeRTOSv10.1.1/Source
-VPATH+=:../../../../../utils
+VPATH = ../../../../../third_party/FreeRTOSv10.1.1/Source/portable/GCC/AMapollo2
+VPATH+=:../../../../../devices
 VPATH+=:../src
+VPATH+=:../../../../../third_party/FreeRTOSv10.1.1/Source
+VPATH+=:../../../../../third_party/FreeRTOSv10.1.1/Source/portable/MemMang
+VPATH+=:../../../../../utils
 
 SRC = port.c
 SRC += freertos_lowpower.c
@@ -112,11 +113,11 @@ SRC += list.c
 SRC += queue.c
 SRC += tasks.c
 SRC += timers.c
+SRC += heap_2.c
 SRC += am_util_debug.c
 SRC += am_util_delay.c
 SRC += am_util_faultisr.c
 SRC += am_util_stdio.c
-SRC += heap_2.c
 SRC += startup_gcc.c
 
 CSRC = $(filter %.c,$(SRC))
@@ -128,11 +129,11 @@ OBJS+= $(ASRC:%.s=$(CONFIG)/%.o)
 DEPS = $(CSRC:%.c=$(CONFIG)/%.d)
 DEPS+= $(ASRC:%.s=$(CONFIG)/%.d)
 
-LIBS = ../../../bsp/gcc/bin/libam_bsp.a
-LIBS += ../../../../../mcu/apollo2/hal/gcc/bin/libam_hal.a
+LIBS = ../../../../../mcu/apollo2/hal/gcc/bin/libam_hal.a
+LIBS += ../../../bsp/gcc/bin/libam_bsp.a
 
 CFLAGS = -mthumb -mcpu=$(CPU) -mfpu=$(FPU) -mfloat-abi=$(FABI)
-CFLAGS+= -ffunction-sections -fdata-sections
+CFLAGS+= -ffunction-sections -fdata-sections -fomit-frame-pointer
 CFLAGS+= -MMD -MP -std=c99 -Wall -g
 CFLAGS+= -O0
 CFLAGS+= $(DEFINES)
@@ -185,11 +186,11 @@ clean:
 
 $(CONFIG)/%.d: ;
 
-../../../bsp/gcc/bin/libam_bsp.a:
-	$(MAKE) -C ../../../bsp
-
 ../../../../../mcu/apollo2/hal/gcc/bin/libam_hal.a:
 	$(MAKE) -C ../../../../../mcu/apollo2/hal
+
+../../../bsp/gcc/bin/libam_bsp.a:
+	$(MAKE) -C ../../../bsp
 
 # Automatically include any generated dependencies
 -include $(DEPS)

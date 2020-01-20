@@ -43,7 +43,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
-// This is part of revision v2.2.0-7-g63f7c2ba1 of the AmbiqSuite Development Package.
+// This is part of revision 2.3.2 of the AmbiqSuite Development Package.
 //
 //*****************************************************************************
 
@@ -66,6 +66,7 @@
 #include "amota_api.h"
 #include "amotas_api.h"
 #include "svc_amotas.h"
+#include "gatt_api.h"
 
 /**************************************************************************************************
   Macros
@@ -359,9 +360,9 @@ static void amotaSetup(amotaMsg_t *pMsg)
     AppAdvSetData(APP_ADV_DATA_DISCOVERABLE, sizeof(amotaAdvDataDisc), (uint8_t *) amotaAdvDataDisc);
     AppAdvSetData(APP_SCAN_DATA_DISCOVERABLE, sizeof(amotaScanDataDisc), (uint8_t *) amotaScanDataDisc);
 
-    /* set advertising and scan response data for connectable mode */
-    AppAdvSetData(APP_ADV_DATA_CONNECTABLE, sizeof(amotaAdvDataDisc), (uint8_t *) amotaAdvDataDisc);
-    AppAdvSetData(APP_SCAN_DATA_CONNECTABLE, sizeof(amotaScanDataDisc), (uint8_t *) amotaScanDataDisc);
+  /* set advertising and scan response data for connectable mode */
+  AppAdvSetData(APP_ADV_DATA_CONNECTABLE, 0, NULL);
+  AppAdvSetData(APP_SCAN_DATA_CONNECTABLE, 0, NULL);
 
     /* start advertising; automatically set connectable/discoverable mode and bondable mode */
     AppAdvStart(APP_MODE_AUTO_INIT);
@@ -466,8 +467,19 @@ static void amotaProcMsg(amotaMsg_t *pMsg)
         break;
 
         case DM_RESET_CMPL_IND:
+            AttsCalculateDbHash();
             DmSecGenerateEccKeyReq();
+            amotaSetup(pMsg);
             uiEvent = APP_UI_RESET_CMPL;
+	      break;
+
+	    case DM_ADV_SET_START_IND:
+	      uiEvent = APP_UI_ADV_SET_START_IND;
+	    break;
+
+	    case DM_ADV_SET_STOP_IND:
+	      uiEvent = APP_UI_ADV_SET_STOP_IND;
+		  
         break;
 
         case DM_ADV_START_IND:
@@ -498,10 +510,12 @@ static void amotaProcMsg(amotaMsg_t *pMsg)
         break;
 
         case DM_SEC_PAIR_CMPL_IND:
+            DmSecGenerateEccKeyReq();
             uiEvent = APP_UI_SEC_PAIR_CMPL;
         break;
 
         case DM_SEC_PAIR_FAIL_IND:
+            DmSecGenerateEccKeyReq();
             uiEvent = APP_UI_SEC_PAIR_FAIL;
         break;
 
@@ -519,7 +533,50 @@ static void amotaProcMsg(amotaMsg_t *pMsg)
 
         case DM_SEC_ECC_KEY_IND:
             DmSecSetEccKey(&pMsg->dm.eccMsg.data.key);
-            amotaSetup(pMsg);
+          break;
+
+        case DM_SEC_COMPARE_IND:
+          AppHandleNumericComparison(&pMsg->dm.cnfInd);
+          break;
+
+        case DM_PRIV_CLEAR_RES_LIST_IND:
+          APP_TRACE_INFO1("Clear resolving list status 0x%02x", pMsg->hdr.status);
+          break;
+
+        case DM_HW_ERROR_IND:
+          uiEvent = APP_UI_HW_ERROR;
+          break;
+        case DM_VENDOR_SPEC_CMD_CMPL_IND:
+          {
+            #if defined(AM_PART_APOLLO) || defined(AM_PART_APOLLO2)
+           
+              uint8_t *param_ptr = &pMsg->dm.vendorSpecCmdCmpl.param[0];
+            
+              switch (pMsg->dm.vendorSpecCmdCmpl.opcode)
+              {
+                case 0xFC20: //read at address
+                {
+                  uint32_t read_value;
+
+                  BSTREAM_TO_UINT32(read_value, param_ptr);
+
+                  APP_TRACE_INFO3("VSC 0x%0x complete status %x param %x", 
+                    pMsg->dm.vendorSpecCmdCmpl.opcode, 
+                    pMsg->hdr.status,
+                    read_value);
+                }
+
+                break;
+                default:
+                    APP_TRACE_INFO2("VSC 0x%0x complete status %x",
+                        pMsg->dm.vendorSpecCmdCmpl.opcode,
+                        pMsg->hdr.status);
+                break;
+              }
+              
+            #endif
+          }
+          break;
         default:
         break;
     }
@@ -556,6 +613,7 @@ void AmotaHandlerInit(wsfHandlerId_t handlerId)
 
     /* Initialize application framework */
     AppSlaveInit();
+    AppServerInit();
 
     /* initialize amota service server */
     amotas_init(handlerId, (AmotasCfg_t *) &amotasCfg);
@@ -579,7 +637,14 @@ void AmotaHandler(wsfEventMask_t event, wsfMsgHdr_t *pMsg)
     {
         // APP_TRACE_INFO1("Amota got evt %d", pMsg->event);
 
-        if (pMsg->event >= DM_CBACK_START && pMsg->event <= DM_CBACK_END)
+        /* process ATT messages */
+        if (pMsg->event >= ATT_CBACK_START && pMsg->event <= ATT_CBACK_END)
+        {
+          /* process server-related ATT messages */
+          AppServerProcAttMsg(pMsg);
+        }
+        /* process DM messages */
+        else if (pMsg->event >= DM_CBACK_START && pMsg->event <= DM_CBACK_END)
         {
             /* process advertising and connection-related messages */
             AppSlaveProcDmMsg((dmEvt_t *) pMsg);
@@ -615,10 +680,14 @@ void AmotaStart(void)
     AppUiBtnRegister(amotaBtnCback);
 
     /* Initialize attribute server database */
+    SvcCoreGattCbackRegister(GattReadCback, GattWriteCback);
     SvcCoreAddGroup();
     SvcDisAddGroup();
     SvcAmotasCbackRegister(NULL, amotas_write_cback);
     SvcAmotasAddGroup();
+
+    /* Set Service Changed CCCD index. */
+    GattSetSvcChangedIdx(AMOTA_GATT_SC_CCC_IDX);
 
     /* Reset the device */
     DmDevReset();

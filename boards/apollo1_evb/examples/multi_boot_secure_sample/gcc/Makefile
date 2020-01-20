@@ -34,7 +34,7 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 #
-# This is part of revision v2.2.0-7-g63f7c2ba1 of the AmbiqSuite Development Package.
+# This is part of revision 2.3.2 of the AmbiqSuite Development Package.
 #
 #******************************************************************************
 TARGET := multi_boot
@@ -81,22 +81,23 @@ all clean:
 else
 
 DEFINES = -DPART_$(PART)
+DEFINES+= -DAM_PACKAGE_BGA
 DEFINES+= -DAM_PART_APOLLO
 DEFINES+= -D'AM_MULTIBOOT_CONFIG_FILE="am_multi_boot_config.h"'
-DEFINES+= -DAM_PACKAGE_BGA
+DEFINES+= -Dgcc
 
-INCLUDES = -I../../../../../utils
+INCLUDES = -I../../../../../devices
 INCLUDES+= -I../../../../../bootloader
-INCLUDES+= -I../src
-INCLUDES+= -I../../../../../devices
-INCLUDES+= -I../../../bsp
 INCLUDES+= -I../../../../../mcu/apollo
+INCLUDES+= -I../../../bsp
 INCLUDES+= -I../../../../..
+INCLUDES+= -I../../../../../utils
+INCLUDES+= -I../src
 
-VPATH = ../../../../../utils
-VPATH+=:../../../../../bootloader
+VPATH = ../../../../../devices
+VPATH+=:../../../../../utils
 VPATH+=:../src
-VPATH+=:../../../../../devices
+VPATH+=:../../../../../bootloader
 
 SRC = multi_boot.c
 SRC += multi_boot_secure.c

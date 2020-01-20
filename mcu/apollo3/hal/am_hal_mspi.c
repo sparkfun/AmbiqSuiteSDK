@@ -45,7 +45,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
-// This is part of revision v2.2.0-7-g63f7c2ba1 of the AmbiqSuite Development Package.
+// This is part of revision 2.3.2 of the AmbiqSuite Development Package.
 //
 //*****************************************************************************
 
@@ -1322,7 +1322,7 @@ am_hal_mspi_device_configure(void *pHandle,
     //
     // Set the APBCLK for continuous operation.
     //
-    MSPIn(ui32Module)->MSPICFG_b.APBCLK = 0;
+    MSPIn(ui32Module)->MSPICFG_b.APBCLK = 1;
 
     //
     // Reset the register storage for next write.
@@ -2942,6 +2942,13 @@ uint32_t am_hal_mspi_power_control(void *pHandle,
 
         case AM_HAL_SYSCTRL_NORMALSLEEP:
         case AM_HAL_SYSCTRL_DEEPSLEEP:
+            // Make sure MPSI is not active currently
+            if (pMSPIState->prefix.s.bEnable &&
+                ((MSPIn(pMSPIState->ui32Module)->DMASTAT_b.DMATIP) ||
+                   pMSPIState->ui32NumHPPendingEntries))
+            {
+                return AM_HAL_STATUS_IN_USE;
+            }
             if (bRetainState)
             {
                 //
@@ -2968,6 +2975,23 @@ uint32_t am_hal_mspi_power_control(void *pHandle,
                 pMSPIState->registerState.bValid        = true;
             }
 
+            //
+            // Disable all the interrupts.
+            //
+            am_hal_mspi_interrupt_disable(pHandle, MSPI_INTEN_SCRERR_Msk |
+                                          MSPI_INTEN_CQERR_Msk |
+                                            MSPI_INTEN_CQPAUSED_Msk |
+                                              MSPI_INTEN_CQUPD_Msk |
+                                                MSPI_INTEN_CQCMP_Msk |
+                                                  MSPI_INTEN_DERR_Msk |
+                                                    MSPI_INTEN_DCMP_Msk |
+                                                      MSPI_INTEN_RXF_Msk |
+                                                        MSPI_INTEN_RXO_Msk |
+                                                          MSPI_INTEN_RXU_Msk |
+                                                            MSPI_INTEN_TXO_Msk |
+                                                              MSPI_INTEN_TXE_Msk |
+                                                                MSPI_INTEN_CMDCMP_Msk);
+            
             //
             // Disable power control.
             //

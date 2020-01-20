@@ -335,7 +335,7 @@
               <MiscControls></MiscControls>
               <Define>AM_MULTIBOOT_CONFIG_FILE=\"am_multi_boot_config.h\" AM_PACKAGE_BGA AM_PART_APOLLO keil</Define>
               <Undefine></Undefine>
-              <IncludePath>../../../../..;../../../bsp;../../../../../utils;../../../../../bootloader;../../../../../mcu/apollo;../src;../../../../../devices</IncludePath>
+              <IncludePath>../../../../../mcu/apollo;../../../../../devices;../../../../..;../src;../../../bsp;../../../../../utils;../../../../../bootloader</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -455,14 +455,14 @@
           <GroupName>lib</GroupName>
           <Files>
             <File>
-              <FileName>libam_hal.lib</FileName>
-              <FileType>4</FileType>
-              <FilePath>../../../../../mcu/apollo/hal/keil/bin/libam_hal.lib</FilePath>
-            </File>
-            <File>
               <FileName>libam_bsp.lib</FileName>
               <FileType>4</FileType>
               <FilePath>../../../bsp/keil/bin/libam_bsp.lib</FilePath>
+            </File>
+            <File>
+              <FileName>libam_hal.lib</FileName>
+              <FileType>4</FileType>
+              <FilePath>../../../../../mcu/apollo/hal/keil/bin/libam_hal.lib</FilePath>
             </File>
           </Files>
         </Group>

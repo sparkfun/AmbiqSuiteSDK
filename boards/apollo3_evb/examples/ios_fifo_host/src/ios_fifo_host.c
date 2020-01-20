@@ -96,7 +96,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
-// This is part of revision v2.2.0-7-g63f7c2ba1 of the AmbiqSuite Development Package.
+// This is part of revision 2.3.2 of the AmbiqSuite Development Package.
 //
 //*****************************************************************************
 
@@ -246,14 +246,24 @@ static void hostint_handler(void)
 //*****************************************************************************
 void am_gpio_isr(void)
 {
-    uint64_t ui64Status;
-
     //
     // Read and clear the GPIO interrupt status.
     //
+#if defined(AM_PART_APOLLO3P)
+    AM_HAL_GPIO_MASKCREATE(GpioIntStatusMask);
+
+    am_hal_gpio_interrupt_status_get(false, pGpioIntStatusMask);
+    am_hal_gpio_interrupt_clear(pGpioIntStatusMask);
+    am_hal_gpio_interrupt_service(pGpioIntStatusMask);
+#elif defined(AM_PART_APOLLO3)
+    uint64_t ui64Status;
+
     am_hal_gpio_interrupt_status_get(false, &ui64Status);
     am_hal_gpio_interrupt_clear(ui64Status);
     am_hal_gpio_interrupt_service(ui64Status);
+#else
+    #error Unknown device.
+#endif
 }
 
 void iom_slave_read(bool bSpi, uint32_t offset, uint32_t *pBuf, uint32_t size)
@@ -438,11 +448,12 @@ static void iom_set_up(uint32_t iomModule, bool bSpi)
     am_hal_iom_enable(g_IOMHandle);
     am_hal_gpio_pinconfig(HANDSHAKE_PIN, g_AM_BSP_GPIO_HANDSHAKE);
 
+    AM_HAL_GPIO_MASKCREATE(GpioIntMask);
     // Set up the host IO interrupt
-    am_hal_gpio_interrupt_clear(AM_HAL_GPIO_BIT(HANDSHAKE_PIN));
+    am_hal_gpio_interrupt_clear( AM_HAL_GPIO_MASKBIT(pGpioIntMask, HANDSHAKE_PIN));
     // Register handler for IOS => IOM interrupt
     am_hal_gpio_interrupt_register(HANDSHAKE_PIN, hostint_handler);
-    am_hal_gpio_interrupt_enable(AM_HAL_GPIO_BIT(HANDSHAKE_PIN));
+    am_hal_gpio_interrupt_enable(AM_HAL_GPIO_MASKBIT(pGpioIntMask, HANDSHAKE_PIN));
     NVIC_EnableIRQ(GPIO_IRQn);
 
     // Set up IOCTL interrupts

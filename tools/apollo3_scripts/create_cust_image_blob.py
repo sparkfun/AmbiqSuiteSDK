@@ -9,9 +9,10 @@ import hashlib
 import hmac
 import os
 import binascii
+import importlib
 
 from am_defines import *
-from keys_info import keyTblAes, keyTblHmac, minAesKeyIdx, maxAesKeyIdx, minHmacKeyIdx, maxHmacKeyIdx, INFO_KEY
+#from keys_info import keyTblAes, keyTblHmac, minAesKeyIdx, maxAesKeyIdx, minHmacKeyIdx, maxHmacKeyIdx, INFO_KEY
 
 
 #******************************************************************************
@@ -19,7 +20,7 @@ from keys_info import keyTblAes, keyTblHmac, minAesKeyIdx, maxAesKeyIdx, minHmac
 # Generate the image blob as per command line parameters
 #
 #******************************************************************************
-def process(loadaddress, appFile, magicNum, crcI, crcB, authI, authB, protection, authKeyIdx, output, encKeyIdx, version, erasePrev, child0, child1, authalgo, encalgo):
+def process(loadaddress, appFile, magicNum, crcI, crcB, authI, authB, protection, authKeyIdx, output, encKeyIdx, version, erasePrev, child0, child1, authalgo, encalgo, keyFile):
 
     app_binarray = bytearray()
     # Open the file, and read it into an array of integers.
@@ -27,10 +28,13 @@ def process(loadaddress, appFile, magicNum, crcI, crcB, authI, authB, protection
         app_binarray.extend(f_app.read())
         f_app.close()
 
+    filenames = keyFile.split('.')
+    keys = importlib.import_module(filenames[0])
+
     encVal = 0
     if (encalgo != 0):
         encVal = 1
-        if ((encKeyIdx < minAesKeyIdx) or (encKeyIdx > maxAesKeyIdx)):
+        if ((encKeyIdx < keys.minAesKeyIdx) or (encKeyIdx > keys.maxAesKeyIdx)):
             am_print("Invalid encKey Idx ", encKeyIdx, level=AM_PRINT_LEVEL_ERROR);
             return
         if (encalgo == 2):
@@ -41,7 +45,7 @@ def process(loadaddress, appFile, magicNum, crcI, crcB, authI, authB, protection
         else:
             keySize = 16
     if (authalgo != 0):
-        if ((authKeyIdx < minHmacKeyIdx) or (authKeyIdx > maxHmacKeyIdx) or (authKeyIdx & 0x1)):
+        if ((authKeyIdx < keys.minHmacKeyIdx) or (authKeyIdx > keys.maxHmacKeyIdx) or (authKeyIdx & 0x1)):
             am_print("Invalid authKey Idx ", authKeyIdx, level=AM_PRINT_LEVEL_ERROR);
             return
 
@@ -64,6 +68,9 @@ def process(loadaddress, appFile, magicNum, crcI, crcB, authI, authB, protection
     if (loadaddress & 0x3):
         am_print("load address needs to be word aligned", level=AM_PRINT_LEVEL_ERROR)
         return
+
+    if (loadaddress & (FLASH_PAGE_SIZE - 1)):
+        am_print("WARNING!!! - load address is not page aligned", level=AM_PRINT_LEVEL_ERROR)
 
     if (magicNum == AM_IMAGE_MAGIC_INFO0):
         if (orig_app_length & 0x3):
@@ -103,7 +110,7 @@ def process(loadaddress, appFile, magicNum, crcI, crcB, authI, authB, protection
     if (magicNum == AM_IMAGE_MAGIC_INFO0):
         # Insert the INFO0 size and offset
         addrWord = ((orig_app_length>>2) << 16) | ((loadaddress>>2) & 0xFFFF)
-        versionKeyWord = INFO_KEY
+        versionKeyWord = keys.INFO_KEY
     else:
         # Insert the application binary load address.
         addrWord = loadaddress | (protection & 0x3)
@@ -122,13 +129,13 @@ def process(loadaddress, appFile, magicNum, crcI, crcB, authI, authB, protection
     am_print("child1 = ",hex(child1))
     fill_word(hdr_binarray, AM_IMAGEHDR_OFFSET_CHILDPTR + 4, child1)
 
-    authKeyIdx = authKeyIdx - minHmacKeyIdx
+    authKeyIdx = authKeyIdx - keys.minHmacKeyIdx
     if (authB != 0): # Authentication needed
         am_print("Boot Authentication Enabled")
 #        am_print("Key used for HMAC")
-#        am_print([hex(keyTblHmac[authKeyIdx*AM_SECBOOT_KEYIDX_BYTES + n]) for n in range (0, AM_HMAC_SIG_SIZE)])
+#        am_print([hex(keys.keyTblHmac[authKeyIdx*AM_SECBOOT_KEYIDX_BYTES + n]) for n in range (0, AM_HMAC_SIG_SIZE)])
         # Initialize the clear image HMAC
-        sigClr = compute_hmac(keyTblHmac[authKeyIdx*AM_SECBOOT_KEYIDX_BYTES:(authKeyIdx*AM_SECBOOT_KEYIDX_BYTES+AM_HMAC_SIG_SIZE)], (hdr_binarray[AM_IMAGEHDR_START_HMAC:hdr_length] + app_binarray))
+        sigClr = compute_hmac(keys.keyTblHmac[authKeyIdx*AM_SECBOOT_KEYIDX_BYTES:(authKeyIdx*AM_SECBOOT_KEYIDX_BYTES+AM_HMAC_SIG_SIZE)], (hdr_binarray[AM_IMAGEHDR_START_HMAC:hdr_length] + app_binarray))
         am_print("HMAC Clear")
         am_print([hex(n) for n in sigClr])
         # Fill up the HMAC
@@ -138,7 +145,7 @@ def process(loadaddress, appFile, magicNum, crcI, crcB, authI, authB, protection
     # All the header fields part of the encryption are now final
     if (encVal == 1):
         am_print("Encryption Enabled")
-        encKeyIdx = encKeyIdx - minAesKeyIdx
+        encKeyIdx = encKeyIdx - keys.minAesKeyIdx
         ivValAes = os.urandom(AM_SECBOOT_AESCBC_BLOCK_SIZE_BYTES)
         am_print("Initialization Vector")
         am_print([hex(ivValAes[n]) for n in range (0, AM_SECBOOT_AESCBC_BLOCK_SIZE_BYTES)])
@@ -149,9 +156,9 @@ def process(loadaddress, appFile, magicNum, crcI, crcB, authI, authB, protection
         am_print("Encrypting blob of size " , (hdr_length - AM_IMAGEHDR_START_ENCRYPT + app_length))
         enc_binarray = encrypt_app_aes((hdr_binarray[AM_IMAGEHDR_START_ENCRYPT:hdr_length] + app_binarray), keyAes, ivValAes)
 #        am_print("Key used for encrypting AES Key")
-#        am_print([hex(keyTblAes[encKeyIdx*keySize + n]) for n in range (0, keySize)])
+#        am_print([hex(keys.keyTblAes[encKeyIdx*keySize + n]) for n in range (0, keySize)])
         # Encrypted Key
-        enc_key = encrypt_app_aes(keyAes, keyTblAes[encKeyIdx*keySize:encKeyIdx*keySize + keySize], ivVal0)
+        enc_key = encrypt_app_aes(keyAes, keys.keyTblAes[encKeyIdx*keySize:encKeyIdx*keySize + keySize], ivVal0)
         am_print("Encrypted Key")
         am_print([hex(enc_key[n]) for n in range (0, keySize)])
         # Fill up the IV
@@ -167,9 +174,9 @@ def process(loadaddress, appFile, magicNum, crcI, crcB, authI, authB, protection
     if (authI != 0): # Install Authentication needed
         am_print("Install Authentication Enabled")
 #        am_print("Key used for HMAC")
-#        am_print([hex(keyTblHmac[authKeyIdx*AM_SECBOOT_KEYIDX_BYTES + n]) for n in range (0, AM_HMAC_SIG_SIZE)])
+#        am_print([hex(keys.keyTblHmac[authKeyIdx*AM_SECBOOT_KEYIDX_BYTES + n]) for n in range (0, AM_HMAC_SIG_SIZE)])
         # Initialize the top level HMAC
-        sig = compute_hmac(keyTblHmac[authKeyIdx*AM_SECBOOT_KEYIDX_BYTES:(authKeyIdx*AM_SECBOOT_KEYIDX_BYTES+AM_HMAC_SIG_SIZE)], (hdr_binarray[AM_IMAGEHDR_START_HMAC_INST:AM_IMAGEHDR_START_ENCRYPT] + enc_binarray))
+        sig = compute_hmac(keys.keyTblHmac[authKeyIdx*AM_SECBOOT_KEYIDX_BYTES:(authKeyIdx*AM_SECBOOT_KEYIDX_BYTES+AM_HMAC_SIG_SIZE)], (hdr_binarray[AM_IMAGEHDR_START_HMAC_INST:AM_IMAGEHDR_START_ENCRYPT] + enc_binarray))
         am_print("Generated Signature")
         am_print([hex(n) for n in sig])
         # Fill up the HMAC
@@ -222,11 +229,11 @@ def parse_arguments():
     parser.add_argument('-o', dest = 'output', default='outimage',
                         help = 'Output filename (without the extension)')
 
-    parser.add_argument('--authkey', dest = 'authkey', type=auto_int, default=(minHmacKeyIdx), choices = range(minHmacKeyIdx, maxHmacKeyIdx + 1),
-                        help = 'Authentication Key Idx? (' + str(minHmacKeyIdx) + ' to ' + str(maxHmacKeyIdx) + ')')
+    parser.add_argument('--authkey', dest = 'authkey', type=auto_int, default=(AM_SECBOOT_MIN_KEYIDX_INFO0), choices = range(AM_SECBOOT_MIN_KEYIDX_INFO0, AM_SECBOOT_MAX_KEYIDX_INFO0 + 1),
+                        help = 'Authentication Key Idx? (' + str(AM_SECBOOT_MIN_KEYIDX_INFO0) + ' to ' + str(AM_SECBOOT_MAX_KEYIDX_INFO0) + ')')
 
-    parser.add_argument('--kek', dest = 'kek', type=auto_int, default=(minAesKeyIdx), choices = range(minAesKeyIdx, maxAesKeyIdx+1),
-                        help = 'KEK index? (' + str(minAesKeyIdx) + ' to ' + str(maxAesKeyIdx) + ')')
+    parser.add_argument('--kek', dest = 'kek', type=auto_int, default=(AM_SECBOOT_MIN_KEYIDX_INFO0), choices = range(AM_SECBOOT_MIN_KEYIDX_INFO0, AM_SECBOOT_MAX_KEYIDX_INFO0 + 1),
+                        help = 'KEK Index? (' + str(AM_SECBOOT_MIN_KEYIDX_INFO0) + ' to ' + str(AM_SECBOOT_MAX_KEYIDX_INFO0) + ')')
 
     parser.add_argument('--authalgo', dest = 'authalgo', type=auto_int, default=0, choices=range(0, AM_SECBOOT_AUTH_ALGO_MAX+1),
                         help = helpAuthAlgo)
@@ -260,6 +267,9 @@ def parse_arguments():
 
     parser.add_argument('-p', dest = 'protection', type=auto_int, default=0, choices = [0x0, 0x1, 0x2, 0x3],
                         help = 'protection info 2 bit C W')
+ 
+    parser.add_argument('-k', type=str, dest='keyFile', nargs='?', default='keys_info.py',
+                        help='key file in specified format [default = keys_info.py]')
 
     parser.add_argument('--loglevel', dest='loglevel', type=auto_int, default=AM_PRINT_LEVEL_INFO,
                         choices = range(AM_PRINT_LEVEL_MIN, AM_PRINT_LEVEL_MAX+1),
@@ -283,7 +293,7 @@ def main():
     am_set_print_level(args.loglevel)
 
 
-    process(args.loadaddress, args.appFile, args.magic_num, args.crcI, args.crcB, args.authI, args.authB, args.protection, args.authkey, args.output, args.kek, args.version, args.erasePrev, args.child0, args.child1, args.authalgo, args.encalgo)
+    process(args.loadaddress, args.appFile, args.magic_num, args.crcI, args.crcB, args.authI, args.authB, args.protection, args.authkey, args.output, args.kek, args.version, args.erasePrev, args.child0, args.child1, args.authalgo, args.encalgo, args.keyFile)
 
 if __name__ == '__main__':
     main()

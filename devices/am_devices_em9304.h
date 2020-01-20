@@ -40,7 +40,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
-// This is part of revision v2.2.0-7-g63f7c2ba1 of the AmbiqSuite Development Package.
+// This is part of revision 2.3.2 of the AmbiqSuite Development Package.
 //
 //*****************************************************************************
 #ifndef AM_DEVICES_EM9304_H
@@ -108,7 +108,7 @@ extern void am_devices_em9304_enable_interrupt(void);
 extern void am_devices_em9304_disable_interrupt(void);
 #endif // defined(AM_PART_APOLLO) || defined(AM_PART_APOLLO2)
 
-#if defined(AM_PART_APOLLO3)
+#if (defined(AM_PART_APOLLO3) || defined(AM_PART_APOLLO3P))
 
 typedef enum
 {
@@ -118,10 +118,6 @@ typedef enum
 
 
 extern uint32_t am_devices_em9304_init(uint32_t ui32Module, am_hal_iom_config_t *psIomConfig, void **ppIomHandle);
-extern uint32_t am_devices_em9304_fullduplex(uint32_t ui32WriteAddress,
-                             uint8_t *pui8TxBuffer,
-                             uint8_t *pui8RxBuffer,
-                             uint32_t ui32TxNumBytes);
 
 #endif // defined(AM_PART_APOLLO3)
 

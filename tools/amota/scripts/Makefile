@@ -9,8 +9,8 @@ LOAD_ADDR_APOLLO2 = 0x8000
 BOOTBIN_APOLLO2 =../../../boards/apollo2_evb/examples/multi_boot/iar/bin/multi_boot.bin
 
 # Apollo2-BLUE EVB
-UPDATEBIN_APOLLO2_BLUE =../../../boards/apollo2_blue_evb/examples/freertos_amota_blinky/iar/bin/freertos_amota_blinky.bin
-APPBIN_APOLLO2_BLUE =../../../boards/apollo2_blue_evb/examples/freertos_amota/iar/bin/freertos_amota.bin
+UPDATEBIN_APOLLO2_BLUE =../../../boards/apollo2_blue_evb/examples/ble_freertos_amota_blinky/iar/bin/ble_freertos_amota_blinky.bin
+APPBIN_APOLLO2_BLUE =../../../boards/apollo2_blue_evb/examples/ble_freertos_amota/iar/bin/ble_freertos_amota.bin
 APPBIN_APOLLO2_BLUE_ETHERMIND =../../../boards/apollo2_blue_evb/examples/mindtree_amota/iar/bin/mindtree_amota.bin
 
 all: $(BOOTBIN_APOLLO2) \
@@ -24,15 +24,15 @@ $(BOOTBIN_APOLLO2):
 	$(MAKE) -C ../../../boards/apollo2_evb/examples/multi_boot/iar/ $(MAKECMDGOALS)
 
 $(APPBIN_APOLLO2_BLUE):
-	$(MAKE) -C ../../../boards/apollo2_blue_evb/examples/freertos_amota/iar/ $(MAKECMDGOALS)
+	$(MAKE) -C ../../../boards/apollo2_blue_evb/examples/ble_freertos_amota/iar/ $(MAKECMDGOALS)
 
 $(UPDATEBIN_APOLLO2_BLUE):
-	$(MAKE) -C ../../../boards/apollo2_blue_evb/examples/freertos_amota_blinky/iar/ $(MAKECMDGOALS)
+	$(MAKE) -C ../../../boards/apollo2_blue_evb/examples/ble_freertos_amota_blinky/iar/ $(MAKECMDGOALS)
 
 
 clean:
 	rm -rf *.bin
 	$(MAKE) -C ../../../boards/apollo2_evb/examples/multi_boot/iar/ $(MAKECMDGOALS)
-	$(MAKE) -C ../../../boards/apollo2_blue_evb/examples/freertos_amota/iar/ $(MAKECMDGOALS)
-	$(MAKE) -C ../../../boards/apollo2_blue_evb/examples/freertos_amota_blinky/iar/ $(MAKECMDGOALS)
+	$(MAKE) -C ../../../boards/apollo2_blue_evb/examples/ble_freertos_amota/iar/ $(MAKECMDGOALS)
+	$(MAKE) -C ../../../boards/apollo2_blue_evb/examples/ble_freertos_amota_blinky/iar/ $(MAKECMDGOALS)
 	

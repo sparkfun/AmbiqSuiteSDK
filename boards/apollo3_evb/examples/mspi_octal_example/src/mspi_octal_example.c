@@ -10,7 +10,14 @@
 //!
 //! Printing takes place over the ITM at 1M Baud.
 //!
-//
+//! Additional Information:
+//! If the fireball device card is used, this example can work on:
+//! Apollo3_eb + Fireball
+//! Apollo3_eb + Fireball2
+//! Recommend to use 1.8V power supply voltage.
+//! Define FIREBALL_CARD or FIREBALL2_CARD in the config-template.ini file to select.
+//! Define ADESTO_ATXP032
+//!
 //*****************************************************************************
 
 //*****************************************************************************
@@ -47,7 +54,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
-// This is part of revision v2.2.0-7-g63f7c2ba1 of the AmbiqSuite Development Package.
+// This is part of revision 2.3.2 of the AmbiqSuite Development Package.
 //
 //*****************************************************************************
 
@@ -56,7 +63,7 @@
 #include "am_devices_mspi_flash.h"
 #include "am_util.h"
 
-#if FIREBALL_CARD
+#if FIREBALL_CARD || FIREBALL2_CARD
 //
 // The Fireball device card multiplexes various devices including each of an SPI
 // and I2C FRAM. The Fireball device driver controls access to these devices.
@@ -320,7 +327,7 @@ main(void)
     am_util_stdio_terminal_clear();
     am_util_stdio_printf("Apollo3 Octal MSPI Example\n\n");
 
-#if FIREBALL_CARD
+#if FIREBALL_CARD || FIREBALL2_CARD
     //
     // Set the MUX for the Flash Device
     //
@@ -340,6 +347,10 @@ main(void)
     else if ( ui32ID == FIREBALL_ID )
     {
         am_util_stdio_printf("Fireball found, ID is 0x%X.\n", ui32ID);
+    }
+    else if ( ui32ID == FIREBALL2_ID )
+    {
+        am_util_stdio_printf("Fireball 2 found, ID is 0x%X.\n", ui32ID);
     }
     else
     {

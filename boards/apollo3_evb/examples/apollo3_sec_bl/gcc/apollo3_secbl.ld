@@ -7,8 +7,8 @@ ENTRY(Reset_Handler)
 
 MEMORY
 {
-    FLASH (rx) : ORIGIN = 0xC000, LENGTH = 960K
-    SRAM (rwx) : ORIGIN = 0x10000000, LENGTH = 384K
+    ROMEM (rx) : ORIGIN = 0xC000, LENGTH = 960K
+    RWMEM (rwx) : ORIGIN = 0x10000000, LENGTH = 384K
 }
 
 SECTIONS
@@ -24,7 +24,7 @@ SECTIONS
         *(.rodata*)
         . = ALIGN(4);
         _etext = .;
-    } > FLASH
+    } > ROMEM
 
     /* User stack section initialized by startup code. */
     .stack (NOLOAD):
@@ -33,7 +33,7 @@ SECTIONS
         *(.stack)
         *(.stack*)
         . = ALIGN(8);
-    } > SRAM
+    } > RWMEM
 
     .data :
     {
@@ -43,7 +43,7 @@ SECTIONS
         *(.data*)
         . = ALIGN(4);
         _edata = .;
-    } > SRAM AT>FLASH
+    } > RWMEM AT>ROMEM
 
     /* used by startup to initialize data */
     _init_data = LOADADDR(.data);
@@ -57,7 +57,7 @@ SECTIONS
         *(COMMON)
         . = ALIGN(4);
         _ebss = .;
-    } > SRAM
+    } > RWMEM
 
     .ARM.attributes 0 : { *(.ARM.attributes) }
 }

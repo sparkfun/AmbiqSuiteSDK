@@ -40,7 +40,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
-// This is part of revision v2.2.0-7-g63f7c2ba1 of the AmbiqSuite Development Package.
+// This is part of revision 2.3.2 of the AmbiqSuite Development Package.
 //
 //*****************************************************************************
 
@@ -51,60 +51,37 @@
 define memory mem with size = 4G;
 
 //
-// Define a region for the flash.
+// Define regions for the various types of internal memory.
 //
-define region FLASH = mem:[from 0x0000C000 to 0x000FC000];
+define region ROMEM    = mem:[from 0x0000C000 to 0x000FC000];
+define region RWMEM    = mem:[from 0x10000000 to 0x10060000];
 
 //
-// Define a region for the SRAM.
-//
-define region SRAM = mem:[from 0x10000000 to 0x10060000];
-
-//
-// Define a block for the heap.
+// Define blocks for logical groups of data.
 //
 define block HEAP with alignment = 0x8, size = 0x00000000 { };
+define block CSTACK with alignment = 0x8, size = 4096
+{
+    section .stack
+};
 
-//
-// Define a block for the stack.
-//
-define block CSTACK with alignment = 0x8, size = 1024 { };
-
-//
-// Define a block for the Interrupt Vectors and Patchable Region.
-//
 define block FLASHBASE with fixed order
 {
- readonly section .intvec,
- readonly section .patch
+    readonly section .intvec,
+    readonly section .patch
 };
 
 //
-// Read/Write values should be initialized by copying from flash.
+// Set section properties.
 //
 initialize by copy { readwrite };
-
-//
-// Indicate that the noinit values should be left alone.
-//
 do not initialize { section .noinit };
+do not initialize { section .stack };
 
 //
-// Place the interrupt vectors and patchable section at the start of flash.
+// Place code sections in memory regions.
 //
-place at start of FLASH { block FLASHBASE };
-
-//
-// Place the remainder of the read-only items into flash.
-//
-place in FLASH { readonly };
-
-//
-// Place the stack at the start of SRAM.
-//
-place at start of SRAM { block CSTACK, section .noinit };
-
-//
-// Place all read/write items into SRAM.
-//
-place in SRAM { block HEAP, readwrite };
+place at start of ROMEM { block FLASHBASE };
+place in ROMEM { readonly };
+place at start of RWMEM { block CSTACK};
+place in RWMEM { block HEAP, readwrite, section .noinit };

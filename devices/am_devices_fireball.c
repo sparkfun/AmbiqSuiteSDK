@@ -43,7 +43,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
-// This is part of revision v2.2.0-7-g63f7c2ba1 of the AmbiqSuite Development Package.
+// This is part of revision 2.3.2 of the AmbiqSuite Development Package.
 //
 //*****************************************************************************
 #include <stdint.h>
@@ -79,7 +79,8 @@
 // Fireball version info
 // Note: the 16-bit ID value is located on the Fireball Apollo IOS at 0x40/0x41.
 //          FIREBALL_ID         0x7710
-//          FIREBALL2_ID        0x7810
+//          FIREBALL2_ID        0x7712
+//          FIREBALL3_ID        0x7713
 //
 #define FIREBALL_OFFSET_ID      0x40    // (16 bits at 0x40/0x41)
 #define FIREBALL_OFFSET_SWREV   0x42    // 1 byte
@@ -167,6 +168,8 @@ static uint32_t fireball_id_get(uint32_t *pui32ID);
 static uint32_t
 fireball_init(uint32_t ui32Board, uint32_t ui32Module)
 {
+    uint32_t ui32Ret;
+
     if ( ui32Board != FIREBALL_BOARD_NUM )
     {
         return 1;
@@ -211,17 +214,15 @@ fireball_init(uint32_t ui32Board, uint32_t ui32Module)
     // Set up the pins, including CE, for Apollo3 IOM5 pins that will
     // communicate with the Apollo IOS SPI device.
     //
-#if AM_APOLLO3_GPIO
-    am_hal_gpio_pinconfig(AM_BSP_GPIO_IOM5_SCK,    g_AM_BSP_GPIO_IOM5_SCK);
-    am_hal_gpio_pinconfig(AM_BSP_GPIO_IOM5_MISO,   g_AM_BSP_GPIO_IOM5_MISO);
-    am_hal_gpio_pinconfig(AM_BSP_GPIO_IOM5_MOSI,   g_AM_BSP_GPIO_IOM5_MOSI);
-    am_hal_gpio_pinconfig(AM_BSP_GPIO_FIREBALL_CE, g_AM_BSP_GPIO_FIREBALL_CE);
-#else // AM_APOLLO3_GPIO
-    am_bsp_pin_enable(IOM5_SCK);
-    am_bsp_pin_enable(IOM5_MISO);
-    am_bsp_pin_enable(IOM5_MOSI);
-    am_bsp_pin_enable(FIREBALL_CE);
-#endif // AM_APOLLO3_GPIO
+    ui32Ret  = am_hal_gpio_pinconfig(AM_BSP_GPIO_IOM5_SCK,    g_AM_BSP_GPIO_IOM5_SCK);
+    ui32Ret |= am_hal_gpio_pinconfig(AM_BSP_GPIO_IOM5_MISO,   g_AM_BSP_GPIO_IOM5_MISO);
+    ui32Ret |= am_hal_gpio_pinconfig(AM_BSP_GPIO_IOM5_MOSI,   g_AM_BSP_GPIO_IOM5_MOSI);
+    ui32Ret |= am_hal_gpio_pinconfig(AM_BSP_GPIO_FIREBALL_CE, g_AM_BSP_GPIO_FIREBALL_CE);
+
+    if ( ui32Ret )
+    {
+        return 3;
+    }
 
     //
     // Initialize the write transaction structure.
@@ -259,7 +260,7 @@ fireball_init(uint32_t ui32Board, uint32_t ui32Module)
     //
     if ( fireball_id_get(&g_ui32FireballID) != AM_HAL_STATUS_SUCCESS )
     {
-        return 3;
+        return 4;
     }
 
     //
@@ -272,7 +273,7 @@ fireball_init(uint32_t ui32Board, uint32_t ui32Module)
     //
     if ( g_ui32FireballID == 0xFFFF )
     {
-        return 4;
+        return 5;
     }
 
     return 0;
@@ -303,17 +304,10 @@ fireball_deinit(uint32_t ui32Board)
         //
         // Disconnect pins.
         //
-#if AM_APOLLO3_GPIO
         am_hal_gpio_pinconfig(AM_BSP_GPIO_IOM5_SCK,    g_AM_HAL_GPIO_DISABLE);
         am_hal_gpio_pinconfig(AM_BSP_GPIO_IOM5_MISO,   g_AM_HAL_GPIO_DISABLE);
         am_hal_gpio_pinconfig(AM_BSP_GPIO_IOM5_MOSI,   g_AM_HAL_GPIO_DISABLE);
         am_hal_gpio_pinconfig(AM_BSP_GPIO_FIREBALL_CE, g_AM_HAL_GPIO_DISABLE);
-#else // AM_APOLLO3_GPIO
-        am_bsp_pin_disable(IOM5_SCK);
-        am_bsp_pin_disable(IOM5_MISO);
-        am_bsp_pin_disable(IOM5_MOSI);
-        am_bsp_pin_disable(FIREBALL_CE);
-#endif // AM_APOLLO3_GPIO
     }
 
     //
@@ -326,21 +320,80 @@ fireball_deinit(uint32_t ui32Board)
 } // fireball_deinit()
 
 //*****************************************************************************
+// Return the Fireball currently in use.
+//  2 = Fireball (original) or Fireball2.
+//  3 = Fireball3.
+//
+// This function assumes that fireball_init() has already been called!
+//
+//*****************************************************************************
+static uint32_t
+FBn_get(void)
+{
+    switch ( g_ui32FireballID )
+    {
+        case FIREBALL_ID:
+        case FIREBALL2_ID:
+            return 2;
+        case FIREBALL3_ID:
+            return 3;
+        default:
+            return 0xFFFFFFFF;
+    }
+} // FBn_get()
+
+
+//*****************************************************************************
 // fireball_write_cmd()
 //*****************************************************************************
 static uint32_t
-fireball_write_cmd(uint32_t ui32FireballCmd)
+fireball_write_cmd(uint32_t ui32value, uint32_t ui32GPIOnum)
 {
-    //
-    // On the Apollo slave, bit7 of the offset byte determines write or read.
-    // 1=write, 0=read.
-    //
-    g_sFireballTransaction.ui32InstrLen     = 2;
-    g_sFireballTransaction.ui32Instr        = (0x80 << 8) |
-                                              (ui32FireballCmd & 0xFF);
+    uint32_t ui32FBn = FBn_get();
+    uint32_t ui32Ret;
 
-    return am_hal_iom_blocking_transfer(g_pIOM5Handle,
-                                        &g_sFireballTransaction);
+    if ( ui32FBn <= 2 )
+    {
+        //
+        // On the Apollo slave, bit7 of the offset byte determines write or read.
+        // 1=write, 0=read.
+        //
+        g_sFireballTransaction.ui32InstrLen     = 2;
+        g_sFireballTransaction.ui32Instr        = (0x80 << 8)       |
+                                                   FB_CMD(ui32value, ui32GPIOnum);
+    }
+    else if ( ui32FBn == 3 )
+    {
+        //
+        // FB3 requires 3 bytes.
+        // Whereas FB1/2 combined the high/low values with the GPIO number,
+        // FB3 splits them into separate bytes.
+        //  byte0: R/W and address, same as before.  On the Apollo IOS, bit7 of
+        //         the offset determines wr or rd (1=wr, 0=rd), the lower 7 bits
+        //         are the address.
+        //  byte1: 0 to set low, 1 to set high.
+        //  byte2: GPIO number
+        //
+        g_sFireballTransaction.ui32InstrLen     = 3;
+        g_sFireballTransaction.ui32Instr        = (0x80                 << 16)  |
+                                                  ((ui32GPIOnum & 0xFF) << 8)   |
+                                                  ((ui32value   & 0x3)  << 0);
+    }
+    else
+    {
+        return 0xFFFFFFFF;
+    }
+
+   ui32Ret = am_hal_iom_blocking_transfer(g_pIOM5Handle,
+                                           &g_sFireballTransaction);
+
+    //
+    // Give the FB plenty of time to process the command.
+    // Recommendation is 10ms (although 1ms was found to work).
+    //
+    am_hal_flash_delay(FLASH_CYCLES_US(10000));
+
+    return ui32Ret;
 
 } // fireball_write_cmd()
 
@@ -370,16 +423,16 @@ fireball_id_get(uint32_t *pui32ID)
 // fireball_set()
 //*****************************************************************************
 static uint32_t
-fireball_set(uint64_t ui64GPIOLowMask, uint64_t ui64GPIOHighMask)
+fireball_set(uint64_t ui64GPIOLowMask[2],  uint64_t ui64GPIOHighMask[2])
 {
     uint32_t ui32GPIOnum, ui32Ret;
 
     ui32GPIOnum = 0;
-    while ( ui64GPIOLowMask  ||  ui64GPIOHighMask )
+    while ( ui64GPIOLowMask[0]  ||  ui64GPIOHighMask[0] )
     {
-        if ( ui64GPIOLowMask & 0x1 )
+        if ( ui64GPIOLowMask[0] & 0x1 )
         {
-            ui32Ret = fireball_write_cmd(FB_CMD(FB_OP_LOW, ui32GPIOnum));
+            ui32Ret = fireball_write_cmd(FB_OP_LOW, ui32GPIOnum);
             if ( ui32Ret )
             {
                 return (1 << 8) | ui32Ret;
@@ -390,11 +443,11 @@ fireball_set(uint64_t ui64GPIOLowMask, uint64_t ui64GPIOHighMask)
             //
             am_hal_flash_delay(FLASH_CYCLES_US(1));
         }
-        ui64GPIOLowMask >>= 1;
+        ui64GPIOLowMask[0] >>= 1;
 
-        if ( ui64GPIOHighMask & 0x1 )
+        if ( ui64GPIOHighMask[0] & 0x1 )
         {
-            ui32Ret = fireball_write_cmd(FB_CMD(FB_OP_HI, ui32GPIOnum));
+            ui32Ret = fireball_write_cmd(FB_OP_HI, ui32GPIOnum);
             if ( ui32Ret )
             {
                 return (2 << 8) | ui32Ret;
@@ -405,7 +458,46 @@ fireball_set(uint64_t ui64GPIOLowMask, uint64_t ui64GPIOHighMask)
             //
             am_hal_flash_delay(FLASH_CYCLES_US(1));
         }
-        ui64GPIOHighMask >>= 1;
+        ui64GPIOHighMask[0] >>= 1;
+        ui32GPIOnum++;
+    }
+
+    //
+    // FB3 requires more than 64 pins.
+    // Repeat the previous loop to handle the extended pins.
+    //
+    ui32GPIOnum = 0;
+    while ( ui64GPIOLowMask[1]  ||  ui64GPIOHighMask[1] )
+    {
+        if ( ui64GPIOLowMask[1] & 0x1 )
+        {
+            ui32Ret = fireball_write_cmd(FB_OP_LOW, ui32GPIOnum);
+            if ( ui32Ret )
+            {
+                return (1 << 8) | ui32Ret;
+            }
+
+            //
+            // Give the Fireball Apollo a little time to process the command.
+            //
+            am_hal_flash_delay(FLASH_CYCLES_US(1));
+        }
+        ui64GPIOLowMask[1] >>= 1;
+
+        if ( ui64GPIOHighMask[1] & 0x1 )
+        {
+            ui32Ret = fireball_write_cmd(FB_OP_HI, ui32GPIOnum);
+            if ( ui32Ret )
+            {
+                return (2 << 8) | ui32Ret;
+            }
+
+            //
+            // Give the Fireball Apollo a little time to process the command.
+            //
+            am_hal_flash_delay(FLASH_CYCLES_US(1));
+        }
+        ui64GPIOHighMask[1] >>= 1;
         ui32GPIOnum++;
     }
 
@@ -427,7 +519,7 @@ device_reset(uint32_t ui32GPIO, bool bAssertLow)
     //
     // Assert the reset signal.
     //
-    if ( fireball_write_cmd(FB_CMD(ui32Assert, ui32GPIO)) )
+    if ( fireball_write_cmd(ui32Assert, ui32GPIO) )
     {
         return 1;
     }
@@ -440,7 +532,7 @@ device_reset(uint32_t ui32GPIO, bool bAssertLow)
     //
     // De-assert the reset signal.
     //
-    if ( fireball_write_cmd(FB_CMD(ui32Deassert, ui32GPIO)) )
+    if ( fireball_write_cmd(ui32Deassert, ui32GPIO) )
     {
         return 3;
     }
@@ -459,8 +551,10 @@ uint32_t
 am_devices_fireball_control(am_devices_fireball_control_e eControl,
                             void *pArgs)
 {
-    uint64_t ui64GPIOLowMask, ui64GPIOHighMask;
+    // FB3 requires more than 64 pin masks for some settings.
+    uint64_t ui64GPIOLowMask[2], ui64GPIOHighMask[2];
     uint32_t ui32RetVal;
+
 
     if ( eControl >= AM_DEVICES_FIREBALL_STATE_INVALID )
     {
@@ -481,8 +575,9 @@ am_devices_fireball_control(am_devices_fireball_control_e eControl,
         //
         // Make sure we're running on an original Fireball.
         //
-        if (( g_ui32FireballID != FIREBALL_ID ) &&
-            ( g_ui32FireballID != FIREBALL2_ID ))
+        if (( g_ui32FireballID != FIREBALL_ID )     &&
+            ( g_ui32FireballID != FIREBALL2_ID )    &&
+            ( g_ui32FireballID != FIREBALL3_ID ))
         {
             fireball_deinit(FIREBALL_BOARD_NUM);
             return 3;
@@ -500,16 +595,49 @@ am_devices_fireball_control(am_devices_fireball_control_e eControl,
             return 4;
         }
     }
+    else if ( (eControl >= AM_DEVICES_FIREBALL3_STATE_FIRST)  &&
+              (eControl <= AM_DEVICES_FIREBALL3_STATE_LAST) )
+    {
+        //
+        // Make sure we're running on a Fireball 3.
+        //
+        if ( g_ui32FireballID != FIREBALL3_ID )
+        {
+            fireball_deinit(FIREBALL_BOARD_NUM);
+            return 5;
+        }
+    }
 
     //
     // Initialize the mask variables to assume that we will NOT be setting the
     // Fireball state.  Both variables have to be touched.
     //
-    ui64GPIOLowMask  = ui64GPIOHighMask = 0xFFFFFFFF;
+    ui64GPIOLowMask[0] = ui64GPIOHighMask[0] =
+    ui64GPIOLowMask[1] = ui64GPIOHighMask[1] = 0xFFFFFFFF;
+
+    if ( FBn_get() >= 3 )
+    {
+        //
+        // If we're running on a FB3 but a FB2 state was specified, convert it
+        //  to a FB3 state. Note that the states that are compatible between the
+        //  Fireball 2 and 3 are expected to be in the same order and offset by
+        //  a known quantity.
+        //
+        if ( (eControl >= AM_DEVICES_FIREBALL2_STATE_FIRST) &&
+             (eControl <= AM_DEVICES_FIREBALL2_STATE_LAST) )
+        {
+            eControl += (AM_DEVICES_FIREBALL3_STATE_FIRST - AM_DEVICES_FIREBALL2_STATE_FIRST);
+        }
+    }
 
     switch ( eControl )
     {
-        case AM_DEVICES_FIREBALL_STATE_FBREV_GET:
+        // ********************************************************************
+        //
+        // Begin Fireball(1) commands
+        //
+        // ********************************************************************
+        case AM_DEVICES_FIREBALL_STATE_FBGEN_GET:
             if ( pArgs )
             {
                 uint32_t ui32FBrev = 0;
@@ -525,6 +653,10 @@ am_devices_fireball_control(am_devices_fireball_control_e eControl,
                 else if ( g_ui32FireballID == FIREBALL2_ID )
                 {
                     ui32FBrev = 2;      // Fireball2
+                }
+                else if ( g_ui32FireballID == FIREBALL3_ID )
+                {
+                    ui32FBrev = 3;      // Fireball3
                 }
                 *((uint32_t*)pArgs) = ui32FBrev;
             }
@@ -562,13 +694,31 @@ am_devices_fireball_control(am_devices_fireball_control_e eControl,
             }
             break;
 
+        case AM_DEVICES_FIREBALL_STATE_LED_BLINK:
+            if ( pArgs )
+            {
+                uint32_t ui32Cnt = *(uint32_t*)pArgs;
+                while (ui32Cnt)
+                {
+                    ui32RetVal = fireball_write_cmd(1, 39);
+                    am_hal_flash_delay(FLASH_CYCLES_US(100000));    // 100ms
+                    ui32RetVal = fireball_write_cmd(0, 39);
+                    am_hal_flash_delay(FLASH_CYCLES_US(100000));    // 100ms
+                    ui32Cnt--;
+                }
+            }
+            else
+            {
+                ui32RetVal = AM_HAL_STATUS_INVALID_ARG;
+            }
+            break;
         case AM_DEVICES_FIREBALL_STATE_SPI_FLASH:
             //
             // GPIO LOW:  4-7,10,11
             // GPIO HIGH: -
             //
-            ui64GPIOLowMask  = ((uint64_t)0xF << 4)  | ((uint64_t)0x3 << 10);
-            ui64GPIOHighMask = ((uint64_t)0x0 << 0);
+            ui64GPIOLowMask[0]  = ((uint64_t)0xF << 4)  | ((uint64_t)0x3 << 10);
+            ui64GPIOHighMask[0] = ((uint64_t)0x0 << 0);
             break;
 
         case AM_DEVICES_FIREBALL_STATE_SPI_FRAM:
@@ -576,8 +726,8 @@ am_devices_fireball_control(am_devices_fireball_control_e eControl,
             // GPIO LOW:  4-7,10
             // GPIO HIGH: 11
             //
-            ui64GPIOLowMask  = ((uint64_t)0xF << 4)  | ((uint64_t)0x1 << 10);
-            ui64GPIOHighMask = ((uint64_t)0x1 << 11);
+            ui64GPIOLowMask[0]  = ((uint64_t)0xF << 4)  | ((uint64_t)0x1 << 10);
+            ui64GPIOHighMask[0] = ((uint64_t)0x1 << 11);
             break;
 
         case AM_DEVICES_FIREBALL_STATE_I2C_IOM0:
@@ -585,8 +735,8 @@ am_devices_fireball_control(am_devices_fireball_control_e eControl,
             // GPIO LOW:  5,12-13
             // GPIO HIGH: 4
             //
-            ui64GPIOLowMask  = ((uint64_t)0x1 << 5)  | ((uint64_t)0x3 << 12);
-            ui64GPIOHighMask = ((uint64_t)0x1 << 4);
+            ui64GPIOLowMask[0]  = ((uint64_t)0x1 << 5)  | ((uint64_t)0x3 << 12);
+            ui64GPIOHighMask[0] = ((uint64_t)0x1 << 4);
             break;
 
         case AM_DEVICES_FIREBALL_STATE_I2C_IOM1:
@@ -594,8 +744,8 @@ am_devices_fireball_control(am_devices_fireball_control_e eControl,
             // GPIO LOW:  5,12
             // GPIO HIGH: 4,13
             //
-            ui64GPIOLowMask  = ((uint64_t)0x1 << 5)  | ((uint64_t)0x1 << 12);
-            ui64GPIOHighMask = ((uint64_t)0x1 << 4)  | ((uint64_t)0x1 << 13);
+            ui64GPIOLowMask[0]  = ((uint64_t)0x1 << 5)  | ((uint64_t)0x1 << 12);
+            ui64GPIOHighMask[0] = ((uint64_t)0x1 << 4)  | ((uint64_t)0x1 << 13);
             break;
 
         case AM_DEVICES_FIREBALL_STATE_I2C_IOM2:
@@ -603,8 +753,8 @@ am_devices_fireball_control(am_devices_fireball_control_e eControl,
             // GPIO LOW:  5,13
             // GPIO HIGH: 4,12
             //
-            ui64GPIOLowMask  = ((uint64_t)0x1 << 5)  | ((uint64_t)0x1 << 13);
-            ui64GPIOHighMask = ((uint64_t)0x1 << 4)  | ((uint64_t)0x1 << 12);
+            ui64GPIOLowMask[0]  = ((uint64_t)0x1 << 5)  | ((uint64_t)0x1 << 13);
+            ui64GPIOHighMask[0] = ((uint64_t)0x1 << 4)  | ((uint64_t)0x1 << 12);
             break;
 
         case AM_DEVICES_FIREBALL_STATE_I2C_IOM3:
@@ -612,8 +762,8 @@ am_devices_fireball_control(am_devices_fireball_control_e eControl,
             // GPIO LOW:  5,14-15
             // GPIO HIGH: 4
             //
-            ui64GPIOLowMask  = ((uint64_t)0x1 << 5)  | ((uint64_t)0x3 << 14);
-            ui64GPIOHighMask = ((uint64_t)0x1 << 4);
+            ui64GPIOLowMask[0]  = ((uint64_t)0x1 << 5)  | ((uint64_t)0x3 << 14);
+            ui64GPIOHighMask[0] = ((uint64_t)0x1 << 4);
             break;
 
         case AM_DEVICES_FIREBALL_STATE_I2C_IOM4:
@@ -621,8 +771,8 @@ am_devices_fireball_control(am_devices_fireball_control_e eControl,
             // GPIO LOW:  5,14
             // GPIO HIGH: 4,15
             //
-            ui64GPIOLowMask  = ((uint64_t)0x1 << 5)  | ((uint64_t)0x1 << 14);
-            ui64GPIOHighMask = ((uint64_t)0x1 << 4)  | ((uint64_t)0x1 << 15);
+            ui64GPIOLowMask[0]  = ((uint64_t)0x1 << 5)  | ((uint64_t)0x1 << 14);
+            ui64GPIOHighMask[0] = ((uint64_t)0x1 << 4)  | ((uint64_t)0x1 << 15);
             break;
 
         case AM_DEVICES_FIREBALL_STATE_I2C_IOM5:
@@ -630,8 +780,8 @@ am_devices_fireball_control(am_devices_fireball_control_e eControl,
             // GPIO LOW:  5,15
             // GPIO HIGH: 4,14
             //
-            ui64GPIOLowMask  = ((uint64_t)0x1 << 5)  | ((uint64_t)0x1 << 15);
-            ui64GPIOHighMask = ((uint64_t)0x1 << 4)  | ((uint64_t)0x1 << 14);
+            ui64GPIOLowMask[0]  = ((uint64_t)0x1 << 5)  | ((uint64_t)0x1 << 15);
+            ui64GPIOHighMask[0] = ((uint64_t)0x1 << 4)  | ((uint64_t)0x1 << 14);
             break;
 
         case AM_DEVICES_FIREBALL_STATE_OCTAL_FLASH_CE0:
@@ -639,8 +789,8 @@ am_devices_fireball_control(am_devices_fireball_control_e eControl,
             // GPIO LOW:  8-9,35-36
             // GPIO HIGH: 34,37
             //
-            ui64GPIOLowMask  = ((uint64_t)0x3 << 8)  | ((uint64_t)0x3 << 35);
-            ui64GPIOHighMask = ((uint64_t)0x1 << 34) | ((uint64_t)0x1 << 37);
+            ui64GPIOLowMask[0]  = ((uint64_t)0x3 << 8)  | ((uint64_t)0x3 << 35);
+            ui64GPIOHighMask[0] = ((uint64_t)0x1 << 34) | ((uint64_t)0x1 << 37);
             break;
 
         case AM_DEVICES_FIREBALL_STATE_OCTAL_FLASH_CE1:
@@ -648,8 +798,8 @@ am_devices_fireball_control(am_devices_fireball_control_e eControl,
             // GPIO LOW:  8-9,37
             // GPIO HIGH: 36
             //
-            ui64GPIOLowMask  = ((uint64_t)0x3 << 8) | ((uint64_t)0x1 << 37);
-            ui64GPIOHighMask = ((uint64_t)0x1 << 36);
+            ui64GPIOLowMask[0]  = ((uint64_t)0x3 << 8) | ((uint64_t)0x1 << 37);
+            ui64GPIOHighMask[0] = ((uint64_t)0x1 << 36);
             break;
 
         case AM_DEVICES_FIREBALL_STATE_TWIN_QUAD_CE0_CE1:
@@ -657,8 +807,8 @@ am_devices_fireball_control(am_devices_fireball_control_e eControl,
             // GPIO LOW:  8-9,35-37
             // GPIO HIGH: 34
             //
-            ui64GPIOLowMask  = ((uint64_t)0x3 << 8) | ((uint64_t)0x7 << 35);
-            ui64GPIOHighMask = ((uint64_t)0x1 << 34);
+            ui64GPIOLowMask[0]  = ((uint64_t)0x3 << 8) | ((uint64_t)0x7 << 35);
+            ui64GPIOHighMask[0] = ((uint64_t)0x1 << 34);
             break;
 
         case AM_DEVICES_FIREBALL_STATE_ALL_RESET:
@@ -705,16 +855,19 @@ am_devices_fireball_control(am_devices_fireball_control_e eControl,
             ui32RetVal = device_reset(39, false);
             break;
 
+
+        // ********************************************************************
         //
         // Begin Fireball2 commands
         //
+        // ********************************************************************
         case AM_DEVICES_FIREBALL2_STATE_SPI_FRAM_PSRAM_1P8:
             //
             // GPIO LOW:  4-7,10
             // GPIO HIGH: 11
             //
-            ui64GPIOLowMask  = ((uint64_t)0xF << 4) | ((uint64_t)0x1 << 10);
-            ui64GPIOHighMask = ((uint64_t)0x1 << 11);
+            ui64GPIOLowMask[0]  = ((uint64_t)0xF << 4) | ((uint64_t)0x1 << 10);
+            ui64GPIOHighMask[0] = ((uint64_t)0x1 << 11);
             break;
 
         case AM_DEVICES_FIREBALL2_STATE_SPI_PSRAM_FLASH_3P3:
@@ -722,8 +875,8 @@ am_devices_fireball_control(am_devices_fireball_control_e eControl,
             // GPIO LOW:  4,6,10-11
             // GPIO HIGH: 5,7
             //
-            ui64GPIOLowMask  = ((uint64_t)0x3 << 10) | ((uint64_t)0x5 << 4);
-            ui64GPIOHighMask = ((uint64_t)0x5 << 5);
+            ui64GPIOLowMask[0]  = ((uint64_t)0x3 << 10) | ((uint64_t)0x5 << 4);
+            ui64GPIOHighMask[0] = ((uint64_t)0x5 << 5);
             break;
 
         case AM_DEVICES_FIREBALL2_STATE_I2C_IOM0:
@@ -731,8 +884,8 @@ am_devices_fireball_control(am_devices_fireball_control_e eControl,
             // GPIO LOW:  5,12,13
             // GPIO HIGH: 4
             //
-            ui64GPIOLowMask  = ((uint64_t)0x3 << 12) | ((uint64_t)0x1 << 5);
-            ui64GPIOHighMask = ((uint64_t)0x1 << 4);
+            ui64GPIOLowMask[0]  = ((uint64_t)0x3 << 12) | ((uint64_t)0x1 << 5);
+            ui64GPIOHighMask[0] = ((uint64_t)0x1 << 4);
             break;
 
         case AM_DEVICES_FIREBALL2_STATE_I2C_IOM1:
@@ -740,8 +893,8 @@ am_devices_fireball_control(am_devices_fireball_control_e eControl,
             // GPIO LOW:  5,12
             // GPIO HIGH: 4,13
             //
-            ui64GPIOLowMask  = ((uint64_t)0x1 << 12) | ((uint64_t)0x1 << 5);
-            ui64GPIOHighMask = ((uint64_t)0x1 << 4)  | ((uint64_t)0x1 << 13);
+            ui64GPIOLowMask[0]  = ((uint64_t)0x1 << 12) | ((uint64_t)0x1 << 5);
+            ui64GPIOHighMask[0] = ((uint64_t)0x1 << 4)  | ((uint64_t)0x1 << 13);
             break;
 
         case AM_DEVICES_FIREBALL2_STATE_I2C_IOM2:
@@ -749,8 +902,8 @@ am_devices_fireball_control(am_devices_fireball_control_e eControl,
             // GPIO LOW:  5,13
             // GPIO HIGH: 4,12
             //
-            ui64GPIOLowMask  = ((uint64_t)0x1 << 13) | ((uint64_t)0x1 << 5);
-            ui64GPIOHighMask = ((uint64_t)0x1 << 4)  | ((uint64_t)0x1 << 12);
+            ui64GPIOLowMask[0]  = ((uint64_t)0x1 << 13) | ((uint64_t)0x1 << 5);
+            ui64GPIOHighMask[0] = ((uint64_t)0x1 << 4)  | ((uint64_t)0x1 << 12);
             break;
 
         case AM_DEVICES_FIREBALL2_STATE_I2C_IOM3:
@@ -758,8 +911,8 @@ am_devices_fireball_control(am_devices_fireball_control_e eControl,
             // GPIO LOW:  5,14,15
             // GPIO HIGH: 4
             //
-            ui64GPIOLowMask  = ((uint64_t)0x3 << 14) | ((uint64_t)0x1 << 5);
-            ui64GPIOHighMask = ((uint64_t)0x1 << 4);
+            ui64GPIOLowMask[0]  = ((uint64_t)0x3 << 14) | ((uint64_t)0x1 << 5);
+            ui64GPIOHighMask[0] = ((uint64_t)0x1 << 4);
             break;
 
         case AM_DEVICES_FIREBALL2_STATE_I2C_IOM4:
@@ -767,8 +920,8 @@ am_devices_fireball_control(am_devices_fireball_control_e eControl,
             // GPIO LOW:  5,14
             // GPIO HIGH: 4,15
             //
-            ui64GPIOLowMask  = ((uint64_t)0x1 << 14) | ((uint64_t)0x1 << 5);
-            ui64GPIOHighMask = ((uint64_t)0x1 << 4)  | ((uint64_t)0x1 << 15);
+            ui64GPIOLowMask[0]  = ((uint64_t)0x1 << 14) | ((uint64_t)0x1 << 5);
+            ui64GPIOHighMask[0] = ((uint64_t)0x1 << 4)  | ((uint64_t)0x1 << 15);
             break;
 
         case AM_DEVICES_FIREBALL2_STATE_I2C_IOM5:
@@ -776,8 +929,8 @@ am_devices_fireball_control(am_devices_fireball_control_e eControl,
             // GPIO LOW:  5,15
             // GPIO HIGH: 4,14
             //
-            ui64GPIOLowMask  = ((uint64_t)0x1 << 15) | ((uint64_t)0x1 << 5);
-            ui64GPIOHighMask = ((uint64_t)0x1 << 4)  | ((uint64_t)0x1 << 14);
+            ui64GPIOLowMask[0]  = ((uint64_t)0x1 << 15) | ((uint64_t)0x1 << 5);
+            ui64GPIOHighMask[0] = ((uint64_t)0x1 << 4)  | ((uint64_t)0x1 << 14);
             break;
 
         case AM_DEVICES_FIREBALL2_STATE_MSPI_FRAM_PSRAM_FLASH_1P8:
@@ -785,8 +938,8 @@ am_devices_fireball_control(am_devices_fireball_control_e eControl,
             // GPIO LOW:  8,9,35,36,37
             // GPIO HIGH: 34
             //
-            ui64GPIOLowMask  = ((uint64_t)0x7 << 35) | ((uint64_t)0x3 << 8);
-            ui64GPIOHighMask = ((uint64_t)0x1 << 34);
+            ui64GPIOLowMask[0]  = ((uint64_t)0x7 << 35) | ((uint64_t)0x3 << 8);
+            ui64GPIOHighMask[0] = ((uint64_t)0x1 << 34);
             break;
 
         case AM_DEVICES_FIREBALL2_STATE_MSPI_PSRAM_FLASH_3P3:
@@ -794,8 +947,8 @@ am_devices_fireball_control(am_devices_fireball_control_e eControl,
             // GPIO LOW:  8,35,37
             // GPIO HIGH: 9,34,36
             //
-            ui64GPIOLowMask  = ((uint64_t)0x1 << 8)  | ((uint64_t)0x5 << 35);
-            ui64GPIOHighMask = ((uint64_t)0x1 << 9)  | ((uint64_t)0x5 << 34);
+            ui64GPIOLowMask[0]  = ((uint64_t)0x1 << 8)  | ((uint64_t)0x5 << 35);
+            ui64GPIOHighMask[0] = ((uint64_t)0x1 << 9)  | ((uint64_t)0x5 << 34);
             break;
 
         case AM_DEVICES_FIREBALL2_STATE_SC_8_9_16:
@@ -803,8 +956,8 @@ am_devices_fireball_control(am_devices_fireball_control_e eControl,
             // GPIO LOW:  4,11,16,17,22,23
             // GPIO HIGH: 5,10
             //
-            ui64GPIOLowMask  = ((uint64_t)0x3 << 22) | ((uint64_t)0x3 << 16) | ((uint64_t)0x1 << 11) | ((uint64_t)0x1 << 4);
-            ui64GPIOHighMask = ((uint64_t)0x5 << 10) | ((uint64_t)0x1 << 5);
+            ui64GPIOLowMask[0]  = ((uint64_t)0x3 << 22) | ((uint64_t)0x3 << 16) | ((uint64_t)0x1 << 11) | ((uint64_t)0x1 << 4);
+            ui64GPIOHighMask[0] = ((uint64_t)0x5 << 10) | ((uint64_t)0x1 << 5);
             break;
 
         case AM_DEVICES_FIREBALL2_STATE_SC_17_32_26:
@@ -812,8 +965,8 @@ am_devices_fireball_control(am_devices_fireball_control_e eControl,
             // GPIO LOW:  9,16,22
             // GPIO HIGH: 8,17,23
             //
-            ui64GPIOLowMask  = ((uint64_t)0x1 << 22) | ((uint64_t)0x1 << 16) | ((uint64_t)0x1 << 9);
-            ui64GPIOHighMask = ((uint64_t)0x1 << 23) | ((uint64_t)0x1 << 17) | ((uint64_t)0x1 << 8);
+            ui64GPIOLowMask[0]  = ((uint64_t)0x1 << 22) | ((uint64_t)0x1 << 16) | ((uint64_t)0x1 << 9);
+            ui64GPIOHighMask[0] = ((uint64_t)0x1 << 23) | ((uint64_t)0x1 << 17) | ((uint64_t)0x1 << 8);
             break;
 
         case AM_DEVICES_FIREBALL2_STATE_SC_19_18_46:
@@ -821,8 +974,8 @@ am_devices_fireball_control(am_devices_fireball_control_e eControl,
             // GPIO LOW:  18-19,24-25,31
             // GPIO HIGH:
             //
-            ui64GPIOLowMask  = ((uint64_t)0x3 << 18) | ((uint64_t)0x3 << 24) | ((uint64_t)0x1 << 31);
-            ui64GPIOHighMask = 0;
+            ui64GPIOLowMask[0]  = ((uint64_t)0x3 << 18) | ((uint64_t)0x3 << 24) | ((uint64_t)0x1 << 31);
+            ui64GPIOHighMask[0] = 0;
             break;
 
         case AM_DEVICES_FIREBALL2_STATE_SC_31_37_21:
@@ -830,8 +983,8 @@ am_devices_fireball_control(am_devices_fireball_control_e eControl,
             // GPIO LOW:  18,24,30-31
             // GPIO HIGH: 19,25
             //
-            ui64GPIOLowMask  = ((uint64_t)0x3 << 30) | ((uint64_t)0x1 << 24) | ((uint64_t)0x1 << 18);
-            ui64GPIOHighMask = ((uint64_t)0x1 << 25) | ((uint64_t)0x1 << 19);
+            ui64GPIOLowMask[0]  = ((uint64_t)0x3 << 30) | ((uint64_t)0x1 << 24) | ((uint64_t)0x1 << 18);
+            ui64GPIOHighMask[0] = ((uint64_t)0x1 << 25) | ((uint64_t)0x1 << 19);
             break;
 
         case AM_DEVICES_FIREBALL2_STATE_PDM_10_29:
@@ -839,8 +992,8 @@ am_devices_fireball_control(am_devices_fireball_control_e eControl,
             // GPIO LOW:  7,26-27
             // GPIO HIGH: 6
             //
-            ui64GPIOLowMask  = ((uint64_t)0x3 << 26) | ((uint64_t)0x1 << 7);
-            ui64GPIOHighMask = ((uint64_t)0x1 << 6);
+            ui64GPIOLowMask[0]  = ((uint64_t)0x3 << 26) | ((uint64_t)0x1 << 7);
+            ui64GPIOHighMask[0] = ((uint64_t)0x1 << 6);
             break;
 
         case AM_DEVICES_FIREBALL2_STATE_PDM_12_15:
@@ -848,8 +1001,8 @@ am_devices_fireball_control(am_devices_fireball_control_e eControl,
             // GPIO LOW:  11,26
             // GPIO HIGH: 10,27
             //
-            ui64GPIOLowMask  = ((uint64_t)0x1 << 26) | ((uint64_t)0x1 << 11);
-            ui64GPIOHighMask = ((uint64_t)0x1 << 27) | ((uint64_t)0x1 << 10);
+            ui64GPIOLowMask[0]  = ((uint64_t)0x1 << 26) | ((uint64_t)0x1 << 11);
+            ui64GPIOHighMask[0] = ((uint64_t)0x1 << 27) | ((uint64_t)0x1 << 10);
             break;
 
         case AM_DEVICES_FIREBALL2_STATE_PDM_14_11:
@@ -857,8 +1010,8 @@ am_devices_fireball_control(am_devices_fireball_control_e eControl,
             // GPIO LOW:  11,27
             // GPIO HIGH: 10,26
             //
-            ui64GPIOLowMask  = ((uint64_t)0x1 << 27) | ((uint64_t)0x1 << 11);
-            ui64GPIOHighMask = ((uint64_t)0x1 << 26) | ((uint64_t)0x1 << 10);
+            ui64GPIOLowMask[0]  = ((uint64_t)0x1 << 27) | ((uint64_t)0x1 << 11);
+            ui64GPIOHighMask[0] = ((uint64_t)0x1 << 26) | ((uint64_t)0x1 << 10);
             break;
 
         case AM_DEVICES_FIREBALL2_STATE_PDM_22_34:
@@ -866,8 +1019,8 @@ am_devices_fireball_control(am_devices_fireball_control_e eControl,
             // GPIO LOW:  9,28-29
             // GPIO HIGH: 8
             //
-            ui64GPIOLowMask  = ((uint64_t)0x3 << 28) | ((uint64_t)0x1 << 9);
-            ui64GPIOHighMask = ((uint64_t)0x1 << 8);
+            ui64GPIOLowMask[0]  = ((uint64_t)0x3 << 28) | ((uint64_t)0x1 << 9);
+            ui64GPIOHighMask[0] = ((uint64_t)0x1 << 8);
             break;
 
         case AM_DEVICES_FIREBALL2_STATE_PDM_37_36:
@@ -875,8 +1028,8 @@ am_devices_fireball_control(am_devices_fireball_control_e eControl,
             // GPIO LOW:  28,31
             // GPIO HIGH: 18-19,29
             //
-            ui64GPIOLowMask  = ((uint64_t)0x1 << 31) | ((uint64_t)0x1 << 28);
-            ui64GPIOHighMask = ((uint64_t)0x1 << 29) | ((uint64_t)0x3 << 18);
+            ui64GPIOLowMask[0]  = ((uint64_t)0x1 << 31) | ((uint64_t)0x1 << 28);
+            ui64GPIOHighMask[0] = ((uint64_t)0x1 << 29) | ((uint64_t)0x3 << 18);
             break;
 
         case AM_DEVICES_FIREBALL2_STATE_PDM_46_45:
@@ -884,8 +1037,8 @@ am_devices_fireball_control(am_devices_fireball_control_e eControl,
             // GPIO LOW:  29,31
             // GPIO HIGH: 24-25,28
             //
-            ui64GPIOLowMask  = ((uint64_t)0x1 << 31) | ((uint64_t)0x1 << 29);
-            ui64GPIOHighMask = ((uint64_t)0x1 << 28) | ((uint64_t)0x3 << 24);
+            ui64GPIOLowMask[0]  = ((uint64_t)0x1 << 31) | ((uint64_t)0x1 << 29);
+            ui64GPIOHighMask[0] = ((uint64_t)0x1 << 28) | ((uint64_t)0x3 << 24);
             break;
 
         case AM_DEVICES_FIREBALL2_STATE_PDM_AMP_IN:
@@ -893,8 +1046,8 @@ am_devices_fireball_control(am_devices_fireball_control_e eControl,
             // GPIO LOW:  33
             // GPIO HIGH:
             //
-            ui64GPIOLowMask  = ((uint64_t)0x1 << 33);
-            ui64GPIOHighMask = 0;
+            ui64GPIOLowMask[0]  = ((uint64_t)0x1 << 33);
+            ui64GPIOHighMask[0] = 0;
             break;
 
         case AM_DEVICES_FIREBALL2_STATE_I2S_DAC:
@@ -902,8 +1055,8 @@ am_devices_fireball_control(am_devices_fireball_control_e eControl,
             // GPIO LOW:  32
             // GPIO HIGH:
             //
-            ui64GPIOLowMask  = ((uint64_t)0x1 << 32);
-            ui64GPIOHighMask = 0;
+            ui64GPIOLowMask[0]  = ((uint64_t)0x1 << 32);
+            ui64GPIOHighMask[0] = 0;
             break;
 
         case AM_DEVICES_FIREBALL2_STATE_STEPPER:
@@ -911,8 +1064,8 @@ am_devices_fireball_control(am_devices_fireball_control_e eControl,
             // GPIO LOW:  34-35
             // GPIO HIGH: 18-19
             //
-            ui64GPIOLowMask  = ((uint64_t)0x3 << 34);
-            ui64GPIOHighMask = ((uint64_t)0x3 << 18);
+            ui64GPIOLowMask[0]  = ((uint64_t)0x3 << 34);
+            ui64GPIOHighMask[0] = ((uint64_t)0x3 << 18);
             break;
 
         //
@@ -967,15 +1120,200 @@ am_devices_fireball_control(am_devices_fireball_control_e eControl,
             ui32RetVal = device_reset(45, true);
             break;
 
+        // ********************************************************************
+        //
+        // Begin Fireball3 commands
+        //
+        // ********************************************************************
+        case AM_DEVICES_FIREBALL3_STATE_SPI_FRAM_PSRAM_1P8:
+            ui64GPIOLowMask[0]  = ((uint64_t)0x1 << 4)  | ((uint64_t)0xB << 7) | ((uint64_t)0x1 << 18);
+            ui64GPIOHighMask[0] = ((uint64_t)0x1 << 11);
+            break;
+        case AM_DEVICES_FIREBALL3_STATE_SPI_PSRAM_FLASH_3P3:
+            ui64GPIOLowMask[0]  = ((uint64_t)0x1 << 4)  | ((uint64_t)0x3 << 10) | ((uint64_t)0x1 << 18);
+            ui64GPIOHighMask[0] = ((uint64_t)0x3 << 7);
+            break;
+        case AM_DEVICES_FIREBALL3_STATE_I2C_IOM0:
+            ui64GPIOLowMask[0]  = ((uint64_t)0x1 << 7)  | ((uint64_t)0x3 << 12);
+            ui64GPIOHighMask[0] = ((uint64_t)0x1 << 4);
+            break;
+        case AM_DEVICES_FIREBALL3_STATE_I2C_IOM1:
+            ui64GPIOLowMask[0]  = ((uint64_t)0x1 << 7)  | ((uint64_t)0x1 << 12);
+            ui64GPIOHighMask[0] = ((uint64_t)0x1 << 4)  | ((uint64_t)0x1 << 13);
+            break;
+        case AM_DEVICES_FIREBALL3_STATE_I2C_IOM2:
+            ui64GPIOLowMask[0]  = ((uint64_t)0x1 << 7)  | ((uint64_t)0x1 << 13);
+            ui64GPIOHighMask[0] = ((uint64_t)0x1 << 4)  | ((uint64_t)0x1 << 12);
+            break;
+        case AM_DEVICES_FIREBALL3_STATE_I2C_IOM3:
+            ui64GPIOLowMask[0]  = ((uint64_t)0x1 << 7)  | ((uint64_t)0x9 << 14);
+            ui64GPIOHighMask[0] = ((uint64_t)0x1 << 4);
+            break;
+        case AM_DEVICES_FIREBALL3_STATE_I2C_IOM4:
+            ui64GPIOLowMask[0]  = ((uint64_t)0x1 << 7)  | ((uint64_t)0x1 << 14);
+            ui64GPIOHighMask[0] = ((uint64_t)0x1 << 4)  | ((uint64_t)0x1 << 17);
+            break;
+        case AM_DEVICES_FIREBALL3_STATE_I2C_IOM5:
+            ui64GPIOLowMask[0]  = ((uint64_t)0x1 << 7)  | ((uint64_t)0x1 << 17);
+            ui64GPIOHighMask[0] = ((uint64_t)0x1 << 4)  | ((uint64_t)0x1 << 14);
+            break;
+        case AM_DEVICES_FIREBALL3_STATE_MSPI0_PSRAM_1P8:
+            ui64GPIOLowMask[0]  = (uint64_t)0x05 << 53;
+            ui64GPIOHighMask[0] = (uint64_t)0x17 << 50;
+            break;
+        case AM_DEVICES_FIREBALL3_STATE_MSPI0_FLASH_1P8:
+            ui64GPIOLowMask[0]  = (uint64_t)0x0B << 52;
+            ui64GPIOHighMask[0] = (uint64_t)0x13 << 50;
+            break;
+        case AM_DEVICES_FIREBALL3_STATE_MSPI0_PSRAM_3P3:
+            ui64GPIOLowMask[0]  = (uint64_t)0x19 << 51;
+            ui64GPIOHighMask[0] = (uint64_t)0x0D << 50;
+            break;
+        case AM_DEVICES_FIREBALL3_STATE_MSPI0_FT812:
+            ui64GPIOLowMask[0]  = (uint64_t)0x33 << 50;
+            ui64GPIOHighMask[0] = (uint64_t)0x03 << 52;
+            break;
+        case AM_DEVICES_FIREBALL3_STATE_MSPI0_DISPLAY:
+            ui64GPIOLowMask[0]  = (uint64_t)0x05 << 52;
+            ui64GPIOHighMask[0] = (uint64_t)0x2B << 50;
+            break;
+        case AM_DEVICES_FIREBALL3_STATE_MSPI1_PSRAM_1P8:
+            ui64GPIOLowMask[0]  = (uint64_t)0x05 << 59;
+            ui64GPIOHighMask[0] = (uint64_t)0x17 << 56;
+            break;
+        case AM_DEVICES_FIREBALL3_STATE_MSPI1_FLASH_1P8:
+            ui64GPIOLowMask[0]  = (uint64_t)0x0B << 58;
+            ui64GPIOHighMask[0] = (uint64_t)0x13 << 56;
+            break;
+        case AM_DEVICES_FIREBALL3_STATE_MSPI1_PSRAM_3P3:
+            ui64GPIOLowMask[0]  = (uint64_t)0x19 << 57;
+            ui64GPIOHighMask[0] = (uint64_t)0x0D << 56;
+            break;
+        case AM_DEVICES_FIREBALL3_STATE_MSPI1_FT812:
+            ui64GPIOLowMask[0]  = (uint64_t)0x33 << 56;
+            ui64GPIOHighMask[0] = (uint64_t)0x03 << 58;
+            break;
+        case AM_DEVICES_FIREBALL3_STATE_MSPI1_DISPLAY:
+            ui64GPIOLowMask[0]  = (uint64_t)0x05 << 58;
+            ui64GPIOHighMask[0] = (uint64_t)0x2B << 56;
+            break;
+        case AM_DEVICES_FIREBALL3_STATE_MSPI2_PSRAM_1P8:
+            ui64GPIOLowMask[0]   = 0;
+            ui64GPIOHighMask[0]  = 0;
+            ui64GPIOLowMask[1]  = (uint64_t)0x05 << (85 - 64);
+            ui64GPIOHighMask[1] = (uint64_t)0x17 << (82 - 64);
+            break;
+        case AM_DEVICES_FIREBALL3_STATE_MSPI2_FLASH_1P8:
+            ui64GPIOLowMask[0]   = 0;
+            ui64GPIOHighMask[0]  = 0;
+            ui64GPIOLowMask[1]  = (uint64_t)0x0B << (84 - 64);
+            ui64GPIOHighMask[1] = (uint64_t)0x13 << (82 - 64);
+            break;
+        case AM_DEVICES_FIREBALL3_STATE_MSPI2_PSRAM_3P3:
+            ui64GPIOLowMask[0]   = 0;
+            ui64GPIOHighMask[0]  = 0;
+            ui64GPIOLowMask[1]  = (uint64_t)0x19 << (83 - 64);
+            ui64GPIOHighMask[1] = (uint64_t)0x0D << (82 - 64);
+            break;
+        case AM_DEVICES_FIREBALL3_STATE_MSPI2_FT812:
+            ui64GPIOLowMask[0]   = 0;
+            ui64GPIOHighMask[0]  = 0;
+            ui64GPIOLowMask[1]  = (uint64_t)0x33 << (82 - 64);
+            ui64GPIOHighMask[1] = (uint64_t)0x03 << (84 - 64);
+            break;
+        case AM_DEVICES_FIREBALL3_STATE_MSPI2_DISPLAY:
+            ui64GPIOLowMask[0]   = 0;
+            ui64GPIOHighMask[0]  = 0;
+            ui64GPIOLowMask[1]  = (uint64_t)0x05 << (84 - 64);
+            ui64GPIOHighMask[1] = (uint64_t)0x2B << (82 - 64);
+            break;
+
+        case AM_DEVICES_FIREBALL3_STATE_SC_8_9_16:
+            // As of 9/28/19, these pins are shown on the FB3 Wiki page as "Needs updating"
+            ui64GPIOLowMask[0]  = ((uint64_t)0x1 << 4) | ((uint64_t)0x1 << 11) | ((uint64_t)0x3 << 16) | ((uint64_t)0x3 << 22);
+            ui64GPIOHighMask[0] = (uint64_t)0x21 << 5;
+            break;
+        case AM_DEVICES_FIREBALL3_STATE_SC_17_32_26:
+            // As of 9/28/19, these pins are shown on the FB3 Wiki page as "Needs updating"
+            ui64GPIOLowMask[0]  = ((uint64_t)0x1 << 9) | ((uint64_t)0x1 << 16) | ((uint64_t)0x1 << 22);
+            ui64GPIOHighMask[0] = ((uint64_t)0x1 << 8) | ((uint64_t)0x1 << 17) | ((uint64_t)0x1 << 23);
+            break;
+        case AM_DEVICES_FIREBALL3_STATE_SC_19_18_46:
+            // As of 9/28/19, these pins are shown on the FB3 Wiki page as "Needs updating"
+            ui64GPIOLowMask[0]  = ((uint64_t)0x3 << 18) | ((uint64_t)0x3 << 24) | ((uint64_t)0x1 << 31);
+            ui64GPIOHighMask[0] = 0;
+            break;
+        case AM_DEVICES_FIREBALL3_STATE_SC_31_37_21:
+            // As of 9/28/19, these pins are shown on the FB3 Wiki page as "Needs updating"
+            ui64GPIOLowMask[0]  = ((uint64_t)0x1 << 18) | ((uint64_t)0x1 << 24) | ((uint64_t)0x3 << 30);
+            ui64GPIOHighMask[0] = ((uint64_t)0x1 << 19) | ((uint64_t)0x1 << 25);
+            break;
+        case AM_DEVICES_FIREBALL3_STATE_PDM_10_29:
+            // As of 9/28/19, these pins are shown on the FB3 Wiki page as "Needs updating"
+            ui64GPIOLowMask[0]  = ((uint64_t)0x1 << 7) | ((uint64_t)0x3 << 26);
+            ui64GPIOHighMask[0] = ((uint64_t)0x1 << 6);
+            break;
+        case AM_DEVICES_FIREBALL3_STATE_PDM_12_15:
+            // As of 9/28/19, these pins are shown on the FB3 Wiki page as "Needs updating"
+            ui64GPIOLowMask[0]  = ((uint64_t)0x1 << 26) | ((uint64_t)0x1 << 11);
+            ui64GPIOHighMask[0] = ((uint64_t)0x1 << 27) | ((uint64_t)0x1 << 10);
+            break;
+        case AM_DEVICES_FIREBALL3_STATE_PDM_14_11:
+            // As of 9/28/19, these pins are shown on the FB3 Wiki page as "Needs updating"
+            ui64GPIOLowMask[0]  = ((uint64_t)0x1 << 27) | ((uint64_t)0x1 << 11);
+            ui64GPIOHighMask[0] = ((uint64_t)0x1 << 26) | ((uint64_t)0x1 << 10);
+            break;
+        case AM_DEVICES_FIREBALL3_STATE_PDM_22_34:
+            // As of 9/28/19, these pins are shown on the FB3 Wiki page as "Needs updating"
+            ui64GPIOLowMask[0]  = ((uint64_t)0x3 << 28) | ((uint64_t)0x1 << 9);
+            ui64GPIOHighMask[0] = ((uint64_t)0x1 << 8);
+            break;
+        case AM_DEVICES_FIREBALL3_STATE_PDM_37_36:
+            // As of 9/28/19, these pins are shown on the FB3 Wiki page as "Needs updating"
+            ui64GPIOLowMask[0]  = ((uint64_t)0x1 << 31) | ((uint64_t)0x1 << 28);
+            ui64GPIOHighMask[0] = ((uint64_t)0x1 << 29) | ((uint64_t)0x3 << 18);
+            break;
+        case AM_DEVICES_FIREBALL3_STATE_PDM_46_45:
+            // As of 9/28/19, these pins are shown on the FB3 Wiki page as "Needs updating"
+            ui64GPIOLowMask[0]  = ((uint64_t)0x1 << 31) | ((uint64_t)0x1 << 29);
+            ui64GPIOHighMask[0] = ((uint64_t)0x1 << 28) | ((uint64_t)0x3 << 24);
+            break;
+        case AM_DEVICES_FIREBALL3_STATE_PDM_AMP_IN:
+            // As of 9/28/19, these pins are shown on the FB3 Wiki page as "Needs updating"
+            ui64GPIOLowMask[0]  = ((uint64_t)0x1 << 33);
+            ui64GPIOHighMask[0] = 0;
+            break;
+        case AM_DEVICES_FIREBALL3_STATE_I2S_DAC:
+            // As of 9/28/19, these pins are shown on the FB3 Wiki page as "Needs updating"
+            ui64GPIOLowMask[0]  = ((uint64_t)0x1 << 32);
+            ui64GPIOHighMask[0] = 0;
+            break;
+        case AM_DEVICES_FIREBALL3_STATE_STEPPER:
+            // As of 9/28/19, these pins are shown on the FB3 Wiki page as "Needs updating"
+            ui64GPIOLowMask[0]  = ((uint64_t)0x3 << 34);
+            ui64GPIOHighMask[0] = ((uint64_t)0x3 << 18);
+            break;
+
+        // ********************************************************************
+        //
+        // Default
+        //
+        // ********************************************************************
         default:
             ui32RetVal = 0xdeadbeef;
             break;
 
     } // switch()
 
-    if ( (ui64GPIOLowMask  != 0xFFFFFFFF)   &&
-         (ui64GPIOHighMask != 0xFFFFFFFF) )
+    if ( ((ui64GPIOLowMask[0]  != 0xFFFFFFFF)    &&
+          (ui64GPIOHighMask[0] != 0xFFFFFFFF))   ||
+         ((ui64GPIOLowMask[1]  != 0xFFFFFFFF)    &&
+          (ui64GPIOHighMask[1] != 0xFFFFFFFF)) )
     {
+
+        ui64GPIOLowMask[1]  = ui64GPIOLowMask[1]  == 0xFFFFFFFF ? 0 : ui64GPIOLowMask[1];
+        ui64GPIOHighMask[1] = ui64GPIOHighMask[1] == 0xFFFFFFFF ? 0 : ui64GPIOHighMask[1];
+
         ui32RetVal = fireball_set(ui64GPIOLowMask, ui64GPIOHighMask);
     }
 

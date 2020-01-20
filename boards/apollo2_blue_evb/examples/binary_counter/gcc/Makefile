@@ -34,7 +34,7 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 #
-# This is part of revision v2.2.0-7-g63f7c2ba1 of the AmbiqSuite Development Package.
+# This is part of revision 2.3.2 of the AmbiqSuite Development Package.
 #
 #******************************************************************************
 TARGET := binary_counter
@@ -82,23 +82,24 @@ else
 DEFINES = -DPART_$(PART)
 DEFINES+= -DAM_PACKAGE_BGA
 DEFINES+= -DAM_PART_APOLLO2
+DEFINES+= -Dgcc
 
 INCLUDES = -I../../../../../devices
-INCLUDES+= -I../src
-INCLUDES+= -I../../../../../utils
-INCLUDES+= -I../../../../..
 INCLUDES+= -I../../../../../mcu/apollo2
 INCLUDES+= -I../../../bsp
+INCLUDES+= -I../../../../..
+INCLUDES+= -I../../../../../utils
+INCLUDES+= -I../src
 
-VPATH = ../../../../../utils
+VPATH = ../../../../../devices
+VPATH+=:../../../../../utils
 VPATH+=:../src
-VPATH+=:../../../../../devices
 
 SRC = binary_counter.c
+SRC += am_devices_led.c
 SRC += am_util_delay.c
 SRC += am_util_faultisr.c
 SRC += am_util_stdio.c
-SRC += am_devices_led.c
 SRC += startup_gcc.c
 
 CSRC = $(filter %.c,$(SRC))
@@ -114,7 +115,7 @@ LIBS = ../../../bsp/gcc/bin/libam_bsp.a
 LIBS += ../../../../../mcu/apollo2/hal/gcc/bin/libam_hal.a
 
 CFLAGS = -mthumb -mcpu=$(CPU) -mfpu=$(FPU) -mfloat-abi=$(FABI)
-CFLAGS+= -ffunction-sections -fdata-sections
+CFLAGS+= -ffunction-sections -fdata-sections -fomit-frame-pointer
 CFLAGS+= -MMD -MP -std=c99 -Wall -g
 CFLAGS+= -O0
 CFLAGS+= $(DEFINES)

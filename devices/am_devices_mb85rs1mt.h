@@ -40,7 +40,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
-// This is part of revision v2.2.0-7-g63f7c2ba1 of the AmbiqSuite Development Package.
+// This is part of revision 2.3.2 of the AmbiqSuite Development Package.
 //
 //*****************************************************************************
 
@@ -134,6 +134,12 @@ extern uint32_t am_devices_mb85rs1mt_nonblocking_read(uint8_t *pui8RxBuffer,
                                                       uint32_t ui32NumBytes,
                                                       am_hal_iom_callback_t pfnCallback,
                                                       void *pCallbackCtxt);
+
+extern uint32_t am_devices_mb85rs1mt_nonblocking_read_hiprio(uint8_t *pui8RxBuffer,
+                                                    uint32_t ui32ReadAddress,
+                                                    uint32_t ui32NumBytes,
+                                                    am_hal_iom_callback_t pfnCallback,
+                                                    void *pCallbackCtxt);
 
 #ifdef __cplusplus
 }

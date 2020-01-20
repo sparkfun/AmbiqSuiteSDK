@@ -74,7 +74,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
-// This is part of revision v2.2.0-7-g63f7c2ba1 of the AmbiqSuite Development Package.
+// This is part of revision 2.3.2 of the AmbiqSuite Development Package.
 //
 //*****************************************************************************
 
@@ -124,9 +124,9 @@ set_for_min_power(void)
     am_hal_cachectrl_enable();
 
     //
-    // Turn OFF Flash1.
+    // Turn OFF unneeded flash
     //
-    am_hal_pwrctrl_memory_enable(AM_HAL_PWRCTRL_MEM_FLASH_512K);
+    am_hal_pwrctrl_memory_enable(AM_HAL_PWRCTRL_MEM_FLASH_MIN);
 
     //
     // Turn off SRAMs above 8K.
@@ -155,7 +155,7 @@ set_for_min_power(void)
     //
     PWRCTRL->DEVICEEN = 0;
 #endif // AM_PART_APOLLO2
-#if AM_PART_APOLLO3
+#if defined(AM_PART_APOLLO3) || defined(AM_PART_APOLLO3P)
     //
     // Turn off all peripheral power domains.
     //

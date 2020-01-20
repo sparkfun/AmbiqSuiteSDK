@@ -43,7 +43,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
-// This is part of revision v2.2.0-7-g63f7c2ba1 of the AmbiqSuite Development Package.
+// This is part of revision 2.3.2 of the AmbiqSuite Development Package.
 //
 //*****************************************************************************
 #include <stdint.h>
@@ -100,14 +100,14 @@ am_util_regdump_t g_sRegdumpADC[] =
 #if INCLUDE_REGS_WITH_SIDE_EFFECT
     {0x038, "FIFO"},
 #endif // INCLUDE_REGS_WITH_SIDE_EFFECT
-#if AM_PART_APOLLO3
+#if defined(AM_PART_APOLLO3) || defined(AM_PART_APOLLO3P)
     {0x03C, "FIFOPR"},
 #endif // AM_PART_APOLLO3
     {0x200, "INTEN"},
     {0x204, "INTSTAT"},
     {0x208, "INTCLR"},
     {0x20C, "INTSET"},
-#if AM_PART_APOLLO3
+#if defined(AM_PART_APOLLO3) || defined(AM_PART_APOLLO3P)
     {0x280, "DMACFG"},
     {0x288, "DMATOTCOUNT"},
     {0x28C, "DMATARGADDR"},
@@ -278,7 +278,7 @@ am_util_regdump_t g_sRegdumpGPIO[] =
     {0x0CC, "IOM3IRQ"},
     {0x0D0, "IOM4IRQ"},
     {0x0D4, "IOM5IRQ"},
-#if AM_PART_APOLLO3
+#if defined(AM_PART_APOLLO3) || defined(AM_PART_APOLLO3P)
     {0x0D8, "BLEIFIRQ"},
 #else
     {0x0D8, "LOOPBACK"},
@@ -297,7 +297,7 @@ am_util_regdump_t g_sRegdumpGPIO[] =
     {0x108, "ALTPADCFGK"},
     {0x10C, "ALTPADCFGL"},
     {0x110, "ALTPADCFGM"},
-#if AM_PART_APOLLO3
+#if defined(AM_PART_APOLLO3) || defined(AM_PART_APOLLO3P)
     {0x114, "SCDET"},
     {0x118, "CTENCFG"},
 #endif // AM_PART_APOLLO3
@@ -312,7 +312,7 @@ am_util_regdump_t g_sRegdumpGPIO[] =
     {0xFFFFFFFF, NULL}
 };
 
-#if AM_PART_APOLLO3
+#if defined(AM_PART_APOLLO3) || defined(AM_PART_APOLLO3P)
 am_util_regdump_t g_sRegdumpIOM[] =
 {
 #if INCLUDE_REGS_WITH_SIDE_EFFECT
@@ -926,7 +926,7 @@ uint32_t g_ui32PwrStatUart1 = 0;
 void
 regdump_pwr_enable(uint32_t ui32Block)
 {
-#if AM_PART_APOLLO3
+#if defined(AM_PART_APOLLO3) || defined(AM_PART_APOLLO3P)
     switch ( ui32Block )
     {
         case AM_UTIL_REGDUMP_ADC:
@@ -1002,7 +1002,7 @@ regdump_pwr_enable(uint32_t ui32Block)
 void
 regdump_pwr_disable(uint32_t ui32Block)
 {
-#if AM_PART_APOLLO3
+#if defined(AM_PART_APOLLO3) || defined(AM_PART_APOLLO3P)
     switch ( ui32Block )
     {
         case AM_UTIL_REGDUMP_ADC:
@@ -1191,7 +1191,7 @@ am_util_regdump_print(uint32_t ui32PeriphMask, uint32_t ui32ModuleMask)
 
     if ( ui32PeriphMask & AM_UTIL_REGDUMP_IOM )
     {
-#if AM_PART_APOLLO3
+#if defined(AM_PART_APOLLO3) || defined(AM_PART_APOLLO3P)
         regdump_pwr_enable(AM_UTIL_REGDUMP_IOM);
         dump_reg(AM_REG_IOM_NUM_MODULES, AM_REG_IOMn(0),
                  AM_REG_IOMn(1) - AM_REG_IOMn(0),
@@ -1292,7 +1292,7 @@ am_util_regdump_print(uint32_t ui32PeriphMask, uint32_t ui32ModuleMask)
                  ui32ModuleMask, "MCUCTRL", &g_sRegdumpMCUCTRL[0]);
     }
 
-#if AM_PART_APOLLO2 || AM_PART_APOLLO3
+#if AM_PART_APOLLO2 || AM_PART_APOLLO3 || AM_PART_APOLLO3P
     am_util_stdio_printf("Apollo2/3 specific registers:\n\n");
 
     if ( ui32PeriphMask & AM_UTIL_REGDUMP_CACHE )
@@ -1319,7 +1319,7 @@ am_util_regdump_print(uint32_t ui32PeriphMask, uint32_t ui32ModuleMask)
     }
 #endif // AM_PART_APOLLO2 || AM_PART_APOLLO3
 
-#if AM_PART_APOLLO3
+#if defined(AM_PART_APOLLO3) || defined(AM_PART_APOLLO3P)
     am_util_stdio_printf("Apollo3 specific registers:\n\n");
 
     if ( ui32PeriphMask & AM_UTIL_REGDUMP_BLE )

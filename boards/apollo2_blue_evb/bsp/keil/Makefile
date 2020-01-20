@@ -34,7 +34,7 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 #
-# This is part of revision v2.2.0-7-g63f7c2ba1 of the AmbiqSuite Development Package.
+# This is part of revision 2.3.2 of the AmbiqSuite Development Package.
 #
 #******************************************************************************
 TARGET := libam_bsp
@@ -55,8 +55,8 @@ all clean:
 else
 
 LIBS = 
-INCS = ../../../../mcu/apollo2
-INCS+= ../../../../devices
+INCS = ../../../../devices
+INCS+= ../../../../mcu/apollo2
 
 all: directories $(CONFIG)/$(TARGET).lib
 

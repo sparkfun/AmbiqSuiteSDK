@@ -333,9 +333,9 @@
             <v6Rtti>0</v6Rtti>
             <VariousControls>
               <MiscControls></MiscControls>
-              <Define>AM_DEBUG_PRINTF AM_PACKAGE_BGA AM_FREERTOS AM_PART_APOLLO2 keil</Define>
+              <Define>AM_PACKAGE_BGA AM_FREERTOS AM_DEBUG_PRINTF AM_PART_APOLLO2 keil</Define>
               <Undefine></Undefine>
-              <IncludePath>../../../../..;../../../../../devices;../../../../../mcu/apollo2;../../../../../third_party/FreeRTOSv10.1.1/Source/portable/Keil/AMapollo2;../../../bsp;../../../../../utils;../src;../../../../../third_party/FreeRTOSv10.1.1/Source/include</IncludePath>
+              <IncludePath>../../../../../devices;../../../../../third_party/FreeRTOSv10.1.1/Source/portable/Keil/AMapollo2;../../../../../third_party/FreeRTOSv10.1.1/Source/include;../src;../../../../..;../../../../../utils;../../../bsp;../../../../../mcu/apollo2</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -452,6 +452,16 @@
           </Files>
         </Group>
         <Group>
+          <GroupName>FreeRTOSv10.1.1_MemMang</GroupName>
+          <Files>
+            <File>
+              <FileName>heap_2.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../../../../../third_party/FreeRTOSv10.1.1/Source/portable/MemMang/heap_2.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
           <GroupName>utils</GroupName>
           <Files>
             <File>
@@ -473,16 +483,6 @@
               <FileName>am_util_stdio.c</FileName>
               <FileType>1</FileType>
               <FilePath>../../../../../utils/am_util_stdio.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>FreeRTOSv10.1.1_MemMang</GroupName>
-          <Files>
-            <File>
-              <FileName>heap_2.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../third_party/FreeRTOSv10.1.1/Source/portable/MemMang/heap_2.c</FilePath>
             </File>
           </Files>
         </Group>

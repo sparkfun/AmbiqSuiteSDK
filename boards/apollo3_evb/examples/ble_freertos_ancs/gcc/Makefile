@@ -34,7 +34,7 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 #
-# This is part of revision v2.2.0-7-g63f7c2ba1 of the AmbiqSuite Development Package.
+# This is part of revision 2.3.2 of the AmbiqSuite Development Package.
 #
 #******************************************************************************
 TARGET := ble_freertos_ancs
@@ -82,84 +82,94 @@ all clean:
 else
 
 DEFINES = -DPART_$(PART)
-DEFINES+= -DAM_FREERTOS
 DEFINES+= -DAM_CUSTOM_BDADDR
+DEFINES+= -DSEC_ECC_CFG=SEC_ECC_CFG_UECC
 DEFINES+= -DAM_PACKAGE_BGA
+DEFINES+= -DAM_FREERTOS
 DEFINES+= -DWSF_TRACE_ENABLED
 DEFINES+= -DAM_DEBUG_PRINTF
 DEFINES+= -DAM_PART_APOLLO3
+DEFINES+= -Dgcc
 
-INCLUDES = -I../../../../../ambiq_ble/profiles/ancc
-INCLUDES+= -I../../../../../third_party/exactle/ws-core/sw/wsf/include
-INCLUDES+= -I../../../../../third_party/exactle/sw/profiles/hrps
-INCLUDES+= -I../../../../../third_party/uecc/micro-ecc
-INCLUDES+= -I../../../../../third_party/exactle/sw/hci/ambiq/apollo3
-INCLUDES+= -I../../../../..
-INCLUDES+= -I../../../../../third_party/exactle/sw/sec/profiles/gatt
-INCLUDES+= -I../../../bsp
-INCLUDES+= -I../../../../../third_party/exactle/sw/profiles/gatt
-INCLUDES+= -I../../../../../third_party/exactle/sw/hci/ambiq
-INCLUDES+= -I../../../../../third_party/exactle/sw/sec/common
-INCLUDES+= -I../../../../../ambiq_ble/apps/ancs
-INCLUDES+= -I../../../../../third_party/exactle/sw/apps/app/include
-INCLUDES+= -I../../../../../third_party/exactle/sw/apps/app
-INCLUDES+= -I../../../../../third_party/exactle/sw/stack/include
-INCLUDES+= -I../../../../../mcu/apollo3
-INCLUDES+= -I../../../../../third_party/exactle/apollo-host/projects/common
-INCLUDES+= -I../../../../../devices
-INCLUDES+= -I../../../../../third_party/exactle/sw/profiles/uribeacon
+INCLUDES = -I../../../../../third_party/exactle/ble-profiles/sources/profiles/gap
 INCLUDES+= -I../../../../../utils
-INCLUDES+= -I../../../../../third_party/exactle/sw/profiles/rscp
 INCLUDES+= -I../../../../../CMSIS/ARM/Include
-INCLUDES+= -I../../../../../third_party/exactle/sw/stack/cfg
-INCLUDES+= -I../../../../../CMSIS/AmbiqMicro/Include
-INCLUDES+= -I../../../../../third_party/exactle/sw/hci/include
-INCLUDES+= -I../../../../../third_party/FreeRTOSv10.1.1/Source/include
-INCLUDES+= -I../../../../../third_party/exactle/ws-core/sw/util
-INCLUDES+= -I../../../../../third_party/exactle/ws-core/sw/wsf/ambiq
+INCLUDES+= -I../../../../../third_party/exactle/ble-host/include
+INCLUDES+= -I../../../../../third_party/exactle/ble-profiles/sources/services
+INCLUDES+= -I../../../../../third_party/exactle/ble-host/sources/hci/include
+INCLUDES+= -I../../../../..
+INCLUDES+= -I../../../../../third_party/exactle/ble-host/sources/stack/cfg
+INCLUDES+= -I../../../../../third_party/exactle/ble-host/sources/hci/ambiq
+INCLUDES+= -I../../../../../third_party/exactle/ble-profiles/sources/profiles/bas
+INCLUDES+= -I../../../../../third_party/exactle/ble-host/sources/stack/l2c
+INCLUDES+= -I../../../../../third_party/exactle/ble-host/sources/stack/smp
+INCLUDES+= -I../../../../../third_party/exactle/ble-profiles/sources/apps
+INCLUDES+= -I../../../../../third_party/exactle/ble-profiles/sources/profiles
+INCLUDES+= -I../../../../../third_party/exactle/ble-profiles/sources/profiles/hrps
+INCLUDES+= -I../../../../../third_party/exactle/wsf/include
+INCLUDES+= -I../../../../../devices
+INCLUDES+= -I../../../../../third_party/exactle/ble-host/sources/stack/hci
+INCLUDES+= -I../../../../../third_party/uecc
 INCLUDES+= -I../../../../../third_party/FreeRTOSv10.1.1/Source/portable/GCC/AMapollo2
-INCLUDES+= -I../../../../../third_party/exactle/sw/profiles/bas
-INCLUDES+= -I../../../../../third_party/exactle/sw/stack/hci
+INCLUDES+= -I../../../bsp
+INCLUDES+= -I../../../../../third_party/exactle/wsf/sources/util
+INCLUDES+= -I../../../../../third_party/exactle/ble-profiles/sources/profiles/gatt
+INCLUDES+= -I../../../../../ambiq_ble/apps/ancs
+INCLUDES+= -I../../../../../third_party/exactle/wsf/sources/port/freertos
+INCLUDES+= -I../../../../../third_party/exactle/ble-host/sources/sec/common
+INCLUDES+= -I../../../../../third_party/exactle/ble-host/sources/hci/ambiq/apollo3
+INCLUDES+= -I../../../../../CMSIS/AmbiqMicro/Include
+INCLUDES+= -I../../../../../third_party/exactle/wsf/sources
+INCLUDES+= -I../../../../../third_party/exactle/ble-profiles/sources/profiles/include
+INCLUDES+= -I../../../../../ambiq_ble/profiles/ancc
+INCLUDES+= -I../../../../../third_party/exactle/ble-profiles/sources/profiles/uribeacon
+INCLUDES+= -I../../../../../third_party/exactle/ble-host/sources/stack/dm
+INCLUDES+= -I../../../../../mcu/apollo3
+INCLUDES+= -I../../../../../third_party/exactle/ble-host/sources/stack/att
+INCLUDES+= -I../../../../../third_party/exactle/ble-profiles/sources/profiles/rscp
+INCLUDES+= -I../../../../../third_party/exactle/ble-profiles/sources/profiles/hid
+INCLUDES+= -I../../../../../third_party/exactle/ble-profiles/sources/apps/app
+INCLUDES+= -I../../../../../third_party/FreeRTOSv10.1.1/Source/include
+INCLUDES+= -I../../../../../third_party/exactle/ble-profiles/include/app
 INCLUDES+= -I../src
-INCLUDES+= -I../../../../../third_party/exactle/sw/services
-INCLUDES+= -I../../../../../third_party/exactle/sw/sec/include
-INCLUDES+= -I../../../../../third_party/exactle/sw/profiles/hid
-INCLUDES+= -I../../../../../third_party/exactle/ws-core/include
 
-VPATH = ../../../../../ambiq_ble/profiles/ancc
-VPATH+=:../../../../../devices
-VPATH+=:../../../../../third_party/exactle/sw/apps/app/generic
+VPATH = ../../../../../third_party/exactle/ble-host/sources/sec/uecc
+VPATH+=:../../../../../third_party/exactle/ble-profiles/sources/profiles/gap
+VPATH+=:../../../../../third_party/exactle/ble-host/sources/stack/hci
 VPATH+=:../../../../../utils
-VPATH+=:../../../../../third_party/exactle/sw/profiles/rscp
-VPATH+=:../../../../../third_party/exactle/sw/profiles/hrps
-VPATH+=:../../../../../third_party/uecc/micro-ecc
-VPATH+=:../../../../../third_party/exactle/sw/stack/cfg
-VPATH+=:../../../../../third_party/exactle/ws-core/sw/util
-VPATH+=:../../../../../third_party/FreeRTOSv10.1.1/Source
-VPATH+=:../../../../../third_party/exactle/sw/hci/ambiq/apollo3
-VPATH+=:../../../../../third_party/exactle/ws-core/sw/wsf/ambiq
-VPATH+=:../../../../../third_party/exactle/ws-core/sw/wsf/common
-VPATH+=:../../../../../third_party/exactle/sw/hci/ambiq
-VPATH+=:../../../../../third_party/FreeRTOSv10.1.1/Source/portable/MemMang
-VPATH+=:../../../../../third_party/exactle/sw/profiles/gatt
+VPATH+=:../../../../../third_party/uecc
 VPATH+=:../../../../../third_party/FreeRTOSv10.1.1/Source/portable/GCC/AMapollo2
-VPATH+=:../../../../../third_party/exactle/sw/profiles/bas
-VPATH+=:../../../../../third_party/exactle/sw/sec/common
-VPATH+=:../../../../../third_party/exactle/sw/services
-VPATH+=:../../../../../third_party/exactle/sw/stack/hci
-VPATH+=:../src
+VPATH+=:../../../../../third_party/exactle/wsf/sources/util
+VPATH+=:../../../../../third_party/exactle/ble-profiles/sources/profiles/gatt
+VPATH+=:../../../../../third_party/exactle/ble-profiles/sources/apps/hidapp
+VPATH+=:../../../../../third_party/exactle/ble-profiles/sources/services
+VPATH+=:../../../../../third_party/exactle/ble-host/sources/stack/cfg
 VPATH+=:../../../../../ambiq_ble/apps/ancs
-VPATH+=:../../../../../third_party/exactle/sw/profiles/hid
-VPATH+=:../../../../../third_party/exactle/sw/apps/app
-VPATH+=:../../../../../third_party/exactle/sw/apps/hidapp
+VPATH+=:../../../../../third_party/exactle/wsf/sources/port/freertos
+VPATH+=:../../../../../third_party/exactle/ble-profiles/sources/apps/app/common
+VPATH+=:../../../../../third_party/exactle/ble-host/sources/sec/common
+VPATH+=:../../../../../third_party/exactle/ble-host/sources/hci/ambiq/apollo3
+VPATH+=:../../../../../third_party/exactle/ble-host/sources/hci/ambiq
+VPATH+=:../../../../../third_party/exactle/ble-profiles/sources/profiles/bas
+VPATH+=:../../../../../third_party/exactle/ble-host/sources/stack/l2c
+VPATH+=:../../../../../ambiq_ble/profiles/ancc
+VPATH+=:../../../../../third_party/FreeRTOSv10.1.1/Source
+VPATH+=:../../../../../third_party/FreeRTOSv10.1.1/Source/portable/MemMang
+VPATH+=:../../../../../third_party/exactle/ble-host/sources/stack/smp
+VPATH+=:../../../../../third_party/exactle/ble-host/sources/stack/dm
+VPATH+=:../../../../../third_party/exactle/ble-host/sources/stack/att
+VPATH+=:../../../../../third_party/exactle/ble-profiles/sources/profiles/rscp
+VPATH+=:../../../../../third_party/exactle/ble-profiles/sources/profiles/hid
+VPATH+=:../../../../../third_party/exactle/ble-profiles/sources/profiles/hrps
+VPATH+=:../../../../../third_party/exactle/ble-profiles/sources/apps/app
+VPATH+=:../../../../../devices
+VPATH+=:../src
 
-SRC = ancc_main.c
-SRC += app_db.c
-SRC += app_hw.c
-SRC += app_ui.c
-SRC += rscps_main.c
-SRC += hrps_main.c
-SRC += cfg_stack.c
+SRC = sec_ecc.c
+SRC += gap_main.c
+SRC += hci_main.c
+SRC += uECC.c
+SRC += uECC_ll.c
 SRC += bda.c
 SRC += bstream.c
 SRC += calc128.c
@@ -167,47 +177,116 @@ SRC += crc32.c
 SRC += print.c
 SRC += terminal.c
 SRC += wstr.c
-SRC += hci_drv_apollo3.c
+SRC += gatt_main.c
+SRC += hidapp_main.c
+SRC += cfg_stack.c
+SRC += ancs_main.c
 SRC += wsf_assert.c
-SRC += wsf_math.c
-SRC += wsf_os.c
-SRC += wsf_trace.c
 SRC += wsf_buf.c
 SRC += wsf_efs.c
+SRC += wsf_math.c
 SRC += wsf_msg.c
+SRC += wsf_os.c
 SRC += wsf_queue.c
 SRC += wsf_timer.c
+SRC += wsf_trace.c
+SRC += app_db.c
+SRC += app_hw.c
+SRC += app_ui.c
+SRC += ui_console.c
+SRC += ui_lcd.c
+SRC += ui_main.c
+SRC += ui_platform.c
+SRC += ui_timer.c
+SRC += sec_aes.c
+SRC += sec_aes_rev.c
+SRC += sec_ccm_hci.c
+SRC += sec_cmac_hci.c
+SRC += sec_ecc_debug.c
+SRC += sec_ecc_hci.c
+SRC += sec_main.c
+SRC += hci_drv_apollo3.c
 SRC += hci_cmd.c
+SRC += hci_cmd_ae.c
+SRC += hci_cmd_cte.c
+SRC += hci_cmd_past.c
+SRC += hci_cmd_phy.c
 SRC += hci_core.c
 SRC += hci_core_ps.c
 SRC += hci_evt.c
 SRC += hci_tr.c
 SRC += hci_vs.c
-SRC += gatt_main.c
-SRC += port.c
+SRC += hci_vs_ae.c
 SRC += bas_main.c
-SRC += sec_aes.c
-SRC += sec_cmac.c
-SRC += sec_ecc_hci.c
-SRC += sec_main.c
-SRC += hci_main.c
+SRC += l2c_coc.c
+SRC += l2c_main.c
+SRC += l2c_master.c
+SRC += l2c_slave.c
+SRC += ancc_main.c
+SRC += smpi_act.c
+SRC += smpi_sc_act.c
+SRC += smpi_sc_sm.c
+SRC += smpi_sm.c
+SRC += smpr_act.c
+SRC += smpr_sc_act.c
+SRC += smpr_sc_sm.c
+SRC += smpr_sm.c
+SRC += smp_act.c
+SRC += smp_db.c
+SRC += smp_main.c
+SRC += smp_non.c
+SRC += smp_sc_act.c
+SRC += smp_sc_main.c
+SRC += dm_adv.c
+SRC += dm_adv_ae.c
+SRC += dm_adv_leg.c
+SRC += dm_conn.c
+SRC += dm_conn_cte.c
+SRC += dm_conn_master.c
+SRC += dm_conn_master_ae.c
+SRC += dm_conn_master_leg.c
+SRC += dm_conn_slave.c
+SRC += dm_conn_slave_ae.c
+SRC += dm_conn_slave_leg.c
+SRC += dm_conn_sm.c
+SRC += dm_dev.c
+SRC += dm_dev_priv.c
+SRC += dm_main.c
+SRC += dm_past.c
+SRC += dm_phy.c
+SRC += dm_priv.c
+SRC += dm_scan.c
+SRC += dm_scan_ae.c
+SRC += dm_scan_leg.c
+SRC += dm_sec.c
+SRC += dm_sec_lesc.c
+SRC += dm_sec_master.c
+SRC += dm_sec_slave.c
+SRC += dm_sync_ae.c
+SRC += attc_disc.c
+SRC += attc_main.c
+SRC += attc_proc.c
+SRC += attc_read.c
+SRC += attc_sign.c
+SRC += attc_write.c
+SRC += atts_ccc.c
+SRC += atts_csf.c
+SRC += atts_dyn.c
+SRC += atts_ind.c
+SRC += atts_main.c
+SRC += atts_proc.c
+SRC += atts_read.c
+SRC += atts_sign.c
+SRC += atts_write.c
+SRC += att_main.c
+SRC += att_uuid.c
+SRC += rscps_main.c
+SRC += hid_main.c
+SRC += hrps_main.c
+SRC += port.c
 SRC += ble_freertos_ancs.c
 SRC += radio_task.c
 SRC += rtos.c
-SRC += ancs_main.c
-SRC += hid_main.c
-SRC += hidapp_main.c
-SRC += app_disc.c
-SRC += app_main.c
-SRC += app_master.c
-SRC += app_master_leg.c
-SRC += app_server.c
-SRC += app_slave.c
-SRC += app_slave_leg.c
-SRC += app_terminal.c
-SRC += am_devices_button.c
-SRC += am_devices_led.c
-SRC += heap_2.c
 SRC += svc_batt.c
 SRC += svc_bps.c
 SRC += svc_core.c
@@ -229,6 +308,16 @@ SRC += svc_uricfg.c
 SRC += svc_wdxs.c
 SRC += svc_wp.c
 SRC += svc_wss.c
+SRC += app_disc.c
+SRC += app_main.c
+SRC += app_master.c
+SRC += app_master_leg.c
+SRC += app_server.c
+SRC += app_slave.c
+SRC += app_slave_leg.c
+SRC += app_terminal.c
+SRC += am_devices_button.c
+SRC += am_devices_led.c
 SRC += am_util_ble.c
 SRC += am_util_debug.c
 SRC += am_util_delay.c
@@ -240,6 +329,7 @@ SRC += list.c
 SRC += queue.c
 SRC += tasks.c
 SRC += timers.c
+SRC += heap_2.c
 SRC += startup_gcc.c
 
 CSRC = $(filter %.c,$(SRC))
@@ -251,13 +341,11 @@ OBJS+= $(ASRC:%.s=$(CONFIG)/%.o)
 DEPS = $(CSRC:%.c=$(CONFIG)/%.d)
 DEPS+= $(ASRC:%.s=$(CONFIG)/%.d)
 
-LIBS = ../../../../../third_party/uecc/gcc/bin/lib_uecc.a
-LIBS += ../../../../../third_party/exactle/projects/generic/stacklib/gcc/bin-cortex-m4/libstacklib.a
+LIBS = ../../../bsp/gcc/bin/libam_bsp.a
 LIBS += ../../../../../mcu/apollo3/hal/gcc/bin/libam_hal.a
-LIBS += ../../../bsp/gcc/bin/libam_bsp.a
 
 CFLAGS = -mthumb -mcpu=$(CPU) -mfpu=$(FPU) -mfloat-abi=$(FABI)
-CFLAGS+= -ffunction-sections -fdata-sections
+CFLAGS+= -ffunction-sections -fdata-sections -fomit-frame-pointer
 CFLAGS+= -MMD -MP -std=c99 -Wall -g
 CFLAGS+= -O0
 CFLAGS+= $(DEFINES)
@@ -310,14 +398,11 @@ clean:
 
 $(CONFIG)/%.d: ;
 
-../../../../../third_party/uecc/gcc/bin/lib_uecc.a:
-	$(MAKE) -C ../../../../../third_party/uecc
+../../../bsp/gcc/bin/libam_bsp.a:
+	$(MAKE) -C ../../../bsp
 
 ../../../../../mcu/apollo3/hal/gcc/bin/libam_hal.a:
 	$(MAKE) -C ../../../../../mcu/apollo3/hal
-
-../../../bsp/gcc/bin/libam_bsp.a:
-	$(MAKE) -C ../../../bsp
 
 # Automatically include any generated dependencies
 -include $(DEPS)

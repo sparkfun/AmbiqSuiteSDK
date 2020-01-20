@@ -46,7 +46,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
-// This is part of revision v2.2.0-7-g63f7c2ba1 of the AmbiqSuite Development Package.
+// This is part of revision 2.3.2 of the AmbiqSuite Development Package.
 //
 //*****************************************************************************
 
@@ -75,6 +75,8 @@
 #else
 #define NUM_LEDS    5       // Make up an arbitrary number of LEDs
 #endif
+
+#define MAX_COUNT   (1 << NUM_LEDS)
 
 //*****************************************************************************
 //
@@ -143,7 +145,7 @@ timerA0_init(void)
     // Clear the timer Interrupt
     //
     am_hal_ctimer_int_clear(AM_HAL_CTIMER_INT_TIMERA0);
-}
+} // timerA0_init()
 
 //*****************************************************************************
 //
@@ -154,10 +156,16 @@ void
 am_ctimer_isr(void)
 {
     //
+    // Clear TimerA0 Interrupt (write to clear).
+    //
+    am_hal_ctimer_int_clear(AM_HAL_CTIMER_INT_TIMERA0);
+
+    //
     // Increment count and set limit based on the number of LEDs available.
     //
     g_ui32TimerCount++;
-    if ( g_ui32TimerCount >= (1 << NUM_LEDS) )
+
+    if ( g_ui32TimerCount >= MAX_COUNT )
     {
         //
         // Reset the global.
@@ -165,11 +173,7 @@ am_ctimer_isr(void)
         g_ui32TimerCount = 0;
     }
 
-    //
-    // Clear TimerA0 Interrupt (write to clear).
-    //
-    am_hal_ctimer_int_clear(AM_HAL_CTIMER_INT_TIMERA0);
-}
+} // am_ctimer_isr()
 
 //*****************************************************************************
 //
@@ -179,6 +183,10 @@ am_ctimer_isr(void)
 int
 main(void)
 {
+    uint32_t ui32Ret;
+    am_hal_burst_mode_e     eBurstMode;
+    am_hal_burst_avail_e    eBurstModeAvailable;
+
     //
     // Set the clock frequency.
     //
@@ -203,6 +211,12 @@ main(void)
 #endif
 
     //
+    // Initialize the count to max so that the counting begins with 0
+    // after the first trip to the ISR.
+    //
+    g_ui32TimerCount = MAX_COUNT;
+
+    //
     // Initialize the printf interface for ITM/SWO output.
     //
     am_bsp_itm_printf_enable();
@@ -211,8 +225,43 @@ main(void)
     // Clear the terminal and print the banner.
     //
     am_util_stdio_terminal_clear();
-    am_util_stdio_printf("Binary Counter Example\n");
+    am_util_stdio_printf("Binary Counter Example for %s\n", AM_HAL_DEVICE_NAME);
     am_util_stdio_printf("  (Timer clock source is " BC_CLKSRC ")\n");
+
+    //
+    // Put into TurboSPOT mode
+    //
+    if ( am_hal_burst_mode_initialize(&eBurstModeAvailable) == AM_HAL_STATUS_SUCCESS )
+    {
+        if ( eBurstModeAvailable == AM_HAL_BURST_AVAIL )
+        {
+            am_util_stdio_printf("\nTurboSPOT mode is Available\n");
+
+            //
+            // It's available, put the MCU into TurboSPOT mode.
+            //
+            if ( am_hal_burst_mode_enable(&eBurstMode) == AM_HAL_STATUS_SUCCESS )
+            {
+                if ( eBurstMode == AM_HAL_BURST_MODE )
+                {
+                    am_util_stdio_printf("Operating in TurboSPOT mode (%dMHz)\n",
+                                         AM_HAL_CLKGEN_FREQ_MAX_MHZ * 2);
+                }
+            }
+            else
+            {
+                am_util_stdio_printf("Failed to Enable TurboSPOT mode operation\n");
+            }
+        }
+        else
+        {
+            am_util_stdio_printf("TurboSPOT mode is Not Available\n");
+        }
+    }
+    else
+    {
+        am_util_stdio_printf("Failed to Initialize for TurboSPOT mode operation\n");
+    }
 
     //
     // TimerA0 init.
@@ -262,15 +311,54 @@ main(void)
         //
         am_bsp_debug_printf_enable();
 
-        am_util_stdio_printf("%d ", g_ui32TimerCount & 0x7);
-        if ( (g_ui32TimerCount & ((1 << NUM_LEDS) - 1)) == 0 )
+        am_util_stdio_printf("%2d ", g_ui32TimerCount);
+
+        if ( (g_ui32TimerCount & ((MAX_COUNT / 2) - 1)) >= ((MAX_COUNT / 2) - 1) )
         {
+            //
+            // Take this opportunity to toggle TurboSPOT mode.
+            //
+            if ( (g_ui32TimerCount >= (MAX_COUNT - 1 ))  &&
+                 eBurstModeAvailable == AM_HAL_BURST_AVAIL )
+            {
+                if ( am_hal_burst_mode_status() == AM_HAL_BURST_MODE )
+                {
+                    ui32Ret = am_hal_burst_mode_disable(&eBurstMode);
+                    if ( (ui32Ret == AM_HAL_STATUS_SUCCESS) &&
+                         (eBurstMode == AM_HAL_NORMAL_MODE) )
+                    {
+                        am_util_stdio_printf("\n\nSwitching to Normal mode (%dMHZ)",
+                                             AM_HAL_CLKGEN_FREQ_MAX_MHZ);
+                    }
+                    else
+                    {
+                        am_util_stdio_printf("\nError (%d) while switching from Normal to TurboSPOT, eBurstMode=%d.",
+                                             ui32Ret, eBurstMode);
+                    }
+                }
+                else if ( am_hal_burst_mode_status() == AM_HAL_NORMAL_MODE )
+                {
+                    ui32Ret = am_hal_burst_mode_enable(&eBurstMode);
+                    if ( (ui32Ret == AM_HAL_STATUS_SUCCESS) &&
+                         (eBurstMode == AM_HAL_BURST_MODE) )
+                    {
+                        am_util_stdio_printf("\n\nSwitching to TurboSPOT mode (%dMHz)",
+                                             AM_HAL_CLKGEN_FREQ_MAX_MHZ * 2);
+                    }
+                    else
+                    {
+                        am_util_stdio_printf("\nError (%d) while switching from TurboSPOT to Normal, eBurstMode=%d.",
+                                             ui32Ret, eBurstMode);
+                    }
+                }
+            }
             am_util_stdio_printf("\n");
         }
+
 
         //
         // We are done printing. Disable debug printf messages on ITM.
         //
         am_bsp_debug_printf_disable();
     }
-}
+} // main()

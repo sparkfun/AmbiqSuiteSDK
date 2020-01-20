@@ -34,7 +34,7 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 #
-# This is part of revision v2.2.0-7-g63f7c2ba1 of the AmbiqSuite Development Package.
+# This is part of revision 2.3.2 of the AmbiqSuite Development Package.
 #
 #******************************************************************************
 TARGET := ble_freertos_watch
@@ -68,9 +68,6 @@ clean:
 	@echo Cleaning... ;\
 	$(RM) -rf $(CONFIG)
 
-
-../../../../../third_party/uecc/keil/bin/lib_uecc.lib:
-	$(MAKE) -C ../../../../../third_party/uecc
 
 ../../../bsp/keil/bin/libam_bsp.lib:
 	$(MAKE) -C ../../../bsp

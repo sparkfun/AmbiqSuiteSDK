@@ -42,7 +42,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
-// This is part of revision v2.2.0-7-g63f7c2ba1 of the AmbiqSuite Development Package.
+// This is part of revision 2.3.2 of the AmbiqSuite Development Package.
 //
 //*****************************************************************************
 #include <string.h>
@@ -112,12 +112,12 @@ extern void am_app_led_off(void);
 static void voles_conn_parameter_req(void)
 {
     hciConnSpec_t connSpec;
-    connSpec.connIntervalMin = 6;//(15/1.25);//(30/1.25);
-    connSpec.connIntervalMax = 12;//(15/1.25);//(30/1.25);
-    connSpec.connLatency = 0;//0;
+    connSpec.connIntervalMin = 6;   //(15/1.25);//(30/1.25);
+    connSpec.connIntervalMax = 12;  //(15/1.25);//(30/1.25);
+    connSpec.connLatency = 0;       //0;
     connSpec.supTimeout = 400;
     connSpec.minCeLen = 0;
-    connSpec.maxCeLen = 0xffff; //fixme
+    connSpec.maxCeLen = 0xffff;     //fixme
     DmConnUpdate(1, &connSpec);
 }
 
@@ -139,9 +139,11 @@ voles_conn_open(dmEvt_t *pMsg)
     APP_TRACE_INFO1("connInterval = %d x 1.25 ms\n", evt->connInterval);
     APP_TRACE_INFO1("connLatency = %d\n", evt->connLatency);
     APP_TRACE_INFO1("supTimeout = %d ms\n", evt->supTimeout * 10);
-    
-    if(evt->connInterval > 12)
+
+    if ( evt->connInterval > 12 )
+    {
         voles_conn_parameter_req();
+    }
 }
 
 //*****************************************************************************
@@ -160,8 +162,8 @@ voles_conn_update(dmEvt_t *pMsg)
     APP_TRACE_INFO1("connLatency = 0x%x", evt->connLatency);
     APP_TRACE_INFO1("supTimeout = 0x%x", evt->supTimeout);
 
-    
-    if(evt->connInterval > (15/1.25))
+
+    if ( evt->connInterval > (15 / 1.25) )
     {
         // retry
         voles_conn_parameter_req();
@@ -174,12 +176,12 @@ int32_t voles_msbc_encode_voice_data(uint8_t *input, uint8_t *output, uint16_t l
 {
     int32_t i32CompressedLen = 0;
 
-    if((input==NULL) || (output==NULL))
+    if ((input == NULL) || (output == NULL))
     {
       return 0;
     }
-    
-    sbc_encoder_encode(&g_SBCInstance, input, len, 
+
+    sbc_encoder_encode(&g_SBCInstance, input, len,
             output, CODEC_MSBC_OUTPUT_SIZE, (int *)&i32CompressedLen);
 
     APP_TRACE_INFO2("voles encode, input len:%d, compressedLen:%d", len, i32CompressedLen);
@@ -189,9 +191,9 @@ int32_t voles_msbc_encode_voice_data(uint8_t *input, uint8_t *output, uint16_t l
 
 int voles_set_codec_type(eVoleCodecType codec_type)
 {
-    APP_TRACE_INFO1("set codec type:%s", ((codec_type==0)?"MSBC code":"OPUS codec"));
-    
-    if(codec_type != VOLE_CODEC_TYPE_INVALID)
+    APP_TRACE_INFO1("set codec type:%s", ((codec_type == 0) ? "MSBC code" : "OPUS codec"));
+
+    if (codec_type != VOLE_CODEC_TYPE_INVALID)
     {
         g_vole_codec_type = codec_type;
         return codec_type;
@@ -236,7 +238,7 @@ void voles_transmit_voice_data(void)
     uint32_t      offset = txPkt->offset;
     int           remain_data_len = 0;
     int           enc_data_len = 0;
-    uint8_t       output_data[100] ={0};
+    uint8_t       output_data[100] = {0};
     int      output_len = 0;
     static int    index = 0;
     eVoleCodecType codec_type = voles_get_codec_type();
@@ -244,19 +246,19 @@ void voles_transmit_voice_data(void)
     txPkt->len = sizeof(voice_data);
     remain_data_len = txPkt->len - offset;
 
-    if(codec_type == MSBC_CODEC_IN_USE)
+    if (codec_type == MSBC_CODEC_IN_USE)
     {
         enc_data_len = (remain_data_len>CODEC_MSBC_INPUT_SIZE)?CODEC_MSBC_INPUT_SIZE:remain_data_len;
     }
-    else if(codec_type == OPUS_CODEC_IN_USE)
+    else if (codec_type == OPUS_CODEC_IN_USE)
     {
         enc_data_len = (remain_data_len>CODEC_OPUS_INPUT_SIZE)?CODEC_OPUS_INPUT_SIZE:remain_data_len;
     }
 
-    APP_TRACE_INFO3("send %s encode data, total len:%d, offset:%d", (codec_type==MSBC_CODEC_IN_USE)?"mSBC":"Opus",
-                    txPkt->len,offset);
-    
-    if(offset >= txPkt->len)
+    APP_TRACE_INFO3("send %s encode data, total len:%d, offset:%d", (codec_type == MSBC_CODEC_IN_USE) ? "mSBC" : "Opus",
+                    txPkt->len, offset);
+
+    if (offset >= txPkt->len)
     {
         am_app_led_off();
         g_start_voice_send = FALSE;
@@ -265,18 +267,18 @@ void voles_transmit_voice_data(void)
     }
     else
     {
-        if(codec_type == MSBC_CODEC_IN_USE)
+        if (codec_type == MSBC_CODEC_IN_USE)
         {
-            output_len = voles_msbc_encode_voice_data(&voice_data[offset+AUD_HEADER_LEN], output_data, enc_data_len);
+            output_len = voles_msbc_encode_voice_data(&voice_data[offset + AUD_HEADER_LEN], output_data, enc_data_len);
             txPkt->offset += enc_data_len;
         }
-        else if(codec_type == OPUS_CODEC_IN_USE)
+        else if (codec_type == OPUS_CODEC_IN_USE)
         {
-            output_len = audio_enc_encode_frame((short *)&voice_data[offset+AUD_HEADER_LEN], enc_data_len, output_data);//octopus_encode(g_opusEnc, (short *)&voice_data[offset+AUD_HEADER_LEN], enc_data_len, output_data, CODEC_OPUS_OUTPUT_SIZE);  //opus_encode(g_opusEnc, (opus_int16*)&voice_data[offset+AUD_HEADER_LEN], enc_data_len, output_data, CODEC_OPUS_OUTPUT_SIZE);
-            APP_TRACE_INFO1("opus encode, output_len:%d",output_len);
-            if(output_len == (CODEC_OPUS_OUTPUT_SIZE))
+            output_len = audio_enc_encode_frame((short *)&voice_data[offset + AUD_HEADER_LEN], enc_data_len, output_data); //octopus_encode(g_opusEnc, (short *)&voice_data[offset+AUD_HEADER_LEN], enc_data_len, output_data, CODEC_OPUS_OUTPUT_SIZE);  //opus_encode(g_opusEnc, (opus_int16*)&voice_data[offset+AUD_HEADER_LEN], enc_data_len, output_data, CODEC_OPUS_OUTPUT_SIZE);
+            APP_TRACE_INFO1("opus encode, output_len:%d", output_len);
+            if (output_len == (CODEC_OPUS_OUTPUT_SIZE))
             {
-                txPkt->offset += (2*CODEC_OPUS_INPUT_SIZE);            
+                txPkt->offset += (2*CODEC_OPUS_INPUT_SIZE);
                 //APP_TRACE_INFO1("opus_encode: ret:%d", output_len);
             }
             else
@@ -286,30 +288,30 @@ void voles_transmit_voice_data(void)
         }
     }
 
-    if(output_len>0)
+    if ( output_len > 0 )
     {
         memcpy(&g_ble_data_buffer[index], output_data, output_len);
         index += output_len;
     }
 
-    if(index >= voles_ble_buffer_size() || output_len<=0)
+    if ( index >= voles_ble_buffer_size() || output_len <= 0 )
     {
-      if(index >0)
-      {
-      am_app_KWD_AMA_stream_send(g_ble_data_buffer, index);
-      index = 0;
-      memset(g_ble_data_buffer, 0x0, sizeof(g_ble_data_buffer));
-      }
+        if (index >0)
+        {
+            am_app_KWD_AMA_stream_send(g_ble_data_buffer, index);
+            index = 0;
+            memset(g_ble_data_buffer, 0x0, sizeof(g_ble_data_buffer));
+        }
     }
     else
     {
-        uint8_t output_size = ((voles_get_codec_type()==MSBC_CODEC_IN_USE)?CODEC_MSBC_OUTPUT_SIZE:(CODEC_OPUS_OUTPUT_SIZE));
+        uint8_t output_size = ((voles_get_codec_type() == MSBC_CODEC_IN_USE) ? CODEC_MSBC_OUTPUT_SIZE : (CODEC_OPUS_OUTPUT_SIZE));
 
-        if(output_len == output_size)
+        if (output_len == output_size)
         {
             voles_transmit_voice_data();
         }
-        else if(output_len>0 && output_len<output_size)
+        else if (output_len>0 && output_len<output_size)
         {
             am_app_KWD_AMA_stream_send(output_data, output_len);
             index = 0;
@@ -334,7 +336,7 @@ volesHandleValueCnf(attEvt_t *pMsg)
 {
     if (pMsg->hdr.status == ATT_SUCCESS)
     {
-        if(g_start_voice_send)
+        if (g_start_voice_send)
         {
             voles_transmit_voice_data();
         }
@@ -372,12 +374,12 @@ void voles_init(wsfHandlerId_t handlerId, eVoleCodecType codec_type)
     volesCb.appHandlerId = handlerId;
 
     volesCb.core.txPkt.data = voice_data;
-    
-    if(codec_type == MSBC_CODEC_IN_USE)
+
+    if (codec_type == MSBC_CODEC_IN_USE)
     {
         sbc_encode_init(&g_SBCInstance, 1);  //0: SBC
     }
-    else if(codec_type == OPUS_CODEC_IN_USE)
+    else if (codec_type == OPUS_CODEC_IN_USE)
     {
         voles_opus_encoder_init();
     }
@@ -404,7 +406,7 @@ voles_conn_close(dmEvt_t *pMsg)
 
 uint8_t
 voles_write_cback(dmConnId_t connId, uint16_t handle, uint8_t operation,
-                   uint16_t offset, uint16_t len, uint8_t *pValue, attsAttr_t *pAttr)
+                  uint16_t offset, uint16_t len, uint8_t *pValue, attsAttr_t *pAttr)
 {
     APP_TRACE_INFO3("write cb, len:%d, value %x %x", len, pValue[0], pValue[1]);
 

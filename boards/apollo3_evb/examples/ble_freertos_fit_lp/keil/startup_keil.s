@@ -40,7 +40,7 @@
 ; ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 ; POSSIBILITY OF SUCH DAMAGE.
 ;
-; This is part of revision v2.2.0-7-g63f7c2ba1 of the AmbiqSuite Development Package.
+; This is part of revision 2.3.2 of the AmbiqSuite Development Package.
 ;
 ;******************************************************************************
 
@@ -48,7 +48,7 @@
 ;
 ; <o> Stack Size (in Bytes) <0x0-0xFFFFFFFF:8>
 ;************************************************************************
-Stack   EQU     0x00002300
+Stack   EQU     0x00002B00
 
 ;******************************************************************************
 ;

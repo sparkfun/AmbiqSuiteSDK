@@ -53,7 +53,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
-// This is part of revision v2.2.0-7-g63f7c2ba1 of the AmbiqSuite Development Package.
+// This is part of revision 2.3.2 of the AmbiqSuite Development Package.
 //
 //*****************************************************************************
 
@@ -96,7 +96,8 @@ am_gpio_isr(void)
     //
     // Clear the GPIO Interrupt (write to clear).
     //
-    am_hal_gpio_interrupt_clear(AM_HAL_GPIO_BIT(AM_BSP_GPIO_BUTTON0));
+    AM_HAL_GPIO_MASKCREATE(GpioIntMask);
+    am_hal_gpio_interrupt_clear(AM_HAL_GPIO_MASKBIT(pGpioIntMask, AM_BSP_GPIO_BUTTON0));
 
     //
     // Toggle LED 0.
@@ -231,19 +232,25 @@ main(void)
 
 #endif // AM_PART_APOLLO2
 
-#ifdef AM_PART_APOLLO3
+#if defined(AM_PART_APOLLO3) || defined(AM_PART_APOLLO3P)
     //
-    // Turn OFF Flash1
+    // Turn OFF unneeded flash
     //
-    if ( am_hal_pwrctrl_memory_enable(AM_HAL_PWRCTRL_MEM_FLASH_512K) )
+    if ( am_hal_pwrctrl_memory_enable(AM_HAL_PWRCTRL_MEM_FLASH_MIN) )
     {
         while(1);
     }
 
     //
-    // Power down SRAM
+    // For optimal Deep Sleep current, configure cache to be powered-down in deepsleep:
     //
-    PWRCTRL->MEMPWDINSLEEP_b.SRAMPWDSLP = PWRCTRL_MEMPWDINSLEEP_SRAMPWDSLP_ALLBUTLOWER32K;
+    am_hal_pwrctrl_memory_deepsleep_powerdown(AM_HAL_PWRCTRL_MEM_CACHE);
+
+    //
+    // Power down SRAM, only 32K SRAM retained
+    //
+    am_hal_pwrctrl_memory_deepsleep_powerdown(AM_HAL_PWRCTRL_MEM_SRAM_MAX);
+    am_hal_pwrctrl_memory_deepsleep_retain(AM_HAL_PWRCTRL_MEM_SRAM_32K_DTCM);
 #endif // AM_PART_APOLLO3
 
 #if defined(AM_BSP_NUM_BUTTONS)  &&  defined(AM_BSP_NUM_LEDS)
@@ -255,12 +262,13 @@ main(void)
     //
     // Clear the GPIO Interrupt (write to clear).
     //
-    am_hal_gpio_interrupt_clear(AM_HAL_GPIO_BIT(AM_BSP_GPIO_BUTTON0));
+    AM_HAL_GPIO_MASKCREATE(GpioIntMask);
+    am_hal_gpio_interrupt_clear(AM_HAL_GPIO_MASKBIT(pGpioIntMask, AM_BSP_GPIO_BUTTON0));
 
     //
     // Enable the GPIO/button interrupt.
     //
-    am_hal_gpio_interrupt_enable(AM_HAL_GPIO_BIT(AM_BSP_GPIO_BUTTON0));
+    am_hal_gpio_interrupt_enable(AM_HAL_GPIO_MASKBIT(pGpioIntMask, AM_BSP_GPIO_BUTTON0));
 
     //
     // Configure the LEDs.

@@ -41,7 +41,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
-// This is part of revision v2.2.0-7-g63f7c2ba1 of the AmbiqSuite Development Package.
+// This is part of revision 2.3.2 of the AmbiqSuite Development Package.
 //
 //*****************************************************************************
 #include "am_mcu_apollo.h"
@@ -62,15 +62,15 @@
 
 #ifndef AM_BSP_FLASH_CS
 #define AM_BSP_FLASH_CS     4
-#endif 
+#endif
 
 #ifndef AM_BSP_GPIO_FLASH_CS
 #define AM_BSP_GPIO_FLASH_CS     31
-#endif 
+#endif
 
 #ifndef AM_BSP_GPIO_CFG_FLASH_CS
 #define AM_BSP_GPIO_CFG_FLASH_CS     AM_HAL_PIN_31_M0nCE4
-#endif 
+#endif
 //*****************************************************************************
 //
 // Device structure for the SPI flash.
@@ -127,7 +127,7 @@ ext_flash_init(void)
 {
     //storage in external flash
 
-#if defined (AM_PART_APOLLO2)
+#if defined(AM_PART_APOLLO2)
     //
     // Power on SPI
     //
@@ -139,7 +139,7 @@ ext_flash_init(void)
     //
     am_hal_iom_config(AM_BSP_FLASH_IOM, &g_sIOMConfig);
 
-#if defined (AM_PART_APOLLO2)
+#if defined(AM_PART_APOLLO2)
     //
     // Save the configuration
     //
@@ -164,7 +164,7 @@ ext_flash_enable(void)
     //
     // Turn on the IOM for this operation.
     //
-#if defined (AM_PART_APOLLO2)
+#if defined(AM_PART_APOLLO2)
     am_hal_iom_power_on_restore(AM_BSP_FLASH_IOM);
 #endif
     am_hal_iom_enable(AM_BSP_FLASH_IOM);
@@ -180,7 +180,7 @@ ext_flash_disable(void)
     //
     am_bsp_iom_spi_pins_disable(AM_BSP_FLASH_IOM);
     am_hal_iom_disable(AM_BSP_FLASH_IOM);
-#if defined (AM_PART_APOLLO2)
+#if defined(AM_PART_APOLLO2)
     am_hal_iom_power_off_save(AM_BSP_FLASH_IOM);
 #endif
     return 0;

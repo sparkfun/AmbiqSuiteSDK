@@ -208,8 +208,8 @@
                 <option>
                     <name>CCDefines</name>
                     <state>iar</state>
-          <state>AM_PACKAGE_BGA</state>
           <state>AM_PART_APOLLO</state>
+          <state>AM_PACKAGE_BGA</state>
                 </option>
                 <option>
                     <name>CCPreprocFile</name>
@@ -286,11 +286,11 @@
                 </option>
                 <option>
                     <name>IExtraOptionsCheck</name>
-                    <state>0</state>
+                    <state>1</state>
                 </option>
                 <option>
                     <name>IExtraOptions</name>
-                    <state></state>
+                    <state>--no_path_in_file_macros</state>
                 </option>
                 <option>
                     <name>CCLangConformance</name>
@@ -1222,8 +1222,8 @@
                 <option>
                     <name>CCDefines</name>
                     <state>iar</state>
-          <state>AM_PACKAGE_BGA</state>
           <state>AM_PART_APOLLO</state>
+          <state>AM_PACKAGE_BGA</state>
                 </option>
                 <option>
                     <name>CCPreprocFile</name>

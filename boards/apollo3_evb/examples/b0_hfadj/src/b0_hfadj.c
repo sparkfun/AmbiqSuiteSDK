@@ -46,7 +46,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
-// This is part of revision v2.2.0-7-g63f7c2ba1 of the AmbiqSuite Development Package.
+// This is part of revision 2.3.2 of the AmbiqSuite Development Package.
 //
 //*****************************************************************************
 
@@ -93,25 +93,25 @@ main(void)
     //
     // Enable the 32KHz XTAL.
     //
-    am_hal_clkgen_control(AM_HAL_CLKGEN_CONTROL_XTAL_START,0);
-    
+    am_hal_clkgen_control(AM_HAL_CLKGEN_CONTROL_XTAL_START, 0);
+
     //
     // Wait for 1 second for the 32KHz XTAL to startup and stabilize.
     //
     am_util_delay_ms(1000);
-    
+
     //
     // Enable HFADJ.
     //
-    am_hal_clkgen_control(AM_HAL_CLKGEN_CONTROL_HFADJ_ENABLE,0);
-    
+    am_hal_clkgen_control(AM_HAL_CLKGEN_CONTROL_HFADJ_ENABLE, 0);
+
     am_util_stdio_printf("\nDisabling the 32KHz Crystal\n");
-    
+
     //
     // Disable the 32KHz XTAL.
     //
-    am_hal_clkgen_control(AM_HAL_CLKGEN_CONTROL_XTAL_STOP,0);
-    
+    am_hal_clkgen_control(AM_HAL_CLKGEN_CONTROL_XTAL_STOP, 0);
+
     //
     // We are done printing.
     // Disable debug printf messages on ITM.

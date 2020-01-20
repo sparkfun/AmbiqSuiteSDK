@@ -43,7 +43,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
-// This is part of revision v2.2.0-7-g63f7c2ba1 of the AmbiqSuite Development Package.
+// This is part of revision 2.3.2 of the AmbiqSuite Development Package.
 //
 //*****************************************************************************
 
@@ -98,6 +98,7 @@
 
 #include "hci_apollo_config.h"
 #include "hci_drv_em9304.h"
+#include "gatt_api.h"
 
 /**************************************************************************************************
   Macros
@@ -159,8 +160,11 @@ static const smpCfg_t datsSmpCfg =
   SMP_IO_NO_IN_NO_OUT,                    /*! I/O Capability */
   7,                                      /*! Minimum encryption key length */
   16,                                     /*! Maximum encryption key length */
-  3,                                      /*! Attempts to trigger 'repeated attempts' timeout */
+  1,                                      /*! Attempts to trigger 'repeated attempts' timeout */
   0,                                      /*! Device authentication requirements */
+  64000,                                  /*! Maximum repeated attempts timeout in msec */
+  64000,                                  /*! Time msec before attemptExp decreases */
+  2                                       /*! Repeated attempts multiplier exponent */
 };
 
 /*! configurable parameters for connection parameter update */
@@ -173,6 +177,15 @@ static const appUpdateCfg_t datsUpdateCfg =
   3,                                      /*! Connection latency */
   600,                                    /*! Supervision timeout in 10ms units */
   5                                       /*! Number of update attempts before giving up */
+};
+
+/*! ATT configurable parameters (increase MTU) */
+static const attCfg_t datsAttCfg =
+{
+  15,                               /* ATT server service discovery connection idle timeout in seconds */
+  241,                              /* desired ATT MTU */
+  ATT_MAX_TRANS_TIMEOUT,            /* transcation timeout in seconds */
+  4                                 /* number of queued prepare writes supported by server */
 };
 
 /*! local IRK */
@@ -290,13 +303,14 @@ static void datsSetup(dmEvt_t *pMsg);
 /*************************************************************************************************/
 static void datsDmCback(dmEvt_t *pDmEvt)
 {
+  dmEvt_t   *pMsg;
   uint16_t  len;
 
   if (pDmEvt->hdr.event == DM_SEC_ECC_KEY_IND)
   {
     DmSecSetEccKey(&pDmEvt->eccMsg.data.key);
-    datsSetup(NULL);
 
+    /* If the local device sends OOB data. */
     if (datsSecCfg.oob)
     {
       uint8_t oobLocalRandom[SMP_RAND_LEN];
@@ -319,7 +333,6 @@ static void datsDmCback(dmEvt_t *pDmEvt)
   }
   else
   {
-    dmEvt_t   *pMsg;
     len = DmSizeOfEvt(pDmEvt);
 
     if ((pMsg = WsfMsgAlloc(len)) != NULL)
@@ -363,11 +376,12 @@ static void datsCccCback(attsCccEvt_t *pEvt)
 {
   appDbHdl_t    dbHdl;
 
-  /* if CCC not set from initialization and there's a device record */
+  /* If CCC not set from initialization and there's a device record and currently bonded */
   if ((pEvt->handle != ATT_HANDLE_NONE) &&
-      ((dbHdl = AppDbGetHdl((dmConnId_t) pEvt->hdr.param)) != APP_DB_HDL_NONE))
+      ((dbHdl = AppDbGetHdl((dmConnId_t) pEvt->hdr.param)) != APP_DB_HDL_NONE) &&
+      AppCheckBonded((dmConnId_t)pEvt->hdr.param))
   {
-    /* store value in device database */
+    /* Store value in device database. */
     AppDbSetCccTblValue(dbHdl, pEvt->idx, pEvt->value);
   }
 }
@@ -436,14 +450,30 @@ static void datsProcMsg(dmEvt_t *pMsg)
 
   switch(pMsg->hdr.event)
   {
+    case ATT_MTU_UPDATE_IND:
+      APP_TRACE_INFO1("Negotiated MTU %d", ((attEvt_t *)pMsg)->mtu);
+      break;  
+
     case DM_RESET_CMPL_IND:
+      AttsCalculateDbHash();
       DmSecGenerateEccKeyReq();
+      datsSetup(NULL);
       uiEvent = APP_UI_RESET_CMPL;
 
       HciVsEM_SetRfPowerLevelEx(TX_POWER_LEVEL_PLUS_0P4_dBm);
 
       break;
 
+
+	  case DM_ADV_SET_START_IND:
+	    uiEvent = APP_UI_ADV_SET_START_IND;
+	  break;
+
+	  case DM_ADV_SET_STOP_IND:
+	    uiEvent = APP_UI_ADV_SET_STOP_IND;
+		  
+       break;
+		
     case DM_ADV_START_IND:
       uiEvent = APP_UI_ADV_START;
       break;
@@ -464,10 +494,12 @@ static void datsProcMsg(dmEvt_t *pMsg)
       break;
 
     case DM_SEC_PAIR_CMPL_IND:
+      DmSecGenerateEccKeyReq();
       uiEvent = APP_UI_SEC_PAIR_CMPL;
       break;
 
     case DM_SEC_PAIR_FAIL_IND:
+      DmSecGenerateEccKeyReq();
       uiEvent = APP_UI_SEC_PAIR_FAIL;
       break;
 
@@ -502,44 +534,47 @@ static void datsProcMsg(dmEvt_t *pMsg)
         AppHandlePasskey(&pMsg->authReq);
       }
       break;
+      case DM_SEC_ECC_KEY_IND:
+        DmSecSetEccKey(&pMsg->eccMsg.data.key);
+        break;
+      case DM_SEC_COMPARE_IND:
+        AppHandleNumericComparison(&pMsg->cnfInd);
+        break;
 
-    case DM_SEC_COMPARE_IND:
-      AppHandleNumericComparison(&pMsg->cnfInd);
-      break;
+      case DM_PRIV_CLEAR_RES_LIST_IND:
+        APP_TRACE_INFO1("Clear resolving list status 0x%02x", pMsg->hdr.status);
+        break;
 
-#if CS50_INCLUDED == TRUE
-    case DM_PHY_UPDATE_IND:
-      APP_TRACE_INFO2("DM_PHY_UPDATE_IND - RX: %d, TX: %d", pMsg->phyUpdate.rxPhy, pMsg->phyUpdate.txPhy);
-      datsCb.phyMode = pMsg->phyUpdate.rxPhy;
-      break;
-#endif /* CS50_INCLUDED */
+      case DM_HW_ERROR_IND:
+        uiEvent = APP_UI_HW_ERROR;
+        break;
       case DM_VENDOR_SPEC_CMD_CMPL_IND:
-      {
-        #if defined(AM_PART_APOLLO) || defined(AM_PART_APOLLO2)
-       
-          uint8_t *param_ptr = &pMsg->vendorSpecCmdCmpl.param[0];
-        
-          switch (pMsg->vendorSpecCmdCmpl.opcode)
-          {
-            case 0xFC20: //read at address
+        {
+          #if defined(AM_PART_APOLLO) || defined(AM_PART_APOLLO2)
+         
+            uint8_t *param_ptr = &pMsg->vendorSpecCmdCmpl.param[0];
+          
+            switch (pMsg->vendorSpecCmdCmpl.opcode)
             {
-              uint32_t read_value;
+              case 0xFC20: //read at address
+              {
+                uint32_t read_value;
 
-              BSTREAM_TO_UINT32(read_value, param_ptr);
+            BSTREAM_TO_UINT32(read_value, param_ptr);
 
-              APP_TRACE_INFO3("VSC 0x%0x complete status %x param %x", 
-                pMsg->vendorSpecCmdCmpl.opcode, 
-                pMsg->hdr.status,
-                read_value);
-            }
-
-            break;
-            default:
-                APP_TRACE_INFO2("VSC 0x%0x complete status %x",
-                    pMsg->vendorSpecCmdCmpl.opcode,
-                    pMsg->hdr.status);
-            break;
+            APP_TRACE_INFO3("VSC 0x%0x complete status %x param %x", 
+              pMsg->vendorSpecCmdCmpl.opcode, 
+              pMsg->hdr.status,
+              read_value);
           }
+
+          break;
+          default:
+              APP_TRACE_INFO2("VSC 0x%0x complete status %x",
+                  pMsg->vendorSpecCmdCmpl.opcode,
+                  pMsg->hdr.status);
+          break;
+        }
           
         #endif
       }
@@ -694,10 +729,17 @@ void DatsHandler(wsfEventMask_t event, wsfMsgHdr_t *pMsg)
   {
     APP_TRACE_INFO1("Dats got evt %d", pMsg->event);
 
-    if (pMsg->event >= DM_CBACK_START && pMsg->event <= DM_CBACK_END)
-    {
-      /* process advertising and connection-related messages */
-      AppSlaveProcDmMsg((dmEvt_t *) pMsg);
+        /* process ATT messages */
+        if (pMsg->event >= ATT_CBACK_START && pMsg->event <= ATT_CBACK_END)
+        {
+          /* process server-related ATT messages */
+          AppServerProcAttMsg(pMsg);
+        }
+        /* process DM messages */
+        else if (pMsg->event >= DM_CBACK_START && pMsg->event <= DM_CBACK_END)
+        {
+            /* process advertising and connection-related messages */
+            AppSlaveProcDmMsg((dmEvt_t *) pMsg);
 
       /* process security-related messages */
       AppSlaveSecProcDmMsg((dmEvt_t *) pMsg);
@@ -732,6 +774,7 @@ void DatsStart(void)
   AttsCccRegister(DATS_NUM_CCC_IDX, (attsCccSet_t *) datsCccSet, datsCccCback);
 
   /* Initialize attribute server database */
+  SvcCoreGattCbackRegister(GattReadCback, GattWriteCback);
   SvcCoreAddGroup();
   SvcWpCbackRegister(NULL, datsWpWriteCback);
   SvcWpAddGroup();
@@ -754,6 +797,9 @@ void DatsStart(void)
 
   WsfBufDiagRegister(datsWsfBufDiagnostics);
 
+  /* Set Service Changed CCCD index. */
+  GattSetSvcChangedIdx(DATS_GATT_SC_CCC_IDX);
+	
   /* Reset the device */
   DmDevReset();
 }

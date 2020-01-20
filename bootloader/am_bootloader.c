@@ -40,7 +40,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
-// This is part of revision v2.2.0-7-g63f7c2ba1 of the AmbiqSuite Development Package.
+// This is part of revision 2.3.2 of the AmbiqSuite Development Package.
 //
 //*****************************************************************************
 #include <stdint.h>
@@ -57,7 +57,7 @@
 #define DPRINTF(x)
 #endif
 
-#ifdef AM_PART_APOLLO3
+#if defined(AM_PART_APOLLO3) || defined(AM_PART_APOLLO3P)
 const am_hal_gpio_pincfg_t g_AM_HAL_GPIO_INPUT_ENABLE =
 {
   .uFuncSel             = AM_HAL_PIN_0_GPIO,
@@ -410,19 +410,19 @@ am_hal_bootloader_override_check(am_bootloader_image_t *psImage)
         //
         // Temporarily configure the override pin as an input.
         //
-#ifndef AM_PART_APOLLO3
-        am_hal_gpio_pin_config(psImage->ui32OverrideGPIO, AM_HAL_PIN_INPUT);
-#else
+#if defined(AM_PART_APOLLO3) || defined(AM_PART_APOLLO3P)
         am_hal_gpio_pinconfig(psImage->ui32OverrideGPIO, g_AM_HAL_GPIO_INPUT_ENABLE);
+#else
+        am_hal_gpio_pin_config(psImage->ui32OverrideGPIO, AM_HAL_PIN_INPUT);
 #endif
 
         //
         // If the override pin matches the specified polarity, force a failure.
         //
-#ifndef AM_PART_APOLLO3
-        ui32OverridePin = am_hal_gpio_input_bit_read(psImage->ui32OverrideGPIO);
-#else
+#if defined(AM_PART_APOLLO3) || defined(AM_PART_APOLLO3P)
         am_hal_gpio_state_read(psImage->ui32OverrideGPIO, AM_HAL_GPIO_INPUT_READ, &ui32OverridePin );
+#else
+        ui32OverridePin = am_hal_gpio_input_bit_read(psImage->ui32OverrideGPIO);
 #endif
         if ( ui32OverridePin == (psImage->ui32OverridePolarity & 0x1) )
         {
@@ -430,10 +430,10 @@ am_hal_bootloader_override_check(am_bootloader_image_t *psImage)
             //
             // Make sure to disable the pin before continuing.
             //
-#ifndef AM_PART_APOLLO3
-            am_hal_gpio_pin_config(psImage->ui32OverrideGPIO, AM_HAL_PIN_DISABLE);
-#else
+#if defined(AM_PART_APOLLO3) || defined(AM_PART_APOLLO3P)
             am_hal_gpio_pinconfig(psImage->ui32OverrideGPIO, g_AM_HAL_GPIO_INPUT_DISABLE);
+#else
+            am_hal_gpio_pin_config(psImage->ui32OverrideGPIO, AM_HAL_PIN_DISABLE);
 #endif
             return true;
         }
@@ -449,10 +449,10 @@ am_hal_bootloader_override_check(am_bootloader_image_t *psImage)
         // as it might interfere with the program we are (presumably) about to
         // boot.
         //
-#ifndef AM_PART_APOLLO3
-            am_hal_gpio_pin_config(psImage->ui32OverrideGPIO, AM_HAL_PIN_DISABLE);
-#else
+#if defined(AM_PART_APOLLO3) || defined(AM_PART_APOLLO3P)
             am_hal_gpio_pinconfig(psImage->ui32OverrideGPIO, g_AM_HAL_GPIO_INPUT_DISABLE);
+#else
+            am_hal_gpio_pin_config(psImage->ui32OverrideGPIO, AM_HAL_PIN_DISABLE);
 #endif
     }
 

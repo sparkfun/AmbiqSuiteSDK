@@ -13,7 +13,7 @@ Purpose:
 This example implements a BLE heart rate sensor within the FreeRTOS
 framework. To minimize power usage, this application is compiled without
 debug printing by default (the non-"lp" version of this example enables
-them by default).  
+them by default).
 
 Additional Information:
 =======================

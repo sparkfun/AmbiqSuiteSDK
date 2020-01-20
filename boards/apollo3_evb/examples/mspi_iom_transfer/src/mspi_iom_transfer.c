@@ -71,6 +71,14 @@
 //! #define AM_BSP_GPIO_MSPI_D3             23
 //! #define AM_BSP_GPIO_MSPI_SCK            24
 //!
+//! And if the fireball device card is used, this example can work on:
+//! Apollo3_eb + Fireball
+//! Apollo3_eb + Fireball2
+//! Recommend to use 1.8V power supply voltage.
+//! Define FIREBALL_CARD or FIREBALL2_CARD in the config-template.ini file to select.
+//! Define CYPRESS_S25FS064S or ADESTO_ATXP032 for Fireball
+//! Define ADESTO_ATXP032 for Fireball2
+//!
 //! @endverbatim
 //
 //*****************************************************************************
@@ -109,7 +117,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
-// This is part of revision v2.2.0-7-g63f7c2ba1 of the AmbiqSuite Development Package.
+// This is part of revision 2.3.2 of the AmbiqSuite Development Package.
 //
 //*****************************************************************************
 
@@ -118,7 +126,7 @@
 #include "am_devices_mspi_flash.h"
 #include "am_util.h"
 
-#if FIREBALL_CARD
+#if FIREBALL_CARD || FIREBALL2_CARD
 //
 // The Fireball device card multiplexes various devices including each of an SPI
 // and I2C FRAM. The Fireball device driver controls access to these devices.
@@ -132,7 +140,7 @@
 // Customize the following for the test
 //*****************************************************************************
 // Control the example execution
-#define FRAM_IOM_MODULE         1
+#define FRAM_IOM_MODULE         0
 #define IOM_FREQ                AM_HAL_IOM_24MHZ
 #define MSPI_FREQ               AM_HAL_MSPI_CLK_24MHZ
 
@@ -181,10 +189,13 @@
 #define VARIABLE_SIZE_CHANGE      0
 
 // Select the FRAM Device
+#ifdef FIREBALL_CARD
 #define FRAM_DEVICE_MB85RS1MT     1     // SPI Fram (Fireball)
-//#define FRAM_DEVICE_MB85RC64TA    1     // I2C Fram (Fireball)
+#elif FIREBALL2_CARD
+#define FRAM_DEVICE_MB85RQ4ML     1     // SPI Fram (Fireball2)
+#endif
+
 //#define FRAM_DEVICE_MB85RS64V     1     // SPI Fram
-//#define FRAM_DEVICE_MB85RC256V    1     // I2C Fram
 //*****************************************************************************
 //*****************************************************************************
 
@@ -192,18 +203,14 @@
 #include "am_devices_mb85rs1mt.h"
 #define FRAM_DEVICE_ID          AM_DEVICES_MB85RS1MT_ID
 #define FRAM_IOM_MODE           AM_HAL_IOM_SPI_MODE
-#elif (FRAM_DEVICE_MB85RC256V == 1)
-#include "am_devices_mb85rc256v.h"
-#define FRAM_DEVICE_ID          AM_DEVICES_MB85RC256V_ID
-#define FRAM_IOM_MODE           AM_HAL_IOM_I2C_MODE
+#elif (FRAM_DEVICE_MB85RQ4ML == 1)
+#include "am_devices_mb85rq4ml.h"
+#define FRAM_DEVICE_ID          AM_DEVICES_MB85RQ4ML_ID
+#define FRAM_IOM_MODE           AM_HAL_IOM_SPI_MODE
 #elif (FRAM_DEVICE_MB85RS64V == 1)
 #include "am_devices_mb85rs64v.h"
 #define FRAM_DEVICE_ID          AM_DEVICES_MB85RS64V_ID
 #define FRAM_IOM_MODE           AM_HAL_IOM_SPI_MODE
-#elif (FRAM_DEVICE_MB85RC64TA == 1)
-#include "am_devices_mb85rc256v.h"
-#define FRAM_DEVICE_ID          AM_DEVICES_MB85RC64TA_ID
-#define FRAM_IOM_MODE           AM_HAL_IOM_I2C_MODE
 #else
 #error "Unknown FRAM Device"
 #endif
@@ -421,18 +428,23 @@ fram_device_func_t fram_func =
 #else
     .fram_fireball_control = 0,
 #endif
-#elif (FRAM_DEVICE_MB85RC256V == 1)
-    .devName = "I2C FRAM MB85RC256V",
-    .fram_init = am_devices_mb85rc256v_init,
-    .fram_term = am_devices_mb85rc256v_term,
-    .fram_read_id = am_devices_mb85rc256v_read_id,
-    .fram_blocking_write = am_devices_mb85rc256v_blocking_write,
-    .fram_nonblocking_write = am_devices_mb85rc256v_nonblocking_write,
-    .fram_nonblocking_write_adv = am_devices_mb85rc256v_nonblocking_write_adv,
-    .fram_blocking_read = am_devices_mb85rc256v_blocking_read,
-    .fram_nonblocking_read = am_devices_mb85rc256v_nonblocking_read,
-    .fram_command_send = am_devices_mb85rc256v_command_send,
+#elif (FRAM_DEVICE_MB85RQ4ML == 1)
+    // Fireball installed SPI FRAM device
+    .devName = "SPI FRAM MB85RQ4ML",
+    .fram_init = am_devices_mb85rq4ml_init,
+    .fram_term = am_devices_mb85rq4ml_term,
+    .fram_read_id = am_devices_mb85rq4ml_read_id,
+    .fram_blocking_write = am_devices_mb85rq4ml_blocking_write,
+    .fram_nonblocking_write = am_devices_mb85rq4ml_nonblocking_write,
+    .fram_nonblocking_write_adv = am_devices_mb85rq4ml_nonblocking_write_adv,
+    .fram_blocking_read = am_devices_mb85rq4ml_blocking_read,
+    .fram_nonblocking_read = am_devices_mb85rq4ml_nonblocking_read,
+    .fram_command_send = am_devices_mb85rq4ml_command_send,
+#if FIREBALL2_CARD
+    .fram_fireball_control = AM_DEVICES_FIREBALL2_STATE_SPI_FRAM_PSRAM_1P8,
+#else
     .fram_fireball_control = 0,
+#endif
 #elif (FRAM_DEVICE_MB85RS64V == 1)
     .devName = "SPI FRAM MB85RS64V",
     .fram_init = am_devices_mb85rs64v_init,
@@ -445,23 +457,6 @@ fram_device_func_t fram_func =
     .fram_nonblocking_read = am_devices_mb85rs64v_nonblocking_read,
     .fram_command_send = am_devices_mb85rs64v_command_send,
     .fram_fireball_control = 0,
-#elif (FRAM_DEVICE_MB85RC64TA == 1)
-    // Fireball installed I2C FRAM device
-    .devName = "I2C FRAM MB85RC64TA",
-    .fram_init = am_devices_mb85rc256v_init,
-    .fram_term = am_devices_mb85rc256v_term,
-    .fram_read_id = am_devices_mb85rc256v_read_id,
-    .fram_blocking_write = am_devices_mb85rc256v_blocking_write,
-    .fram_nonblocking_write = am_devices_mb85rc256v_nonblocking_write,
-    .fram_nonblocking_write_adv = am_devices_mb85rc256v_nonblocking_write_adv,
-    .fram_blocking_read = am_devices_mb85rc256v_blocking_read,
-    .fram_nonblocking_read = am_devices_mb85rc256v_nonblocking_read,
-    .fram_command_send = am_devices_mb85rc256v_command_send,
-#if FIREBALL_CARD
-    .fram_fireball_control = AM_DEVICES_FIREBALL_STATE_I2C_FRAM,
-#else
-    .fram_fireball_control = 0,
-#endif
 #else
 #error "Unknown FRAM Device"
 #endif
@@ -607,6 +602,10 @@ fireball_init (void)
     {
         DEBUG_PRINT("Fireball found, ID is 0x%X.\n", ui32ID);
     }
+    else if ( ui32ID == FIREBALL2_ID )
+    {
+        DEBUG_PRINT("Fireball 2 found, ID is 0x%X.\n", ui32ID);
+    }
     else
     {
         DEBUG_PRINT("Unknown device returned ID as 0x%X.\n", ui32ID);
@@ -635,7 +634,7 @@ fram_init(void)
     // Set up IOM
     // Initialize the Device
 
-#if FIREBALL_CARD
+#if FIREBALL_CARD || FIREBALL2_CARD
     uint32_t ui32Ret;
 
     if ( fram_func.fram_fireball_control != 0 )
@@ -699,7 +698,7 @@ mspi_flash_init(const am_hal_mspi_dev_config_t *mspiFlashConfig)
 {
 
     uint32_t      ui32Status;
-#if FIREBALL_CARD // Set the fireball card for MSPI
+#if FIREBALL_CARD || FIREBALL2_CARD // Set the fireball card for MSPI
     //
     // Set the MUX for the Flash Device
     //
@@ -1438,14 +1437,20 @@ init_mspi_iom_xfer(void)
 {
     uint32_t      ui32Status = 0;
     uint32_t u32Arg;
+
+    //
     // Clear flags
+    //
     u32Arg = 0x003F0000;  // clear all flags
     am_hal_iom_control(g_IOMHandle, AM_HAL_IOM_REQ_FLAG_SETCLR, &u32Arg);
 #if defined(SEQLOOP) && defined(RUN_AUTONOMOUS)
     u32Arg = 0x003B0004;  // set flag PAUSEFLAG, clear all other flags
 #endif
     am_hal_mspi_control(g_MSPIHdl, AM_HAL_MSPI_REQ_FLAG_SETCLR, &u32Arg);
+
+    //
     // Link MSPI and IOM
+    //
     u32Arg = FRAM_IOM_MODULE;
     ui32Status = am_hal_mspi_control(g_MSPIHdl, AM_HAL_MSPI_REQ_LINK_IOM, &u32Arg);
     if (ui32Status)
@@ -1480,12 +1485,17 @@ start_mspi_iom_xfer(void)
 
     DEBUG_PRINT("\nInitiating MSP -> IOM Transfer\n");
 #ifdef SEQLOOP
+    //
     // Set in Sequence mode
+    //
     bBool = true;
     am_hal_mspi_control(g_MSPIHdl, AM_HAL_MSPI_REQ_SET_SEQMODE, &bBool);
     am_hal_iom_control(g_IOMHandle, AM_HAL_IOM_REQ_SET_SEQMODE, &bBool);
 #endif
+
+    //
     // Queue up FRAM Writes and Flash Reads
+    //
     for (uint32_t address = 0, bufIdx = 0; address < (BLOCK_SIZE - VARIABLE_SIZE_CHANGE*numIter); address += SPI_TXN_SIZE, bufIdx++)
     {
 #ifndef CQ_RAW
@@ -1514,6 +1524,7 @@ start_mspi_iom_xfer(void)
         }
 #endif
     }
+
     if (ui32Status == 0)
     {
 #ifdef CQ_RAW
@@ -1561,7 +1572,10 @@ start_mspi_iom_xfer(void)
             while(1);
         }
         DEBUG_GPIO_LOW(TEST_GPIO1);
+
+        //
         // Queue up the CQ Raw
+        //
         jump.address = (uint32_t)&IOMn(FRAM_IOM_MODULE)->CQADDR;
         jump.value = (uint32_t)&gIomLongTxn;
 
@@ -1777,34 +1791,41 @@ main(void)
     //
     am_hal_gpio_fastgpio_disable(CPU_SLEEP_GPIO);
     am_hal_gpio_fastgpio_clr(CPU_SLEEP_GPIO);
-    am_hal_gpio_fast_pinconfig(((uint64_t)0x1 << CPU_SLEEP_GPIO),
-                                         g_AM_HAL_GPIO_OUTPUT, 0);
+    AM_HAL_GPIO_MASKCREATE(sGpioIntMaskCpu);
+    am_hal_gpio_fast_pinconfig(AM_HAL_GPIO_MASKBIT(psGpioIntMaskCpu, CPU_SLEEP_GPIO),
+                               g_AM_HAL_GPIO_OUTPUT, 0);
+
     //
     // Configure the pins that are to be used for Fast GPIO.
     //
     am_hal_gpio_fastgpio_enable(TEST_GPIO);
     am_hal_gpio_fastgpio_clr(TEST_GPIO);
+
     //
     // Configure the pins that are to be used for Fast GPIO.
     //
     am_hal_gpio_fastgpio_disable(TEST_GPIO);
     am_hal_gpio_fastgpio_clr(TEST_GPIO);
-    am_hal_gpio_fast_pinconfig(((uint64_t)0x1 << TEST_GPIO),
-                                         g_AM_HAL_GPIO_OUTPUT, 0);
+    AM_HAL_GPIO_MASKCREATE(sGpioIntMaskTest);
+    am_hal_gpio_fast_pinconfig(AM_HAL_GPIO_MASKBIT(psGpioIntMaskTest, TEST_GPIO),
+                               g_AM_HAL_GPIO_OUTPUT, 0);
 
     //
     // Configure the pins that are to be used for Fast GPIO.
     //
     am_hal_gpio_fastgpio_enable(TEST_GPIO1);
     am_hal_gpio_fastgpio_clr(TEST_GPIO1);
+
     //
     // Configure the pins that are to be used for Fast GPIO.
     //
     am_hal_gpio_fastgpio_disable(TEST_GPIO1);
     am_hal_gpio_fastgpio_clr(TEST_GPIO1);
-    am_hal_gpio_fast_pinconfig(((uint64_t)0x1 << TEST_GPIO1),
-                                         g_AM_HAL_GPIO_OUTPUT, 0);
-#if FIREBALL_CARD
+    AM_HAL_GPIO_MASKCREATE(sGpioIntMaskTest1);
+    am_hal_gpio_fast_pinconfig(AM_HAL_GPIO_MASKBIT(psGpioIntMaskTest1, TEST_GPIO1),
+                               g_AM_HAL_GPIO_OUTPUT, 0);
+
+#if FIREBALL_CARD || FIREBALL2_CARD
     iRet = fireball_init();
     if (iRet)
     {
@@ -1814,14 +1835,19 @@ main(void)
 
 #endif
 
+    //
     // Initialize the MSPI Flash
+    //
     iRet = mspi_flash_init(mspiFlashCfg);
     if (iRet)
     {
         DEBUG_PRINT("Unable to initialize MSPI Flash\n");
         while(1);
     }
+
+    //
     // Initialize the IOM FRAM
+    //
     iRet = fram_init();
     if (iRet)
     {
@@ -1829,15 +1855,20 @@ main(void)
         while(1);
     }
 
+    //
     // Initialize FRAM Data
+    //
     iRet = init_fram_data();
     if (iRet)
     {
         DEBUG_PRINT("Unable to initialize FRAM data\n");
         while(1);
     }
+
 #ifdef VERIFY_DATA
+    //
     // Initialize Flash Data
+    //
     iRet = init_mspi_flash_data();
     if (iRet)
     {
@@ -1845,6 +1876,7 @@ main(void)
         while(1);
     }
 #endif
+
     am_hal_interrupt_master_enable();
 
     iRet = init_mspi_iom_xfer();
@@ -1867,6 +1899,7 @@ main(void)
 //    numIter++;
 
     DEBUG_PRINT("Getting into Wait Loop\n");
+
     //
     // Loop forever.
     //

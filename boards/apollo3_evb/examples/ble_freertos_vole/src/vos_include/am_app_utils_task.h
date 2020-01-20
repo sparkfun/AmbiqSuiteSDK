@@ -1,14 +1,51 @@
-
 //*****************************************************************************
 //
 //! @file am_app_utils_task.h
 //!
 //! @brief RTOS task factory / encapsulation which supports corresponding queues
-//!	with tasks.
+//! with tasks.
 //!
 //! This module allows the creation of multiple tasks with corresponding queues.
-//! The encapsulation offered in this module greatly simplifies the main application 
+//! The encapsulation offered in this module greatly simplifies the main application
 //!
+//
+//*****************************************************************************
+
+//*****************************************************************************
+//
+// Copyright (c) 2019, Ambiq Micro
+// All rights reserved.
+// 
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions are met:
+// 
+// 1. Redistributions of source code must retain the above copyright notice,
+// this list of conditions and the following disclaimer.
+// 
+// 2. Redistributions in binary form must reproduce the above copyright
+// notice, this list of conditions and the following disclaimer in the
+// documentation and/or other materials provided with the distribution.
+// 
+// 3. Neither the name of the copyright holder nor the names of its
+// contributors may be used to endorse or promote products derived from this
+// software without specific prior written permission.
+// 
+// Third party software included in this distribution is subject to the
+// additional license terms as defined in the /docs/licenses directory.
+// 
+// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+// CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+// POSSIBILITY OF SUCH DAMAGE.
+//
+// This is part of revision 2.3.2 of the AmbiqSuite Development Package.
 //
 //*****************************************************************************
 
@@ -22,9 +59,9 @@
 
 typedef struct
 {
-	TaskHandle_t task;
-	QueueHandle_t queue;
-//	am_app_utils_task_enum_t parent;
+    TaskHandle_t task;
+    QueueHandle_t queue;
+//  am_app_utils_task_enum_t parent;
 } am_app_utils_task_t;
 
 //*****************************************************************************
@@ -38,7 +75,7 @@ typedef struct
 // Naming convention for an ISR: AM_ISR_xxx
 typedef enum
 {
-	AM_APP_TASK_NONE = 0, // The enum must begin with this value as named.
+    AM_APP_TASK_NONE = 0, // The enum must begin with this value as named.
     AM_APP_TASK_LED,
     #if (configUSE_LOG_UART0 || configUSE_PRINTF_UART0)
         AM_APP_TASK_UART0,
@@ -55,9 +92,9 @@ typedef enum
     AM_APP_TASK_AWE_TICK,
     #if configUSE_BLE
         AM_APP_BLE,
-    #endif    
+    #endif
     #if configUSE_AUDIO_CODEC
-	    AM_APP_TASK_CODEC,
+        AM_APP_TASK_CODEC,
     #endif
     #if configUSE_RTT_RECORDER
         AM_APP_TASK_RTT_SWITCH,
@@ -66,14 +103,14 @@ typedef enum
         AM_APP_TASK_BUZZER,
       #if configUSE_GSENSOR
         AM_APP_TASK_GSENSOR,
-      #endif  
+      #endif
         AM_APP_TASK_LOGIC,
     #endif
     AM_APP_ISR_GPIO,
-	AM_APP_ISR_UART0,
+    AM_APP_ISR_UART0,
     AM_APP_ISR_PDM,
     AM_SLEEP,
-	AM_APP_MAX_TASK // The enum must end with this value as named.
+    AM_APP_MAX_TASK // The enum must end with this value as named.
 } am_app_utils_task_enum_t;
 
 //*****************************************************************************
@@ -83,30 +120,30 @@ typedef enum
 //*****************************************************************************
 typedef enum
 {
-	AM_APP_TIMER_NONE = 0, // The enum must begin with this value as named.
+    AM_APP_TIMER_NONE = 0, // The enum must begin with this value as named.
     AM_APP_TIMER_HEART_BEAT,
     AM_APP_TIMER_KWD_TIME_OUT,
     AM_APP_TIMER_GSENSOR_PERIOD,
-	AM_APP_MAX_TIMER // The enum must end with this value as named.
+    AM_APP_MAX_TIMER // The enum must end with this value as named.
 } am_app_utils_timer_enum_t;
 
 typedef struct
 {
-	//Task Setup
-	am_app_utils_task_enum_t indx; //Specify this task's index.
-	
-	TaskFunction_t pxTaskCode; //FreeRTOS function pointer to task
-	const char* const pcName; // FreeRTOS name
-	const uint16_t usStackDepth; // Stack Size
-	void * const pvParameters; // FreeRTOS task parameter mechanism
-	UBaseType_t uxPriority; // FreeRTOS Task Priority
-	
-	//Queue Setup
-	const UBaseType_t uxQueueLength;
-	//const UBaseType_t uxItemSize; //sizeof (queue_element)
-	
-	//Parent Task
-//	am_app_utils_task_enum_t parent; //Specify parent task.
+    //Task Setup
+    am_app_utils_task_enum_t indx; //Specify this task's index.
+
+    TaskFunction_t pxTaskCode; //FreeRTOS function pointer to task
+    const char* const pcName; // FreeRTOS name
+    const uint16_t usStackDepth; // Stack Size
+    void * const pvParameters; // FreeRTOS task parameter mechanism
+    UBaseType_t uxPriority; // FreeRTOS Task Priority
+
+    //Queue Setup
+    const UBaseType_t uxQueueLength;
+    //const UBaseType_t uxItemSize; //sizeof (queue_element)
+
+    //Parent Task
+//  am_app_utils_task_enum_t parent; //Specify parent task.
 }am_app_utils_task_setup_t;
 
 //******************************************************************
@@ -116,13 +153,13 @@ typedef struct
 
 typedef struct
 {
-	//Task Setup
+    //Task Setup
     am_app_utils_timer_enum_t indx; //Specify this task's index.
-	const char* const pcTimerName; // FreeRTOS name
+    const char* const pcTimerName; // FreeRTOS name
     TickType_t xTimerPeriodInTicks;
-    UBaseType_t uxAutoReload; 
-	TimerCallbackFunction_t pxTaskCode; //FreeRTOS function pointer to task
-}am_app_utils_timer_setup_t;
+    UBaseType_t uxAutoReload;
+    TimerCallbackFunction_t pxTaskCode; //FreeRTOS function pointer to task
+} am_app_utils_timer_setup_t;
 
 
 //
@@ -131,16 +168,17 @@ typedef struct
 //
 typedef struct
 {
-	am_app_utils_task_enum_t Source; // The sender lets the receiver know the source.
-	uint32_t ui32MessageType; // May be redefined per task to index different uses of *pData.
-	union{
+    am_app_utils_task_enum_t Source;    // The sender lets the receiver know the source.
+    uint32_t ui32MessageType;           // May be redefined per task to index different uses of *pData.
+    union
+    {
         uint32_t ui32Note;      // short message for simple communication between tasks
         uint32_t ui32Length;    // data length for long message
         uint32_t ui32Indx;      // index for printf string buffer
-    }info;
-    //am_app_utils_ring_buffer_t* pDataBuffer; 
+    } info;
+    //am_app_utils_ring_buffer_t* pDataBuffer;
 
-}am_app_utils_task_queue_element_t;
+} am_app_utils_task_queue_element_t;
 
 extern am_app_utils_task_t am_KWD_tasks[AM_APP_MAX_TASK];
 extern TimerHandle_t am_KWD_timers[AM_APP_MAX_TIMER];

@@ -45,7 +45,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
-// This is part of revision v2.2.0-7-g63f7c2ba1 of the AmbiqSuite Development Package.
+// This is part of revision 2.3.2 of the AmbiqSuite Development Package.
 //
 //*****************************************************************************
 
@@ -131,7 +131,7 @@ main(void)
     // Print the compiler version.
     //
     am_util_stdio_printf("App Compiler:    %s\n", COMPILER_VERSION);
-#if defined(AM_PART_APOLLO3)  || defined(AM_PART_APOLLO3C)
+#if defined(AM_PART_APOLLO3)  || defined(AM_PART_APOLLO3P)
     am_util_stdio_printf("HAL Compiler:    %s\n", g_ui8HALcompiler);
     am_util_stdio_printf("HAL SDK version: %d.%d.%d\n",
                          g_ui32HALversion.s.Major,
@@ -163,6 +163,8 @@ main(void)
         am_util_stdio_printf("am_hal_security_get_info failed 0x%X\n", ui32Status);
     }
 #endif // AM_PART_APOLLO3
+
+
 
     //
     // We are done printing.

@@ -39,7 +39,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
-// This is part of revision v2.2.0-7-g63f7c2ba1 of the AmbiqSuite Development Package.
+// This is part of revision 2.3.2 of the AmbiqSuite Development Package.
 //
 //*****************************************************************************
 
@@ -75,7 +75,7 @@
 #include "hci_drv_em9304.h"
 #endif
 
-#if AM_PART_APOLLO3
+#if defined(AM_PART_APOLLO3) || defined(AM_PART_APOLLO3P)
 #include "hci_drv_apollo3.h"
 #endif
 #include "BT_api.h"
@@ -311,7 +311,7 @@ TimerHandle_t xButtonTimer;
 txPowerLevel_t  tx_power_level = TX_POWER_LEVEL_PLUS_6P2_dBm;
 #endif
 
-#if AM_PART_APOLLO3
+#if defined(AM_PART_APOLLO3) || defined(AM_PART_APOLLO3P)
 txPowerLevel_t  tx_power_level = TX_POWER_LEVEL_PLUS_3P0_dBm;
 #endif
 
@@ -414,7 +414,7 @@ button_timer_handler(TimerHandle_t xTimer)
       }
 #endif
 
-#if AM_PART_APOLLO3
+#if defined(AM_PART_APOLLO3) || defined(AM_PART_APOLLO3P)
     HciVsA3_SetRfPowerLevelEx(tx_power_level);
 
     switch ( tx_power_level )
@@ -449,7 +449,7 @@ button_timer_handler(TimerHandle_t xTimer)
 #if AM_PART_APOLLO2
             tx_power_level = TX_POWER_LEVEL_PLUS_6P2_dBm;
 #endif
-#if AM_PART_APOLLO3
+#if defined(AM_PART_APOLLO3) || defined(AM_PART_APOLLO3P)
             tx_power_level = TX_POWER_LEVEL_PLUS_3P0_dBm;
 #endif
         }

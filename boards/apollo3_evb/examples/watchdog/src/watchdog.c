@@ -53,7 +53,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
-// This is part of revision v2.2.0-7-g63f7c2ba1 of the AmbiqSuite Development Package.
+// This is part of revision 2.3.2 of the AmbiqSuite Development Package.
 //
 //*****************************************************************************
 
@@ -77,7 +77,7 @@ am_hal_wdt_config_t g_sWatchdogConfig =
 #ifdef AM_PART_APOLLO
     .ui32Config = AM_HAL_WDT_ENABLE_RESET | AM_HAL_WDT_ENABLE_INTERRUPT,
 #endif
-#if (defined(AM_PART_APOLLO2) || defined(AM_PART_APOLLO3))
+#if defined(AM_PART_APOLLO2) || defined(AM_PART_APOLLO3) || defined(AM_PART_APOLLO3P)
     .ui32Config =
         _VAL2FLD(WDT_CFG_CLKSEL, WDT_CFG_CLKSEL_128HZ)  |
         AM_HAL_WDT_ENABLE_RESET                         |

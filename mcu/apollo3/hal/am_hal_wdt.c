@@ -45,7 +45,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
-// This is part of revision v2.2.0-7-g63f7c2ba1 of the AmbiqSuite Development Package.
+// This is part of revision 2.3.2 of the AmbiqSuite Development Package.
 //
 //*****************************************************************************
 
@@ -64,7 +64,7 @@
 // can be used.
 //
 //*****************************************************************************
-#define adjacent(A, B)      (((A) == (B)) || (((A) + 1) == (B)) || ((B) == 0))
+#define adjacent(A, B)      (((A) == (B)) || (((A) +1) == (B)) || ((B) == 0))
 
 //*****************************************************************************
 //
@@ -336,9 +336,6 @@ am_hal_wdt_int_disable(void)
 //!
 //! This function reads the current value of watch dog timer counter register.
 //!
-//! WARNING caller is responsible for masking interrutps before calling this
-//! function.
-//!
 //! @return None
 //
 //*****************************************************************************
@@ -347,6 +344,11 @@ am_hal_wdt_counter_get(void)
 {
     uint32_t ui32Values[3] = {0};
     uint32_t ui32Value;
+
+    //
+    // Start a critical section.
+    //
+    uint32_t ui32InterruptState = am_hal_interrupt_master_disable();
 
     //
     // First, go read the value from the counter register 3 times
@@ -397,6 +399,11 @@ am_hal_wdt_counter_get(void)
                                  adjacent(ui32Values[0], ui32Values[2])),
                                 "Bad CDT read");
     }
+
+    //
+    // End the critical section.
+    //
+    am_hal_interrupt_master_set(ui32InterruptState);
 
     return ui32Value;
 } // am_hal_wdt_counter_get()

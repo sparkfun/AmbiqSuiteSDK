@@ -5,20 +5,20 @@ Global:
   __as_NullEntry  __as_NullEntryStrict  command line
               definition:  __as_table_start
               definition:  __as_entries_start
-Loading object C:\Jenkins\workspace\AmbiqSuite\workspace\boards\apollo2_evb\examples\hello_fault\iar\bin\am_util_delay.o.
+Loading object C:\Jenkins\workspace\AmbiqSuite-Full\ambiqsuite-sdk\workspace\boards\apollo2_evb\examples\hello_fault\iar\bin\am_util_delay.o.
               reference :  am_hal_clkgen_sysclk_get
               reference :  am_hal_flash_delay
               definition:  am_util_delay_cycles
               definition:  am_util_delay_ms
               definition:  am_util_delay_us
-Loading object C:\Jenkins\workspace\AmbiqSuite\workspace\boards\apollo2_evb\examples\hello_fault\iar\bin\am_util_faultisr.o.
+Loading object C:\Jenkins\workspace\AmbiqSuite-Full\ambiqsuite-sdk\workspace\boards\apollo2_evb\examples\hello_fault\iar\bin\am_util_faultisr.o.
               reference :  __aeabi_memclr4
               reference :  am_hal_mcuctrl_fault_status
               reference :  am_util_stdio_printf
               definition:  am_fault_isr
               definition:  am_util_faultisr_collect_data
               definition:  getStackedReg
-Loading object C:\Jenkins\workspace\AmbiqSuite\workspace\boards\apollo2_evb\examples\hello_fault\iar\bin\am_util_stdio.o.
+Loading object C:\Jenkins\workspace\AmbiqSuite-Full\ambiqsuite-sdk\workspace\boards\apollo2_evb\examples\hello_fault\iar\bin\am_util_stdio.o.
               reference :  __aeabi_d2f
               definition:  am_util_stdio_printf
               definition:  am_util_stdio_printf_init
@@ -28,7 +28,7 @@ Loading object C:\Jenkins\workspace\AmbiqSuite\workspace\boards\apollo2_evb\exam
               definition:  am_util_stdio_textmode_set
               definition:  am_util_stdio_vsprintf
               definition:  g_pfnCharPrint
-Loading object C:\Jenkins\workspace\AmbiqSuite\workspace\boards\apollo2_evb\examples\hello_fault\iar\bin\hello_fault.o.
+Loading object C:\Jenkins\workspace\AmbiqSuite-Full\ambiqsuite-sdk\workspace\boards\apollo2_evb\examples\hello_fault\iar\bin\hello_fault.o.
               reference :  am_bsp_debug_printf_disable
               reference :  am_bsp_debug_printf_enable
               reference :  am_bsp_itm_string_print
@@ -47,7 +47,7 @@ Loading object C:\Jenkins\workspace\AmbiqSuite\workspace\boards\apollo2_evb\exam
               reference :  am_util_stdio_terminal_clear
               definition:  force_fault
               definition:  main
-Loading object C:\Jenkins\workspace\AmbiqSuite\workspace\boards\apollo2_evb\examples\hello_fault\iar\bin\startup_iar.o.
+Loading object C:\Jenkins\workspace\AmbiqSuite-Full\ambiqsuite-sdk\workspace\boards\apollo2_evb\examples\hello_fault\iar\bin\startup_iar.o.
               reference :  __iar_program_start
               definition:  __low_level_init
               definition:  __vector_table
@@ -623,31 +623,31 @@ Selecting member abort.o(dl7M_tln.a) to define abort (optional).
               reference :  __exit
               definition:  abort
 Resolving duplicate symbol definitions
-  Picking am_fault_isr [s8 C:\Jenkins\workspace\AmbiqSuite\workspace\boards\apollo2_evb\examples\hello_fault\iar\bin\am_util_faultisr.o]
-    Suppressing am_fault_isr [s8 C:\Jenkins\workspace\AmbiqSuite\workspace\boards\apollo2_evb\examples\hello_fault\iar\bin\startup_iar.o]
+  Picking am_fault_isr [s8 C:\Jenkins\workspace\AmbiqSuite-Full\ambiqsuite-sdk\workspace\boards\apollo2_evb\examples\hello_fault\iar\bin\am_util_faultisr.o]
+    Suppressing am_fault_isr [s8 C:\Jenkins\workspace\AmbiqSuite-Full\ambiqsuite-sdk\workspace\boards\apollo2_evb\examples\hello_fault\iar\bin\startup_iar.o]
 *** Marking from roots ***
 Marking symbol __iar_program_start              Glb (10 cstartup_M.o) [program entry]
-  Marking fragment #699 .text (6 cstartup_M.o(rt7M_tl.a)) init:always
+  Marking fragment #703 .text (6 cstartup_M.o(rt7M_tl.a)) init:always
 Marking symbol __iar_section$$root                  (3 startup_iar.o) [__root]
   Marking fragment #258 .intvec (10 startup_iar.o)
 Marking symbol __iar_init_vfp                   Glb (5 fpinit_M.o) [referenced from system library config]
-  Marking fragment #722 .text (6 fpinit_M.o(m7M_tls.a))
+  Marking fragment #726 .text (6 fpinit_M.o(m7M_tls.a))
 Marking symbol __iar_section$$root                  (3 cstartup_M.o) [__root]
-Marking from fragment #722 .text (6 fpinit_M.o(m7M_tls.a))
+Marking from fragment #726 .text (6 fpinit_M.o(m7M_tls.a))
 Marking from fragment #258 .intvec (10 startup_iar.o)
   Marking symbol pui32Stack                           (5 startup_iar.o)
     Marking fragment #257 .noinit (9 startup_iar.o)
   Marking symbol am_reset_isr                     Glb (76 startup_iar.o)
-    Marking fragment #906 .text (11 startup_iar.o)
+    Marking fragment #910 .text (11 startup_iar.o)
   Marking symbol am_nmi_isr                           (73 startup_iar.o)
-    Marking fragment #908 .text (11 startup_iar.o)
+    Marking fragment #912 .text (11 startup_iar.o)
   Marking symbol am_fault_isr                     Glb (138 am_util_faultisr.o)
-    Marking fragment #834 .text (8 am_util_faultisr.o)
+    Marking fragment #838 .text (8 am_util_faultisr.o)
   Marking symbol am_fault_isr                     Glb (138 am_util_faultisr.o)
   Marking symbol am_fault_isr                     Glb (138 am_util_faultisr.o)
   Marking symbol am_fault_isr                     Glb (138 am_util_faultisr.o)
   Marking symbol am_svcall_isr                        (90 startup_iar.o)
-    Marking fragment #907 .text (11 startup_iar.o)
+    Marking fragment #911 .text (11 startup_iar.o)
   Marking symbol am_debugmon_isr                      (60 startup_iar.o)
   Marking symbol am_pendsv_isr                        (75 startup_iar.o)
   Marking symbol am_systick_isr                       (91 startup_iar.o)
@@ -683,19 +683,19 @@ Marking from fragment #258 .intvec (10 startup_iar.o)
   Marking symbol am_software1_isr                     (78 startup_iar.o)
   Marking symbol am_software2_isr                     (79 startup_iar.o)
   Marking symbol am_software3_isr                     (80 startup_iar.o)
-Marking from fragment #907 .text (11 startup_iar.o)
-Marking from fragment #834 .text (8 am_util_faultisr.o)
+Marking from fragment #911 .text (11 startup_iar.o)
+Marking from fragment #838 .text (8 am_util_faultisr.o)
   Marking symbol am_util_faultisr_collect_data    Glb (139 am_util_faultisr.o)
-    Marking fragment #836 .text (8 am_util_faultisr.o)
-Marking from fragment #836 .text (8 am_util_faultisr.o)
+    Marking fragment #840 .text (8 am_util_faultisr.o)
+Marking from fragment #840 .text (8 am_util_faultisr.o)
   Marking symbol __aeabi_memclr4                  Glb (7 ABImemclr4.o)
-    Marking fragment #704 .text (6 ABImemclr4.o(rt7M_tl.a))
+    Marking fragment #708 .text (6 ABImemclr4.o(rt7M_tl.a))
   Marking symbol .text_33                             (10 am_util_faultisr.o)
-    Marking fragment #837 .text (8 am_util_faultisr.o)
+    Marking fragment #841 .text (8 am_util_faultisr.o)
   Marking symbol .text_34                             (12 am_util_faultisr.o)
-    Marking fragment #838 .text (8 am_util_faultisr.o)
+    Marking fragment #842 .text (8 am_util_faultisr.o)
   Marking symbol getStackedReg                    Glb (140 am_util_faultisr.o)
-    Marking fragment #835 .text (8 am_util_faultisr.o)
+    Marking fragment #839 .text (8 am_util_faultisr.o)
   Marking symbol getStackedReg                    Glb (140 am_util_faultisr.o)
   Marking symbol getStackedReg                    Glb (140 am_util_faultisr.o)
   Marking symbol getStackedReg                    Glb (140 am_util_faultisr.o)
@@ -705,680 +705,683 @@ Marking from fragment #836 .text (8 am_util_faultisr.o)
   Marking symbol getStackedReg                    Glb (140 am_util_faultisr.o)
   Marking symbol getStackedReg                    Glb (140 am_util_faultisr.o)
   Marking symbol am_hal_mcuctrl_fault_status      Glb (25 am_hal_mcuctrl.o)
-    Marking fragment #992 .text (7 am_hal_mcuctrl.o(libam_hal.a))
+    Marking fragment #997 .text (7 am_hal_mcuctrl.o(libam_hal.a))
   Marking symbol .text_35                             (13 am_util_faultisr.o)
-    Marking fragment #839 .text (8 am_util_faultisr.o)
-  Marking symbol am_util_stdio_printf             Glb (141 am_util_stdio.o)
-    Marking fragment #881 .text (11 am_util_stdio.o)
-  Marking symbol .text_36                             (14 am_util_faultisr.o)
-    Marking fragment #840 .text (8 am_util_faultisr.o)
-  Marking symbol am_util_stdio_printf             Glb (141 am_util_stdio.o)
-  Marking symbol .text_37                             (15 am_util_faultisr.o)
-    Marking fragment #841 .text (8 am_util_faultisr.o)
-  Marking symbol am_util_stdio_printf             Glb (141 am_util_stdio.o)
-  Marking symbol .text_38                             (16 am_util_faultisr.o)
-    Marking fragment #842 .text (8 am_util_faultisr.o)
-  Marking symbol am_util_stdio_printf             Glb (141 am_util_stdio.o)
-  Marking symbol .text_39                             (17 am_util_faultisr.o)
     Marking fragment #843 .text (8 am_util_faultisr.o)
   Marking symbol am_util_stdio_printf             Glb (141 am_util_stdio.o)
-  Marking symbol .text_40                             (18 am_util_faultisr.o)
+    Marking fragment #885 .text (11 am_util_stdio.o)
+  Marking symbol .text_36                             (14 am_util_faultisr.o)
     Marking fragment #844 .text (8 am_util_faultisr.o)
   Marking symbol am_util_stdio_printf             Glb (141 am_util_stdio.o)
-  Marking symbol .text_41                             (19 am_util_faultisr.o)
+  Marking symbol .text_37                             (15 am_util_faultisr.o)
     Marking fragment #845 .text (8 am_util_faultisr.o)
   Marking symbol am_util_stdio_printf             Glb (141 am_util_stdio.o)
-  Marking symbol .text_42                             (20 am_util_faultisr.o)
+  Marking symbol .text_38                             (16 am_util_faultisr.o)
     Marking fragment #846 .text (8 am_util_faultisr.o)
   Marking symbol am_util_stdio_printf             Glb (141 am_util_stdio.o)
-  Marking symbol .text_43                             (21 am_util_faultisr.o)
+  Marking symbol .text_39                             (17 am_util_faultisr.o)
     Marking fragment #847 .text (8 am_util_faultisr.o)
   Marking symbol am_util_stdio_printf             Glb (141 am_util_stdio.o)
-  Marking symbol .text_44                             (22 am_util_faultisr.o)
+  Marking symbol .text_40                             (18 am_util_faultisr.o)
     Marking fragment #848 .text (8 am_util_faultisr.o)
   Marking symbol am_util_stdio_printf             Glb (141 am_util_stdio.o)
-  Marking symbol .text_45                             (23 am_util_faultisr.o)
+  Marking symbol .text_41                             (19 am_util_faultisr.o)
     Marking fragment #849 .text (8 am_util_faultisr.o)
   Marking symbol am_util_stdio_printf             Glb (141 am_util_stdio.o)
-  Marking symbol .text_46                             (24 am_util_faultisr.o)
+  Marking symbol .text_42                             (20 am_util_faultisr.o)
     Marking fragment #850 .text (8 am_util_faultisr.o)
   Marking symbol am_util_stdio_printf             Glb (141 am_util_stdio.o)
-  Marking symbol .text_47                             (25 am_util_faultisr.o)
+  Marking symbol .text_43                             (21 am_util_faultisr.o)
     Marking fragment #851 .text (8 am_util_faultisr.o)
   Marking symbol am_util_stdio_printf             Glb (141 am_util_stdio.o)
-  Marking symbol .text_48                             (26 am_util_faultisr.o)
+  Marking symbol .text_44                             (22 am_util_faultisr.o)
     Marking fragment #852 .text (8 am_util_faultisr.o)
   Marking symbol am_util_stdio_printf             Glb (141 am_util_stdio.o)
-  Marking symbol .text_49                             (27 am_util_faultisr.o)
+  Marking symbol .text_45                             (23 am_util_faultisr.o)
     Marking fragment #853 .text (8 am_util_faultisr.o)
   Marking symbol am_util_stdio_printf             Glb (141 am_util_stdio.o)
-  Marking symbol .text_50                             (28 am_util_faultisr.o)
+  Marking symbol .text_46                             (24 am_util_faultisr.o)
     Marking fragment #854 .text (8 am_util_faultisr.o)
   Marking symbol am_util_stdio_printf             Glb (141 am_util_stdio.o)
-  Marking symbol .text_51                             (29 am_util_faultisr.o)
+  Marking symbol .text_47                             (25 am_util_faultisr.o)
     Marking fragment #855 .text (8 am_util_faultisr.o)
   Marking symbol am_util_stdio_printf             Glb (141 am_util_stdio.o)
-  Marking symbol .text_52                             (30 am_util_faultisr.o)
+  Marking symbol .text_48                             (26 am_util_faultisr.o)
     Marking fragment #856 .text (8 am_util_faultisr.o)
   Marking symbol am_util_stdio_printf             Glb (141 am_util_stdio.o)
-  Marking symbol .text_53                             (31 am_util_faultisr.o)
+  Marking symbol .text_49                             (27 am_util_faultisr.o)
     Marking fragment #857 .text (8 am_util_faultisr.o)
   Marking symbol am_util_stdio_printf             Glb (141 am_util_stdio.o)
-  Marking symbol .text_54                             (32 am_util_faultisr.o)
+  Marking symbol .text_50                             (28 am_util_faultisr.o)
     Marking fragment #858 .text (8 am_util_faultisr.o)
   Marking symbol am_util_stdio_printf             Glb (141 am_util_stdio.o)
-  Marking symbol .text_55                             (33 am_util_faultisr.o)
+  Marking symbol .text_51                             (29 am_util_faultisr.o)
     Marking fragment #859 .text (8 am_util_faultisr.o)
   Marking symbol am_util_stdio_printf             Glb (141 am_util_stdio.o)
-  Marking symbol .text_56                             (34 am_util_faultisr.o)
+  Marking symbol .text_52                             (30 am_util_faultisr.o)
     Marking fragment #860 .text (8 am_util_faultisr.o)
   Marking symbol am_util_stdio_printf             Glb (141 am_util_stdio.o)
-  Marking symbol .text_57                             (35 am_util_faultisr.o)
+  Marking symbol .text_53                             (31 am_util_faultisr.o)
     Marking fragment #861 .text (8 am_util_faultisr.o)
   Marking symbol am_util_stdio_printf             Glb (141 am_util_stdio.o)
-  Marking symbol .text_58                             (36 am_util_faultisr.o)
+  Marking symbol .text_54                             (32 am_util_faultisr.o)
     Marking fragment #862 .text (8 am_util_faultisr.o)
   Marking symbol am_util_stdio_printf             Glb (141 am_util_stdio.o)
-  Marking symbol .text_59                             (37 am_util_faultisr.o)
+  Marking symbol .text_55                             (33 am_util_faultisr.o)
     Marking fragment #863 .text (8 am_util_faultisr.o)
   Marking symbol am_util_stdio_printf             Glb (141 am_util_stdio.o)
-  Marking symbol .text_60                             (38 am_util_faultisr.o)
+  Marking symbol .text_56                             (34 am_util_faultisr.o)
     Marking fragment #864 .text (8 am_util_faultisr.o)
   Marking symbol am_util_stdio_printf             Glb (141 am_util_stdio.o)
-  Marking symbol .text_61                             (39 am_util_faultisr.o)
+  Marking symbol .text_57                             (35 am_util_faultisr.o)
     Marking fragment #865 .text (8 am_util_faultisr.o)
   Marking symbol am_util_stdio_printf             Glb (141 am_util_stdio.o)
-Marking from fragment #865 .text (8 am_util_faultisr.o)
+  Marking symbol .text_58                             (36 am_util_faultisr.o)
+    Marking fragment #866 .text (8 am_util_faultisr.o)
+  Marking symbol am_util_stdio_printf             Glb (141 am_util_stdio.o)
+  Marking symbol .text_59                             (37 am_util_faultisr.o)
+    Marking fragment #867 .text (8 am_util_faultisr.o)
+  Marking symbol am_util_stdio_printf             Glb (141 am_util_stdio.o)
+  Marking symbol .text_60                             (38 am_util_faultisr.o)
+    Marking fragment #868 .text (8 am_util_faultisr.o)
+  Marking symbol am_util_stdio_printf             Glb (141 am_util_stdio.o)
+  Marking symbol .text_61                             (39 am_util_faultisr.o)
+    Marking fragment #869 .text (8 am_util_faultisr.o)
+  Marking symbol am_util_stdio_printf             Glb (141 am_util_stdio.o)
+Marking from fragment #869 .text (8 am_util_faultisr.o)
   Marking symbol .rodata37                            (116 am_util_faultisr.o)
     Marking fragment #64 .rodata (37 am_util_faultisr.o)
 Marking from fragment #64 .rodata (37 am_util_faultisr.o)
-Marking from fragment #864 .text (8 am_util_faultisr.o)
+Marking from fragment #868 .text (8 am_util_faultisr.o)
   Marking symbol .rodata36                            (114 am_util_faultisr.o)
     Marking fragment #63 .rodata (36 am_util_faultisr.o)
 Marking from fragment #63 .rodata (36 am_util_faultisr.o)
-Marking from fragment #863 .text (8 am_util_faultisr.o)
+Marking from fragment #867 .text (8 am_util_faultisr.o)
   Marking symbol .rodata35                            (112 am_util_faultisr.o)
     Marking fragment #62 .rodata (35 am_util_faultisr.o)
 Marking from fragment #62 .rodata (35 am_util_faultisr.o)
-Marking from fragment #862 .text (8 am_util_faultisr.o)
+Marking from fragment #866 .text (8 am_util_faultisr.o)
   Marking symbol .rodata34                            (110 am_util_faultisr.o)
     Marking fragment #61 .rodata (34 am_util_faultisr.o)
 Marking from fragment #61 .rodata (34 am_util_faultisr.o)
-Marking from fragment #861 .text (8 am_util_faultisr.o)
+Marking from fragment #865 .text (8 am_util_faultisr.o)
   Marking symbol .rodata33                            (108 am_util_faultisr.o)
     Marking fragment #60 .rodata (33 am_util_faultisr.o)
 Marking from fragment #60 .rodata (33 am_util_faultisr.o)
-Marking from fragment #860 .text (8 am_util_faultisr.o)
+Marking from fragment #864 .text (8 am_util_faultisr.o)
   Marking symbol .rodata32                            (105 am_util_faultisr.o)
     Marking fragment #59 .rodata (32 am_util_faultisr.o)
 Marking from fragment #59 .rodata (32 am_util_faultisr.o)
-Marking from fragment #859 .text (8 am_util_faultisr.o)
+Marking from fragment #863 .text (8 am_util_faultisr.o)
   Marking symbol .rodata31                            (103 am_util_faultisr.o)
     Marking fragment #58 .rodata (31 am_util_faultisr.o)
 Marking from fragment #58 .rodata (31 am_util_faultisr.o)
-Marking from fragment #858 .text (8 am_util_faultisr.o)
+Marking from fragment #862 .text (8 am_util_faultisr.o)
   Marking symbol .rodata30                            (101 am_util_faultisr.o)
     Marking fragment #57 .rodata (30 am_util_faultisr.o)
 Marking from fragment #57 .rodata (30 am_util_faultisr.o)
-Marking from fragment #857 .text (8 am_util_faultisr.o)
+Marking from fragment #861 .text (8 am_util_faultisr.o)
   Marking symbol .rodata29                            (98 am_util_faultisr.o)
     Marking fragment #56 .rodata (29 am_util_faultisr.o)
 Marking from fragment #56 .rodata (29 am_util_faultisr.o)
-Marking from fragment #856 .text (8 am_util_faultisr.o)
+Marking from fragment #860 .text (8 am_util_faultisr.o)
   Marking symbol .rodata28                            (95 am_util_faultisr.o)
     Marking fragment #55 .rodata (28 am_util_faultisr.o)
 Marking from fragment #55 .rodata (28 am_util_faultisr.o)
-Marking from fragment #855 .text (8 am_util_faultisr.o)
+Marking from fragment #859 .text (8 am_util_faultisr.o)
   Marking symbol .rodata27                            (93 am_util_faultisr.o)
     Marking fragment #54 .rodata (27 am_util_faultisr.o)
 Marking from fragment #54 .rodata (27 am_util_faultisr.o)
-Marking from fragment #854 .text (8 am_util_faultisr.o)
+Marking from fragment #858 .text (8 am_util_faultisr.o)
   Marking symbol .rodata26                            (90 am_util_faultisr.o)
     Marking fragment #53 .rodata (26 am_util_faultisr.o)
 Marking from fragment #53 .rodata (26 am_util_faultisr.o)
-Marking from fragment #853 .text (8 am_util_faultisr.o)
+Marking from fragment #857 .text (8 am_util_faultisr.o)
   Marking symbol .rodata25                            (88 am_util_faultisr.o)
     Marking fragment #52 .rodata (25 am_util_faultisr.o)
 Marking from fragment #52 .rodata (25 am_util_faultisr.o)
-Marking from fragment #852 .text (8 am_util_faultisr.o)
+Marking from fragment #856 .text (8 am_util_faultisr.o)
   Marking symbol .rodata24                            (85 am_util_faultisr.o)
     Marking fragment #51 .rodata (24 am_util_faultisr.o)
 Marking from fragment #51 .rodata (24 am_util_faultisr.o)
-Marking from fragment #851 .text (8 am_util_faultisr.o)
+Marking from fragment #855 .text (8 am_util_faultisr.o)
   Marking symbol .rodata23                            (82 am_util_faultisr.o)
     Marking fragment #50 .rodata (23 am_util_faultisr.o)
 Marking from fragment #50 .rodata (23 am_util_faultisr.o)
-Marking from fragment #850 .text (8 am_util_faultisr.o)
+Marking from fragment #854 .text (8 am_util_faultisr.o)
   Marking symbol .rodata22                            (80 am_util_faultisr.o)
     Marking fragment #49 .rodata (22 am_util_faultisr.o)
 Marking from fragment #49 .rodata (22 am_util_faultisr.o)
-Marking from fragment #849 .text (8 am_util_faultisr.o)
+Marking from fragment #853 .text (8 am_util_faultisr.o)
   Marking symbol .rodata21                            (78 am_util_faultisr.o)
     Marking fragment #48 .rodata (21 am_util_faultisr.o)
 Marking from fragment #48 .rodata (21 am_util_faultisr.o)
-Marking from fragment #848 .text (8 am_util_faultisr.o)
+Marking from fragment #852 .text (8 am_util_faultisr.o)
   Marking symbol .rodata20                            (76 am_util_faultisr.o)
     Marking fragment #47 .rodata (20 am_util_faultisr.o)
 Marking from fragment #47 .rodata (20 am_util_faultisr.o)
-Marking from fragment #847 .text (8 am_util_faultisr.o)
+Marking from fragment #851 .text (8 am_util_faultisr.o)
   Marking symbol .rodata19                            (73 am_util_faultisr.o)
     Marking fragment #46 .rodata (19 am_util_faultisr.o)
 Marking from fragment #46 .rodata (19 am_util_faultisr.o)
-Marking from fragment #846 .text (8 am_util_faultisr.o)
+Marking from fragment #850 .text (8 am_util_faultisr.o)
   Marking symbol .rodata18                            (70 am_util_faultisr.o)
     Marking fragment #45 .rodata (18 am_util_faultisr.o)
 Marking from fragment #45 .rodata (18 am_util_faultisr.o)
-Marking from fragment #845 .text (8 am_util_faultisr.o)
+Marking from fragment #849 .text (8 am_util_faultisr.o)
   Marking symbol .rodata17                            (67 am_util_faultisr.o)
     Marking fragment #44 .rodata (17 am_util_faultisr.o)
 Marking from fragment #44 .rodata (17 am_util_faultisr.o)
-Marking from fragment #844 .text (8 am_util_faultisr.o)
+Marking from fragment #848 .text (8 am_util_faultisr.o)
   Marking symbol .rodata16                            (64 am_util_faultisr.o)
     Marking fragment #43 .rodata (16 am_util_faultisr.o)
 Marking from fragment #43 .rodata (16 am_util_faultisr.o)
-Marking from fragment #843 .text (8 am_util_faultisr.o)
+Marking from fragment #847 .text (8 am_util_faultisr.o)
   Marking symbol .rodata15                            (61 am_util_faultisr.o)
     Marking fragment #42 .rodata (15 am_util_faultisr.o)
 Marking from fragment #42 .rodata (15 am_util_faultisr.o)
-Marking from fragment #842 .text (8 am_util_faultisr.o)
+Marking from fragment #846 .text (8 am_util_faultisr.o)
   Marking symbol .rodata14                            (58 am_util_faultisr.o)
     Marking fragment #41 .rodata (14 am_util_faultisr.o)
 Marking from fragment #41 .rodata (14 am_util_faultisr.o)
-Marking from fragment #841 .text (8 am_util_faultisr.o)
+Marking from fragment #845 .text (8 am_util_faultisr.o)
   Marking symbol .rodata13                            (55 am_util_faultisr.o)
     Marking fragment #40 .rodata (13 am_util_faultisr.o)
 Marking from fragment #40 .rodata (13 am_util_faultisr.o)
-Marking from fragment #840 .text (8 am_util_faultisr.o)
+Marking from fragment #844 .text (8 am_util_faultisr.o)
   Marking symbol .rodata12                            (52 am_util_faultisr.o)
     Marking fragment #39 .rodata (12 am_util_faultisr.o)
 Marking from fragment #39 .rodata (12 am_util_faultisr.o)
-Marking from fragment #881 .text (11 am_util_stdio.o)
+Marking from fragment #885 .text (11 am_util_stdio.o)
   Marking symbol .text_23                             (54 am_util_stdio.o)
-    Marking fragment #883 .text (11 am_util_stdio.o)
+    Marking fragment #887 .text (11 am_util_stdio.o)
   Marking symbol .text_28                             (60 am_util_stdio.o)
-    Marking fragment #888 .text (11 am_util_stdio.o)
+    Marking fragment #892 .text (11 am_util_stdio.o)
   Marking symbol am_util_stdio_vsprintf           Glb (147 am_util_stdio.o)
-    Marking fragment #879 .text (11 am_util_stdio.o)
-Marking from fragment #879 .text (11 am_util_stdio.o)
+    Marking fragment #883 .text (11 am_util_stdio.o)
+Marking from fragment #883 .text (11 am_util_stdio.o)
   Marking symbol .text_24                             (56 am_util_stdio.o)
-    Marking fragment #884 .text (11 am_util_stdio.o)
+    Marking fragment #888 .text (11 am_util_stdio.o)
   Marking symbol decstr_to_int                        (3 am_util_stdio.o)
-    Marking fragment #872 .text (11 am_util_stdio.o)
+    Marking fragment #876 .text (11 am_util_stdio.o)
   Marking symbol decstr_to_int                        (3 am_util_stdio.o)
   Marking symbol simple_strlen                        (12 am_util_stdio.o)
-    Marking fragment #875 .text (11 am_util_stdio.o)
+    Marking fragment #879 .text (11 am_util_stdio.o)
   Marking symbol padbuffer                            (11 am_util_stdio.o)
-    Marking fragment #876 .text (11 am_util_stdio.o)
+    Marking fragment #880 .text (11 am_util_stdio.o)
   Marking symbol padbuffer                            (11 am_util_stdio.o)
   Marking symbol ndigits_in_hex                       (8 am_util_stdio.o)
-    Marking fragment #871 .text (11 am_util_stdio.o)
+    Marking fragment #875 .text (11 am_util_stdio.o)
   Marking symbol padbuffer                            (11 am_util_stdio.o)
   Marking symbol uint64_to_hexstr                     (13 am_util_stdio.o)
-    Marking fragment #874 .text (11 am_util_stdio.o)
+    Marking fragment #878 .text (11 am_util_stdio.o)
   Marking symbol ndigits_in_u64                       (10 am_util_stdio.o)
-    Marking fragment #869 .text (11 am_util_stdio.o)
+    Marking fragment #873 .text (11 am_util_stdio.o)
   Marking symbol padbuffer                            (11 am_util_stdio.o)
   Marking symbol uint64_to_str                        (14 am_util_stdio.o)
-    Marking fragment #873 .text (11 am_util_stdio.o)
+    Marking fragment #877 .text (11 am_util_stdio.o)
   Marking symbol ndigits_in_i64                       (9 am_util_stdio.o)
-    Marking fragment #870 .text (11 am_util_stdio.o)
+    Marking fragment #874 .text (11 am_util_stdio.o)
   Marking symbol padbuffer                            (11 am_util_stdio.o)
   Marking symbol uint64_to_str                        (14 am_util_stdio.o)
   Marking symbol __aeabi_d2f                      Glb (6 DblToFlt.o)
-    Marking fragment #710 .text (6 DblToFlt.o(m7M_tls.a))
+    Marking fragment #714 .text (6 DblToFlt.o(m7M_tls.a))
   Marking symbol ftoa                                 (5 am_util_stdio.o)
-    Marking fragment #878 .text (11 am_util_stdio.o)
+    Marking fragment #882 .text (11 am_util_stdio.o)
   Marking symbol .text_25                             (57 am_util_stdio.o)
-    Marking fragment #885 .text (11 am_util_stdio.o)
+    Marking fragment #889 .text (11 am_util_stdio.o)
   Marking symbol .text_26                             (58 am_util_stdio.o)
-    Marking fragment #886 .text (11 am_util_stdio.o)
+    Marking fragment #890 .text (11 am_util_stdio.o)
   Marking symbol .text_27                             (59 am_util_stdio.o)
-    Marking fragment #887 .text (11 am_util_stdio.o)
-Marking from fragment #887 .text (11 am_util_stdio.o)
-Marking from fragment #886 .text (11 am_util_stdio.o)
-Marking from fragment #885 .text (11 am_util_stdio.o)
-Marking from fragment #878 .text (11 am_util_stdio.o)
+    Marking fragment #891 .text (11 am_util_stdio.o)
+Marking from fragment #891 .text (11 am_util_stdio.o)
+Marking from fragment #890 .text (11 am_util_stdio.o)
+Marking from fragment #889 .text (11 am_util_stdio.o)
+Marking from fragment #882 .text (11 am_util_stdio.o)
   Marking symbol .text_25                             (57 am_util_stdio.o)
   Marking symbol uint64_to_str                        (14 am_util_stdio.o)
   Marking symbol uint64_to_str                        (14 am_util_stdio.o)
-Marking from fragment #710 .text (6 DblToFlt.o(m7M_tls.a))
-Marking from fragment #870 .text (11 am_util_stdio.o)
+Marking from fragment #714 .text (6 DblToFlt.o(m7M_tls.a))
+Marking from fragment #874 .text (11 am_util_stdio.o)
   Marking symbol ndigits_in_u64                       (10 am_util_stdio.o)
+Marking from fragment #877 .text (11 am_util_stdio.o)
+  Marking symbol divu64_10                            (4 am_util_stdio.o)
+    Marking fragment #872 .text (11 am_util_stdio.o)
+Marking from fragment #872 .text (11 am_util_stdio.o)
 Marking from fragment #873 .text (11 am_util_stdio.o)
   Marking symbol divu64_10                            (4 am_util_stdio.o)
-    Marking fragment #868 .text (11 am_util_stdio.o)
-Marking from fragment #868 .text (11 am_util_stdio.o)
-Marking from fragment #869 .text (11 am_util_stdio.o)
-  Marking symbol divu64_10                            (4 am_util_stdio.o)
-Marking from fragment #874 .text (11 am_util_stdio.o)
-Marking from fragment #871 .text (11 am_util_stdio.o)
-Marking from fragment #876 .text (11 am_util_stdio.o)
+Marking from fragment #878 .text (11 am_util_stdio.o)
 Marking from fragment #875 .text (11 am_util_stdio.o)
-Marking from fragment #872 .text (11 am_util_stdio.o)
-Marking from fragment #884 .text (11 am_util_stdio.o)
+Marking from fragment #880 .text (11 am_util_stdio.o)
+Marking from fragment #879 .text (11 am_util_stdio.o)
+Marking from fragment #876 .text (11 am_util_stdio.o)
+Marking from fragment #888 .text (11 am_util_stdio.o)
   Marking symbol g_bTxtXlate                          (6 am_util_stdio.o)
     Marking fragment #95 .bss (10 am_util_stdio.o)
 Marking from fragment #95 .bss (10 am_util_stdio.o)
-Marking from fragment #888 .text (11 am_util_stdio.o)
+Marking from fragment #892 .text (11 am_util_stdio.o)
   Marking symbol g_prfbuf                             (7 am_util_stdio.o)
     Marking fragment #94 .bss (9 am_util_stdio.o)
 Marking from fragment #94 .bss (9 am_util_stdio.o)
-Marking from fragment #883 .text (11 am_util_stdio.o)
+Marking from fragment #887 .text (11 am_util_stdio.o)
   Marking symbol g_pfnCharPrint                   Glb (148 am_util_stdio.o)
     Marking fragment #93 .bss (8 am_util_stdio.o)
 Marking from fragment #93 .bss (8 am_util_stdio.o)
-Marking from fragment #839 .text (8 am_util_faultisr.o)
+Marking from fragment #843 .text (8 am_util_faultisr.o)
   Marking symbol .rodata11                            (49 am_util_faultisr.o)
     Marking fragment #38 .rodata (11 am_util_faultisr.o)
 Marking from fragment #38 .rodata (11 am_util_faultisr.o)
-Marking from fragment #992 .text (7 am_hal_mcuctrl.o(libam_hal.a))
-  Marking symbol .text_11                             (19 am_hal_mcuctrl.o)
-    Marking fragment #997 .text (7 am_hal_mcuctrl.o(libam_hal.a))
 Marking from fragment #997 .text (7 am_hal_mcuctrl.o(libam_hal.a))
-Marking from fragment #835 .text (8 am_util_faultisr.o)
-Marking from fragment #838 .text (8 am_util_faultisr.o)
-Marking from fragment #837 .text (8 am_util_faultisr.o)
-Marking from fragment #704 .text (6 ABImemclr4.o(rt7M_tl.a))
+  Marking symbol .text_11                             (19 am_hal_mcuctrl.o)
+    Marking fragment #1002 .text (7 am_hal_mcuctrl.o(libam_hal.a))
+Marking from fragment #1002 .text (7 am_hal_mcuctrl.o(libam_hal.a))
+Marking from fragment #839 .text (8 am_util_faultisr.o)
+Marking from fragment #842 .text (8 am_util_faultisr.o)
+Marking from fragment #841 .text (8 am_util_faultisr.o)
+Marking from fragment #708 .text (6 ABImemclr4.o(rt7M_tl.a))
   Marking symbol __iar_Memset4_word               Glb (13 ABImemset48.o)
-    Marking fragment #1460 .text (6 ABImemset48.o(rt7M_tl.a))
-Marking from fragment #1460 .text (6 ABImemset48.o(rt7M_tl.a))
+    Marking fragment #1488 .text (6 ABImemset48.o(rt7M_tl.a))
+Marking from fragment #1488 .text (6 ABImemset48.o(rt7M_tl.a))
   Marking symbol Enter8                               (3 ABImemset48.o)
-    Marking fragment #1461 .text (6 ABImemset48.o(rt7M_tl.a))
-Marking from fragment #1461 .text (6 ABImemset48.o(rt7M_tl.a))
-Marking from fragment #908 .text (11 startup_iar.o)
-Marking from fragment #906 .text (11 startup_iar.o)
+    Marking fragment #1489 .text (6 ABImemset48.o(rt7M_tl.a))
+Marking from fragment #1489 .text (6 ABImemset48.o(rt7M_tl.a))
+Marking from fragment #912 .text (11 startup_iar.o)
+Marking from fragment #910 .text (11 startup_iar.o)
   Marking symbol __iar_program_start              Glb (10 cstartup_M.o)
 Marking from fragment #257 .noinit (9 startup_iar.o)
-Marking from fragment #699 .text (6 cstartup_M.o(rt7M_tl.a)) init:always
+Marking from fragment #703 .text (6 cstartup_M.o(rt7M_tl.a)) init:always
   Marking symbol __iar_init_core                  Ext (8 cstartup_M.o)
   Marking symbol __vector_table                   Glb (54 startup_iar.o)
     Marking fragment #258 .intvec (10 startup_iar.o) init:always
   Marking symbol __iar_init_vfp                   Glb (5 fpinit_M.o)
-    Marking fragment #722 .text (6 fpinit_M.o(m7M_tls.a)) init:always
+    Marking fragment #726 .text (6 fpinit_M.o(m7M_tls.a)) init:always
   Marking symbol __cmain                          Glb (15 cmain.o)
-    Marking fragment #1457 .text (8 cmain.o(rt7M_tl.a)) init:always
-Marking from fragment #1457 .text (8 cmain.o(rt7M_tl.a)) init:always
+    Marking fragment #1485 .text (8 cmain.o(rt7M_tl.a)) init:always
+Marking from fragment #1485 .text (8 cmain.o(rt7M_tl.a)) init:always
   Marking symbol __low_level_init                 Glb (53 startup_iar.o)
-    Marking fragment #903 .text (11 startup_iar.o) init:always
+    Marking fragment #907 .text (11 startup_iar.o) init:always
   Marking symbol _call_main                       Glb (18 cmain.o)
-    Marking fragment #1458 .text (8 cmain.o(rt7M_tl.a))
+    Marking fragment #1486 .text (8 cmain.o(rt7M_tl.a))
   Marking symbol __iar_data_init3                 Glb (10 data_init.o)
-Marking from fragment #1458 .text (8 cmain.o(rt7M_tl.a))
+Marking from fragment #1486 .text (8 cmain.o(rt7M_tl.a))
   Marking symbol __iar_data_init_done             Ext (11 cmain.o)
   Marking symbol __iar_argc_argv                  Ext (10 cmain.o)
   Marking symbol main                             Glb (61 hello_fault.o)
-    Marking fragment #891 .text (8 hello_fault.o)
-  Marking symbol exit                             Glb (9 exit.o)
-    Marking fragment #742 .text (6 exit.o(dl7M_tln.a))
-Marking from fragment #742 .text (6 exit.o(dl7M_tln.a))
-  Marking symbol _exit                            Glb (14 cexit.o)
-    Marking fragment #1462 .text (6 cexit.o(rt7M_tl.a))
-Marking from fragment #1462 .text (6 cexit.o(rt7M_tl.a))
-  Marking symbol                                      (9 cexit.o)
-    Marking fragment #1466 .text (6 cexit.o(rt7M_tl.a))
-Marking from fragment #1466 .text (6 cexit.o(rt7M_tl.a))
-  Marking symbol __exit                           Glb (10 exit.o)
-    Marking fragment #753 .text (6 exit.o(shb_l.a))
-Marking from fragment #753 .text (6 exit.o(shb_l.a))
-  Marking symbol __iar_close_ttio                 Ext (9 exit.o)
-Marking from fragment #891 .text (8 hello_fault.o)
-  Marking symbol am_hal_clkgen_sysclk_select      Glb (70 am_hal_clkgen.o)
-    Marking fragment #909 .text (6 am_hal_clkgen.o(libam_hal.a))
-  Marking symbol .text_9                              (10 hello_fault.o)
-    Marking fragment #893 .text (8 hello_fault.o)
-  Marking symbol am_hal_cachectrl_enable          Glb (40 am_hal_cachectrl.o)
-    Marking fragment #1029 .text (7 am_hal_cachectrl.o(libam_hal.a))
-  Marking symbol am_bsp_low_power_init            Glb (114 am_bsp.o)
-    Marking fragment #1005 .text (11 am_bsp.o(libam_bsp.a))
-  Marking symbol .text_10                             (11 hello_fault.o)
-    Marking fragment #894 .text (8 hello_fault.o)
-  Marking symbol am_util_stdio_printf_init        Glb (142 am_util_stdio.o)
-    Marking fragment #866 .text (11 am_util_stdio.o)
-  Marking symbol am_hal_interrupt_master_disable  Glb (31 am_hal_interrupt.o)
-    Marking fragment #1054 .text (6 am_hal_interrupt.o(libam_hal.a))
-  Marking symbol .text_11                             (12 hello_fault.o)
     Marking fragment #895 .text (8 hello_fault.o)
-  Marking symbol .text_12                             (13 hello_fault.o)
-    Marking fragment #896 .text (8 hello_fault.o)
-  Marking symbol .text_13                             (14 hello_fault.o)
+  Marking symbol exit                             Glb (9 exit.o)
+    Marking fragment #746 .text (6 exit.o(dl7M_tln.a))
+Marking from fragment #746 .text (6 exit.o(dl7M_tln.a))
+  Marking symbol _exit                            Glb (14 cexit.o)
+    Marking fragment #1490 .text (6 cexit.o(rt7M_tl.a))
+Marking from fragment #1490 .text (6 cexit.o(rt7M_tl.a))
+  Marking symbol                                      (9 cexit.o)
+    Marking fragment #1494 .text (6 cexit.o(rt7M_tl.a))
+Marking from fragment #1494 .text (6 cexit.o(rt7M_tl.a))
+  Marking symbol __exit                           Glb (10 exit.o)
+    Marking fragment #757 .text (6 exit.o(shb_l.a))
+Marking from fragment #757 .text (6 exit.o(shb_l.a))
+  Marking symbol __iar_close_ttio                 Ext (9 exit.o)
+Marking from fragment #895 .text (8 hello_fault.o)
+  Marking symbol am_hal_clkgen_sysclk_select      Glb (72 am_hal_clkgen.o)
+    Marking fragment #913 .text (6 am_hal_clkgen.o(libam_hal.a))
+  Marking symbol .text_9                              (10 hello_fault.o)
     Marking fragment #897 .text (8 hello_fault.o)
-  Marking symbol .text_14                             (15 hello_fault.o)
-    Marking fragment #898 .text (8 hello_fault.o)
-  Marking symbol am_hal_interrupt_master_set      Glb (33 am_hal_interrupt.o)
-    Marking fragment #1055 .text (6 am_hal_interrupt.o(libam_hal.a))
-  Marking symbol am_hal_itm_enable                Glb (45 am_hal_itm.o)
-    Marking fragment #1056 .text (6 am_hal_itm.o(libam_hal.a))
-  Marking symbol am_bsp_debug_printf_enable       Glb (103 am_bsp.o)
+  Marking symbol am_hal_cachectrl_enable          Glb (40 am_hal_cachectrl.o)
+    Marking fragment #1034 .text (7 am_hal_cachectrl.o(libam_hal.a))
+  Marking symbol am_bsp_low_power_init            Glb (114 am_bsp.o)
     Marking fragment #1010 .text (11 am_bsp.o(libam_bsp.a))
-  Marking symbol am_util_stdio_terminal_clear     Glb (145 am_util_stdio.o)
-    Marking fragment #882 .text (11 am_util_stdio.o)
-  Marking symbol .text_15                             (16 hello_fault.o)
+  Marking symbol .text_10                             (11 hello_fault.o)
+    Marking fragment #898 .text (8 hello_fault.o)
+  Marking symbol am_util_stdio_printf_init        Glb (142 am_util_stdio.o)
+    Marking fragment #870 .text (11 am_util_stdio.o)
+  Marking symbol am_hal_interrupt_master_disable  Glb (31 am_hal_interrupt.o)
+    Marking fragment #1059 .text (6 am_hal_interrupt.o(libam_hal.a))
+  Marking symbol .text_11                             (12 hello_fault.o)
     Marking fragment #899 .text (8 hello_fault.o)
+  Marking symbol .text_12                             (13 hello_fault.o)
+    Marking fragment #900 .text (8 hello_fault.o)
+  Marking symbol .text_13                             (14 hello_fault.o)
+    Marking fragment #901 .text (8 hello_fault.o)
+  Marking symbol .text_14                             (15 hello_fault.o)
+    Marking fragment #902 .text (8 hello_fault.o)
+  Marking symbol am_hal_interrupt_master_set      Glb (33 am_hal_interrupt.o)
+    Marking fragment #1060 .text (6 am_hal_interrupt.o(libam_hal.a))
+  Marking symbol am_hal_itm_enable                Glb (45 am_hal_itm.o)
+    Marking fragment #1061 .text (6 am_hal_itm.o(libam_hal.a))
+  Marking symbol am_bsp_debug_printf_enable       Glb (103 am_bsp.o)
+    Marking fragment #1015 .text (11 am_bsp.o(libam_bsp.a))
+  Marking symbol am_util_stdio_terminal_clear     Glb (145 am_util_stdio.o)
+    Marking fragment #886 .text (11 am_util_stdio.o)
+  Marking symbol .text_15                             (16 hello_fault.o)
+    Marking fragment #903 .text (8 hello_fault.o)
   Marking symbol am_util_stdio_printf             Glb (141 am_util_stdio.o)
   Marking symbol .text_16                             (17 hello_fault.o)
-    Marking fragment #900 .text (8 hello_fault.o)
+    Marking fragment #904 .text (8 hello_fault.o)
   Marking symbol am_util_stdio_printf             Glb (141 am_util_stdio.o)
   Marking symbol .text_17                             (18 hello_fault.o)
-    Marking fragment #901 .text (8 hello_fault.o)
+    Marking fragment #905 .text (8 hello_fault.o)
   Marking symbol am_util_stdio_printf             Glb (141 am_util_stdio.o)
   Marking symbol .text_18                             (19 hello_fault.o)
-    Marking fragment #902 .text (8 hello_fault.o)
+    Marking fragment #906 .text (8 hello_fault.o)
   Marking symbol am_util_stdio_printf             Glb (141 am_util_stdio.o)
   Marking symbol am_util_delay_ms                 Glb (33 am_util_delay.o)
-    Marking fragment #831 .text (8 am_util_delay.o)
+    Marking fragment #835 .text (8 am_util_delay.o)
   Marking symbol am_hal_mcuctrl_fault_capture_enable Glb (24 am_hal_mcuctrl.o)
-    Marking fragment #990 .text (7 am_hal_mcuctrl.o(libam_hal.a))
+    Marking fragment #995 .text (7 am_hal_mcuctrl.o(libam_hal.a))
   Marking symbol force_fault                      Glb (60 hello_fault.o)
-    Marking fragment #890 .text (8 hello_fault.o)
+    Marking fragment #894 .text (8 hello_fault.o)
   Marking symbol am_bsp_debug_printf_disable      Glb (102 am_bsp.o)
-    Marking fragment #1011 .text (11 am_bsp.o(libam_bsp.a))
+    Marking fragment #1016 .text (11 am_bsp.o(libam_bsp.a))
   Marking symbol am_hal_sysctrl_sleep             Glb (66 am_hal_sysctrl.o)
-    Marking fragment #1078 .text (8 am_hal_sysctrl.o(libam_hal.a))
-Marking from fragment #1078 .text (8 am_hal_sysctrl.o(libam_hal.a))
+    Marking fragment #1083 .text (8 am_hal_sysctrl.o(libam_hal.a))
+Marking from fragment #1083 .text (8 am_hal_sysctrl.o(libam_hal.a))
   Marking symbol am_hal_interrupt_master_disable  Glb (31 am_hal_interrupt.o)
   Marking symbol .text_14                             (36 am_hal_sysctrl.o)
-    Marking fragment #1088 .text (8 am_hal_sysctrl.o(libam_hal.a))
+    Marking fragment #1093 .text (8 am_hal_sysctrl.o(libam_hal.a))
   Marking symbol .text_15                             (38 am_hal_sysctrl.o)
-    Marking fragment #1089 .text (8 am_hal_sysctrl.o(libam_hal.a))
+    Marking fragment #1094 .text (8 am_hal_sysctrl.o(libam_hal.a))
   Marking symbol .text_16                             (39 am_hal_sysctrl.o)
-    Marking fragment #1090 .text (8 am_hal_sysctrl.o(libam_hal.a))
-  Marking symbol am_hal_ctimer_clear              Glb (78 am_hal_ctimer.o)
-    Marking fragment #1415 .text (7 am_hal_ctimer.o(libam_hal.a))
-  Marking symbol am_hal_ctimer_period_set         Glb (90 am_hal_ctimer.o)
-    Marking fragment #1421 .text (7 am_hal_ctimer.o(libam_hal.a))
-  Marking symbol am_hal_pwrctrl_bucks_disable     Glb (40 am_hal_pwrctrl.o)
-    Marking fragment #1295 .text (6 am_hal_pwrctrl.o(libam_hal.a))
+    Marking fragment #1095 .text (8 am_hal_sysctrl.o(libam_hal.a))
+  Marking symbol am_hal_ctimer_clear              Glb (81 am_hal_ctimer.o)
+    Marking fragment #1442 .text (7 am_hal_ctimer.o(libam_hal.a))
+  Marking symbol am_hal_ctimer_period_set         Glb (93 am_hal_ctimer.o)
+    Marking fragment #1448 .text (7 am_hal_ctimer.o(libam_hal.a))
+  Marking symbol am_hal_pwrctrl_bucks_disable     Glb (41 am_hal_pwrctrl.o)
+    Marking fragment #1318 .text (6 am_hal_pwrctrl.o(libam_hal.a))
   Marking symbol am_hal_interrupt_master_disable  Glb (31 am_hal_interrupt.o)
   Marking symbol am_hal_interrupt_master_set      Glb (33 am_hal_interrupt.o)
   Marking symbol am_hal_flash_delay               Glb (107 am_hal_flash.o)
-    Marking fragment #948 .text (8 am_hal_flash.o(libam_hal.a))
-  Marking symbol am_hal_pwrctrl_bucks_enable      Glb (41 am_hal_pwrctrl.o)
-    Marking fragment #1294 .text (6 am_hal_pwrctrl.o(libam_hal.a))
+    Marking fragment #953 .text (8 am_hal_flash.o(libam_hal.a))
+  Marking symbol am_hal_pwrctrl_bucks_enable      Glb (42 am_hal_pwrctrl.o)
+    Marking fragment #1317 .text (6 am_hal_pwrctrl.o(libam_hal.a))
   Marking symbol am_hal_flash_delay               Glb (107 am_hal_flash.o)
-  Marking symbol am_hal_ctimer_start              Glb (96 am_hal_ctimer.o)
-    Marking fragment #1413 .text (7 am_hal_ctimer.o(libam_hal.a))
+  Marking symbol am_hal_ctimer_start              Glb (99 am_hal_ctimer.o)
+    Marking fragment #1440 .text (7 am_hal_ctimer.o(libam_hal.a))
   Marking symbol .text_15                             (38 am_hal_sysctrl.o)
   Marking symbol am_hal_interrupt_master_set      Glb (33 am_hal_interrupt.o)
-Marking from fragment #1413 .text (7 am_hal_ctimer.o(libam_hal.a))
+Marking from fragment #1440 .text (7 am_hal_ctimer.o(libam_hal.a))
   Marking symbol .text_28                             (54 am_hal_ctimer.o)
-    Marking fragment #1432 .text (7 am_hal_ctimer.o(libam_hal.a))
+    Marking fragment #1459 .text (7 am_hal_ctimer.o(libam_hal.a))
   Marking symbol am_hal_interrupt_master_disable  Glb (31 am_hal_interrupt.o)
   Marking symbol am_hal_interrupt_master_set      Glb (33 am_hal_interrupt.o)
-Marking from fragment #1432 .text (7 am_hal_ctimer.o(libam_hal.a))
-Marking from fragment #1294 .text (6 am_hal_pwrctrl.o(libam_hal.a))
+Marking from fragment #1459 .text (7 am_hal_ctimer.o(libam_hal.a))
+Marking from fragment #1317 .text (6 am_hal_pwrctrl.o(libam_hal.a))
   Marking symbol .text_19                             (28 am_hal_pwrctrl.o)
-    Marking fragment #1306 .text (6 am_hal_pwrctrl.o(libam_hal.a))
-Marking from fragment #1306 .text (6 am_hal_pwrctrl.o(libam_hal.a))
-Marking from fragment #948 .text (8 am_hal_flash.o(libam_hal.a))
+    Marking fragment #1329 .text (6 am_hal_pwrctrl.o(libam_hal.a))
+Marking from fragment #1329 .text (6 am_hal_pwrctrl.o(libam_hal.a))
+Marking from fragment #953 .text (8 am_hal_flash.o(libam_hal.a))
   Marking symbol .text_45                             (90 am_hal_flash.o)
-    Marking fragment #980 .text (8 am_hal_flash.o(libam_hal.a))
-Marking from fragment #980 .text (8 am_hal_flash.o(libam_hal.a))
-Marking from fragment #1295 .text (6 am_hal_pwrctrl.o(libam_hal.a))
+    Marking fragment #985 .text (8 am_hal_flash.o(libam_hal.a))
+Marking from fragment #985 .text (8 am_hal_flash.o(libam_hal.a))
+Marking from fragment #1318 .text (6 am_hal_pwrctrl.o(libam_hal.a))
   Marking symbol .text_20                             (29 am_hal_pwrctrl.o)
-    Marking fragment #1307 .text (6 am_hal_pwrctrl.o(libam_hal.a))
+    Marking fragment #1330 .text (6 am_hal_pwrctrl.o(libam_hal.a))
   Marking symbol am_hal_flash_delay               Glb (107 am_hal_flash.o)
-Marking from fragment #1307 .text (6 am_hal_pwrctrl.o(libam_hal.a))
-Marking from fragment #1421 .text (7 am_hal_ctimer.o(libam_hal.a))
+Marking from fragment #1330 .text (6 am_hal_pwrctrl.o(libam_hal.a))
+Marking from fragment #1448 .text (7 am_hal_ctimer.o(libam_hal.a))
   Marking symbol am_hal_interrupt_master_disable  Glb (31 am_hal_interrupt.o)
   Marking symbol .text_28                             (54 am_hal_ctimer.o)
   Marking symbol .text_31                             (57 am_hal_ctimer.o)
-    Marking fragment #1435 .text (7 am_hal_ctimer.o(libam_hal.a))
+    Marking fragment #1462 .text (7 am_hal_ctimer.o(libam_hal.a))
   Marking symbol .text_32                             (58 am_hal_ctimer.o)
-    Marking fragment #1436 .text (7 am_hal_ctimer.o(libam_hal.a))
+    Marking fragment #1463 .text (7 am_hal_ctimer.o(libam_hal.a))
   Marking symbol .text_30                             (56 am_hal_ctimer.o)
-    Marking fragment #1434 .text (7 am_hal_ctimer.o(libam_hal.a))
+    Marking fragment #1461 .text (7 am_hal_ctimer.o(libam_hal.a))
   Marking symbol am_hal_interrupt_master_set      Glb (33 am_hal_interrupt.o)
-Marking from fragment #1434 .text (7 am_hal_ctimer.o(libam_hal.a))
-Marking from fragment #1436 .text (7 am_hal_ctimer.o(libam_hal.a))
-Marking from fragment #1435 .text (7 am_hal_ctimer.o(libam_hal.a))
-Marking from fragment #1415 .text (7 am_hal_ctimer.o(libam_hal.a))
+Marking from fragment #1461 .text (7 am_hal_ctimer.o(libam_hal.a))
+Marking from fragment #1463 .text (7 am_hal_ctimer.o(libam_hal.a))
+Marking from fragment #1462 .text (7 am_hal_ctimer.o(libam_hal.a))
+Marking from fragment #1442 .text (7 am_hal_ctimer.o(libam_hal.a))
   Marking symbol .text_28                             (54 am_hal_ctimer.o)
   Marking symbol am_hal_interrupt_master_disable  Glb (31 am_hal_interrupt.o)
   Marking symbol am_hal_interrupt_master_set      Glb (33 am_hal_interrupt.o)
-Marking from fragment #1090 .text (8 am_hal_sysctrl.o(libam_hal.a))
+Marking from fragment #1095 .text (8 am_hal_sysctrl.o(libam_hal.a))
   Marking symbol g_bBuckRestoreComplete               (5 am_hal_sysctrl.o)
     Marking fragment #443 .bss (6 am_hal_sysctrl.o(libam_hal.a))
 Marking from fragment #443 .bss (6 am_hal_sysctrl.o(libam_hal.a))
-Marking from fragment #1089 .text (8 am_hal_sysctrl.o(libam_hal.a))
-Marking from fragment #1088 .text (8 am_hal_sysctrl.o(libam_hal.a))
-Marking from fragment #1011 .text (11 am_bsp.o(libam_bsp.a))
+Marking from fragment #1094 .text (8 am_hal_sysctrl.o(libam_hal.a))
+Marking from fragment #1093 .text (8 am_hal_sysctrl.o(libam_hal.a))
+Marking from fragment #1016 .text (11 am_bsp.o(libam_bsp.a))
   Marking symbol .text_31                             (69 am_bsp.o)
-    Marking fragment #1022 .text (11 am_bsp.o(libam_bsp.a))
+    Marking fragment #1027 .text (11 am_bsp.o(libam_bsp.a))
   Marking symbol am_hal_itm_not_busy              Glb (46 am_hal_itm.o)
-    Marking fragment #1058 .text (6 am_hal_itm.o(libam_hal.a))
+    Marking fragment #1063 .text (6 am_hal_itm.o(libam_hal.a))
   Marking symbol am_hal_interrupt_master_disable  Glb (31 am_hal_interrupt.o)
   Marking symbol .text_35                             (73 am_bsp.o)
-    Marking fragment #1026 .text (11 am_bsp.o(libam_bsp.a))
+    Marking fragment #1031 .text (11 am_bsp.o(libam_bsp.a))
   Marking symbol am_hal_interrupt_master_set      Glb (33 am_hal_interrupt.o)
   Marking symbol am_hal_tpiu_disable              Glb (33 am_hal_tpiu.o)
-    Marking fragment #1338 .text (6 am_hal_tpiu.o(libam_hal.a))
-Marking from fragment #1338 .text (6 am_hal_tpiu.o(libam_hal.a))
+    Marking fragment #1362 .text (6 am_hal_tpiu.o(libam_hal.a))
+Marking from fragment #1362 .text (6 am_hal_tpiu.o(libam_hal.a))
   Marking symbol .text_10                             (20 am_hal_tpiu.o)
-    Marking fragment #1339 .text (6 am_hal_tpiu.o(libam_hal.a))
-Marking from fragment #1339 .text (6 am_hal_tpiu.o(libam_hal.a))
-Marking from fragment #1026 .text (11 am_bsp.o(libam_bsp.a))
-Marking from fragment #1058 .text (6 am_hal_itm.o(libam_hal.a))
+    Marking fragment #1363 .text (6 am_hal_tpiu.o(libam_hal.a))
+Marking from fragment #1363 .text (6 am_hal_tpiu.o(libam_hal.a))
+Marking from fragment #1031 .text (11 am_bsp.o(libam_bsp.a))
+Marking from fragment #1063 .text (6 am_hal_itm.o(libam_hal.a))
   Marking symbol .text_17                             (30 am_hal_itm.o)
-    Marking fragment #1071 .text (6 am_hal_itm.o(libam_hal.a))
+    Marking fragment #1076 .text (6 am_hal_itm.o(libam_hal.a))
   Marking symbol am_hal_flash_delay               Glb (107 am_hal_flash.o)
-Marking from fragment #1071 .text (6 am_hal_itm.o(libam_hal.a))
-Marking from fragment #1022 .text (11 am_bsp.o(libam_bsp.a))
+Marking from fragment #1076 .text (6 am_hal_itm.o(libam_hal.a))
+Marking from fragment #1027 .text (11 am_bsp.o(libam_bsp.a))
   Marking symbol g_ui32HALflags                   Glb (7 am_hal_global.o)
-    Marking fragment #647 .bss (6 am_hal_global.o(libam_hal.a))
-Marking from fragment #647 .bss (6 am_hal_global.o(libam_hal.a))
-Marking from fragment #890 .text (8 hello_fault.o)
+    Marking fragment #651 .bss (6 am_hal_global.o(libam_hal.a))
+Marking from fragment #651 .bss (6 am_hal_global.o(libam_hal.a))
+Marking from fragment #894 .text (8 hello_fault.o)
   Marking symbol .text_8                              (8 hello_fault.o)
-    Marking fragment #892 .text (8 hello_fault.o)
-Marking from fragment #892 .text (8 hello_fault.o)
-Marking from fragment #990 .text (7 am_hal_mcuctrl.o(libam_hal.a))
+    Marking fragment #896 .text (8 hello_fault.o)
+Marking from fragment #896 .text (8 hello_fault.o)
+Marking from fragment #995 .text (7 am_hal_mcuctrl.o(libam_hal.a))
   Marking symbol .text_10                             (18 am_hal_mcuctrl.o)
-    Marking fragment #996 .text (7 am_hal_mcuctrl.o(libam_hal.a))
-Marking from fragment #996 .text (7 am_hal_mcuctrl.o(libam_hal.a))
-Marking from fragment #831 .text (8 am_util_delay.o)
-  Marking symbol am_hal_clkgen_sysclk_get         Glb (69 am_hal_clkgen.o)
-    Marking fragment #910 .text (6 am_hal_clkgen.o(libam_hal.a))
+    Marking fragment #1001 .text (7 am_hal_mcuctrl.o(libam_hal.a))
+Marking from fragment #1001 .text (7 am_hal_mcuctrl.o(libam_hal.a))
+Marking from fragment #835 .text (8 am_util_delay.o)
+  Marking symbol am_hal_clkgen_sysclk_get         Glb (71 am_hal_clkgen.o)
+    Marking fragment #914 .text (6 am_hal_clkgen.o(libam_hal.a))
   Marking symbol am_hal_flash_delay               Glb (107 am_hal_flash.o)
-Marking from fragment #910 .text (6 am_hal_clkgen.o(libam_hal.a))
+Marking from fragment #914 .text (6 am_hal_clkgen.o(libam_hal.a))
   Marking symbol .text_20                             (37 am_hal_clkgen.o)
-    Marking fragment #926 .text (6 am_hal_clkgen.o(libam_hal.a))
+    Marking fragment #930 .text (6 am_hal_clkgen.o(libam_hal.a))
   Marking symbol .text_21                             (38 am_hal_clkgen.o)
-    Marking fragment #927 .text (6 am_hal_clkgen.o(libam_hal.a))
+    Marking fragment #931 .text (6 am_hal_clkgen.o(libam_hal.a))
   Marking symbol .text_22                             (39 am_hal_clkgen.o)
-    Marking fragment #928 .text (6 am_hal_clkgen.o(libam_hal.a))
-Marking from fragment #928 .text (6 am_hal_clkgen.o(libam_hal.a))
-Marking from fragment #927 .text (6 am_hal_clkgen.o(libam_hal.a))
-Marking from fragment #926 .text (6 am_hal_clkgen.o(libam_hal.a))
-Marking from fragment #902 .text (8 hello_fault.o)
+    Marking fragment #932 .text (6 am_hal_clkgen.o(libam_hal.a))
+Marking from fragment #932 .text (6 am_hal_clkgen.o(libam_hal.a))
+Marking from fragment #931 .text (6 am_hal_clkgen.o(libam_hal.a))
+Marking from fragment #930 .text (6 am_hal_clkgen.o(libam_hal.a))
+Marking from fragment #906 .text (8 hello_fault.o)
   Marking symbol .rodata13                            (30 hello_fault.o)
     Marking fragment #234 .rodata (13 hello_fault.o)
 Marking from fragment #234 .rodata (13 hello_fault.o)
-Marking from fragment #901 .text (8 hello_fault.o)
+Marking from fragment #905 .text (8 hello_fault.o)
   Marking symbol .rodata12                            (28 hello_fault.o)
     Marking fragment #233 .rodata (12 hello_fault.o)
 Marking from fragment #233 .rodata (12 hello_fault.o)
-Marking from fragment #900 .text (8 hello_fault.o)
+Marking from fragment #904 .text (8 hello_fault.o)
   Marking symbol .rodata11                            (25 hello_fault.o)
     Marking fragment #232 .rodata (11 hello_fault.o)
 Marking from fragment #232 .rodata (11 hello_fault.o)
-Marking from fragment #899 .text (8 hello_fault.o)
+Marking from fragment #903 .text (8 hello_fault.o)
   Marking symbol .rodata10                            (22 hello_fault.o)
     Marking fragment #231 .rodata (10 hello_fault.o)
 Marking from fragment #231 .rodata (10 hello_fault.o)
-Marking from fragment #882 .text (11 am_util_stdio.o)
+Marking from fragment #886 .text (11 am_util_stdio.o)
   Marking symbol .text_29                             (61 am_util_stdio.o)
-    Marking fragment #889 .text (11 am_util_stdio.o)
+    Marking fragment #893 .text (11 am_util_stdio.o)
   Marking symbol am_util_stdio_printf             Glb (141 am_util_stdio.o)
-Marking from fragment #889 .text (11 am_util_stdio.o)
+Marking from fragment #893 .text (11 am_util_stdio.o)
   Marking symbol .rodata13                            (64 am_util_stdio.o)
     Marking fragment #98 .rodata (13 am_util_stdio.o)
 Marking from fragment #98 .rodata (13 am_util_stdio.o)
-Marking from fragment #1010 .text (11 am_bsp.o(libam_bsp.a))
+Marking from fragment #1015 .text (11 am_bsp.o(libam_bsp.a))
   Marking symbol .text_31                             (69 am_bsp.o)
   Marking symbol .text_32                             (70 am_bsp.o)
-    Marking fragment #1023 .text (11 am_bsp.o(libam_bsp.a))
+    Marking fragment #1028 .text (11 am_bsp.o(libam_bsp.a))
   Marking symbol .text_33                             (71 am_bsp.o)
-    Marking fragment #1024 .text (11 am_bsp.o(libam_bsp.a))
+    Marking fragment #1029 .text (11 am_bsp.o(libam_bsp.a))
   Marking symbol .text_34                             (72 am_bsp.o)
-    Marking fragment #1025 .text (11 am_bsp.o(libam_bsp.a))
+    Marking fragment #1030 .text (11 am_bsp.o(libam_bsp.a))
   Marking symbol am_hal_tpiu_enable               Glb (34 am_hal_tpiu.o)
-    Marking fragment #1337 .text (6 am_hal_tpiu.o(libam_hal.a))
+    Marking fragment #1361 .text (6 am_hal_tpiu.o(libam_hal.a))
   Marking symbol am_hal_interrupt_master_disable  Glb (31 am_hal_interrupt.o)
   Marking symbol .text_35                             (73 am_bsp.o)
   Marking symbol am_hal_interrupt_master_set      Glb (33 am_hal_interrupt.o)
-Marking from fragment #1337 .text (6 am_hal_tpiu.o(libam_hal.a))
+Marking from fragment #1361 .text (6 am_hal_tpiu.o(libam_hal.a))
   Marking symbol .text_11                             (22 am_hal_tpiu.o)
-    Marking fragment #1340 .text (6 am_hal_tpiu.o(libam_hal.a))
+    Marking fragment #1364 .text (6 am_hal_tpiu.o(libam_hal.a))
   Marking symbol .text_13                             (24 am_hal_tpiu.o)
-    Marking fragment #1342 .text (6 am_hal_tpiu.o(libam_hal.a))
+    Marking fragment #1366 .text (6 am_hal_tpiu.o(libam_hal.a))
   Marking symbol .text_14                             (25 am_hal_tpiu.o)
-    Marking fragment #1343 .text (6 am_hal_tpiu.o(libam_hal.a))
-  Marking symbol am_hal_clkgen_sysclk_get         Glb (69 am_hal_clkgen.o)
+    Marking fragment #1367 .text (6 am_hal_tpiu.o(libam_hal.a))
+  Marking symbol am_hal_clkgen_sysclk_get         Glb (71 am_hal_clkgen.o)
   Marking symbol .text_10                             (20 am_hal_tpiu.o)
   Marking symbol .text_10                             (20 am_hal_tpiu.o)
   Marking symbol am_hal_flash_delay               Glb (107 am_hal_flash.o)
-Marking from fragment #1343 .text (6 am_hal_tpiu.o(libam_hal.a))
-Marking from fragment #1342 .text (6 am_hal_tpiu.o(libam_hal.a))
-Marking from fragment #1340 .text (6 am_hal_tpiu.o(libam_hal.a))
-Marking from fragment #1025 .text (11 am_bsp.o(libam_bsp.a))
-Marking from fragment #1024 .text (11 am_bsp.o(libam_bsp.a))
-Marking from fragment #1023 .text (11 am_bsp.o(libam_bsp.a))
-Marking from fragment #1056 .text (6 am_hal_itm.o(libam_hal.a))
+Marking from fragment #1367 .text (6 am_hal_tpiu.o(libam_hal.a))
+Marking from fragment #1366 .text (6 am_hal_tpiu.o(libam_hal.a))
+Marking from fragment #1364 .text (6 am_hal_tpiu.o(libam_hal.a))
+Marking from fragment #1030 .text (11 am_bsp.o(libam_bsp.a))
+Marking from fragment #1029 .text (11 am_bsp.o(libam_bsp.a))
+Marking from fragment #1028 .text (11 am_bsp.o(libam_bsp.a))
+Marking from fragment #1061 .text (6 am_hal_itm.o(libam_hal.a))
   Marking symbol .text_12                             (24 am_hal_itm.o)
-    Marking fragment #1066 .text (6 am_hal_itm.o(libam_hal.a))
+    Marking fragment #1071 .text (6 am_hal_itm.o(libam_hal.a))
   Marking symbol .text_13                             (26 am_hal_itm.o)
-    Marking fragment #1067 .text (6 am_hal_itm.o(libam_hal.a))
+    Marking fragment #1072 .text (6 am_hal_itm.o(libam_hal.a))
   Marking symbol .text_14                             (27 am_hal_itm.o)
-    Marking fragment #1068 .text (6 am_hal_itm.o(libam_hal.a))
+    Marking fragment #1073 .text (6 am_hal_itm.o(libam_hal.a))
   Marking symbol .text_15                             (28 am_hal_itm.o)
-    Marking fragment #1069 .text (6 am_hal_itm.o(libam_hal.a))
+    Marking fragment #1074 .text (6 am_hal_itm.o(libam_hal.a))
   Marking symbol .text_16                             (29 am_hal_itm.o)
-    Marking fragment #1070 .text (6 am_hal_itm.o(libam_hal.a))
-Marking from fragment #1070 .text (6 am_hal_itm.o(libam_hal.a))
-Marking from fragment #1069 .text (6 am_hal_itm.o(libam_hal.a))
-Marking from fragment #1068 .text (6 am_hal_itm.o(libam_hal.a))
-Marking from fragment #1067 .text (6 am_hal_itm.o(libam_hal.a))
-Marking from fragment #1066 .text (6 am_hal_itm.o(libam_hal.a))
+    Marking fragment #1075 .text (6 am_hal_itm.o(libam_hal.a))
+Marking from fragment #1075 .text (6 am_hal_itm.o(libam_hal.a))
+Marking from fragment #1074 .text (6 am_hal_itm.o(libam_hal.a))
+Marking from fragment #1073 .text (6 am_hal_itm.o(libam_hal.a))
+Marking from fragment #1072 .text (6 am_hal_itm.o(libam_hal.a))
+Marking from fragment #1071 .text (6 am_hal_itm.o(libam_hal.a))
   Marking symbol g_ui32HALflags                   Glb (7 am_hal_global.o)
-Marking from fragment #1055 .text (6 am_hal_interrupt.o(libam_hal.a))
-Marking from fragment #898 .text (8 hello_fault.o)
-Marking from fragment #897 .text (8 hello_fault.o)
-Marking from fragment #896 .text (8 hello_fault.o)
-Marking from fragment #895 .text (8 hello_fault.o)
-Marking from fragment #1054 .text (6 am_hal_interrupt.o(libam_hal.a))
-Marking from fragment #866 .text (11 am_util_stdio.o)
+Marking from fragment #1060 .text (6 am_hal_interrupt.o(libam_hal.a))
+Marking from fragment #902 .text (8 hello_fault.o)
+Marking from fragment #901 .text (8 hello_fault.o)
+Marking from fragment #900 .text (8 hello_fault.o)
+Marking from fragment #899 .text (8 hello_fault.o)
+Marking from fragment #1059 .text (6 am_hal_interrupt.o(libam_hal.a))
+Marking from fragment #870 .text (11 am_util_stdio.o)
   Marking symbol .text_23                             (54 am_util_stdio.o)
-Marking from fragment #894 .text (8 hello_fault.o)
+Marking from fragment #898 .text (8 hello_fault.o)
   Marking symbol am_bsp_itm_string_print          Glb (113 am_bsp.o)
-    Marking fragment #1027 .text (11 am_bsp.o(libam_bsp.a))
-Marking from fragment #1027 .text (11 am_bsp.o(libam_bsp.a))
+    Marking fragment #1032 .text (11 am_bsp.o(libam_bsp.a))
+Marking from fragment #1032 .text (11 am_bsp.o(libam_bsp.a))
   Marking symbol am_hal_itm_print                 Glb (47 am_hal_itm.o)
-    Marking fragment #1077 .text (6 am_hal_itm.o(libam_hal.a))
-Marking from fragment #1077 .text (6 am_hal_itm.o(libam_hal.a))
-Marking from fragment #1005 .text (11 am_bsp.o(libam_bsp.a))
-  Marking symbol am_hal_pwrctrl_bucks_init        Glb (42 am_hal_pwrctrl.o)
-    Marking fragment #1293 .text (6 am_hal_pwrctrl.o(libam_hal.a))
-  Marking symbol am_hal_pwrctrl_low_power_init    Glb (43 am_hal_pwrctrl.o)
-    Marking fragment #1296 .text (6 am_hal_pwrctrl.o(libam_hal.a))
+    Marking fragment #1082 .text (6 am_hal_itm.o(libam_hal.a))
+Marking from fragment #1082 .text (6 am_hal_itm.o(libam_hal.a))
+Marking from fragment #1010 .text (11 am_bsp.o(libam_bsp.a))
+  Marking symbol am_hal_pwrctrl_bucks_init        Glb (43 am_hal_pwrctrl.o)
+    Marking fragment #1316 .text (6 am_hal_pwrctrl.o(libam_hal.a))
+  Marking symbol am_hal_pwrctrl_low_power_init    Glb (44 am_hal_pwrctrl.o)
+    Marking fragment #1319 .text (6 am_hal_pwrctrl.o(libam_hal.a))
   Marking symbol am_hal_vcomp_disable             Glb (37 am_hal_vcomp.o)
-    Marking fragment #1395 .text (6 am_hal_vcomp.o(libam_hal.a))
+    Marking fragment #1422 .text (6 am_hal_vcomp.o(libam_hal.a))
   Marking symbol am_hal_rtc_osc_select            Glb (56 am_hal_rtc.o)
-    Marking fragment #1308 .text (6 am_hal_rtc.o(libam_hal.a))
-  Marking symbol am_hal_clkgen_osc_stop           Glb (68 am_hal_clkgen.o)
-    Marking fragment #918 .text (6 am_hal_clkgen.o(libam_hal.a))
+    Marking fragment #1332 .text (6 am_hal_rtc.o(libam_hal.a))
+  Marking symbol am_hal_clkgen_osc_stop           Glb (70 am_hal_clkgen.o)
+    Marking fragment #922 .text (6 am_hal_clkgen.o(libam_hal.a))
   Marking symbol am_hal_rtc_osc_disable           Glb (54 am_hal_rtc.o)
-    Marking fragment #1310 .text (6 am_hal_rtc.o(libam_hal.a))
-Marking from fragment #1310 .text (6 am_hal_rtc.o(libam_hal.a))
+    Marking fragment #1334 .text (6 am_hal_rtc.o(libam_hal.a))
+Marking from fragment #1334 .text (6 am_hal_rtc.o(libam_hal.a))
   Marking symbol .text_18                             (36 am_hal_rtc.o)
-    Marking fragment #1324 .text (6 am_hal_rtc.o(libam_hal.a))
-Marking from fragment #1324 .text (6 am_hal_rtc.o(libam_hal.a))
-Marking from fragment #918 .text (6 am_hal_clkgen.o(libam_hal.a))
+    Marking fragment #1348 .text (6 am_hal_rtc.o(libam_hal.a))
+Marking from fragment #1348 .text (6 am_hal_rtc.o(libam_hal.a))
+Marking from fragment #922 .text (6 am_hal_clkgen.o(libam_hal.a))
   Marking symbol .text_26                             (43 am_hal_clkgen.o)
-    Marking fragment #932 .text (6 am_hal_clkgen.o(libam_hal.a))
-Marking from fragment #932 .text (6 am_hal_clkgen.o(libam_hal.a))
-Marking from fragment #1308 .text (6 am_hal_rtc.o(libam_hal.a))
+    Marking fragment #936 .text (6 am_hal_clkgen.o(libam_hal.a))
+Marking from fragment #936 .text (6 am_hal_clkgen.o(libam_hal.a))
+Marking from fragment #1332 .text (6 am_hal_rtc.o(libam_hal.a))
   Marking symbol .text_17                             (34 am_hal_rtc.o)
-    Marking fragment #1323 .text (6 am_hal_rtc.o(libam_hal.a))
-Marking from fragment #1323 .text (6 am_hal_rtc.o(libam_hal.a))
-Marking from fragment #1395 .text (6 am_hal_vcomp.o(libam_hal.a))
+    Marking fragment #1347 .text (6 am_hal_rtc.o(libam_hal.a))
+Marking from fragment #1347 .text (6 am_hal_rtc.o(libam_hal.a))
+Marking from fragment #1422 .text (6 am_hal_vcomp.o(libam_hal.a))
   Marking symbol .text_15                             (29 am_hal_vcomp.o)
-    Marking fragment #1404 .text (6 am_hal_vcomp.o(libam_hal.a))
-Marking from fragment #1404 .text (6 am_hal_vcomp.o(libam_hal.a))
-Marking from fragment #1296 .text (6 am_hal_pwrctrl.o(libam_hal.a))
+    Marking fragment #1431 .text (6 am_hal_vcomp.o(libam_hal.a))
+Marking from fragment #1431 .text (6 am_hal_vcomp.o(libam_hal.a))
+Marking from fragment #1319 .text (6 am_hal_pwrctrl.o(libam_hal.a))
   Marking symbol .text_19                             (28 am_hal_pwrctrl.o)
-Marking from fragment #1293 .text (6 am_hal_pwrctrl.o(libam_hal.a))
+Marking from fragment #1316 .text (6 am_hal_pwrctrl.o(libam_hal.a))
   Marking symbol .text_19                             (28 am_hal_pwrctrl.o)
   Marking symbol am_hal_flash_delay               Glb (107 am_hal_flash.o)
-Marking from fragment #1029 .text (7 am_hal_cachectrl.o(libam_hal.a))
-  Marking symbol am_hal_pwrctrl_memory_enable     Glb (44 am_hal_pwrctrl.o)
-    Marking fragment #1292 .text (6 am_hal_pwrctrl.o(libam_hal.a))
+Marking from fragment #1034 .text (7 am_hal_cachectrl.o(libam_hal.a))
+  Marking symbol am_hal_pwrctrl_memory_enable     Glb (45 am_hal_pwrctrl.o)
+    Marking fragment #1315 .text (6 am_hal_pwrctrl.o(libam_hal.a))
   Marking symbol .text_12                             (26 am_hal_cachectrl.o)
-    Marking fragment #1039 .text (7 am_hal_cachectrl.o(libam_hal.a))
-Marking from fragment #1039 .text (7 am_hal_cachectrl.o(libam_hal.a))
-Marking from fragment #1292 .text (6 am_hal_pwrctrl.o(libam_hal.a))
+    Marking fragment #1044 .text (7 am_hal_cachectrl.o(libam_hal.a))
+Marking from fragment #1044 .text (7 am_hal_cachectrl.o(libam_hal.a))
+Marking from fragment #1315 .text (6 am_hal_pwrctrl.o(libam_hal.a))
   Marking symbol .text_12                             (21 am_hal_pwrctrl.o)
-    Marking fragment #1299 .text (6 am_hal_pwrctrl.o(libam_hal.a))
+    Marking fragment #1322 .text (6 am_hal_pwrctrl.o(libam_hal.a))
   Marking symbol .text_12                             (21 am_hal_pwrctrl.o)
   Marking symbol .text_12                             (21 am_hal_pwrctrl.o)
   Marking symbol .text_13                             (22 am_hal_pwrctrl.o)
-    Marking fragment #1300 .text (6 am_hal_pwrctrl.o(libam_hal.a))
+    Marking fragment #1323 .text (6 am_hal_pwrctrl.o(libam_hal.a))
   Marking symbol .text_14                             (23 am_hal_pwrctrl.o)
-    Marking fragment #1301 .text (6 am_hal_pwrctrl.o(libam_hal.a))
+    Marking fragment #1324 .text (6 am_hal_pwrctrl.o(libam_hal.a))
   Marking symbol .text_15                             (24 am_hal_pwrctrl.o)
-    Marking fragment #1302 .text (6 am_hal_pwrctrl.o(libam_hal.a))
+    Marking fragment #1325 .text (6 am_hal_pwrctrl.o(libam_hal.a))
   Marking symbol .text_16                             (25 am_hal_pwrctrl.o)
-    Marking fragment #1303 .text (6 am_hal_pwrctrl.o(libam_hal.a))
+    Marking fragment #1326 .text (6 am_hal_pwrctrl.o(libam_hal.a))
   Marking symbol .text_17                             (26 am_hal_pwrctrl.o)
-    Marking fragment #1304 .text (6 am_hal_pwrctrl.o(libam_hal.a))
+    Marking fragment #1327 .text (6 am_hal_pwrctrl.o(libam_hal.a))
   Marking symbol .text_18                             (27 am_hal_pwrctrl.o)
-    Marking fragment #1305 .text (6 am_hal_pwrctrl.o(libam_hal.a))
+    Marking fragment #1328 .text (6 am_hal_pwrctrl.o(libam_hal.a))
   Marking symbol .text_12                             (21 am_hal_pwrctrl.o)
-Marking from fragment #1305 .text (6 am_hal_pwrctrl.o(libam_hal.a))
-Marking from fragment #1304 .text (6 am_hal_pwrctrl.o(libam_hal.a))
-Marking from fragment #1303 .text (6 am_hal_pwrctrl.o(libam_hal.a))
-Marking from fragment #1302 .text (6 am_hal_pwrctrl.o(libam_hal.a))
-Marking from fragment #1301 .text (6 am_hal_pwrctrl.o(libam_hal.a))
-Marking from fragment #1300 .text (6 am_hal_pwrctrl.o(libam_hal.a))
-Marking from fragment #1299 .text (6 am_hal_pwrctrl.o(libam_hal.a))
-Marking from fragment #893 .text (8 hello_fault.o)
+Marking from fragment #1328 .text (6 am_hal_pwrctrl.o(libam_hal.a))
+Marking from fragment #1327 .text (6 am_hal_pwrctrl.o(libam_hal.a))
+Marking from fragment #1326 .text (6 am_hal_pwrctrl.o(libam_hal.a))
+Marking from fragment #1325 .text (6 am_hal_pwrctrl.o(libam_hal.a))
+Marking from fragment #1324 .text (6 am_hal_pwrctrl.o(libam_hal.a))
+Marking from fragment #1323 .text (6 am_hal_pwrctrl.o(libam_hal.a))
+Marking from fragment #1322 .text (6 am_hal_pwrctrl.o(libam_hal.a))
+Marking from fragment #897 .text (8 hello_fault.o)
   Marking symbol am_hal_cachectrl_defaults        Glb (38 am_hal_cachectrl.o)
     Marking fragment #397 .rodata (6 am_hal_cachectrl.o(libam_hal.a))
 Marking from fragment #397 .rodata (6 am_hal_cachectrl.o(libam_hal.a))
-Marking from fragment #909 .text (6 am_hal_clkgen.o(libam_hal.a))
+Marking from fragment #913 .text (6 am_hal_clkgen.o(libam_hal.a))
   Marking symbol .text_18                             (34 am_hal_clkgen.o)
-    Marking fragment #924 .text (6 am_hal_clkgen.o(libam_hal.a))
+    Marking fragment #928 .text (6 am_hal_clkgen.o(libam_hal.a))
+  Marking symbol .text_32                             (49 am_hal_clkgen.o)
+    Marking fragment #942 .text (6 am_hal_clkgen.o(libam_hal.a))
   Marking symbol am_hal_debug_error                   (8 am_hal_debug.o)
     Marking fragment #460 .text (6 am_hal_debug.o(libam_hal.a))
   Marking symbol .text_19                             (36 am_hal_clkgen.o)
-    Marking fragment #925 .text (6 am_hal_clkgen.o(libam_hal.a))
-Marking from fragment #925 .text (6 am_hal_clkgen.o(libam_hal.a))
+    Marking fragment #929 .text (6 am_hal_clkgen.o(libam_hal.a))
+Marking from fragment #929 .text (6 am_hal_clkgen.o(libam_hal.a))
 Marking from fragment #460 .text (6 am_hal_debug.o(libam_hal.a))
-Marking from fragment #924 .text (6 am_hal_clkgen.o(libam_hal.a))
-  Marking symbol .rodata8                             (51 am_hal_clkgen.o)
+Marking from fragment #942 .text (6 am_hal_clkgen.o(libam_hal.a))
+Marking from fragment #928 .text (6 am_hal_clkgen.o(libam_hal.a))
+  Marking symbol .rodata8                             (53 am_hal_clkgen.o)
     Marking fragment #306 .rodata (8 am_hal_clkgen.o(libam_hal.a))
 Marking from fragment #306 .rodata (8 am_hal_clkgen.o(libam_hal.a))
-Marking from fragment #903 .text (11 startup_iar.o) init:always
+Marking from fragment #907 .text (11 startup_iar.o) init:always
   Marking symbol .text_5                              (15 startup_iar.o)
-    Marking fragment #904 .text (11 startup_iar.o) init:always
+    Marking fragment #908 .text (11 startup_iar.o) init:always
   Marking symbol .text_6                              (17 startup_iar.o)
-    Marking fragment #905 .text (11 startup_iar.o) init:always
-Marking from fragment #905 .text (11 startup_iar.o) init:always
-Marking from fragment #904 .text (11 startup_iar.o) init:always
+    Marking fragment #909 .text (11 startup_iar.o) init:always
+Marking from fragment #909 .text (11 startup_iar.o) init:always
+Marking from fragment #908 .text (11 startup_iar.o) init:always
   Marking symbol __vector_table                   Glb (54 startup_iar.o)
-Marking from fragment #722 .text (6 fpinit_M.o(m7M_tls.a)) init:always
+Marking from fragment #726 .text (6 fpinit_M.o(m7M_tls.a)) init:always
 Marking from fragment #258 .intvec (10 startup_iar.o) init:always
   Marking symbol pui32Stack                           (5 startup_iar.o)
     Marking fragment #257 .noinit (9 startup_iar.o) init:always
   Marking symbol am_reset_isr                     Glb (76 startup_iar.o)
-    Marking fragment #906 .text (11 startup_iar.o) init:always
+    Marking fragment #910 .text (11 startup_iar.o) init:always
   Marking symbol am_nmi_isr                           (73 startup_iar.o)
-    Marking fragment #908 .text (11 startup_iar.o) init:always
+    Marking fragment #912 .text (11 startup_iar.o) init:always
   Marking symbol am_fault_isr                     Glb (138 am_util_faultisr.o)
-    Marking fragment #834 .text (8 am_util_faultisr.o) init:always
+    Marking fragment #838 .text (8 am_util_faultisr.o) init:always
   Marking symbol am_fault_isr                     Glb (138 am_util_faultisr.o)
   Marking symbol am_fault_isr                     Glb (138 am_util_faultisr.o)
   Marking symbol am_fault_isr                     Glb (138 am_util_faultisr.o)
   Marking symbol am_svcall_isr                        (90 startup_iar.o)
-    Marking fragment #907 .text (11 startup_iar.o) init:always
+    Marking fragment #911 .text (11 startup_iar.o) init:always
   Marking symbol am_debugmon_isr                      (60 startup_iar.o)
   Marking symbol am_pendsv_isr                        (75 startup_iar.o)
   Marking symbol am_systick_isr                       (91 startup_iar.o)
@@ -1414,19 +1417,19 @@ Marking from fragment #258 .intvec (10 startup_iar.o) init:always
   Marking symbol am_software1_isr                     (78 startup_iar.o)
   Marking symbol am_software2_isr                     (79 startup_iar.o)
   Marking symbol am_software3_isr                     (80 startup_iar.o)
-Marking from fragment #907 .text (11 startup_iar.o) init:always
-Marking from fragment #834 .text (8 am_util_faultisr.o) init:always
+Marking from fragment #911 .text (11 startup_iar.o) init:always
+Marking from fragment #838 .text (8 am_util_faultisr.o) init:always
   Marking symbol am_util_faultisr_collect_data    Glb (139 am_util_faultisr.o)
-    Marking fragment #836 .text (8 am_util_faultisr.o) init:always
-Marking from fragment #836 .text (8 am_util_faultisr.o) init:always
+    Marking fragment #840 .text (8 am_util_faultisr.o) init:always
+Marking from fragment #840 .text (8 am_util_faultisr.o) init:always
   Marking symbol __aeabi_memclr4                  Glb (7 ABImemclr4.o)
-    Marking fragment #704 .text (6 ABImemclr4.o(rt7M_tl.a)) init:always
+    Marking fragment #708 .text (6 ABImemclr4.o(rt7M_tl.a)) init:always
   Marking symbol .text_33                             (10 am_util_faultisr.o)
-    Marking fragment #837 .text (8 am_util_faultisr.o) init:always
+    Marking fragment #841 .text (8 am_util_faultisr.o) init:always
   Marking symbol .text_34                             (12 am_util_faultisr.o)
-    Marking fragment #838 .text (8 am_util_faultisr.o) init:always
+    Marking fragment #842 .text (8 am_util_faultisr.o) init:always
   Marking symbol getStackedReg                    Glb (140 am_util_faultisr.o)
-    Marking fragment #835 .text (8 am_util_faultisr.o) init:always
+    Marking fragment #839 .text (8 am_util_faultisr.o) init:always
   Marking symbol getStackedReg                    Glb (140 am_util_faultisr.o)
   Marking symbol getStackedReg                    Glb (140 am_util_faultisr.o)
   Marking symbol getStackedReg                    Glb (140 am_util_faultisr.o)
@@ -1436,420 +1439,420 @@ Marking from fragment #836 .text (8 am_util_faultisr.o) init:always
   Marking symbol getStackedReg                    Glb (140 am_util_faultisr.o)
   Marking symbol getStackedReg                    Glb (140 am_util_faultisr.o)
   Marking symbol am_hal_mcuctrl_fault_status      Glb (25 am_hal_mcuctrl.o)
-    Marking fragment #992 .text (7 am_hal_mcuctrl.o(libam_hal.a)) init:always
+    Marking fragment #997 .text (7 am_hal_mcuctrl.o(libam_hal.a)) init:always
   Marking symbol .text_35                             (13 am_util_faultisr.o)
-    Marking fragment #839 .text (8 am_util_faultisr.o) init:always
-  Marking symbol am_util_stdio_printf             Glb (141 am_util_stdio.o)
-    Marking fragment #881 .text (11 am_util_stdio.o) init:always
-  Marking symbol .text_36                             (14 am_util_faultisr.o)
-    Marking fragment #840 .text (8 am_util_faultisr.o) init:always
-  Marking symbol am_util_stdio_printf             Glb (141 am_util_stdio.o)
-  Marking symbol .text_37                             (15 am_util_faultisr.o)
-    Marking fragment #841 .text (8 am_util_faultisr.o) init:always
-  Marking symbol am_util_stdio_printf             Glb (141 am_util_stdio.o)
-  Marking symbol .text_38                             (16 am_util_faultisr.o)
-    Marking fragment #842 .text (8 am_util_faultisr.o) init:always
-  Marking symbol am_util_stdio_printf             Glb (141 am_util_stdio.o)
-  Marking symbol .text_39                             (17 am_util_faultisr.o)
     Marking fragment #843 .text (8 am_util_faultisr.o) init:always
   Marking symbol am_util_stdio_printf             Glb (141 am_util_stdio.o)
-  Marking symbol .text_40                             (18 am_util_faultisr.o)
+    Marking fragment #885 .text (11 am_util_stdio.o) init:always
+  Marking symbol .text_36                             (14 am_util_faultisr.o)
     Marking fragment #844 .text (8 am_util_faultisr.o) init:always
   Marking symbol am_util_stdio_printf             Glb (141 am_util_stdio.o)
-  Marking symbol .text_41                             (19 am_util_faultisr.o)
+  Marking symbol .text_37                             (15 am_util_faultisr.o)
     Marking fragment #845 .text (8 am_util_faultisr.o) init:always
   Marking symbol am_util_stdio_printf             Glb (141 am_util_stdio.o)
-  Marking symbol .text_42                             (20 am_util_faultisr.o)
+  Marking symbol .text_38                             (16 am_util_faultisr.o)
     Marking fragment #846 .text (8 am_util_faultisr.o) init:always
   Marking symbol am_util_stdio_printf             Glb (141 am_util_stdio.o)
-  Marking symbol .text_43                             (21 am_util_faultisr.o)
+  Marking symbol .text_39                             (17 am_util_faultisr.o)
     Marking fragment #847 .text (8 am_util_faultisr.o) init:always
   Marking symbol am_util_stdio_printf             Glb (141 am_util_stdio.o)
-  Marking symbol .text_44                             (22 am_util_faultisr.o)
+  Marking symbol .text_40                             (18 am_util_faultisr.o)
     Marking fragment #848 .text (8 am_util_faultisr.o) init:always
   Marking symbol am_util_stdio_printf             Glb (141 am_util_stdio.o)
-  Marking symbol .text_45                             (23 am_util_faultisr.o)
+  Marking symbol .text_41                             (19 am_util_faultisr.o)
     Marking fragment #849 .text (8 am_util_faultisr.o) init:always
   Marking symbol am_util_stdio_printf             Glb (141 am_util_stdio.o)
-  Marking symbol .text_46                             (24 am_util_faultisr.o)
+  Marking symbol .text_42                             (20 am_util_faultisr.o)
     Marking fragment #850 .text (8 am_util_faultisr.o) init:always
   Marking symbol am_util_stdio_printf             Glb (141 am_util_stdio.o)
-  Marking symbol .text_47                             (25 am_util_faultisr.o)
+  Marking symbol .text_43                             (21 am_util_faultisr.o)
     Marking fragment #851 .text (8 am_util_faultisr.o) init:always
   Marking symbol am_util_stdio_printf             Glb (141 am_util_stdio.o)
-  Marking symbol .text_48                             (26 am_util_faultisr.o)
+  Marking symbol .text_44                             (22 am_util_faultisr.o)
     Marking fragment #852 .text (8 am_util_faultisr.o) init:always
   Marking symbol am_util_stdio_printf             Glb (141 am_util_stdio.o)
-  Marking symbol .text_49                             (27 am_util_faultisr.o)
+  Marking symbol .text_45                             (23 am_util_faultisr.o)
     Marking fragment #853 .text (8 am_util_faultisr.o) init:always
   Marking symbol am_util_stdio_printf             Glb (141 am_util_stdio.o)
-  Marking symbol .text_50                             (28 am_util_faultisr.o)
+  Marking symbol .text_46                             (24 am_util_faultisr.o)
     Marking fragment #854 .text (8 am_util_faultisr.o) init:always
   Marking symbol am_util_stdio_printf             Glb (141 am_util_stdio.o)
-  Marking symbol .text_51                             (29 am_util_faultisr.o)
+  Marking symbol .text_47                             (25 am_util_faultisr.o)
     Marking fragment #855 .text (8 am_util_faultisr.o) init:always
   Marking symbol am_util_stdio_printf             Glb (141 am_util_stdio.o)
-  Marking symbol .text_52                             (30 am_util_faultisr.o)
+  Marking symbol .text_48                             (26 am_util_faultisr.o)
     Marking fragment #856 .text (8 am_util_faultisr.o) init:always
   Marking symbol am_util_stdio_printf             Glb (141 am_util_stdio.o)
-  Marking symbol .text_53                             (31 am_util_faultisr.o)
+  Marking symbol .text_49                             (27 am_util_faultisr.o)
     Marking fragment #857 .text (8 am_util_faultisr.o) init:always
   Marking symbol am_util_stdio_printf             Glb (141 am_util_stdio.o)
-  Marking symbol .text_54                             (32 am_util_faultisr.o)
+  Marking symbol .text_50                             (28 am_util_faultisr.o)
     Marking fragment #858 .text (8 am_util_faultisr.o) init:always
   Marking symbol am_util_stdio_printf             Glb (141 am_util_stdio.o)
-  Marking symbol .text_55                             (33 am_util_faultisr.o)
+  Marking symbol .text_51                             (29 am_util_faultisr.o)
     Marking fragment #859 .text (8 am_util_faultisr.o) init:always
   Marking symbol am_util_stdio_printf             Glb (141 am_util_stdio.o)
-  Marking symbol .text_56                             (34 am_util_faultisr.o)
+  Marking symbol .text_52                             (30 am_util_faultisr.o)
     Marking fragment #860 .text (8 am_util_faultisr.o) init:always
   Marking symbol am_util_stdio_printf             Glb (141 am_util_stdio.o)
-  Marking symbol .text_57                             (35 am_util_faultisr.o)
+  Marking symbol .text_53                             (31 am_util_faultisr.o)
     Marking fragment #861 .text (8 am_util_faultisr.o) init:always
   Marking symbol am_util_stdio_printf             Glb (141 am_util_stdio.o)
-  Marking symbol .text_58                             (36 am_util_faultisr.o)
+  Marking symbol .text_54                             (32 am_util_faultisr.o)
     Marking fragment #862 .text (8 am_util_faultisr.o) init:always
   Marking symbol am_util_stdio_printf             Glb (141 am_util_stdio.o)
-  Marking symbol .text_59                             (37 am_util_faultisr.o)
+  Marking symbol .text_55                             (33 am_util_faultisr.o)
     Marking fragment #863 .text (8 am_util_faultisr.o) init:always
   Marking symbol am_util_stdio_printf             Glb (141 am_util_stdio.o)
-  Marking symbol .text_60                             (38 am_util_faultisr.o)
+  Marking symbol .text_56                             (34 am_util_faultisr.o)
     Marking fragment #864 .text (8 am_util_faultisr.o) init:always
   Marking symbol am_util_stdio_printf             Glb (141 am_util_stdio.o)
-  Marking symbol .text_61                             (39 am_util_faultisr.o)
+  Marking symbol .text_57                             (35 am_util_faultisr.o)
     Marking fragment #865 .text (8 am_util_faultisr.o) init:always
   Marking symbol am_util_stdio_printf             Glb (141 am_util_stdio.o)
-Marking from fragment #865 .text (8 am_util_faultisr.o) init:always
+  Marking symbol .text_58                             (36 am_util_faultisr.o)
+    Marking fragment #866 .text (8 am_util_faultisr.o) init:always
+  Marking symbol am_util_stdio_printf             Glb (141 am_util_stdio.o)
+  Marking symbol .text_59                             (37 am_util_faultisr.o)
+    Marking fragment #867 .text (8 am_util_faultisr.o) init:always
+  Marking symbol am_util_stdio_printf             Glb (141 am_util_stdio.o)
+  Marking symbol .text_60                             (38 am_util_faultisr.o)
+    Marking fragment #868 .text (8 am_util_faultisr.o) init:always
+  Marking symbol am_util_stdio_printf             Glb (141 am_util_stdio.o)
+  Marking symbol .text_61                             (39 am_util_faultisr.o)
+    Marking fragment #869 .text (8 am_util_faultisr.o) init:always
+  Marking symbol am_util_stdio_printf             Glb (141 am_util_stdio.o)
+Marking from fragment #869 .text (8 am_util_faultisr.o) init:always
   Marking symbol .rodata37                            (116 am_util_faultisr.o)
     Marking fragment #64 .rodata (37 am_util_faultisr.o) init:always
 Marking from fragment #64 .rodata (37 am_util_faultisr.o) init:always
-Marking from fragment #864 .text (8 am_util_faultisr.o) init:always
+Marking from fragment #868 .text (8 am_util_faultisr.o) init:always
   Marking symbol .rodata36                            (114 am_util_faultisr.o)
     Marking fragment #63 .rodata (36 am_util_faultisr.o) init:always
 Marking from fragment #63 .rodata (36 am_util_faultisr.o) init:always
-Marking from fragment #863 .text (8 am_util_faultisr.o) init:always
+Marking from fragment #867 .text (8 am_util_faultisr.o) init:always
   Marking symbol .rodata35                            (112 am_util_faultisr.o)
     Marking fragment #62 .rodata (35 am_util_faultisr.o) init:always
 Marking from fragment #62 .rodata (35 am_util_faultisr.o) init:always
-Marking from fragment #862 .text (8 am_util_faultisr.o) init:always
+Marking from fragment #866 .text (8 am_util_faultisr.o) init:always
   Marking symbol .rodata34                            (110 am_util_faultisr.o)
     Marking fragment #61 .rodata (34 am_util_faultisr.o) init:always
 Marking from fragment #61 .rodata (34 am_util_faultisr.o) init:always
-Marking from fragment #861 .text (8 am_util_faultisr.o) init:always
+Marking from fragment #865 .text (8 am_util_faultisr.o) init:always
   Marking symbol .rodata33                            (108 am_util_faultisr.o)
     Marking fragment #60 .rodata (33 am_util_faultisr.o) init:always
 Marking from fragment #60 .rodata (33 am_util_faultisr.o) init:always
-Marking from fragment #860 .text (8 am_util_faultisr.o) init:always
+Marking from fragment #864 .text (8 am_util_faultisr.o) init:always
   Marking symbol .rodata32                            (105 am_util_faultisr.o)
     Marking fragment #59 .rodata (32 am_util_faultisr.o) init:always
 Marking from fragment #59 .rodata (32 am_util_faultisr.o) init:always
-Marking from fragment #859 .text (8 am_util_faultisr.o) init:always
+Marking from fragment #863 .text (8 am_util_faultisr.o) init:always
   Marking symbol .rodata31                            (103 am_util_faultisr.o)
     Marking fragment #58 .rodata (31 am_util_faultisr.o) init:always
 Marking from fragment #58 .rodata (31 am_util_faultisr.o) init:always
-Marking from fragment #858 .text (8 am_util_faultisr.o) init:always
+Marking from fragment #862 .text (8 am_util_faultisr.o) init:always
   Marking symbol .rodata30                            (101 am_util_faultisr.o)
     Marking fragment #57 .rodata (30 am_util_faultisr.o) init:always
 Marking from fragment #57 .rodata (30 am_util_faultisr.o) init:always
-Marking from fragment #857 .text (8 am_util_faultisr.o) init:always
+Marking from fragment #861 .text (8 am_util_faultisr.o) init:always
   Marking symbol .rodata29                            (98 am_util_faultisr.o)
     Marking fragment #56 .rodata (29 am_util_faultisr.o) init:always
 Marking from fragment #56 .rodata (29 am_util_faultisr.o) init:always
-Marking from fragment #856 .text (8 am_util_faultisr.o) init:always
+Marking from fragment #860 .text (8 am_util_faultisr.o) init:always
   Marking symbol .rodata28                            (95 am_util_faultisr.o)
     Marking fragment #55 .rodata (28 am_util_faultisr.o) init:always
 Marking from fragment #55 .rodata (28 am_util_faultisr.o) init:always
-Marking from fragment #855 .text (8 am_util_faultisr.o) init:always
+Marking from fragment #859 .text (8 am_util_faultisr.o) init:always
   Marking symbol .rodata27                            (93 am_util_faultisr.o)
     Marking fragment #54 .rodata (27 am_util_faultisr.o) init:always
 Marking from fragment #54 .rodata (27 am_util_faultisr.o) init:always
-Marking from fragment #854 .text (8 am_util_faultisr.o) init:always
+Marking from fragment #858 .text (8 am_util_faultisr.o) init:always
   Marking symbol .rodata26                            (90 am_util_faultisr.o)
     Marking fragment #53 .rodata (26 am_util_faultisr.o) init:always
 Marking from fragment #53 .rodata (26 am_util_faultisr.o) init:always
-Marking from fragment #853 .text (8 am_util_faultisr.o) init:always
+Marking from fragment #857 .text (8 am_util_faultisr.o) init:always
   Marking symbol .rodata25                            (88 am_util_faultisr.o)
     Marking fragment #52 .rodata (25 am_util_faultisr.o) init:always
 Marking from fragment #52 .rodata (25 am_util_faultisr.o) init:always
-Marking from fragment #852 .text (8 am_util_faultisr.o) init:always
+Marking from fragment #856 .text (8 am_util_faultisr.o) init:always
   Marking symbol .rodata24                            (85 am_util_faultisr.o)
     Marking fragment #51 .rodata (24 am_util_faultisr.o) init:always
 Marking from fragment #51 .rodata (24 am_util_faultisr.o) init:always
-Marking from fragment #851 .text (8 am_util_faultisr.o) init:always
+Marking from fragment #855 .text (8 am_util_faultisr.o) init:always
   Marking symbol .rodata23                            (82 am_util_faultisr.o)
     Marking fragment #50 .rodata (23 am_util_faultisr.o) init:always
 Marking from fragment #50 .rodata (23 am_util_faultisr.o) init:always
-Marking from fragment #850 .text (8 am_util_faultisr.o) init:always
+Marking from fragment #854 .text (8 am_util_faultisr.o) init:always
   Marking symbol .rodata22                            (80 am_util_faultisr.o)
     Marking fragment #49 .rodata (22 am_util_faultisr.o) init:always
 Marking from fragment #49 .rodata (22 am_util_faultisr.o) init:always
-Marking from fragment #849 .text (8 am_util_faultisr.o) init:always
+Marking from fragment #853 .text (8 am_util_faultisr.o) init:always
   Marking symbol .rodata21                            (78 am_util_faultisr.o)
     Marking fragment #48 .rodata (21 am_util_faultisr.o) init:always
 Marking from fragment #48 .rodata (21 am_util_faultisr.o) init:always
-Marking from fragment #848 .text (8 am_util_faultisr.o) init:always
+Marking from fragment #852 .text (8 am_util_faultisr.o) init:always
   Marking symbol .rodata20                            (76 am_util_faultisr.o)
     Marking fragment #47 .rodata (20 am_util_faultisr.o) init:always
 Marking from fragment #47 .rodata (20 am_util_faultisr.o) init:always
-Marking from fragment #847 .text (8 am_util_faultisr.o) init:always
+Marking from fragment #851 .text (8 am_util_faultisr.o) init:always
   Marking symbol .rodata19                            (73 am_util_faultisr.o)
     Marking fragment #46 .rodata (19 am_util_faultisr.o) init:always
 Marking from fragment #46 .rodata (19 am_util_faultisr.o) init:always
-Marking from fragment #846 .text (8 am_util_faultisr.o) init:always
+Marking from fragment #850 .text (8 am_util_faultisr.o) init:always
   Marking symbol .rodata18                            (70 am_util_faultisr.o)
     Marking fragment #45 .rodata (18 am_util_faultisr.o) init:always
 Marking from fragment #45 .rodata (18 am_util_faultisr.o) init:always
-Marking from fragment #845 .text (8 am_util_faultisr.o) init:always
+Marking from fragment #849 .text (8 am_util_faultisr.o) init:always
   Marking symbol .rodata17                            (67 am_util_faultisr.o)
     Marking fragment #44 .rodata (17 am_util_faultisr.o) init:always
 Marking from fragment #44 .rodata (17 am_util_faultisr.o) init:always
-Marking from fragment #844 .text (8 am_util_faultisr.o) init:always
+Marking from fragment #848 .text (8 am_util_faultisr.o) init:always
   Marking symbol .rodata16                            (64 am_util_faultisr.o)
     Marking fragment #43 .rodata (16 am_util_faultisr.o) init:always
 Marking from fragment #43 .rodata (16 am_util_faultisr.o) init:always
-Marking from fragment #843 .text (8 am_util_faultisr.o) init:always
+Marking from fragment #847 .text (8 am_util_faultisr.o) init:always
   Marking symbol .rodata15                            (61 am_util_faultisr.o)
     Marking fragment #42 .rodata (15 am_util_faultisr.o) init:always
 Marking from fragment #42 .rodata (15 am_util_faultisr.o) init:always
-Marking from fragment #842 .text (8 am_util_faultisr.o) init:always
+Marking from fragment #846 .text (8 am_util_faultisr.o) init:always
   Marking symbol .rodata14                            (58 am_util_faultisr.o)
     Marking fragment #41 .rodata (14 am_util_faultisr.o) init:always
 Marking from fragment #41 .rodata (14 am_util_faultisr.o) init:always
-Marking from fragment #841 .text (8 am_util_faultisr.o) init:always
+Marking from fragment #845 .text (8 am_util_faultisr.o) init:always
   Marking symbol .rodata13                            (55 am_util_faultisr.o)
     Marking fragment #40 .rodata (13 am_util_faultisr.o) init:always
 Marking from fragment #40 .rodata (13 am_util_faultisr.o) init:always
-Marking from fragment #840 .text (8 am_util_faultisr.o) init:always
+Marking from fragment #844 .text (8 am_util_faultisr.o) init:always
   Marking symbol .rodata12                            (52 am_util_faultisr.o)
     Marking fragment #39 .rodata (12 am_util_faultisr.o) init:always
 Marking from fragment #39 .rodata (12 am_util_faultisr.o) init:always
-Marking from fragment #881 .text (11 am_util_stdio.o) init:always
+Marking from fragment #885 .text (11 am_util_stdio.o) init:always
   Marking symbol .text_23                             (54 am_util_stdio.o)
-    Marking fragment #883 .text (11 am_util_stdio.o) init:always
+    Marking fragment #887 .text (11 am_util_stdio.o) init:always
   Marking symbol .text_28                             (60 am_util_stdio.o)
-    Marking fragment #888 .text (11 am_util_stdio.o) init:always
+    Marking fragment #892 .text (11 am_util_stdio.o) init:always
   Marking symbol am_util_stdio_vsprintf           Glb (147 am_util_stdio.o)
-    Marking fragment #879 .text (11 am_util_stdio.o) init:always
-Marking from fragment #879 .text (11 am_util_stdio.o) init:always
+    Marking fragment #883 .text (11 am_util_stdio.o) init:always
+Marking from fragment #883 .text (11 am_util_stdio.o) init:always
   Marking symbol .text_24                             (56 am_util_stdio.o)
-    Marking fragment #884 .text (11 am_util_stdio.o) init:always
+    Marking fragment #888 .text (11 am_util_stdio.o) init:always
   Marking symbol decstr_to_int                        (3 am_util_stdio.o)
-    Marking fragment #872 .text (11 am_util_stdio.o) init:always
+    Marking fragment #876 .text (11 am_util_stdio.o) init:always
   Marking symbol decstr_to_int                        (3 am_util_stdio.o)
   Marking symbol simple_strlen                        (12 am_util_stdio.o)
-    Marking fragment #875 .text (11 am_util_stdio.o) init:always
+    Marking fragment #879 .text (11 am_util_stdio.o) init:always
   Marking symbol padbuffer                            (11 am_util_stdio.o)
-    Marking fragment #876 .text (11 am_util_stdio.o) init:always
+    Marking fragment #880 .text (11 am_util_stdio.o) init:always
   Marking symbol padbuffer                            (11 am_util_stdio.o)
   Marking symbol ndigits_in_hex                       (8 am_util_stdio.o)
-    Marking fragment #871 .text (11 am_util_stdio.o) init:always
+    Marking fragment #875 .text (11 am_util_stdio.o) init:always
   Marking symbol padbuffer                            (11 am_util_stdio.o)
   Marking symbol uint64_to_hexstr                     (13 am_util_stdio.o)
-    Marking fragment #874 .text (11 am_util_stdio.o) init:always
+    Marking fragment #878 .text (11 am_util_stdio.o) init:always
   Marking symbol ndigits_in_u64                       (10 am_util_stdio.o)
-    Marking fragment #869 .text (11 am_util_stdio.o) init:always
+    Marking fragment #873 .text (11 am_util_stdio.o) init:always
   Marking symbol padbuffer                            (11 am_util_stdio.o)
   Marking symbol uint64_to_str                        (14 am_util_stdio.o)
-    Marking fragment #873 .text (11 am_util_stdio.o) init:always
+    Marking fragment #877 .text (11 am_util_stdio.o) init:always
   Marking symbol ndigits_in_i64                       (9 am_util_stdio.o)
-    Marking fragment #870 .text (11 am_util_stdio.o) init:always
+    Marking fragment #874 .text (11 am_util_stdio.o) init:always
   Marking symbol padbuffer                            (11 am_util_stdio.o)
   Marking symbol uint64_to_str                        (14 am_util_stdio.o)
   Marking symbol __aeabi_d2f                      Glb (6 DblToFlt.o)
-    Marking fragment #710 .text (6 DblToFlt.o(m7M_tls.a)) init:always
+    Marking fragment #714 .text (6 DblToFlt.o(m7M_tls.a)) init:always
   Marking symbol ftoa                                 (5 am_util_stdio.o)
-    Marking fragment #878 .text (11 am_util_stdio.o) init:always
+    Marking fragment #882 .text (11 am_util_stdio.o) init:always
   Marking symbol .text_25                             (57 am_util_stdio.o)
-    Marking fragment #885 .text (11 am_util_stdio.o) init:always
+    Marking fragment #889 .text (11 am_util_stdio.o) init:always
   Marking symbol .text_26                             (58 am_util_stdio.o)
-    Marking fragment #886 .text (11 am_util_stdio.o) init:always
+    Marking fragment #890 .text (11 am_util_stdio.o) init:always
   Marking symbol .text_27                             (59 am_util_stdio.o)
-    Marking fragment #887 .text (11 am_util_stdio.o) init:always
-Marking from fragment #887 .text (11 am_util_stdio.o) init:always
-Marking from fragment #886 .text (11 am_util_stdio.o) init:always
-Marking from fragment #885 .text (11 am_util_stdio.o) init:always
-Marking from fragment #878 .text (11 am_util_stdio.o) init:always
+    Marking fragment #891 .text (11 am_util_stdio.o) init:always
+Marking from fragment #891 .text (11 am_util_stdio.o) init:always
+Marking from fragment #890 .text (11 am_util_stdio.o) init:always
+Marking from fragment #889 .text (11 am_util_stdio.o) init:always
+Marking from fragment #882 .text (11 am_util_stdio.o) init:always
   Marking symbol .text_25                             (57 am_util_stdio.o)
   Marking symbol uint64_to_str                        (14 am_util_stdio.o)
   Marking symbol uint64_to_str                        (14 am_util_stdio.o)
-Marking from fragment #710 .text (6 DblToFlt.o(m7M_tls.a)) init:always
-Marking from fragment #870 .text (11 am_util_stdio.o) init:always
+Marking from fragment #714 .text (6 DblToFlt.o(m7M_tls.a)) init:always
+Marking from fragment #874 .text (11 am_util_stdio.o) init:always
   Marking symbol ndigits_in_u64                       (10 am_util_stdio.o)
+Marking from fragment #877 .text (11 am_util_stdio.o) init:always
+  Marking symbol divu64_10                            (4 am_util_stdio.o)
+    Marking fragment #872 .text (11 am_util_stdio.o) init:always
+Marking from fragment #872 .text (11 am_util_stdio.o) init:always
 Marking from fragment #873 .text (11 am_util_stdio.o) init:always
   Marking symbol divu64_10                            (4 am_util_stdio.o)
-    Marking fragment #868 .text (11 am_util_stdio.o) init:always
-Marking from fragment #868 .text (11 am_util_stdio.o) init:always
-Marking from fragment #869 .text (11 am_util_stdio.o) init:always
-  Marking symbol divu64_10                            (4 am_util_stdio.o)
-Marking from fragment #874 .text (11 am_util_stdio.o) init:always
-Marking from fragment #871 .text (11 am_util_stdio.o) init:always
-Marking from fragment #876 .text (11 am_util_stdio.o) init:always
+Marking from fragment #878 .text (11 am_util_stdio.o) init:always
 Marking from fragment #875 .text (11 am_util_stdio.o) init:always
-Marking from fragment #872 .text (11 am_util_stdio.o) init:always
-Marking from fragment #884 .text (11 am_util_stdio.o) init:always
+Marking from fragment #880 .text (11 am_util_stdio.o) init:always
+Marking from fragment #879 .text (11 am_util_stdio.o) init:always
+Marking from fragment #876 .text (11 am_util_stdio.o) init:always
+Marking from fragment #888 .text (11 am_util_stdio.o) init:always
   Marking symbol g_bTxtXlate                          (6 am_util_stdio.o)
     Marking fragment #95 .bss (10 am_util_stdio.o) init:always
 Marking from fragment #95 .bss (10 am_util_stdio.o) init:always
-Marking from fragment #888 .text (11 am_util_stdio.o) init:always
+Marking from fragment #892 .text (11 am_util_stdio.o) init:always
   Marking symbol g_prfbuf                             (7 am_util_stdio.o)
     Marking fragment #94 .bss (9 am_util_stdio.o) init:always
 Marking from fragment #94 .bss (9 am_util_stdio.o) init:always
-Marking from fragment #883 .text (11 am_util_stdio.o) init:always
+Marking from fragment #887 .text (11 am_util_stdio.o) init:always
   Marking symbol g_pfnCharPrint                   Glb (148 am_util_stdio.o)
     Marking fragment #93 .bss (8 am_util_stdio.o) init:always
 Marking from fragment #93 .bss (8 am_util_stdio.o) init:always
-Marking from fragment #839 .text (8 am_util_faultisr.o) init:always
+Marking from fragment #843 .text (8 am_util_faultisr.o) init:always
   Marking symbol .rodata11                            (49 am_util_faultisr.o)
     Marking fragment #38 .rodata (11 am_util_faultisr.o) init:always
 Marking from fragment #38 .rodata (11 am_util_faultisr.o) init:always
-Marking from fragment #992 .text (7 am_hal_mcuctrl.o(libam_hal.a)) init:always
-  Marking symbol .text_11                             (19 am_hal_mcuctrl.o)
-    Marking fragment #997 .text (7 am_hal_mcuctrl.o(libam_hal.a)) init:always
 Marking from fragment #997 .text (7 am_hal_mcuctrl.o(libam_hal.a)) init:always
-Marking from fragment #835 .text (8 am_util_faultisr.o) init:always
-Marking from fragment #838 .text (8 am_util_faultisr.o) init:always
-Marking from fragment #837 .text (8 am_util_faultisr.o) init:always
-Marking from fragment #704 .text (6 ABImemclr4.o(rt7M_tl.a)) init:always
+  Marking symbol .text_11                             (19 am_hal_mcuctrl.o)
+    Marking fragment #1002 .text (7 am_hal_mcuctrl.o(libam_hal.a)) init:always
+Marking from fragment #1002 .text (7 am_hal_mcuctrl.o(libam_hal.a)) init:always
+Marking from fragment #839 .text (8 am_util_faultisr.o) init:always
+Marking from fragment #842 .text (8 am_util_faultisr.o) init:always
+Marking from fragment #841 .text (8 am_util_faultisr.o) init:always
+Marking from fragment #708 .text (6 ABImemclr4.o(rt7M_tl.a)) init:always
   Marking symbol __iar_Memset4_word               Glb (13 ABImemset48.o)
-    Marking fragment #1460 .text (6 ABImemset48.o(rt7M_tl.a)) init:always
-Marking from fragment #1460 .text (6 ABImemset48.o(rt7M_tl.a)) init:always
+    Marking fragment #1488 .text (6 ABImemset48.o(rt7M_tl.a)) init:always
+Marking from fragment #1488 .text (6 ABImemset48.o(rt7M_tl.a)) init:always
   Marking symbol Enter8                               (3 ABImemset48.o)
-    Marking fragment #1461 .text (6 ABImemset48.o(rt7M_tl.a)) init:always
-Marking from fragment #1461 .text (6 ABImemset48.o(rt7M_tl.a)) init:always
-Marking from fragment #908 .text (11 startup_iar.o) init:always
-Marking from fragment #906 .text (11 startup_iar.o) init:always
+    Marking fragment #1489 .text (6 ABImemset48.o(rt7M_tl.a)) init:always
+Marking from fragment #1489 .text (6 ABImemset48.o(rt7M_tl.a)) init:always
+Marking from fragment #912 .text (11 startup_iar.o) init:always
+Marking from fragment #910 .text (11 startup_iar.o) init:always
   Marking symbol __iar_program_start              Glb (10 cstartup_M.o)
 Marking from fragment #257 .noinit (9 startup_iar.o) init:always
 *** Marking optional init routines ***
-Marking fragment #759 .text (6 data_init.o(rt7M_tl.a)) {__iar_data_init3} init:{__iar_data_init3}
-Marking fragment #767 .text (7 zero_init3.o(rt7M_tl.a)) {__iar_zero_init3} init:{__iar_zero_init3}
-Marking fragment #774 .text (7 copy_init3.o(rt7M_tl.a)) {__iar_copy_init3} init:{__iar_copy_init3}
-Marking fragment #781 .text (7 rle_init_single.o(rt7M_tl.a)) {__iar_rle_init_single3} init:{__iar_rle_init_single3}
-Marking fragment #788 .text (7 rle_init.o(rt7M_tl.a)) {__iar_rle_init3} init:{__iar_rle_init3}
-Marking fragment #795 .text (7 packbits_init_single.o(rt7M_tl.a)) {__iar_packbits_init_single3} init:{__iar_packbits_init_single3}
-Marking fragment #802 .text (7 packbits_init.o(rt7M_tl.a)) {__iar_packbits_init3} init:{__iar_packbits_init3}
-Marking fragment #809 .text (7 lz77_init_single.o(rt7M_tl.a)) {__iar_lz77_init_single3} init:{__iar_lz77_init_single3}
-Marking fragment #1470 .text (7 lz77_init.o(rt7M_tl.a)) {__iar_lz77_init3} init:{__iar_lz77_init3}
-Marking from fragment #1470 .text (7 lz77_init.o(rt7M_tl.a)) {__iar_lz77_init3} init:{__iar_lz77_init3}
+Marking fragment #763 .text (6 data_init.o(rt7M_tl.a)) {__iar_data_init3} init:{__iar_data_init3}
+Marking fragment #771 .text (7 zero_init3.o(rt7M_tl.a)) {__iar_zero_init3} init:{__iar_zero_init3}
+Marking fragment #778 .text (7 copy_init3.o(rt7M_tl.a)) {__iar_copy_init3} init:{__iar_copy_init3}
+Marking fragment #785 .text (7 rle_init_single.o(rt7M_tl.a)) {__iar_rle_init_single3} init:{__iar_rle_init_single3}
+Marking fragment #792 .text (7 rle_init.o(rt7M_tl.a)) {__iar_rle_init3} init:{__iar_rle_init3}
+Marking fragment #799 .text (7 packbits_init_single.o(rt7M_tl.a)) {__iar_packbits_init_single3} init:{__iar_packbits_init_single3}
+Marking fragment #806 .text (7 packbits_init.o(rt7M_tl.a)) {__iar_packbits_init3} init:{__iar_packbits_init3}
+Marking fragment #813 .text (7 lz77_init_single.o(rt7M_tl.a)) {__iar_lz77_init_single3} init:{__iar_lz77_init_single3}
+Marking fragment #1498 .text (7 lz77_init.o(rt7M_tl.a)) {__iar_lz77_init3} init:{__iar_lz77_init3}
+Marking from fragment #1498 .text (7 lz77_init.o(rt7M_tl.a)) {__iar_lz77_init3} init:{__iar_lz77_init3}
   Marking symbol __iar_SB                             (6 lz77_init.o)
-    Marking fragment #815 .rodata (6 lz77_init.o(rt7M_tl.a)) {__iar_lz77_init3} init:{__iar_lz77_init3}
+    Marking fragment #819 .rodata (6 lz77_init.o(rt7M_tl.a)) {__iar_lz77_init3} init:{__iar_lz77_init3}
   Marking symbol InStream_StepRegion                  (4 lz77_init.o)
-    Marking fragment #1467 .text (7 lz77_init.o(rt7M_tl.a)) {__iar_lz77_init3} init:{__iar_lz77_init3}
+    Marking fragment #1495 .text (7 lz77_init.o(rt7M_tl.a)) {__iar_lz77_init3} init:{__iar_lz77_init3}
   Marking symbol OutStream_Write                      (5 lz77_init.o)
-    Marking fragment #1469 .text (7 lz77_init.o(rt7M_tl.a)) {__iar_lz77_init3} init:{__iar_lz77_init3}
+    Marking fragment #1497 .text (7 lz77_init.o(rt7M_tl.a)) {__iar_lz77_init3} init:{__iar_lz77_init3}
   Marking symbol InStream_Read                        (3 lz77_init.o)
-    Marking fragment #1468 .text (7 lz77_init.o(rt7M_tl.a)) {__iar_lz77_init3} init:{__iar_lz77_init3}
+    Marking fragment #1496 .text (7 lz77_init.o(rt7M_tl.a)) {__iar_lz77_init3} init:{__iar_lz77_init3}
   Marking symbol InStream_Read                        (3 lz77_init.o)
   Marking symbol abort                            Glb (9 abort.o)
-    Marking fragment #825 .text (6 abort.o(dl7M_tln.a)) {__iar_lz77_init3} init:{__iar_lz77_init3}
+    Marking fragment #829 .text (6 abort.o(dl7M_tln.a)) {__iar_lz77_init3} init:{__iar_lz77_init3}
   Marking symbol InStream_Read                        (3 lz77_init.o)
   Marking symbol InStream_Read                        (3 lz77_init.o)
   Marking symbol InStream_Read                        (3 lz77_init.o)
-Marking from fragment #825 .text (6 abort.o(dl7M_tln.a)) {__iar_lz77_init3} init:{__iar_lz77_init3}
+Marking from fragment #829 .text (6 abort.o(dl7M_tln.a)) {__iar_lz77_init3} init:{__iar_lz77_init3}
   Marking symbol __exit                           Glb (10 exit.o)
-    Marking fragment #753 .text (6 exit.o(shb_l.a)) {__iar_lz77_init3} init:{__iar_lz77_init3}
-Marking from fragment #753 .text (6 exit.o(shb_l.a)) {__iar_lz77_init3} init:{__iar_lz77_init3}
+    Marking fragment #757 .text (6 exit.o(shb_l.a)) {__iar_lz77_init3} init:{__iar_lz77_init3}
+Marking from fragment #757 .text (6 exit.o(shb_l.a)) {__iar_lz77_init3} init:{__iar_lz77_init3}
   Marking symbol __iar_close_ttio                 Ext (9 exit.o)
-Marking from fragment #1468 .text (7 lz77_init.o(rt7M_tl.a)) {__iar_lz77_init3} init:{__iar_lz77_init3}
-Marking from fragment #1469 .text (7 lz77_init.o(rt7M_tl.a)) {__iar_lz77_init3} init:{__iar_lz77_init3}
+Marking from fragment #1496 .text (7 lz77_init.o(rt7M_tl.a)) {__iar_lz77_init3} init:{__iar_lz77_init3}
+Marking from fragment #1497 .text (7 lz77_init.o(rt7M_tl.a)) {__iar_lz77_init3} init:{__iar_lz77_init3}
   Marking symbol __iar_SB                             (6 lz77_init.o)
   Marking symbol abort                            Glb (9 abort.o)
-Marking from fragment #1467 .text (7 lz77_init.o(rt7M_tl.a)) {__iar_lz77_init3} init:{__iar_lz77_init3}
-Marking from fragment #815 .rodata (6 lz77_init.o(rt7M_tl.a)) {__iar_lz77_init3} init:{__iar_lz77_init3}
-Marking from fragment #809 .text (7 lz77_init_single.o(rt7M_tl.a)) {__iar_lz77_init_single3} init:{__iar_lz77_init_single3}
+Marking from fragment #1495 .text (7 lz77_init.o(rt7M_tl.a)) {__iar_lz77_init3} init:{__iar_lz77_init3}
+Marking from fragment #819 .rodata (6 lz77_init.o(rt7M_tl.a)) {__iar_lz77_init3} init:{__iar_lz77_init3}
+Marking from fragment #813 .text (7 lz77_init_single.o(rt7M_tl.a)) {__iar_lz77_init_single3} init:{__iar_lz77_init_single3}
   Marking symbol __iar_SB                             (3 lz77_init_single.o)
-    Marking fragment #808 .rodata (6 lz77_init_single.o(rt7M_tl.a)) {__iar_lz77_init_single3} init:{__iar_lz77_init_single3}
-Marking from fragment #808 .rodata (6 lz77_init_single.o(rt7M_tl.a)) {__iar_lz77_init_single3} init:{__iar_lz77_init_single3}
-Marking from fragment #802 .text (7 packbits_init.o(rt7M_tl.a)) {__iar_packbits_init3} init:{__iar_packbits_init3}
+    Marking fragment #812 .rodata (6 lz77_init_single.o(rt7M_tl.a)) {__iar_lz77_init_single3} init:{__iar_lz77_init_single3}
+Marking from fragment #812 .rodata (6 lz77_init_single.o(rt7M_tl.a)) {__iar_lz77_init_single3} init:{__iar_lz77_init_single3}
+Marking from fragment #806 .text (7 packbits_init.o(rt7M_tl.a)) {__iar_packbits_init3} init:{__iar_packbits_init3}
   Marking symbol __iar_SB                             (3 packbits_init.o)
-    Marking fragment #801 .rodata (6 packbits_init.o(rt7M_tl.a)) {__iar_packbits_init3} init:{__iar_packbits_init3}
+    Marking fragment #805 .rodata (6 packbits_init.o(rt7M_tl.a)) {__iar_packbits_init3} init:{__iar_packbits_init3}
   Marking symbol abort                            Glb (9 abort.o)
-    Marking fragment #825 .text (6 abort.o(dl7M_tln.a)) {__iar_packbits_init3} init:{__iar_packbits_init3}
-Marking from fragment #825 .text (6 abort.o(dl7M_tln.a)) {__iar_packbits_init3} init:{__iar_packbits_init3}
+    Marking fragment #829 .text (6 abort.o(dl7M_tln.a)) {__iar_packbits_init3} init:{__iar_packbits_init3}
+Marking from fragment #829 .text (6 abort.o(dl7M_tln.a)) {__iar_packbits_init3} init:{__iar_packbits_init3}
   Marking symbol __exit                           Glb (10 exit.o)
-    Marking fragment #753 .text (6 exit.o(shb_l.a)) {__iar_packbits_init3} init:{__iar_packbits_init3}
-Marking from fragment #753 .text (6 exit.o(shb_l.a)) {__iar_packbits_init3} init:{__iar_packbits_init3}
+    Marking fragment #757 .text (6 exit.o(shb_l.a)) {__iar_packbits_init3} init:{__iar_packbits_init3}
+Marking from fragment #757 .text (6 exit.o(shb_l.a)) {__iar_packbits_init3} init:{__iar_packbits_init3}
   Marking symbol __iar_close_ttio                 Ext (9 exit.o)
-Marking from fragment #801 .rodata (6 packbits_init.o(rt7M_tl.a)) {__iar_packbits_init3} init:{__iar_packbits_init3}
-Marking from fragment #795 .text (7 packbits_init_single.o(rt7M_tl.a)) {__iar_packbits_init_single3} init:{__iar_packbits_init_single3}
+Marking from fragment #805 .rodata (6 packbits_init.o(rt7M_tl.a)) {__iar_packbits_init3} init:{__iar_packbits_init3}
+Marking from fragment #799 .text (7 packbits_init_single.o(rt7M_tl.a)) {__iar_packbits_init_single3} init:{__iar_packbits_init_single3}
   Marking symbol __iar_SB                             (3 packbits_init_single.o)
-    Marking fragment #794 .rodata (6 packbits_init_single.o(rt7M_tl.a)) {__iar_packbits_init_single3} init:{__iar_packbits_init_single3}
-Marking from fragment #794 .rodata (6 packbits_init_single.o(rt7M_tl.a)) {__iar_packbits_init_single3} init:{__iar_packbits_init_single3}
-Marking from fragment #788 .text (7 rle_init.o(rt7M_tl.a)) {__iar_rle_init3} init:{__iar_rle_init3}
+    Marking fragment #798 .rodata (6 packbits_init_single.o(rt7M_tl.a)) {__iar_packbits_init_single3} init:{__iar_packbits_init_single3}
+Marking from fragment #798 .rodata (6 packbits_init_single.o(rt7M_tl.a)) {__iar_packbits_init_single3} init:{__iar_packbits_init_single3}
+Marking from fragment #792 .text (7 rle_init.o(rt7M_tl.a)) {__iar_rle_init3} init:{__iar_rle_init3}
   Marking symbol __iar_SB                             (3 rle_init.o)
-    Marking fragment #787 .rodata (6 rle_init.o(rt7M_tl.a)) {__iar_rle_init3} init:{__iar_rle_init3}
+    Marking fragment #791 .rodata (6 rle_init.o(rt7M_tl.a)) {__iar_rle_init3} init:{__iar_rle_init3}
   Marking symbol abort                            Glb (9 abort.o)
-    Marking fragment #825 .text (6 abort.o(dl7M_tln.a)) {__iar_rle_init3} init:{__iar_rle_init3}
-Marking from fragment #825 .text (6 abort.o(dl7M_tln.a)) {__iar_rle_init3} init:{__iar_rle_init3}
+    Marking fragment #829 .text (6 abort.o(dl7M_tln.a)) {__iar_rle_init3} init:{__iar_rle_init3}
+Marking from fragment #829 .text (6 abort.o(dl7M_tln.a)) {__iar_rle_init3} init:{__iar_rle_init3}
   Marking symbol __exit                           Glb (10 exit.o)
-    Marking fragment #753 .text (6 exit.o(shb_l.a)) {__iar_rle_init3} init:{__iar_rle_init3}
-Marking from fragment #753 .text (6 exit.o(shb_l.a)) {__iar_rle_init3} init:{__iar_rle_init3}
+    Marking fragment #757 .text (6 exit.o(shb_l.a)) {__iar_rle_init3} init:{__iar_rle_init3}
+Marking from fragment #757 .text (6 exit.o(shb_l.a)) {__iar_rle_init3} init:{__iar_rle_init3}
   Marking symbol __iar_close_ttio                 Ext (9 exit.o)
-Marking from fragment #787 .rodata (6 rle_init.o(rt7M_tl.a)) {__iar_rle_init3} init:{__iar_rle_init3}
-Marking from fragment #781 .text (7 rle_init_single.o(rt7M_tl.a)) {__iar_rle_init_single3} init:{__iar_rle_init_single3}
+Marking from fragment #791 .rodata (6 rle_init.o(rt7M_tl.a)) {__iar_rle_init3} init:{__iar_rle_init3}
+Marking from fragment #785 .text (7 rle_init_single.o(rt7M_tl.a)) {__iar_rle_init_single3} init:{__iar_rle_init_single3}
   Marking symbol __iar_SB                             (3 rle_init_single.o)
-    Marking fragment #780 .rodata (6 rle_init_single.o(rt7M_tl.a)) {__iar_rle_init_single3} init:{__iar_rle_init_single3}
-Marking from fragment #780 .rodata (6 rle_init_single.o(rt7M_tl.a)) {__iar_rle_init_single3} init:{__iar_rle_init_single3}
-Marking from fragment #774 .text (7 copy_init3.o(rt7M_tl.a)) {__iar_copy_init3} init:{__iar_copy_init3}
+    Marking fragment #784 .rodata (6 rle_init_single.o(rt7M_tl.a)) {__iar_rle_init_single3} init:{__iar_rle_init_single3}
+Marking from fragment #784 .rodata (6 rle_init_single.o(rt7M_tl.a)) {__iar_rle_init_single3} init:{__iar_rle_init_single3}
+Marking from fragment #778 .text (7 copy_init3.o(rt7M_tl.a)) {__iar_copy_init3} init:{__iar_copy_init3}
   Marking symbol __iar_SB                             (3 copy_init3.o)
-    Marking fragment #773 .rodata (6 copy_init3.o(rt7M_tl.a)) {__iar_copy_init3} init:{__iar_copy_init3}
-Marking from fragment #773 .rodata (6 copy_init3.o(rt7M_tl.a)) {__iar_copy_init3} init:{__iar_copy_init3}
-Marking from fragment #767 .text (7 zero_init3.o(rt7M_tl.a)) {__iar_zero_init3} init:{__iar_zero_init3}
+    Marking fragment #777 .rodata (6 copy_init3.o(rt7M_tl.a)) {__iar_copy_init3} init:{__iar_copy_init3}
+Marking from fragment #777 .rodata (6 copy_init3.o(rt7M_tl.a)) {__iar_copy_init3} init:{__iar_copy_init3}
+Marking from fragment #771 .text (7 zero_init3.o(rt7M_tl.a)) {__iar_zero_init3} init:{__iar_zero_init3}
   Marking symbol __iar_SB                             (3 zero_init3.o)
-    Marking fragment #766 .rodata (6 zero_init3.o(rt7M_tl.a)) {__iar_zero_init3} init:{__iar_zero_init3}
-Marking from fragment #766 .rodata (6 zero_init3.o(rt7M_tl.a)) {__iar_zero_init3} init:{__iar_zero_init3}
-Marking from fragment #759 .text (6 data_init.o(rt7M_tl.a)) {__iar_data_init3} init:{__iar_data_init3}
+    Marking fragment #770 .rodata (6 zero_init3.o(rt7M_tl.a)) {__iar_zero_init3} init:{__iar_zero_init3}
+Marking from fragment #770 .rodata (6 zero_init3.o(rt7M_tl.a)) {__iar_zero_init3} init:{__iar_zero_init3}
+Marking from fragment #763 .text (6 data_init.o(rt7M_tl.a)) {__iar_data_init3} init:{__iar_data_init3}
   Marking symbol Region$$Table$$Base              Ext (11 data_init.o)
   Marking symbol Region$$Table$$Limit             Ext (12 data_init.o)
 *** Marking debug sections ***
 ----- pass 1
-References #831 .text (8 am_util_delay.o)
+References #835 .text (8 am_util_delay.o)
   Marking fragment #12 .iar.debug_line (17 am_util_delay.o)
-References #831 .text (8 am_util_delay.o)
+References #835 .text (8 am_util_delay.o)
   Marking fragment #13 .debug_line (18 am_util_delay.o)
-References #831 .text (8 am_util_delay.o)
+References #835 .text (8 am_util_delay.o)
   Marking fragment #14 .debug_info (19 am_util_delay.o)
-References #831 .text (8 am_util_delay.o)
+References #835 .text (8 am_util_delay.o)
   Marking fragment #15 .debug_frame (20 am_util_delay.o)
 References #14 .debug_info (19 am_util_delay.o)
   Marking fragment #27 .debug_pubnames (38 am_util_delay.o)
-References #831 .text (8 am_util_delay.o)
+References #835 .text (8 am_util_delay.o)
   Marking fragment #28 .debug_aranges (40 am_util_delay.o)
-References #834 .text (8 am_util_faultisr.o)
+References #838 .text (8 am_util_faultisr.o)
   Marking fragment #66 .iar.debug_line (39 am_util_faultisr.o)
-References #834 .text (8 am_util_faultisr.o)
+References #838 .text (8 am_util_faultisr.o)
   Marking fragment #67 .debug_line (40 am_util_faultisr.o)
-References #834 .text (8 am_util_faultisr.o)
+References #838 .text (8 am_util_faultisr.o)
   Marking fragment #68 .debug_info (41 am_util_faultisr.o)
-References #834 .text (8 am_util_faultisr.o)
+References #838 .text (8 am_util_faultisr.o)
   Marking fragment #69 .debug_frame (42 am_util_faultisr.o)
-References #835 .text (8 am_util_faultisr.o)
+References #839 .text (8 am_util_faultisr.o)
   Marking fragment #70 .iar.debug_line (45 am_util_faultisr.o)
-References #835 .text (8 am_util_faultisr.o)
+References #839 .text (8 am_util_faultisr.o)
   Marking fragment #71 .debug_line (46 am_util_faultisr.o)
-References #835 .text (8 am_util_faultisr.o)
+References #839 .text (8 am_util_faultisr.o)
   Marking fragment #72 .debug_info (47 am_util_faultisr.o)
-References #835 .text (8 am_util_faultisr.o)
+References #839 .text (8 am_util_faultisr.o)
   Marking fragment #73 .debug_frame (48 am_util_faultisr.o)
-References #836 .text (8 am_util_faultisr.o)
+References #840 .text (8 am_util_faultisr.o)
   Marking fragment #74 .iar.debug_line (50 am_util_faultisr.o)
-References #836 .text (8 am_util_faultisr.o)
+References #840 .text (8 am_util_faultisr.o)
   Marking fragment #75 .debug_line (51 am_util_faultisr.o)
-References #836 .text (8 am_util_faultisr.o)
+References #840 .text (8 am_util_faultisr.o)
   Marking fragment #76 .debug_info (52 am_util_faultisr.o)
-References #836 .text (8 am_util_faultisr.o)
+References #840 .text (8 am_util_faultisr.o)
   Marking fragment #77 .debug_frame (53 am_util_faultisr.o)
 References #68 .debug_info (41 am_util_faultisr.o)
   Marking fragment #83 .debug_pubnames (61 am_util_faultisr.o)
-References #834 .text (8 am_util_faultisr.o)
+References #838 .text (8 am_util_faultisr.o)
   Marking fragment #84 .debug_aranges (63 am_util_faultisr.o)
 References #72 .debug_info (47 am_util_faultisr.o)
   Marking fragment #85 .debug_pubnames (66 am_util_faultisr.o)
-References #835 .text (8 am_util_faultisr.o)
+References #839 .text (8 am_util_faultisr.o)
   Marking fragment #86 .debug_aranges (68 am_util_faultisr.o)
 References #76 .debug_info (52 am_util_faultisr.o)
   Marking fragment #87 .debug_pubnames (71 am_util_faultisr.o)
-References #836 .text (8 am_util_faultisr.o)
+References #840 .text (8 am_util_faultisr.o)
   Marking fragment #88 .debug_aranges (73 am_util_faultisr.o)
 References #95 .bss (10 am_util_stdio.o)
   Marking fragment #99 .debug_info (14 am_util_stdio.o)
@@ -1857,450 +1860,450 @@ References #93 .bss (8 am_util_stdio.o)
   Marking fragment #100 .debug_info (15 am_util_stdio.o)
 References #94 .bss (9 am_util_stdio.o)
   Marking fragment #101 .debug_info (16 am_util_stdio.o)
-References #866 .text (11 am_util_stdio.o)
+References #870 .text (11 am_util_stdio.o)
   Marking fragment #103 .iar.debug_line (18 am_util_stdio.o)
-References #866 .text (11 am_util_stdio.o)
+References #870 .text (11 am_util_stdio.o)
   Marking fragment #104 .debug_line (19 am_util_stdio.o)
-References #866 .text (11 am_util_stdio.o)
+References #870 .text (11 am_util_stdio.o)
   Marking fragment #105 .debug_info (20 am_util_stdio.o)
-References #866 .text (11 am_util_stdio.o)
+References #870 .text (11 am_util_stdio.o)
   Marking fragment #106 .debug_frame (21 am_util_stdio.o)
-References #868 .text (11 am_util_stdio.o)
+References #872 .text (11 am_util_stdio.o)
   Marking fragment #111 .iar.debug_line (29 am_util_stdio.o)
-References #868 .text (11 am_util_stdio.o)
+References #872 .text (11 am_util_stdio.o)
   Marking fragment #112 .debug_line (30 am_util_stdio.o)
-References #868 .text (11 am_util_stdio.o)
+References #872 .text (11 am_util_stdio.o)
   Marking fragment #113 .debug_info (31 am_util_stdio.o)
-References #868 .text (11 am_util_stdio.o)
+References #872 .text (11 am_util_stdio.o)
   Marking fragment #114 .debug_frame (32 am_util_stdio.o)
-References #869 .text (11 am_util_stdio.o)
+References #873 .text (11 am_util_stdio.o)
   Marking fragment #115 .iar.debug_line (34 am_util_stdio.o)
-References #869 .text (11 am_util_stdio.o)
+References #873 .text (11 am_util_stdio.o)
   Marking fragment #116 .debug_line (35 am_util_stdio.o)
-References #869 .text (11 am_util_stdio.o)
+References #873 .text (11 am_util_stdio.o)
   Marking fragment #117 .debug_info (36 am_util_stdio.o)
-References #869 .text (11 am_util_stdio.o)
+References #873 .text (11 am_util_stdio.o)
   Marking fragment #118 .debug_frame (37 am_util_stdio.o)
-References #870 .text (11 am_util_stdio.o)
+References #874 .text (11 am_util_stdio.o)
   Marking fragment #119 .iar.debug_line (39 am_util_stdio.o)
-References #870 .text (11 am_util_stdio.o)
+References #874 .text (11 am_util_stdio.o)
   Marking fragment #120 .debug_line (40 am_util_stdio.o)
-References #870 .text (11 am_util_stdio.o)
+References #874 .text (11 am_util_stdio.o)
   Marking fragment #121 .debug_info (41 am_util_stdio.o)
-References #870 .text (11 am_util_stdio.o)
+References #874 .text (11 am_util_stdio.o)
   Marking fragment #122 .debug_frame (42 am_util_stdio.o)
-References #871 .text (11 am_util_stdio.o)
+References #875 .text (11 am_util_stdio.o)
   Marking fragment #123 .iar.debug_line (44 am_util_stdio.o)
-References #871 .text (11 am_util_stdio.o)
+References #875 .text (11 am_util_stdio.o)
   Marking fragment #124 .debug_line (45 am_util_stdio.o)
-References #871 .text (11 am_util_stdio.o)
+References #875 .text (11 am_util_stdio.o)
   Marking fragment #125 .debug_info (46 am_util_stdio.o)
-References #871 .text (11 am_util_stdio.o)
+References #875 .text (11 am_util_stdio.o)
   Marking fragment #126 .debug_frame (47 am_util_stdio.o)
-References #872 .text (11 am_util_stdio.o)
+References #876 .text (11 am_util_stdio.o)
   Marking fragment #127 .iar.debug_line (49 am_util_stdio.o)
-References #872 .text (11 am_util_stdio.o)
+References #876 .text (11 am_util_stdio.o)
   Marking fragment #128 .debug_line (50 am_util_stdio.o)
-References #872 .text (11 am_util_stdio.o)
+References #876 .text (11 am_util_stdio.o)
   Marking fragment #129 .debug_info (51 am_util_stdio.o)
-References #872 .text (11 am_util_stdio.o)
+References #876 .text (11 am_util_stdio.o)
   Marking fragment #130 .debug_frame (52 am_util_stdio.o)
-References #873 .text (11 am_util_stdio.o)
+References #877 .text (11 am_util_stdio.o)
   Marking fragment #131 .iar.debug_line (54 am_util_stdio.o)
-References #873 .text (11 am_util_stdio.o)
+References #877 .text (11 am_util_stdio.o)
   Marking fragment #132 .debug_line (55 am_util_stdio.o)
-References #873 .text (11 am_util_stdio.o)
+References #877 .text (11 am_util_stdio.o)
   Marking fragment #133 .debug_info (56 am_util_stdio.o)
-References #873 .text (11 am_util_stdio.o)
+References #877 .text (11 am_util_stdio.o)
   Marking fragment #134 .debug_frame (57 am_util_stdio.o)
-References #874 .text (11 am_util_stdio.o)
+References #878 .text (11 am_util_stdio.o)
   Marking fragment #135 .iar.debug_line (59 am_util_stdio.o)
-References #874 .text (11 am_util_stdio.o)
+References #878 .text (11 am_util_stdio.o)
   Marking fragment #136 .debug_line (60 am_util_stdio.o)
-References #874 .text (11 am_util_stdio.o)
+References #878 .text (11 am_util_stdio.o)
   Marking fragment #137 .debug_info (61 am_util_stdio.o)
-References #874 .text (11 am_util_stdio.o)
+References #878 .text (11 am_util_stdio.o)
   Marking fragment #138 .debug_frame (62 am_util_stdio.o)
-References #875 .text (11 am_util_stdio.o)
+References #879 .text (11 am_util_stdio.o)
   Marking fragment #139 .iar.debug_line (64 am_util_stdio.o)
-References #875 .text (11 am_util_stdio.o)
+References #879 .text (11 am_util_stdio.o)
   Marking fragment #140 .debug_line (65 am_util_stdio.o)
-References #875 .text (11 am_util_stdio.o)
+References #879 .text (11 am_util_stdio.o)
   Marking fragment #141 .debug_info (66 am_util_stdio.o)
-References #875 .text (11 am_util_stdio.o)
+References #879 .text (11 am_util_stdio.o)
   Marking fragment #142 .debug_frame (67 am_util_stdio.o)
-References #876 .text (11 am_util_stdio.o)
+References #880 .text (11 am_util_stdio.o)
   Marking fragment #143 .iar.debug_line (69 am_util_stdio.o)
-References #876 .text (11 am_util_stdio.o)
+References #880 .text (11 am_util_stdio.o)
   Marking fragment #144 .debug_line (70 am_util_stdio.o)
-References #876 .text (11 am_util_stdio.o)
+References #880 .text (11 am_util_stdio.o)
   Marking fragment #145 .debug_info (71 am_util_stdio.o)
-References #876 .text (11 am_util_stdio.o)
+References #880 .text (11 am_util_stdio.o)
   Marking fragment #146 .debug_frame (72 am_util_stdio.o)
-References #878 .text (11 am_util_stdio.o)
+References #882 .text (11 am_util_stdio.o)
   Marking fragment #151 .iar.debug_line (79 am_util_stdio.o)
-References #878 .text (11 am_util_stdio.o)
+References #882 .text (11 am_util_stdio.o)
   Marking fragment #152 .debug_line (80 am_util_stdio.o)
-References #878 .text (11 am_util_stdio.o)
+References #882 .text (11 am_util_stdio.o)
   Marking fragment #153 .debug_info (81 am_util_stdio.o)
-References #878 .text (11 am_util_stdio.o)
+References #882 .text (11 am_util_stdio.o)
   Marking fragment #154 .debug_frame (82 am_util_stdio.o)
-References #879 .text (11 am_util_stdio.o)
+References #883 .text (11 am_util_stdio.o)
   Marking fragment #155 .iar.debug_line (84 am_util_stdio.o)
-References #879 .text (11 am_util_stdio.o)
+References #883 .text (11 am_util_stdio.o)
   Marking fragment #156 .debug_line (85 am_util_stdio.o)
-References #879 .text (11 am_util_stdio.o)
+References #883 .text (11 am_util_stdio.o)
   Marking fragment #157 .debug_info (86 am_util_stdio.o)
-References #879 .text (11 am_util_stdio.o)
+References #883 .text (11 am_util_stdio.o)
   Marking fragment #158 .debug_frame (87 am_util_stdio.o)
-References #881 .text (11 am_util_stdio.o)
+References #885 .text (11 am_util_stdio.o)
   Marking fragment #163 .iar.debug_line (94 am_util_stdio.o)
-References #881 .text (11 am_util_stdio.o)
+References #885 .text (11 am_util_stdio.o)
   Marking fragment #164 .debug_line (95 am_util_stdio.o)
-References #881 .text (11 am_util_stdio.o)
+References #885 .text (11 am_util_stdio.o)
   Marking fragment #165 .debug_info (96 am_util_stdio.o)
-References #881 .text (11 am_util_stdio.o)
+References #885 .text (11 am_util_stdio.o)
   Marking fragment #166 .debug_frame (97 am_util_stdio.o)
-References #882 .text (11 am_util_stdio.o)
+References #886 .text (11 am_util_stdio.o)
   Marking fragment #167 .iar.debug_line (99 am_util_stdio.o)
-References #882 .text (11 am_util_stdio.o)
+References #886 .text (11 am_util_stdio.o)
   Marking fragment #168 .debug_line (100 am_util_stdio.o)
-References #882 .text (11 am_util_stdio.o)
+References #886 .text (11 am_util_stdio.o)
   Marking fragment #169 .debug_info (101 am_util_stdio.o)
-References #882 .text (11 am_util_stdio.o)
+References #886 .text (11 am_util_stdio.o)
   Marking fragment #170 .debug_frame (102 am_util_stdio.o)
 References #100 .debug_info (15 am_util_stdio.o)
   Marking fragment #191 .debug_pubnames (125 am_util_stdio.o)
 References #105 .debug_info (20 am_util_stdio.o)
   Marking fragment #192 .debug_pubnames (130 am_util_stdio.o)
-References #866 .text (11 am_util_stdio.o)
+References #870 .text (11 am_util_stdio.o)
   Marking fragment #193 .debug_aranges (132 am_util_stdio.o)
 References #113 .debug_info (31 am_util_stdio.o)
   Marking fragment #196 .debug_pubnames (140 am_util_stdio.o)
-References #868 .text (11 am_util_stdio.o)
+References #872 .text (11 am_util_stdio.o)
   Marking fragment #197 .debug_aranges (142 am_util_stdio.o)
 References #117 .debug_info (36 am_util_stdio.o)
   Marking fragment #198 .debug_pubnames (145 am_util_stdio.o)
-References #869 .text (11 am_util_stdio.o)
+References #873 .text (11 am_util_stdio.o)
   Marking fragment #199 .debug_aranges (147 am_util_stdio.o)
 References #121 .debug_info (41 am_util_stdio.o)
   Marking fragment #200 .debug_pubnames (150 am_util_stdio.o)
-References #870 .text (11 am_util_stdio.o)
+References #874 .text (11 am_util_stdio.o)
   Marking fragment #201 .debug_aranges (152 am_util_stdio.o)
 References #125 .debug_info (46 am_util_stdio.o)
   Marking fragment #202 .debug_pubnames (155 am_util_stdio.o)
-References #871 .text (11 am_util_stdio.o)
+References #875 .text (11 am_util_stdio.o)
   Marking fragment #203 .debug_aranges (157 am_util_stdio.o)
 References #129 .debug_info (51 am_util_stdio.o)
   Marking fragment #204 .debug_pubnames (160 am_util_stdio.o)
-References #872 .text (11 am_util_stdio.o)
+References #876 .text (11 am_util_stdio.o)
   Marking fragment #205 .debug_aranges (162 am_util_stdio.o)
 References #133 .debug_info (56 am_util_stdio.o)
   Marking fragment #206 .debug_pubnames (165 am_util_stdio.o)
-References #873 .text (11 am_util_stdio.o)
+References #877 .text (11 am_util_stdio.o)
   Marking fragment #207 .debug_aranges (167 am_util_stdio.o)
 References #137 .debug_info (61 am_util_stdio.o)
   Marking fragment #208 .debug_pubnames (170 am_util_stdio.o)
-References #874 .text (11 am_util_stdio.o)
+References #878 .text (11 am_util_stdio.o)
   Marking fragment #209 .debug_aranges (172 am_util_stdio.o)
 References #141 .debug_info (66 am_util_stdio.o)
   Marking fragment #210 .debug_pubnames (175 am_util_stdio.o)
-References #875 .text (11 am_util_stdio.o)
+References #879 .text (11 am_util_stdio.o)
   Marking fragment #211 .debug_aranges (177 am_util_stdio.o)
 References #145 .debug_info (71 am_util_stdio.o)
   Marking fragment #212 .debug_pubnames (180 am_util_stdio.o)
-References #876 .text (11 am_util_stdio.o)
+References #880 .text (11 am_util_stdio.o)
   Marking fragment #213 .debug_aranges (182 am_util_stdio.o)
 References #153 .debug_info (81 am_util_stdio.o)
   Marking fragment #216 .debug_pubnames (190 am_util_stdio.o)
-References #878 .text (11 am_util_stdio.o)
+References #882 .text (11 am_util_stdio.o)
   Marking fragment #217 .debug_aranges (192 am_util_stdio.o)
 References #157 .debug_info (86 am_util_stdio.o)
   Marking fragment #218 .debug_pubnames (195 am_util_stdio.o)
-References #879 .text (11 am_util_stdio.o)
+References #883 .text (11 am_util_stdio.o)
   Marking fragment #219 .debug_aranges (197 am_util_stdio.o)
 References #165 .debug_info (96 am_util_stdio.o)
   Marking fragment #222 .debug_pubnames (205 am_util_stdio.o)
-References #881 .text (11 am_util_stdio.o)
+References #885 .text (11 am_util_stdio.o)
   Marking fragment #223 .debug_aranges (207 am_util_stdio.o)
 References #169 .debug_info (101 am_util_stdio.o)
   Marking fragment #224 .debug_pubnames (210 am_util_stdio.o)
-References #882 .text (11 am_util_stdio.o)
+References #886 .text (11 am_util_stdio.o)
   Marking fragment #225 .debug_aranges (212 am_util_stdio.o)
-References #890 .text (8 hello_fault.o)
+References #894 .text (8 hello_fault.o)
   Marking fragment #236 .iar.debug_line (15 hello_fault.o)
-References #890 .text (8 hello_fault.o)
+References #894 .text (8 hello_fault.o)
   Marking fragment #237 .debug_line (16 hello_fault.o)
-References #890 .text (8 hello_fault.o)
+References #894 .text (8 hello_fault.o)
   Marking fragment #238 .debug_info (17 hello_fault.o)
-References #890 .text (8 hello_fault.o)
+References #894 .text (8 hello_fault.o)
   Marking fragment #239 .debug_frame (18 hello_fault.o)
-References #891 .text (8 hello_fault.o)
+References #895 .text (8 hello_fault.o)
   Marking fragment #240 .iar.debug_line (21 hello_fault.o)
-References #891 .text (8 hello_fault.o)
+References #895 .text (8 hello_fault.o)
   Marking fragment #241 .debug_line (22 hello_fault.o)
-References #891 .text (8 hello_fault.o)
+References #895 .text (8 hello_fault.o)
   Marking fragment #242 .debug_info (23 hello_fault.o)
-References #891 .text (8 hello_fault.o)
+References #895 .text (8 hello_fault.o)
   Marking fragment #243 .debug_frame (24 hello_fault.o)
 References #238 .debug_info (17 hello_fault.o)
   Marking fragment #248 .debug_pubnames (31 hello_fault.o)
-References #890 .text (8 hello_fault.o)
+References #894 .text (8 hello_fault.o)
   Marking fragment #249 .debug_aranges (33 hello_fault.o)
 References #242 .debug_info (23 hello_fault.o)
   Marking fragment #250 .debug_pubnames (36 hello_fault.o)
-References #891 .text (8 hello_fault.o)
+References #895 .text (8 hello_fault.o)
   Marking fragment #251 .debug_aranges (38 hello_fault.o)
 References #258 .intvec (10 startup_iar.o)
   Marking fragment #261 .debug_info (13 startup_iar.o)
 References #257 .noinit (9 startup_iar.o)
   Marking fragment #262 .debug_info (14 startup_iar.o)
-References #903 .text (11 startup_iar.o)
+References #907 .text (11 startup_iar.o)
   Marking fragment #268 .iar.debug_line (22 startup_iar.o)
-References #903 .text (11 startup_iar.o)
+References #907 .text (11 startup_iar.o)
   Marking fragment #269 .debug_line (23 startup_iar.o)
-References #903 .text (11 startup_iar.o)
+References #907 .text (11 startup_iar.o)
   Marking fragment #270 .debug_info (24 startup_iar.o)
-References #903 .text (11 startup_iar.o)
+References #907 .text (11 startup_iar.o)
   Marking fragment #271 .debug_frame (25 startup_iar.o)
-References #906 .text (11 startup_iar.o)
+References #910 .text (11 startup_iar.o)
   Marking fragment #272 .iar.debug_line (27 startup_iar.o)
-References #906 .text (11 startup_iar.o)
+References #910 .text (11 startup_iar.o)
   Marking fragment #273 .debug_line (28 startup_iar.o)
-References #906 .text (11 startup_iar.o)
+References #910 .text (11 startup_iar.o)
   Marking fragment #274 .debug_info (29 startup_iar.o)
-References #906 .text (11 startup_iar.o)
+References #910 .text (11 startup_iar.o)
   Marking fragment #275 .debug_frame (30 startup_iar.o)
-References #907 .text (11 startup_iar.o)
+References #911 .text (11 startup_iar.o)
   Marking fragment #276 .iar.debug_line (32 startup_iar.o)
-References #907 .text (11 startup_iar.o)
+References #911 .text (11 startup_iar.o)
   Marking fragment #277 .debug_line (33 startup_iar.o)
-References #907 .text (11 startup_iar.o)
+References #911 .text (11 startup_iar.o)
   Marking fragment #278 .debug_info (34 startup_iar.o)
-References #907 .text (11 startup_iar.o)
+References #911 .text (11 startup_iar.o)
   Marking fragment #279 .debug_frame (35 startup_iar.o)
-References #908 .text (11 startup_iar.o)
+References #912 .text (11 startup_iar.o)
   Marking fragment #280 .iar.debug_line (37 startup_iar.o)
-References #908 .text (11 startup_iar.o)
+References #912 .text (11 startup_iar.o)
   Marking fragment #281 .debug_line (38 startup_iar.o)
-References #908 .text (11 startup_iar.o)
+References #912 .text (11 startup_iar.o)
   Marking fragment #282 .debug_info (39 startup_iar.o)
-References #908 .text (11 startup_iar.o)
+References #912 .text (11 startup_iar.o)
   Marking fragment #283 .debug_frame (40 startup_iar.o)
 References #261 .debug_info (13 startup_iar.o)
   Marking fragment #294 .debug_pubnames (57 startup_iar.o)
 References #270 .debug_info (24 startup_iar.o)
   Marking fragment #295 .debug_pubnames (60 startup_iar.o)
-References #903 .text (11 startup_iar.o)
+References #907 .text (11 startup_iar.o)
   Marking fragment #296 .debug_aranges (62 startup_iar.o)
 References #274 .debug_info (29 startup_iar.o)
   Marking fragment #297 .debug_pubnames (65 startup_iar.o)
-References #906 .text (11 startup_iar.o)
+References #910 .text (11 startup_iar.o)
   Marking fragment #298 .debug_aranges (67 startup_iar.o)
 References #278 .debug_info (34 startup_iar.o)
   Marking fragment #299 .debug_pubnames (70 startup_iar.o)
-References #907 .text (11 startup_iar.o)
+References #911 .text (11 startup_iar.o)
   Marking fragment #300 .debug_aranges (72 startup_iar.o)
 References #282 .debug_info (39 startup_iar.o)
   Marking fragment #301 .debug_pubnames (75 startup_iar.o)
-References #908 .text (11 startup_iar.o)
+References #912 .text (11 startup_iar.o)
   Marking fragment #302 .debug_aranges (77 startup_iar.o)
-References #909 .text (6 am_hal_clkgen.o(libam_hal.a))
+References #913 .text (6 am_hal_clkgen.o(libam_hal.a))
   Marking fragment #308 .debug_frame (10 am_hal_clkgen.o(libam_hal.a))
-References #910 .text (6 am_hal_clkgen.o(libam_hal.a))
+References #914 .text (6 am_hal_clkgen.o(libam_hal.a))
   Marking fragment #309 .debug_frame (13 am_hal_clkgen.o(libam_hal.a))
-References #918 .text (6 am_hal_clkgen.o(libam_hal.a))
+References #922 .text (6 am_hal_clkgen.o(libam_hal.a))
   Marking fragment #317 .debug_frame (29 am_hal_clkgen.o(libam_hal.a))
-References #948 .text (8 am_hal_flash.o(libam_hal.a))
+References #953 .text (8 am_hal_flash.o(libam_hal.a))
   Marking fragment #340 .debug_frame (32 am_hal_flash.o(libam_hal.a))
-References #990 .text (7 am_hal_mcuctrl.o(libam_hal.a))
+References #995 .text (7 am_hal_mcuctrl.o(libam_hal.a))
   Marking fragment #367 .debug_frame (13 am_hal_mcuctrl.o(libam_hal.a))
-References #992 .text (7 am_hal_mcuctrl.o(libam_hal.a))
+References #997 .text (7 am_hal_mcuctrl.o(libam_hal.a))
   Marking fragment #369 .debug_frame (17 am_hal_mcuctrl.o(libam_hal.a))
-References #1005 .text (11 am_bsp.o(libam_bsp.a))
-  Marking fragment #386 .debug_frame (27 am_bsp.o(libam_bsp.a))
 References #1010 .text (11 am_bsp.o(libam_bsp.a))
+  Marking fragment #386 .debug_frame (27 am_bsp.o(libam_bsp.a))
+References #1015 .text (11 am_bsp.o(libam_bsp.a))
   Marking fragment #391 .debug_frame (37 am_bsp.o(libam_bsp.a))
-References #1011 .text (11 am_bsp.o(libam_bsp.a))
+References #1016 .text (11 am_bsp.o(libam_bsp.a))
   Marking fragment #392 .debug_frame (39 am_bsp.o(libam_bsp.a))
-References #1027 .text (11 am_bsp.o(libam_bsp.a))
+References #1032 .text (11 am_bsp.o(libam_bsp.a))
   Marking fragment #393 .debug_frame (41 am_bsp.o(libam_bsp.a))
-References #1029 .text (7 am_hal_cachectrl.o(libam_hal.a))
+References #1034 .text (7 am_hal_cachectrl.o(libam_hal.a))
   Marking fragment #401 .debug_frame (10 am_hal_cachectrl.o(libam_hal.a))
-References #1054 .text (6 am_hal_interrupt.o(libam_hal.a))
+References #1059 .text (6 am_hal_interrupt.o(libam_hal.a))
   Marking fragment #422 .debug_frame (22 am_hal_interrupt.o(libam_hal.a))
-References #1055 .text (6 am_hal_interrupt.o(libam_hal.a))
+References #1060 .text (6 am_hal_interrupt.o(libam_hal.a))
   Marking fragment #423 .debug_frame (24 am_hal_interrupt.o(libam_hal.a))
-References #1056 .text (6 am_hal_itm.o(libam_hal.a))
+References #1061 .text (6 am_hal_itm.o(libam_hal.a))
   Marking fragment #429 .debug_frame (9 am_hal_itm.o(libam_hal.a))
-References #1058 .text (6 am_hal_itm.o(libam_hal.a))
+References #1063 .text (6 am_hal_itm.o(libam_hal.a))
   Marking fragment #431 .debug_frame (14 am_hal_itm.o(libam_hal.a))
-References #1077 .text (6 am_hal_itm.o(libam_hal.a))
+References #1082 .text (6 am_hal_itm.o(libam_hal.a))
   Marking fragment #440 .debug_frame (32 am_hal_itm.o(libam_hal.a))
-References #1078 .text (8 am_hal_sysctrl.o(libam_hal.a))
+References #1083 .text (8 am_hal_sysctrl.o(libam_hal.a))
   Marking fragment #448 .debug_frame (11 am_hal_sysctrl.o(libam_hal.a))
 References #460 .text (6 am_hal_debug.o(libam_hal.a))
   Marking fragment #463 .debug_frame (9 am_hal_debug.o(libam_hal.a))
-References #1292 .text (6 am_hal_pwrctrl.o(libam_hal.a))
-  Marking fragment #555 .debug_frame (15 am_hal_pwrctrl.o(libam_hal.a))
-References #1293 .text (6 am_hal_pwrctrl.o(libam_hal.a))
-  Marking fragment #556 .debug_frame (17 am_hal_pwrctrl.o(libam_hal.a))
-References #1294 .text (6 am_hal_pwrctrl.o(libam_hal.a))
-  Marking fragment #557 .debug_frame (19 am_hal_pwrctrl.o(libam_hal.a))
-References #1295 .text (6 am_hal_pwrctrl.o(libam_hal.a))
-  Marking fragment #558 .debug_frame (21 am_hal_pwrctrl.o(libam_hal.a))
-References #1296 .text (6 am_hal_pwrctrl.o(libam_hal.a))
-  Marking fragment #559 .debug_frame (23 am_hal_pwrctrl.o(libam_hal.a))
-References #1308 .text (6 am_hal_rtc.o(libam_hal.a))
-  Marking fragment #565 .debug_frame (9 am_hal_rtc.o(libam_hal.a))
-References #1310 .text (6 am_hal_rtc.o(libam_hal.a))
-  Marking fragment #567 .debug_frame (14 am_hal_rtc.o(libam_hal.a))
-References #1337 .text (6 am_hal_tpiu.o(libam_hal.a))
-  Marking fragment #591 .debug_frame (22 am_hal_tpiu.o(libam_hal.a))
-References #1338 .text (6 am_hal_tpiu.o(libam_hal.a))
-  Marking fragment #592 .debug_frame (24 am_hal_tpiu.o(libam_hal.a))
-References #1395 .text (6 am_hal_vcomp.o(libam_hal.a))
-  Marking fragment #638 .debug_frame (18 am_hal_vcomp.o(libam_hal.a))
-References #1413 .text (7 am_hal_ctimer.o(libam_hal.a))
-  Marking fragment #663 .debug_frame (23 am_hal_ctimer.o(libam_hal.a))
-References #1415 .text (7 am_hal_ctimer.o(libam_hal.a))
-  Marking fragment #665 .debug_frame (27 am_hal_ctimer.o(libam_hal.a))
-References #1421 .text (7 am_hal_ctimer.o(libam_hal.a))
-  Marking fragment #671 .debug_frame (39 am_hal_ctimer.o(libam_hal.a))
-References #704 .text (6 ABImemclr4.o(rt7M_tl.a))
-  Marking fragment #706 .debug_frame (8 ABImemclr4.o(rt7M_tl.a))
-References #710 .text (6 DblToFlt.o(m7M_tls.a))
-  Marking fragment #712 .debug_frame (8 DblToFlt.o(m7M_tls.a))
-References #1460 .text (6 ABImemset48.o(rt7M_tl.a))
-  Marking fragment #737 .debug_frame (11 ABImemset48.o(rt7M_tl.a))
-References #1461 .text (6 ABImemset48.o(rt7M_tl.a))
-  Marking fragment #738 .debug_frame (13 ABImemset48.o(rt7M_tl.a))
-References #742 .text (6 exit.o(dl7M_tln.a))
-  Marking fragment #745 .debug_frame (9 exit.o(dl7M_tln.a))
-References #753 .text (6 exit.o(shb_l.a))
-  Marking fragment #756 .debug_frame (9 exit.o(shb_l.a))
-References #759 .text (6 data_init.o(rt7M_tl.a))
-  Marking fragment #763 .debug_frame (10 data_init.o(rt7M_tl.a)) {__iar_data_init3}
-References #767 .text (7 zero_init3.o(rt7M_tl.a))
-  Marking fragment #770 .debug_frame (10 zero_init3.o(rt7M_tl.a)) {__iar_zero_init3}
-References #774 .text (7 copy_init3.o(rt7M_tl.a))
-  Marking fragment #777 .debug_frame (10 copy_init3.o(rt7M_tl.a)) {__iar_copy_init3}
-References #781 .text (7 rle_init_single.o(rt7M_tl.a))
-  Marking fragment #784 .debug_frame (10 rle_init_single.o(rt7M_tl.a)) {__iar_rle_init_single3}
-References #788 .text (7 rle_init.o(rt7M_tl.a))
-  Marking fragment #791 .debug_frame (10 rle_init.o(rt7M_tl.a)) {__iar_rle_init3}
-References #795 .text (7 packbits_init_single.o(rt7M_tl.a))
-  Marking fragment #798 .debug_frame (10 packbits_init_single.o(rt7M_tl.a)) {__iar_packbits_init_single3}
-References #802 .text (7 packbits_init.o(rt7M_tl.a))
-  Marking fragment #805 .debug_frame (10 packbits_init.o(rt7M_tl.a)) {__iar_packbits_init3}
-References #809 .text (7 lz77_init_single.o(rt7M_tl.a))
-  Marking fragment #812 .debug_frame (10 lz77_init_single.o(rt7M_tl.a)) {__iar_lz77_init_single3}
-References #1467 .text (7 lz77_init.o(rt7M_tl.a))
-  Marking fragment #819 .debug_frame (10 lz77_init.o(rt7M_tl.a)) {__iar_lz77_init3}
-References #1468 .text (7 lz77_init.o(rt7M_tl.a))
-  Marking fragment #820 .debug_frame (13 lz77_init.o(rt7M_tl.a)) {__iar_lz77_init3}
-References #1469 .text (7 lz77_init.o(rt7M_tl.a))
-  Marking fragment #821 .debug_frame (15 lz77_init.o(rt7M_tl.a)) {__iar_lz77_init3}
-References #1470 .text (7 lz77_init.o(rt7M_tl.a))
-  Marking fragment #822 .debug_frame (17 lz77_init.o(rt7M_tl.a)) {__iar_lz77_init3}
-References #825 .text (6 abort.o(dl7M_tln.a))
-  Marking fragment #828 .debug_frame (9 abort.o(dl7M_tln.a)) {__iar_rle_init3 __iar_packbits_init3 __iar_lz77_init3}
+References #1315 .text (6 am_hal_pwrctrl.o(libam_hal.a))
+  Marking fragment #557 .debug_frame (15 am_hal_pwrctrl.o(libam_hal.a))
+References #1316 .text (6 am_hal_pwrctrl.o(libam_hal.a))
+  Marking fragment #558 .debug_frame (17 am_hal_pwrctrl.o(libam_hal.a))
+References #1317 .text (6 am_hal_pwrctrl.o(libam_hal.a))
+  Marking fragment #559 .debug_frame (19 am_hal_pwrctrl.o(libam_hal.a))
+References #1318 .text (6 am_hal_pwrctrl.o(libam_hal.a))
+  Marking fragment #560 .debug_frame (21 am_hal_pwrctrl.o(libam_hal.a))
+References #1319 .text (6 am_hal_pwrctrl.o(libam_hal.a))
+  Marking fragment #561 .debug_frame (23 am_hal_pwrctrl.o(libam_hal.a))
+References #1332 .text (6 am_hal_rtc.o(libam_hal.a))
+  Marking fragment #567 .debug_frame (9 am_hal_rtc.o(libam_hal.a))
+References #1334 .text (6 am_hal_rtc.o(libam_hal.a))
+  Marking fragment #569 .debug_frame (14 am_hal_rtc.o(libam_hal.a))
+References #1361 .text (6 am_hal_tpiu.o(libam_hal.a))
+  Marking fragment #593 .debug_frame (22 am_hal_tpiu.o(libam_hal.a))
+References #1362 .text (6 am_hal_tpiu.o(libam_hal.a))
+  Marking fragment #594 .debug_frame (24 am_hal_tpiu.o(libam_hal.a))
+References #1422 .text (6 am_hal_vcomp.o(libam_hal.a))
+  Marking fragment #642 .debug_frame (18 am_hal_vcomp.o(libam_hal.a))
+References #1440 .text (7 am_hal_ctimer.o(libam_hal.a))
+  Marking fragment #667 .debug_frame (23 am_hal_ctimer.o(libam_hal.a))
+References #1442 .text (7 am_hal_ctimer.o(libam_hal.a))
+  Marking fragment #669 .debug_frame (27 am_hal_ctimer.o(libam_hal.a))
+References #1448 .text (7 am_hal_ctimer.o(libam_hal.a))
+  Marking fragment #675 .debug_frame (39 am_hal_ctimer.o(libam_hal.a))
+References #708 .text (6 ABImemclr4.o(rt7M_tl.a))
+  Marking fragment #710 .debug_frame (8 ABImemclr4.o(rt7M_tl.a))
+References #714 .text (6 DblToFlt.o(m7M_tls.a))
+  Marking fragment #716 .debug_frame (8 DblToFlt.o(m7M_tls.a))
+References #1488 .text (6 ABImemset48.o(rt7M_tl.a))
+  Marking fragment #741 .debug_frame (11 ABImemset48.o(rt7M_tl.a))
+References #1489 .text (6 ABImemset48.o(rt7M_tl.a))
+  Marking fragment #742 .debug_frame (13 ABImemset48.o(rt7M_tl.a))
+References #746 .text (6 exit.o(dl7M_tln.a))
+  Marking fragment #749 .debug_frame (9 exit.o(dl7M_tln.a))
+References #757 .text (6 exit.o(shb_l.a))
+  Marking fragment #760 .debug_frame (9 exit.o(shb_l.a))
+References #763 .text (6 data_init.o(rt7M_tl.a))
+  Marking fragment #767 .debug_frame (10 data_init.o(rt7M_tl.a)) {__iar_data_init3}
+References #771 .text (7 zero_init3.o(rt7M_tl.a))
+  Marking fragment #774 .debug_frame (10 zero_init3.o(rt7M_tl.a)) {__iar_zero_init3}
+References #778 .text (7 copy_init3.o(rt7M_tl.a))
+  Marking fragment #781 .debug_frame (10 copy_init3.o(rt7M_tl.a)) {__iar_copy_init3}
+References #785 .text (7 rle_init_single.o(rt7M_tl.a))
+  Marking fragment #788 .debug_frame (10 rle_init_single.o(rt7M_tl.a)) {__iar_rle_init_single3}
+References #792 .text (7 rle_init.o(rt7M_tl.a))
+  Marking fragment #795 .debug_frame (10 rle_init.o(rt7M_tl.a)) {__iar_rle_init3}
+References #799 .text (7 packbits_init_single.o(rt7M_tl.a))
+  Marking fragment #802 .debug_frame (10 packbits_init_single.o(rt7M_tl.a)) {__iar_packbits_init_single3}
+References #806 .text (7 packbits_init.o(rt7M_tl.a))
+  Marking fragment #809 .debug_frame (10 packbits_init.o(rt7M_tl.a)) {__iar_packbits_init3}
+References #813 .text (7 lz77_init_single.o(rt7M_tl.a))
+  Marking fragment #816 .debug_frame (10 lz77_init_single.o(rt7M_tl.a)) {__iar_lz77_init_single3}
+References #1495 .text (7 lz77_init.o(rt7M_tl.a))
+  Marking fragment #823 .debug_frame (10 lz77_init.o(rt7M_tl.a)) {__iar_lz77_init3}
+References #1496 .text (7 lz77_init.o(rt7M_tl.a))
+  Marking fragment #824 .debug_frame (13 lz77_init.o(rt7M_tl.a)) {__iar_lz77_init3}
+References #1497 .text (7 lz77_init.o(rt7M_tl.a))
+  Marking fragment #825 .debug_frame (15 lz77_init.o(rt7M_tl.a)) {__iar_lz77_init3}
+References #1498 .text (7 lz77_init.o(rt7M_tl.a))
+  Marking fragment #826 .debug_frame (17 lz77_init.o(rt7M_tl.a)) {__iar_lz77_init3}
+References #829 .text (6 abort.o(dl7M_tln.a))
+  Marking fragment #832 .debug_frame (9 abort.o(dl7M_tln.a)) {__iar_rle_init3 __iar_packbits_init3 __iar_lz77_init3}
 ----- pass 2
 ----- marking from debug sections
-Marking from fragment #828 .debug_frame (9 abort.o(dl7M_tln.a)) {__iar_rle_init3 __iar_packbits_init3 __iar_lz77_init3}
+Marking from fragment #832 .debug_frame (9 abort.o(dl7M_tln.a)) {__iar_rle_init3 __iar_packbits_init3 __iar_lz77_init3}
   Marking symbol .debug_frame9                        (4 abort.o)
   Marking symbol .text6                               (3 abort.o)
-Marking from fragment #822 .debug_frame (17 lz77_init.o(rt7M_tl.a)) {__iar_lz77_init3}
+Marking from fragment #826 .debug_frame (17 lz77_init.o(rt7M_tl.a)) {__iar_lz77_init3}
   Marking symbol .debug_frame17                       (15 lz77_init.o)
   Marking symbol .text_6                              (14 lz77_init.o)
-Marking from fragment #821 .debug_frame (15 lz77_init.o(rt7M_tl.a)) {__iar_lz77_init3}
+Marking from fragment #825 .debug_frame (15 lz77_init.o(rt7M_tl.a)) {__iar_lz77_init3}
   Marking symbol .debug_frame15                       (13 lz77_init.o)
   Marking symbol .text_5                              (12 lz77_init.o)
-Marking from fragment #820 .debug_frame (13 lz77_init.o(rt7M_tl.a)) {__iar_lz77_init3}
+Marking from fragment #824 .debug_frame (13 lz77_init.o(rt7M_tl.a)) {__iar_lz77_init3}
   Marking symbol .debug_frame13                       (11 lz77_init.o)
   Marking symbol .text_4                              (10 lz77_init.o)
-Marking from fragment #819 .debug_frame (10 lz77_init.o(rt7M_tl.a)) {__iar_lz77_init3}
+Marking from fragment #823 .debug_frame (10 lz77_init.o(rt7M_tl.a)) {__iar_lz77_init3}
   Marking symbol .debug_frame10                       (8 lz77_init.o)
   Marking symbol .text7                               (7 lz77_init.o)
-Marking from fragment #812 .debug_frame (10 lz77_init_single.o(rt7M_tl.a)) {__iar_lz77_init_single3}
+Marking from fragment #816 .debug_frame (10 lz77_init_single.o(rt7M_tl.a)) {__iar_lz77_init_single3}
   Marking symbol .debug_frame10                       (5 lz77_init_single.o)
   Marking symbol .text7                               (4 lz77_init_single.o)
-Marking from fragment #805 .debug_frame (10 packbits_init.o(rt7M_tl.a)) {__iar_packbits_init3}
+Marking from fragment #809 .debug_frame (10 packbits_init.o(rt7M_tl.a)) {__iar_packbits_init3}
   Marking symbol .debug_frame10                       (5 packbits_init.o)
   Marking symbol .text7                               (4 packbits_init.o)
-Marking from fragment #798 .debug_frame (10 packbits_init_single.o(rt7M_tl.a)) {__iar_packbits_init_single3}
+Marking from fragment #802 .debug_frame (10 packbits_init_single.o(rt7M_tl.a)) {__iar_packbits_init_single3}
   Marking symbol .debug_frame10                       (5 packbits_init_single.o)
   Marking symbol .text7                               (4 packbits_init_single.o)
-Marking from fragment #791 .debug_frame (10 rle_init.o(rt7M_tl.a)) {__iar_rle_init3}
+Marking from fragment #795 .debug_frame (10 rle_init.o(rt7M_tl.a)) {__iar_rle_init3}
   Marking symbol .debug_frame10                       (5 rle_init.o)
   Marking symbol .text7                               (4 rle_init.o)
-Marking from fragment #784 .debug_frame (10 rle_init_single.o(rt7M_tl.a)) {__iar_rle_init_single3}
+Marking from fragment #788 .debug_frame (10 rle_init_single.o(rt7M_tl.a)) {__iar_rle_init_single3}
   Marking symbol .debug_frame10                       (5 rle_init_single.o)
   Marking symbol .text7                               (4 rle_init_single.o)
-Marking from fragment #777 .debug_frame (10 copy_init3.o(rt7M_tl.a)) {__iar_copy_init3}
+Marking from fragment #781 .debug_frame (10 copy_init3.o(rt7M_tl.a)) {__iar_copy_init3}
   Marking symbol .debug_frame10                       (5 copy_init3.o)
   Marking symbol .text7                               (4 copy_init3.o)
-Marking from fragment #770 .debug_frame (10 zero_init3.o(rt7M_tl.a)) {__iar_zero_init3}
+Marking from fragment #774 .debug_frame (10 zero_init3.o(rt7M_tl.a)) {__iar_zero_init3}
   Marking symbol .debug_frame10                       (5 zero_init3.o)
   Marking symbol .text7                               (4 zero_init3.o)
-Marking from fragment #763 .debug_frame (10 data_init.o(rt7M_tl.a)) {__iar_data_init3}
+Marking from fragment #767 .debug_frame (10 data_init.o(rt7M_tl.a)) {__iar_data_init3}
   Marking symbol .debug_frame10                       (4 data_init.o)
   Marking symbol .text6                               (3 data_init.o)
-Marking from fragment #756 .debug_frame (9 exit.o(shb_l.a))
+Marking from fragment #760 .debug_frame (9 exit.o(shb_l.a))
   Marking symbol .debug_frame9                        (4 exit.o)
   Marking symbol .text6                               (3 exit.o)
-Marking from fragment #745 .debug_frame (9 exit.o(dl7M_tln.a))
+Marking from fragment #749 .debug_frame (9 exit.o(dl7M_tln.a))
   Marking symbol .debug_frame9                        (4 exit.o)
   Marking symbol .text6                               (3 exit.o)
-Marking from fragment #738 .debug_frame (13 ABImemset48.o(rt7M_tl.a))
+Marking from fragment #742 .debug_frame (13 ABImemset48.o(rt7M_tl.a))
   Marking symbol .debug_frame13                       (10 ABImemset48.o)
   Marking symbol .text_2                              (9 ABImemset48.o)
-Marking from fragment #737 .debug_frame (11 ABImemset48.o(rt7M_tl.a))
+Marking from fragment #741 .debug_frame (11 ABImemset48.o(rt7M_tl.a))
   Marking symbol .debug_frame11                       (8 ABImemset48.o)
   Marking symbol .text_1                              (7 ABImemset48.o)
-Marking from fragment #712 .debug_frame (8 DblToFlt.o(m7M_tls.a))
+Marking from fragment #716 .debug_frame (8 DblToFlt.o(m7M_tls.a))
   Marking symbol .debug_frame8                        (5 DblToFlt.o)
   Marking symbol .text6                               (3 DblToFlt.o)
-Marking from fragment #706 .debug_frame (8 ABImemclr4.o(rt7M_tl.a))
+Marking from fragment #710 .debug_frame (8 ABImemclr4.o(rt7M_tl.a))
   Marking symbol .debug_frame8                        (5 ABImemclr4.o)
   Marking symbol .text6                               (3 ABImemclr4.o)
-Marking from fragment #671 .debug_frame (39 am_hal_ctimer.o(libam_hal.a))
+Marking from fragment #675 .debug_frame (39 am_hal_ctimer.o(libam_hal.a))
   Marking symbol .debug_frame39                       (34 am_hal_ctimer.o)
   Marking symbol .text_17                             (33 am_hal_ctimer.o)
-Marking from fragment #665 .debug_frame (27 am_hal_ctimer.o(libam_hal.a))
+Marking from fragment #669 .debug_frame (27 am_hal_ctimer.o(libam_hal.a))
   Marking symbol .debug_frame27                       (22 am_hal_ctimer.o)
   Marking symbol .text_11                             (21 am_hal_ctimer.o)
-Marking from fragment #663 .debug_frame (23 am_hal_ctimer.o(libam_hal.a))
+Marking from fragment #667 .debug_frame (23 am_hal_ctimer.o(libam_hal.a))
   Marking symbol .debug_frame23                       (18 am_hal_ctimer.o)
   Marking symbol .text_9                              (17 am_hal_ctimer.o)
-Marking from fragment #638 .debug_frame (18 am_hal_vcomp.o(libam_hal.a))
+Marking from fragment #642 .debug_frame (18 am_hal_vcomp.o(libam_hal.a))
   Marking symbol .debug_frame18                       (13 am_hal_vcomp.o)
   Marking symbol .text_6                              (12 am_hal_vcomp.o)
-Marking from fragment #592 .debug_frame (24 am_hal_tpiu.o(libam_hal.a))
+Marking from fragment #594 .debug_frame (24 am_hal_tpiu.o(libam_hal.a))
   Marking symbol .debug_frame24                       (19 am_hal_tpiu.o)
   Marking symbol .text_9                              (18 am_hal_tpiu.o)
-Marking from fragment #591 .debug_frame (22 am_hal_tpiu.o(libam_hal.a))
+Marking from fragment #593 .debug_frame (22 am_hal_tpiu.o(libam_hal.a))
   Marking symbol .debug_frame22                       (17 am_hal_tpiu.o)
   Marking symbol .text_8                              (16 am_hal_tpiu.o)
-Marking from fragment #567 .debug_frame (14 am_hal_rtc.o(libam_hal.a))
+Marking from fragment #569 .debug_frame (14 am_hal_rtc.o(libam_hal.a))
   Marking symbol .debug_frame14                       (9 am_hal_rtc.o)
   Marking symbol .text_4                              (8 am_hal_rtc.o)
-Marking from fragment #565 .debug_frame (9 am_hal_rtc.o(libam_hal.a))
+Marking from fragment #567 .debug_frame (9 am_hal_rtc.o(libam_hal.a))
   Marking symbol .debug_frame9                        (4 am_hal_rtc.o)
   Marking symbol .text6                               (3 am_hal_rtc.o)
-Marking from fragment #559 .debug_frame (23 am_hal_pwrctrl.o(libam_hal.a))
+Marking from fragment #561 .debug_frame (23 am_hal_pwrctrl.o(libam_hal.a))
   Marking symbol .debug_frame23                       (17 am_hal_pwrctrl.o)
   Marking symbol .text_9                              (16 am_hal_pwrctrl.o)
-Marking from fragment #558 .debug_frame (21 am_hal_pwrctrl.o(libam_hal.a))
+Marking from fragment #560 .debug_frame (21 am_hal_pwrctrl.o(libam_hal.a))
   Marking symbol .debug_frame21                       (15 am_hal_pwrctrl.o)
   Marking symbol .text_8                              (14 am_hal_pwrctrl.o)
-Marking from fragment #557 .debug_frame (19 am_hal_pwrctrl.o(libam_hal.a))
+Marking from fragment #559 .debug_frame (19 am_hal_pwrctrl.o(libam_hal.a))
   Marking symbol .debug_frame19                       (13 am_hal_pwrctrl.o)
   Marking symbol .text_7                              (12 am_hal_pwrctrl.o)
-Marking from fragment #556 .debug_frame (17 am_hal_pwrctrl.o(libam_hal.a))
+Marking from fragment #558 .debug_frame (17 am_hal_pwrctrl.o(libam_hal.a))
   Marking symbol .debug_frame17                       (11 am_hal_pwrctrl.o)
   Marking symbol .text_6                              (10 am_hal_pwrctrl.o)
-Marking from fragment #555 .debug_frame (15 am_hal_pwrctrl.o(libam_hal.a))
+Marking from fragment #557 .debug_frame (15 am_hal_pwrctrl.o(libam_hal.a))
   Marking symbol .debug_frame15                       (9 am_hal_pwrctrl.o)
   Marking symbol .text_5                              (8 am_hal_pwrctrl.o)
 Marking from fragment #463 .debug_frame (9 am_hal_debug.o(libam_hal.a))
@@ -2531,7 +2534,7 @@ Marking from fragment #241 .debug_line (22 hello_fault.o)
 Marking from fragment #240 .iar.debug_line (21 hello_fault.o)
   Marking symbol .text_7                              (6 hello_fault.o)
   Marking symbol .debug_info23                        (41 hello_fault.o)
-  Marking symbol am_hal_clkgen_sysclk_select      Glb (70 am_hal_clkgen.o)
+  Marking symbol am_hal_clkgen_sysclk_select      Glb (72 am_hal_clkgen.o)
   Marking symbol am_hal_cachectrl_enable          Glb (40 am_hal_cachectrl.o)
   Marking symbol am_bsp_low_power_init            Glb (114 am_bsp.o)
   Marking symbol am_util_stdio_printf_init        Glb (142 am_util_stdio.o)
@@ -3258,5 +3261,5 @@ Marking from fragment #13 .debug_line (18 am_util_delay.o)
 Marking from fragment #12 .iar.debug_line (17 am_util_delay.o)
   Marking symbol .text_3                              (6 am_util_delay.o)
   Marking symbol .debug_info19                        (23 am_util_delay.o)
-  Marking symbol am_hal_clkgen_sysclk_get         Glb (69 am_hal_clkgen.o)
+  Marking symbol am_hal_clkgen_sysclk_get         Glb (71 am_hal_clkgen.o)
   Marking symbol am_hal_flash_delay               Glb (107 am_hal_flash.o)

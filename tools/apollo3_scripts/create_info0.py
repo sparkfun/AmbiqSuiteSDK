@@ -9,9 +9,10 @@ import hashlib
 import hmac
 import os
 import binascii
+import importlib
 
 from am_defines import *
-from keys_info import keyTblAes, keyTblHmac, custKey
+#from keys_info import keyTblAes, keyTblHmac, custKey
 
 def copy_keys(binarray, offset, key, size):
     for i in range (0, size):
@@ -22,27 +23,38 @@ def copy_keys(binarray, offset, key, size):
 # Generate the info0 blob as per command line parameters
 #
 #******************************************************************************
-def process(valid, version, output, mainPtr, secPol, keyWrap, secBoot, secBootOnRst, plOnExit, sDbg, bEnErase, infoProg, bNoSramWipe, bSwoCtrl, bDbgAllowed, custTrim, custTrim2, overrideGpio, overridePol, wiredIfMask, wiredSlvInt, wiredI2cAddr, wiredTimeout, u0, u1, u2, u3, u4, u5, krev, arev, chipId0, chipId1, sresv, wprot0, wprot1, rprot0, rprot1, swprot0, swprot1, srprot0, srprot1):
+def process(valid, version, output, mainPtr, secPol, keyWrap, secBoot, secBootOnRst, plOnExit, sDbg, bEnErase, infoProg, bNoSramWipe, bSwoCtrl, bDbgAllowed, custTrim, custTrim2, overrideGpio, overridePol, wiredIfMask, wiredSlvInt, wiredI2cAddr, wiredTimeout, u0, u1, u2, u3, u4, u5, krev, arev, chipId0, chipId1, sresv, wprot0, wprot1, rprot0, rprot1, swprot0, swprot1, srprot0, srprot1, wprot2, wprot3, rprot2, rprot3, swprot2, swprot3, srprot2, srprot3, chip, keyFile):
+
+
+    if (chip == 'apollo3'):
+        import apollo3_info0 as info0
+        am_print("Apollo3 INFO0")
+    elif (chip == 'apollo3p'):
+        import apollo3p_info0 as info0
+        am_print("Apollo3P INFO0")
+
+    filenames = keyFile.split('.')
+    keys = importlib.import_module(filenames[0])
 
     #generate mutable byte array for the header
     hdr_binarray = bytearray([0xFF]*INFO_SIZE_BYTES);
 
     # initialize signature
     if (valid == 1):
-        fill_word(hdr_binarray, INFO0_SIGNATURE0_O, AM_SECBOOT_INFO0_SIGN_PROGRAMMED0)
-        fill_word(hdr_binarray, INFO0_SIGNATURE1_O, AM_SECBOOT_INFO0_SIGN_PROGRAMMED1)
-        fill_word(hdr_binarray, INFO0_SIGNATURE2_O, AM_SECBOOT_INFO0_SIGN_PROGRAMMED2)
-        fill_word(hdr_binarray, INFO0_SIGNATURE3_O, AM_SECBOOT_INFO0_SIGN_PROGRAMMED3)
+        fill_word(hdr_binarray, info0.INFO0_SIGNATURE0_O, AM_SECBOOT_INFO0_SIGN_PROGRAMMED0)
+        fill_word(hdr_binarray, info0.INFO0_SIGNATURE1_O, AM_SECBOOT_INFO0_SIGN_PROGRAMMED1)
+        fill_word(hdr_binarray, info0.INFO0_SIGNATURE2_O, AM_SECBOOT_INFO0_SIGN_PROGRAMMED2)
+        fill_word(hdr_binarray, info0.INFO0_SIGNATURE3_O, AM_SECBOOT_INFO0_SIGN_PROGRAMMED3)
     elif (valid == 0):
-        fill_word(hdr_binarray, INFO0_SIGNATURE0_O, AM_SECBOOT_INFO0_SIGN_UINIT0)
-        fill_word(hdr_binarray, INFO0_SIGNATURE1_O, AM_SECBOOT_INFO0_SIGN_UINIT1)
-        fill_word(hdr_binarray, INFO0_SIGNATURE2_O, AM_SECBOOT_INFO0_SIGN_UINIT2)
-        fill_word(hdr_binarray, INFO0_SIGNATURE3_O, AM_SECBOOT_INFO0_SIGN_UINIT3)
+        fill_word(hdr_binarray, info0.INFO0_SIGNATURE0_O, AM_SECBOOT_INFO0_SIGN_UINIT0)
+        fill_word(hdr_binarray, info0.INFO0_SIGNATURE1_O, AM_SECBOOT_INFO0_SIGN_UINIT1)
+        fill_word(hdr_binarray, info0.INFO0_SIGNATURE2_O, AM_SECBOOT_INFO0_SIGN_UINIT2)
+        fill_word(hdr_binarray, info0.INFO0_SIGNATURE3_O, AM_SECBOOT_INFO0_SIGN_UINIT3)
     else:
-        fill_word(hdr_binarray, INFO0_SIGNATURE0_O, FLASH_INVALID)
-        fill_word(hdr_binarray, INFO0_SIGNATURE1_O, FLASH_INVALID)
-        fill_word(hdr_binarray, INFO0_SIGNATURE2_O, FLASH_INVALID)
-        fill_word(hdr_binarray, INFO0_SIGNATURE3_O, FLASH_INVALID)
+        fill_word(hdr_binarray, info0.INFO0_SIGNATURE0_O, FLASH_INVALID)
+        fill_word(hdr_binarray, info0.INFO0_SIGNATURE1_O, FLASH_INVALID)
+        fill_word(hdr_binarray, info0.INFO0_SIGNATURE2_O, FLASH_INVALID)
+        fill_word(hdr_binarray, info0.INFO0_SIGNATURE3_O, FLASH_INVALID)
 
     am_print("info0 Signature...")
     am_print([hex(hdr_binarray[n]) for n in range(0, 16)])
@@ -64,66 +76,90 @@ def process(valid, version, output, mainPtr, secPol, keyWrap, secBoot, secBootOn
         security = (((secPol & 0x7) << 24) | ((keyWrap & 0xf) << 20) | (secBootOnRst << 16) | (secBoot << 12) | ((plOnExit & 0x1) << 11) | ((sDbg & 0x1) << 10) | ((blAtReset & 0x1) << 9) | ((bEnErase & 0x1) << 8) | ((infoProg & 0xf) << 4) | ((bNoFlashWipe & 0x1) << 3) | ((bNoSramWipe & 0x1) << 2) | ((bSwoCtrl & 0x1) << 1) | ((bDbgAllowed & 0x1)))
 
         am_print("Security Word = ", hex(security))
-        fill_word(hdr_binarray, INFO0_SECURITY_O, security)
+        fill_word(hdr_binarray, info0.INFO0_SECURITY_O, security)
 
         # Customer trim
         am_print("Customer Trim = ", hex(custTrim))
-        fill_word(hdr_binarray, INFO0_CUSTOMER_TRIM_O, custTrim)
+        fill_word(hdr_binarray, info0.INFO0_CUSTOMER_TRIM_O, custTrim)
 
         am_print("Customer Trim2 = ", hex(custTrim2))
-        fill_word(hdr_binarray, INFO0_CUSTOMER_TRIM2_O, custTrim2)
+        fill_word(hdr_binarray, info0.INFO0_CUSTOMER_TRIM2_O, custTrim2)
 
         # Override
         override = ((overridePol & 0x1) << 7) | (overrideGpio & 0x7f)
         am_print("Override = ", hex(override))
-        fill_word(hdr_binarray, INFO0_SECURITY_OVR_O, override)
+        fill_word(hdr_binarray, info0.INFO0_SECURITY_OVR_O, override)
 
         # Wired interface config
         wired = ((wiredIfMask & 0x7) | ((wiredSlvInt & 0x3f) << 3) | ((wiredI2cAddr & 0x7f) << 9) | ((wiredTimeout & 0xffff) << 16))
         am_print("WiredCfg = ", hex(wired))
-        fill_word(hdr_binarray, INFO0_SECURITY_WIRED_CFG_O, wired)
+        fill_word(hdr_binarray, info0.INFO0_SECURITY_WIRED_CFG_O, wired)
 
         # Wired UART cfg
         if (wiredIfMask & 0x1): # UART
             am_print("UART Config ", hex(u0), hex(u1), hex(u2), hex(u3), hex(u4), hex(u5))
-            fill_word(hdr_binarray, INFO0_SECURITY_WIRED_IFC_CFG0_O, u0)
-            fill_word(hdr_binarray, INFO0_SECURITY_WIRED_IFC_CFG1_O, u1)
-            fill_word(hdr_binarray, INFO0_SECURITY_WIRED_IFC_CFG2_O, u2)
-            fill_word(hdr_binarray, INFO0_SECURITY_WIRED_IFC_CFG3_O, u3)
-            fill_word(hdr_binarray, INFO0_SECURITY_WIRED_IFC_CFG4_O, u4)
-            fill_word(hdr_binarray, INFO0_SECURITY_WIRED_IFC_CFG5_O, u5)
+            fill_word(hdr_binarray, info0.INFO0_SECURITY_WIRED_IFC_CFG0_O, u0)
+            fill_word(hdr_binarray, info0.INFO0_SECURITY_WIRED_IFC_CFG1_O, u1)
+            fill_word(hdr_binarray, info0.INFO0_SECURITY_WIRED_IFC_CFG2_O, u2)
+            fill_word(hdr_binarray, info0.INFO0_SECURITY_WIRED_IFC_CFG3_O, u3)
+            fill_word(hdr_binarray, info0.INFO0_SECURITY_WIRED_IFC_CFG4_O, u4)
+            fill_word(hdr_binarray, info0.INFO0_SECURITY_WIRED_IFC_CFG5_O, u5)
 
         # version
         am_print("Version = ", hex(version))
-        fill_word(hdr_binarray, INFO0_SECURITY_VERSION_O, version)
+        fill_word(hdr_binarray, info0.INFO0_SECURITY_VERSION_O, version)
 
         # main ptr
         am_print("Main Ptr = ", hex(mainPtr))
-        fill_word(hdr_binarray, INFO0_MAIN_PTR1_O, mainPtr)
+        fill_word(hdr_binarray, info0.INFO0_MAIN_PTR1_O, mainPtr)
 
         # SRAM Reservation
         am_print("SRAM Reservation = ", hex(sresv))
-        fill_word(hdr_binarray, INFO0_SECURITY_SRAM_RESV_O, sresv)
+        fill_word(hdr_binarray, info0.INFO0_SECURITY_SRAM_RESV_O, sresv)
 
         # Flash Protections
-        am_print("Permanent Write Protections = ", hex(wprot0), ":", hex(wprot1))
-        am_print("Permanent Copy Protections = ", hex(rprot0), ":", hex(rprot1))
-        fill_word(hdr_binarray, INFO0_WRITE_PROTECT_L_O, wprot0)
-        fill_word(hdr_binarray, INFO0_WRITE_PROTECT_H_O, wprot1)
-        fill_word(hdr_binarray, INFO0_COPY_PROTECT_L_O, rprot0)
-        fill_word(hdr_binarray, INFO0_COPY_PROTECT_H_O, rprot1)
+        if (chip == 'apollo3'):
+            fill_word(hdr_binarray, info0.INFO0_WRITE_PROTECT_L_O, wprot0)
+            fill_word(hdr_binarray, info0.INFO0_WRITE_PROTECT_H_O, wprot1)
+            fill_word(hdr_binarray, info0.INFO0_COPY_PROTECT_L_O, rprot0)
+            fill_word(hdr_binarray, info0.INFO0_COPY_PROTECT_H_O, rprot1)
+            am_print("Permanent Write Protections = ", hex(wprot0), ":", hex(wprot1))
+            am_print("Permanent Copy Protections = ", hex(rprot0), ":", hex(rprot1))
+        elif (chip == 'apollo3p'):
+            fill_word(hdr_binarray, info0.INFO0_WRITE_PROTECT0_O, wprot0)
+            fill_word(hdr_binarray, info0.INFO0_WRITE_PROTECT1_O, wprot1)
+            fill_word(hdr_binarray, info0.INFO0_COPY_PROTECT0_O, rprot0)
+            fill_word(hdr_binarray, info0.INFO0_COPY_PROTECT1_O, rprot1)
+            fill_word(hdr_binarray, info0.INFO0_WRITE_PROTECT2_O, wprot2)
+            fill_word(hdr_binarray, info0.INFO0_WRITE_PROTECT3_O, wprot3)
+            fill_word(hdr_binarray, info0.INFO0_COPY_PROTECT2_O, rprot2)
+            fill_word(hdr_binarray, info0.INFO0_COPY_PROTECT3_O, rprot3)
+            am_print("Permanent Write Protections = ", hex(wprot0), ":", hex(wprot1), ":", hex(wprot2), ":", hex(wprot3))
+            am_print("Permanent Copy Protections = ", hex(rprot0), ":", hex(rprot1), ":", hex(rprot2), ":", hex(rprot3))
 
-        am_print("SBL Overridable Write Protections = ", hex(swprot0), ":", hex(swprot1))
-        am_print("SBL Overridable Copy Protections = ", hex(srprot0), ":", hex(srprot1))
-        fill_word(hdr_binarray, INFO0_WRITE_PROTECT_SBL_L_O, swprot0)
-        fill_word(hdr_binarray, INFO0_WRITE_PROTECT_SBL_H_O, swprot1)
-        fill_word(hdr_binarray, INFO0_COPY_PROTECT_SBL_L_O, srprot0)
-        fill_word(hdr_binarray, INFO0_COPY_PROTECT_SBL_H_O, srprot1)
+        if (chip == 'apollo3'):
+            fill_word(hdr_binarray, info0.INFO0_WRITE_PROTECT_SBL_L_O, swprot0)
+            fill_word(hdr_binarray, info0.INFO0_WRITE_PROTECT_SBL_H_O, swprot1)
+            fill_word(hdr_binarray, info0.INFO0_COPY_PROTECT_SBL_L_O, srprot0)
+            fill_word(hdr_binarray, info0.INFO0_COPY_PROTECT_SBL_H_O, srprot1)
+            am_print("SBL Overridable Write Protections = ", hex(swprot0), ":", hex(swprot1))
+            am_print("SBL Overridable Copy Protections = ", hex(srprot0), ":", hex(srprot1))
+        elif (chip == 'apollo3p'):
+            fill_word(hdr_binarray, info0.INFO0_WRITE_PROTECT0_SBL_O, swprot0)
+            fill_word(hdr_binarray, info0.INFO0_WRITE_PROTECT1_SBL_O, swprot1)
+            fill_word(hdr_binarray, info0.INFO0_COPY_PROTECT0_SBL_O, srprot0)
+            fill_word(hdr_binarray, info0.INFO0_COPY_PROTECT1_SBL_O, srprot1)
+            fill_word(hdr_binarray, info0.INFO0_WRITE_PROTECT2_SBL_O, swprot2)
+            fill_word(hdr_binarray, info0.INFO0_WRITE_PROTECT3_SBL_O, swprot3)
+            fill_word(hdr_binarray, info0.INFO0_COPY_PROTECT2_SBL_O, srprot2)
+            fill_word(hdr_binarray, info0.INFO0_COPY_PROTECT3_SBL_O, srprot3)
+            am_print("SBL Overridable Write Protections = ", hex(swprot0), ":", hex(swprot1), ":", hex(swprot2), ":", hex(swprot3))
+            am_print("SBL Overridable Copy Protections = ", hex(srprot0), ":", hex(srprot1), ":", hex(srprot2), ":", hex(srprot3))
 
         # Customer Key
         am_print("Customer Key")
-        am_print([hex(n) for n in custKey])
-        copy_keys(hdr_binarray, INFO0_CUSTOMER_KEY0_O, custKey, 16)
+        am_print([hex(n) for n in keys.custKey])
+        copy_keys(hdr_binarray, info0.INFO0_CUSTOMER_KEY0_O, keys.custKey, 16)
 
         # Keys
         chipId = int_to_bytes(chipId0) + int_to_bytes(chipId1)
@@ -132,45 +168,45 @@ def process(valid, version, output, mainPtr, secPol, keyWrap, secBoot, secBootOn
         am_print("chipID 16")
         am_print([hex(n) for n in chipId])
 
-        kekOffset = INFO0_CUST_KEK_W0_O
-        authKeyOffset = INFO0_CUST_AUTH_W0_O
+        kekOffset = info0.INFO0_CUST_KEK_W0_O
+        authKeyOffset = info0.INFO0_CUST_AUTH_W0_O
 
         if (keyWrap == 0): ## None
             am_print("wrap mode 0")
             am_print("KEK")
             for i in range (0, INFO_MAX_ENC_KEYS):
-                am_print([hex(n) for n in keyTblAes[i*AM_SECBOOT_KEYIDX_BYTES:(i*AM_SECBOOT_KEYIDX_BYTES + AM_SECBOOT_KEYIDX_BYTES)]])
-                copy_keys(hdr_binarray, kekOffset + i*AM_SECBOOT_KEYIDX_BYTES, keyTblAes[i*AM_SECBOOT_KEYIDX_BYTES:(i*AM_SECBOOT_KEYIDX_BYTES + AM_SECBOOT_KEYIDX_BYTES)], AM_SECBOOT_KEYIDX_BYTES)
+                am_print([hex(n) for n in keys.keyTblAes[i*AM_SECBOOT_KEYIDX_BYTES:(i*AM_SECBOOT_KEYIDX_BYTES + AM_SECBOOT_KEYIDX_BYTES)]])
+                copy_keys(hdr_binarray, kekOffset + i*AM_SECBOOT_KEYIDX_BYTES, keys.keyTblAes[i*AM_SECBOOT_KEYIDX_BYTES:(i*AM_SECBOOT_KEYIDX_BYTES + AM_SECBOOT_KEYIDX_BYTES)], AM_SECBOOT_KEYIDX_BYTES)
             am_print("AuthKey")
             for i in range (0, INFO_MAX_AUTH_KEYS):
-                am_print([hex(n) for n in keyTblHmac[i*AM_SECBOOT_KEYIDX_BYTES:(i*AM_SECBOOT_KEYIDX_BYTES + AM_SECBOOT_KEYIDX_BYTES)]])
-                copy_keys(hdr_binarray, authKeyOffset + i*AM_SECBOOT_KEYIDX_BYTES, keyTblHmac[i*AM_SECBOOT_KEYIDX_BYTES:(i*AM_SECBOOT_KEYIDX_BYTES + AM_SECBOOT_KEYIDX_BYTES)], AM_SECBOOT_KEYIDX_BYTES)
+                am_print([hex(n) for n in keys.keyTblHmac[i*AM_SECBOOT_KEYIDX_BYTES:(i*AM_SECBOOT_KEYIDX_BYTES + AM_SECBOOT_KEYIDX_BYTES)]])
+                copy_keys(hdr_binarray, authKeyOffset + i*AM_SECBOOT_KEYIDX_BYTES, keys.keyTblHmac[i*AM_SECBOOT_KEYIDX_BYTES:(i*AM_SECBOOT_KEYIDX_BYTES + AM_SECBOOT_KEYIDX_BYTES)], AM_SECBOOT_KEYIDX_BYTES)
         elif (keyWrap == 1): ## XOR
             am_print("wrap mode 1")
             am_print("KEK")
             for i in range (0, INFO_MAX_ENC_KEYS):
-                scrambledKey = keyTblAes[i*AM_SECBOOT_KEYIDX_BYTES:(i*AM_SECBOOT_KEYIDX_BYTES + AM_SECBOOT_KEYIDX_BYTES)]
+                scrambledKey = keys.keyTblAes[i*AM_SECBOOT_KEYIDX_BYTES:(i*AM_SECBOOT_KEYIDX_BYTES + AM_SECBOOT_KEYIDX_BYTES)]
                 for j in range (0, AM_SECBOOT_KEYIDX_BYTES):
-                    scrambledKey[j] = scrambledKey[j] ^ custKey[j] ^ chipId[j]
+                    scrambledKey[j] = scrambledKey[j] ^ keys.custKey[j] ^ chipId[j]
                 am_print([hex(n) for n in scrambledKey])
                 copy_keys(hdr_binarray, kekOffset + i*AM_SECBOOT_KEYIDX_BYTES, scrambledKey, AM_SECBOOT_KEYIDX_BYTES)
             am_print("AuthKey")
             for i in range (0, INFO_MAX_AUTH_KEYS):
-                scrambledKey = keyTblHmac[i*AM_SECBOOT_KEYIDX_BYTES:(i*AM_SECBOOT_KEYIDX_BYTES + AM_SECBOOT_KEYIDX_BYTES)]
+                scrambledKey = keys.keyTblHmac[i*AM_SECBOOT_KEYIDX_BYTES:(i*AM_SECBOOT_KEYIDX_BYTES + AM_SECBOOT_KEYIDX_BYTES)]
                 for j in range (0, AM_SECBOOT_KEYIDX_BYTES):
-                    scrambledKey[j] = scrambledKey[j] ^ custKey[j] ^ chipId[j]
+                    scrambledKey[j] = scrambledKey[j] ^ keys.custKey[j] ^ chipId[j]
                 am_print([hex(n) for n in scrambledKey])
                 copy_keys(hdr_binarray, authKeyOffset + i*AM_SECBOOT_KEYIDX_BYTES, scrambledKey, AM_SECBOOT_KEYIDX_BYTES)
         elif (keyWrap == 2): ## AES128
             am_print("wrap mode 2")
             am_print("KEK")
             for i in range (0, INFO_MAX_ENC_KEYS):
-                scrambledKey = encrypt_app_aes(keyTblAes[i*AM_SECBOOT_KEYIDX_BYTES:(i*AM_SECBOOT_KEYIDX_BYTES + AM_SECBOOT_KEYIDX_BYTES)], custKey, chipId)
+                scrambledKey = encrypt_app_aes(keys.keyTblAes[i*AM_SECBOOT_KEYIDX_BYTES:(i*AM_SECBOOT_KEYIDX_BYTES + AM_SECBOOT_KEYIDX_BYTES)], keys.custKey, chipId)
                 am_print([hex(n) for n in scrambledKey])
                 copy_keys(hdr_binarray, kekOffset + i*AM_SECBOOT_KEYIDX_BYTES, scrambledKey, AM_SECBOOT_KEYIDX_BYTES)
             am_print("AuthKey")
             for i in range (0, INFO_MAX_AUTH_KEYS):
-                scrambledKey = encrypt_app_aes(keyTblHmac[i*AM_SECBOOT_KEYIDX_BYTES:(i*AM_SECBOOT_KEYIDX_BYTES + AM_SECBOOT_KEYIDX_BYTES)], custKey, chipId)
+                scrambledKey = encrypt_app_aes(keys.keyTblHmac[i*AM_SECBOOT_KEYIDX_BYTES:(i*AM_SECBOOT_KEYIDX_BYTES + AM_SECBOOT_KEYIDX_BYTES)], keys.custKey, chipId)
                 am_print([hex(n) for n in scrambledKey])
                 copy_keys(hdr_binarray, authKeyOffset + i*AM_SECBOOT_KEYIDX_BYTES, scrambledKey, AM_SECBOOT_KEYIDX_BYTES)
         else:
@@ -178,9 +214,9 @@ def process(valid, version, output, mainPtr, secPol, keyWrap, secBoot, secBootOn
 
         # Revocation Masks
         am_print("KREV Mask = ", hex(krev))
-        fill_word(hdr_binarray, INFO0_KREVTRACK_O, krev)
+        fill_word(hdr_binarray, info0.INFO0_KREVTRACK_O, krev)
         am_print("AREV Mask = ", hex(arev))
-        fill_word(hdr_binarray, INFO0_AREVTRACK_O, arev)
+        fill_word(hdr_binarray, info0.INFO0_AREVTRACK_O, arev)
 
 
     # now output all three binary arrays in the proper order
@@ -318,6 +354,37 @@ def parse_arguments():
     parser.add_argument('--srprot1', dest='srprot1', type=auto_int, default = hex(0xFFFFFFFF),
                         help='SBL overridable Copy Protections Mask for flash#1 (Default 0xFFFFFFFF)')
 
+    parser.add_argument('--wprot2', dest='wprot2', type=auto_int, default = hex(0xFFFFFFFF),
+                        help='Permanent Write Protections Mask for flash#2 (Default 0xFFFFFFFF)')
+
+    parser.add_argument('--wprot3', dest='wprot3', type=auto_int, default = hex(0xFFFFFFFF),
+                        help='Permanent Write Protections Mask for flash#3 (Default 0xFFFFFFFF)')
+
+    parser.add_argument('--rprot2', dest='rprot2', type=auto_int, default = hex(0xFFFFFFFF),
+                        help='Permanent Copy Protections Mask for flash#2 (Default 0xFFFFFFFF)')
+
+    parser.add_argument('--rprot3', dest='rprot3', type=auto_int, default = hex(0xFFFFFFFF),
+                        help='Permanent Copy Protections Mask for flash#3 (Default 0xFFFFFFFF)')
+
+    parser.add_argument('--swprot2', dest='swprot2', type=auto_int, default = hex(0xFFFFFFFF),
+                        help='SBL overridable Write Protections Mask for flash#2 (Default 0xFFFFFFFF)')
+
+    parser.add_argument('--swprot3', dest='swprot3', type=auto_int, default = hex(0xFFFFFFFF),
+                        help='SBL overridable Write Protections Mask for flash#3 (Default 0xFFFFFFFF)')
+
+    parser.add_argument('--srprot2', dest='srprot2', type=auto_int, default = hex(0xFFFFFFFF),
+                        help='SBL overridable Copy Protections Mask for flash#2 (Default 0xFFFFFFFF)')
+
+    parser.add_argument('--srprot3', dest='srprot3', type=auto_int, default = hex(0xFFFFFFFF),
+                        help='SBL overridable Copy Protections Mask for flash#3 (Default 0xFFFFFFFF)')
+
+    parser.add_argument('--chipType', dest='chip', type=str, default='apollo3',
+                        choices = ['apollo3', 'apollo3p'],
+                        help='Chip Type: apollo3, apollo3p (default = apollo3)')
+ 
+    parser.add_argument('-k', type=str, dest='keyFile', nargs='?', default='keys_info.py',
+                        help='key file in specified format [default = keys_info.py]')
+
     parser.add_argument('--loglevel', dest='loglevel', type=auto_int, default=AM_PRINT_LEVEL_INFO,
                         choices = range(AM_PRINT_LEVEL_MIN, AM_PRINT_LEVEL_MAX+1),
                         help=helpPrintLevel)
@@ -336,7 +403,7 @@ def main():
     args = parse_arguments()
     am_set_print_level(args.loglevel)
 
-    process(args.valid, args.version, args.output, args.mainPtr, args.secPol, args.keyWrap, args.secBoot, args.secBootOnRst, args.plOnExit, args.sDbg, args.bEnErase, args.infoProg, args.bNoSramWipe, args.bSwoCtrl, args.bDbgAllowed, args.custTrim, args.custTrim2, args.overrideGpio, args.overridePol, args.wiredIfMask, args.wiredSlvInt, args.wiredI2cAddr, args.wiredTimeout, args.u0, args.u1, args.u2, args.u3, args.u4, args.u5, args.krev, args.arev, args.chipId0, args.chipId1, args.sresv, args.wprot0, args.wprot1, args.rprot0, args.rprot1, args.swprot0, args.swprot1, args.srprot0, args.srprot1)
+    process(args.valid, args.version, args.output, args.mainPtr, args.secPol, args.keyWrap, args.secBoot, args.secBootOnRst, args.plOnExit, args.sDbg, args.bEnErase, args.infoProg, args.bNoSramWipe, args.bSwoCtrl, args.bDbgAllowed, args.custTrim, args.custTrim2, args.overrideGpio, args.overridePol, args.wiredIfMask, args.wiredSlvInt, args.wiredI2cAddr, args.wiredTimeout, args.u0, args.u1, args.u2, args.u3, args.u4, args.u5, args.krev, args.arev, args.chipId0, args.chipId1, args.sresv, args.wprot0, args.wprot1, args.rprot0, args.rprot1, args.swprot0, args.swprot1, args.srprot0, args.srprot1, args.wprot2, args.wprot3, args.rprot2, args.rprot3, args.swprot2, args.swprot3, args.srprot2, args.srprot3, args.chip, args.keyFile)
 
 if __name__ == '__main__':
     main()

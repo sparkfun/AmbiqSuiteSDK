@@ -45,7 +45,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
-// This is part of revision v2.2.0-7-g63f7c2ba1 of the AmbiqSuite Development Package.
+// This is part of revision 2.3.2 of the AmbiqSuite Development Package.
 //
 //*****************************************************************************
 
@@ -642,7 +642,7 @@ uint32_t am_hal_adc_control(void *pHandle,
             //
             // pArgs must point to an array of 3 floats.  To assure that the
             // array is valid, upon calling the 3rd float (pArgs[2]) must be
-            // set to the to the value -123.456F.
+            // set to the value -123.456F.
             //
             if ( pArgs != NULL )
             {

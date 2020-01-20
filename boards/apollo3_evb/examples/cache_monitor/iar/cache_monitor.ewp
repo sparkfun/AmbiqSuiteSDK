@@ -208,8 +208,9 @@
                 <option>
                     <name>CCDefines</name>
                     <state>iar</state>
-          <state>AM_PACKAGE_BGA</state>
           <state>AM_PART_APOLLO3</state>
+          <state>AM_PACKAGE_BGA</state>
+          <state>FIREBALL_CARD</state>
           <state>APS6404L</state>
                 </option>
                 <option>
@@ -287,11 +288,11 @@
                 </option>
                 <option>
                     <name>IExtraOptionsCheck</name>
-                    <state>0</state>
+                    <state>1</state>
                 </option>
                 <option>
                     <name>IExtraOptions</name>
-                    <state></state>
+                    <state>--no_path_in_file_macros</state>
                 </option>
                 <option>
                     <name>CCLangConformance</name>
@@ -335,14 +336,14 @@
                 </option>
                 <option>
                     <name>CCIncludePath2</name>
-          <state>$PROJ_DIR$\..\..\..\bsp</state>
-          <state>$PROJ_DIR$\..\..\..\..\..\CMSIS\ARM\Include</state>
-          <state>$PROJ_DIR$\..\src</state>
           <state>$PROJ_DIR$\..\..\..\..\..\utils</state>
           <state>$PROJ_DIR$\..\..\..\..\..\mcu\apollo3</state>
-          <state>$PROJ_DIR$\..\..\..\..\..\devices</state>
-          <state>$PROJ_DIR$\..\..\..\..\..</state>
           <state>$PROJ_DIR$\..\..\..\..\..\CMSIS\AmbiqMicro\Include</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\devices</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\CMSIS\ARM\Include</state>
+          <state>$PROJ_DIR$\..\..\..\bsp</state>
+          <state>$PROJ_DIR$\..\..\..\..\..</state>
+          <state>$PROJ_DIR$\..\src</state>
                 </option>
                 <option>
                     <name>CCStdIncCheck</name>
@@ -608,14 +609,14 @@
                 </option>
                 <option>
                     <name>AUserIncludes</name>
-          <state>$PROJ_DIR$\..\..\..\bsp</state>
-          <state>$PROJ_DIR$\..\..\..\..\..\CMSIS\ARM\Include</state>
-          <state>$PROJ_DIR$\..\src</state>
           <state>$PROJ_DIR$\..\..\..\..\..\utils</state>
           <state>$PROJ_DIR$\..\..\..\..\..\mcu\apollo3</state>
-          <state>$PROJ_DIR$\..\..\..\..\..\devices</state>
-          <state>$PROJ_DIR$\..\..\..\..\..</state>
           <state>$PROJ_DIR$\..\..\..\..\..\CMSIS\AmbiqMicro\Include</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\devices</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\CMSIS\ARM\Include</state>
+          <state>$PROJ_DIR$\..\..\..\bsp</state>
+          <state>$PROJ_DIR$\..\..\..\..\..</state>
+          <state>$PROJ_DIR$\..\src</state>
                 </option>
                 <option>
                     <name>AExtraOptionsCheckV2</name>
@@ -1237,8 +1238,9 @@
                     <name>CCDefines</name>
                     <state>NDEBUG</state>
                     <state>iar</state>
-          <state>AM_PACKAGE_BGA</state>
           <state>AM_PART_APOLLO3</state>
+          <state>AM_PACKAGE_BGA</state>
+          <state>FIREBALL_CARD</state>
           <state>APS6404L</state>
                 </option>
                 <option>
@@ -1364,14 +1366,14 @@
                 </option>
                 <option>
                     <name>CCIncludePath2</name>
-          <state>$PROJ_DIR$\..\..\..\bsp</state>
-          <state>$PROJ_DIR$\..\..\..\..\..\CMSIS\ARM\Include</state>
-          <state>$PROJ_DIR$\..\src</state>
           <state>$PROJ_DIR$\..\..\..\..\..\utils</state>
           <state>$PROJ_DIR$\..\..\..\..\..\mcu\apollo3</state>
-          <state>$PROJ_DIR$\..\..\..\..\..\devices</state>
-          <state>$PROJ_DIR$\..\..\..\..\..</state>
           <state>$PROJ_DIR$\..\..\..\..\..\CMSIS\AmbiqMicro\Include</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\devices</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\CMSIS\ARM\Include</state>
+          <state>$PROJ_DIR$\..\..\..\bsp</state>
+          <state>$PROJ_DIR$\..\..\..\..\..</state>
+          <state>$PROJ_DIR$\..\src</state>
                 </option>
                 <option>
                     <name>CCStdIncCheck</name>

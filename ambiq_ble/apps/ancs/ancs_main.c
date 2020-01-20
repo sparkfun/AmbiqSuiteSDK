@@ -43,7 +43,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
-// This is part of revision v2.2.0-7-g63f7c2ba1 of the AmbiqSuite Development Package.
+// This is part of revision 2.3.2 of the AmbiqSuite Development Package.
 //
 //*****************************************************************************
 
@@ -421,8 +421,8 @@ static void ancsSetup(ancsMsg_t *pMsg)
     AppAdvSetData(APP_SCAN_DATA_DISCOVERABLE, sizeof(ancsScanDataDisc), (uint8_t *) ancsScanDataDisc);
 
     /* set advertising and scan response data for connectable mode */
-    AppAdvSetData(APP_ADV_DATA_CONNECTABLE, sizeof(ancsAdvDataDisc), (uint8_t *) ancsAdvDataDisc);
-    AppAdvSetData(APP_SCAN_DATA_CONNECTABLE, sizeof(ancsScanDataDisc), (uint8_t *) ancsScanDataDisc);
+    AppAdvSetData(APP_ADV_DATA_CONNECTABLE, 0, NULL);
+    AppAdvSetData(APP_SCAN_DATA_CONNECTABLE, 0, NULL);
 
     /* start advertising; automatically set connectable/discoverable mode and bondable mode */
     AppAdvStart(APP_MODE_AUTO_INIT);
@@ -555,6 +555,10 @@ static void ancsDiscCback(dmConnId_t connId, uint8_t status)
       AppSlaveSecurityReq(connId);
       break;
 
+    case APP_DISC_READ_DATABASE_HASH:
+      /* Read peer's database hash */
+      AppDiscReadDatabaseHash(connId);
+      break;
     case APP_DISC_START:
       /* initialize discovery state */
       ancsCb.discState = ANCS_DISC_GATT_SVC;
@@ -656,7 +660,9 @@ static void ancsProcMsg(ancsMsg_t *pMsg)
         break;
 
         case DM_RESET_CMPL_IND:
+            AttsCalculateDbHash();
             DmSecGenerateEccKeyReq();
+            ancsSetup(pMsg);
             uiEvent = APP_UI_RESET_CMPL;
         break;
 
@@ -684,11 +690,13 @@ static void ancsProcMsg(ancsMsg_t *pMsg)
         break;
 
         case DM_SEC_PAIR_CMPL_IND:
+            DmSecGenerateEccKeyReq();
             uiEvent = APP_UI_SEC_PAIR_CMPL;
             APP_TRACE_INFO1("------------MTU SIZE = %d------------", AttGetMtu(pMsg->hdr.param));
         break;
 
         case DM_SEC_PAIR_FAIL_IND:
+            DmSecGenerateEccKeyReq();
             uiEvent = APP_UI_SEC_PAIR_FAIL;
         break;
 
@@ -704,6 +712,21 @@ static void ancsProcMsg(ancsMsg_t *pMsg)
             AppHandlePasskey(&pMsg->dm.authReq);
         break;
 
+        case DM_SEC_ECC_KEY_IND:
+            DmSecSetEccKey(&pMsg->dm.eccMsg.data.key);
+          break;
+
+        case DM_SEC_COMPARE_IND:
+          AppHandleNumericComparison(&pMsg->dm.cnfInd);
+          break;
+
+        case DM_PRIV_CLEAR_RES_LIST_IND:
+          APP_TRACE_INFO1("Clear resolving list status 0x%02x", pMsg->hdr.status);
+          break;
+
+        case DM_HW_ERROR_IND:
+          uiEvent = APP_UI_HW_ERROR;
+          break;
         case DM_VENDOR_SPEC_CMD_CMPL_IND:
           {
             #if defined(AM_PART_APOLLO) || defined(AM_PART_APOLLO2)
@@ -735,11 +758,6 @@ static void ancsProcMsg(ancsMsg_t *pMsg)
             #endif
           }
           break;
-
-        case DM_SEC_ECC_KEY_IND:
-            DmSecSetEccKey(&pMsg->dm.eccMsg.data.key);
-            ancsSetup(pMsg);
-
         default:
         break;
     }
@@ -778,6 +796,7 @@ void AncsHandlerInit(wsfHandlerId_t handlerId)
 
     /* Initialize application framework */
     AppSlaveInit();
+	AppServerInit();
     AppDiscInit();
 
     AnccInit(handlerId, (anccCfg_t*)(&ancsAnccCfg), ANCC_DISCOVER_TIMER_IND);
@@ -1025,8 +1044,12 @@ void AncsStart(void)
     AnccCbackRegister(ancsAnccAttrCback, ancsAnccNotifCback, anccNotiRemoveCback);
 
     /* Initialize attribute server database */
+    SvcCoreGattCbackRegister(GattReadCback, GattWriteCback);
     SvcCoreAddGroup();
     SvcDisAddGroup();
+
+    /* Set Service Changed CCCD index. */
+    GattSetSvcChangedIdx(ANCS_GATT_SC_CCC_IDX);
 
     /* Reset the device */
     DmDevReset();

@@ -29,7 +29,15 @@
 //!         ./mspi_loader_binary_combiner.py --loaderbin iar/bin/mspi_flash_loader.bin --appbin hello_world.bin --install-address 0x04000000 --flags 0x2 --outbin loader_hello_world --loader-address 0x0000C000
 //!     4. Open the J-Link SWO Viewer to the target board.
 //!     5. Open the J-Flash Lite program.  Select the /examples/mspi_flash_loader/loader_hello_world.bin file and program at 0x0000C000 offset.
-//
+//!
+//! And if the fireball device card is used, this example can work on:
+//! Apollo3_eb + Fireball
+//! Apollo3_eb + Fireball2
+//! Recommend to use 1.8V power supply voltage.
+//! Define FIREBALL_CARD or FIREBALL2_CARD in the config-template.ini file to select.
+//! Define CYPRESS_S25FS064S or ADESTO_ATXP032 for Fireball
+//! Define ADESTO_ATXP032 for Fireball2
+//!
 //*****************************************************************************
 
 //*****************************************************************************
@@ -66,7 +74,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
-// This is part of revision v2.2.0-7-g63f7c2ba1 of the AmbiqSuite Development Package.
+// This is part of revision 2.3.2 of the AmbiqSuite Development Package.
 //
 //*****************************************************************************
 #include "am_mcu_apollo.h"
@@ -74,7 +82,7 @@
 #include "am_devices_mspi_flash.h"
 #include "am_util.h"
 
-#if FIREBALL_CARD
+#if FIREBALL_CARD || FIREBALL2_CARD
 //
 // The Fireball device card multiplexes various devices including each of an SPI
 // and I2C FRAM and MSPI flash devices.
@@ -312,7 +320,7 @@ main(void)
     DEBUG_PRINT("Apollo3 MSPI Flash Loader Example\n\n");
 #endif
 
-#if FIREBALL_CARD
+#if FIREBALL_CARD || FIREBALL2_CARD
     //
     // Set the MUX for the Flash Device
     //
@@ -332,6 +340,10 @@ main(void)
     else if ( ui32ID == FIREBALL_ID )
     {
         DEBUG_PRINT("Fireball found, ID is 0x%X.\n", ui32ID);
+    }
+    else if ( ui32ID == FIREBALL2_ID )
+    {
+        DEBUG_PRINT("\nFireball 2 found, ID is 0x%X.\n", ui32ID);
     }
     else
     {

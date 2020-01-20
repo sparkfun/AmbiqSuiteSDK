@@ -40,7 +40,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
-// This is part of revision v2.2.0-7-g63f7c2ba1 of the AmbiqSuite Development Package.
+// This is part of revision 2.3.2 of the AmbiqSuite Development Package.
 //
 //*****************************************************************************
 
@@ -497,31 +497,21 @@ am_devices_em9304_block_write(const am_devices_em9304_t *psDevice,
                 }
                 for (uint32_t i = 0; i < AM_DEVICES_EM9304_TIMEOUT; i++)
                 {
-                    //
-                    // Disable interrupt while we decide whether we're going to sleep.
-                    //
-                    uint32_t ui32IntStatus = am_hal_interrupt_master_disable();
-
                     if (!gIomDone)
                     {
                         //
                         // Sleep while waiting for the IOM transaction to finish.
                         //
                         am_hal_sysctrl_sleep(AM_HAL_SYSCTRL_SLEEP_DEEP);
-                        //
-                        // Enable interrupts
-                        //
-                        am_hal_interrupt_master_set(ui32IntStatus);
+
                     }
-                    else
+
+                    if (gIomDone)
                     {
-                        //
-                        // Enable interrupts
-                        //
-                        am_hal_interrupt_master_set(ui32IntStatus);
                         break;
                     }
-                    am_util_delay_us(100);
+
+                    am_util_delay_us(25);
                 }
 #else
                 if (AM_HAL_IOM_SUCCESS != am_hal_iom_spi_write(psDevice->ui32IOMModule,
@@ -688,31 +678,22 @@ am_devices_em9304_block_read(const am_devices_em9304_t *psDevice,
         }
         for (uint32_t i = 0; i < AM_DEVICES_EM9304_TIMEOUT; i++)
         {
-            //
-            // Disable interrupt while we decide whether we're going to sleep.
-            //
-            uint32_t ui32IntStatus = am_hal_interrupt_master_disable();
-
+            
             if (!gIomDone)
             {
                 //
                 // Sleep while waiting for the IOM transaction to finish.
                 //
                 am_hal_sysctrl_sleep(AM_HAL_SYSCTRL_SLEEP_DEEP);
-                //
-                // Enable interrupts
-                //
-                am_hal_interrupt_master_set(ui32IntStatus);
+                
             }
-            else
+
+            if (gIomDone)
             {
-                //
-                // Enable interrupts
-                //
-                am_hal_interrupt_master_set(ui32IntStatus);
                 break;
             }
-            am_util_delay_us(100);
+
+            am_util_delay_us(25);
         }
 #else
         if (AM_HAL_IOM_SUCCESS != am_hal_iom_spi_read(psDevice->ui32IOMModule,
@@ -964,7 +945,8 @@ am_devices_em9304_config_pins(void)
     am_hal_gpio_state_write(AM_BSP_GPIO_EM9304_CS, AM_HAL_GPIO_OUTPUT_SET);
 
     // Note - interrupt polarity is handled by the pin configuration.
-    am_hal_gpio_interrupt_clear(AM_HAL_GPIO_BIT(AM_BSP_GPIO_EM9304_INT));
+    AM_HAL_GPIO_MASKCREATE(GpioIntMask);
+    am_hal_gpio_interrupt_clear(AM_HAL_GPIO_MASKBIT(pGpioIntMask, AM_BSP_GPIO_EM9304_INT));
 #else // AM_APOLLO3_GPIO
     am_bsp_pin_enable(EM9304_CS);
     am_bsp_pin_enable(EM9304_INT);
@@ -979,7 +961,8 @@ am_devices_em9304_config_pins(void)
 void am_devices_em9304_enable_interrupt(void)
 {
 #if AM_APOLLO3_GPIO
-    am_hal_gpio_interrupt_enable(AM_HAL_GPIO_BIT(AM_BSP_GPIO_EM9304_INT));
+    AM_HAL_GPIO_MASKCREATE(GpioIntMask);
+    am_hal_gpio_interrupt_enable(AM_HAL_GPIO_MASKBIT(pGpioIntMask, AM_BSP_GPIO_EM9304_INT));
 #else // AM_APOLLO3_GPIO
     am_hal_gpio_int_enable(AM_HAL_GPIO_BIT(AM_BSP_GPIO_EM9304_INT));
 #endif // AM_APOLLO3_GPIO
@@ -988,7 +971,8 @@ void am_devices_em9304_enable_interrupt(void)
 void am_devices_em9304_disable_interrupt(void)
 {
 #if AM_APOLLO3_GPIO
-    am_hal_gpio_interrupt_disable(AM_HAL_GPIO_BIT(AM_BSP_GPIO_EM9304_INT));
+    AM_HAL_GPIO_MASKCREATE(GpioIntMask);
+    am_hal_gpio_interrupt_disable(AM_HAL_GPIO_MASKBIT(pGpioIntMask, AM_BSP_GPIO_EM9304_INT));
 #else // AM_APOLLO3_GPIO
     am_hal_gpio_int_disable(AM_HAL_GPIO_BIT(AM_BSP_GPIO_EM9304_INT));
 #endif // AM_APOLLO3_GPIO
@@ -996,7 +980,7 @@ void am_devices_em9304_disable_interrupt(void)
 #endif // defined(AM_PART_APOLLO) || defined(AM_PART_APOLLO2)
 
 
-#if defined(AM_PART_APOLLO3)
+#if (defined(AM_PART_APOLLO3) || defined(AM_PART_APOLLO3P))
 
 //*****************************************************************************
 //
@@ -1037,8 +1021,9 @@ am_devices_em9304_config_pins(void)
     am_hal_gpio_state_write(AM_BSP_GPIO_EM9304_CS, AM_HAL_GPIO_OUTPUT_SET);
 
     // Note - interrupt polarity is handled by the pin configuration.
-    am_hal_gpio_interrupt_clear(AM_HAL_GPIO_BIT(AM_BSP_GPIO_EM9304_INT));
-    am_hal_gpio_interrupt_enable(AM_HAL_GPIO_BIT(AM_BSP_GPIO_EM9304_INT));
+    AM_HAL_GPIO_MASKCREATE(GpioIntMask);
+    am_hal_gpio_interrupt_clear( AM_HAL_GPIO_MASKBIT(pGpioIntMask, AM_BSP_GPIO_EM9304_INT));
+    am_hal_gpio_interrupt_enable(AM_HAL_GPIO_MASKBIT(pGpioIntMask, AM_BSP_GPIO_EM9304_INT));
 #else // AM_APOLLO3_GPIO
     am_bsp_pin_enable(EM9304_CS);
     am_bsp_pin_enable(EM9304_INT);
@@ -1103,71 +1088,5 @@ am_devices_em9304_init(uint32_t ui32Module, am_hal_iom_config_t *psIomConfig, vo
     return AM_DEVICES_EM9304_STATUS_SUCCESS;
 }
 
-
-//*****************************************************************************
-//
-//! @brief Apollo3 full duplex SPI transaction.
-//!
-//! @param None.
-//!
-//! This function handles a full duplex transaction on the EM9304.
-//!
-//! @return None.
-//
-//*****************************************************************************
-uint32_t
-am_devices_em9304_fullduplex(uint32_t ui32WriteAddress,
-                             uint8_t *pui8TxBuffer,
-                             uint8_t *pui8RxBuffer,
-                             uint32_t ui32TxNumBytes)
-{
-    am_hal_iom_transfer_t Transaction;
-    uint32_t ui32Status;
-
-    //
-    // Set up the full-duplex transaction.
-    //
-    Transaction.uPeerInfo.ui32SpiChipSelect = g_sEm9304.ui32IOMChipSelect;
-    Transaction.bContinue         = false;
-    Transaction.ui32InstrLen      = 0;
-    Transaction.ui32Instr      = 0;
-    Transaction.ui32NumBytes       = ui32TxNumBytes;
-    Transaction.pui32TxBuffer       = (uint32_t *)pui8TxBuffer;
-    Transaction.pui32RxBuffer       = (uint32_t *)pui8RxBuffer;
-    Transaction.eDirection       = AM_HAL_IOM_FULLDUPLEX;
-    Transaction.ui8RepeatCount   = 0;
-
-    // Select the EM9304
-    EM9304_SPISLAVESELECT();
-
-    // Wait EM9304 RDY signal or timeout
-    for (uint32_t i = 0; i < AM_DEVICES_EM9304_TIMEOUT; i++)
-    {
-        if (EM9304_RDY_INT())
-        {
-            break;
-        }
-        am_util_delay_us(100);
-    }
-    if (!EM9304_RDY_INT())
-    {
-#ifdef AM_PART_APOLLO3
-        return AM_HAL_STATUS_TIMEOUT;
-#else
-        return AM_HAL_IOM_ERR_TIMEOUT;
-#endif
-    }
-
-    //
-    // Do the transaction.
-    // Header information is assumed to be in the TX buffer.
-    //
-    ui32Status = am_hal_iom_spi_blocking_fullduplex(g_pEM9304IOMHandle,
-                                                    &Transaction);
-
-    // Deselect the EM9304
-    EM9304_SPISLAVEDESELECT();
-    return ui32Status;
-}
 #endif // defined(AM_PART_APOLLO3)
 

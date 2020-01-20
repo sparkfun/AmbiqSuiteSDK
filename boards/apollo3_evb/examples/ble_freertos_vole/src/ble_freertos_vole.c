@@ -48,7 +48,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
-// This is part of revision v2.2.0-7-g63f7c2ba1 of the AmbiqSuite Development Package.
+// This is part of revision 2.3.2 of the AmbiqSuite Development Package.
 //
 //*****************************************************************************
 
@@ -95,8 +95,8 @@ enable_print_interface(void)
 int
 main(void)
 {
-	#if defined (AM_PART_APOLLO2)
-	
+    #if defined(AM_PART_APOLLO2)
+
     //
     // Set the clock frequency
     //
@@ -112,7 +112,7 @@ main(void)
 
 #endif
 
-#if defined (AM_PART_APOLLO3)
+#if defined(AM_PART_APOLLO3) || defined(AM_PART_APOLLO3P)
 
     //
     // Set the clock frequency
@@ -132,7 +132,7 @@ main(void)
     am_bsp_low_power_init();
     //
     // clear stimer configuration, it may cause exception if retain old value.
-    //   
+    //
     am_hal_stimer_config(0x03);
 #endif
     // Turn off unused Flash & SRAM

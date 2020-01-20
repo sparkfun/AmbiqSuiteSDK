@@ -45,7 +45,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
-// This is part of revision v2.2.0-7-g63f7c2ba1 of the AmbiqSuite Development Package.
+// This is part of revision 2.3.2 of the AmbiqSuite Development Package.
 //
 //*****************************************************************************
 #ifndef AM_HAL_GLOBAL_H
@@ -55,6 +55,13 @@
 extern "C"
 {
 #endif
+
+//*****************************************************************************
+//
+// Device definitions
+//
+//*****************************************************************************
+#define AM_HAL_DEVICE_NAME      "Apollo3 Blue"
 
 //*****************************************************************************
 //
@@ -74,11 +81,11 @@ extern "C"
 //*****************************************************************************
 #ifndef AM_HAL_VERSION_MAJ
 //
-// Set current HAL version to 2.2.0
+// Set current HAL version to 2.3.2
 //
 #define AM_HAL_VERSION_MAJ      2
-#define AM_HAL_VERSION_MIN      2
-#define AM_HAL_VERSION_REV      0
+#define AM_HAL_VERSION_MIN      3
+#define AM_HAL_VERSION_REV      2
 #endif // AM_HAL_VERSION_MAJ
 
 //*****************************************************************************

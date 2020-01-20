@@ -34,7 +34,7 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 #
-# This is part of revision v2.2.0-7-g63f7c2ba1 of the AmbiqSuite Development Package.
+# This is part of revision 2.3.2 of the AmbiqSuite Development Package.
 #
 #******************************************************************************
 TARGET := mspi_iom_transfer
@@ -82,25 +82,25 @@ all clean:
 else
 
 DEFINES = -DPART_$(PART)
-DEFINES+= -DAPS6404L
-DEFINES+= -DENABLE_LOGGING
-DEFINES+= -DFIREBALL_CARD
-DEFINES+= -DCYPRESS_S25FS064S
+DEFINES+= -DADESTO_ATXP032
 DEFINES+= -DAM_UTIL_FAULTISR_PRINT
+DEFINES+= -DFIREBALL_CARD
 DEFINES+= -DAM_PACKAGE_BGA
+DEFINES+= -DENABLE_LOGGING
 DEFINES+= -DAM_PART_APOLLO3
+DEFINES+= -Dgcc
 
-INCLUDES = -I../../../bsp
-INCLUDES+= -I../../../../../CMSIS/ARM/Include
+INCLUDES = -I../../../../../CMSIS/ARM/Include
+INCLUDES+= -I../../../../..
+INCLUDES+= -I../../../../../CMSIS/AmbiqMicro/Include
 INCLUDES+= -I../../../../../mcu/apollo3
+INCLUDES+= -I../src
 INCLUDES+= -I../../../../../devices
 INCLUDES+= -I../../../../../utils
-INCLUDES+= -I../../../../../CMSIS/AmbiqMicro/Include
-INCLUDES+= -I../../../../..
-INCLUDES+= -I../src
+INCLUDES+= -I../../../bsp
 
-VPATH = ../../../../../devices
-VPATH+=:../src
+VPATH = ../src
+VPATH+=:../../../../../devices
 VPATH+=:../../../../../utils
 
 SRC = mspi_iom_transfer.c
@@ -125,7 +125,7 @@ LIBS = ../../../../../mcu/apollo3/hal/gcc/bin/libam_hal.a
 LIBS += ../../../bsp/gcc/bin/libam_bsp.a
 
 CFLAGS = -mthumb -mcpu=$(CPU) -mfpu=$(FPU) -mfloat-abi=$(FABI)
-CFLAGS+= -ffunction-sections -fdata-sections
+CFLAGS+= -ffunction-sections -fdata-sections -fomit-frame-pointer
 CFLAGS+= -MMD -MP -std=c99 -Wall -g
 CFLAGS+= -O0
 CFLAGS+= $(DEFINES)
