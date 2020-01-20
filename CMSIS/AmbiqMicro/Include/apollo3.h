@@ -55,6 +55,10 @@
 #ifndef APOLLO3_H
 #define APOLLO3_H
 
+#ifdef OVERFLOW
+#undef OVERFLOW
+#endif // OVERFLOW
+
 #ifdef __cplusplus
 extern "C" {
 #endif
