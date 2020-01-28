@@ -46,7 +46,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
-// This is part of revision v2.2.0-7-g63f7c2ba1 of the AmbiqSuite Development Package.
+// This is part of revision 2.3.2 of the AmbiqSuite Development Package.
 //
 //*****************************************************************************
 
@@ -178,7 +178,8 @@ main(void)
     //
     am_hal_gpio_fastgpio_disable(FASTGPIO_PIN_B);
     am_hal_gpio_fastgpio_clr(FASTGPIO_PIN_B);
-    ui32Ret = am_hal_gpio_fast_pinconfig((uint64_t)0x1 << FASTGPIO_PIN_B,
+    AM_HAL_GPIO_MASKCREATE(sFastGpioMask);
+    ui32Ret = am_hal_gpio_fast_pinconfig(AM_HAL_GPIO_MASKBIT(psFastGpioMask, FASTGPIO_PIN_B),
                                          g_AM_HAL_GPIO_OUTPUT_12, 0);
     if ( ui32Ret )
     {
@@ -265,11 +266,17 @@ main(void)
     am_hal_gpio_fastgpio_clr(AM_BSP_GPIO_LED2);
     am_hal_gpio_fastgpio_clr(AM_BSP_GPIO_LED3);
     am_hal_gpio_fastgpio_clr(AM_BSP_GPIO_LED4);
-    ui32Ret = am_hal_gpio_fast_pinconfig((uint64_t)0x1 << AM_BSP_GPIO_LED0 |
-                                         (uint64_t)0x1 << AM_BSP_GPIO_LED1 |
-                                         (uint64_t)0x1 << AM_BSP_GPIO_LED2 |
-                                         (uint64_t)0x1 << AM_BSP_GPIO_LED3 |
-                                         (uint64_t)0x1 << AM_BSP_GPIO_LED4,
+
+    //
+    // Clear the GPIO bitmask, then set the needed bits.
+    //
+    AM_HAL_GPIO_MASKCLR(psFastGpioMask);
+    AM_HAL_GPIO_MASKBIT(psFastGpioMask, AM_BSP_GPIO_LED0);
+    AM_HAL_GPIO_MASKBIT(psFastGpioMask, AM_BSP_GPIO_LED1);
+    AM_HAL_GPIO_MASKBIT(psFastGpioMask, AM_BSP_GPIO_LED2);
+    AM_HAL_GPIO_MASKBIT(psFastGpioMask, AM_BSP_GPIO_LED3);
+    AM_HAL_GPIO_MASKBIT(psFastGpioMask, AM_BSP_GPIO_LED4);
+    ui32Ret = am_hal_gpio_fast_pinconfig(psFastGpioMask,
                                          g_AM_HAL_GPIO_OUTPUT_12, 0);
     if ( ui32Ret )
     {

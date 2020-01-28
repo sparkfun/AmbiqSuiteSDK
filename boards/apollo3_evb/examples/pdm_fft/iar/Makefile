@@ -34,7 +34,7 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 #
-# This is part of revision v2.2.0-7-g63f7c2ba1 of the AmbiqSuite Development Package.
+# This is part of revision 2.3.2 of the AmbiqSuite Development Package.
 #
 #******************************************************************************
 TARGET := pdm_fft
@@ -70,11 +70,11 @@ clean:
 	IarBuild.exe pdm_fft.ewp -clean Debug -log all
 
 
-../../../../../mcu/apollo3/hal/iar/bin/libam_hal.a:
-	$(MAKE) -C ../../../../../mcu/apollo3/hal
-
 ../../../bsp/iar/bin/libam_bsp.a:
 	$(MAKE) -C ../../../bsp
+
+../../../../../mcu/apollo3/hal/iar/bin/libam_hal.a:
+	$(MAKE) -C ../../../../../mcu/apollo3/hal
 
 endif
 .PHONY: all clean directories

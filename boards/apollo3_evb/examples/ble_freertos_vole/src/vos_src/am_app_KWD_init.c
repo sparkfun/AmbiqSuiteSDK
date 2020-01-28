@@ -1,22 +1,34 @@
 //*****************************************************************************
 //
-// Copyright (c) 2017, Ambiq Micro
-// All rights reserved.
+//! @file am_app_KWD_init.c
+//!
+//! @brief Audio example.
 //
+//
+//*****************************************************************************
+
+//*****************************************************************************
+//
+// Copyright (c) 2019, Ambiq Micro
+// All rights reserved.
+// 
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided that the following conditions are met:
-//
+// 
 // 1. Redistributions of source code must retain the above copyright notice,
 // this list of conditions and the following disclaimer.
-//
+// 
 // 2. Redistributions in binary form must reproduce the above copyright
 // notice, this list of conditions and the following disclaimer in the
 // documentation and/or other materials provided with the distribution.
-//
+// 
 // 3. Neither the name of the copyright holder nor the names of its
 // contributors may be used to endorse or promote products derived from this
 // software without specific prior written permission.
-//
+// 
+// Third party software included in this distribution is subject to the
+// additional license terms as defined in the /docs/licenses directory.
+// 
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
 // AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
 // IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
@@ -29,7 +41,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
-// This is part of revision v1.2.11 of the AmbiqSuite Development Package.
+// This is part of revision 2.3.2 of the AmbiqSuite Development Package.
 //
 //*****************************************************************************
 
@@ -50,7 +62,7 @@
 //*****************************************************************************
 
 #if USE_OUTPUT_AMVOS_AMA
-DeviceInformation g_amaDeviceInformation = 
+DeviceInformation g_amaDeviceInformation =
 {
     .serial_number  = "11223355",
     .name           = "VoS-AMA-LE",
@@ -76,7 +88,7 @@ bool g_config_opus_enabled = false;
 //******************************************************************************
 //KWD Global data buffers used by ring buffers
 //*****************************************************************************
-    
+
 //******************************************************************************
 //KWD Global parameters
 //*****************************************************************************

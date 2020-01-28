@@ -44,7 +44,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
-// This is part of revision v2.2.0-7-g63f7c2ba1 of the AmbiqSuite Development Package.
+// This is part of revision 2.3.2 of the AmbiqSuite Development Package.
 //
 //*****************************************************************************
 
@@ -63,6 +63,18 @@ extern "C"
 //*****************************************************************************
 #define AM_REG_PDM_NUM_MODULES                       1
 #define PDMn(n) ((PDM_Type*)(PDM_BASE + (n * (PDM_BASE - PDM_BASE))))
+
+//*****************************************************************************
+//
+// DMA threshold minimum.
+//
+// The PDM DMA works best if its threshold value is set to a multiple of 4
+// between 16 and 24, but it will technically allow threshold settings between
+// 4 and 24. This macro sets the minimum threshold value that the HAL layer
+// will allow.
+//
+//*****************************************************************************
+#define AM_HAL_PDM_DMA_THRESHOLD_MIN        16
 
 //*****************************************************************************
 //
@@ -200,7 +212,6 @@ am_hal_pdm_chset_e;
 #define AM_HAL_PDM_INT_OVF            PDM_INTSTAT_OVF_Msk
 #define AM_HAL_PDM_INT_THR            PDM_INTSTAT_THR_Msk
 
-
 //*****************************************************************************
 //
 // Configuration structure for the PDM
@@ -262,7 +273,6 @@ typedef struct
 }
 am_hal_pdm_transfer_t;
 
-
 // Init/De-init.
 extern uint32_t am_hal_pdm_initialize(uint32_t ui32Module, void **ppHandle);
 extern uint32_t am_hal_pdm_deinitialize(void *pHandle);
@@ -305,4 +315,3 @@ extern uint32_t am_hal_pdm_interrupt_status_get(void *pHandle, uint32_t *pui32St
 //! @}
 //
 //*****************************************************************************
-

@@ -34,7 +34,7 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 #
-# This is part of revision v2.2.0-7-g63f7c2ba1 of the AmbiqSuite Development Package.
+# This is part of revision 2.3.2 of the AmbiqSuite Development Package.
 #
 #******************************************************************************
 TARGET := ble_freertos_ancs
@@ -75,9 +75,6 @@ clean:
 
 ../../../../../mcu/apollo3/hal/iar/bin/libam_hal.a:
 	$(MAKE) -C ../../../../../mcu/apollo3/hal
-
-../../../../../third_party/uecc/iar/bin/lib_uecc.a:
-	$(MAKE) -C ../../../../../third_party/uecc
 
 endif
 .PHONY: all clean directories

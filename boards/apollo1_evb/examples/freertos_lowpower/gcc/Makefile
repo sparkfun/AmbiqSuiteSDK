@@ -34,7 +34,7 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 #
-# This is part of revision v2.2.0-7-g63f7c2ba1 of the AmbiqSuite Development Package.
+# This is part of revision 2.3.2 of the AmbiqSuite Development Package.
 #
 #******************************************************************************
 TARGET := freertos_lowpower
@@ -81,43 +81,44 @@ all clean:
 else
 
 DEFINES = -DPART_$(PART)
+DEFINES+= -DAM_PACKAGE_BGA
 DEFINES+= -DAM_DEBUG_PRINTF
 DEFINES+= -DAM_PART_APOLLO
-DEFINES+= -DAM_PACKAGE_BGA
 DEFINES+= -DAM_FREERTOS
+DEFINES+= -Dgcc
 
 INCLUDES = -I../../../bsp
-INCLUDES+= -I../../../../../third_party/FreeRTOSv10.1.1/Source/include
-INCLUDES+= -I../../../../..
-INCLUDES+= -I../../../../../utils
-INCLUDES+= -I../../../../../mcu/apollo
 INCLUDES+= -I../src
 INCLUDES+= -I../../../../../third_party/FreeRTOSv10.1.1/Source/portable/GCC/AMapollo
+INCLUDES+= -I../../../../../utils
+INCLUDES+= -I../../../../..
 INCLUDES+= -I../../../../../devices
+INCLUDES+= -I../../../../../third_party/FreeRTOSv10.1.1/Source/include
+INCLUDES+= -I../../../../../mcu/apollo
 
-VPATH = ../../../../../third_party/FreeRTOSv10.1.1/Source/portable/MemMang
-VPATH+=:../../../../../utils
+VPATH = ../../../../../third_party/FreeRTOSv10.1.1/Source
 VPATH+=:../src
 VPATH+=:../../../../../third_party/FreeRTOSv10.1.1/Source/portable/GCC/AMapollo
-VPATH+=:../../../../../third_party/FreeRTOSv10.1.1/Source
+VPATH+=:../../../../../utils
+VPATH+=:../../../../../third_party/FreeRTOSv10.1.1/Source/portable/MemMang
 VPATH+=:../../../../../devices
 
-SRC = port.c
-SRC += freertos_lowpower.c
+SRC = freertos_lowpower.c
 SRC += led_task.c
 SRC += rtos.c
+SRC += port.c
+SRC += am_util_debug.c
+SRC += am_util_delay.c
+SRC += am_util_faultisr.c
+SRC += am_util_stdio.c
 SRC += event_groups.c
 SRC += list.c
 SRC += queue.c
 SRC += tasks.c
 SRC += timers.c
-SRC += heap_2.c
-SRC += am_util_debug.c
-SRC += am_util_delay.c
-SRC += am_util_faultisr.c
-SRC += am_util_stdio.c
 SRC += am_devices_button.c
 SRC += am_devices_led.c
+SRC += heap_2.c
 SRC += startup_gcc.c
 
 CSRC = $(filter %.c,$(SRC))
@@ -129,8 +130,8 @@ OBJS+= $(ASRC:%.s=$(CONFIG)/%.o)
 DEPS = $(CSRC:%.c=$(CONFIG)/%.d)
 DEPS+= $(ASRC:%.s=$(CONFIG)/%.d)
 
-LIBS = ../../../../../mcu/apollo/hal/gcc/bin/libam_hal.a
-LIBS += ../../../bsp/gcc/bin/libam_bsp.a
+LIBS = ../../../bsp/gcc/bin/libam_bsp.a
+LIBS += ../../../../../mcu/apollo/hal/gcc/bin/libam_hal.a
 
 CFLAGS = -mthumb -mcpu=$(CPU) -mfpu=$(FPU) -mfloat-abi=$(FABI)
 CFLAGS+= -ffunction-sections -fdata-sections
@@ -186,11 +187,11 @@ clean:
 
 $(CONFIG)/%.d: ;
 
-../../../../../mcu/apollo/hal/gcc/bin/libam_hal.a:
-	$(MAKE) -C ../../../../../mcu/apollo/hal
-
 ../../../bsp/gcc/bin/libam_bsp.a:
 	$(MAKE) -C ../../../bsp
+
+../../../../../mcu/apollo/hal/gcc/bin/libam_hal.a:
+	$(MAKE) -C ../../../../../mcu/apollo/hal
 
 # Automatically include any generated dependencies
 -include $(DEPS)

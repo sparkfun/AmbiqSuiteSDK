@@ -40,7 +40,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
-// This is part of revision v2.2.0-7-g63f7c2ba1 of the AmbiqSuite Development Package.
+// This is part of revision 2.3.2 of the AmbiqSuite Development Package.
 //
 //*****************************************************************************
 
@@ -167,7 +167,7 @@ extern void __iar_program_start(void);
 // Reserve space for the system stack.
 //
 //*****************************************************************************
-static uint32_t pui32Stack[0x8c0] @ ".noinit";
+static uint32_t pui32Stack[0x8c0] @ ".stack";
 
 //*****************************************************************************
 //

@@ -48,7 +48,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
-// This is part of revision v2.2.0-7-g63f7c2ba1 of the AmbiqSuite Development Package.
+// This is part of revision 2.3.2 of the AmbiqSuite Development Package.
 //
 //*****************************************************************************
 
@@ -378,12 +378,12 @@ main(void)
     am_util_delay_ms(1000);
 
 
-
+#if (AM_PART_APOLLO3)
     if (APOLLO3_A0 || APOLLO3_A1)  //for B0 chip, don't load copy patch
     {
         am_hal_ble_default_copy_patch_apply(g_pvBLEHandle);
     }
-
+#endif
 
 
     am_hal_ble_default_trim_set_ramcode(g_pvBLEHandle);

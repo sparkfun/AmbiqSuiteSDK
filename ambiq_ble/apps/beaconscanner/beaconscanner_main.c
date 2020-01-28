@@ -43,7 +43,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
-// This is part of revision v2.2.0-7-g63f7c2ba1 of the AmbiqSuite Development Package.
+// This is part of revision 2.3.2 of the AmbiqSuite Development Package.
 //
 //*****************************************************************************
 
@@ -111,7 +111,7 @@ static struct
   bdAddr_t          peerAddr;                     /* Peer address */
   uint8_t           addrType;                     /* Peer address type */
   wsfTimer_t        scanTimer;                    /* timer for scan after connection is up */
-
+  appDbHdl_t        dbHdl;                        /*! Device database record handle type */
 } beaconScannerCb;
 
 /**************************************************************************************************
@@ -743,12 +743,12 @@ static void beaconScannerBtnCback(uint8_t btn)
 
       case APP_UI_BTN_2_LONG:
         /* start directed advertising using peer address */
-        AppConnAccept(DM_ADV_CONN_DIRECT_LO_DUTY, beaconScannerCb.addrType, beaconScannerCb.peerAddr);
+        AppConnAccept(DM_ADV_CONN_DIRECT_LO_DUTY, beaconScannerCb.addrType, beaconScannerCb.peerAddr, beaconScannerCb.dbHdl);
         break;
 
       case APP_UI_BTN_2_EX_LONG:
         /* enable device privacy -- start generating local RPAs every 15 minutes */
-        DmAdvPrivStart(15 * 60);
+        DmDevPrivStart(15 * 60);
         break;
 
       default:
@@ -878,6 +878,7 @@ static void beaconScannerProcMsg(dmEvt_t *pMsg)
       break;  
 
     case DM_RESET_CMPL_IND:
+      AttsCalculateDbHash();
       DmSecGenerateEccKeyReq();
       beaconScannerSetup(pMsg);
       uiEvent = APP_UI_RESET_CMPL;

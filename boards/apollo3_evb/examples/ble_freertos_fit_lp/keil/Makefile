@@ -34,7 +34,7 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 #
-# This is part of revision v2.2.0-7-g63f7c2ba1 of the AmbiqSuite Development Package.
+# This is part of revision 2.3.2 of the AmbiqSuite Development Package.
 #
 #******************************************************************************
 TARGET := ble_freertos_fit_lp
@@ -69,14 +69,11 @@ clean:
 	$(RM) -rf $(CONFIG)
 
 
-../../../../../third_party/uecc/keil/bin/lib_uecc.lib:
-	$(MAKE) -C ../../../../../third_party/uecc
+../../../../../mcu/apollo3/hal/keil/bin/libam_hal.lib:
+	$(MAKE) -C ../../../../../mcu/apollo3/hal
 
 ../../../bsp/keil/bin/libam_bsp.lib:
 	$(MAKE) -C ../../../bsp
-
-../../../../../mcu/apollo3/hal/keil/bin/libam_hal.lib:
-	$(MAKE) -C ../../../../../mcu/apollo3/hal
 
 endif
 .PHONY: all clean directories

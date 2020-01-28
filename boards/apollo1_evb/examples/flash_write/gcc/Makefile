@@ -34,7 +34,7 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 #
-# This is part of revision v2.2.0-7-g63f7c2ba1 of the AmbiqSuite Development Package.
+# This is part of revision 2.3.2 of the AmbiqSuite Development Package.
 #
 #******************************************************************************
 TARGET := flash_write
@@ -83,16 +83,17 @@ else
 DEFINES = -DPART_$(PART)
 DEFINES+= -DAM_PART_APOLLO
 DEFINES+= -DAM_PACKAGE_BGA
+DEFINES+= -Dgcc
 
-INCLUDES = -I../../../../../devices
-INCLUDES+= -I../../../../../mcu/apollo
-INCLUDES+= -I../src
+INCLUDES = -I../../../../..
 INCLUDES+= -I../../../../../utils
-INCLUDES+= -I../../../../..
 INCLUDES+= -I../../../bsp
+INCLUDES+= -I../../../../../mcu/apollo
+INCLUDES+= -I../../../../../devices
+INCLUDES+= -I../src
 
-VPATH = ../src
-VPATH+=:../../../../../utils
+VPATH = ../../../../../utils
+VPATH+=:../src
 
 SRC = flash_write.c
 SRC += am_util_delay.c

@@ -1,3 +1,50 @@
+//*****************************************************************************
+//
+//  pb_encode.h
+//! @file
+//!
+//! @brief Auto-generated (see below).
+//!
+//
+//*****************************************************************************
+
+//*****************************************************************************
+//
+// Copyright (c) 2019, Ambiq Micro
+// All rights reserved.
+// 
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions are met:
+// 
+// 1. Redistributions of source code must retain the above copyright notice,
+// this list of conditions and the following disclaimer.
+// 
+// 2. Redistributions in binary form must reproduce the above copyright
+// notice, this list of conditions and the following disclaimer in the
+// documentation and/or other materials provided with the distribution.
+// 
+// 3. Neither the name of the copyright holder nor the names of its
+// contributors may be used to endorse or promote products derived from this
+// software without specific prior written permission.
+// 
+// Third party software included in this distribution is subject to the
+// additional license terms as defined in the /docs/licenses directory.
+// 
+// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+// CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+// POSSIBILITY OF SUCH DAMAGE.
+//
+// This is part of revision 2.3.2 of the AmbiqSuite Development Package.
+//
+//*****************************************************************************
 /* pb_encode.h: Functions to encode protocol buffers. Depends on pb_encode.c.
  * The main function is pb_encode. You also need an output stream, and the
  * field descriptions created by nanopb_generator.py.
@@ -40,7 +87,7 @@ struct pb_ostream_s
     void *state;          /* Free field for use by callback implementation. */
     size_t max_size;      /* Limit number of output bytes written (or use SIZE_MAX). */
     size_t bytes_written; /* Number of bytes written so far. */
-    
+
 #ifndef PB_NO_ERRMSG
     const char *errmsg;
 #endif
@@ -96,7 +143,7 @@ pb_ostream_t pb_ostream_from_buffer(pb_byte_t *buf, size_t bufsize);
 
 /* Pseudo-stream for measuring the size of a message without actually storing
  * the encoded data.
- * 
+ *
  * Example usage:
  *    MyMessage msg = {};
  *    pb_ostream_t stream = PB_OSTREAM_SIZING;
@@ -104,9 +151,9 @@ pb_ostream_t pb_ostream_from_buffer(pb_byte_t *buf, size_t bufsize);
  *    printf("Message size is %d\n", stream.bytes_written);
  */
 #ifndef PB_NO_ERRMSG
-#define PB_OSTREAM_SIZING {0,0,0,0,0}
+#define PB_OSTREAM_SIZING {0, 0, 0, 0, 0}
 #else
-#define PB_OSTREAM_SIZING {0,0,0,0}
+#define PB_OSTREAM_SIZING {0, 0, 0, 0}
 #endif
 
 /* Function to write into a pb_ostream_t stream. You can use this if you need

@@ -45,7 +45,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
-// This is part of revision v2.2.0-7-g63f7c2ba1 of the AmbiqSuite Development Package.
+// This is part of revision 2.3.2 of the AmbiqSuite Development Package.
 //
 //*****************************************************************************
 
@@ -277,6 +277,27 @@ timers_use_hfrc(void)
 
 //*****************************************************************************
 //
+// Write the ctimer configuration register with the CLR bit.
+// The CLR bit is required to completely initialize the timer at config time.
+//
+//*****************************************************************************
+static void
+ctimer_clr(uint32_t ui32TimerNumber, uint32_t ui32TimerSegment)
+{
+    //
+    // Find the correct control register and write the CLR bit.
+    //
+    volatile uint32_t *pui32ConfigReg =
+        (uint32_t *)(AM_REG_CTIMERn(0) + AM_REG_CTIMER_CTRL0_O +
+                     (ui32TimerNumber * TIMER_OFFSET));
+
+    AM_REGVAL(pui32ConfigReg) = (ui32TimerSegment &
+                                 (AM_REG_CTIMER_CTRL0_TMRA0CLR_M |
+                                  AM_REG_CTIMER_CTRL0_TMRB0CLR_M));
+} // ctimer_clr()
+
+//*****************************************************************************
+//
 //! @brief Convenience function for responding to CTimer interrupts.
 //!
 //! @param ui32Status is the interrupt status as returned by
@@ -452,12 +473,20 @@ am_hal_ctimer_int_register(uint32_t ui32Interrupt,
 //! This function should be used to perform the initial set-up of the
 //! counter-timer.
 //!
-//! @note This function will eventually be replaced by
+//! @note This function is deprecated and will eventually be replaced by
 //! am_hal_ctimer_config_single(), which performs the same configuration
-//! without requiring a structure. Please use am_hal_ctimer_config_single() for
-//! new development.
+//! without requiring a structure and without assuming both timer halves
+//! are being configured.
+//! Please use am_hal_ctimer_config_single() for new development.
 //!
 //! @return None.
+//!
+//!
+//! @note In order to initialize the given timer into a known state, this
+//! function asserts the CLR configuration bit. The CLR bit will be deasserted
+//! with the write of the configuration register. The CLR bit is also
+//! intentionally deasserted with a call to am_hal_ctimer_start().
+//!
 //
 //*****************************************************************************
 void
@@ -466,6 +495,12 @@ am_hal_ctimer_config(uint32_t ui32TimerNumber,
 {
     uint32_t *pui32ConfigReg;
     uint32_t ui32ConfigVal;
+
+    //
+    // Make sure the timer is completely initialized on configuration by
+    // setting the CLR bit.
+    //
+    ctimer_clr(ui32TimerNumber, AM_HAL_CTIMER_BOTH);
 
     //
     // Start preparing the configuration word for this timer. The configuration
@@ -482,15 +517,15 @@ am_hal_ctimer_config(uint32_t ui32TimerNumber,
     ui32ConfigVal |= psConfig->ui32Link ? AM_HAL_CTIMER_LINK : 0;
 
     //
-    // Begin critical section while config registers are read and modified.
-    //
-    AM_CRITICAL_BEGIN
-
-    //
     // Find the correct register to write.
     //
     pui32ConfigReg = (uint32_t *)(AM_REG_CTIMERn(0) + AM_REG_CTIMER_CTRL0_O +
                                   (ui32TimerNumber * TIMER_OFFSET));
+
+    //
+    // Begin critical section while config registers are read and modified.
+    //
+    AM_CRITICAL_BEGIN
 
     //
     // Write our configuration value.
@@ -533,6 +568,7 @@ am_hal_ctimer_config(uint32_t ui32TimerNumber,
 //! counter-timer. It can be used to configure either a 16-bit timer (A or B) or a
 //! 32-bit timer using the BOTH option.
 //!
+//!
 //! Valid values for ui32TimerSegment are:
 //!
 //!     AM_HAL_CTIMER_TIMERA
@@ -571,6 +607,13 @@ am_hal_ctimer_config(uint32_t ui32TimerNumber,
 //!     AM_HAL_CTIMER_ADC_TRIG
 //!
 //! @return None.
+//!
+//!
+//! @note In order to initialize the given timer into a known state, this
+//! function asserts the CLR configuration bit. The CLR bit will be deasserted
+//! with the write of the configuration register. The CLR bit is also
+//! intentionally deasserted with a call to am_hal_ctimer_start().
+//!
 //
 //*****************************************************************************
 void
@@ -580,6 +623,12 @@ am_hal_ctimer_config_single(uint32_t ui32TimerNumber,
 {
     volatile uint32_t *pui32ConfigReg;
     uint32_t ui32WriteVal;
+
+    //
+    // Make sure the timer is completely initialized on configuration by
+    // setting the CLR bit.
+    //
+    ctimer_clr(ui32TimerNumber, ui32TimerSegment);
 
     //
     // Find the correct register to write based on the timer number.
@@ -601,7 +650,6 @@ am_hal_ctimer_config_single(uint32_t ui32TimerNumber,
     // If we're working with TIMERB, we need to shift our configuration value
     // up by 16 bits.
     //
-
     if ( ui32TimerSegment == AM_HAL_CTIMER_TIMERB )
     {
         ui32ConfigVal = ((ui32ConfigVal & 0xFFFF) << 16);
@@ -793,6 +841,11 @@ am_hal_ctimer_stop(uint32_t ui32TimerNumber, uint32_t ui32TimerSegment)
 //!     AM_HAL_CTIMER_BOTH
 //!
 //! @return None.
+//!
+//!
+//! @note Setting the CLR bit is necessary for completing timer initialization
+//! including after MCU resets.
+//!
 //
 //*****************************************************************************
 void
@@ -1693,7 +1746,6 @@ am_hal_ctimer_int_status_get(bool bEnabledOnly)
     //
     // Return the desired status.
     //
-
     if ( bEnabledOnly )
     {
         uint32_t u32RetVal;

@@ -335,7 +335,7 @@
               <MiscControls></MiscControls>
               <Define>AM_PART_APOLLO3 AM_PACKAGE_BGA keil</Define>
               <Undefine></Undefine>
-              <IncludePath>../../../../..;../../../../../devices;../../../../../CMSIS/AmbiqMicro/Include;../../../../../mcu/apollo3;../../../../../CMSIS/ARM/Include;../../../bsp;../src;../../../../../utils</IncludePath>
+              <IncludePath>../../../../../CMSIS/ARM/Include;../src;../../../../../CMSIS/AmbiqMicro/Include;../../../../..;../../../../../devices;../../../../../mcu/apollo3;../../../bsp;../../../../../utils</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -363,8 +363,8 @@
             <noStLib>0</noStLib>
             <RepFail>1</RepFail>
             <useFile>0</useFile>
-            <TextAddressRange>0xc000</TextAddressRange>
-            <DataAddressRange>0x10000000</DataAddressRange>
+            <TextAddressRange></TextAddressRange>
+            <DataAddressRange></DataAddressRange>
             <pXoBase></pXoBase>
             <ScatterFile>.\binary_counter.sct</ScatterFile>
             <IncludeLibs></IncludeLibs>
@@ -383,6 +383,16 @@
               <FileName>binary_counter.c</FileName>
               <FileType>1</FileType>
               <FilePath>../src/binary_counter.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>devices</GroupName>
+          <Files>
+            <File>
+              <FileName>am_devices_led.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../../../../../devices/am_devices_led.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -407,16 +417,6 @@
           </Files>
         </Group>
         <Group>
-          <GroupName>devices</GroupName>
-          <Files>
-            <File>
-              <FileName>am_devices_led.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../devices/am_devices_led.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
           <GroupName>keil</GroupName>
           <Files>
             <File>
@@ -430,14 +430,14 @@
           <GroupName>lib</GroupName>
           <Files>
             <File>
-              <FileName>libam_hal.lib</FileName>
-              <FileType>4</FileType>
-              <FilePath>../../../../../mcu/apollo3/hal/keil/bin/libam_hal.lib</FilePath>
-            </File>
-            <File>
               <FileName>libam_bsp.lib</FileName>
               <FileType>4</FileType>
               <FilePath>../../../bsp/keil/bin/libam_bsp.lib</FilePath>
+            </File>
+            <File>
+              <FileName>libam_hal.lib</FileName>
+              <FileType>4</FileType>
+              <FilePath>../../../../../mcu/apollo3/hal/keil/bin/libam_hal.lib</FilePath>
             </File>
           </Files>
         </Group>

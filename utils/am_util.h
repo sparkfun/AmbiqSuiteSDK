@@ -42,7 +42,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
-// This is part of revision v2.2.0-7-g63f7c2ba1 of the AmbiqSuite Development Package.
+// This is part of revision 2.3.2 of the AmbiqSuite Development Package.
 //
 //*****************************************************************************
 #ifndef AM_UTIL_H
@@ -69,7 +69,7 @@
 #include "am_util_string.h"
 #include "am_util_time.h"
 
-#if AM_PART_APOLLO3
+#if defined(AM_PART_APOLLO3) || defined(AM_PART_APOLLO3P)
 #include "am_util_ble.h"
 #endif
 

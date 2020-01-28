@@ -45,7 +45,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
-// This is part of revision v2.2.0-7-g63f7c2ba1 of the AmbiqSuite Development Package.
+// This is part of revision 2.3.2 of the AmbiqSuite Development Package.
 //
 //*****************************************************************************
 
@@ -94,6 +94,12 @@ typedef struct
     bool        bPaused;
     bool        bErr;
 } am_hal_cmdq_status_t;
+
+
+#ifdef __cplusplus
+extern "C"
+{
+#endif
 
 //*****************************************************************************
 //
@@ -278,5 +284,9 @@ uint32_t am_hal_cmdq_reset(void *pHandle);
 //
 //*****************************************************************************
 uint32_t am_hal_cmdq_post_loop_block(void *pHandle, bool bInt);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif // AM_HAL_CMDQ_H

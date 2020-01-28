@@ -333,9 +333,9 @@
             <v6Rtti>0</v6Rtti>
             <VariousControls>
               <MiscControls></MiscControls>
-              <Define>AM_PART_APOLLO3 AM_PACKAGE_BGA keil</Define>
+              <Define>AM_PACKAGE_BGA AM_PART_APOLLO3 keil</Define>
               <Undefine></Undefine>
-              <IncludePath>../../../../../CMSIS/ARM/Include;../../../../../utils;../../../../..;../../../../../mcu/apollo3;../../../../../CMSIS/AmbiqMicro/Include;../../../bsp;../src;../../../../../devices</IncludePath>
+              <IncludePath>../../../../../mcu/apollo3;../../../bsp;../src;../../../../../devices;../../../../..;../../../../../CMSIS/AmbiqMicro/Include;../../../../../CMSIS/ARM/Include;../../../../../utils</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -363,8 +363,8 @@
             <noStLib>0</noStLib>
             <RepFail>1</RepFail>
             <useFile>0</useFile>
-            <TextAddressRange>0xc000</TextAddressRange>
-            <DataAddressRange>0x10000000</DataAddressRange>
+            <TextAddressRange></TextAddressRange>
+            <DataAddressRange></DataAddressRange>
             <pXoBase></pXoBase>
             <ScatterFile>.\apollo3_secbl.sct</ScatterFile>
             <IncludeLibs></IncludeLibs>

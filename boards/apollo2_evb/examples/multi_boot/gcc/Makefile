@@ -34,7 +34,7 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 #
-# This is part of revision v2.2.0-7-g63f7c2ba1 of the AmbiqSuite Development Package.
+# This is part of revision 2.3.2 of the AmbiqSuite Development Package.
 #
 #******************************************************************************
 TARGET := multi_boot
@@ -80,32 +80,33 @@ all clean:
 else
 
 DEFINES = -DPART_$(PART)
+DEFINES+= -DAM_PART_APOLLO2
 DEFINES+= -DAM_PACKAGE_BGA
 DEFINES+= -D'AM_MULTIBOOT_CONFIG_FILE="am_multi_boot_config.h"'
-DEFINES+= -DAM_PART_APOLLO2
+DEFINES+= -Dgcc
 
-INCLUDES = -I../../../../..
-INCLUDES+= -I../../../../../devices
-INCLUDES+= -I../../../../../utils
-INCLUDES+= -I../../../bsp
-INCLUDES+= -I../../../../../bootloader
-INCLUDES+= -I../src
+INCLUDES = -I../../../bsp
 INCLUDES+= -I../../../../../mcu/apollo2
+INCLUDES+= -I../../../../../bootloader
+INCLUDES+= -I../../../../..
+INCLUDES+= -I../../../../../utils
+INCLUDES+= -I../src
+INCLUDES+= -I../../../../../devices
 
 VPATH = ../src
-VPATH+=:../../../../../devices
 VPATH+=:../../../../../utils
 VPATH+=:../../../../../bootloader
+VPATH+=:../../../../../devices
 
 SRC = extflash.c
 SRC += multi_boot.c
-SRC += am_devices_spiflash.c
 SRC += am_util_delay.c
 SRC += am_util_stdio.c
 SRC += am_bootloader.c
 SRC += am_ios_boot_handlers.c
 SRC += am_multi_boot.c
 SRC += am_uart_boot_handlers.c
+SRC += am_devices_spiflash.c
 SRC += startup_gcc.c
 
 CSRC = $(filter %.c,$(SRC))
@@ -117,11 +118,11 @@ OBJS+= $(ASRC:%.s=$(CONFIG)/%.o)
 DEPS = $(CSRC:%.c=$(CONFIG)/%.d)
 DEPS+= $(ASRC:%.s=$(CONFIG)/%.d)
 
-LIBS = ../../../../../mcu/apollo2/hal/gcc/bin/libam_hal.a
-LIBS += ../../../bsp/gcc/bin/libam_bsp.a
+LIBS = ../../../bsp/gcc/bin/libam_bsp.a
+LIBS += ../../../../../mcu/apollo2/hal/gcc/bin/libam_hal.a
 
 CFLAGS = -mthumb -mcpu=$(CPU) -mfpu=$(FPU) -mfloat-abi=$(FABI)
-CFLAGS+= -ffunction-sections -fdata-sections
+CFLAGS+= -ffunction-sections -fdata-sections -fomit-frame-pointer
 CFLAGS+= -MMD -MP -std=c99 -Wall -g
 CFLAGS+= -O0
 CFLAGS+= $(DEFINES)
@@ -174,11 +175,11 @@ clean:
 
 $(CONFIG)/%.d: ;
 
-../../../../../mcu/apollo2/hal/gcc/bin/libam_hal.a:
-	$(MAKE) -C ../../../../../mcu/apollo2/hal
-
 ../../../bsp/gcc/bin/libam_bsp.a:
 	$(MAKE) -C ../../../bsp
+
+../../../../../mcu/apollo2/hal/gcc/bin/libam_hal.a:
+	$(MAKE) -C ../../../../../mcu/apollo2/hal
 
 # Automatically include any generated dependencies
 -include $(DEPS)

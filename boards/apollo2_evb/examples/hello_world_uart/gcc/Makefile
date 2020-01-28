@@ -34,7 +34,7 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 #
-# This is part of revision v2.2.0-7-g63f7c2ba1 of the AmbiqSuite Development Package.
+# This is part of revision 2.3.2 of the AmbiqSuite Development Package.
 #
 #******************************************************************************
 TARGET := hello_world_uart
@@ -80,18 +80,19 @@ all clean:
 else
 
 DEFINES = -DPART_$(PART)
-DEFINES+= -DAM_PART_APOLLO2
 DEFINES+= -DAM_PACKAGE_BGA
+DEFINES+= -DAM_PART_APOLLO2
+DEFINES+= -Dgcc
 
-INCLUDES = -I../src
-INCLUDES+= -I../../../../../mcu/apollo2
-INCLUDES+= -I../../../../../utils
-INCLUDES+= -I../../../bsp
+INCLUDES = -I../../../../../utils
 INCLUDES+= -I../../../../../devices
+INCLUDES+= -I../src
 INCLUDES+= -I../../../../..
+INCLUDES+= -I../../../bsp
+INCLUDES+= -I../../../../../mcu/apollo2
 
-VPATH = ../src
-VPATH+=:../../../../../utils
+VPATH = ../../../../../utils
+VPATH+=:../src
 
 SRC = hello_world_uart.c
 SRC += am_util_delay.c
@@ -109,11 +110,11 @@ OBJS+= $(ASRC:%.s=$(CONFIG)/%.o)
 DEPS = $(CSRC:%.c=$(CONFIG)/%.d)
 DEPS+= $(ASRC:%.s=$(CONFIG)/%.d)
 
-LIBS = ../../../../../mcu/apollo2/hal/gcc/bin/libam_hal.a
-LIBS += ../../../bsp/gcc/bin/libam_bsp.a
+LIBS = ../../../bsp/gcc/bin/libam_bsp.a
+LIBS += ../../../../../mcu/apollo2/hal/gcc/bin/libam_hal.a
 
 CFLAGS = -mthumb -mcpu=$(CPU) -mfpu=$(FPU) -mfloat-abi=$(FABI)
-CFLAGS+= -ffunction-sections -fdata-sections
+CFLAGS+= -ffunction-sections -fdata-sections -fomit-frame-pointer
 CFLAGS+= -MMD -MP -std=c99 -Wall -g
 CFLAGS+= -O0
 CFLAGS+= $(DEFINES)
@@ -166,11 +167,11 @@ clean:
 
 $(CONFIG)/%.d: ;
 
-../../../../../mcu/apollo2/hal/gcc/bin/libam_hal.a:
-	$(MAKE) -C ../../../../../mcu/apollo2/hal
-
 ../../../bsp/gcc/bin/libam_bsp.a:
 	$(MAKE) -C ../../../bsp
+
+../../../../../mcu/apollo2/hal/gcc/bin/libam_hal.a:
+	$(MAKE) -C ../../../../../mcu/apollo2/hal
 
 # Automatically include any generated dependencies
 -include $(DEPS)

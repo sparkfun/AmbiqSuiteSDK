@@ -45,7 +45,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
-// This is part of revision v2.2.0-7-g63f7c2ba1 of the AmbiqSuite Development Package.
+// This is part of revision 2.3.2 of the AmbiqSuite Development Package.
 //
 //*****************************************************************************
 
@@ -340,7 +340,7 @@ static am_hal_gpio_handler_t gpio_ppfnHandlers[AM_HAL_GPIO_MAX_PADS];
 //*****************************************************************************
 //
 // Helper functions
-//  num_bits64() - Determine how many bits are set in a 64-bit value.
+//  popcount()   - Determine how many bits are set in the given bitmasks.
 //  pincfg_equ() - compare 2 am_hal_gpio_pincfg_t structures for equality.
 //
 //*****************************************************************************
@@ -361,17 +361,16 @@ pincfg_equ(void *cfg1, void *cfg2)
 } // pincfg_equ()
 
 static uint32_t
-num_bits64(uint64_t ui64bitmask)
+popcount(uint64_t ui64bitmask)
 {
-    uint32_t ux = 0;
+    uint32_t uCnt = 0;
     while ( ui64bitmask )
     {
-        ux += ui64bitmask & 1;
+        uCnt += ui64bitmask & 1;
         ui64bitmask >>= 1;
     }
-    return ux;
-} // num_bits64()
-
+    return uCnt;
+} // popcount()
 
 //*****************************************************************************
 //
@@ -687,7 +686,7 @@ am_hal_gpio_fast_pinconfig(uint64_t ui64PinMask,
 
 #ifndef AM_HAL_DISABLE_API_VALIDATION
     if ( (ui64PinMask & ~(((uint64_t)1 << AM_HAL_GPIO_MAX_PADS) - 1))   ||
-         (num_bits64(ui64PinMask) > 8)                                  ||
+         (popcount(ui64PinMask) > 8)                                  ||
          (bfGpioCfg.eGPOutcfg == AM_HAL_GPIO_PIN_OUTCFG_TRISTATE) )
     {
         return AM_HAL_STATUS_INVALID_ARG;

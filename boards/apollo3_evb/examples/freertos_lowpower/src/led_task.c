@@ -40,7 +40,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
-// This is part of revision v2.2.0-7-g63f7c2ba1 of the AmbiqSuite Development Package.
+// This is part of revision 2.3.2 of the AmbiqSuite Development Package.
 //
 //*****************************************************************************
 
@@ -73,14 +73,24 @@ EventGroupHandle_t xLedEventHandle;
 void
 am_gpio_isr(void)
 {
-    uint64_t ui64Status;
-
     //
     // Read and clear the GPIO interrupt status.
     //
+#if defined(AM_PART_APOLLO3P)
+    AM_HAL_GPIO_MASKCREATE(GpioIntStatusMask);
+
+    am_hal_gpio_interrupt_status_get(false, pGpioIntStatusMask);
+    am_hal_gpio_interrupt_clear(pGpioIntStatusMask);
+    am_hal_gpio_interrupt_service(pGpioIntStatusMask);
+#elif defined(AM_PART_APOLLO3)
+    uint64_t ui64Status;
+
     am_hal_gpio_interrupt_status_get(false, &ui64Status);
     am_hal_gpio_interrupt_clear(ui64Status);
     am_hal_gpio_interrupt_service(ui64Status);
+#else
+    #error Unknown device.
+#endif
 }
 
 //*****************************************************************************
@@ -221,16 +231,19 @@ LedTaskSetup(void)
     //
     // Clear the GPIO Interrupt (write to clear).
     //
-    am_hal_gpio_interrupt_clear(AM_HAL_GPIO_BIT(AM_BSP_GPIO_BUTTON0));
-    am_hal_gpio_interrupt_clear(AM_HAL_GPIO_BIT(AM_BSP_GPIO_BUTTON1));
-    am_hal_gpio_interrupt_clear(AM_HAL_GPIO_BIT(AM_BSP_GPIO_BUTTON2));
+    AM_HAL_GPIO_MASKCREATE(GpioIntMask0);
+    AM_HAL_GPIO_MASKCREATE(GpioIntMask1);
+    AM_HAL_GPIO_MASKCREATE(GpioIntMask2);
+    am_hal_gpio_interrupt_clear(AM_HAL_GPIO_MASKBIT(pGpioIntMask0, AM_BSP_GPIO_BUTTON0));
+    am_hal_gpio_interrupt_clear(AM_HAL_GPIO_MASKBIT(pGpioIntMask1, AM_BSP_GPIO_BUTTON1));
+    am_hal_gpio_interrupt_clear(AM_HAL_GPIO_MASKBIT(pGpioIntMask2, AM_BSP_GPIO_BUTTON2));
 
     //
     // Enable the GPIO/button interrupt.
     //
-    am_hal_gpio_interrupt_enable(AM_HAL_GPIO_BIT(AM_BSP_GPIO_BUTTON0));
-    am_hal_gpio_interrupt_enable(AM_HAL_GPIO_BIT(AM_BSP_GPIO_BUTTON1));
-    am_hal_gpio_interrupt_enable(AM_HAL_GPIO_BIT(AM_BSP_GPIO_BUTTON2));
+    am_hal_gpio_interrupt_enable(AM_HAL_GPIO_MASKBIT(pGpioIntMask0, AM_BSP_GPIO_BUTTON0));
+    am_hal_gpio_interrupt_enable(AM_HAL_GPIO_MASKBIT(pGpioIntMask1, AM_BSP_GPIO_BUTTON1));
+    am_hal_gpio_interrupt_enable(AM_HAL_GPIO_MASKBIT(pGpioIntMask2, AM_BSP_GPIO_BUTTON2));
     NVIC_EnableIRQ(GPIO_IRQn);
 
     //

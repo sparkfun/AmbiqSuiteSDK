@@ -333,9 +333,9 @@
             <v6Rtti>0</v6Rtti>
             <VariousControls>
               <MiscControls></MiscControls>
-              <Define>AM_PART_APOLLO AM_MULTIBOOT_CONFIG_FILE=\"am_multi_boot_config.h\" AM_PACKAGE_BGA keil</Define>
+              <Define>AM_PACKAGE_BGA AM_PART_APOLLO AM_MULTIBOOT_CONFIG_FILE=\"am_multi_boot_config.h\" keil</Define>
               <Undefine></Undefine>
-              <IncludePath>../../../../../utils;../../../../../bootloader;../src;../../../../../devices;../../../bsp;../../../../../mcu/apollo;../../../../..</IncludePath>
+              <IncludePath>../../../../../devices;../../../../../bootloader;../../../../../mcu/apollo;../../../bsp;../../../../..;../../../../../utils;../src</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>

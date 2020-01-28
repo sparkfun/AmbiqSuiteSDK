@@ -34,7 +34,7 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 #
-# This is part of revision v2.2.0-7-g63f7c2ba1 of the AmbiqSuite Development Package.
+# This is part of revision 2.3.2 of the AmbiqSuite Development Package.
 #
 #******************************************************************************
 TARGET := mspi_flash_loader
@@ -82,31 +82,32 @@ all clean:
 else
 
 DEFINES = -DPART_$(PART)
-DEFINES+= -DAM_UTIL_FAULTISR_PRINT
+DEFINES+= -DFIREBALL_CARD
 DEFINES+= -DAM_PACKAGE_BGA
+DEFINES+= -DAM_UTIL_FAULTISR_PRINT
 DEFINES+= -DAM_PART_APOLLO3
 DEFINES+= -DADESTO_ATXP032
-DEFINES+= -DFIREBALL_CARD
+DEFINES+= -Dgcc
 
-INCLUDES = -I../../../../../devices
-INCLUDES+= -I../../../../../CMSIS/AmbiqMicro/Include
-INCLUDES+= -I../../../../../utils
-INCLUDES+= -I../src
+INCLUDES = -I../../../../..
 INCLUDES+= -I../../../bsp
+INCLUDES+= -I../../../../../utils
 INCLUDES+= -I../../../../../CMSIS/ARM/Include
-INCLUDES+= -I../../../../..
+INCLUDES+= -I../src
 INCLUDES+= -I../../../../../mcu/apollo3
+INCLUDES+= -I../../../../../CMSIS/AmbiqMicro/Include
+INCLUDES+= -I../../../../../devices
 
-VPATH = ../../../../../utils
+VPATH = ../../../../../devices
+VPATH+=:../../../../../utils
 VPATH+=:../src
-VPATH+=:../../../../../devices
 
 SRC = mspi_flash_loader.c
+SRC += am_devices_fireball.c
+SRC += am_devices_mspi_flash.c
 SRC += am_util_delay.c
 SRC += am_util_faultisr.c
 SRC += am_util_stdio.c
-SRC += am_devices_fireball.c
-SRC += am_devices_mspi_flash.c
 SRC += startup_gcc.c
 
 CSRC = $(filter %.c,$(SRC))
@@ -118,11 +119,11 @@ OBJS+= $(ASRC:%.s=$(CONFIG)/%.o)
 DEPS = $(CSRC:%.c=$(CONFIG)/%.d)
 DEPS+= $(ASRC:%.s=$(CONFIG)/%.d)
 
-LIBS = ../../../../../mcu/apollo3/hal/gcc/bin/libam_hal.a
-LIBS += ../../../bsp/gcc/bin/libam_bsp.a
+LIBS = ../../../bsp/gcc/bin/libam_bsp.a
+LIBS += ../../../../../mcu/apollo3/hal/gcc/bin/libam_hal.a
 
 CFLAGS = -mthumb -mcpu=$(CPU) -mfpu=$(FPU) -mfloat-abi=$(FABI)
-CFLAGS+= -ffunction-sections -fdata-sections
+CFLAGS+= -ffunction-sections -fdata-sections -fomit-frame-pointer
 CFLAGS+= -MMD -MP -std=c99 -Wall -g
 CFLAGS+= -O0
 CFLAGS+= $(DEFINES)
@@ -175,11 +176,11 @@ clean:
 
 $(CONFIG)/%.d: ;
 
-../../../../../mcu/apollo3/hal/gcc/bin/libam_hal.a:
-	$(MAKE) -C ../../../../../mcu/apollo3/hal
-
 ../../../bsp/gcc/bin/libam_bsp.a:
 	$(MAKE) -C ../../../bsp
+
+../../../../../mcu/apollo3/hal/gcc/bin/libam_hal.a:
+	$(MAKE) -C ../../../../../mcu/apollo3/hal
 
 # Automatically include any generated dependencies
 -include $(DEPS)

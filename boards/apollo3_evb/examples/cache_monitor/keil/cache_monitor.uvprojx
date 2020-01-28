@@ -333,9 +333,9 @@
             <v6Rtti>0</v6Rtti>
             <VariousControls>
               <MiscControls></MiscControls>
-              <Define>AM_PACKAGE_BGA AM_PART_APOLLO3 APS6404L keil</Define>
+              <Define>AM_PART_APOLLO3 AM_PACKAGE_BGA FIREBALL_CARD APS6404L keil</Define>
               <Undefine></Undefine>
-              <IncludePath>../../../bsp;../../../../../CMSIS/ARM/Include;../src;../../../../../utils;../../../../../mcu/apollo3;../../../../../devices;../../../../..;../../../../../CMSIS/AmbiqMicro/Include</IncludePath>
+              <IncludePath>../../../../../utils;../../../../../mcu/apollo3;../../../../../CMSIS/AmbiqMicro/Include;../../../../../devices;../../../../../CMSIS/ARM/Include;../../../bsp;../../../../..;../src</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -363,8 +363,8 @@
             <noStLib>0</noStLib>
             <RepFail>1</RepFail>
             <useFile>0</useFile>
-            <TextAddressRange>0xc000</TextAddressRange>
-            <DataAddressRange>0x10000000</DataAddressRange>
+            <TextAddressRange></TextAddressRange>
+            <DataAddressRange></DataAddressRange>
             <pXoBase></pXoBase>
             <ScatterFile>.\cache_monitor.sct</ScatterFile>
             <IncludeLibs></IncludeLibs>

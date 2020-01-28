@@ -42,7 +42,7 @@
 #	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 #	POSSIBILITY OF SUCH DAMAGE.
 #
-#  This is part of revision 2.2.0-hotfix-2.2.1 of the AmbiqSuite Development Package.
+#  This is part of revision 2.3.2 of the AmbiqSuite Development Package.
 #
 # *****************************************************************************
 
@@ -107,7 +107,7 @@ filetemplateC = '''
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
-// This is part of revision 2.2.0-hotfix-2.2.1 of the AmbiqSuite Development Package.
+// This is part of revision 2.3.2 of the AmbiqSuite Development Package.
 //
 //*****************************************************************************
 
@@ -171,7 +171,7 @@ filetemplateH = '''
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
-// This is part of revision 2.2.0-hotfix-2.2.1 of the AmbiqSuite Development Package.
+// This is part of revision 2.3.2 of the AmbiqSuite Development Package.
 //
 //*****************************************************************************
 
@@ -281,6 +281,34 @@ def get_val(name, D):
         return D[name][0]
 
 # *****************************************************************************
+# get_version()
+# *****************************************************************************
+def get_version(filename):
+    '''
+    Given the filename of an 'src' file, this function will return a 'pin'
+    object corresponding to the fields described in the src file.
+    '''
+    # Read in the contents of the src file, and use the rsonlite library to
+    # parse them into a list.
+    rson_data = parse_input(filename)
+
+    # Convert the list to a dictionary.
+    rson_dict = list_to_dict(rson_data)
+
+    if 'pinsrc_ver' in rson_dict:
+        # Convert rson list object to int
+        ssrcver = rson_dict["pinsrc_ver"][0]
+        if ssrcver[0:2].lower() == "0x":
+            source_version = int(ssrcver, 16)
+        else:
+            source_version = int(ssrcver, 10)
+    else:
+        # If no src file version given, assume version for Apollo3
+        source_version = 0x0003
+
+    return source_version
+
+# *****************************************************************************
 # get_pinobj()
 # *****************************************************************************
 def get_pinobj(filename):
@@ -386,6 +414,8 @@ class pinfields:
 
         if 'IOMnum' in pindict:
             self.IOMnum = get_val('IOMnum', pindict)
+        elif 'MSPInum' in pindict:
+            self.IOMnum = get_val('MSPInum', pindict)
         else:
             self.IOMnum = strnotgiven
 
@@ -420,6 +450,7 @@ class pinfields:
                 fld != 'GPinput'        and     \
                 fld != 'GPRdZero'       and     \
                 fld != 'IOMnum'         and     \
+                fld != 'MSPInum'        and     \
                 fld != 'CEnum'          and     \
                 fld != 'CEpol'          and     \
                 fld != 'bIomMSPIn':
@@ -627,9 +658,15 @@ if __name__ == '__main__':
     else:
         bCreateC = False
 
-    pinobj = get_pinobj(args.input)
+    version = get_version(args.input)
 
-    #
-    # pinobj.pins is a list of the pins
-    #
-    write_Cfiles(pinobj, bCreateC)
+    # Redirect the script based on the version number.
+    if version == 0x0004:
+        apollo4_pinconfig.write_c_files(args.input, bCreateC)
+    else:
+        pinobj = get_pinobj(args.input)
+
+        #
+        # pinobj.pins is a list of the pins
+        #
+        write_Cfiles(pinobj, bCreateC)

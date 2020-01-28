@@ -1,3 +1,50 @@
+//*****************************************************************************
+//
+//! @file am_app_KWD_audio.c
+//!
+//! @brief Audio example.
+//
+//
+//*****************************************************************************
+
+//*****************************************************************************
+//
+// Copyright (c) 2019, Ambiq Micro
+// All rights reserved.
+// 
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions are met:
+// 
+// 1. Redistributions of source code must retain the above copyright notice,
+// this list of conditions and the following disclaimer.
+// 
+// 2. Redistributions in binary form must reproduce the above copyright
+// notice, this list of conditions and the following disclaimer in the
+// documentation and/or other materials provided with the distribution.
+// 
+// 3. Neither the name of the copyright holder nor the names of its
+// contributors may be used to endorse or promote products derived from this
+// software without specific prior written permission.
+// 
+// Third party software included in this distribution is subject to the
+// additional license terms as defined in the /docs/licenses directory.
+// 
+// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+// CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+// POSSIBILITY OF SUCH DAMAGE.
+//
+// This is part of revision 2.3.2 of the AmbiqSuite Development Package.
+//
+//*****************************************************************************
+
 #include "usr_include.h"
 //#include "am_app_KWD_AWE.h"
 #include "stdint.h"
@@ -37,20 +84,20 @@ DSPC_QSD Q;
 #endif
 
 #if defined( __ICCARM__ )
-    #pragma data_alignment=4
-	UINT32 g_fastb_heap[FASTB_HEAP_SIZE] @ ".CCMRAM_Section";
-    #pragma data_alignment=4
+    #pragma data_alignment = 4
+    UINT32 g_fastb_heap[FASTB_HEAP_SIZE] @ ".CCMRAM_Section";
+    #pragma data_alignment = 4
     UINT32 g_master_heap[MASTER_HEAP_SIZE];
-    #pragma data_alignment=4
+    #pragma data_alignment = 4
     UINT32 g_slow_heap[SLOW_HEAP_SIZE];
 #else
-	#if defined( __GNUC__ )
-		__attribute__((__section__(".ccmram")))
-	#else
+    #if defined( __GNUC__ )
+        __attribute__((__section__(".ccmram")))
+    #else
         #if defined ( __CC_ARM )
-		__attribute__((__section__(".data_CCMRAM")))
+        __attribute__((__section__(".data_CCMRAM")))
         #endif
-	#endif
+    #endif
     __align(4) UINT32 g_fastb_heap[FASTB_HEAP_SIZE];
     __align(4) UINT32 g_master_heap[MASTER_HEAP_SIZE];
     __align(4) UINT32 g_slow_heap[SLOW_HEAP_SIZE];
@@ -66,7 +113,7 @@ linker magic is such that only those modules referenced here will be in the
 final program. */
 const ModClassModule *g_module_descriptor_table[] =
 {
-	//------------- The suitably cast pointers to the module descriptors go here.
+    //------------- The suitably cast pointers to the module descriptors go here.
 LISTOFCLASSOBJECTS
 
 };
@@ -95,7 +142,7 @@ AWE_OPTIMIZE_FOR_SPACE
 AWE_FW_SLOW_CODE
 INT32 awe_pltAudioStart(void)
 {
-	// At this point the model is fully instantiated and the control I/O can be setup
+    // At this point the model is fully instantiated and the control I/O can be setup
     ControlInit();
 
     return 0;
@@ -125,7 +172,7 @@ INT32 awe_pltCoreSendCommand(void *pData, UINT32 * txBuffer, UINT32 * rxBuffer)
 {
     return awe_fwPacketProcess(&g_AWEInstance);
 
-}	// End awe_pltCoreSendCommand
+}   // End awe_pltCoreSendCommand
 
 //-----------------------------------------------------------------------------
 // METHOD:  awe_pltGetCycleCount
@@ -171,8 +218,8 @@ UINT32 awe_pltElapsedCycles(UINT32 nStartTime, UINT32 nEndTime)
         nElapsedTime = ((((UINT32)0xFFFFFFFF) - nStartTime) + nEndTime + 1);
     }
 
-	return nElapsedTime;
- #else
+    return nElapsedTime;
+#else
 
     return NULL;
 #endif
@@ -234,7 +281,7 @@ void am_app_KWD_AWE_instance_init(void)
                      OUTPUT_CHANNEL_COUNT,
                      VER_DAY, VER_MONTH, VER_YEAR,
                      AWE_FRAME_SIZE,
-                     MAX_COMMAND_BUFFER_LEN                   
+                     MAX_COMMAND_BUFFER_LEN
                      );
 
     awe_fwInit_io_pins(&g_AWEInstance, 1);
@@ -248,7 +295,7 @@ void am_app_KWD_AWE_instance_init(void)
     s_OutputPin[0].wireInfo1 = nOutputWireInfo;
     awe_SetPackedName(s_OutputPin[0].m_pinName, "Output");
 
-	// Allocate the heaps.
+    // Allocate the heaps.
     g_AWEInstance.m_master_heap_size = MASTER_HEAP_SIZE;
     g_AWEInstance.m_slow_heap_size = SLOW_HEAP_SIZE;
     g_AWEInstance.m_fastb_heap_size = FASTB_HEAP_SIZE;
@@ -275,9 +322,9 @@ void am_app_KWD_AWE_instance_init(void)
 // METHOD:  am_app_KWD_AWE_handler
 // PURPOSE: Pass new samples to Audio Weaver for processing
 //-----------------------------------------------------------------------------
-#if defined (AM_PART_APOLLO3)
+#if defined(AM_PART_APOLLO3) || defined(AM_PART_APOLLO3P)
 extern void *PDMHandle;
-#endif // #if defined (AM_PART_APOLLO3)
+#endif // #if defined(AM_PART_APOLLO3)
 
 #if configUSE_AWE
 AWE_OPTIMIZE_FOR_SPEED
@@ -298,7 +345,7 @@ void am_app_KWD_AWE_handler(int32_t *nLRSample)
 
     const uint32_t nPinNdx = 0;
 #endif
-    
+
 #if configUSE_SENSORY_THF_ONLY || configUSE_Sensory_THF
     errors_t result;
 #endif
@@ -310,11 +357,11 @@ void am_app_KWD_AWE_handler(int32_t *nLRSample)
     if (!awe_pltIsAudioRunning())
     {
         // Flush the PDM FIFO
-#if defined (AM_PART_APOLLO3)
+#if defined(AM_PART_APOLLO3) || defined(AM_PART_APOLLO3P)
         am_hal_pdm_fifo_flush(PDMHandle);
 #else
         am_hal_pdm_fifo_flush();
-#endif //#if defined (AM_PART_APOLLO3)
+#endif //#if defined(AM_PART_APOLLO3)
     }
   else
   {
@@ -326,10 +373,14 @@ void am_app_KWD_AWE_handler(int32_t *nLRSample)
     if (fwInCount > 0)
     {
       if (fwInCount >= 1)
+      {
         destLeftChannel32BitPtr = awe_fwGetInputChannelPtr(&g_AWEInstance, nPinNdx, 0, &pinStride);
+      }
 
       if (fwInCount >= 2)
+      {
         destRightChannel32BitPtr = awe_fwGetInputChannelPtr(&g_AWEInstance, nPinNdx, 1, &pinStride);
+      }
 
       for (nSample = 0; nSample < AWE_FRAME_SIZE; nSample++)
       {
@@ -376,22 +427,22 @@ void am_app_KWD_AWE_handler(int32_t *nLRSample)
                     // Not using SPI, so must be using UART or BLE.. both operate on single bytes
                     // Audio Weaver has sample in high order bytes of 32-bit word
                     n16BitSample = n32BitSample >> PCM_SAMPLE_SIZE_IN_BITS;
-                    
+
                     #if configUSE_Sensory_THF
                         in16SensoryInputBuff[n16ThfIndex + nSample] = n16BitSample;
                     #endif
-                        
+
                     in16AudioStreamBuff[nSample] = n16BitSample;
 
                     src32BitPtr += pinStride;
                 }
                 #if configUSE_Sensory_THF
                     n16ThfIndex += AWE_FRAME_SIZE;
-                    if(n16ThfIndex >= FRAME_LEN)
+                    if ( n16ThfIndex >= FRAME_LEN )
                     {
                         result = SensoryProcessBrick(in16SensoryInputBuff);
                         //n16ThfIndex = 0;
-                        if(result == ERR_OK)
+                        if ( result == ERR_OK )
                         {
                             am_app_KWD_reset_detected_flag();
                             g_ui8KwdDetectedFlag = 1;
@@ -403,10 +454,14 @@ void am_app_KWD_AWE_handler(int32_t *nLRSample)
 //                                AM_APP_LOG_INFO("ap->audioBufferLen = %d ap->audioGetIndex = %d, Startpoint index = %d\n", ap->audioBufferLen, ap->audioGetIndex, stIndex);
 //                                AM_APP_LOG_INFO("ap->audioPutIndex = %d, Endpoint index = %d Estimated latency = %d samples\n", ap->audioPutIndex, epIndex, tailCount);
 
-                                if(epIndex > stIndex)
+                                if ( epIndex > stIndex )
+                                {
                                     g_delayedSample = epIndex - stIndex + tailCount;
+                                }
                                 else
+                                {
                                     g_delayedSample = ap->audioBufferLen - stIndex + epIndex + tailCount;
+                                }
                                 g_endingSampleCnt = tailCount;
                             }
                             #if configUSE_STDIO_PRINTF
@@ -415,38 +470,40 @@ void am_app_KWD_AWE_handler(int32_t *nLRSample)
 
                             am_app_utils_task_send(AM_APP_TASK_AUD_PROCESSING, AM_APP_TASK_LED,
                                                     AM_APP_MESSAGE_SHORT, EMPTY_MESSAGE, NULL);
-                            xTimerStart(am_KWD_timers[AM_APP_TIMER_KWD_TIME_OUT], 0);                      
+                            xTimerStart(am_KWD_timers[AM_APP_TIMER_KWD_TIME_OUT], 0);
                         }
                         n16ThfIndex = 0;
                     }
-                #endif               
+                #endif
                 #if (configUSE_RTT_RECORDER && configUSE_RECORD_FULL_FILTER)
                     //
                     // Record the raw PCM data and send over RTT
                     //
-                    if(g_ui8RTTStartFlag == 1)
-                        am_app_KWD_rtt_record((void*)in16AudioStreamBuff, AWE_FRAME_SIZE*BYTES_PER_DSPC_SAMPLE); 
-                
+                    if ( g_ui8RTTStartFlag == 1 )
+                    {
+                        am_app_KWD_rtt_record((void*)in16AudioStreamBuff, AWE_FRAME_SIZE*BYTES_PER_DSPC_SAMPLE);
+                    }
+
                 #elif (configUSE_RTT_RECORDER && configUSE_RECORD_CODEC)
-                                       
-                    if(g_ui8RTTStartFlag == 1)
+
+                    if ( g_ui8RTTStartFlag == 1 )
                     {
                         AM_CRITICAL_BEGIN;
-                            am_app_utils_ring_buffer_push_fast(&am_KWD_ring_buffers[AM_APP_RINGBUFF_RTT_STREAM], 
+                            am_app_utils_ring_buffer_push_fast(&am_KWD_ring_buffers[AM_APP_RINGBUFF_RTT_STREAM],
                                                             in16AudioStreamBuff, BYTES_PER_DSPC_SAMPLE*AWE_FRAME_SIZE);
                         AM_CRITICAL_END;
-                        
+
                         am_app_utils_task_send(AM_APP_TASK_AWE_PROCESSING, AM_APP_TASK_CODEC,
-                                                            AM_APP_MESSAGE_LONG, BYTES_PER_DSPC_SAMPLE*AWE_FRAME_SIZE, 
+                                                            AM_APP_MESSAGE_LONG, BYTES_PER_DSPC_SAMPLE*AWE_FRAME_SIZE,
                                                             &am_KWD_ring_buffers[AM_APP_RINGBUFF_RTT_STREAM]);
                     }
                     else
                         //am_app_utils_flush_ring_buffer(&am_KWD_ring_buffers[AM_APP_RINGBUFF_RTT_STREAM]);
                 #endif
                 if (g_ui8KwdDetectedFlag || g_ui8PushTalkFlag || g_ui8ProvideSpeechFlag)
-                {    
+                {
                 #if configUSE_BLE
-                    if(count == 0)
+                    if ( count == 0 )
                     {
                         #if configUSE_AUDIO_PRE_BUFF_AMA
                             g_ui8KwdRequiredConsume = 1;
@@ -454,70 +511,75 @@ void am_app_KWD_AWE_handler(int32_t *nLRSample)
 
                         if (!g_ui8KwdDetectedFlag)
                             //am_app_utils_flush_ring_buffer(&am_KWD_ring_buffers[AM_APP_RINGBUFF_POST_AUDIO_STREAM]);
+                            #warning This if() is ambiguous. Is the result of this commented out statement what was intended? Please use braces in all cases!
 
                         if (!g_ui8ProvideSpeechFlag)
+                        {
                             am_app_KWD_AMA_start_speech_send();
+                        }
                     }
-								   
+
                     count++;
-					
+
                     if (count <= BUFFERED_SAMPLES_COUNT)
                     {
 
                       #if configUSE_AUDIO_POST_BUFF
                         AM_CRITICAL_BEGIN;
-                        am_app_utils_ring_buffer_push_fast(&am_KWD_ring_buffers[AM_APP_RINGBUFF_POST_AUDIO_STREAM], 
+                        am_app_utils_ring_buffer_push_fast(&am_KWD_ring_buffers[AM_APP_RINGBUFF_POST_AUDIO_STREAM],
                                                             in16AudioStreamBuff, BYTES_PER_DSPC_SAMPLE*AWE_FRAME_SIZE);
                         AM_CRITICAL_END;
                         #if configUSE_AUDIO_CODEC
                             if (amvosIsConnected())
+                            {
                                 am_app_utils_task_send(AM_APP_TASK_AUD_PROCESSING, AM_APP_TASK_CODEC,
-                                                            AM_APP_MESSAGE_LONG, BYTES_PER_DSPC_SAMPLE*AWE_FRAME_SIZE, 
-                                                            &am_KWD_ring_buffers[AM_APP_RINGBUFF_POST_AUDIO_STREAM]);
+                                                       AM_APP_MESSAGE_LONG, BYTES_PER_DSPC_SAMPLE*AWE_FRAME_SIZE,
+                                                       &am_KWD_ring_buffers[AM_APP_RINGBUFF_POST_AUDIO_STREAM]);
+                            }
 //                          ui32TotalCompressNeed += BYTES_PER_DSPC_SAMPLE * AWE_FRAME_SIZE;        // test only
-						 
+
                         #endif
-                                
+
                       #endif
                     }
                     else
                     {
-                    	am_app_KWD_reset_detected_flag();
+                        am_app_KWD_reset_detected_flag();
                         //am_app_utils_flush_ring_buffer(&am_KWD_ring_buffers[AM_APP_RINGBUFF_POST_AUDIO_STREAM]);
                     }
                 #else
 
                     #if configUSE_AUDIO_POST_BUFF
                         AM_CRITICAL_BEGIN;
-                        am_app_utils_ring_buffer_push_fast(&am_KWD_ring_buffers[AM_APP_RINGBUFF_POST_AUDIO_STREAM], 
+                        am_app_utils_ring_buffer_push_fast(&am_KWD_ring_buffers[AM_APP_RINGBUFF_POST_AUDIO_STREAM],
                                                              in16AudioStreamBuff, BYTES_PER_DSPC_SAMPLE*AWE_FRAME_SIZE);
                         AM_CRITICAL_END;
-					   
+
                         #if (configUSE_SBC_BLUEZ || configUSE_MSBC_BLUEZ)
                             bQueueReValue = am_app_utils_task_send(AM_APP_TASK_AUD_PROCESSING, AM_APP_TASK_CODEC,
-                                                                     AM_APP_MESSAGE_LONG, BYTES_PER_DSPC_SAMPLE*AWE_FRAME_SIZE, 
+                                                                     AM_APP_MESSAGE_LONG, BYTES_PER_DSPC_SAMPLE*AWE_FRAME_SIZE,
                                                                      &am_KWD_ring_buffers[AM_APP_RINGBUFF_POST_AUDIO_STREAM]);
-				         					 
+
                         #endif
-												
+
                    #endif
 
                 #endif /*configUSE_BLE*/
-  
+
                 }
                 else
                 {
                     #if 1 //configUSE_AUDIO_PRE_BUFF_AMA
                         AM_CRITICAL_BEGIN;
                         // push 16 bit data to the 8 bit Ring Buffer. If its full old data will be overwritten
-                        am_app_utils_ring_buffer_push_fast(&am_KWD_ring_buffers[AM_APP_RINGBUFF_POST_AUDIO_STREAM], 
+                        am_app_utils_ring_buffer_push_fast(&am_KWD_ring_buffers[AM_APP_RINGBUFF_POST_AUDIO_STREAM],
                                                         in16AudioStreamBuff, BYTES_PER_DSPC_SAMPLE*AWE_FRAME_SIZE);
                         AM_CRITICAL_END;
                     #endif
                 }
             }
         }
-      
+
 //}}}
     nComplete |= awe_fwAudioDMAComplete(&g_AWEInstance, nPinNdx, AWE_FRAME_SIZE);
 
@@ -525,7 +587,7 @@ void am_app_KWD_AWE_handler(int32_t *nLRSample)
     {
         layoutMask = awe_fwEvalLayoutMask(&g_AWEInstance, NULL);
 
-        if(layoutMask & 1)
+        if ( layoutMask & 1 )
         {
           if (!g_bAudioPump1Active)
           {
@@ -544,9 +606,9 @@ void am_app_KWD_AWE_handler(int32_t *nLRSample)
         {
           if (!g_bAudioPump2Active)
           {
-     
+
             g_bAudioPump2Active = TRUE;
-            
+
     //        am_app_utils_task_send(AM_APP_TASK_AUD_PROCESSING, AM_APP_TASK_MODEL_INFERENCE,
     //                                AM_APP_MESSAGE_SHORT, EMPTY_MESSAGE, NULL);
             // Fire the layout at user interrupt level
@@ -576,11 +638,11 @@ void am_app_KWD_AWE_handler(int32_t *nLRSample)
 
     n16ThfIndex += AWE_FRAME_SIZE;
 
-    if(n16ThfIndex >= FRAME_LEN)
+    if ( n16ThfIndex >= FRAME_LEN )
     {
         result = SensoryProcessBrick(in16SensoryInputBuff);
         //n16ThfIndex = 0;
-        if(result == ERR_OK)
+        if ( result == ERR_OK )
         {
             am_app_KWD_reset_detected_flag();
             g_ui8KwdDetectedFlag = 1;
@@ -590,10 +652,14 @@ void am_app_KWD_AWE_handler(int32_t *nLRSample)
 //            AM_APP_LOG_INFO("ap->audioBufferLen = %d ap->audioGetIndex = %d, Startpoint index = %d\n", ap->audioBufferLen, ap->audioGetIndex, stIndex);
 //            AM_APP_LOG_INFO("ap->audioPutIndex = %d, Endpoint index = %d Estimated latency = %d samples\n", ap->audioPutIndex, epIndex, tailCount);
 
-            if(epIndex > stIndex)
+            if ( epIndex > stIndex )
+            {
                 g_delayedSample = epIndex - stIndex + tailCount;
+            }
             else
+            {
                 g_delayedSample = ap->audioBufferLen - stIndex + epIndex + tailCount;
+            }
             g_endingSampleCnt = tailCount;
 
             #if configUSE_STDIO_PRINTF
@@ -602,15 +668,15 @@ void am_app_KWD_AWE_handler(int32_t *nLRSample)
 
             am_app_utils_task_send(AM_APP_TASK_AUD_PROCESSING, AM_APP_TASK_LED,
                                     AM_APP_MESSAGE_SHORT, EMPTY_MESSAGE, NULL);
-            xTimerStart(am_KWD_timers[AM_APP_TIMER_KWD_TIME_OUT], 0);                      
+            xTimerStart(am_KWD_timers[AM_APP_TIMER_KWD_TIME_OUT], 0);
         }
         n16ThfIndex = 0;
     }
 
     if (g_ui8KwdDetectedFlag || g_ui8PushTalkFlag || g_ui8ProvideSpeechFlag)
-    {    
+    {
     #if configUSE_BLE
-        if(count == 0)
+        if ( count == 0 )
         {
             #if configUSE_AUDIO_PRE_BUFF_AMA
                 g_ui8KwdRequiredConsume = 1;
@@ -618,30 +684,35 @@ void am_app_KWD_AWE_handler(int32_t *nLRSample)
 
             if (!g_ui8KwdDetectedFlag)
                 //am_app_utils_flush_ring_buffer(&am_KWD_ring_buffers[AM_APP_RINGBUFF_POST_AUDIO_STREAM]);
+                #warning This if() is ambiguous. Is the result of this commented out statement what was intended? Please use braces in all cases!
 
             if (!g_ui8ProvideSpeechFlag)
+            {
                 am_app_KWD_AMA_start_speech_send();
+            }
         }
-                                                       
+
         count++;
-                            
+
         if (count <= BUFFERED_SAMPLES_COUNT)
         {
 
           #if configUSE_AUDIO_POST_BUFF
             AM_CRITICAL_BEGIN;
-            am_app_utils_ring_buffer_push_fast(&am_KWD_ring_buffers[AM_APP_RINGBUFF_POST_AUDIO_STREAM], 
+            am_app_utils_ring_buffer_push_fast(&am_KWD_ring_buffers[AM_APP_RINGBUFF_POST_AUDIO_STREAM],
                                                 in16AudioStreamBuff, BYTES_PER_DSPC_SAMPLE*AWE_FRAME_SIZE);
             AM_CRITICAL_END;
             #if configUSE_AUDIO_CODEC
                 if (amvosIsConnected())
+                {
                     am_app_utils_task_send(AM_APP_TASK_AUD_PROCESSING, AM_APP_TASK_CODEC,
-                                                AM_APP_MESSAGE_LONG, BYTES_PER_DSPC_SAMPLE*AWE_FRAME_SIZE, 
-                                                &am_KWD_ring_buffers[AM_APP_RINGBUFF_POST_AUDIO_STREAM]);
+                                           AM_APP_MESSAGE_LONG, BYTES_PER_DSPC_SAMPLE*AWE_FRAME_SIZE,
+                                           &am_KWD_ring_buffers[AM_APP_RINGBUFF_POST_AUDIO_STREAM]);
+                }
 //                          ui32TotalCompressNeed += BYTES_PER_DSPC_SAMPLE * AWE_FRAME_SIZE;        // test only
-                                     
+
             #endif
-                    
+
           #endif
         }
         else
@@ -656,12 +727,12 @@ void am_app_KWD_AWE_handler(int32_t *nLRSample)
     {
         AM_CRITICAL_BEGIN;
         // push 16 bit data to the 8 bit Ring Buffer. If its full old data will be overwritten
-        am_app_utils_ring_buffer_push_fast(&am_KWD_ring_buffers[AM_APP_RINGBUFF_POST_AUDIO_STREAM], 
+        am_app_utils_ring_buffer_push_fast(&am_KWD_ring_buffers[AM_APP_RINGBUFF_POST_AUDIO_STREAM],
                                         in16AudioStreamBuff, BYTES_PER_DSPC_SAMPLE*AWE_FRAME_SIZE);
         AM_CRITICAL_END;
     }
 #endif
-}	// End AWEProcessing
+}   // End AWEProcessing
 
 void am_app_KWD_reset_detected_flag()
 {

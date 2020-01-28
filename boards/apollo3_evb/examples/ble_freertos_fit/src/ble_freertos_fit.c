@@ -7,7 +7,7 @@
 //! Purpose: This example implements a BLE heart rate sensor within the FreeRTOS
 //! framework. To minimize power usage, this application is compiled without
 //! debug printing by default (the "lp" version of this example excludes
-//! them by default).  
+//! them by default).
 //!
 //! Additional Information:
 //! To enable debug printing, add the following project-level macro definitions.
@@ -56,7 +56,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
-// This is part of revision v2.2.0-7-g63f7c2ba1 of the AmbiqSuite Development Package.
+// This is part of revision 2.3.2 of the AmbiqSuite Development Package.
 //
 //*****************************************************************************
 
@@ -119,11 +119,17 @@ main(void)
     //
     //am_bsp_low_power_init();
 
-    // Turn off unused Flash & SRAM
-#if 1
+    //
+    // Turn off unneeded Flash & SRAM
+    //
+#if defined(AM_PART_APOLLO3)
     am_hal_pwrctrl_memory_enable(AM_HAL_PWRCTRL_MEM_SRAM_96K);
-    am_hal_pwrctrl_memory_enable(AM_HAL_PWRCTRL_MEM_FLASH_512K);
 #endif
+#if defined(AM_PART_APOLLO3P)
+    am_hal_pwrctrl_memory_enable(AM_HAL_PWRCTRL_MEM_SRAM_128K);
+#endif
+    am_hal_pwrctrl_memory_enable(AM_HAL_PWRCTRL_MEM_FLASH_MIN);
+
 #ifdef AM_PART_APOLLO
     //
     // SRAM bank power setting.

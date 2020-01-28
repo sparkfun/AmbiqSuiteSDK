@@ -333,9 +333,9 @@
             <v6Rtti>0</v6Rtti>
             <VariousControls>
               <MiscControls></MiscControls>
-              <Define>AM_PACKAGE_BGA AM_PART_APOLLO3 FIREBALL_CARD AM_UTIL_FAULTISR_PRINT ADESTO_ATXP032 keil</Define>
+              <Define>AM_PART_APOLLO3 AM_UTIL_FAULTISR_PRINT ADESTO_ATXP032 FIREBALL_CARD AM_PACKAGE_BGA keil</Define>
               <Undefine></Undefine>
-              <IncludePath>../../../bsp;../src;../../../../../mcu/apollo3;../../../../../devices;../../../../..;../../../../../utils;../../../../../CMSIS/AmbiqMicro/Include;../../../../../CMSIS/ARM/Include</IncludePath>
+              <IncludePath>../../../../../mcu/apollo3;../../../../../CMSIS/ARM/Include;../../../../../CMSIS/AmbiqMicro/Include;../../../bsp;../../../../../utils;../../../../../devices;../src;../../../../..</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -363,8 +363,8 @@
             <noStLib>0</noStLib>
             <RepFail>1</RepFail>
             <useFile>0</useFile>
-            <TextAddressRange>0xc000</TextAddressRange>
-            <DataAddressRange>0x10000000</DataAddressRange>
+            <TextAddressRange></TextAddressRange>
+            <DataAddressRange></DataAddressRange>
             <pXoBase></pXoBase>
             <ScatterFile>.\mspi_octal_example.sct</ScatterFile>
             <IncludeLibs></IncludeLibs>
@@ -383,21 +383,6 @@
               <FileName>mspi_octal_example.c</FileName>
               <FileType>1</FileType>
               <FilePath>../src/mspi_octal_example.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>devices</GroupName>
-          <Files>
-            <File>
-              <FileName>am_devices_fireball.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../devices/am_devices_fireball.c</FilePath>
-            </File>
-            <File>
-              <FileName>am_devices_mspi_flash.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../devices/am_devices_mspi_flash.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -422,6 +407,21 @@
           </Files>
         </Group>
         <Group>
+          <GroupName>devices</GroupName>
+          <Files>
+            <File>
+              <FileName>am_devices_fireball.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../../../../../devices/am_devices_fireball.c</FilePath>
+            </File>
+            <File>
+              <FileName>am_devices_mspi_flash.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../../../../../devices/am_devices_mspi_flash.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
           <GroupName>keil</GroupName>
           <Files>
             <File>
@@ -435,14 +435,14 @@
           <GroupName>lib</GroupName>
           <Files>
             <File>
-              <FileName>libam_hal.lib</FileName>
-              <FileType>4</FileType>
-              <FilePath>../../../../../mcu/apollo3/hal/keil/bin/libam_hal.lib</FilePath>
-            </File>
-            <File>
               <FileName>libam_bsp.lib</FileName>
               <FileType>4</FileType>
               <FilePath>../../../bsp/keil/bin/libam_bsp.lib</FilePath>
+            </File>
+            <File>
+              <FileName>libam_hal.lib</FileName>
+              <FileType>4</FileType>
+              <FilePath>../../../../../mcu/apollo3/hal/keil/bin/libam_hal.lib</FilePath>
             </File>
           </Files>
         </Group>

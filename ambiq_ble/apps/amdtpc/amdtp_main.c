@@ -43,7 +43,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
-// This is part of revision v2.2.0-7-g63f7c2ba1 of the AmbiqSuite Development Package.
+// This is part of revision 2.3.2 of the AmbiqSuite Development Package.
 //
 //*****************************************************************************
 
@@ -70,6 +70,7 @@
 #include "amdtpc_api.h"
 #include "calc128.h"
 #include "ble_menu.h"
+#include "gatt_api.h"
 
 
 /**************************************************************************************************
@@ -592,7 +593,7 @@ static void amdtpcBtnCback(uint8_t btn)
 
       case APP_UI_BTN_2_EX_LONG:
         /* enable device privacy -- start generating local RPAs every 15 minutes */
-        DmAdvPrivStart(15 * 60);
+        DmDevPrivStart(15 * 60);
 
         /* set Scanning filter policy to accept directed advertisements with RPAs */
         DmDevSetFilterPolicy(DM_FILT_POLICY_MODE_SCAN, HCI_FILT_RES_INIT);
@@ -736,6 +737,11 @@ static void amdtpcDiscCback(dmConnId_t connId, uint8_t status)
       AppMasterSecurityReq(connId);
       break;
 
+    case APP_DISC_READ_DATABASE_HASH:
+      /* Read peer's database hash */
+      AppDiscReadDatabaseHash(connId);
+      break;
+
     case APP_DISC_START:
       /* initialize discovery state */
       amdtpcCb.discState = AMDTPC_DISC_GATT_SVC;
@@ -849,6 +855,7 @@ static void amdtpcProcMsg(dmEvt_t *pMsg)
       break;
 
     case DM_RESET_CMPL_IND:
+      AttsCalculateDbHash();
       DmSecGenerateEccKeyReq();
       amdtpcSetup(pMsg);
 #ifdef BLE_MENU

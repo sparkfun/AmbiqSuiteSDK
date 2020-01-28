@@ -42,7 +42,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
-// This is part of revision v2.2.0-7-g63f7c2ba1 of the AmbiqSuite Development Package.
+// This is part of revision 2.3.2 of the AmbiqSuite Development Package.
 //
 //*****************************************************************************
 #include <string.h>
@@ -82,7 +82,7 @@
 
 static am_multiboot_flash_info_t *g_pFlash = &g_intFlash;
 
-#ifdef AM_PART_APOLLO3
+#if defined(AM_PART_APOLLO3) || defined(AM_PART_APOLLO3P)
 #if (AMOTAS_SUPPORT_EXT_FLASH == 1)
 // OTA using external flash requires secondary bootloader
 // Customer specific Magic#'s can be used to communicate information from
@@ -424,7 +424,7 @@ amotas_set_fw_addr(void)
         uint32_t storeAddr = (AMOTA_INT_FLASH_OTA_ADDRESS + AM_HAL_FLASH_PAGE_SIZE - 1) & ~(AM_HAL_FLASH_PAGE_SIZE - 1);
         uint32_t maxSize = AMOTA_INT_FLASH_OTA_MAX_SIZE & ~(AM_HAL_FLASH_PAGE_SIZE - 1);
 
-#ifndef AM_PART_APOLLO3 // There is no easy way to get the information about the main image in Apollo3
+#if !defined(AM_PART_APOLLO3) && !defined(AM_PART_APOLLO3P) // There is no easy way to get the information about the main image in Apollo3
         uint32_t ui32CurLinkAddr;
         uint32_t ui32CurLen;
         // Get information about current main image
@@ -680,7 +680,7 @@ amotas_verify_firmware_crc(void)
 // Update OTA information with Firmware Information.
 //
 //*****************************************************************************
-#ifdef AM_PART_APOLLO3
+#if defined(AM_PART_APOLLO3) || defined(AM_PART_APOLLO3P)
 static void
 amotas_update_ota(void)
 {

@@ -37,7 +37,17 @@
 #include "am_mcu_apollo.h"
 #include "am_bsp.h"
 
+// A Possible clock glitch could rarely cause the Stimer interrupt to be lost.
+// Set up a backup comparator to handle this case
+#define AM_FREERTOS_STIMER_BACKUP
 
+//#define AM_FREERTOS_STIMER_DIAGS
+#ifdef AM_FREERTOS_STIMER_DIAGS
+uint32_t gF_stimerHistory[256][4];
+uint8_t gF_stimerHistoryCount = 0;
+uint32_t gF_stimerGetHistory[256][4];
+uint8_t gF_stimerGetHistoryCount = 0;
+#endif
 
 // Check to make sure the FreeRTOSConfig.h options are consistent per the implementation
 #if configOVERRIDE_DEFAULT_TICK_CONFIGURATION == 1
@@ -920,7 +930,15 @@ void vPortSuppressTicksAndSleep( TickType_t xExpectedIdleTime )
 
 #ifdef AM_FREERTOS_USE_STIMER_FOR_TICK
     // Adjust for the time already elapsed
-    elapsed_time = am_hal_stimer_counter_get() - g_lastSTimerVal;
+    uint32_t curTime = am_hal_stimer_counter_get();
+#ifdef AM_FREERTOS_STIMER_DIAGS
+    gF_stimerGetHistory[gF_stimerGetHistoryCount][0] = gF_stimerGetHistoryCount;
+    gF_stimerGetHistory[gF_stimerGetHistoryCount][1] = curTime;
+    gF_stimerGetHistory[gF_stimerGetHistoryCount][2] = AM_REGVAL(AM_REG_STIMER_COMPARE(0, 0));
+    gF_stimerGetHistory[gF_stimerGetHistoryCount][3] = gF_stimerHistoryCount;
+    gF_stimerGetHistoryCount++;
+#endif
+    elapsed_time = curTime - g_lastSTimerVal;
 #else
     am_hal_ctimer_stop(configCTIMER_NUM, AM_HAL_CTIMER_BOTH);
     // Adjust for the time already elapsed
@@ -947,6 +965,9 @@ void vPortSuppressTicksAndSleep( TickType_t xExpectedIdleTime )
         // Initialize new timeout value
 #ifdef AM_FREERTOS_USE_STIMER_FOR_TICK
         am_hal_stimer_compare_delta_set(0, ulReloadValue);
+#ifdef AM_FREERTOS_STIMER_BACKUP
+        am_hal_stimer_compare_delta_set(1, ulReloadValue+1);
+#endif
 #else
         am_hal_ctimer_clear(configCTIMER_NUM, AM_HAL_CTIMER_BOTH);
         am_hal_ctimer_compare_set(configCTIMER_NUM, AM_HAL_CTIMER_BOTH, 0, ulReloadValue);
@@ -1007,8 +1028,15 @@ void vPortSuppressTicksAndSleep( TickType_t xExpectedIdleTime )
 #ifdef AM_FREERTOS_USE_STIMER_FOR_TICK
 
         // Clear the interrupt - to avoid extra tick counting in ISR
+#ifdef AM_FREERTOS_STIMER_BACKUP
+        am_hal_stimer_int_clear(AM_HAL_STIMER_INT_COMPAREA | AM_HAL_STIMER_INT_COMPAREB);
+#else
         am_hal_stimer_int_clear(AM_HAL_STIMER_INT_COMPAREA);
+#endif
         am_hal_stimer_compare_delta_set(0, ulTimerCountsForOneTick);
+#ifdef AM_FREERTOS_STIMER_BACKUP
+        am_hal_stimer_compare_delta_set(1, ulTimerCountsForOneTick+1);
+#endif
 #else
         am_hal_ctimer_clear(configCTIMER_NUM, AM_HAL_CTIMER_BOTH);
         am_hal_ctimer_compare_set(configCTIMER_NUM, AM_HAL_CTIMER_BOTH, 0, ulTimerCountsForOneTick);
@@ -1045,7 +1073,7 @@ void vPortSuppressTicksAndSleep( TickType_t xExpectedIdleTime )
 //
 //*****************************************************************************
 void
-xPortStimerTickHandler(void)
+xPortStimerTickHandler(uint32_t delta)
 {
     uint32_t remainder = 0;
     uint32_t curSTimer;
@@ -1057,8 +1085,11 @@ xPortStimerTickHandler(void)
     //
     // Configure the STIMER->COMPARE_0
     //
-    am_hal_stimer_compare_delta_set(0, ulTimerCountsForOneTick);
-
+    am_hal_stimer_compare_delta_set(0, (ulTimerCountsForOneTick-delta));
+#ifdef AM_FREERTOS_STIMER_BACKUP
+    am_hal_stimer_compare_delta_set(1, (ulTimerCountsForOneTick-delta+1));
+#endif
+    
     timerCounts = curSTimer - g_lastSTimerVal;
     numTicksElapsed = timerCounts/ulTimerCountsForOneTick;
     remainder = timerCounts % ulTimerCountsForOneTick;
@@ -1113,11 +1144,36 @@ am_stimer_cmpr0_isr(void)
         //
         // Run handlers for the various possible timer events.
         //
-        xPortStimerTickHandler();
+        xPortStimerTickHandler(0);
     }
 }
 
+#ifdef AM_FREERTOS_STIMER_BACKUP
+uint32_t gNumCmpB = 0;
+//*****************************************************************************
+//
+// Interrupt handler for the STIMER module Compare 0.
+//
+//*****************************************************************************
+void
+am_stimer_cmpr1_isr(void)
+{
 
+    //
+    // Check the timer interrupt status.
+    //
+    uint32_t ui32Status = am_hal_stimer_int_status_get(false);
+    if (ui32Status & AM_HAL_STIMER_INT_COMPAREB)
+    {
+        am_hal_stimer_int_clear(AM_HAL_STIMER_INT_COMPAREB);
+        gNumCmpB++;
+        //
+        // Run handlers for the various possible timer events.
+        //
+        xPortStimerTickHandler(1);
+    }
+}
+#endif
 
 #else // Use CTimer
 //*****************************************************************************
@@ -1169,14 +1225,22 @@ void vPortSetupTimerInterrupt( void )
     #if configUSE_TICKLESS_IDLE == 2
     {
         ulTimerCountsForOneTick = (configSTIMER_CLOCK_HZ /configTICK_RATE_HZ) ; //( configSYSTICK_CLOCK_HZ / configTICK_RATE_HZ );
+#ifdef AM_FREERTOS_STIMER_BACKUP
+        xMaximumPossibleSuppressedTicks = portMAX_32_BIT_NUMBER / ulTimerCountsForOneTick - 1;
+#else
         xMaximumPossibleSuppressedTicks = portMAX_32_BIT_NUMBER / ulTimerCountsForOneTick;
+#endif
     }
     #endif /* configUSE_TICKLESS_IDLE */
     //
     //
     //
+#ifdef AM_FREERTOS_STIMER_BACKUP
+    am_hal_stimer_int_enable(AM_HAL_STIMER_INT_COMPAREA | AM_HAL_STIMER_INT_COMPAREB);
+#else
     am_hal_stimer_int_enable(AM_HAL_STIMER_INT_COMPAREA);
-
+#endif
+    
     //
     // Enable the timer interrupt in the NVIC, making sure to use the
     // appropriate priority level.
@@ -1188,19 +1252,36 @@ void vPortSetupTimerInterrupt( void )
     am_hal_interrupt_priority_set(AM_HAL_INTERRUPT_STIMER_CMPR0, configKERNEL_INTERRUPT_PRIORITY);
     am_hal_interrupt_enable(AM_HAL_INTERRUPT_STIMER_CMPR0);
 #endif // AM_CMSIS_REGS
-
+#ifdef AM_FREERTOS_STIMER_BACKUP
+#if AM_CMSIS_REGS
+    NVIC_SetPriority(STIMER_CMPR1_IRQn, NVIC_configKERNEL_INTERRUPT_PRIORITY);
+    NVIC_EnableIRQ(STIMER_CMPR1_IRQn);
+#else // AM_CMSIS_REGS
+    am_hal_interrupt_priority_set(AM_HAL_INTERRUPT_STIMER_CMPR1, configKERNEL_INTERRUPT_PRIORITY);
+    am_hal_interrupt_enable(AM_HAL_INTERRUPT_STIMER_CMPR1);
+#endif // AM_CMSIS_REGS
+#endif
     //
     // Configure the STIMER
     //
     oldCfg = am_hal_stimer_config(AM_HAL_STIMER_CFG_FREEZE);
     g_lastSTimerVal = am_hal_stimer_counter_get();
     am_hal_stimer_compare_delta_set(0, ulTimerCountsForOneTick);
+#ifdef AM_FREERTOS_STIMER_BACKUP
+    am_hal_stimer_compare_delta_set(1, ulTimerCountsForOneTick+1);
 #if AM_CMSIS_REGS
-    am_hal_stimer_config((oldCfg & ~(AM_HAL_STIMER_CFG_FREEZE|CTIMER_STCFG_CLKSEL_Msk)) | configSTIMER_CLOCK | AM_HAL_STIMER_CFG_COMPARE_A_ENABLE);
+    am_hal_stimer_config((oldCfg & ~(AM_HAL_STIMER_CFG_FREEZE | CTIMER_STCFG_CLKSEL_Msk)) | configSTIMER_CLOCK | AM_HAL_STIMER_CFG_COMPARE_A_ENABLE | AM_HAL_STIMER_CFG_COMPARE_B_ENABLE);
+#else // AM_CMSIS_REGS
+    am_hal_stimer_config((oldCfg & ~(AM_HAL_STIMER_CFG_FREEZE|AM_REG_CTIMER_STCFG_CLKSEL_M)) | configSTIMER_CLOCK | AM_HAL_STIMER_CFG_COMPARE_A_ENABLE | AM_HAL_STIMER_CFG_COMPARE_B_ENABLE);
+#endif // AM_CMSIS_REGS
+#else
+#if AM_CMSIS_REGS
+    am_hal_stimer_config((oldCfg & ~(AM_HAL_STIMER_CFG_FREEZE | CTIMER_STCFG_CLKSEL_Msk)) | configSTIMER_CLOCK | AM_HAL_STIMER_CFG_COMPARE_A_ENABLE);
 #else // AM_CMSIS_REGS
     am_hal_stimer_config((oldCfg & ~(AM_HAL_STIMER_CFG_FREEZE|AM_REG_CTIMER_STCFG_CLKSEL_M)) | configSTIMER_CLOCK | AM_HAL_STIMER_CFG_COMPARE_A_ENABLE);
 #endif // AM_CMSIS_REGS
-
+    
+#endif
 #else
 
     /* Calculate the constants required to configure the tick interrupt. */

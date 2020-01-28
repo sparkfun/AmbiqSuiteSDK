@@ -45,7 +45,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
-// This is part of revision v2.2.0-7-g63f7c2ba1 of the AmbiqSuite Development Package.
+// This is part of revision 2.3.2 of the AmbiqSuite Development Package.
 //
 //*****************************************************************************
 
@@ -95,6 +95,11 @@ typedef union
         uint32_t key3;
     } keys;
 } am_hal_security_128bkey_t;
+
+#ifdef __cplusplus
+extern "C"
+{
+#endif
 
 //*****************************************************************************
 //
@@ -171,5 +176,9 @@ uint32_t am_hal_crc32(uint32_t startAddr, uint32_t sizeBytes, uint32_t *pCrc);
 //
 //*****************************************************************************
 uint32_t am_hal_bootloader_exit(uint32_t *pImage);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif // AM_HAL_SECURITY_H

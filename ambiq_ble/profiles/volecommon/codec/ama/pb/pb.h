@@ -1,3 +1,50 @@
+//*****************************************************************************
+//
+//  pb.h
+//! @file
+//!
+//! @brief Auto-generated (see below).
+//!
+//
+//*****************************************************************************
+
+//*****************************************************************************
+//
+// Copyright (c) 2019, Ambiq Micro
+// All rights reserved.
+// 
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions are met:
+// 
+// 1. Redistributions of source code must retain the above copyright notice,
+// this list of conditions and the following disclaimer.
+// 
+// 2. Redistributions in binary form must reproduce the above copyright
+// notice, this list of conditions and the following disclaimer in the
+// documentation and/or other materials provided with the distribution.
+// 
+// 3. Neither the name of the copyright holder nor the names of its
+// contributors may be used to endorse or promote products derived from this
+// software without specific prior written permission.
+// 
+// Third party software included in this distribution is subject to the
+// additional license terms as defined in the /docs/licenses directory.
+// 
+// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+// CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+// POSSIBILITY OF SUCH DAMAGE.
+//
+// This is part of revision 2.3.2 of the AmbiqSuite Development Package.
+//
+//*****************************************************************************
 /* Common parts of the nanopb library. Most of these are quite low-level
  * stuff. For the high-level interface, see pb_encode.h and pb_decode.h.
  */
@@ -119,12 +166,12 @@
  */
 #ifndef PB_NO_STATIC_ASSERT
 #ifndef PB_STATIC_ASSERT
-#define PB_STATIC_ASSERT(COND,MSG) typedef char PB_STATIC_ASSERT_MSG(MSG, __LINE__, __COUNTER__)[(COND)?1:-1];
+#define PB_STATIC_ASSERT(COND, MSG) typedef char PB_STATIC_ASSERT_MSG(MSG, __LINE__, __COUNTER__)[(COND) ? 1 : -1];
 #define PB_STATIC_ASSERT_MSG(MSG, LINE, COUNTER) PB_STATIC_ASSERT_MSG_(MSG, LINE, COUNTER)
 #define PB_STATIC_ASSERT_MSG_(MSG, LINE, COUNTER) pb_static_assertion_##MSG##LINE##COUNTER
 #endif
 #else
-#define PB_STATIC_ASSERT(COND,MSG)
+#define PB_STATIC_ASSERT(COND, MSG)
 #endif
 
 /* Number of required fields to keep track of. */
@@ -190,7 +237,7 @@ typedef uint_least8_t pb_type_t;
 #define PB_HTYPE_MASK     0x30
 
 /**** Field allocation types ****/
- 
+
 #define PB_ATYPE_STATIC   0x00
 #define PB_ATYPE_POINTER  0x80
 #define PB_ATYPE_CALLBACK 0x40
@@ -231,14 +278,15 @@ typedef uint_least8_t pb_byte_t;
  */
 PB_PACKED_STRUCT_START
 typedef struct pb_field_s pb_field_t;
-struct pb_field_s {
+struct pb_field_s
+{
     pb_size_t tag;
     pb_type_t type;
     pb_size_t data_offset; /* Offset of field data, relative to previous field. */
     pb_ssize_t size_offset; /* Offset of array size or has-boolean, relative to data */
     pb_size_t data_size; /* Data size in bytes for a single item */
     pb_size_t array_size; /* Maximum number of entries in array */
-    
+
     /* Field definitions for submessage
      * OR default value for all other non-array, non-callback types
      * If null, then field will zeroed. */
@@ -264,7 +312,8 @@ PB_STATIC_ASSERT(sizeof(uint64_t) == 2 * sizeof(uint32_t), UINT64_T_WRONG_SIZE)
 #define PB_BYTES_ARRAY_T(n) struct { pb_size_t size; pb_byte_t bytes[n]; }
 #define PB_BYTES_ARRAY_T_ALLOCSIZE(n) ((size_t)n + offsetof(pb_bytes_array_t, bytes))
 
-struct pb_bytes_array_s {
+struct pb_bytes_array_s
+{
     pb_size_t size;
     pb_byte_t bytes[1];
 };
@@ -291,27 +340,31 @@ typedef struct pb_bytes_array_s pb_bytes_array_t;
 typedef struct pb_istream_s pb_istream_t;
 typedef struct pb_ostream_s pb_ostream_t;
 typedef struct pb_callback_s pb_callback_t;
-struct pb_callback_s {
+struct pb_callback_s
+{
 #ifdef PB_OLD_CALLBACK_STYLE
     /* Deprecated since nanopb-0.2.1 */
-    union {
+    union
+    {
         bool (*decode)(pb_istream_t *stream, const pb_field_t *field, void *arg);
         bool (*encode)(pb_ostream_t *stream, const pb_field_t *field, const void *arg);
     } funcs;
 #else
     /* New function signature, which allows modifying arg contents in callback. */
-    union {
+    union
+    {
         bool (*decode)(pb_istream_t *stream, const pb_field_t *field, void **arg);
         bool (*encode)(pb_ostream_t *stream, const pb_field_t *field, void * const *arg);
     } funcs;
-#endif    
-    
+#endif
+
     /* Free arg for use by callback */
     void *arg;
 };
 
 /* Wire types. Library user needs these only in encoder callbacks. */
-typedef enum {
+typedef enum
+{
     PB_WT_VARINT = 0,
     PB_WT_64BIT  = 1,
     PB_WT_STRING = 2,
@@ -326,7 +379,8 @@ typedef enum {
  */
 typedef struct pb_extension_type_s pb_extension_type_t;
 typedef struct pb_extension_s pb_extension_t;
-struct pb_extension_type_s {
+struct pb_extension_type_s
+{
     /* Called for each unknown field in the message.
      * If you handle the field, read off all of its data and return true.
      * If you do not handle the field, do not read anything and return true.
@@ -335,7 +389,7 @@ struct pb_extension_type_s {
      */
     bool (*decode)(pb_istream_t *stream, pb_extension_t *extension,
                    uint32_t tag, pb_wire_type_t wire_type);
-    
+
     /* Called once after all regular fields have been encoded.
      * If you have something to write, do so and return true.
      * If you do not have anything to write, just return true.
@@ -343,20 +397,21 @@ struct pb_extension_type_s {
      * Set to NULL for default handler.
      */
     bool (*encode)(pb_ostream_t *stream, const pb_extension_t *extension);
-    
+
     /* Free field for use by the callback. */
     const void *arg;
 };
 
-struct pb_extension_s {
+struct pb_extension_s
+{
     /* Type describing the extension field. Usually you'll initialize
      * this to a pointer to the automatically generated structure. */
     const pb_extension_type_t *type;
-    
+
     /* Destination for the decoded data. This must match the datatype
      * of the extension field. */
     void *dest;
-    
+
     /* Pointer to the next extension handler, or NULL.
      * If this extension does not match a field, the next handler is
      * automatically called. */
@@ -389,7 +444,7 @@ struct pb_extension_s {
 /* Delta from start of one member to the start of another member. */
 #define pb_delta(st, m1, m2) ((int)offsetof(st, m1) - (int)offsetof(st, m2))
 /* Marks the end of the field list */
-#define PB_LAST_FIELD {0,(pb_type_t) 0,0,0,0,0,0}
+#define PB_LAST_FIELD {0, (pb_type_t)0, 0, 0, 0, 0, 0}
 
 /* Macros for filling in the data_offset field */
 /* data_offset for first field in a message */
@@ -463,7 +518,7 @@ struct pb_extension_s {
 #define PB_SINGULAR_CALLBACK(tag, st, m, fd, ltype, ptr) \
     {tag, PB_ATYPE_CALLBACK | PB_HTYPE_OPTIONAL | ltype, \
     fd, 0, pb_membersize(st, m), 0, ptr}
-    
+
 #define PB_REPEATED_CALLBACK(tag, st, m, fd, ltype, ptr) \
     {tag, PB_ATYPE_CALLBACK | PB_HTYPE_REPEATED | ltype, \
     fd, 0, pb_membersize(st, m), 0, ptr}

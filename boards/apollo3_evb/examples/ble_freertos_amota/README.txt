@@ -13,7 +13,7 @@ Purpose:
 This example implements Ambiq Micro Over-the-Air (OTA) slave.  This
 example is designed to allow loading of a binary software update from either
 and iOS or Android phone running Ambiq's application.  This example works
-with the Apollo3 Secure Bootloader (SBL) to place the image in flash and then 
+with the Apollo3 Secure Bootloader (SBL) to place the image in flash and then
 reset the Apollo3 to allow SBL to validate and install the image.
 
 AM_DEBUG_PRINTF

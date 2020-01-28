@@ -21,8 +21,8 @@
     Conforms to Hard float procedure-call standard
 
     Built with
-    Component: ARM Compiler 5.06 update 5 (build 528) Tool: armasm [4d35e1]
-    Component: ARM Compiler 5.06 update 5 (build 528) Tool: armlink [4d35e2]
+    Component: ARM Compiler 5.06 update 6 (build 750) Tool: armasm [4d35ec]
+    Component: ARM Compiler 5.06 update 6 (build 750) Tool: armlink [4d35ed]
 
     Header size: 52 bytes (0x34)
     Program header entry size: 32 bytes (0x20)
@@ -31,8 +31,8 @@
     Program header entries: 1
     Section header entries: 16
 
-    Program header offset: 65056 (0x0000fe20)
-    Section header offset: 65088 (0x0000fe40)
+    Program header offset: 65616 (0x00010050)
+    Section header offset: 65648 (0x00010070)
 
     Section header string table index: 15
 
@@ -729,72 +729,72 @@
         0x00000538:    74657320     set    DCD    1952805664
         0x0000053c:    676e6974    ting    DCD    1735289204
         0x00000540:    0000002e    ....    DCD    46
-        0x00000544:    612f2e2e    ../a    DCD    1630481966
-        0x00000548:    61685f6d    m_ha    DCD    1634230125
-        0x0000054c:    6c635f6c    l_cl    DCD    1818451820
-        0x00000550:    6e65676b    kgen    DCD    1852139371
-        0x00000554:    0000632e    .c..    DCD    25390
+        0x00000544:    685f6d61    am_h    DCD    1751084385
+        0x00000548:    635f6c61    al_c    DCD    1667198049
+        0x0000054c:    65676b6c    lkge    DCD    1701276524
+        0x00000550:    00632e6e    n.c.    DCD    6499950
     $t
     i.am_hal_ctimer_clear
     am_hal_ctimer_clear
-        0x00000558:    b538        8.      PUSH     {r3-r5,lr}
-        0x0000055a:    460d        .F      MOV      r5,r1
-        0x0000055c:    4907        .I      LDR      r1,[pc,#28] ; [0x57c] = 0x4000800c
-        0x0000055e:    eb011400    ....    ADD      r4,r1,r0,LSL #4
-        0x00000562:    f7fffe27    ..'.    BL       am_hal_interrupt_master_disable ; 0x1b4
-        0x00000566:    9000        ..      STR      r0,[sp,#0]
-        0x00000568:    6820         h      LDR      r0,[r4,#0]
-        0x0000056a:    f0052108    ...!    AND      r1,r5,#0x8000800
-        0x0000056e:    4308        .C      ORRS     r0,r0,r1
-        0x00000570:    6020         `      STR      r0,[r4,#0]
-        0x00000572:    9800        ..      LDR      r0,[sp,#0]
-        0x00000574:    e8bd4038    ..8@    POP      {r3-r5,lr}
-        0x00000578:    f7ffbe20    .. .    B.W      am_hal_interrupt_master_set ; 0x1bc
+        0x00000554:    b538        8.      PUSH     {r3-r5,lr}
+        0x00000556:    460d        .F      MOV      r5,r1
+        0x00000558:    4907        .I      LDR      r1,[pc,#28] ; [0x578] = 0x4000800c
+        0x0000055a:    eb011400    ....    ADD      r4,r1,r0,LSL #4
+        0x0000055e:    f7fffe29    ..).    BL       am_hal_interrupt_master_disable ; 0x1b4
+        0x00000562:    9000        ..      STR      r0,[sp,#0]
+        0x00000564:    6820         h      LDR      r0,[r4,#0]
+        0x00000566:    f0052108    ...!    AND      r1,r5,#0x8000800
+        0x0000056a:    4308        .C      ORRS     r0,r0,r1
+        0x0000056c:    6020         `      STR      r0,[r4,#0]
+        0x0000056e:    9800        ..      LDR      r0,[sp,#0]
+        0x00000570:    e8bd4038    ..8@    POP      {r3-r5,lr}
+        0x00000574:    f7ffbe22    ..".    B.W      am_hal_interrupt_master_set ; 0x1bc
     $d
-        0x0000057c:    4000800c    ...@    DCD    1073774604
+        0x00000578:    4000800c    ...@    DCD    1073774604
     $t
     i.am_hal_ctimer_config_single
     am_hal_ctimer_config_single
-        0x00000580:    b5f8        ..      PUSH     {r3-r7,lr}
-        0x00000582:    4d20         M      LDR      r5,[pc,#128] ; [0x604] = 0x4000800c
-        0x00000584:    4614        .F      MOV      r4,r2
-        0x00000586:    460e        .F      MOV      r6,r1
-        0x00000588:    eb051700    ....    ADD      r7,r5,r0,LSL #4
-        0x0000058c:    f7fffe12    ....    BL       am_hal_interrupt_master_disable ; 0x1b4
-        0x00000590:    9000        ..      STR      r0,[sp,#0]
-        0x00000592:    6838        8h      LDR      r0,[r7,#0]
-        0x00000594:    f5163f80    ...?    CMN      r6,#0x10000
-        0x00000598:    bf08        ..      IT       EQ
-        0x0000059a:    0424        $.      LSLEQ    r4,r4,#16
-        0x0000059c:    43b0        .C      BICS     r0,r0,r6
-        0x0000059e:    4320         C      ORRS     r0,r0,r4
-        0x000005a0:    f1b63fff    ...?    CMP      r6,#0xffffffff
-        0x000005a4:    bf08        ..      IT       EQ
-        0x000005a6:    f0404000    @..@    ORREQ    r0,r0,#0x80000000
-        0x000005aa:    6038        8`      STR      r0,[r7,#0]
-        0x000005ac:    4816        .H      LDR      r0,[pc,#88] ; [0x608] = 0x40008000
-        0x000005ae:    f8d00100    ....    LDR      r0,[r0,#0x100]
-        0x000005b2:    4b16        .K      LDR      r3,[pc,#88] ; [0x60c] = 0x40021000
-        0x000005b4:    f000000f    ....    AND      r0,r0,#0xf
-        0x000005b8:    2801        .(      CMP      r0,#1
-        0x000005ba:    bf1c        ..      ITT      NE
-        0x000005bc:    2802        .(      CMPNE    r0,#2
-        0x000005be:    2000        .       MOVNE    r0,#0
-        0x000005c0:    d01b        ..      BEQ      0x5fa ; am_hal_ctimer_config_single + 122
-        0x000005c2:    bf00        ..      NOP      
+        0x0000057c:    b5f8        ..      PUSH     {r3-r7,lr}
+        0x0000057e:    4d21        !M      LDR      r5,[pc,#132] ; [0x604] = 0x4000800c
+        0x00000580:    4617        .F      MOV      r7,r2
+        0x00000582:    eb051600    ....    ADD      r6,r5,r0,LSL #4
+        0x00000586:    f0012008    ...     AND      r0,r1,#0x8000800
+        0x0000058a:    460c        .F      MOV      r4,r1
+        0x0000058c:    6030        0`      STR      r0,[r6,#0]
+        0x0000058e:    f7fffe11    ....    BL       am_hal_interrupt_master_disable ; 0x1b4
+        0x00000592:    9000        ..      STR      r0,[sp,#0]
+        0x00000594:    6830        0h      LDR      r0,[r6,#0]
+        0x00000596:    f5143f80    ...?    CMN      r4,#0x10000
+        0x0000059a:    bf08        ..      IT       EQ
+        0x0000059c:    043f        ?.      LSLEQ    r7,r7,#16
+        0x0000059e:    43a0        .C      BICS     r0,r0,r4
+        0x000005a0:    4338        8C      ORRS     r0,r0,r7
+        0x000005a2:    f1b43fff    ...?    CMP      r4,#0xffffffff
+        0x000005a6:    bf08        ..      IT       EQ
+        0x000005a8:    f0404000    @..@    ORREQ    r0,r0,#0x80000000
+        0x000005ac:    6030        0`      STR      r0,[r6,#0]
+        0x000005ae:    4816        .H      LDR      r0,[pc,#88] ; [0x608] = 0x40008000
+        0x000005b0:    f8d00100    ....    LDR      r0,[r0,#0x100]
+        0x000005b4:    4b15        .K      LDR      r3,[pc,#84] ; [0x60c] = 0x40021000
+        0x000005b6:    f000000f    ....    AND      r0,r0,#0xf
+        0x000005ba:    2801        .(      CMP      r0,#1
+        0x000005bc:    bf1c        ..      ITT      NE
+        0x000005be:    2802        .(      CMPNE    r0,#2
+        0x000005c0:    2000        .       MOVNE    r0,#0
+        0x000005c2:    d01a        ..      BEQ      0x5fa ; am_hal_ctimer_config_single + 126
         0x000005c4:    eb051100    ....    ADD      r1,r5,r0,LSL #4
-        0x000005c8:    680a        .h      LDR      r2,[r1,#0]
-        0x000005ca:    f3c20144    ..D.    UBFX     r1,r2,#1,#5
-        0x000005ce:    f3c24244    ..DB    UBFX     r2,r2,#17,#5
-        0x000005d2:    f1a10101    ....    SUB      r1,r1,#1
-        0x000005d6:    f1a20201    ....    SUB      r2,r2,#1
-        0x000005da:    2904        .)      CMP      r1,#4
+        0x000005c8:    6809        .h      LDR      r1,[r1,#0]
+        0x000005ca:    f3c10244    ..D.    UBFX     r2,r1,#1,#5
+        0x000005ce:    f3c14144    ..DA    UBFX     r1,r1,#17,#5
+        0x000005d2:    f1a20201    ....    SUB      r2,r2,#1
+        0x000005d6:    f1a10101    ....    SUB      r1,r1,#1
+        0x000005da:    2a04        .*      CMP      r2,#4
         0x000005dc:    bf88        ..      IT       HI
-        0x000005de:    2a04        .*      CMPHI    r2,#4
-        0x000005e0:    d90b        ..      BLS      0x5fa ; am_hal_ctimer_config_single + 122
+        0x000005de:    2904        .)      CMPHI    r1,#4
+        0x000005e0:    d90b        ..      BLS      0x5fa ; am_hal_ctimer_config_single + 126
         0x000005e2:    1c40        @.      ADDS     r0,r0,#1
         0x000005e4:    2804        .(      CMP      r0,#4
-        0x000005e6:    d3ed        ..      BCC      0x5c4 ; am_hal_ctimer_config_single + 68
+        0x000005e6:    d3ed        ..      BCC      0x5c4 ; am_hal_ctimer_config_single + 72
         0x000005e8:    6a18        .j      LDR      r0,[r3,#0x20]
         0x000005ea:    f0400004    @...    ORR      r0,r0,#4
         0x000005ee:    6218        .b      STR      r0,[r3,#0x20]
@@ -803,7 +803,7 @@
         0x000005f6:    f7ffbde1    ....    B.W      am_hal_interrupt_master_set ; 0x1bc
         0x000005fa:    6a18        .j      LDR      r0,[r3,#0x20]
         0x000005fc:    f0200004     ...    BIC      r0,r0,#4
-        0x00000600:    e7f5        ..      B        0x5ee ; am_hal_ctimer_config_single + 110
+        0x00000600:    e7f5        ..      B        0x5ee ; am_hal_ctimer_config_single + 114
     $d
         0x00000602:    0000        ..      DCW    0
         0x00000604:    4000800c    ...@    DCD    1073774604
@@ -1384,7 +1384,7 @@
         0x00000b32:    f04f31ff    O..1    MOV      r1,#0xffffffff
         0x00000b36:    1e40        @.      SUBS     r0,r0,#1
         0x00000b38:    9000        ..      STR      r0,[sp,#0]
-        0x00000b3a:    f7fffd0d    ....    BL       am_hal_ctimer_clear ; 0x558
+        0x00000b3a:    f7fffd0b    ....    BL       am_hal_ctimer_clear ; 0x554
         0x00000b3e:    2300        .#      MOVS     r3,#0
         0x00000b40:    f04f1201    O...    MOV      r2,#0x10001
         0x00000b44:    1e59        Y.      SUBS     r1,r3,#1
@@ -2357,7 +2357,7 @@
         0x00001470:    f24222d0    B.."    MOV      r2,#0x22d0
         0x00001474:    4915        .I      LDR      r1,[pc,#84] ; [0x14cc] = 0xffff0000
         0x00001476:    2002        .       MOVS     r0,#2
-        0x00001478:    f7fff882    ....    BL       am_hal_ctimer_config_single ; 0x580
+        0x00001478:    f7fff880    ....    BL       am_hal_ctimer_config_single ; 0x57c
         0x0000147c:    2320         #      MOVS     r3,#0x20
         0x0000147e:    2240        @"      MOVS     r2,#0x40
         0x00001480:    4912        .I      LDR      r1,[pc,#72] ; [0x14cc] = 0xffff0000
@@ -2844,7 +2844,7 @@
 
 
 ** Section #6 '.debug_info' (SHT_PROGBITS)
-    Size   : 11000 bytes
+    Size   : 11560 bytes
 
 
 ** Section #7 '.debug_line' (SHT_PROGBITS)
@@ -2896,9 +2896,9 @@
      21  $d                         0x000004e4   Lc    1   --   De 
      22  $t                         0x000004ec   Lc    1   --   De 
      23  $d                         0x0000050c   Lc    1   --   De 
-     24  $t                         0x00000558   Lc    1   --   De 
-     25  $d                         0x0000057c   Lc    1   --   De 
-     26  $t                         0x00000580   Lc    1   --   De 
+     24  $t                         0x00000554   Lc    1   --   De 
+     25  $d                         0x00000578   Lc    1   --   De 
+     26  $t                         0x0000057c   Lc    1   --   De 
      27  $d                         0x00000602   Lc    1   --   De 
      28  $t                         0x00000610   Lc    1   --   De 
      29  $d                         0x00000618   Lc    1   --   De 
@@ -3018,57 +3018,57 @@
     136  $v0                        0x000001c4   Lc    1   --   De 
     137  ../am_hal_global.c         0x00000000   Lc  Abs  File  De 
     138  .data                      0x1000000c   Lc    2  Sect  De   0x4
-    139  ../am_hal_cachectrl.c      0x00000000   Lc  Abs  File  De 
-    140  i.am_hal_cachectrl_enable  0x000003d0   Lc    1  Sect  De 
-    141  .constdata                 0x00001928   Lc    1  Sect  De   0xc
-    142  ../am_hal_clkgen.c         0x00000000   Lc  Abs  File  De 
-    143  i.am_hal_clkgen_osc_start  0x000004a0   Lc    1  Sect  De 
-    144  i.am_hal_clkgen_osc_stop   0x000004b6   Lc    1  Sect  De 
-    145  i.am_hal_clkgen_sysclk_get 0x000004cc   Lc    1  Sect  De 
-    146  i.am_hal_clkgen_sysclk_select
-                                    0x000004ec   Lc    1  Sect  De 
-    147  ..\am_hal_ctimer.c         0x00000000   Lc  Abs  File  De 
-    148  ../am_hal_ctimer.c         0x00000000   Lc  Abs  File  De 
-    149  i.am_hal_ctimer_clear      0x00000558   Lc    1  Sect  De 
-    150  i.am_hal_ctimer_config_single
-                                    0x00000580   Lc    1  Sect  De 
-    151  i.am_hal_ctimer_int_clear  0x00000610   Lc    1  Sect  De 
-    152  i.am_hal_ctimer_int_enable 0x0000061c   Lc    1  Sect  De 
-    153  i.am_hal_ctimer_period_set 0x00000640   Lc    1  Sect  De 
-    154  i.am_hal_ctimer_start      0x000006bc   Lc    1  Sect  De 
-    155  ../am_hal_flash.c          0x00000000   Lc  Abs  File  De 
-    156  i.am_hal_flash_delay       0x000006f0   Lc    1  Sect  De 
-    157  ..\am_hal_interrupt.c      0x00000000   Lc  Abs  File  De 
-    158  .emb_text                  0x000001ac   Lc    1  Sect  De   0x16
-    159  $v0                        0x000001ac   Lc    1   --   De 
-    160  ../am_hal_interrupt.c      0x00000000   Lc  Abs  File  De 
-    161  i.am_hal_interrupt_enable  0x000006f8   Lc    1  Sect  De 
-    162  ../am_hal_itm.c            0x00000000   Lc  Abs  File  De 
-    163  i.am_hal_itm_enable        0x00000744   Lc    1  Sect  De 
-    164  i.am_hal_itm_not_busy      0x0000079c   Lc    1  Sect  De 
-    165  i.am_hal_itm_print         0x000007b4   Lc    1  Sect  De 
-    166  ../am_hal_mcuctrl.c        0x00000000   Lc  Abs  File  De 
-    167  i.am_hal_mcuctrl_fault_status
-                                    0x000007e4   Lc    1  Sect  De 
-    168  ../am_hal_sysctrl.c        0x00000000   Lc  Abs  File  De 
-    169  i.am_hal_sysctrl_sleep     0x00000a98   Lc    1  Sect  De 
-    170  i.setBuckZX                0x00001584   Lc    1  Sect  De 
-    171  setBuckZX                  0x00001585   Lc    1  Code  De   0x72
-    172  .data                      0x10000010   Lc    2  Sect  De   0x1c
-    173  g_bBuckRestoreComplete     0x10000010   Lc    2  Data  De   0x1
-    174  g_ui32BuckTimer            0x10000014   Lc    2  Data  De   0x4
-    175  g_ui32BuckInputs           0x10000018   Lc    2  Data  De   0x4
-    176  g_buckZX_chk               0x1000001c   Lc    2  Data  De   0x4
-    177  g_ui32SaveCoreBuckZX       0x10000020   Lc    2  Data  De   0x4
-    178  g_ui32SaveMemBuckZX        0x10000024   Lc    2  Data  De   0x4
-    179  g_ui32CoreBuck             0x10000028   Lc    2  Data  De   0x4
-    180  ../am_bsp.c                0x00000000   Lc  Abs  File  De 
-    181  i.am_bsp_debug_printf_disable
+    139  ../am_bsp.c                0x00000000   Lc  Abs  File  De 
+    140  i.am_bsp_debug_printf_disable
                                     0x000002a4   Lc    1  Sect  De 
-    182  i.am_bsp_debug_printf_enable
+    141  i.am_bsp_debug_printf_enable
                                     0x00000300   Lc    1  Sect  De 
-    183  i.am_bsp_itm_string_print  0x00000370   Lc    1  Sect  De 
-    184  i.am_bsp_low_power_init    0x00000374   Lc    1  Sect  De 
+    142  i.am_bsp_itm_string_print  0x00000370   Lc    1  Sect  De 
+    143  i.am_bsp_low_power_init    0x00000374   Lc    1  Sect  De 
+    144  ../am_hal_cachectrl.c      0x00000000   Lc  Abs  File  De 
+    145  i.am_hal_cachectrl_enable  0x000003d0   Lc    1  Sect  De 
+    146  .constdata                 0x00001928   Lc    1  Sect  De   0xc
+    147  ../am_hal_clkgen.c         0x00000000   Lc  Abs  File  De 
+    148  i.am_hal_clkgen_osc_start  0x000004a0   Lc    1  Sect  De 
+    149  i.am_hal_clkgen_osc_stop   0x000004b6   Lc    1  Sect  De 
+    150  i.am_hal_clkgen_sysclk_get 0x000004cc   Lc    1  Sect  De 
+    151  i.am_hal_clkgen_sysclk_select
+                                    0x000004ec   Lc    1  Sect  De 
+    152  ..\am_hal_ctimer.c         0x00000000   Lc  Abs  File  De 
+    153  ../am_hal_ctimer.c         0x00000000   Lc  Abs  File  De 
+    154  i.am_hal_ctimer_clear      0x00000554   Lc    1  Sect  De 
+    155  i.am_hal_ctimer_config_single
+                                    0x0000057c   Lc    1  Sect  De 
+    156  i.am_hal_ctimer_int_clear  0x00000610   Lc    1  Sect  De 
+    157  i.am_hal_ctimer_int_enable 0x0000061c   Lc    1  Sect  De 
+    158  i.am_hal_ctimer_period_set 0x00000640   Lc    1  Sect  De 
+    159  i.am_hal_ctimer_start      0x000006bc   Lc    1  Sect  De 
+    160  ../am_hal_flash.c          0x00000000   Lc  Abs  File  De 
+    161  i.am_hal_flash_delay       0x000006f0   Lc    1  Sect  De 
+    162  ..\am_hal_interrupt.c      0x00000000   Lc  Abs  File  De 
+    163  .emb_text                  0x000001ac   Lc    1  Sect  De   0x16
+    164  $v0                        0x000001ac   Lc    1   --   De 
+    165  ../am_hal_interrupt.c      0x00000000   Lc  Abs  File  De 
+    166  i.am_hal_interrupt_enable  0x000006f8   Lc    1  Sect  De 
+    167  ../am_hal_itm.c            0x00000000   Lc  Abs  File  De 
+    168  i.am_hal_itm_enable        0x00000744   Lc    1  Sect  De 
+    169  i.am_hal_itm_not_busy      0x0000079c   Lc    1  Sect  De 
+    170  i.am_hal_itm_print         0x000007b4   Lc    1  Sect  De 
+    171  ../am_hal_mcuctrl.c        0x00000000   Lc  Abs  File  De 
+    172  i.am_hal_mcuctrl_fault_status
+                                    0x000007e4   Lc    1  Sect  De 
+    173  ../am_hal_sysctrl.c        0x00000000   Lc  Abs  File  De 
+    174  i.am_hal_sysctrl_sleep     0x00000a98   Lc    1  Sect  De 
+    175  i.setBuckZX                0x00001584   Lc    1  Sect  De 
+    176  setBuckZX                  0x00001585   Lc    1  Code  De   0x72
+    177  .data                      0x10000010   Lc    2  Sect  De   0x1c
+    178  g_bBuckRestoreComplete     0x10000010   Lc    2  Data  De   0x1
+    179  g_ui32BuckTimer            0x10000014   Lc    2  Data  De   0x4
+    180  g_ui32BuckInputs           0x10000018   Lc    2  Data  De   0x4
+    181  g_buckZX_chk               0x1000001c   Lc    2  Data  De   0x4
+    182  g_ui32SaveCoreBuckZX       0x10000020   Lc    2  Data  De   0x4
+    183  g_ui32SaveMemBuckZX        0x10000024   Lc    2  Data  De   0x4
+    184  g_ui32CoreBuck             0x10000028   Lc    2  Data  De   0x4
     185  ../am_hal_debug.c          0x00000000   Lc  Abs  File  De 
     186  i.am_hal_debug_error       0x000006ec   Lc    1  Sect  De 
     187  ../am_hal_gpio.c           0x00000000   Lc  Abs  File  De 
@@ -3388,9 +3388,9 @@
     445  am_hal_clkgen_sysclk_get   0x000004cd   Gb    1  Code  Hi   0x18
     446  am_hal_clkgen_sysclk_select
                                     0x000004ed   Gb    1  Code  Hi   0x20
-    447  am_hal_ctimer_clear        0x00000559   Gb    1  Code  Hi   0x24
+    447  am_hal_ctimer_clear        0x00000555   Gb    1  Code  Hi   0x24
     448  am_hal_ctimer_config_single
-                                    0x00000581   Gb    1  Code  Hi   0x82
+                                    0x0000057d   Gb    1  Code  Hi   0x86
     449  am_hal_ctimer_int_clear    0x00000611   Gb    1  Code  Hi   0x8
     450  am_hal_ctimer_int_enable   0x0000061d   Gb    1  Code  Hi   0x20
     451  am_hal_ctimer_period_set   0x00000641   Gb    1  Code  Hi   0x72
@@ -3505,48 +3505,48 @@
            49    757: RESET
            50    763: .text
            51    769: ../am_hal_global.c
-           52    788: ../am_hal_cachectrl.c
-           53    810: i.am_hal_cachectrl_enable
-           54    836: ../am_hal_clkgen.c
-           55    855: i.am_hal_clkgen_osc_start
-           56    881: i.am_hal_clkgen_osc_stop
-           57    906: i.am_hal_clkgen_sysclk_get
-           58    933: i.am_hal_clkgen_sysclk_select
-           59    963: ..\am_hal_ctimer.c
-           60    982: ../am_hal_ctimer.c
-           61   1001: i.am_hal_ctimer_clear
-           62   1023: i.am_hal_ctimer_config_single
-           63   1053: i.am_hal_ctimer_int_clear
-           64   1079: i.am_hal_ctimer_int_enable
-           65   1106: i.am_hal_ctimer_period_set
-           66   1133: i.am_hal_ctimer_start
-           67   1155: ../am_hal_flash.c
-           68   1173: i.am_hal_flash_delay
-           69   1194: ..\am_hal_interrupt.c
-           70   1216: ../am_hal_interrupt.c
-           71   1238: i.am_hal_interrupt_enable
-           72   1264: ../am_hal_itm.c
-           73   1280: i.am_hal_itm_enable
-           74   1300: i.am_hal_itm_not_busy
-           75   1322: i.am_hal_itm_print
-           76   1341: ../am_hal_mcuctrl.c
-           77   1361: i.am_hal_mcuctrl_fault_status
-           78   1391: ../am_hal_sysctrl.c
-           79   1411: i.am_hal_sysctrl_sleep
-           80   1434: i.setBuckZX
-           81   1446: setBuckZX
-           82   1456: g_bBuckRestoreComplete
-           83   1479: g_ui32BuckTimer
-           84   1495: g_ui32BuckInputs
-           85   1512: g_buckZX_chk
-           86   1525: g_ui32SaveCoreBuckZX
-           87   1546: g_ui32SaveMemBuckZX
-           88   1566: g_ui32CoreBuck
-           89   1581: ../am_bsp.c
-           90   1593: i.am_bsp_debug_printf_disable
-           91   1623: i.am_bsp_debug_printf_enable
-           92   1652: i.am_bsp_itm_string_print
-           93   1678: i.am_bsp_low_power_init
+           52    788: ../am_bsp.c
+           53    800: i.am_bsp_debug_printf_disable
+           54    830: i.am_bsp_debug_printf_enable
+           55    859: i.am_bsp_itm_string_print
+           56    885: i.am_bsp_low_power_init
+           57    909: ../am_hal_cachectrl.c
+           58    931: i.am_hal_cachectrl_enable
+           59    957: ../am_hal_clkgen.c
+           60    976: i.am_hal_clkgen_osc_start
+           61   1002: i.am_hal_clkgen_osc_stop
+           62   1027: i.am_hal_clkgen_sysclk_get
+           63   1054: i.am_hal_clkgen_sysclk_select
+           64   1084: ..\am_hal_ctimer.c
+           65   1103: ../am_hal_ctimer.c
+           66   1122: i.am_hal_ctimer_clear
+           67   1144: i.am_hal_ctimer_config_single
+           68   1174: i.am_hal_ctimer_int_clear
+           69   1200: i.am_hal_ctimer_int_enable
+           70   1227: i.am_hal_ctimer_period_set
+           71   1254: i.am_hal_ctimer_start
+           72   1276: ../am_hal_flash.c
+           73   1294: i.am_hal_flash_delay
+           74   1315: ..\am_hal_interrupt.c
+           75   1337: ../am_hal_interrupt.c
+           76   1359: i.am_hal_interrupt_enable
+           77   1385: ../am_hal_itm.c
+           78   1401: i.am_hal_itm_enable
+           79   1421: i.am_hal_itm_not_busy
+           80   1443: i.am_hal_itm_print
+           81   1462: ../am_hal_mcuctrl.c
+           82   1482: i.am_hal_mcuctrl_fault_status
+           83   1512: ../am_hal_sysctrl.c
+           84   1532: i.am_hal_sysctrl_sleep
+           85   1555: i.setBuckZX
+           86   1567: setBuckZX
+           87   1577: g_bBuckRestoreComplete
+           88   1600: g_ui32BuckTimer
+           89   1616: g_ui32BuckInputs
+           90   1633: g_buckZX_chk
+           91   1646: g_ui32SaveCoreBuckZX
+           92   1667: g_ui32SaveMemBuckZX
+           93   1687: g_ui32CoreBuck
            94   1702: ../am_hal_debug.c
            95   1720: i.am_hal_debug_error
            96   1741: ../am_hal_gpio.c

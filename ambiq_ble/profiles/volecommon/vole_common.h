@@ -43,7 +43,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
-// This is part of revision v2.2.0-7-g63f7c2ba1 of the AmbiqSuite Development Package.
+// This is part of revision 2.3.2 of the AmbiqSuite Development Package.
 //
 //*****************************************************************************
 
@@ -85,13 +85,14 @@ extern "C"
 #define AUD_HEADER_LEN        44
 
 
-struct au_header {
-	uint32_t magic;		/* '.snd' */
-	uint32_t hdr_size;	/* size of header (min 24) */
-	uint32_t data_size;	/* size of data */
-	uint32_t encoding;	/* see to AU_FMT_XXXX */
-	uint32_t sample_rate;	/* sample rate */
-	uint32_t channels;	/* number of channels (voices) */
+struct au_header
+{
+    uint32_t magic;         /* '.snd' */
+    uint32_t hdr_size;      /* size of header (min 24) */
+    uint32_t data_size;     /* size of data */
+    uint32_t encoding;      /* see to AU_FMT_XXXX */
+    uint32_t sample_rate;   /* sample rate */
+    uint32_t channels;      /* number of channels (voices) */
 };
 
 typedef enum codecType

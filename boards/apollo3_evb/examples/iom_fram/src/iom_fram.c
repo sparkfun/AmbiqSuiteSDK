@@ -11,9 +11,14 @@
 //! Printing takes place over the ITM at 1M Baud.
 //!
 //! Additional Information:
+//! Define USE_SPI to select SPI or I2C
 //! Define one of FRAM_DEVICE_ macros to select the FRAM device
+//! And if the fireball device card is used, this example can work on:
+//! Apollo3_eb + Fireball
+//! Apollo3_eb + Fireball2
+//! Recommend to use 1.8V power supply voltage.
+//! Define FIREBALL_CARD or FIREBALL2_CARD in the config-template.ini file to select.
 //!
-//
 //*****************************************************************************
 
 //*****************************************************************************
@@ -50,7 +55,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
-// This is part of revision v2.2.0-7-g63f7c2ba1 of the AmbiqSuite Development Package.
+// This is part of revision 2.3.2 of the AmbiqSuite Development Package.
 //
 //*****************************************************************************
 
@@ -58,7 +63,7 @@
 #include "am_bsp.h"
 #include "am_util.h"
 
-#if FIREBALL_CARD
+#if FIREBALL_CARD || FIREBALL2_CARD
 //
 // The Fireball device card multiplexes various devices including each of an SPI
 // and I2C FRAM. The Fireball device driver controls access to these devices.
@@ -76,9 +81,21 @@
 #define PATTERN_BUF_SIZE        128
 #define NUM_INERATIONS          16
 
+#define USE_SPI                 1
+
 // Select the FRAM Device
+#if (USE_SPI == 1)
+#ifdef FIREBALL_CARD
 #define FRAM_DEVICE_MB85RS1MT     1     // SPI Fram (Fireball)
-//#define FRAM_DEVICE_MB85RC64TA    1     // I2C Fram (Fireball)
+#elif FIREBALL2_CARD
+#define FRAM_DEVICE_MB85RQ4ML     1     // SPI Fram (Fireball2)
+#endif
+#else
+#if FIREBALL_CARD || FIREBALL2_CARD
+#define FRAM_DEVICE_MB85RC64TA    1     // I2C Fram (Fireball & Fireball2)
+#endif
+#endif
+
 //#define FRAM_DEVICE_MB85RS64V     1     // SPI Fram
 //#define FRAM_DEVICE_MB85RC256V    1     // I2C Fram
 //*****************************************************************************
@@ -87,6 +104,10 @@
 #if (FRAM_DEVICE_MB85RS1MT == 1)
 #include "am_devices_mb85rs1mt.h"
 #define FRAM_DEVICE_ID          AM_DEVICES_MB85RS1MT_ID
+#define FRAM_IOM_MODE           AM_HAL_IOM_SPI_MODE
+#elif (FRAM_DEVICE_MB85RQ4ML == 1)
+#include "am_devices_mb85rq4ml.h"
+#define FRAM_DEVICE_ID          AM_DEVICES_MB85RQ4ML_ID
 #define FRAM_IOM_MODE           AM_HAL_IOM_SPI_MODE
 #elif (FRAM_DEVICE_MB85RC256V == 1)
 #include "am_devices_mb85rc256v.h"
@@ -160,6 +181,14 @@ am_hal_iom_buffer(PATTERN_BUF_SIZE)     gRxBuf;
     AM_DEVICES_FIREBALL_STATE_I2C_FRAM2(n)
 #define AM_DEVICES_FIREBALL_STATE_I2C_FRAM2(n)                      \
     AM_DEVICES_FIREBALL_STATE_I2C_IOM ## n
+#elif FIREBALL2_CARD
+// Determine the control value for I2C based on FRAM_IOM_MODULE
+#define AM_DEVICES_FIREBALL_STATE_I2C_FRAM                          \
+    AM_DEVICES_FIREBALL_STATE_I2C_FRAM1(FRAM_IOM_MODULE)
+#define AM_DEVICES_FIREBALL_STATE_I2C_FRAM1(n)                      \
+    AM_DEVICES_FIREBALL_STATE_I2C_FRAM2(n)
+#define AM_DEVICES_FIREBALL_STATE_I2C_FRAM2(n)                      \
+    AM_DEVICES_FIREBALL2_STATE_I2C_IOM ## n
 #endif
 
 // Buffer for non-blocking transactions
@@ -178,6 +207,21 @@ fram_device_func_t device_func =
     .fram_nonblocking_read = am_devices_mb85rs1mt_nonblocking_read,
 #if FIREBALL_CARD
     .fram_fireball_control = AM_DEVICES_FIREBALL_STATE_SPI_FRAM,
+#else
+    .fram_fireball_control = 0,
+#endif
+#elif (FRAM_DEVICE_MB85RQ4ML == 1)
+    // Fireball installed SPI FRAM device
+    .devName = "SPI FRAM MB85RQ4ML",
+    .fram_init = am_devices_mb85rq4ml_init,
+    .fram_term = am_devices_mb85rq4ml_term,
+    .fram_read_id = am_devices_mb85rq4ml_read_id,
+    .fram_blocking_write = am_devices_mb85rq4ml_blocking_write,
+    .fram_nonblocking_write = am_devices_mb85rq4ml_nonblocking_write,
+    .fram_blocking_read = am_devices_mb85rq4ml_blocking_read,
+    .fram_nonblocking_read = am_devices_mb85rq4ml_nonblocking_read,
+#if FIREBALL2_CARD
+    .fram_fireball_control = AM_DEVICES_FIREBALL2_STATE_SPI_FRAM_PSRAM_1P8,
 #else
     .fram_fireball_control = 0,
 #endif
@@ -211,7 +255,7 @@ fram_device_func_t device_func =
     .fram_nonblocking_write = am_devices_mb85rc256v_nonblocking_write,
     .fram_blocking_read = am_devices_mb85rc256v_blocking_read,
     .fram_nonblocking_read = am_devices_mb85rc256v_nonblocking_read,
-#if FIREBALL_CARD
+#if FIREBALL_CARD || FIREBALL2_CARD
     .fram_fireball_control = AM_DEVICES_FIREBALL_STATE_I2C_FRAM,
 #else
     .fram_fireball_control = 0,
@@ -345,14 +389,14 @@ int
 fram_init(void)
 {
     uint32_t ui32Status;
-    uint32_t ui32DeviceId;
+    uint32_t ui32DeviceId = 0;
 
     // Set up IOM
     // Initialize the Device
     g_sIomCfg.ui32NBTxnBufLength = sizeof(DMATCBBuffer) / 4;
     g_sIomCfg.pNBTxnBuf = &DMATCBBuffer[0];
 
-#if FIREBALL_CARD
+#if FIREBALL_CARD || FIREBALL2_CARD
     uint32_t ui32Ret, ui32ID;
 
 #if 1
@@ -369,6 +413,10 @@ fram_init(void)
     else if ( ui32ID == FIREBALL_ID )
     {
         am_util_stdio_printf("Fireball found, ID is 0x%X.\n", ui32ID);
+    }
+    else if ( ui32ID == FIREBALL2_ID )
+    {
+        am_util_stdio_printf("Fireball2 found, ID is 0x%X.\n", ui32ID);
     }
     else
     {

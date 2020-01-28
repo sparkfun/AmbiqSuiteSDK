@@ -4,8 +4,8 @@
 // This J-Link Commander batch file can be used to run the flash_selftest,
 //  which must execute from SRAM.
 // The results are stored at address 0x10030000.
-//	0xFAE00000 = Pass, the flash tested good.
-//	0xFAE0xxxx = Fail, where xxxx is a failure code.
+//  0xFAE00000 = Pass, the flash tested good.
+//  0xFAE0xxxx = Fail, where xxxx is a failure code.
 //
 
 //
@@ -18,8 +18,8 @@ halt
 
 //
 // The SP and PC values can be found as the first words in the .bin.
-//	SP = Word 0
-//	PC = Word 1
+//  SP = Word 0
+//  PC = Word 1
 //
 
 //
@@ -31,10 +31,10 @@ loadbin iar\bin\flash_selftest.bin 0x10000000
 //
 // Set the SP and PC.
 // IAR:
-// With PRINT_RESULTS enabled:  SP = 10005000, PC = 10002A79
+// With PRINT_RESULTS enabled:  SP = 10007000, PC = 10002b85
 //
-wreg MSP, 0x10005000
-setPC 0x10002A45
+wreg MSP, 0x10007000
+setPC 0x10002b85
 
 //
 // We're ready to go.
@@ -45,16 +45,9 @@ g
 //
 // Periodically check the result
 //
-//sleep 500
-//mem32 0x10030000 1
-//sleep 10000
-//mem32 0x10030000 1
-//sleep 10000
-//mem32 0x10030000 1
-//sleep 5000
-//mem32 0x10030000 1
-//sleep 5000
-sleep 30000
+sleep 40000
+mem32 0x10030000 1
+sleep 10000
 
 
 //

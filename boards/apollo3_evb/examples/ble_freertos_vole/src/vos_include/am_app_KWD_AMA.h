@@ -50,7 +50,8 @@
 #define AMA_TRANSPORT_HEADER_STEAM_ID_MASK      0x0F80
 #define AMA_TRANSPORT_HEADER_LENGTH_TYPE_MASK   0x01
 
-typedef struct{
+typedef struct
+{
   #if USE_OUTPUT_AMVOS_AMA
     uint8_t ama_buf[AMA_BUFFER_SIZE + 3];
   #else
@@ -58,7 +59,7 @@ typedef struct{
   #endif
     uint32_t len;
     uint32_t reserved;
-}sRadioQueue_t;
+} sRadioQueue_t;
 
 typedef enum
 {

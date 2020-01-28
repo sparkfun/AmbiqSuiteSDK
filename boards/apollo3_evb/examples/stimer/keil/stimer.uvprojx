@@ -335,7 +335,7 @@
               <MiscControls></MiscControls>
               <Define>AM_PACKAGE_BGA AM_PART_APOLLO3 keil</Define>
               <Undefine></Undefine>
-              <IncludePath>../src;../../../../../CMSIS/AmbiqMicro/Include;../../../../../devices;../../../../../CMSIS/ARM/Include;../../../../../utils;../../../../../mcu/apollo3;../../../bsp;../../../../..</IncludePath>
+              <IncludePath>../../../../../utils;../src;../../../../../devices;../../../bsp;../../../../../CMSIS/ARM/Include;../../../../../mcu/apollo3;../../../../../CMSIS/AmbiqMicro/Include;../../../../..</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -363,8 +363,8 @@
             <noStLib>0</noStLib>
             <RepFail>1</RepFail>
             <useFile>0</useFile>
-            <TextAddressRange>0xc000</TextAddressRange>
-            <DataAddressRange>0x10000000</DataAddressRange>
+            <TextAddressRange></TextAddressRange>
+            <DataAddressRange></DataAddressRange>
             <pXoBase></pXoBase>
             <ScatterFile>.\stimer.sct</ScatterFile>
             <IncludeLibs></IncludeLibs>

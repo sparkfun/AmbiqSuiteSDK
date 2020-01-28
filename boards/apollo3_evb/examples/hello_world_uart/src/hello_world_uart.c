@@ -45,7 +45,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
-// This is part of revision v2.2.0-7-g63f7c2ba1 of the AmbiqSuite Development Package.
+// This is part of revision 2.3.2 of the AmbiqSuite Development Package.
 //
 //*****************************************************************************
 
@@ -279,7 +279,7 @@ main(void)
     //
     am_hal_uart_tx_flush(phUART);
     am_util_stdio_printf("App Compiler:    %s\n", COMPILER_VERSION);
-#ifdef AM_PART_APOLLO3
+#if defined(AM_PART_APOLLO3) || defined(AM_PART_APOLLO3P)
     am_util_stdio_printf("HAL Compiler:    %s\n", g_ui8HALcompiler);
     am_util_stdio_printf("HAL SDK version: %d.%d.%d\n",
                          g_ui32HALversion.s.Major,

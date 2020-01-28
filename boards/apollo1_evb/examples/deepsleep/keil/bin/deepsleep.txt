@@ -21,8 +21,8 @@
     Conforms to Hard float procedure-call standard
 
     Built with
-    Component: ARM Compiler 5.06 update 5 (build 528) Tool: armasm [4d35e1]
-    Component: ARM Compiler 5.06 update 5 (build 528) Tool: armlink [4d35e2]
+    Component: ARM Compiler 5.06 update 6 (build 750) Tool: armasm [4d35ec]
+    Component: ARM Compiler 5.06 update 6 (build 750) Tool: armlink [4d35ed]
 
     Header size: 52 bytes (0x34)
     Program header entry size: 32 bytes (0x20)
@@ -31,8 +31,8 @@
     Program header entries: 1
     Section header entries: 16
 
-    Program header offset: 60024 (0x0000ea78)
-    Section header offset: 60056 (0x0000ea98)
+    Program header offset: 60604 (0x0000ecbc)
+    Section header offset: 60636 (0x0000ecdc)
 
     Section header string table index: 15
 
@@ -1994,7 +1994,7 @@
 
 
 ** Section #6 '.debug_info' (SHT_PROGBITS)
-    Size   : 11528 bytes
+    Size   : 12108 bytes
 
 
 ** Section #7 '.debug_line' (SHT_PROGBITS)
@@ -2148,39 +2148,39 @@
     116  $v0                        0x00000164   Lc    1   --   De 
     117  ../am_hal_global.c         0x00000000   Lc  Abs  File  De 
     118  .data                      0x1000001c   Lc    2  Sect  De   0x4
-    119  ../am_hal_clkgen.c         0x00000000   Lc  Abs  File  De 
-    120  i.am_hal_clkgen_osc_stop   0x0000026c   Lc    1  Sect  De 
-    121  i.am_hal_clkgen_sysclk_get 0x00000280   Lc    1  Sect  De 
-    122  i.am_hal_clkgen_sysclk_select
+    119  ../am_bsp.c                0x00000000   Lc  Abs  File  De 
+    120  i.am_bsp_low_power_init    0x00000242   Lc    1  Sect  De 
+    121  i.am_bsp_uart_string_print 0x00000264   Lc    1  Sect  De 
+    122  ../am_hal_clkgen.c         0x00000000   Lc  Abs  File  De 
+    123  i.am_hal_clkgen_osc_stop   0x0000026c   Lc    1  Sect  De 
+    124  i.am_hal_clkgen_sysclk_get 0x00000280   Lc    1  Sect  De 
+    125  i.am_hal_clkgen_sysclk_select
                                     0x000002e0   Lc    1  Sect  De 
-    123  ..\am_hal_flash.c          0x00000000   Lc  Abs  File  De 
-    124  .emb_text                  0x0000015c   Lc    1  Sect  De   0x6
-    125  $v0                        0x0000015c   Lc    1   --   De 
-    126  ../am_hal_flash.c          0x00000000   Lc  Abs  File  De 
-    127  ../am_hal_mcuctrl.c        0x00000000   Lc  Abs  File  De 
-    128  i.am_hal_mcuctrl_bandgap_disable
+    126  ..\am_hal_flash.c          0x00000000   Lc  Abs  File  De 
+    127  .emb_text                  0x0000015c   Lc    1  Sect  De   0x6
+    128  $v0                        0x0000015c   Lc    1   --   De 
+    129  ../am_hal_flash.c          0x00000000   Lc  Abs  File  De 
+    130  ../am_hal_mcuctrl.c        0x00000000   Lc  Abs  File  De 
+    131  i.am_hal_mcuctrl_bandgap_disable
                                     0x000002f0   Lc    1  Sect  De 
-    129  i.am_hal_mcuctrl_bucks_enable
+    132  i.am_hal_mcuctrl_bucks_enable
                                     0x00000300   Lc    1  Sect  De 
-    130  i.am_hal_mcuctrl_fault_status
+    133  i.am_hal_mcuctrl_fault_status
                                     0x00000328   Lc    1  Sect  De 
-    131  i.am_hal_mcuctrl_sram_power_set
+    134  i.am_hal_mcuctrl_sram_power_set
                                     0x00000360   Lc    1  Sect  De 
-    132  ../am_hal_sysctrl.c        0x00000000   Lc  Abs  File  De 
-    133  i.am_hal_sysctrl_sleep     0x00000394   Lc    1  Sect  De 
-    134  ../am_hal_uart.c           0x00000000   Lc  Abs  File  De 
-    135  i.am_hal_uart_clock_disable
+    135  ../am_hal_sysctrl.c        0x00000000   Lc  Abs  File  De 
+    136  i.am_hal_sysctrl_sleep     0x00000394   Lc    1  Sect  De 
+    137  ../am_hal_uart.c           0x00000000   Lc  Abs  File  De 
+    138  i.am_hal_uart_clock_disable
                                     0x000003c8   Lc    1  Sect  De 
-    136  i.am_hal_uart_clock_enable 0x000003e4   Lc    1  Sect  De 
-    137  i.am_hal_uart_config       0x00000408   Lc    1  Sect  De 
-    138  i.am_hal_uart_disable      0x00000470   Lc    1  Sect  De 
-    139  i.am_hal_uart_enable       0x00000484   Lc    1  Sect  De 
-    140  i.am_hal_uart_fifo_config  0x00000498   Lc    1  Sect  De 
-    141  i.am_hal_uart_string_transmit_polled
+    139  i.am_hal_uart_clock_enable 0x000003e4   Lc    1  Sect  De 
+    140  i.am_hal_uart_config       0x00000408   Lc    1  Sect  De 
+    141  i.am_hal_uart_disable      0x00000470   Lc    1  Sect  De 
+    142  i.am_hal_uart_enable       0x00000484   Lc    1  Sect  De 
+    143  i.am_hal_uart_fifo_config  0x00000498   Lc    1  Sect  De 
+    144  i.am_hal_uart_string_transmit_polled
                                     0x000004ac   Lc    1  Sect  De 
-    142  ../am_bsp.c                0x00000000   Lc  Abs  File  De 
-    143  i.am_bsp_low_power_init    0x00000242   Lc    1  Sect  De 
-    144  i.am_bsp_uart_string_print 0x00000264   Lc    1  Sect  De 
     145  ../am_hal_gpio.c           0x00000000   Lc  Abs  File  De 
     146  ..\am_hal_interrupt.c      0x00000000   Lc  Abs  File  De 
     147  ../am_hal_interrupt.c      0x00000000   Lc  Abs  File  De 
@@ -2562,30 +2562,30 @@
            49    759: RESET
            50    765: .text
            51    771: ../am_hal_global.c
-           52    790: ../am_hal_clkgen.c
-           53    809: i.am_hal_clkgen_osc_stop
-           54    834: i.am_hal_clkgen_sysclk_get
-           55    861: i.am_hal_clkgen_sysclk_select
-           56    891: ..\am_hal_flash.c
-           57    909: ../am_hal_flash.c
-           58    927: ../am_hal_mcuctrl.c
-           59    947: i.am_hal_mcuctrl_bandgap_disable
-           60    980: i.am_hal_mcuctrl_bucks_enable
-           61   1010: i.am_hal_mcuctrl_fault_status
-           62   1040: i.am_hal_mcuctrl_sram_power_set
-           63   1072: ../am_hal_sysctrl.c
-           64   1092: i.am_hal_sysctrl_sleep
-           65   1115: ../am_hal_uart.c
-           66   1132: i.am_hal_uart_clock_disable
-           67   1160: i.am_hal_uart_clock_enable
-           68   1187: i.am_hal_uart_config
-           69   1208: i.am_hal_uart_disable
-           70   1230: i.am_hal_uart_enable
-           71   1251: i.am_hal_uart_fifo_config
-           72   1277: i.am_hal_uart_string_transmit_polled
-           73   1314: ../am_bsp.c
-           74   1326: i.am_bsp_low_power_init
-           75   1350: i.am_bsp_uart_string_print
+           52    790: ../am_bsp.c
+           53    802: i.am_bsp_low_power_init
+           54    826: i.am_bsp_uart_string_print
+           55    853: ../am_hal_clkgen.c
+           56    872: i.am_hal_clkgen_osc_stop
+           57    897: i.am_hal_clkgen_sysclk_get
+           58    924: i.am_hal_clkgen_sysclk_select
+           59    954: ..\am_hal_flash.c
+           60    972: ../am_hal_flash.c
+           61    990: ../am_hal_mcuctrl.c
+           62   1010: i.am_hal_mcuctrl_bandgap_disable
+           63   1043: i.am_hal_mcuctrl_bucks_enable
+           64   1073: i.am_hal_mcuctrl_fault_status
+           65   1103: i.am_hal_mcuctrl_sram_power_set
+           66   1135: ../am_hal_sysctrl.c
+           67   1155: i.am_hal_sysctrl_sleep
+           68   1178: ../am_hal_uart.c
+           69   1195: i.am_hal_uart_clock_disable
+           70   1223: i.am_hal_uart_clock_enable
+           71   1250: i.am_hal_uart_config
+           72   1271: i.am_hal_uart_disable
+           73   1293: i.am_hal_uart_enable
+           74   1314: i.am_hal_uart_fifo_config
+           75   1340: i.am_hal_uart_string_transmit_polled
            76   1377: ../am_hal_gpio.c
            77   1394: ..\am_hal_interrupt.c
            78   1416: ../am_hal_interrupt.c

@@ -68,38 +68,38 @@
 #define USE_MIKRO_DEV_SHIELD_REV1                  1
 
 //*******************************************************************************
-// System level functional module selection 
+// System level functional module selection
 //*******************************************************************************
 
 #define configUSE_SYSVIEWER             0
-#define configUSE_SYS_LOG               0 
-#define configUSE_RTT_RECORDER          0 
+#define configUSE_SYS_LOG               0
+#define configUSE_RTT_RECORDER          0
 #define configUSE_STDIO_PRINTF          0
 
 #define configUSE_AWE                   0               // AWE frame work switch
-#define configUSE_MODEL_INFERENCE       1 
+#define configUSE_MODEL_INFERENCE       1
 
 #define configUSE_SENSORY_THF_ONLY      0
 
-#define configUSE_BLE                   1 
+#define configUSE_BLE                   1
 #define configUSE_AUDIO_CODEC           1
 
 #if configUSE_BLE
 #define USE_OUTPUT_AMVOS_AMA            1
 #endif
 //********************************************************************************
-// AWE module configuration 
+// AWE module configuration
 //********************************************************************************
 #if configUSE_AWE
-    #define configUSE_AWE_TUNING            0                           // AWE must be 1 if AWE_TUNING being set 1  
+    #define configUSE_AWE_TUNING            0                           // AWE must be 1 if AWE_TUNING being set 1
     #define configUSE_QSD                   1                           // enable QSD
     #define configUSE_Sensory_THF           1                           // DSPC and Sensory lib separated. (DSPC output -> Sensory input)
-    #define configUSE_WOS                   0                           // enable wake on sound 
+    #define configUSE_WOS                   0                           // enable wake on sound
     #define configUSE_PUSH_TO_TALK          0
 #endif
 
 //****************************************
-// AWE layout configuration selection 
+// AWE layout configuration selection
 //****************************************
 #if configUSE_Sensory_THF
     #define configUSE_2CM_FBF_SCNR                      1
@@ -109,41 +109,41 @@
 #endif
 
 //********************************************************************************
-// Audio Codec module configuration 
+// Audio Codec module configuration
 //********************************************************************************
 #if configUSE_AUDIO_CODEC
-    #define configUSE_SBC_BLUEZ             0               // Codec selection. You could only choose 1 
-    #define configUSE_MSBC_BLUEZ            1  
+    #define configUSE_SBC_BLUEZ             0               // Codec selection. You could only choose 1
+    #define configUSE_MSBC_BLUEZ            1
 #endif
 //********************************************************************************
-// BLE module configuration 
+// BLE module configuration
 //********************************************************************************
 #if configUSE_BLE
-    #define configUSE_AUDIO_PRE_BUFF_AMA        1               // 500ms audio pre-buffering required by Amazon 
+    #define configUSE_AUDIO_PRE_BUFF_AMA        1               // 500ms audio pre-buffering required by Amazon
     #define configUSE_AUDIO_POST_BUFF           1
 #endif
 
 //********************************************************************************
-// RTT recorder module configuration 
+// RTT recorder module configuration
 //********************************************************************************
 #if configUSE_RTT_RECORDER
     #define configUSE_RECORD_RAW_PCM        0               // Slect which data be recorded
-    #define configUSE_RECORD_FULL_FILTER    0 
+    #define configUSE_RECORD_FULL_FILTER    0
     #define configUSE_RECORD_CODEC          0
 #endif
 //********************************************************************************
-// System log module configuration 
+// System log module configuration
 //********************************************************************************
 #if configUSE_SYS_LOG
-    #define configUSE_LOG_UART0                 1               // This is mutex with AWE_TUNING and BLE 
+    #define configUSE_LOG_UART0                 1               // This is mutex with AWE_TUNING and BLE
     #define configUSE_LOG_UART1                 0
 #endif
 
 //********************************************************************************
-// std IO sub module configuration 
+// std IO sub module configuration
 //********************************************************************************
 #if configUSE_STDIO_PRINTF
-    #define configUSE_PRINTF_UART0          	0
+    #define configUSE_PRINTF_UART0              0
     #define configUSE_PRINTF_RTT                0
     #define configUSE_PRINTF_SWO                1
 
@@ -155,9 +155,9 @@
 
 #else
     #define am_app_printf(...)
-    #define AM_APP_LOG_DEBUG(...)               
-    #define AM_APP_LOG_WARNING(...)             
-    #define AM_APP_LOG_INFO(...)                
+    #define AM_APP_LOG_DEBUG(...)
+    #define AM_APP_LOG_WARNING(...)
+    #define AM_APP_LOG_INFO(...)
 
 #endif
 
@@ -181,7 +181,7 @@
 //********************************************************************************
 // AWE parameters
 //********************************************************************************
-#define AWE_FRAME_SIZE 					PCM_FRAME_SIZE
+#define AWE_FRAME_SIZE                  PCM_FRAME_SIZE
 #define BYTES_PER_DSPC_SAMPLE           2
 #define BYTES_PER_1MS_DSPC_SAMPLE       32
 //********************************************************************************
@@ -190,7 +190,7 @@
 #define UART0_BUFFER_SIZE               (512 * 2)       // gloabal UART queue size (used by transmit buffered service)
 #define UART1_BUFFER_SIZE               (512 * 2)
 #define UART_TRANSMIT_BUFFER            256             // size limit to frame added into global UART queue
-// System message macro definition 
+// System message macro definition
 #define EMPTY_MESSAGE                   1
 #define KEY_WORD_GOT_MESSAGE            0xaa111155
 
@@ -204,7 +204,7 @@
 #define AUDIO_PREBUFF_TIME_MS           500
 #define AUDIO_BUFF_LEN_MS               2000
 #else
-#define AUDIO_PREBUFF_TIME_MS           1500 
+#define AUDIO_PREBUFF_TIME_MS           1500
 #define AUDIO_BUFF_LEN_MS               500
 #endif
 
@@ -269,7 +269,7 @@
     #define PDM_DATA_PIN_CFG            AM_HAL_PIN_11_PDM_DATA
 
     #define UART0_MODULE                0
-    #define UART1_MODULE                1 
+    #define UART1_MODULE                1
 
     #if USE_VESPER_MIKRO_MB3
         #define WOS_MODE_PIN                4
@@ -291,7 +291,7 @@
 
     #define UART0_MODULE                0
     #define UART1_MODULE                1
-	
+
     #if USE_VESPER_MIKRO_MB3
 //        #define WOS_MODE_PIN                4
 //        #define WOS_WAKE_PIN               19

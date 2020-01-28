@@ -45,7 +45,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
-// This is part of revision v2.2.0-7-g63f7c2ba1 of the AmbiqSuite Development Package.
+// This is part of revision 2.3.2 of the AmbiqSuite Development Package.
 //
 //*****************************************************************************
 
@@ -106,7 +106,8 @@ timerA0_init(void)
     // Clear the timer Interrupt
     //
     am_hal_ctimer_int_clear(AM_HAL_CTIMER_INT_TIMERA0);
-}
+
+} // timerA0_init()
 
 //*****************************************************************************
 //
@@ -117,6 +118,11 @@ void
 am_ctimer_isr(void)
 {
     //
+    // Clear TimerA0 Interrupt (write to clear).
+    //
+    am_hal_ctimer_int_clear(AM_HAL_CTIMER_INT_TIMERA0);
+
+    //
     // Increment count and set limit based on the number of LEDs available.
     //
     if (++g_ui32TimerCount >= (1 << AM_BSP_NUM_LEDS))
@@ -126,12 +132,8 @@ am_ctimer_isr(void)
         //
         g_ui32TimerCount = 0;
     }
-    //
-    // Clear TimerA0 Interrupt (write to clear).
-    //
-    am_hal_ctimer_int_clear(AM_HAL_CTIMER_INT_TIMERA0);
 
-}
+} // am_ctimer_isr()
 
 //*****************************************************************************
 //
@@ -225,4 +227,4 @@ main(void)
         am_devices_led_array_out(am_bsp_psLEDs, AM_BSP_NUM_LEDS,
                          g_ui32TimerCount);
     }
-}
+} // main()

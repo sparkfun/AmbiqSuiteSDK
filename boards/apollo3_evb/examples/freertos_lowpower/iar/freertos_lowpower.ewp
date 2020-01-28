@@ -208,11 +208,11 @@
                 <option>
                     <name>CCDefines</name>
                     <state>iar</state>
-          <state>AM_FREERTOS</state>
-          <state>AM_DEBUG_PRINTF</state>
           <state>AM_PACKAGE_BGA</state>
+          <state>AM_DEBUG_PRINTF</state>
           <state>AM_PART_APOLLO3</state>
           <state>AM_UTIL_FAULTISR_PRINT</state>
+          <state>AM_FREERTOS</state>
                 </option>
                 <option>
                     <name>CCPreprocFile</name>
@@ -289,11 +289,11 @@
                 </option>
                 <option>
                     <name>IExtraOptionsCheck</name>
-                    <state>0</state>
+                    <state>1</state>
                 </option>
                 <option>
                     <name>IExtraOptions</name>
-                    <state></state>
+                    <state>--no_path_in_file_macros</state>
                 </option>
                 <option>
                     <name>CCLangConformance</name>
@@ -337,16 +337,16 @@
                 </option>
                 <option>
                     <name>CCIncludePath2</name>
+          <state>$PROJ_DIR$\..\..\..\..\..\devices</state>
+          <state>$PROJ_DIR$\..\..\..\..\..</state>
           <state>$PROJ_DIR$\..\..\..\..\..\utils</state>
-          <state>$PROJ_DIR$\..\src</state>
+          <state>$PROJ_DIR$\..\..\..\bsp</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\CMSIS\ARM\Include</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\third_party\FreeRTOSv10.1.1\Source\portable\IAR\AMapollo2</state>
           <state>$PROJ_DIR$\..\..\..\..\..\third_party\FreeRTOSv10.1.1\Source\include</state>
           <state>$PROJ_DIR$\..\..\..\..\..\CMSIS\AmbiqMicro\Include</state>
           <state>$PROJ_DIR$\..\..\..\..\..\mcu\apollo3</state>
-          <state>$PROJ_DIR$\..\..\..\..\..</state>
-          <state>$PROJ_DIR$\..\..\..\..\..\third_party\FreeRTOSv10.1.1\Source\portable\IAR\AMapollo2</state>
-          <state>$PROJ_DIR$\..\..\..\..\..\devices</state>
-          <state>$PROJ_DIR$\..\..\..\..\..\CMSIS\ARM\Include</state>
-          <state>$PROJ_DIR$\..\..\..\bsp</state>
+          <state>$PROJ_DIR$\..\src</state>
                 </option>
                 <option>
                     <name>CCStdIncCheck</name>
@@ -612,16 +612,16 @@
                 </option>
                 <option>
                     <name>AUserIncludes</name>
+          <state>$PROJ_DIR$\..\..\..\..\..\devices</state>
+          <state>$PROJ_DIR$\..\..\..\..\..</state>
           <state>$PROJ_DIR$\..\..\..\..\..\utils</state>
-          <state>$PROJ_DIR$\..\src</state>
+          <state>$PROJ_DIR$\..\..\..\bsp</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\CMSIS\ARM\Include</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\third_party\FreeRTOSv10.1.1\Source\portable\IAR\AMapollo2</state>
           <state>$PROJ_DIR$\..\..\..\..\..\third_party\FreeRTOSv10.1.1\Source\include</state>
           <state>$PROJ_DIR$\..\..\..\..\..\CMSIS\AmbiqMicro\Include</state>
           <state>$PROJ_DIR$\..\..\..\..\..\mcu\apollo3</state>
-          <state>$PROJ_DIR$\..\..\..\..\..</state>
-          <state>$PROJ_DIR$\..\..\..\..\..\third_party\FreeRTOSv10.1.1\Source\portable\IAR\AMapollo2</state>
-          <state>$PROJ_DIR$\..\..\..\..\..\devices</state>
-          <state>$PROJ_DIR$\..\..\..\..\..\CMSIS\ARM\Include</state>
-          <state>$PROJ_DIR$\..\..\..\bsp</state>
+          <state>$PROJ_DIR$\..\src</state>
                 </option>
                 <option>
                     <name>AExtraOptionsCheckV2</name>
@@ -822,8 +822,8 @@
                 </option>
                 <option>
                     <name>IlinkAdditionalLibs</name>
-          <state>$PROJ_DIR$\..\..\..\bsp\iar\bin\libam_bsp.a</state>
           <state>$PROJ_DIR$\..\..\..\..\..\mcu\apollo3\hal\iar\bin\libam_hal.a</state>
+          <state>$PROJ_DIR$\..\..\..\bsp\iar\bin\libam_bsp.a</state>
                 </option>
                 <option>
                     <name>IlinkOverrideProgramEntryLabel</name>
@@ -1243,11 +1243,11 @@
                     <name>CCDefines</name>
                     <state>NDEBUG</state>
                     <state>iar</state>
-          <state>AM_FREERTOS</state>
-          <state>AM_DEBUG_PRINTF</state>
           <state>AM_PACKAGE_BGA</state>
+          <state>AM_DEBUG_PRINTF</state>
           <state>AM_PART_APOLLO3</state>
           <state>AM_UTIL_FAULTISR_PRINT</state>
+          <state>AM_FREERTOS</state>
                 </option>
                 <option>
                     <name>CCPreprocFile</name>
@@ -1372,16 +1372,16 @@
                 </option>
                 <option>
                     <name>CCIncludePath2</name>
+          <state>$PROJ_DIR$\..\..\..\..\..\devices</state>
+          <state>$PROJ_DIR$\..\..\..\..\..</state>
           <state>$PROJ_DIR$\..\..\..\..\..\utils</state>
-          <state>$PROJ_DIR$\..\src</state>
+          <state>$PROJ_DIR$\..\..\..\bsp</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\CMSIS\ARM\Include</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\third_party\FreeRTOSv10.1.1\Source\portable\IAR\AMapollo2</state>
           <state>$PROJ_DIR$\..\..\..\..\..\third_party\FreeRTOSv10.1.1\Source\include</state>
           <state>$PROJ_DIR$\..\..\..\..\..\CMSIS\AmbiqMicro\Include</state>
           <state>$PROJ_DIR$\..\..\..\..\..\mcu\apollo3</state>
-          <state>$PROJ_DIR$\..\..\..\..\..</state>
-          <state>$PROJ_DIR$\..\..\..\..\..\third_party\FreeRTOSv10.1.1\Source\portable\IAR\AMapollo2</state>
-          <state>$PROJ_DIR$\..\..\..\..\..\devices</state>
-          <state>$PROJ_DIR$\..\..\..\..\..\CMSIS\ARM\Include</state>
-          <state>$PROJ_DIR$\..\..\..\bsp</state>
+          <state>$PROJ_DIR$\..\src</state>
                 </option>
                 <option>
                     <name>CCStdIncCheck</name>
@@ -1848,8 +1848,8 @@
                 </option>
                 <option>
                     <name>IlinkAdditionalLibs</name>
-          <state>$PROJ_DIR$\..\..\..\bsp\iar\bin\libam_bsp.a</state>
           <state>$PROJ_DIR$\..\..\..\..\..\mcu\apollo3\hal\iar\bin\libam_hal.a</state>
+          <state>$PROJ_DIR$\..\..\..\bsp\iar\bin\libam_bsp.a</state>
                 </option>
                 <option>
                     <name>IlinkOverrideProgramEntryLabel</name>
@@ -2077,27 +2077,6 @@
     <name>$PROJ_DIR$\..\src\rtos.c</name>
   </file>
   <file>
-    <name>$PROJ_DIR$\..\..\..\..\..\utils\am_util_debug.c</name>
-  </file>
-  <file>
-    <name>$PROJ_DIR$\..\..\..\..\..\utils\am_util_delay.c</name>
-  </file>
-  <file>
-    <name>$PROJ_DIR$\..\..\..\..\..\utils\am_util_faultisr.c</name>
-  </file>
-  <file>
-    <name>$PROJ_DIR$\..\..\..\..\..\utils\am_util_stdio.c</name>
-  </file>
-  <file>
-    <name>$PROJ_DIR$\..\..\..\..\..\devices\am_devices_button.c</name>
-  </file>
-  <file>
-    <name>$PROJ_DIR$\..\..\..\..\..\devices\am_devices_led.c</name>
-  </file>
-  <file>
-    <name>$PROJ_DIR$\..\..\..\..\..\third_party\FreeRTOSv10.1.1\Source\portable\MemMang\heap_2.c</name>
-  </file>
-  <file>
     <name>$PROJ_DIR$\..\..\..\..\..\third_party\FreeRTOSv10.1.1\Source\event_groups.c</name>
   </file>
   <file>
@@ -2111,6 +2090,27 @@
   </file>
   <file>
     <name>$PROJ_DIR$\..\..\..\..\..\third_party\FreeRTOSv10.1.1\Source\timers.c</name>
+  </file>
+  <file>
+    <name>$PROJ_DIR$\..\..\..\..\..\third_party\FreeRTOSv10.1.1\Source\portable\MemMang\heap_2.c</name>
+  </file>
+  <file>
+    <name>$PROJ_DIR$\..\..\..\..\..\devices\am_devices_button.c</name>
+  </file>
+  <file>
+    <name>$PROJ_DIR$\..\..\..\..\..\devices\am_devices_led.c</name>
+  </file>
+  <file>
+    <name>$PROJ_DIR$\..\..\..\..\..\utils\am_util_debug.c</name>
+  </file>
+  <file>
+    <name>$PROJ_DIR$\..\..\..\..\..\utils\am_util_delay.c</name>
+  </file>
+  <file>
+    <name>$PROJ_DIR$\..\..\..\..\..\utils\am_util_faultisr.c</name>
+  </file>
+  <file>
+    <name>$PROJ_DIR$\..\..\..\..\..\utils\am_util_stdio.c</name>
   </file>
     <file>
         <name>$PROJ_DIR$\startup_iar.c</name>

@@ -45,7 +45,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
-// This is part of revision v2.2.0-7-g63f7c2ba1 of the AmbiqSuite Development Package.
+// This is part of revision 2.3.2 of the AmbiqSuite Development Package.
 //
 //*****************************************************************************
 
@@ -66,6 +66,7 @@
 
 // Maximum number of GPIOs on this device
 #define AM_HAL_GPIO_MAX_PADS        (50)
+#define AM_HAL_GPIO_NUMWORDS        ((AM_HAL_GPIO_MAX_PADS + 31) / 32)
 
 //*****************************************************************************
 //
@@ -78,6 +79,15 @@
 //*****************************************************************************
 #define AM_HAL_GPIO_BIT(n)          (((uint64_t) 0x1) << n)
 //! @}
+
+//
+// AM_HAL_GPIO_MASKBIT(pMaskNm,n)
+//  The pMaskNm parameter is not used for Apollo and is simply ignored.
+//  n is the desired bitnumber.
+//
+#define AM_HAL_GPIO_MASKBIT(pMaskNm, n)    (((uint64_t) 0x1) << n)
+#define AM_HAL_GPIO_MASKCREATE(MaskNm)
+#define AM_HAL_GPIO_MASKCLR(pMaskNm)
 
 //*****************************************************************************
 //

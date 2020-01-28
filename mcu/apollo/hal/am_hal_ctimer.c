@@ -45,7 +45,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
-// This is part of revision v2.2.0-7-g63f7c2ba1 of the AmbiqSuite Development Package.
+// This is part of revision 2.3.2 of the AmbiqSuite Development Package.
 //
 //*****************************************************************************
 
@@ -184,6 +184,27 @@ back2back_reads( uint32_t u32TimerAddr, uint32_t u32Data[])
 
 //*****************************************************************************
 //
+// Write the ctimer configuration register with the CLR bit.
+// The CLR bit is required to completely initialize the timer at config time.
+//
+//*****************************************************************************
+static void
+ctimer_clr(uint32_t ui32TimerNumber, uint32_t ui32TimerSegment)
+{
+    //
+    // Find the correct control register and write the CLR bit.
+    //
+    volatile uint32_t *pui32ConfigReg =
+        (uint32_t *)(AM_REG_CTIMERn(0) + AM_REG_CTIMER_CTRL0_O +
+                     (ui32TimerNumber * TIMER_OFFSET));
+
+    AM_REGVAL(pui32ConfigReg) = (ui32TimerSegment &
+                                 (AM_REG_CTIMER_CTRL0_TMRA0CLR_M |
+                                  AM_REG_CTIMER_CTRL0_TMRB0CLR_M));
+} // ctimer_clr()
+
+//*****************************************************************************
+//
 //! @brief Convenience function for responding to CTimer interrupts.
 //!
 //! @param ui32Status is the interrupt status as returned by
@@ -239,8 +260,7 @@ am_hal_ctimer_int_service(uint32_t ui32Status)
             pfnHandler();
         }
     }
-
-}
+} // am_hal_ctimer_int_service()
 
 //*****************************************************************************
 //
@@ -269,10 +289,11 @@ am_hal_ctimer_int_register(uint32_t ui32Interrupt,
                            am_hal_ctimer_handler_t pfnHandler)
 {
     uint32_t intIdx = 0;
+
     //
     // Check to make sure the interrupt number is valid. (Debug builds only)
     //
-    switch(ui32Interrupt)
+    switch (ui32Interrupt)
     {
         case AM_REG_CTIMER_INTEN_CTMRA0INT_M:
             intIdx = AM_REG_CTIMER_INTEN_CTMRA0INT_S;
@@ -309,9 +330,10 @@ am_hal_ctimer_int_register(uint32_t ui32Interrupt,
         default:
             am_hal_debug_assert_msg(false, "CTimer interrupt number out of range.");
     }
-    am_hal_ctimer_ppfnHandlers[intIdx] = pfnHandler;
-}
 
+    am_hal_ctimer_ppfnHandlers[intIdx] = pfnHandler;
+
+} // am_hal_ctimer_int_register()
 
 //*****************************************************************************
 //
@@ -326,12 +348,20 @@ am_hal_ctimer_int_register(uint32_t ui32Interrupt,
 //! This function should be used to perform the initial set-up of the
 //! counter-timer.
 //!
-//! @note This function will eventually be replaced by
+//! @note This function is deprecated and will eventually be replaced by
 //! am_hal_ctimer_config_single(), which performs the same configuration
-//! without requiring a structure. Please use am_hal_ctimer_config_single() for
-//! new development.
+//! without requiring a structure and without assuming both timer halves
+//! are being configured.
+//! Please use am_hal_ctimer_config_single() for new development.
 //!
 //! @return None.
+//!
+//!
+//! @note In order to initialize the given timer into a known state, this
+//! function asserts the CLR configuration bit. The CLR bit will be deasserted
+//! with the write of the configuration register. The CLR bit is also
+//! intentionally deasserted with a call to am_hal_ctimer_start().
+//!
 //
 //*****************************************************************************
 void
@@ -342,13 +372,19 @@ am_hal_ctimer_config(uint32_t ui32TimerNumber,
     uint32_t ui32ConfigVal;
 
     //
+    // Make sure the timer is completely initialized on configuration by
+    // setting the CLR bit.
+    //
+    ctimer_clr(ui32TimerNumber, AM_HAL_CTIMER_BOTH);
+
+    //
     // Start preparing the configuration word for this timer. The configuration
     // values for Timer A and Timer B provided in the config structure should
     // match the register definitions already, so we will mostly just need to
     // OR them together.
     //
-    ui32ConfigVal = (psConfig->ui32TimerAConfig |
-                     (psConfig->ui32TimerBConfig << 16));
+    ui32ConfigVal = ( (psConfig->ui32TimerAConfig)  |
+                      (psConfig->ui32TimerBConfig << 16) );
 
     //
     // OR in the Link bit if the timers need to be linked.
@@ -362,10 +398,21 @@ am_hal_ctimer_config(uint32_t ui32TimerNumber,
                                   (ui32TimerNumber * TIMER_OFFSET));
 
     //
+    // Begin critical section while config registers are read and modified.
+    //
+    AM_CRITICAL_BEGIN
+
+    //
     // Write our configuration value.
     //
     AM_REGVAL(pui32ConfigReg) = ui32ConfigVal;
-}
+
+    //
+    // Done with critical section.
+    //
+    AM_CRITICAL_END
+
+} // am_hal_ctimer_config()
 
 //*****************************************************************************
 //
@@ -377,12 +424,13 @@ am_hal_ctimer_config(uint32_t ui32TimerNumber,
 //! @param ui32TimerSegment specifies which segment of the timer should be
 //! enabled.
 //!
-//! @param ui32Configval specifies the configuration options for the selected
+//! @param ui32ConfigVal specifies the configuration options for the selected
 //! timer.
 //!
 //! This function should be used to perform the initial set-up of the
 //! counter-timer. It can be used to configure either a 16-bit timer (A or B) or a
 //! 32-bit timer using the BOTH option.
+//!
 //!
 //! Valid values for ui32TimerSegment are:
 //!
@@ -422,6 +470,13 @@ am_hal_ctimer_config(uint32_t ui32TimerNumber,
 //!     AM_HAL_CTIMER_ADC_TRIG
 //!
 //! @return None.
+//!
+//!
+//! @note In order to initialize the given timer into a known state, this
+//! function asserts the CLR configuration bit. The CLR bit will be deasserted
+//! with the write of the configuration register. The CLR bit is also
+//! intentionally deasserted with a call to am_hal_ctimer_start().
+//!
 //
 //*****************************************************************************
 void
@@ -433,10 +488,21 @@ am_hal_ctimer_config_single(uint32_t ui32TimerNumber,
     uint32_t ui32WriteVal;
 
     //
+    // Make sure the timer is completely initialized on configuration by
+    // setting the CLR bit.
+    //
+    ctimer_clr(ui32TimerNumber, ui32TimerSegment);
+
+    //
     // Find the correct register to write based on the timer number.
     //
     pui32ConfigReg = (uint32_t *)(AM_REG_CTIMERn(0) + AM_REG_CTIMER_CTRL0_O +
                                   (ui32TimerNumber * TIMER_OFFSET));
+
+    //
+    // Begin critical section while config registers are read and modified.
+    //
+    AM_CRITICAL_BEGIN
 
     //
     // Save the value that's already in the register.
@@ -470,7 +536,13 @@ am_hal_ctimer_config_single(uint32_t ui32TimerNumber,
     // Write our completed configuration value.
     //
     AM_REGVAL(pui32ConfigReg) = ui32WriteVal;
-}
+
+    //
+    // Done with critical section.
+    //
+    AM_CRITICAL_END
+
+} // am_hal_ctimer_config_single()
 
 //*****************************************************************************
 //
@@ -479,19 +551,16 @@ am_hal_ctimer_config_single(uint32_t ui32TimerNumber,
 //! @param ui32TimerNumber is the number of the timer to enable
 //!
 //! @param ui32TimerSegment specifies which segment of the timer should be
-//! enabled.
+//! enabled.  Valid values for ui32TimerSegment are:
+//!     AM_HAL_CTIMER_TIMERA
+//!     AM_HAL_CTIMER_TIMERB
+//!     AM_HAL_CTIMER_BOTH
 //!
 //! This function will enable a timer to begin incrementing. The \e
 //! ui32TimerNumber parameter selects the timer that should be enabled, for
 //! example, a 0 would target TIMER0. The \e ui32TimerSegment parameter allows
 //! the caller to individually select a segment within a timer to be enabled,
 //! such as TIMER0A, TIMER0B, or both.
-//!
-//! Valid values for ui32TimerSegment are:
-//!
-//!     AM_HAL_CTIMER_TIMERA
-//!     AM_HAL_CTIMER_TIMERB
-//!     AM_HAL_CTIMER_BOTH
 //!
 //! @return None.
 //
@@ -507,6 +576,11 @@ am_hal_ctimer_start(uint32_t ui32TimerNumber, uint32_t ui32TimerSegment)
     //
     pui32ConfigReg = (uint32_t *)(AM_REG_CTIMERn(0) + AM_REG_CTIMER_CTRL0_O +
                                   (ui32TimerNumber * TIMER_OFFSET));
+
+    //
+    // Begin critical section while config registers are read and modified.
+    //
+    AM_CRITICAL_BEGIN
 
     //
     // Read the current value.
@@ -529,7 +603,13 @@ am_hal_ctimer_start(uint32_t ui32TimerNumber, uint32_t ui32TimerSegment)
     // Write the value back to the register.
     //
     AM_REGVAL(pui32ConfigReg) = ui32ConfigVal;
-}
+
+    //
+    // Done with critical section.
+    //
+    AM_CRITICAL_END
+
+} // am_hal_ctimer_start()
 
 //*****************************************************************************
 //
@@ -571,12 +651,23 @@ am_hal_ctimer_stop(uint32_t ui32TimerNumber, uint32_t ui32TimerSegment)
                                   (ui32TimerNumber * TIMER_OFFSET));
 
     //
+    // Begin critical section.
+    //
+    AM_CRITICAL_BEGIN
+
+    //
     // Clear the "enable" bit
     //
     AM_REGVAL(pui32ConfigReg) &= ~(ui32TimerSegment &
                                    (AM_REG_CTIMER_CTRL0_TMRA0EN_M |
                                     AM_REG_CTIMER_CTRL0_TMRB0EN_M));
-}
+
+    //
+    // Done with critical section.
+    //
+    AM_CRITICAL_END
+
+} // am_hal_ctimer_stop()
 
 //*****************************************************************************
 //
@@ -589,7 +680,7 @@ am_hal_ctimer_stop(uint32_t ui32TimerNumber, uint32_t ui32TimerSegment)
 //!
 //! This function will stop a free-running counter-timer, reset its value to
 //! zero, and leave the timer disabled. When you would like to restart the
-//! counter, you will need to call am_hal_ctimer_enable().
+//! counter, you will need to call am_hal_ctimer_start().
 //!
 //! The \e ui32TimerSegment parameter allows the caller to individually select
 //! a segment within, such as TIMER0A, TIMER0B, or both.
@@ -601,6 +692,11 @@ am_hal_ctimer_stop(uint32_t ui32TimerNumber, uint32_t ui32TimerSegment)
 //!     AM_HAL_CTIMER_BOTH
 //!
 //! @return None.
+//!
+//!
+//! @note Setting the CLR bit is necessary for completing timer initialization
+//! including after MCU resets.
+//!
 //
 //*****************************************************************************
 void
@@ -615,12 +711,23 @@ am_hal_ctimer_clear(uint32_t ui32TimerNumber, uint32_t ui32TimerSegment)
                                   (ui32TimerNumber * TIMER_OFFSET));
 
     //
+    // Begin critical section.
+    //
+    AM_CRITICAL_BEGIN
+
+    //
     // Set the "clear" bit
     //
     AM_REGVAL(pui32ConfigReg) |= (ui32TimerSegment &
                                   (AM_REG_CTIMER_CTRL0_TMRA0CLR_M |
                                    AM_REG_CTIMER_CTRL0_TMRB0CLR_M));
-}
+
+    //
+    // Done with critical section.
+    //
+    AM_CRITICAL_END
+
+} // am_hal_ctimer_clear()
 
 //*****************************************************************************
 //
@@ -657,17 +764,6 @@ am_hal_ctimer_read(uint32_t ui32TimerNumber, uint32_t ui32TimerSegment)
         REG_CTIMER_BASEADDR + AM_REG_CTIMER_TMR3_O
     };
 
-#if 0
-    ui32Value = *(uint32_t *)ui32TimerAddrTbl[ui32TimerNumber];
-    if ( ui32TimerSegment == AM_HAL_CTIMER_TIMERB )
-    {
-        ui32Value >>= 16;
-    }
-    else if ( ui32TimerSegment == AM_HAL_CTIMER_TIMERA )
-    {
-        ui32Value &= 0xFFFF;
-    }
-#else
     //
     // Read the timer with back2back reads. This is a workaround for a clock
     // domain synchronization issue. Some timer bits may be slow to increment,
@@ -747,10 +843,9 @@ am_hal_ctimer_read(uint32_t ui32TimerNumber, uint32_t ui32TimerSegment)
                                  adjacent(ui32Values[0], ui32Values[2])),
                                 "Bad CTIMER read");
     }
-#endif
 
     return ui32Value;
-}
+} // am_hal_ctimer_read()
 
 //*****************************************************************************
 //
@@ -785,13 +880,23 @@ am_hal_ctimer_pin_enable(uint32_t ui32TimerNumber, uint32_t ui32TimerSegment)
                                   (ui32TimerNumber * TIMER_OFFSET));
 
     //
+    // Begin critical section.
+    //
+    AM_CRITICAL_BEGIN
+
+    //
     // Set the pin enable bit
     //
     AM_REGVAL(pui32ConfigReg) |= (ui32TimerSegment &
                                   (AM_REG_CTIMER_CTRL0_TMRA0PE_M |
                                    AM_REG_CTIMER_CTRL0_TMRB0PE_M));
 
-}
+    //
+    // Done with critical section.
+    //
+    AM_CRITICAL_END
+
+} // am_hal_ctimer_pin_enable()
 
 //*****************************************************************************
 //
@@ -826,12 +931,23 @@ am_hal_ctimer_pin_disable(uint32_t ui32TimerNumber, uint32_t ui32TimerSegment)
                                   (ui32TimerNumber * TIMER_OFFSET));
 
     //
+    // Begin critical section.
+    //
+    AM_CRITICAL_BEGIN
+
+    //
     // Clear the pin enable bit
     //
     AM_REGVAL(pui32ConfigReg) &= ~(ui32TimerSegment &
                                    (AM_REG_CTIMER_CTRL0_TMRA0PE_M |
                                     AM_REG_CTIMER_CTRL0_TMRB0PE_M));
-}
+
+    //
+    // Done with critical section.
+    //
+    AM_CRITICAL_END
+
+} // am_hal_ctimer_pin_disable()
 
 //*****************************************************************************
 //
@@ -841,7 +957,7 @@ am_hal_ctimer_pin_disable(uint32_t ui32TimerNumber, uint32_t ui32TimerSegment)
 //!
 //! @param ui32TimerSegment specifies which segment of the timer to use.
 //!
-//! @param bInvertOutpt determines whether the output should be inverted. If
+//! @param bInvertOutput determines whether the output should be inverted. If
 //! true, the timer output pin for the selected timer segment will be
 //! inverted.
 //!
@@ -871,6 +987,11 @@ am_hal_ctimer_pin_invert(uint32_t ui32TimerNumber, uint32_t ui32TimerSegment,
                                   (ui32TimerNumber * TIMER_OFFSET));
 
     //
+    // Begin critical section.
+    //
+    AM_CRITICAL_BEGIN
+
+    //
     // Figure out if we're supposed to be setting or clearing the polarity bit.
     //
     if ( bInvertOutput )
@@ -891,7 +1012,13 @@ am_hal_ctimer_pin_invert(uint32_t ui32TimerNumber, uint32_t ui32TimerSegment,
                                        (AM_REG_CTIMER_CTRL0_TMRA0POL_M |
                                         AM_REG_CTIMER_CTRL0_TMRB0POL_M));
     }
-}
+
+    //
+    // Done with critical section.
+    //
+    AM_CRITICAL_END
+
+} // am_hal_ctimer_pin_invert()
 
 //*****************************************************************************
 //
@@ -900,6 +1027,11 @@ am_hal_ctimer_pin_invert(uint32_t ui32TimerNumber, uint32_t ui32TimerSegment,
 //! @param ui32TimerNumber is the number of the timer to configure.
 //!
 //! @param ui32TimerSegment specifies which segment of the timer to use.
+//! Valid values for ui32TimerSegment are:
+//!
+//!     AM_HAL_CTIMER_TIMERA
+//!     AM_HAL_CTIMER_TIMERB
+//!     AM_HAL_CTIMER_BOTH
 //!
 //! @param ui32CompareReg specifies which compare register should be set
 //! (either 0 or 1)
@@ -913,11 +1045,6 @@ am_hal_ctimer_pin_invert(uint32_t ui32TimerNumber, uint32_t ui32TimerSegment,
 //! further information on the operation of the compare registers. The \e
 //! ui32TimerSegment parameter allows the caller to individually select a
 //! segment within, such as TIMER0A, TIMER0B, or both.
-//!
-//! Valid values for ui32TimerSegment are:
-//!
-//!     AM_HAL_CTIMER_TIMERA
-//!     AM_HAL_CTIMER_TIMERB
 //!
 //! @note For simple manipulations of period or duty cycle for timers and PWMs,
 //! you may find it easier to use the am_hal_ctimer_period_set() function.
@@ -946,6 +1073,12 @@ am_hal_ctimer_compare_set(uint32_t ui32TimerNumber, uint32_t ui32TimerSegment,
                                       AM_REG_CTIMER_CMPRA0_O +
                                       (ui32TimerNumber * TIMER_OFFSET));
     }
+
+    //
+    // Write the compare register with the selected value.
+    // Begin critical section while CMPR registers are modified.
+    //
+    AM_CRITICAL_BEGIN
 
     //
     // Write the compare register with the selected value.
@@ -998,7 +1131,13 @@ am_hal_ctimer_compare_set(uint32_t ui32TimerNumber, uint32_t ui32TimerSegment,
                 (AM_REG_CTIMER_CMPRA0_CMPR0A0(ui32Value & 0xFFFF) | ((*pui32ConfigReg) & AM_REG_CTIMER_CMPRA0_CMPR1A0_M));
         }
     }
-}
+
+    //
+    // Done with critical section.
+    //
+    AM_CRITICAL_END
+
+} // am_hal_ctimer_compare_set()
 
 //*****************************************************************************
 //
@@ -1050,6 +1189,11 @@ am_hal_ctimer_period_set(uint32_t ui32TimerNumber, uint32_t ui32TimerSegment,
     //
     pui32ControlReg = (uint32_t *)(AM_REG_CTIMERn(0) + AM_REG_CTIMER_CTRL0_O +
                                    (ui32TimerNumber * TIMER_OFFSET));
+
+    //
+    // Begin critical section.
+    //
+    AM_CRITICAL_BEGIN
 
     //
     // Extract the timer mode from the register based on the ui32TimerSegment
@@ -1126,7 +1270,13 @@ am_hal_ctimer_period_set(uint32_t ui32TimerNumber, uint32_t ui32TimerSegment,
         *pui32CompareRegB = (AM_REG_CTIMER_CMPRA0_CMPR0A0(ui32Comp0 >> 16) |
                              AM_REG_CTIMER_CMPRA0_CMPR1A0(ui32Comp1 >> 16));
     }
-}
+
+    //
+    // Done with critical section.
+    //
+    AM_CRITICAL_END
+
+} // am_hal_ctimer_period_set()
 
 //*****************************************************************************
 //
@@ -1141,10 +1291,21 @@ void
 am_hal_ctimer_adc_trigger_enable(void)
 {
     //
+    // Begin critical section.
+    //
+    AM_CRITICAL_BEGIN
+
+    //
     // Enable the ADC trigger.
     //
     AM_REGn(CTIMER, 0, CTRL3) |= AM_REG_CTIMER_CTRL3_ADCEN_M;
-}
+
+    //
+    // Done with critical section.
+    //
+    AM_CRITICAL_END
+
+} // am_hal_ctimer_adc_trigger_enable()
 
 //*****************************************************************************
 //
@@ -1159,10 +1320,21 @@ void
 am_hal_ctimer_adc_trigger_disable(void)
 {
     //
+    // Begin critical section.
+    //
+    AM_CRITICAL_BEGIN
+
+    //
     // Disable the ADC trigger.
     //
     AM_REGn(CTIMER, 0, CTRL3) &= ~AM_REG_CTIMER_CTRL3_ADCEN_M;
-}
+
+    //
+    // Done with critical section.
+    //
+    AM_CRITICAL_END
+
+} // am_hal_ctimer_adc_trigger_disable()
 
 //*****************************************************************************
 //
@@ -1196,10 +1368,21 @@ void
 am_hal_ctimer_int_enable(uint32_t ui32Interrupt)
 {
     //
+    // Begin critical section.
+    //
+    AM_CRITICAL_BEGIN
+
+    //
     // Enable the interrupt at the module level.
     //
     AM_REGn(CTIMER, 0, INTEN) |= ui32Interrupt;
-}
+
+    //
+    // Done with critical section.
+    //
+    AM_CRITICAL_END
+
+} // am_hal_ctimer_int_enable()
 
 //*****************************************************************************
 //
@@ -1230,7 +1413,7 @@ am_hal_ctimer_int_enable_get(void)
     // Return enabled interrupts.
     //
     return AM_REGn(CTIMER, 0, INTEN);
-}
+} // am_hal_ctimer_int_enable_get()
 
 //*****************************************************************************
 //
@@ -1261,10 +1444,21 @@ void
 am_hal_ctimer_int_disable(uint32_t ui32Interrupt)
 {
     //
+    // Begin critical section.
+    //
+    AM_CRITICAL_BEGIN
+
+    //
     // Disable the interrupt at the module level.
     //
     AM_REGn(CTIMER, 0, INTEN) &= ~ui32Interrupt;
-}
+
+    //
+    // Done with critical section.
+    //
+    AM_CRITICAL_END
+
+} // am_hal_ctimer_int_disable()
 
 //*****************************************************************************
 //
@@ -1298,7 +1492,7 @@ am_hal_ctimer_int_clear(uint32_t ui32Interrupt)
     // Disable the interrupt at the module level.
     //
     AM_REGn(CTIMER, 0, INTCLR) = ui32Interrupt;
-}
+} // am_hal_ctimer_int_clear()
 
 //*****************************************************************************
 //
@@ -1332,7 +1526,7 @@ am_hal_ctimer_int_set(uint32_t ui32Interrupt)
     // Set the interrupts.
     //
     AM_REGn(CTIMER, 0, INTSET) = ui32Interrupt;
-}
+} // am_hal_ctimer_int_set()
 
 //*****************************************************************************
 //
@@ -1365,16 +1559,30 @@ am_hal_ctimer_int_status_get(bool bEnabledOnly)
     //
     // Return the desired status.
     //
-    if (bEnabledOnly)
+    if ( bEnabledOnly )
     {
-        uint32_t u32RetVal = AM_REGn(CTIMER, 0, INTSTAT);
-        return u32RetVal & AM_REGn(CTIMER, 0, INTEN);
+        uint32_t u32RetVal;
+
+        //
+        // Begin critical section.
+        //
+        AM_CRITICAL_BEGIN
+
+        u32RetVal  = AM_REGn(CTIMER, 0, INTSTAT);
+        u32RetVal &= AM_REGn(CTIMER, 0, INTEN);
+
+        //
+        // Done with critical section.
+        //
+        AM_CRITICAL_END
+
+        return u32RetVal;
     }
     else
     {
         return AM_REGn(CTIMER, 0, INTSTAT);
     }
-}
+} // am_hal_ctimer_int_status_get()
 
 //*****************************************************************************
 //

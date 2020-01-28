@@ -40,7 +40,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
-// This is part of revision v2.2.0-7-g63f7c2ba1 of the AmbiqSuite Development Package.
+// This is part of revision 2.3.2 of the AmbiqSuite Development Package.
 //
 //*****************************************************************************
 
@@ -660,10 +660,6 @@ am_devices_mb85rs1mt_blocking_read(uint8_t *pui8RxBuffer,
     // Write the command to the device.
     //
 
-    // Corvette RX HW bug, CORVETTE-874. 0-byte xfer must be TX.
-    // This HW bug should be covered in the HAL, so test the HAL fix here by
-    // attempting to do a 0-byte RX transfer.
-//  Transaction.eDirection      = AM_HAL_IOM_TX;
     Transaction.eDirection      = AM_HAL_IOM_RX;
     Transaction.ui32InstrLen    = 1;
     Transaction.ui32Instr       = AM_DEVICES_MB85RS1MT_READ;
@@ -783,4 +779,81 @@ am_devices_mb85rs1mt_nonblocking_read(uint8_t *pui8RxBuffer,
     //
     return AM_DEVICES_MB85RS1MT_STATUS_SUCCESS;
 }
+
+
+//*****************************************************************************
+//
+//! @brief Reads the contents of the fram into a buffer.
+//!
+//! @param pui8RxBuffer - Buffer to store the received data from the flash
+//! @param ui32ReadAddress - Address of desired data in external flash
+//! @param ui32NumBytes - Number of bytes to read from external flash
+//!
+//! This function reads the external flash at the provided address and stores
+//! the received data into the provided buffer location. This function will
+//! only store ui32NumBytes worth of data.
+//
+//! @return 32-bit status
+//
+//*****************************************************************************
+uint32_t
+am_devices_mb85rs1mt_nonblocking_read_hiprio(uint8_t *pui8RxBuffer,
+                                             uint32_t ui32ReadAddress,
+                                             uint32_t ui32NumBytes,
+                                             am_hal_iom_callback_t pfnCallback,
+                                             void *pCallbackCtxt)
+{
+    am_hal_iom_transfer_t      Transaction;
+
+    Transaction.ui8RepeatCount  = 0;
+    Transaction.ui32PauseCondition = 0;
+    Transaction.ui32StatusSetClr = 0;
+
+    //
+    // Set up the IOM transaction to write the FRAM command to the device.
+    // This one needs to keep CE asserted (via continue).
+    //
+
+    Transaction.eDirection      = AM_HAL_IOM_TX;
+    Transaction.ui32InstrLen    = 1;
+    Transaction.ui32Instr       = AM_DEVICES_MB85RS1MT_READ;
+    Transaction.ui32NumBytes    = 0;
+    Transaction.pui32TxBuffer   = (uint32_t *)pui8RxBuffer;
+    Transaction.uPeerInfo.ui32SpiChipSelect = g_MB85RS1MTCS;
+    Transaction.bContinue       = true;
+
+    //
+    // Start the transaction (no callback).
+    //
+    if (am_hal_iom_highprio_transfer(g_pMB85RS1MTIOMHandle, &Transaction, 0, 0))
+    {
+        return AM_DEVICES_MB85RS1MT_STATUS_ERROR;
+    }
+
+    //
+    // Set up the IOM transaction.
+    //
+    Transaction.ui8Priority     = 1;        // High priority for now.
+    Transaction.eDirection      = AM_HAL_IOM_RX;
+    Transaction.ui32InstrLen    = 3;
+    Transaction.ui32Instr       = ui32ReadAddress & 0x00FFFFFF;
+    Transaction.ui32NumBytes    = ui32NumBytes;
+    Transaction.pui32RxBuffer   = (uint32_t *)pui8RxBuffer;
+    Transaction.uPeerInfo.ui32SpiChipSelect = g_MB85RS1MTCS;
+    Transaction.bContinue       = false;
+
+    //
+    // Start the transaction.
+    //
+    if (am_hal_iom_highprio_transfer(g_pMB85RS1MTIOMHandle, &Transaction, pfnCallback, pCallbackCtxt))
+    {
+        return AM_DEVICES_MB85RS1MT_STATUS_ERROR;
+    }
+
+    //
+    // Return the status.
+    //
+    return AM_DEVICES_MB85RS1MT_STATUS_SUCCESS;
+}
+
 

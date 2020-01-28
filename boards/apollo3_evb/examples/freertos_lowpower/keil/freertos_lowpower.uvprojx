@@ -333,9 +333,9 @@
             <v6Rtti>0</v6Rtti>
             <VariousControls>
               <MiscControls></MiscControls>
-              <Define>AM_FREERTOS AM_DEBUG_PRINTF AM_PACKAGE_BGA AM_PART_APOLLO3 AM_UTIL_FAULTISR_PRINT keil</Define>
+              <Define>AM_PACKAGE_BGA AM_DEBUG_PRINTF AM_PART_APOLLO3 AM_UTIL_FAULTISR_PRINT AM_FREERTOS keil</Define>
               <Undefine></Undefine>
-              <IncludePath>../../../../../utils;../src;../../../../../third_party/FreeRTOSv10.1.1/Source/include;../../../../../third_party/FreeRTOSv10.1.1/Source/portable/Keil/AMapollo2;../../../../../CMSIS/AmbiqMicro/Include;../../../../../mcu/apollo3;../../../../..;../../../../../devices;../../../../../CMSIS/ARM/Include;../../../bsp</IncludePath>
+              <IncludePath>../../../../../devices;../../../../..;../../../../../utils;../../../bsp;../../../../../CMSIS/ARM/Include;../../../../../third_party/FreeRTOSv10.1.1/Source/include;../../../../../CMSIS/AmbiqMicro/Include;../../../../../third_party/FreeRTOSv10.1.1/Source/portable/Keil/AMapollo2;../../../../../mcu/apollo3;../src</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -363,8 +363,8 @@
             <noStLib>0</noStLib>
             <RepFail>1</RepFail>
             <useFile>0</useFile>
-            <TextAddressRange>0xc000</TextAddressRange>
-            <DataAddressRange>0x10000000</DataAddressRange>
+            <TextAddressRange></TextAddressRange>
+            <DataAddressRange></DataAddressRange>
             <pXoBase></pXoBase>
             <ScatterFile>.\freertos_lowpower.sct</ScatterFile>
             <IncludeLibs></IncludeLibs>
@@ -407,56 +407,6 @@
           </Files>
         </Group>
         <Group>
-          <GroupName>utils</GroupName>
-          <Files>
-            <File>
-              <FileName>am_util_debug.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../utils/am_util_debug.c</FilePath>
-            </File>
-            <File>
-              <FileName>am_util_delay.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../utils/am_util_delay.c</FilePath>
-            </File>
-            <File>
-              <FileName>am_util_faultisr.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../utils/am_util_faultisr.c</FilePath>
-            </File>
-            <File>
-              <FileName>am_util_stdio.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../utils/am_util_stdio.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>devices</GroupName>
-          <Files>
-            <File>
-              <FileName>am_devices_button.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../devices/am_devices_button.c</FilePath>
-            </File>
-            <File>
-              <FileName>am_devices_led.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../devices/am_devices_led.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>FreeRTOSv10.1.1_MemMang</GroupName>
-          <Files>
-            <File>
-              <FileName>heap_2.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../third_party/FreeRTOSv10.1.1/Source/portable/MemMang/heap_2.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
           <GroupName>FreeRTOSv10.1.1_Source</GroupName>
           <Files>
             <File>
@@ -487,6 +437,56 @@
           </Files>
         </Group>
         <Group>
+          <GroupName>FreeRTOSv10.1.1_MemMang</GroupName>
+          <Files>
+            <File>
+              <FileName>heap_2.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../../../../../third_party/FreeRTOSv10.1.1/Source/portable/MemMang/heap_2.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>devices</GroupName>
+          <Files>
+            <File>
+              <FileName>am_devices_button.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../../../../../devices/am_devices_button.c</FilePath>
+            </File>
+            <File>
+              <FileName>am_devices_led.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../../../../../devices/am_devices_led.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>utils</GroupName>
+          <Files>
+            <File>
+              <FileName>am_util_debug.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../../../../../utils/am_util_debug.c</FilePath>
+            </File>
+            <File>
+              <FileName>am_util_delay.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../../../../../utils/am_util_delay.c</FilePath>
+            </File>
+            <File>
+              <FileName>am_util_faultisr.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../../../../../utils/am_util_faultisr.c</FilePath>
+            </File>
+            <File>
+              <FileName>am_util_stdio.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../../../../../utils/am_util_stdio.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
           <GroupName>keil</GroupName>
           <Files>
             <File>
@@ -500,14 +500,14 @@
           <GroupName>lib</GroupName>
           <Files>
             <File>
-              <FileName>libam_hal.lib</FileName>
-              <FileType>4</FileType>
-              <FilePath>../../../../../mcu/apollo3/hal/keil/bin/libam_hal.lib</FilePath>
-            </File>
-            <File>
               <FileName>libam_bsp.lib</FileName>
               <FileType>4</FileType>
               <FilePath>../../../bsp/keil/bin/libam_bsp.lib</FilePath>
+            </File>
+            <File>
+              <FileName>libam_hal.lib</FileName>
+              <FileType>4</FileType>
+              <FilePath>../../../../../mcu/apollo3/hal/keil/bin/libam_hal.lib</FilePath>
             </File>
           </Files>
         </Group>

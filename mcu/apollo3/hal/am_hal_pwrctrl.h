@@ -45,7 +45,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
-// This is part of revision v2.2.0-7-g63f7c2ba1 of the AmbiqSuite Development Package.
+// This is part of revision 2.3.2 of the AmbiqSuite Development Package.
 //
 //*****************************************************************************
 
@@ -59,50 +59,52 @@
 
 typedef enum
 {
-  AM_HAL_PWRCTRL_PERIPH_NONE,
-  AM_HAL_PWRCTRL_PERIPH_IOS,
-  AM_HAL_PWRCTRL_PERIPH_IOM0,
-  AM_HAL_PWRCTRL_PERIPH_IOM1,
-  AM_HAL_PWRCTRL_PERIPH_IOM2,
-  AM_HAL_PWRCTRL_PERIPH_IOM3,
-  AM_HAL_PWRCTRL_PERIPH_IOM4,
-  AM_HAL_PWRCTRL_PERIPH_IOM5,
-  AM_HAL_PWRCTRL_PERIPH_UART0,
-  AM_HAL_PWRCTRL_PERIPH_UART1,
-  AM_HAL_PWRCTRL_PERIPH_ADC,
-  AM_HAL_PWRCTRL_PERIPH_SCARD,
-  AM_HAL_PWRCTRL_PERIPH_MSPI,
-  AM_HAL_PWRCTRL_PERIPH_PDM,
-  AM_HAL_PWRCTRL_PERIPH_BLEL,
-  AM_HAL_PWRCTRL_PERIPH_MAX
+    AM_HAL_PWRCTRL_PERIPH_NONE,
+    AM_HAL_PWRCTRL_PERIPH_IOS,
+    AM_HAL_PWRCTRL_PERIPH_IOM0,
+    AM_HAL_PWRCTRL_PERIPH_IOM1,
+    AM_HAL_PWRCTRL_PERIPH_IOM2,
+    AM_HAL_PWRCTRL_PERIPH_IOM3,
+    AM_HAL_PWRCTRL_PERIPH_IOM4,
+    AM_HAL_PWRCTRL_PERIPH_IOM5,
+    AM_HAL_PWRCTRL_PERIPH_UART0,
+    AM_HAL_PWRCTRL_PERIPH_UART1,
+    AM_HAL_PWRCTRL_PERIPH_ADC,
+    AM_HAL_PWRCTRL_PERIPH_SCARD,
+    AM_HAL_PWRCTRL_PERIPH_MSPI,
+    AM_HAL_PWRCTRL_PERIPH_PDM,
+    AM_HAL_PWRCTRL_PERIPH_BLEL,
+    AM_HAL_PWRCTRL_PERIPH_MAX
 } am_hal_pwrctrl_periph_e;
 
 typedef enum
 {
-  AM_HAL_PWRCTRL_MEM_NONE,
-  AM_HAL_PWRCTRL_MEM_SRAM_8K_DTCM,
-  AM_HAL_PWRCTRL_MEM_SRAM_32K_DTCM,
-  AM_HAL_PWRCTRL_MEM_SRAM_64K_DTCM,
-  AM_HAL_PWRCTRL_MEM_SRAM_96K,
-  AM_HAL_PWRCTRL_MEM_SRAM_128K,
-  AM_HAL_PWRCTRL_MEM_SRAM_160K,
-  AM_HAL_PWRCTRL_MEM_SRAM_192K,
-  AM_HAL_PWRCTRL_MEM_SRAM_224K,
-  AM_HAL_PWRCTRL_MEM_SRAM_256K,
-  AM_HAL_PWRCTRL_MEM_SRAM_288K,
-  AM_HAL_PWRCTRL_MEM_SRAM_320K,
-  AM_HAL_PWRCTRL_MEM_SRAM_352K,
-  AM_HAL_PWRCTRL_MEM_SRAM_384K,
-  AM_HAL_PWRCTRL_MEM_FLASH_512K,
-  AM_HAL_PWRCTRL_MEM_FLASH_1M,
-  AM_HAL_PWRCTRL_MEM_CACHE,
-  AM_HAL_PWRCTRL_MEM_ALL,
-  AM_HAL_PWRCTRL_MEM_MAX
+    AM_HAL_PWRCTRL_MEM_NONE,
+    AM_HAL_PWRCTRL_MEM_SRAM_8K_DTCM,
+    AM_HAL_PWRCTRL_MEM_SRAM_32K_DTCM,
+    AM_HAL_PWRCTRL_MEM_SRAM_64K_DTCM,
+    AM_HAL_PWRCTRL_MEM_SRAM_96K,
+    AM_HAL_PWRCTRL_MEM_SRAM_128K,
+    AM_HAL_PWRCTRL_MEM_SRAM_160K,
+    AM_HAL_PWRCTRL_MEM_SRAM_192K,
+    AM_HAL_PWRCTRL_MEM_SRAM_224K,
+    AM_HAL_PWRCTRL_MEM_SRAM_256K,
+    AM_HAL_PWRCTRL_MEM_SRAM_288K,
+    AM_HAL_PWRCTRL_MEM_SRAM_320K,
+    AM_HAL_PWRCTRL_MEM_SRAM_352K,
+    AM_HAL_PWRCTRL_MEM_SRAM_384K,
+    AM_HAL_PWRCTRL_MEM_FLASH_512K,
+    AM_HAL_PWRCTRL_MEM_FLASH_1M,
+    AM_HAL_PWRCTRL_MEM_CACHE,
+    AM_HAL_PWRCTRL_MEM_ALL,
+    AM_HAL_PWRCTRL_MEM_MAX
 } am_hal_pwrctrl_mem_e;
 
 #define AM_HAL_PWRCTRL_MEM_FLASH_MIN    AM_HAL_PWRCTRL_MEM_FLASH_512K
 #define AM_HAL_PWRCTRL_MEM_FLASH_MAX    AM_HAL_PWRCTRL_MEM_FLASH_1M
 
+#define AM_HAL_PWRCTRL_MEM_SRAM_MIN     AM_HAL_PWRCTRL_MEM_SRAM_8K_DTCM
+#define AM_HAL_PWRCTRL_MEM_SRAM_MAX     AM_HAL_PWRCTRL_MEM_SRAM_384K
 
 //*****************************************************************************
 //
@@ -120,6 +122,11 @@ typedef enum
 // Function prototypes
 //
 //*****************************************************************************
+#ifdef __cplusplus
+extern "C"
+{
+#endif
+
 //*****************************************************************************
 //
 //! @brief Enable power to a peripheral.
@@ -183,6 +190,40 @@ extern uint32_t am_hal_pwrctrl_memory_enable(am_hal_pwrctrl_mem_e eMemConfig);
 
 //*****************************************************************************
 //
+//! @brief Power down respective memory.
+//!
+//! @param eMemPwd - The memory power down enum.
+//!
+//! This function establishes the desired power down of flash, SRAM, ICache,
+//! and DCache (DTCM) according to the desired enum.
+//!
+//! Only the type of memory specified is affected. Therefore separate calls
+//! are required to affect power settings for FLASH, SRAM, or CACHE.
+//!
+//! @return status - generic or interface specific status.
+//
+//*****************************************************************************
+extern uint32_t am_hal_pwrctrl_memory_deepsleep_powerdown(am_hal_pwrctrl_mem_e eMemConfig);
+
+//*****************************************************************************
+//
+//! @brief Apply retention voltage to respective memory.
+//!
+//! @param eMemPwd - The memory power down enum.
+//!
+//! This function establishes the desired power retain of flash, SRAM, ICache,
+//! and DCache (DTCM) according to the desired enum.
+//!
+//! Only the type of memory specified is affected. Therefore separate calls
+//! are required to affect power settings for FLASH, SRAM, or CACHE.
+//!
+//! @return status - generic or interface specific status.
+//
+//*****************************************************************************
+extern uint32_t am_hal_pwrctrl_memory_deepsleep_retain(am_hal_pwrctrl_mem_e eMemConfig);
+
+//*****************************************************************************
+//
 //! @brief Initialize system for low power configuration.
 //!
 //! @param none.
@@ -193,6 +234,21 @@ extern uint32_t am_hal_pwrctrl_memory_enable(am_hal_pwrctrl_mem_e eMemConfig);
 //
 //*****************************************************************************
 extern uint32_t am_hal_pwrctrl_low_power_init(void);
+
+//*****************************************************************************
+//
+//! @brief Initialize BLE Buck Trims for Lowest Power.
+//!
+//! @param none.
+//!
+//! @return none.
+//
+//*****************************************************************************
+extern void am_hal_pwrctrl_blebuck_trim(void);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif // AM_HAL_PWRCTRL_H
 

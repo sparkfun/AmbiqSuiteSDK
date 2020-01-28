@@ -43,7 +43,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
-// This is part of revision v2.2.0-7-g63f7c2ba1 of the AmbiqSuite Development Package.
+// This is part of revision 2.3.2 of the AmbiqSuite Development Package.
 //
 //*****************************************************************************
 
@@ -78,7 +78,7 @@ static uint32_t g_iosIntPin;
 
 static volatile bool g_bIosImageValid = false;
 
-#ifdef AM_PART_APOLLO3
+#if defined(AM_PART_APOLLO3) || defined(AM_PART_APOLLO3P)
 void *g_IOSHandle;
 
 #define     TEST_ACC_INT        1
@@ -131,7 +131,7 @@ const am_hal_gpio_pincfg_t g_AM_BOOT_GPIO_IOS_MOSI =
     .eGPInput            = AM_HAL_GPIO_PIN_INPUT_ENABLE
 };
 
-const am_hal_gpio_pincfg_t g_AM_HAL_GPIO_INPUT_ENABLE = 
+const am_hal_gpio_pincfg_t g_AM_HAL_GPIO_INPUT_ENABLE =
 {
     .uFuncSel             = AM_HAL_PIN_0_GPIO,
     .eGPInput             = AM_HAL_GPIO_PIN_INPUT_ENABLE,
@@ -170,7 +170,7 @@ am_multiboot_ios_acc_isr_handler(void)
     // Check to see what caused this interrupt, then clear the bit from the
     // interrupt register.
     //
-#ifdef AM_PART_APOLLO3
+#if defined(AM_PART_APOLLO3) || defined(AM_PART_APOLLO3P)
     am_hal_ios_control(g_IOSHandle, AM_HAL_IOS_REQ_ACC_INTGET, &ui32Status);
     am_hal_ios_control(g_IOSHandle, AM_HAL_IOS_REQ_ACC_INTCLR, &ui32Status);
 #else
@@ -185,7 +185,7 @@ am_multiboot_ios_acc_isr_handler(void)
 
     if ( ui32Status & AM_HAL_IOS_ACCESS_INT_03 )
     {
-#ifdef AM_PART_APOLLO3
+#if defined(AM_PART_APOLLO3) || defined(AM_PART_APOLLO3P)
         am_hal_gpio_state_write(g_iosIntPin, AM_HAL_GPIO_OUTPUT_SET);
 #else
         am_hal_gpio_out_bit_set(g_iosIntPin);
@@ -214,7 +214,7 @@ am_multiboot_ios_acc_isr_handler(void)
                     // Good image; Send back a "READY" packet.
                     //
                     pui32Packet[0] = AM_BOOTLOADER_READY;
-#ifdef AM_PART_APOLLO3
+#if defined(AM_PART_APOLLO3) || defined(AM_PART_APOLLO3P)
                     am_hal_gpio_state_write(g_iosIntPin, AM_HAL_GPIO_OUTPUT_CLEAR);
 #else
                     am_hal_gpio_out_bit_clear(g_iosIntPin);
@@ -226,7 +226,7 @@ am_multiboot_ios_acc_isr_handler(void)
                     // Bad image; Send back an error.
                     //
                     pui32Packet[0] = AM_BOOTLOADER_ERROR;
-#ifdef AM_PART_APOLLO3
+#if defined(AM_PART_APOLLO3) || defined(AM_PART_APOLLO3P)
                     am_hal_gpio_state_write(g_iosIntPin, AM_HAL_GPIO_OUTPUT_CLEAR);
 #else
                     am_hal_gpio_out_bit_clear(g_iosIntPin);
@@ -247,7 +247,7 @@ am_multiboot_ios_acc_isr_handler(void)
                 // Send back a "READY" packet.
                 //
                 pui32Packet[0] = AM_BOOTLOADER_READY;
-#ifdef AM_PART_APOLLO3
+#if defined(AM_PART_APOLLO3) || defined(AM_PART_APOLLO3P)
                 am_hal_gpio_state_write(g_iosIntPin, AM_HAL_GPIO_OUTPUT_CLEAR);
 #else
                 am_hal_gpio_out_bit_clear(g_iosIntPin);
@@ -261,7 +261,7 @@ am_multiboot_ios_acc_isr_handler(void)
                 if ( !g_bIosImageValid )
                 {
                     pui32Packet[0] = AM_BOOTLOADER_ERROR;
-#ifdef AM_PART_APOLLO3
+#if defined(AM_PART_APOLLO3) || defined(AM_PART_APOLLO3P)
                     am_hal_gpio_state_write(g_iosIntPin, AM_HAL_GPIO_OUTPUT_CLEAR);
 #else
                     am_hal_gpio_out_bit_clear(g_iosIntPin);
@@ -324,7 +324,7 @@ am_multiboot_ios_acc_isr_handler(void)
                 // Assert the interrupt line so the host knows we have a
                 // message.
                 //
-#ifdef AM_PART_APOLLO3
+#if defined(AM_PART_APOLLO3) || defined(AM_PART_APOLLO3P)
                 am_hal_gpio_state_write(g_iosIntPin, AM_HAL_GPIO_OUTPUT_CLEAR);
 #else
                 am_hal_gpio_out_bit_clear(g_iosIntPin);
@@ -364,7 +364,7 @@ am_multiboot_ios_acc_isr_handler(void)
                 //
                 pui32Packet[0] = AM_BOOTLOADER_BL_VERSION;
                 pui32Packet[1] = AM_BOOTLOADER_VERSION_NUM;
-#ifdef AM_PART_APOLLO3
+#if defined(AM_PART_APOLLO3) || defined(AM_PART_APOLLO3P)
                 am_hal_gpio_state_write(g_iosIntPin, AM_HAL_GPIO_OUTPUT_CLEAR);
 #else
                 am_hal_gpio_out_bit_clear(g_iosIntPin);
@@ -378,7 +378,7 @@ am_multiboot_ios_acc_isr_handler(void)
             default:
                 // Error
                 pui32Packet[0] = AM_BOOTLOADER_ERROR;
-#ifdef AM_PART_APOLLO3
+#if defined(AM_PART_APOLLO3) || defined(AM_PART_APOLLO3P)
                 am_hal_gpio_state_write(g_iosIntPin, AM_HAL_GPIO_OUTPUT_CLEAR);
 #else
                 am_hal_gpio_out_bit_clear(g_iosIntPin);
@@ -402,7 +402,7 @@ am_multiboot_ios_acc_isr_handler(void)
 void
 am_multiboot_setup_ios_interface(uint32_t interruptPin)
 {
-#ifdef AM_PART_APOLLO3
+#if defined(AM_PART_APOLLO3) || defined(AM_PART_APOLLO3P)
     uint32_t ui32Arg = 0;
     //
     // Check pin 0 to see if we should be using SPI or I2C
@@ -553,7 +553,7 @@ am_multiboot_setup_ios_interface(uint32_t interruptPin)
 void
 am_multiboot_cleanup_ios_interface(void)
 {
-#ifdef AM_PART_APOLLO3
+#if defined(AM_PART_APOLLO3) || defined(AM_PART_APOLLO3P)
     am_hal_gpio_pinconfig(0, g_AM_BOOT_GPIO_DISABLE);
     am_hal_gpio_pinconfig(1, g_AM_BOOT_GPIO_DISABLE);
     am_hal_gpio_pinconfig(2, g_AM_BOOT_GPIO_DISABLE);
@@ -577,7 +577,7 @@ am_ioslave_ios_isr(void)
 {
     uint32_t ui32Status;
 
-#ifdef AM_PART_APOLLO3
+#if defined(AM_PART_APOLLO3) || defined(AM_PART_APOLLO3P)
     //
     // Check to see what caused this interrupt, then clear the bit from the
     // interrupt register.
@@ -621,7 +621,7 @@ am_ioslave_handshake(uint32_t ui32Timeout)
     // interface.
     //
     pui32Packet = (uint32_t *) am_hal_ios_pui8LRAM;
-#ifdef AM_PART_APOLLO3
+#if defined(AM_PART_APOLLO3) || defined(AM_PART_APOLLO3P)
     am_hal_gpio_state_write(g_iosIntPin, AM_HAL_GPIO_OUTPUT_SET);
 #else
     am_hal_gpio_out_bit_set(g_iosIntPin);
@@ -637,7 +637,7 @@ am_ioslave_handshake(uint32_t ui32Timeout)
             // Notify the host that we're ready to receive data.
             //
             *((uint32_t *) am_hal_ios_pui8LRAM) = AM_BOOTLOADER_READY;
-#ifdef AM_PART_APOLLO3
+#if defined(AM_PART_APOLLO3) || defined(AM_PART_APOLLO3P)
             am_hal_gpio_state_write(g_iosIntPin, AM_HAL_GPIO_OUTPUT_CLEAR);
 #else
             am_hal_gpio_out_bit_clear(g_iosIntPin);

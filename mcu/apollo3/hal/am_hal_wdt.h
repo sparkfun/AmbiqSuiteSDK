@@ -45,7 +45,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
-// This is part of revision v2.2.0-7-g63f7c2ba1 of the AmbiqSuite Development Package.
+// This is part of revision 2.3.2 of the AmbiqSuite Development Package.
 //
 //*****************************************************************************
 #ifndef AM_HAL_WDT_H
@@ -134,7 +134,6 @@ typedef struct
 }
 am_hal_wdt_config_t;
 
-
 //*****************************************************************************
 //
 //! @brief Restarts the watchdog timer ("Pets" the dog)
@@ -152,7 +151,7 @@ am_hal_wdt_config_t;
         WDT->RSTRT = WDT_RSTRT_RSTRT_KEYVALUE;                                \
         (void)(WDT->RSTRT);                                                   \
     }                                                                         \
-    while(0)
+    while (0)
 
 #ifdef __cplusplus
 extern "C"
@@ -167,6 +166,7 @@ extern void am_hal_wdt_init(const am_hal_wdt_config_t *psConfig);
 extern void am_hal_wdt_start(void);
 extern void am_hal_wdt_halt(void);
 extern void am_hal_wdt_lock_and_start(void);
+extern uint32_t am_hal_wdt_counter_get(void);
 extern void am_hal_wdt_int_enable(void);
 extern uint32_t am_hal_wdt_int_enable_get(void);
 extern void am_hal_wdt_int_disable(void);

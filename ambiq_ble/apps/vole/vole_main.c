@@ -11,26 +11,26 @@
 
 //*****************************************************************************
 //
-// Copyright (c) 2018, Ambiq Micro
+// Copyright (c) 2019, Ambiq Micro
 // All rights reserved.
-//
+// 
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided that the following conditions are met:
-//
+// 
 // 1. Redistributions of source code must retain the above copyright notice,
 // this list of conditions and the following disclaimer.
-//
+// 
 // 2. Redistributions in binary form must reproduce the above copyright
 // notice, this list of conditions and the following disclaimer in the
 // documentation and/or other materials provided with the distribution.
-//
+// 
 // 3. Neither the name of the copyright holder nor the names of its
 // contributors may be used to endorse or promote products derived from this
 // software without specific prior written permission.
-//
+// 
 // Third party software included in this distribution is subject to the
 // additional license terms as defined in the /docs/licenses directory.
-//
+// 
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
 // AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
 // IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
@@ -43,7 +43,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
-// This is part of revision 1.2.12 of the AmbiqSuite Development Package.
+// This is part of revision 2.3.2 of the AmbiqSuite Development Package.
 //
 //*****************************************************************************
 
@@ -77,6 +77,7 @@
 #include "FreeRTOS.h"
 #include "task.h"
 #include "voles_api.h"
+#include "gatt_api.h"
 
 
 /**************************************************************************************************
@@ -127,10 +128,10 @@ static const appSecCfg_t amvoleSecCfg =
 
 static const appUpdateCfg_t amvoleUpdateCfg =
 {
-  1000,//3000,                                   /*! Connection idle period in ms before attempting
-                                              //connection parameter update; set to zero to disable */
-  6,    //6,                                      /*! 7.5ms */
-  12,   //15,                                     /*! 30ms */
+  1000, //3000,                           /*! Connection idle period in ms before attempting
+                                          //connection parameter update; set to zero to disable */
+  6,    //6,                              /*! 7.5ms */
+  12,   //15,                             /*! 30ms */
   0,                                      /*! Connection latency */
   400, //2000, //600,                                    /*! Supervision timeout in 10ms units */
   5                                       /*! Number of update attempts before giving up */
@@ -196,7 +197,7 @@ extern bool am_app_KWD_AMA_tx_ver_exchange_send(void);
 // index is the starting point of the local name, local name only in advData
 static bool amvoleSetLocalName(uint8_t* pAdvData, uint8_t* pLocalName, uint8_t len, uint8_t index)
 {
-    if(index+len+1 > 31)
+    if (index + len + 1 > 31)
     {
         // max adv data is 31 byte long
         return false;
@@ -205,12 +206,12 @@ static bool amvoleSetLocalName(uint8_t* pAdvData, uint8_t* pLocalName, uint8_t l
     // set parameter length
     pAdvData[index] = len + 1;
     // set parameter type
-    pAdvData[index+1] = DM_ADV_TYPE_LOCAL_NAME;
+    pAdvData[index + 1] = DM_ADV_TYPE_LOCAL_NAME;
 
     // set local name
-    for(uint8_t i = 0; i < len; i++)
+    for ( uint8_t i = 0; i < len; i++ )
     {
-        pAdvData[i+2+index] = pLocalName[i];
+        pAdvData[i + 2 + index] = pLocalName[i];
     }
 
     return true;
@@ -220,8 +221,8 @@ void amvoleKwdSetDemoName(void)
 {
     uint8_t test_bdaddress[6];
     uint8_t ble_device_name[20] = "VOLES-";    //local name = device name
-    uint8_t * pBda;
-	uint8_t index = 6;
+    uint8_t *pBda;
+    uint8_t index = 6;
 
     //fixme: read bd address and print out
     pBda = HciGetBdAddr();
@@ -330,7 +331,7 @@ bool amvoleTxChannelIsAvailable(void)
 
 void VoleBleSend(uint8_t * buf, uint32_t len)
 {
-    if(amvoleTxChannelIsAvailable())
+    if (amvoleTxChannelIsAvailable())
     {
         // simply tries to send notification
         AttsHandleValueNtf(g_AmaConnId, VOLES_TX_HDL, len, buf);   // connId always group 0 since support only 1 connection.
@@ -475,13 +476,13 @@ static void amvoleSetup(amvoleMsg_t *pMsg)
 
 void am_app_led_on(void)
 {
-#if defined (AM_PART_APOLLO2)
+#if defined(AM_PART_APOLLO2)
         am_hal_gpio_out_bit_toggle(LED_D6);
         am_hal_gpio_out_bit_toggle(LED_D7);
         am_hal_gpio_out_bit_toggle(LED_D8);
-#endif // #if defined (AM_PART_APOLLO2)
+#endif // #if defined(AM_PART_APOLLO2)
 
-#if defined (AM_PART_APOLLO3)
+#if defined(AM_PART_APOLLO3) || defined(AM_PART_APOLLO3P)
 #if USE_APOLLO3_BLUE_EVB
         am_hal_gpio_state_write(LED_D5, AM_HAL_GPIO_OUTPUT_TOGGLE);
         am_hal_gpio_state_write(LED_D6, AM_HAL_GPIO_OUTPUT_TOGGLE);
@@ -489,19 +490,19 @@ void am_app_led_on(void)
         am_hal_gpio_state_write(LED_D8, AM_HAL_GPIO_OUTPUT_TOGGLE);
 
 #endif // #if USE_APOLLO3_BLUE_EVB
-#endif //#if defined (AM_PART_APOLLO3)
+#endif //#if defined(AM_PART_APOLLO3)
 
 }
 
 void am_app_led_off(void)
 {
-#if defined (AM_PART_APOLLO2)
+#if defined(AM_PART_APOLLO2)
     am_hal_gpio_out_bit_clear(LED_D6);
     am_hal_gpio_out_bit_clear(LED_D7);
     am_hal_gpio_out_bit_clear(LED_D8);
 #endif
 
-#if defined (AM_PART_APOLLO3)
+#if defined(AM_PART_APOLLO3) || defined(AM_PART_APOLLO3P)
 #if USE_APOLLO3_BLUE_EVB
     am_hal_gpio_state_write(LED_D5, AM_HAL_GPIO_OUTPUT_CLEAR);
     am_hal_gpio_state_write(LED_D6, AM_HAL_GPIO_OUTPUT_CLEAR);
@@ -527,7 +528,7 @@ static void amvoleBtnCback(uint8_t btn)
   dmConnId_t      connId = AppConnIsOpen();
 
   APP_TRACE_INFO2("button %d pressed, connection open:%d", btn, connId);
-   
+
   /* button actions when connected */
   if (connId != DM_CONN_ID_NONE)
   {
@@ -557,7 +558,7 @@ static void amvoleBtnCback(uint8_t btn)
 
 uint8_t
 amvole_write_cback(dmConnId_t connId, uint16_t handle, uint8_t operation,
-                       uint16_t offset, uint16_t len, uint8_t *pValue, attsAttr_t *pAttr)
+                   uint16_t offset, uint16_t len, uint8_t *pValue, attsAttr_t *pAttr)
 {
     if (handle == VOLES_RX_HDL)
     {
@@ -584,28 +585,40 @@ static void amvoleProcMsg(amvoleMsg_t *pMsg)
   static uint8_t retry_cnt = 0;
 
   switch(pMsg->hdr.event)
-  {    
+  {
     case ATTS_HANDLE_VALUE_CNF:
 
       voles_proc_msg(&pMsg->hdr);
-      
+
       break;
 
     case ATTS_CCC_STATE_IND:
       amvoleProcCccState(pMsg);
-      if(pMsg->ccc.handle == VOLES_TX_CH_CCC_HDL)
+      if (pMsg->ccc.handle == VOLES_TX_CH_CCC_HDL)
+      {
           am_app_KWD_AMA_tx_ver_exchange_send();
+      }
       break;
 
     case DM_RESET_CMPL_IND:
+      AttsCalculateDbHash();
       DmSecGenerateEccKeyReq();
+      amvoleSetup(pMsg);
 
       #if USE_BLE_TX_POWER_SET
         HciVsEM_SetRfPowerLevelEx(TX_POWER_LEVEL_PLUS_6P2_dBm);
       #endif
 
       uiEvent = APP_UI_RESET_CMPL;
-      break;
+	  break;
+  
+  	case DM_ADV_SET_START_IND:
+  	    uiEvent = APP_UI_ADV_SET_START_IND;
+  	    break;
+
+  	case DM_ADV_SET_STOP_IND:
+  	  uiEvent = APP_UI_ADV_SET_STOP_IND;
+        break;
 
     case DM_ADV_START_IND:
       uiEvent = APP_UI_ADV_START;
@@ -626,8 +639,9 @@ static void amvoleProcMsg(amvoleMsg_t *pMsg)
       break;
 
     case ATT_MTU_UPDATE_IND:
-      if(AttGetMtu(1) < BLE_MSBC_DATA_BUFFER_SIZE) {
-        if(retry_cnt < 5)
+      if ( AttGetMtu(1) < BLE_MSBC_DATA_BUFFER_SIZE )
+      {
+        if (retry_cnt < 5)
         {
           retry_cnt++;
           AttcMtuReq(1, 247);
@@ -658,10 +672,12 @@ static void amvoleProcMsg(amvoleMsg_t *pMsg)
       break;
 
     case DM_SEC_PAIR_CMPL_IND:
+            DmSecGenerateEccKeyReq();
       uiEvent = APP_UI_SEC_PAIR_CMPL;
       break;
 
     case DM_SEC_PAIR_FAIL_IND:
+            DmSecGenerateEccKeyReq();
       uiEvent = APP_UI_SEC_PAIR_FAIL;
       break;
 
@@ -678,7 +694,6 @@ static void amvoleProcMsg(amvoleMsg_t *pMsg)
       break;
 
     case DM_SEC_ECC_KEY_IND:
-      amvoleSetup(pMsg);
       DmSecSetEccKey(&pMsg->dm.eccMsg.data.key);
       break;
 
@@ -686,6 +701,45 @@ static void amvoleProcMsg(amvoleMsg_t *pMsg)
       AppHandleNumericComparison(&pMsg->dm.cnfInd);
       break;
 
+    case DM_PRIV_CLEAR_RES_LIST_IND:
+      APP_TRACE_INFO1("Clear resolving list status 0x%02x", pMsg->hdr.status);
+      break;
+
+    case DM_HW_ERROR_IND:
+      uiEvent = APP_UI_HW_ERROR;
+      break;
+
+    case DM_VENDOR_SPEC_CMD_CMPL_IND:
+      {
+        #if defined(AM_PART_APOLLO) || defined(AM_PART_APOLLO2)
+       
+          uint8_t *param_ptr = &pMsg->dm.vendorSpecCmdCmpl.param[0];
+        
+          switch (pMsg->dm.vendorSpecCmdCmpl.opcode)
+          {
+            case 0xFC20: //read at address
+            {
+              uint32_t read_value;
+
+              BSTREAM_TO_UINT32(read_value, param_ptr);
+
+              APP_TRACE_INFO3("VSC 0x%0x complete status %x param %x", 
+                pMsg->dm.vendorSpecCmdCmpl.opcode, 
+                pMsg->hdr.status,
+                read_value);
+            }
+
+            break;
+            default:
+                APP_TRACE_INFO2("VSC 0x%0x complete status %x",
+                    pMsg->dm.vendorSpecCmdCmpl.opcode,
+                    pMsg->hdr.status);
+            break;
+          }
+          
+        #endif
+      }
+      break;
     default:
       break;
   }
@@ -728,6 +782,7 @@ void VoleHandlerInit(wsfHandlerId_t handlerId)
 
   /* Initialize application framework */
   AppSlaveInit();
+  AppServerInit();
 
   /* Set stack configuration pointers */
   pSmpCfg = (smpCfg_t *) &amvoleSmpCfg;
@@ -752,7 +807,14 @@ void VoleHandler(wsfEventMask_t event, wsfMsgHdr_t *pMsg)
   {
     APP_TRACE_INFO1("vole got evt 0x%x", pMsg->event);
 
-    if (pMsg->event >= DM_CBACK_START && pMsg->event <= DM_CBACK_END)
+    /* process ATT messages */
+    if (pMsg->event >= ATT_CBACK_START && pMsg->event <= ATT_CBACK_END)
+    {
+     /* process server-related ATT messages */
+      AppServerProcAttMsg(pMsg);
+    }
+    /* process DM messages */
+    else if (pMsg->event >= DM_CBACK_START && pMsg->event <= DM_CBACK_END)
     {
       /* process advertising and connection-related messages */
       AppSlaveProcDmMsg((dmEvt_t *) pMsg);
@@ -792,11 +854,14 @@ void VoleStart(void)
   memcpy(amvoleScanDataDisc, amvoleScanDataDiscDefault, sizeof(amvoleScanDataDiscDefault));
 
   /* Initialize attribute server database */
+  SvcCoreGattCbackRegister(GattReadCback, GattWriteCback);
   SvcCoreAddGroup();
   SvcDisAddGroup();
   SvcVolesCbackRegister(NULL, amvole_write_cback);
   SvcVolesAddGroup();
 
+  /* Set Service Changed CCCD index. */
+  GattSetSvcChangedIdx(VOLES_GATT_SC_CCC_IDX);
   /* Reset the device */
   DmDevReset();
 }

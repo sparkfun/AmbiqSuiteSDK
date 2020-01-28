@@ -11,24 +11,24 @@
 //
 // Copyright (c) 2018, Ambiq Micro
 // All rights reserved.
-// 
+//
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided that the following conditions are met:
-// 
+//
 // 1. Redistributions of source code must retain the above copyright notice,
 // this list of conditions and the following disclaimer.
-// 
+//
 // 2. Redistributions in binary form must reproduce the above copyright
 // notice, this list of conditions and the following disclaimer in the
 // documentation and/or other materials provided with the distribution.
-// 
+//
 // 3. Neither the name of the copyright holder nor the names of its
 // contributors may be used to endorse or promote products derived from this
 // software without specific prior written permission.
-// 
+//
 // Third party software included in this distribution is subject to the
 // additional license terms as defined in the /docs/licenses directory.
-// 
+//
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
 // AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
 // IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
@@ -80,11 +80,11 @@ static const uint8_t svcTxUuid[] = {ATT_UUID_VOLES_TX};
 static const uint8_t amvoleSvc[] = {ATT_UUID_VOLES_SERVICE};
 static const uint16_t amvoleLenSvc = sizeof(amvoleSvc);
 
-/* VOLES RX characteristic */ 
+/* VOLES RX characteristic */
 static const uint8_t amvoleRxCh[] = {ATT_PROP_WRITE, UINT16_TO_BYTES(VOLES_RX_HDL), ATT_UUID_VOLES_RX};
 static const uint16_t amvoleLenRxCh = sizeof(amvoleRxCh);
 
-/* VOLES TX characteristic */ 
+/* VOLES TX characteristic */
 static const uint8_t amvoleTxCh[] = {ATT_PROP_NOTIFY | ATT_PROP_READ, UINT16_TO_BYTES(VOLES_TX_HDL), ATT_UUID_VOLES_TX};
 static const uint16_t amvoleLenTxCh = sizeof(amvoleTxCh);
 
@@ -106,9 +106,9 @@ static const uint16_t amvoleLenTxChCcc = sizeof(amvoleTxChCcc);
 static const attsAttr_t amvoleList[] =
 {
   {
-    attPrimSvcUuid, 
+    attPrimSvcUuid,
     (uint8_t *) amvoleSvc,
-    (uint16_t *) &amvoleLenSvc, 
+    (uint16_t *) &amvoleLenSvc,
     sizeof(amvoleSvc),
     0,
     ATTS_PERMIT_READ
@@ -145,11 +145,11 @@ static const attsAttr_t amvoleList[] =
     sizeof(amvoleTx), //ATT_VALUE_MAX_LEN,
 #if 0
     #if USE_OUTPUT_VOLES_AMA
-	  (ATTS_SET_UUID_128 | ATTS_SET_VARIABLE_LEN),
+      (ATTS_SET_UUID_128 | ATTS_SET_VARIABLE_LEN),
       ATTS_PERMIT_READ
     #else
       0,  //(ATTS_SET_UUID_128 | ATTS_SET_VARIABLE_LEN),
-      0	//ATTS_PERMIT_READ
+      0   //ATTS_PERMIT_READ
     #endif
 #endif
   (ATTS_SET_UUID_128),
@@ -180,7 +180,7 @@ static attsGroup_t svcVolesGroup =
 /*************************************************************************************************/
 /*!
  *  \fn     SvcVolesAddGroup
- *        
+ *
  *  \brief  Add the services to the attribute server.
  *
  *  \return None.
@@ -194,7 +194,7 @@ void SvcVolesAddGroup(void)
 /*************************************************************************************************/
 /*!
  *  \fn     SvcVolesRemoveGroup
- *        
+ *
  *  \brief  Remove the services from the attribute server.
  *
  *  \return None.
@@ -208,7 +208,7 @@ void SvcVolesRemoveGroup(void)
 /*************************************************************************************************/
 /*!
  *  \fn     SvcVolesCbackRegister
- *        
+ *
  *  \brief  Register callbacks for the service.
  *
  *  \param  readCback   Read callback function.

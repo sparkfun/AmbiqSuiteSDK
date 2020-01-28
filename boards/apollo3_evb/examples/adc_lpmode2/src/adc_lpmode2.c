@@ -5,13 +5,13 @@
 //! @brief This example takes samples with the ADC at 1Hz in lowest power mode.
 //!
 //! Purpose: To demonstrate the lowest possible power usage of the ADC.  The
-//! example powers off the ADC between samples.  CTIMER-A1 is used to drive the 
-//! process.  The CTIMER ISR reconfigures the ADC from scratch and triggers each 
+//! example powers off the ADC between samples.  CTIMER-A1 is used to drive the
+//! process.  The CTIMER ISR reconfigures the ADC from scratch and triggers each
 //! sample.  The ADC ISR stores the sample and shuts down the ADC.
 //!
 //! Additional Information:
 //! The ADC_EXAMPLE_DEBUG flag is used to display information in the example to
-//! show that it is operating.  This should be set to 0 for true low power 
+//! show that it is operating.  This should be set to 0 for true low power
 //! operation.
 //!
 //! Printing takes place over the ITM at 1M Baud.
@@ -53,7 +53,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
-// This is part of revision v2.2.0-7-g63f7c2ba1 of the AmbiqSuite Development Package.
+// This is part of revision 2.3.2 of the AmbiqSuite Development Package.
 //
 //*****************************************************************************
 
@@ -363,7 +363,7 @@ main(void)
   //
   // Enable only the first 512KB bank of Flash (0).  Disable Flash(1)
   //
-  if (AM_HAL_STATUS_SUCCESS != am_hal_pwrctrl_memory_enable(AM_HAL_PWRCTRL_MEM_FLASH_512K))
+  if (AM_HAL_STATUS_SUCCESS != am_hal_pwrctrl_memory_enable(AM_HAL_PWRCTRL_MEM_FLASH_MIN))
   {
     am_util_stdio_printf("Error - configuring the flash memory failed.\n");
   }
