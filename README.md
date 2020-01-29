@@ -29,7 +29,7 @@ make BOARD=$YOUR_BOARD bootload_asb     # bootloads using the Ambiq Secure Bootl
 ```
 
 # Advanced Usage
-All the convenient functionality that we've added to the AmbiqSuiteSDK comes from our SparkFun AmbiqSuite Apollo3 BSPs](https://github.com/sparkfun/SparkFun_Apollo3_AmbiqSuite_BSPs). That repo contains more [detailed documentation for advanced usage](https://github.com/sparkfun/SparkFun_Apollo3_AmbiqSuite_BSPs#advanced-usage).
+All the convenient functionality that we've added to the AmbiqSuiteSDK comes from our [SparkFun AmbiqSuite Apollo3 BSPs](https://github.com/sparkfun/SparkFun_Apollo3_AmbiqSuite_BSPs). That repo contains more [detailed documentation for advanced usage](https://github.com/sparkfun/SparkFun_Apollo3_AmbiqSuite_BSPs#advanced-usage).
 
 # Submodules
 Git submodules can be used to reuse code between repositories. Some special precautions can be necessary when working with them -- most notably the need to clone the contents of submodules explicitly. Here's how to do that:
