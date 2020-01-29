@@ -21,7 +21,7 @@ Then follow these steps
 git clone --recursive https://github.com/sparkfun/AmbiqSuiteSDK
 cd AmbiqSuiteSDK
 cd boards_sfe/common/examples/{example}/gcc
-YOUR_BOARD=redboard_artemis_atp   # choose which board you want to target
+YOUR_BOARD=redboard_artemis_atp   # choose the bsp directory name of the board you want to use
 make BOARD=$YOUR_BOARD            # build project
 make BOARD=$YOUR_BOARD bootload         # equivalent to 'bootload_svl'
 make BOARD=$YOUR_BOARD bootload_svl     # bootloads using the SparkFun Variable Loader
