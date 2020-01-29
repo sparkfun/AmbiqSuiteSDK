@@ -29,12 +29,7 @@ make BOARD=$YOUR_BOARD bootload_asb     # bootloads using the Ambiq Secure Bootl
 ```
 
 # Advanced Usage
-When compiling pretty much any example the SDK relies on the BSP (Board Support Package) definitions to specialize to that board and its capabilities. In the basic examples above we use ```BOARD=$NAME_OF_BOARD_DIR``` to specify a SparkFun board. When the ```BOARD``` variable is set the Makefile will automatically configure the path used to find the BSP directory as ```../../../../$NAME_OF_BOARD_DIR```. This path, relative to the build directory ```~/common/examples/{example}/gcc``` finds the board directory in the root of the BSP repo. 
-
-What if you want to use a custom BSP for your own board? Firstly, you can generate BSP files by following the [bsp_pinconfig README](https://github.com/sparkfun/SparkFun_Apollo3_AmbiqSuite_BSPs/blob/master/common/bsp_pinconfig/README.md). You should put your BSP files in a directory called ```bsp``` and enclose that in a directory named after your board. Once you have done that there are two options.
-
-1. Instead of using ```BOARD=``` you can directly specify the path to the board directory on the make lines like this: ```make BOARDPATH=../some/relative/or/absolute/path/to/your/board/directory bootload```
-1. You can hijack the system so that your baord works with the shortcut ```BOARD=```. Do this by placing your board directory next to the SparkFun boards in your copy of the repo.
+All the convenient functionality that we've added to the AmbiqSuiteSDK comes from our SparkFun AmbiqSuite Apollo3 BSPs](https://github.com/sparkfun/SparkFun_Apollo3_AmbiqSuite_BSPs). That repo contains more [detailed documentation for advanced usage](https://github.com/sparkfun/SparkFun_Apollo3_AmbiqSuite_BSPs#advanced-usage).
 
 # Submodules
 Git submodules can be used to reuse code between repositories. Some special precautions can be necessary when working with them -- most notably the need to clone the contents of submodules explicitly. Here's how to do that:
