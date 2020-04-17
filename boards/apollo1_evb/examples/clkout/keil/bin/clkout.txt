@@ -31,8 +31,8 @@
     Program header entries: 1
     Section header entries: 16
 
-    Program header offset: 61840 (0x0000f190)
-    Section header offset: 61872 (0x0000f1b0)
+    Program header offset: 61844 (0x0000f194)
+    Section header offset: 61876 (0x0000f1b4)
 
     Section header string table index: 15
 
@@ -2563,56 +2563,56 @@
      67  ../src/clkout.c            0x00000000   Lc  Abs  File  De 
      68  i.main                     0x0000112c   Lc    1  Sect  De 
      69  .conststring               0x00001528   Lc    1  Sect  De   0x47
-     70  ../../../../../utils/am_util_delay.c
+     70  ../../../../../devices/am_devices_led.c
                                     0x00000000   Lc  Abs  File  De 
-     71  ..\..\..\..\..\utils\am_util_faultisr.c
-                                    0x00000000   Lc  Abs  File  De 
-     72  .emb_text                  0x00000138   Lc    1  Sect  De   0x22
-     73  $v0                        0x00000138   Lc    1   --   De 
-     74  ../../../../../utils/am_util_faultisr.c
-                                    0x00000000   Lc  Abs  File  De 
-     75  i.am_util_faultisr_collect_data
-                                    0x000009d0   Lc    1  Sect  De 
-     76  ../../../../../utils/am_util_stdio.c
-                                    0x00000000   Lc  Abs  File  De 
-     77  i.am_util_stdio_printf     0x00000a88   Lc    1  Sect  De 
-     78  i.am_util_stdio_printf_init
-                                    0x00000ac4   Lc    1  Sect  De 
-     79  i.am_util_stdio_terminal_clear
-                                    0x00000ad0   Lc    1  Sect  De 
-     80  i.am_util_stdio_vsprintf   0x00000af0   Lc    1  Sect  De 
-     81  i.decstr_to_int            0x00000ea4   Lc    1  Sect  De 
-     82  decstr_to_int              0x00000ea5   Lc    1  Code  De   0x42
-     83  i.divu64_10                0x00000ee6   Lc    1  Sect  De 
-     84  divu64_10                  0x00000ee7   Lc    1  Code  De   0xcc
-     85  i.ftoa                     0x00000fb4   Lc    1  Sect  De 
-     86  ftoa                       0x00000fb5   Lc    1  Code  De   0x172
-     87  i.ndigits_in_hex           0x0000124c   Lc    1  Sect  De 
-     88  ndigits_in_hex             0x0000124d   Lc    1  Code  De   0x34
-     89  i.ndigits_in_i64           0x00001280   Lc    1  Sect  De 
-     90  ndigits_in_i64             0x00001281   Lc    1  Code  De   0x24
-     91  i.ndigits_in_u64           0x000012a4   Lc    1  Sect  De 
-     92  ndigits_in_u64             0x000012a5   Lc    1  Code  De   0x3a
-     93  i.padbuffer                0x000012de   Lc    1  Sect  De 
-     94  padbuffer                  0x000012df   Lc    1  Code  De   0x22
-     95  i.simple_strlen            0x00001300   Lc    1  Sect  De 
-     96  simple_strlen              0x00001301   Lc    1  Code  De   0x18
-     97  i.uint64_to_hexstr         0x00001318   Lc    1  Sect  De 
-     98  uint64_to_hexstr           0x00001319   Lc    1  Code  De   0x8a
-     99  i.uint64_to_str            0x000013a2   Lc    1  Sect  De 
-    100  uint64_to_str              0x000013a3   Lc    1  Code  De   0x70
-    101  .bss                       0x10000034   Lc    3  Sect  De   0x100
-    102  g_prfbuf                   0x10000034   Lc    3  Data  De   0x100
-    103  .data                      0x10000000   Lc    2  Sect  De   0x5
-    104  g_bTxtXlate                0x10000004   Lc    2  Data  De   0x1
-    105  ../../../../../devices/am_devices_led.c
-                                    0x00000000   Lc  Abs  File  De 
-    106  i.am_devices_led_array_init
+     71  i.am_devices_led_array_init
                                     0x000002f6   Lc    1  Sect  De 
-    107  i.am_devices_led_init      0x0000031c   Lc    1  Sect  De 
-    108  i.am_devices_led_off       0x00000504   Lc    1  Sect  De 
-    109  i.am_devices_led_on        0x000005ac   Lc    1  Sect  De 
-    110  i.am_devices_led_toggle    0x00000654   Lc    1  Sect  De 
+     72  i.am_devices_led_init      0x0000031c   Lc    1  Sect  De 
+     73  i.am_devices_led_off       0x00000504   Lc    1  Sect  De 
+     74  i.am_devices_led_on        0x000005ac   Lc    1  Sect  De 
+     75  i.am_devices_led_toggle    0x00000654   Lc    1  Sect  De 
+     76  ../../../../../utils/am_util_delay.c
+                                    0x00000000   Lc  Abs  File  De 
+     77  ..\..\..\..\..\utils\am_util_faultisr.c
+                                    0x00000000   Lc  Abs  File  De 
+     78  .emb_text                  0x00000138   Lc    1  Sect  De   0x22
+     79  $v0                        0x00000138   Lc    1   --   De 
+     80  ../../../../../utils/am_util_faultisr.c
+                                    0x00000000   Lc  Abs  File  De 
+     81  i.am_util_faultisr_collect_data
+                                    0x000009d0   Lc    1  Sect  De 
+     82  ../../../../../utils/am_util_stdio.c
+                                    0x00000000   Lc  Abs  File  De 
+     83  i.am_util_stdio_printf     0x00000a88   Lc    1  Sect  De 
+     84  i.am_util_stdio_printf_init
+                                    0x00000ac4   Lc    1  Sect  De 
+     85  i.am_util_stdio_terminal_clear
+                                    0x00000ad0   Lc    1  Sect  De 
+     86  i.am_util_stdio_vsprintf   0x00000af0   Lc    1  Sect  De 
+     87  i.decstr_to_int            0x00000ea4   Lc    1  Sect  De 
+     88  decstr_to_int              0x00000ea5   Lc    1  Code  De   0x42
+     89  i.divu64_10                0x00000ee6   Lc    1  Sect  De 
+     90  divu64_10                  0x00000ee7   Lc    1  Code  De   0xcc
+     91  i.ftoa                     0x00000fb4   Lc    1  Sect  De 
+     92  ftoa                       0x00000fb5   Lc    1  Code  De   0x172
+     93  i.ndigits_in_hex           0x0000124c   Lc    1  Sect  De 
+     94  ndigits_in_hex             0x0000124d   Lc    1  Code  De   0x34
+     95  i.ndigits_in_i64           0x00001280   Lc    1  Sect  De 
+     96  ndigits_in_i64             0x00001281   Lc    1  Code  De   0x24
+     97  i.ndigits_in_u64           0x000012a4   Lc    1  Sect  De 
+     98  ndigits_in_u64             0x000012a5   Lc    1  Code  De   0x3a
+     99  i.padbuffer                0x000012de   Lc    1  Sect  De 
+    100  padbuffer                  0x000012df   Lc    1  Code  De   0x22
+    101  i.simple_strlen            0x00001300   Lc    1  Sect  De 
+    102  simple_strlen              0x00001301   Lc    1  Code  De   0x18
+    103  i.uint64_to_hexstr         0x00001318   Lc    1  Sect  De 
+    104  uint64_to_hexstr           0x00001319   Lc    1  Code  De   0x8a
+    105  i.uint64_to_str            0x000013a2   Lc    1  Sect  De 
+    106  uint64_to_str              0x000013a3   Lc    1  Code  De   0x70
+    107  .bss                       0x10000034   Lc    3  Sect  De   0x100
+    108  g_prfbuf                   0x10000034   Lc    3  Data  De   0x100
+    109  .data                      0x10000000   Lc    2  Sect  De   0x5
+    110  g_bTxtXlate                0x10000004   Lc    2  Data  De   0x1
     111  ../keil/startup_keil.s     0x00000000   Lc  Abs  File  De 
     112  STACK                      0x10000198   Lc    3  Sect  De   0x1000
     113  StackMem                   0x10000198   Lc    3  Data  De 
@@ -3001,47 +3001,47 @@
             4     19: ../src/clkout.c
             5     35: i.main
             6     42: .conststring
-            7     55: ../../../../../utils/am_util_delay.c
-            8     92: ..\..\..\..\..\utils\am_util_faultisr.c
-            9    132: .emb_text
-           10    142: $v0
-           11    146: ../../../../../utils/am_util_faultisr.c
-           12    186: i.am_util_faultisr_collect_data
-           13    218: ../../../../../utils/am_util_stdio.c
-           14    255: i.am_util_stdio_printf
-           15    278: i.am_util_stdio_printf_init
-           16    306: i.am_util_stdio_terminal_clear
-           17    337: i.am_util_stdio_vsprintf
-           18    362: i.decstr_to_int
-           19    378: decstr_to_int
-           20    392: i.divu64_10
-           21    404: divu64_10
-           22    414: i.ftoa
-           23    421: ftoa
-           24    426: i.ndigits_in_hex
-           25    443: ndigits_in_hex
-           26    458: i.ndigits_in_i64
-           27    475: ndigits_in_i64
-           28    490: i.ndigits_in_u64
-           29    507: ndigits_in_u64
-           30    522: i.padbuffer
-           31    534: padbuffer
-           32    544: i.simple_strlen
-           33    560: simple_strlen
-           34    574: i.uint64_to_hexstr
-           35    593: uint64_to_hexstr
-           36    610: i.uint64_to_str
-           37    626: uint64_to_str
-           38    640: .bss
-           39    645: g_prfbuf
-           40    654: .data
-           41    660: g_bTxtXlate
-           42    672: ../../../../../devices/am_devices_led.c
-           43    712: i.am_devices_led_array_init
-           44    740: i.am_devices_led_init
-           45    762: i.am_devices_led_off
-           46    783: i.am_devices_led_on
-           47    803: i.am_devices_led_toggle
+            7     55: ../../../../../devices/am_devices_led.c
+            8     95: i.am_devices_led_array_init
+            9    123: i.am_devices_led_init
+           10    145: i.am_devices_led_off
+           11    166: i.am_devices_led_on
+           12    186: i.am_devices_led_toggle
+           13    210: ../../../../../utils/am_util_delay.c
+           14    247: ..\..\..\..\..\utils\am_util_faultisr.c
+           15    287: .emb_text
+           16    297: $v0
+           17    301: ../../../../../utils/am_util_faultisr.c
+           18    341: i.am_util_faultisr_collect_data
+           19    373: ../../../../../utils/am_util_stdio.c
+           20    410: i.am_util_stdio_printf
+           21    433: i.am_util_stdio_printf_init
+           22    461: i.am_util_stdio_terminal_clear
+           23    492: i.am_util_stdio_vsprintf
+           24    517: i.decstr_to_int
+           25    533: decstr_to_int
+           26    547: i.divu64_10
+           27    559: divu64_10
+           28    569: i.ftoa
+           29    576: ftoa
+           30    581: i.ndigits_in_hex
+           31    598: ndigits_in_hex
+           32    613: i.ndigits_in_i64
+           33    630: ndigits_in_i64
+           34    645: i.ndigits_in_u64
+           35    662: ndigits_in_u64
+           36    677: i.padbuffer
+           37    689: padbuffer
+           38    699: i.simple_strlen
+           39    715: simple_strlen
+           40    729: i.uint64_to_hexstr
+           41    748: uint64_to_hexstr
+           42    765: i.uint64_to_str
+           43    781: uint64_to_str
+           44    795: .bss
+           45    800: g_prfbuf
+           46    809: .data
+           47    815: g_bTxtXlate
            48    827: ../keil/startup_keil.s
            49    850: STACK
            50    856: StackMem
@@ -3308,7 +3308,7 @@
 
 
 ** Section #14 '.comment' (SHT_PROGBITS)
-    Size   : 14244 bytes
+    Size   : 14248 bytes
 
 
 ** Section #15 '.shstrtab' (SHT_STRTAB)

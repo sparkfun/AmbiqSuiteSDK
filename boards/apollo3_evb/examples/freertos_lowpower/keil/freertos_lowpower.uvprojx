@@ -333,9 +333,9 @@
             <v6Rtti>0</v6Rtti>
             <VariousControls>
               <MiscControls></MiscControls>
-              <Define>AM_PACKAGE_BGA AM_DEBUG_PRINTF AM_PART_APOLLO3 AM_UTIL_FAULTISR_PRINT AM_FREERTOS keil</Define>
+              <Define>AM_PART_APOLLO3 AM_UTIL_FAULTISR_PRINT AM_FREERTOS AM_PACKAGE_BGA AM_DEBUG_PRINTF keil</Define>
               <Undefine></Undefine>
-              <IncludePath>../../../../../devices;../../../../..;../../../../../utils;../../../bsp;../../../../../CMSIS/ARM/Include;../../../../../third_party/FreeRTOSv10.1.1/Source/include;../../../../../CMSIS/AmbiqMicro/Include;../../../../../third_party/FreeRTOSv10.1.1/Source/portable/Keil/AMapollo2;../../../../../mcu/apollo3;../src</IncludePath>
+              <IncludePath>../../../../../third_party/FreeRTOSv10.1.1/Source/portable/Keil/AMapollo2;../../../../../CMSIS/AmbiqMicro/Include;../../../bsp;../../../../../devices;../../../../..;../src;../../../../../mcu/apollo3;../../../../../third_party/FreeRTOSv10.1.1/Source/include;../../../../../utils;../../../../../CMSIS/ARM/Include</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -407,6 +407,31 @@
           </Files>
         </Group>
         <Group>
+          <GroupName>FreeRTOSv10.1.1_MemMang</GroupName>
+          <Files>
+            <File>
+              <FileName>heap_2.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../../../../../third_party/FreeRTOSv10.1.1/Source/portable/MemMang/heap_2.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>devices</GroupName>
+          <Files>
+            <File>
+              <FileName>am_devices_button.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../../../../../devices/am_devices_button.c</FilePath>
+            </File>
+            <File>
+              <FileName>am_devices_led.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../../../../../devices/am_devices_led.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
           <GroupName>FreeRTOSv10.1.1_Source</GroupName>
           <Files>
             <File>
@@ -433,31 +458,6 @@
               <FileName>timers.c</FileName>
               <FileType>1</FileType>
               <FilePath>../../../../../third_party/FreeRTOSv10.1.1/Source/timers.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>FreeRTOSv10.1.1_MemMang</GroupName>
-          <Files>
-            <File>
-              <FileName>heap_2.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../third_party/FreeRTOSv10.1.1/Source/portable/MemMang/heap_2.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>devices</GroupName>
-          <Files>
-            <File>
-              <FileName>am_devices_button.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../devices/am_devices_button.c</FilePath>
-            </File>
-            <File>
-              <FileName>am_devices_led.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../devices/am_devices_led.c</FilePath>
             </File>
           </Files>
         </Group>

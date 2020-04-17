@@ -333,9 +333,9 @@
             <v6Rtti>0</v6Rtti>
             <VariousControls>
               <MiscControls></MiscControls>
-              <Define>ADESTO_ATXP032 AM_UTIL_FAULTISR_PRINT FIREBALL_CARD AM_PACKAGE_BGA ENABLE_LOGGING AM_PART_APOLLO3 keil</Define>
+              <Define>AM_UTIL_FAULTISR_PRINT AM_PACKAGE_BGA FIREBALL_CARD AM_PART_APOLLO3 ENABLE_LOGGING ADESTO_ATXP032 keil</Define>
               <Undefine></Undefine>
-              <IncludePath>../../../../../CMSIS/ARM/Include;../../../../..;../../../../../CMSIS/AmbiqMicro/Include;../../../../../mcu/apollo3;../src;../../../../../devices;../../../../../utils;../../../bsp</IncludePath>
+              <IncludePath>../../../bsp;../../../../../CMSIS/ARM/Include;../../../../../mcu/apollo3;../../../../../devices;../../../../../utils;../src;../../../../../CMSIS/AmbiqMicro/Include;../../../../..</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -400,9 +400,14 @@
               <FilePath>../../../../../devices/am_devices_mb85rs1mt.c</FilePath>
             </File>
             <File>
-              <FileName>am_devices_mspi_flash.c</FileName>
+              <FileName>am_devices_mspi_atxp032.c</FileName>
               <FileType>1</FileType>
-              <FilePath>../../../../../devices/am_devices_mspi_flash.c</FilePath>
+              <FilePath>../../../../../devices/am_devices_mspi_atxp032.c</FilePath>
+            </File>
+            <File>
+              <FileName>am_devices_mspi_s25fs064s.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../../../../../devices/am_devices_mspi_s25fs064s.c</FilePath>
             </File>
           </Files>
         </Group>

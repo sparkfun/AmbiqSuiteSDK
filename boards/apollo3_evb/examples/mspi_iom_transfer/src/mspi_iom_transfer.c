@@ -85,26 +85,26 @@
 
 //*****************************************************************************
 //
-// Copyright (c) 2019, Ambiq Micro
+// Copyright (c) 2020, Ambiq Micro
 // All rights reserved.
-// 
+//
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided that the following conditions are met:
-// 
+//
 // 1. Redistributions of source code must retain the above copyright notice,
 // this list of conditions and the following disclaimer.
-// 
+//
 // 2. Redistributions in binary form must reproduce the above copyright
 // notice, this list of conditions and the following disclaimer in the
 // documentation and/or other materials provided with the distribution.
-// 
+//
 // 3. Neither the name of the copyright holder nor the names of its
 // contributors may be used to endorse or promote products derived from this
 // software without specific prior written permission.
-// 
+//
 // Third party software included in this distribution is subject to the
 // additional license terms as defined in the /docs/licenses directory.
-// 
+//
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
 // AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
 // IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
@@ -117,13 +117,25 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
-// This is part of revision 2.3.2 of the AmbiqSuite Development Package.
+// This is part of revision 2.4.2 of the AmbiqSuite Development Package.
 //
 //*****************************************************************************
 
 #include "am_mcu_apollo.h"
 #include "am_bsp.h"
-#include "am_devices_mspi_flash.h"
+#if defined(ADESTO_ATXP032)
+#include "am_devices_mspi_atxp032.h"
+#define am_devices_mspi_flash_config_t am_devices_mspi_atxp032_config_t
+#define AM_DEVICES_MSPI_FLASH_STATUS_SUCCESS AM_DEVICES_MSPI_ATXP032_STATUS_SUCCESS
+#define AM_DEVICES_MSPI_FLASH_SECTOR_SIZE    AM_DEVICES_MSPI_ATXP032_SECTOR_SIZE
+#elif defined(CYPRESS_S25FS064S)
+#include "am_devices_mspi_s25fs064s.h"
+#define am_devices_mspi_flash_config_t am_devices_mspi_s25fs064s_config_t
+#define AM_DEVICES_MSPI_FLASH_STATUS_SUCCESS AM_DEVICES_MSPI_S25FS064S_STATUS_SUCCESS
+#define AM_DEVICES_MSPI_FLASH_SECTOR_SIZE    AM_DEVICES_MSPI_S25FS064S_SECTOR_SIZE
+#else
+#error "Unknown FLASH Device"
+#endif
 #include "am_util.h"
 
 #if FIREBALL_CARD || FIREBALL2_CARD
@@ -202,22 +214,20 @@
 #if (FRAM_DEVICE_MB85RS1MT == 1)
 #include "am_devices_mb85rs1mt.h"
 #define FRAM_DEVICE_ID          AM_DEVICES_MB85RS1MT_ID
-#define FRAM_IOM_MODE           AM_HAL_IOM_SPI_MODE
+#define am_iom_test_devices_t   am_devices_mb85rs1mt_config_t
 #elif (FRAM_DEVICE_MB85RQ4ML == 1)
 #include "am_devices_mb85rq4ml.h"
 #define FRAM_DEVICE_ID          AM_DEVICES_MB85RQ4ML_ID
-#define FRAM_IOM_MODE           AM_HAL_IOM_SPI_MODE
+#define am_iom_test_devices_t   am_devices_mb85rq4ml_config_t
 #elif (FRAM_DEVICE_MB85RS64V == 1)
 #include "am_devices_mb85rs64v.h"
 #define FRAM_DEVICE_ID          AM_DEVICES_MB85RS64V_ID
-#define FRAM_IOM_MODE           AM_HAL_IOM_SPI_MODE
+#define am_iom_test_devices_t   am_devices_mb85rs64v_config_t
 #else
 #error "Unknown FRAM Device"
 #endif
 
 // Helper Macros to map the ISR based on the IOM being used
-#define IOM_INTERRUPT1(n)       AM_HAL_INTERRUPT_IOMASTER ## n
-#define IOM_INTERRUPT(n)        IOM_INTERRUPT1(n)
 #define FRAM_IOM_IRQn           ((IRQn_Type)(IOMSTR0_IRQn + FRAM_IOM_MODULE))
 
 //
@@ -259,22 +269,22 @@
 typedef struct
 {
     uint8_t  devName[20];
-    uint32_t (*fram_init)(uint32_t ui32Module, am_hal_iom_config_t *psIOMSettings, void **ppIomHandle);
-    uint32_t (*fram_term)(uint32_t ui32Module);
+    uint32_t (*fram_init)(uint32_t ui32Module, am_iom_test_devices_t *pDevConfig, void **ppHandle, void **ppIomHandle);
+    uint32_t (*fram_term)(void *pHandle);
 
-    uint32_t (*fram_read_id)(uint32_t *pDeviceID);
+    uint32_t (*fram_read_id)(void *pHandle, uint32_t *pDeviceID);
 
-    uint32_t (*fram_blocking_write)(uint8_t *ui8TxBuffer,
+    uint32_t (*fram_blocking_write)(void *pHandle, uint8_t *ui8TxBuffer,
                              uint32_t ui32WriteAddress,
                              uint32_t ui32NumBytes);
 
-    uint32_t (*fram_nonblocking_write)(uint8_t *ui8TxBuffer,
+    uint32_t (*fram_nonblocking_write)(void *pHandle, uint8_t *ui8TxBuffer,
                                 uint32_t ui32WriteAddress,
                                 uint32_t ui32NumBytes,
                                 am_hal_iom_callback_t pfnCallback,
                                 void *pCallbackCtxt);
 
-    uint32_t (*fram_nonblocking_write_adv)(uint8_t *ui8TxBuffer,
+    uint32_t (*fram_nonblocking_write_adv)(void *pHandle, uint8_t *ui8TxBuffer,
                                 uint32_t ui32WriteAddress,
                                 uint32_t ui32NumBytes,
                                 uint32_t ui32PauseCondition,
@@ -282,18 +292,58 @@ typedef struct
                                 am_hal_iom_callback_t pfnCallback,
                                 void *pCallbackCtxt);
 
-    uint32_t (*fram_blocking_read)(uint8_t *pui8RxBuffer,
+    uint32_t (*fram_blocking_read)(void *pHandle, uint8_t *pui8RxBuffer,
                             uint32_t ui32ReadAddress,
                             uint32_t ui32NumBytes);
 
-    uint32_t (*fram_nonblocking_read)(uint8_t *pui8RxBuffer,
+    uint32_t (*fram_nonblocking_read)(void *pHandle, uint8_t *pui8RxBuffer,
                                                       uint32_t ui32ReadAddress,
                                                       uint32_t ui32NumBytes,
                                                       am_hal_iom_callback_t pfnCallback,
                                                       void *pCallbackCtxt);
-    uint32_t (*fram_command_send)(uint32_t ui32Cmd);
+    uint32_t (*fram_command_send)(void *pHandle, uint32_t ui32Cmd);
     am_devices_fireball_control_e fram_fireball_control;
 } fram_device_func_t;
+
+//
+// Typedef - to encapsulate device driver functions
+//
+typedef struct
+{
+    uint8_t  devName[20];
+    uint32_t (*flash_init)(uint32_t ui32Module, am_devices_mspi_flash_config_t *pDevConfig, void **ppHandle, void **ppMspiHandle);
+    uint32_t (*flash_term)(void *pHandle);
+
+    uint32_t (*flash_read_id)(void *pHandle);
+
+    uint32_t (*flash_write)(void *pHandle, uint8_t *pui8TxBuffer,
+                            uint32_t ui32WriteAddress,
+                            uint32_t ui32NumBytes,
+                            bool bWaitForCompletion);
+
+    uint32_t (*flash_read)(void *pHandle, uint8_t *pui8RxBuffer,
+                           uint32_t ui32ReadAddress,
+                           uint32_t ui32NumBytes,
+                           bool bWaitForCompletion);
+
+    uint32_t (*flash_read_adv)(void *pHandle, uint8_t *pui8RxBuffer,
+                               uint32_t ui32ReadAddress,
+                               uint32_t ui32NumBytes,
+                               uint32_t ui32PauseCondition,
+                               uint32_t ui32StatusSetClr,
+                               am_hal_mspi_callback_t pfnCallback,
+                               void *pCallbackCtxt);
+
+    uint32_t (*flash_mass_erase)(void *pHandle);
+    uint32_t (*flash_sector_erase)(void *pHandle, uint32_t ui32SectorAddress);
+
+    uint32_t (*flash_enable_xip)(void *pHandle);
+    uint32_t (*flash_disable_xip)(void *pHandle);
+    uint32_t (*flash_enable_scrambling)(void *pHandle);
+    uint32_t (*flash_disable_scrambling)(void *pHandle);
+
+    am_devices_fireball_control_e flash_fireball_control;
+} flash_device_func_t;
 
 // Globals
 #ifndef CQ_RAW
@@ -307,7 +357,7 @@ uint32_t        g_MspiQBuffer[(AM_HAL_MSPI_CQ_ENTRY_SIZE / 4) * (NUM_FRAGMENTS +
 #else
 // Buffer for non-blocking transactions for IOM - can be much smaller as the CQ is preconstructed in a separare memory
 // all the transactions
-uint32_t        g_IomQBuffer[(AM_HAL_IOM_CQ_ENTRY_SIZE / 4) * (4 + 1)];
+//uint32_t        g_IomQBuffer[(AM_HAL_IOM_CQ_ENTRY_SIZE / 4) * (4 + 1)];
 // Buffer for non-blocking transactions for MSPI - can be much smaller as the CQ is preconstructed in a separare memory
 // all the transactions
 uint32_t        g_MspiQBuffer[(AM_HAL_MSPI_CQ_ENTRY_SIZE / 4) * (4 + 1)];
@@ -316,7 +366,9 @@ uint32_t        g_MspiQBuffer[(AM_HAL_MSPI_CQ_ENTRY_SIZE / 4) * (4 + 1)];
 // Temp Buffer in SRAM to read PSRAM data to, and write DISPLAY data from
 uint32_t        g_TempBuf[2][TEMP_BUFFER_SIZE / 4];
 
+void            *g_FlashHdl;
 void            *g_MSPIHdl;
+void            *g_IomDevHdl;
 void            *g_IOMHandle;
 volatile bool   g_bDone = false;
 
@@ -334,79 +386,19 @@ uint32_t g_FramChipSelect[AM_REG_IOM_NUM_MODULES] =
 #endif
 };
 
-
-const am_hal_mspi_dev_config_t      MSPI_Flash_Serial_CE0_MSPIConfig =
+am_devices_mspi_flash_config_t MSPI_Flash_Config = 
 {
-    .eSpiMode             = AM_HAL_MSPI_SPI_MODE_0,
-    .eClockFreq           = MSPI_FREQ,
-#if defined(MICRON_N25Q256A)
-  .ui8TurnAround        = 3,
-  .eAddrCfg             = AM_HAL_MSPI_ADDR_3_BYTE,
-#elif defined (CYPRESS_S25FS064S)
-  .ui8TurnAround        = 3,
-  .eAddrCfg             = AM_HAL_MSPI_ADDR_3_BYTE,
-#elif defined (MACRONIX_MX25U12835F)
-  .ui8TurnAround        = 8,
-  .eAddrCfg             = AM_HAL_MSPI_ADDR_3_BYTE,
-#elif defined (ADESTO_ATXP032)
-  .ui8TurnAround        = 8,
-  .eAddrCfg             = AM_HAL_MSPI_ADDR_4_BYTE,
+#ifdef MSPI_FLASH_SERIAL
+    .eDeviceConfig = AM_HAL_MSPI_FLASH_SERIAL_CE0,
+#else
+    .eDeviceConfig = AM_HAL_MSPI_FLASH_QUAD_CE0,
 #endif
-    .eInstrCfg            = AM_HAL_MSPI_INSTR_1_BYTE,
-    .eDeviceConfig        = AM_HAL_MSPI_FLASH_SERIAL_CE0,
-    .bSeparateIO          = true,
-    .bSendInstr           = true,
-    .bSendAddr            = true,
-    .bTurnaround          = true,
-    .ui8ReadInstr         = AM_DEVICES_MSPI_FLASH_FAST_READ,
-    .ui8WriteInstr        = AM_DEVICES_MSPI_FLASH_PAGE_PROGRAM,
-    .ui32TCBSize          = (sizeof(g_MspiQBuffer) / sizeof(uint32_t)),
-    .pTCB                 = g_MspiQBuffer,
-    .scramblingStartAddr  = 0,
-    .scramblingEndAddr    = 0,
-};
-
-const am_hal_mspi_dev_config_t      MSPI_Flash_Quad_CE0_MSPIConfig =
-{
-  .eSpiMode             = AM_HAL_MSPI_SPI_MODE_0,
-  .eClockFreq           = MSPI_FREQ,
-#if defined(MICRON_N25Q256A)
-  .ui8TurnAround        = 3,
-  .eAddrCfg             = AM_HAL_MSPI_ADDR_3_BYTE,
-#elif defined (CYPRESS_S25FS064S)
-  .ui8TurnAround        = 3,
-  .eAddrCfg             = AM_HAL_MSPI_ADDR_3_BYTE,
-#elif defined (MACRONIX_MX25U12835F)
-  .ui8TurnAround        = 8,
-  .eAddrCfg             = AM_HAL_MSPI_ADDR_3_BYTE,
-#elif defined (ADESTO_ATXP032)
-  .ui8TurnAround        = 8,
-  .eAddrCfg             = AM_HAL_MSPI_ADDR_4_BYTE,
-#endif
-  .eInstrCfg            = AM_HAL_MSPI_INSTR_1_BYTE,
-  .eDeviceConfig        = AM_HAL_MSPI_FLASH_QUAD_CE0,
-  .bSeparateIO          = false,
-  .bSendInstr           = true,
-  .bSendAddr            = true,
-  .bTurnaround          = true,
-#if (defined(MICRON_N25Q256A) || defined(MACRONIX_MX25U12835F) || defined(ADESTO_ATXP032))
-  .ui8ReadInstr         = AM_DEVICES_MSPI_FLASH_FAST_READ,
-#elif defined (CYPRESS_S25FS064S)
-  .ui8ReadInstr         = AM_DEVICES_MSPI_FLASH_QUAD_IO_READ,
-#endif          // TODO - Flag an error if another part.
-  .ui8WriteInstr        = AM_DEVICES_MSPI_FLASH_PAGE_PROGRAM,
-  .ui32TCBSize          = (sizeof(g_MspiQBuffer) / sizeof(uint32_t)),
-  .pTCB                 = g_MspiQBuffer,
-  .scramblingStartAddr  = 0,
-  .scramblingEndAddr    = 0,
-};
-
-am_hal_iom_config_t     g_sIomCfg =
-{
-    .eInterfaceMode       = FRAM_IOM_MODE,
-    .ui32ClockFreq        = IOM_FREQ,
-    .ui32NBTxnBufLength   = sizeof(g_IomQBuffer) / 4,
-    .pNBTxnBuf            = g_IomQBuffer,
+    .eClockFreq = MSPI_FREQ,
+    .eMixedMode = AM_HAL_MSPI_XIPMIXED_NORMAL,
+    .pNBTxnBuf = g_MspiQBuffer,
+    .ui32NBTxnBufLength = (sizeof(g_MspiQBuffer) / sizeof(uint32_t)),
+    .ui32ScramblingStartAddr = 0,
+    .ui32ScramblingEndAddr = 0,
 };
 
 fram_device_func_t fram_func =
@@ -461,6 +453,90 @@ fram_device_func_t fram_func =
 #error "Unknown FRAM Device"
 #endif
 };
+
+flash_device_func_t flash_func =
+{
+#if defined(ADESTO_ATXP032)
+    // Fireball installed MSPI FLASH device
+    .devName = "MSPI FLASH ATXP032",
+    .flash_init = am_devices_mspi_atxp032_init,
+    .flash_term = am_devices_mspi_atxp032_deinit,
+    .flash_read_id = am_devices_mspi_atxp032_id,
+    .flash_write = am_devices_mspi_atxp032_write,
+    .flash_read = am_devices_mspi_atxp032_read,
+    .flash_read_adv = am_devices_mspi_atxp032_read_adv,
+    .flash_mass_erase = am_devices_mspi_atxp032_mass_erase,
+    .flash_sector_erase = am_devices_mspi_atxp032_sector_erase,
+    .flash_enable_xip = am_devices_mspi_atxp032_enable_xip,
+    .flash_disable_xip = am_devices_mspi_atxp032_disable_xip,
+    .flash_enable_scrambling = am_devices_mspi_atxp032_enable_scrambling,
+    .flash_disable_scrambling = am_devices_mspi_atxp032_disable_scrambling,
+#if FIREBALL_CARD
+    .flash_fireball_control = AM_DEVICES_FIREBALL_STATE_OCTAL_FLASH_CE0,
+#else
+    .flash_fireball_control = 0,
+#endif
+#elif defined(CYPRESS_S25FS064S)
+    // Fireball installed MSPI FLASH device
+    .devName = "MSPI FLASH S25FS064S",
+    .flash_init = am_devices_mspi_s25fs064s_init,
+    .flash_term = am_devices_mspi_s25fs064s_deinit,
+    .flash_read_id = am_devices_mspi_s25fs064s_id,
+    .flash_write = am_devices_mspi_s25fs064s_write,
+    .flash_read = am_devices_mspi_s25fs064s_read,
+    .flash_read_adv = am_devices_mspi_s25fs064s_read_adv,
+    .flash_mass_erase = am_devices_mspi_s25fs064s_mass_erase,
+    .flash_sector_erase = am_devices_mspi_s25fs064s_sector_erase,
+    .flash_enable_xip = am_devices_mspi_s25fs064s_enable_xip,
+    .flash_disable_xip = am_devices_mspi_s25fs064s_disable_xip,
+    .flash_enable_scrambling = am_devices_mspi_s25fs064s_enable_scrambling,
+    .flash_disable_scrambling = am_devices_mspi_s25fs064s_disable_scrambling,
+#if FIREBALL_CARD
+    .flash_fireball_control = AM_DEVICES_FIREBALL_STATE_TWIN_QUAD_CE0_CE1,
+#else
+    .flash_fireball_control = 0,
+#endif
+#else
+#error "Unknown FLASH Device"
+#endif
+};
+
+//! MSPI interrupts.
+static const IRQn_Type mspi_interrupts[] =
+{
+    MSPI0_IRQn,
+#if defined(AM_PART_APOLLO3P)
+    MSPI1_IRQn,
+    MSPI2_IRQn,
+#endif
+};
+
+//
+// Take over the interrupt handler for whichever MSPI we're using.
+//
+#define flash_mspi_isr                                                          \
+    am_mspi_isr1(MSPI_TEST_MODULE)
+#define am_mspi_isr1(n)                                                        \
+    am_mspi_isr(n)
+#define am_mspi_isr(n)                                                         \
+    am_mspi ## n ## _isr
+
+//*****************************************************************************
+//
+// MSPI ISRs.
+//
+//*****************************************************************************
+void flash_mspi_isr(void)
+{
+    uint32_t      ui32Status;
+
+    am_hal_mspi_interrupt_status_get(g_MSPIHdl, &ui32Status, false);
+
+    am_hal_mspi_interrupt_clear(g_MSPIHdl, ui32Status);
+
+    am_hal_mspi_interrupt_service(g_MSPIHdl, ui32Status);
+}
+
 
 #if defined(SEQLOOP) && defined(RUN_AUTONOMOUS)
 //**************************************
@@ -649,10 +725,15 @@ fram_init(void)
     }
 #endif // FIREBALL_CARD
 
-    ui32Status = fram_func.fram_init(FRAM_IOM_MODULE, &g_sIomCfg, &g_IOMHandle);
+    am_iom_test_devices_t stFramConfig;
+    stFramConfig.ui32ClockFreq = IOM_FREQ;
+    stFramConfig.pNBTxnBuf = g_IomQBuffer;
+    stFramConfig.ui32NBTxnBufLength = sizeof(g_IomQBuffer) / 4;
+
+    ui32Status = fram_func.fram_init(FRAM_IOM_MODULE, &stFramConfig, &g_IomDevHdl, &g_IOMHandle);
     if (0 == ui32Status)
     {
-        ui32Status = fram_func.fram_read_id(&ui32DeviceId);
+        ui32Status = fram_func.fram_read_id(g_IomDevHdl, &ui32DeviceId);
 
         if ((ui32Status  != 0) || (ui32DeviceId != FRAM_DEVICE_ID))
         {
@@ -684,7 +765,7 @@ fram_deinit(void)
     // Set up IOM
     // Initialize the Device
 
-    ui32Status = fram_func.fram_term(FRAM_IOM_MODULE);
+    ui32Status = fram_func.fram_term(g_IomDevHdl);
     if (0 != ui32Status)
     {
         DEBUG_PRINT("Failed to terminate FRAM device\n");
@@ -694,7 +775,7 @@ fram_deinit(void)
 }
 
 int
-mspi_flash_init(const am_hal_mspi_dev_config_t *mspiFlashConfig)
+mspi_flash_init(am_devices_mspi_flash_config_t mspiFlashConfig)
 {
 
     uint32_t      ui32Status;
@@ -704,11 +785,7 @@ mspi_flash_init(const am_hal_mspi_dev_config_t *mspiFlashConfig)
     //
     uint32_t ui32Ret;
 
-#if defined (ADESTO_ATXP032)
-    ui32Ret = am_devices_fireball_control(AM_DEVICES_FIREBALL_STATE_OCTAL_FLASH_CE0, 0);
-#else
-    ui32Ret = am_devices_fireball_control(AM_DEVICES_FIREBALL_STATE_TWIN_QUAD_CE0_CE1, 0);
-#endif
+    ui32Ret = am_devices_fireball_control(flash_func.flash_fireball_control, 0);
     if ( ui32Ret != 0 )
     {
         DEBUG_PRINT("FAIL: am_devices_fireball_control(%d) returned 0x%X.\n",
@@ -720,18 +797,19 @@ mspi_flash_init(const am_hal_mspi_dev_config_t *mspiFlashConfig)
     //
     // Configure the MSPI and Flash Device.
     //
-    ui32Status = am_devices_mspi_flash_init(MSPI_TEST_MODULE, (am_hal_mspi_dev_config_t *)&MSPI_Flash_Quad_CE0_MSPIConfig, &g_MSPIHdl);
+    ui32Status = flash_func.flash_init(MSPI_TEST_MODULE, &mspiFlashConfig, &g_FlashHdl, &g_MSPIHdl);
     if (AM_DEVICES_MSPI_FLASH_STATUS_SUCCESS != ui32Status)
     {
         DEBUG_PRINT("Failed to configure the MSPI and Flash Device correctly!\n");
         return -1;
     }
+    NVIC_EnableIRQ(mspi_interrupts[MSPI_TEST_MODULE]);
 
 #if !defined (ADESTO_ATXP032) // Not all flash devices support Read ID in quad mode
     //
     // Read the MSPI Device ID.
     //
-    ui32Status = am_devices_mspi_flash_id(MSPI_TEST_MODULE);
+    ui32Status = flash_func.flash_read_id(g_FlashHdl);
     if (AM_DEVICES_MSPI_FLASH_STATUS_SUCCESS != ui32Status)
     {
         DEBUG_PRINT("Failed to read Flash Device ID!\n");
@@ -741,7 +819,7 @@ mspi_flash_init(const am_hal_mspi_dev_config_t *mspiFlashConfig)
     //
     // Make sure we aren't in XIP mode.
     //
-    ui32Status = am_devices_mspi_flash_disable_xip(MSPI_TEST_MODULE);
+    ui32Status = flash_func.flash_disable_xip(g_FlashHdl);
     if (AM_DEVICES_MSPI_FLASH_STATUS_SUCCESS != ui32Status)
     {
         DEBUG_PRINT("Failed to disable XIP mode in the MSPI!\n");
@@ -759,7 +837,7 @@ init_mspi_flash_data(void)
 #if !defined (ADESTO_ATXP032)
     // Mass Erase
     am_util_stdio_printf("Initiating mass erase Flash Device! - This can take a long time\n");
-    ui32Status = am_devices_mspi_flash_mass_erase(MSPI_TEST_MODULE);
+    ui32Status = flash_func.flash_mass_erase(g_FlashHdl);
     if (AM_DEVICES_MSPI_FLASH_STATUS_SUCCESS != ui32Status)
     {
         am_util_stdio_printf("Failed to mass erase Flash Device!\n");
@@ -776,7 +854,7 @@ init_mspi_flash_data(void)
         // Erase the target sector.
         //
         am_util_stdio_printf("Erasing Sector %d\n", sector);
-        ui32Status = am_devices_mspi_flash_sector_erase(MSPI_TEST_MODULE, sector << 16);
+        ui32Status = flash_func.flash_sector_erase(g_FlashHdl, sector << 16);
         if (AM_DEVICES_MSPI_FLASH_STATUS_SUCCESS != ui32Status)
         {
             am_util_stdio_printf("Failed to erase Flash Device sector!\n");
@@ -800,7 +878,7 @@ init_mspi_flash_data(void)
         //
         // Write the TX buffer into the target sector.
         //
-        ui32Status = am_devices_mspi_flash_write(MSPI_TEST_MODULE, (uint8_t *)g_TempBuf[0], address, TEMP_BUFFER_SIZE);
+        ui32Status = flash_func.flash_write(g_FlashHdl, (uint8_t *)g_TempBuf[0], address, TEMP_BUFFER_SIZE, true);
         if (AM_DEVICES_MSPI_FLASH_STATUS_SUCCESS != ui32Status)
         {
             am_util_stdio_printf("Failed to write buffer to Flash Device!\n");
@@ -809,7 +887,7 @@ init_mspi_flash_data(void)
         //
         // Read the data back into the RX buffer.
         //
-        ui32Status = am_devices_mspi_flash_read((uint8_t *)g_TempBuf[1], address, TEMP_BUFFER_SIZE, true);
+        ui32Status = flash_func.flash_read(g_FlashHdl, (uint8_t *)g_TempBuf[1], address, TEMP_BUFFER_SIZE, true);
         if (AM_DEVICES_MSPI_FLASH_STATUS_SUCCESS != ui32Status)
         {
             am_util_stdio_printf("Failed to read buffer to Flash Device!\n");
@@ -835,7 +913,7 @@ flash_read_complete(void *pCallbackCtxt, uint32_t transactionStatus)
 {
     if (transactionStatus != AM_HAL_STATUS_SUCCESS)
     {
-      DEBUG_PRINT("\nIter# %d:Flash Read Failed 0x%x\n", numIter, transactionStatus);
+        DEBUG_PRINT("\nIter# %d:Flash Read Failed 0x%x\n", numIter, transactionStatus);
     }
     else
     {
@@ -1500,7 +1578,7 @@ start_mspi_iom_xfer(void)
     {
 #ifndef CQ_RAW
         uint32_t bufOdd = (bufIdx + (numIter * VARIABLE_SIZE_CHANGE) / SPI_TXN_SIZE) % 2;
-        ui32Status = am_devices_mspi_flash_read_adv((uint8_t *)g_TempBuf[bufOdd], address + VARIABLE_SIZE_CHANGE*numIter,
+        ui32Status = flash_func.flash_read_adv(g_FlashHdl, (uint8_t *)g_TempBuf[bufOdd], address + VARIABLE_SIZE_CHANGE*numIter,
                                        (((address + SPI_TXN_SIZE) >= BLOCK_SIZE) ? (BLOCK_SIZE - address) : SPI_TXN_SIZE),
                                        (bufOdd ? MSPI_WAIT_FOR_IOM_BUFFER1 : MSPI_WAIT_FOR_IOM_BUFFER0),
                                        (bufOdd ? MSPI_SIGNAL_IOM_BUFFER1 : MSPI_SIGNAL_IOM_BUFFER0),
@@ -1511,7 +1589,7 @@ start_mspi_iom_xfer(void)
             DEBUG_PRINT("\nFailed to queue up MSPI Read transaction\n");
             break;
         }
-        ui32Status = fram_func.fram_nonblocking_write_adv((uint8_t *)g_TempBuf[bufOdd], address,
+        ui32Status = fram_func.fram_nonblocking_write_adv(g_IomDevHdl, (uint8_t *)g_TempBuf[bufOdd], address,
                                        (((address + SPI_TXN_SIZE) >= BLOCK_SIZE) ? (BLOCK_SIZE - address) : SPI_TXN_SIZE),
                                        (bufOdd ? IOM_WAIT_FOR_MSPI_BUFFER1 : IOM_WAIT_FOR_MSPI_BUFFER0),
                                        (bufOdd ? IOM_SIGNAL_MSPI_BUFFER1 : IOM_SIGNAL_MSPI_BUFFER0),
@@ -1561,7 +1639,7 @@ start_mspi_iom_xfer(void)
                                         g_FramChipSelect[FRAM_IOM_MODULE]);
         DEBUG_GPIO_HIGH(TEST_GPIO1);
         // Configure FRAM for writing
-        ui32Status = fram_func.fram_nonblocking_write_adv(NULL, 0, 0,
+        ui32Status = fram_func.fram_nonblocking_write_adv(g_IomDevHdl, NULL, 0, 0,
                                        IOM_WAIT_FOR_MSPI_BUFFER0,
                                        0,
                                        0,
@@ -1645,7 +1723,7 @@ init_fram_data(void)
         // Write the TX buffer into the target sector.
         //
         DEBUG_PRINT("Writing %d Bytes to Address 0x%x\n", numBytes, address);
-        ui32Status = fram_func.fram_nonblocking_write_adv((uint8_t *)g_TempBuf[0], address, numBytes,
+        ui32Status = fram_func.fram_nonblocking_write_adv(g_IomDevHdl, (uint8_t *)g_TempBuf[0], address, numBytes,
                                        0,
                                        0,
                                        fram_write_complete,
@@ -1666,7 +1744,7 @@ init_fram_data(void)
         //
         DEBUG_PRINT("Read %d Bytes from Address 0x%x\n", numBytes, address);
         // Initiate read of a block of data from FRAM
-        ui32Status = fram_func.fram_blocking_read((uint8_t *)&g_TempBuf[1], address, numBytes);
+        ui32Status = fram_func.fram_blocking_read(g_IomDevHdl, (uint8_t *)&g_TempBuf[1], address, numBytes);
 
         if (0 != ui32Status)
         {
@@ -1705,7 +1783,7 @@ verify_fram_data(void)
         // Read the data back into the RX buffer.
         //
         // Initiate read of a block of data from FRAM
-        ui32Status = fram_func.fram_blocking_read((uint8_t *)&g_TempBuf[1], address, numBytes);
+        ui32Status = fram_func.fram_blocking_read(g_IomDevHdl, (uint8_t *)&g_TempBuf[1], address, numBytes);
 
         if (0 != ui32Status)
         {
@@ -1740,12 +1818,7 @@ main(void)
 {
     uint32_t      ui32Status;
     int iRet;
-    const am_hal_mspi_dev_config_t *mspiFlashCfg =
-#ifdef MSPI_FLASH_SERIAL
-            &MSPI_Flash_Serial_CE0_MSPIConfig;
-#else
-            &MSPI_Flash_Quad_CE0_MSPIConfig;
-#endif
+    am_devices_mspi_flash_config_t mspiFlashCfg = MSPI_Flash_Config;
 
     //
     // Set the clock frequency.
@@ -1970,11 +2043,12 @@ main(void)
     {
         DEBUG_PRINT("Unable to terminate FRAM\n");
     }
-
+    am_hal_interrupt_master_disable();
+    NVIC_DisableIRQ(mspi_interrupts[MSPI_TEST_MODULE]);
     //
     // Clean up the MSPI before exit.
     //
-    ui32Status = am_devices_mspi_flash_deinit(MSPI_TEST_MODULE, (am_hal_mspi_dev_config_t *)mspiFlashCfg);
+    ui32Status = flash_func.flash_term(g_FlashHdl);
     if (AM_DEVICES_MSPI_FLASH_STATUS_SUCCESS != ui32Status)
     {
         DEBUG_PRINT("Failed to shutdown the MSPI and Flash Device!\n");

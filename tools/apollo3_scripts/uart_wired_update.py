@@ -186,18 +186,29 @@ def connect_device(ser):
 #
 #******************************************************************************
 def send_ackd_command(command, ser):
-    response = send_command(command, 20, ser)
+    for numTries in range(1, 5 , 1):
+        response = send_command(command, 20, ser)
 
-    word = word_from_bytes(response, 4)
-    if ((word & 0xFFFF) == AM_SECBOOT_WIRED_MSGTYPE_ACK):
-        # Received ACK
-        if (word_from_bytes(response, 12) != AM_SECBOOT_WIRED_ACK_STATUS_SUCCESS):
-            print("Received NACK")
-            print("msgType = ", hex(word_from_bytes(response, 8)))
-            print("error = ", hex(word_from_bytes(response, 12)))
-            print("seqNo = ", hex(word_from_bytes(response, 16)))
-            print("!!!Wired Upgrade Unsuccessful!!!....Terminating the script")
+        word = word_from_bytes(response, 4)
+        if ((word & 0xFFFF) == AM_SECBOOT_WIRED_MSGTYPE_ACK):
+            # Received ACK
+            if (word_from_bytes(response, 12) != AM_SECBOOT_WIRED_ACK_STATUS_SUCCESS):
+                print("Received NACK")
+                print("msgType = ", hex(word_from_bytes(response, 8)))
+                print("error = ", hex(word_from_bytes(response, 12)))
+                print("seqNo = ", hex(word_from_bytes(response, 16)))
+                if (numTries < 4):
+                    print("Retry # ", numTries)
+                else:
+                    print("Exceed number of retries")
+            else:
+                break
+        else:
+            print("!!!Wired Upgrade Unsuccessful!!!....unexpected respose - Terminating the script")
             exit()
+    if (numTries == 4):
+        print("!!!Wired Upgrade Unsuccessful!!!....numTries exceeded - Terminating the script")
+        exit()
 
     return response
 

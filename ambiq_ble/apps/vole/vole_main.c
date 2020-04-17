@@ -11,26 +11,26 @@
 
 //*****************************************************************************
 //
-// Copyright (c) 2019, Ambiq Micro
+// Copyright (c) 2020, Ambiq Micro
 // All rights reserved.
-// 
+//
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided that the following conditions are met:
-// 
+//
 // 1. Redistributions of source code must retain the above copyright notice,
 // this list of conditions and the following disclaimer.
-// 
+//
 // 2. Redistributions in binary form must reproduce the above copyright
 // notice, this list of conditions and the following disclaimer in the
 // documentation and/or other materials provided with the distribution.
-// 
+//
 // 3. Neither the name of the copyright holder nor the names of its
 // contributors may be used to endorse or promote products derived from this
 // software without specific prior written permission.
-// 
+//
 // Third party software included in this distribution is subject to the
 // additional license terms as defined in the /docs/licenses directory.
-// 
+//
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
 // AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
 // IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
@@ -43,7 +43,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
-// This is part of revision 2.3.2 of the AmbiqSuite Development Package.
+// This is part of revision 2.4.2 of the AmbiqSuite Development Package.
 //
 //*****************************************************************************
 
@@ -601,32 +601,32 @@ static void amvoleProcMsg(amvoleMsg_t *pMsg)
       break;
 
     case DM_RESET_CMPL_IND:
-      AttsCalculateDbHash();
-      DmSecGenerateEccKeyReq();
-      amvoleSetup(pMsg);
+        AttsCalculateDbHash();
+        DmSecGenerateEccKeyReq();
+        amvoleSetup(pMsg);
 
       #if USE_BLE_TX_POWER_SET
         HciVsEM_SetRfPowerLevelEx(TX_POWER_LEVEL_PLUS_6P2_dBm);
       #endif
 
-      uiEvent = APP_UI_RESET_CMPL;
-	  break;
-  
-  	case DM_ADV_SET_START_IND:
-  	    uiEvent = APP_UI_ADV_SET_START_IND;
-  	    break;
+        uiEvent = APP_UI_RESET_CMPL;
+        break;
 
-  	case DM_ADV_SET_STOP_IND:
-  	  uiEvent = APP_UI_ADV_SET_STOP_IND;
+    case DM_ADV_SET_START_IND:
+        uiEvent = APP_UI_ADV_SET_START_IND;
+        break;
+
+    case DM_ADV_SET_STOP_IND:
+        uiEvent = APP_UI_ADV_SET_STOP_IND;
         break;
 
     case DM_ADV_START_IND:
-      uiEvent = APP_UI_ADV_START;
-      break;
+        uiEvent = APP_UI_ADV_START;
+        break;
 
     case DM_ADV_STOP_IND:
-      uiEvent = APP_UI_ADV_STOP;
-      break;
+        uiEvent = APP_UI_ADV_STOP;
+        break;
 
     case DM_CONN_OPEN_IND:
       voles_proc_msg(&pMsg->hdr);
@@ -712,9 +712,9 @@ static void amvoleProcMsg(amvoleMsg_t *pMsg)
     case DM_VENDOR_SPEC_CMD_CMPL_IND:
       {
         #if defined(AM_PART_APOLLO) || defined(AM_PART_APOLLO2)
-       
+
           uint8_t *param_ptr = &pMsg->dm.vendorSpecCmdCmpl.param[0];
-        
+
           switch (pMsg->dm.vendorSpecCmdCmpl.opcode)
           {
             case 0xFC20: //read at address
@@ -723,8 +723,8 @@ static void amvoleProcMsg(amvoleMsg_t *pMsg)
 
               BSTREAM_TO_UINT32(read_value, param_ptr);
 
-              APP_TRACE_INFO3("VSC 0x%0x complete status %x param %x", 
-                pMsg->dm.vendorSpecCmdCmpl.opcode, 
+              APP_TRACE_INFO3("VSC 0x%0x complete status %x param %x",
+                pMsg->dm.vendorSpecCmdCmpl.opcode,
                 pMsg->hdr.status,
                 read_value);
             }
@@ -736,7 +736,7 @@ static void amvoleProcMsg(amvoleMsg_t *pMsg)
                     pMsg->hdr.status);
             break;
           }
-          
+
         #endif
       }
       break;

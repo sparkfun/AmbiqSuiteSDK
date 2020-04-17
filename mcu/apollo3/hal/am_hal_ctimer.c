@@ -13,26 +13,26 @@
 
 //*****************************************************************************
 //
-// Copyright (c) 2019, Ambiq Micro
+// Copyright (c) 2020, Ambiq Micro
 // All rights reserved.
-// 
+//
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided that the following conditions are met:
-// 
+//
 // 1. Redistributions of source code must retain the above copyright notice,
 // this list of conditions and the following disclaimer.
-// 
+//
 // 2. Redistributions in binary form must reproduce the above copyright
 // notice, this list of conditions and the following disclaimer in the
 // documentation and/or other materials provided with the distribution.
-// 
+//
 // 3. Neither the name of the copyright holder nor the names of its
 // contributors may be used to endorse or promote products derived from this
 // software without specific prior written permission.
-// 
+//
 // Third party software included in this distribution is subject to the
 // additional license terms as defined in the /docs/licenses directory.
-// 
+//
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
 // AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
 // IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
@@ -45,7 +45,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
-// This is part of revision 2.3.2 of the AmbiqSuite Development Package.
+// This is part of revision 2.4.2 of the AmbiqSuite Development Package.
 //
 //*****************************************************************************
 
@@ -303,22 +303,36 @@ am_hal_triple_read( uint32_t u32TimerAddr, uint32_t ui32Data[])
 
 //*****************************************************************************
 //
-// Write the ctimer configuration register with the CLR bit.
-// The CLR bit is required to completely initialize the timer at config time.
+// ctimer_clr()
+//
+// For the appropriate ctimer configuration register, set the CLR bit high
+// in the appropriate timer segment (A, B, or both).
+//
+// The CLR bit is required to be set in order to completely initialize
+// the timer at config time.  The timer clear occurs asynchrnously during the
+// low-to-high transition of the CLR bit.
+//
+// This function only sets the CLR bit.  It is assumed that the actual timer
+// configuration will occur following the call to this function and will clear
+// the CLR bit at that time.
 //
 //*****************************************************************************
 static void
 ctimer_clr(uint32_t ui32TimerNumber, uint32_t ui32TimerSegment)
 {
     //
-    // Find the correct control register and write the CLR bit.
+    // Find the address of the correct control register and set the CLR bit
+    // for the timer segment in that control register.
     //
     volatile uint32_t *pui32ConfigReg =
         (uint32_t*)CTIMERADDRn(CTIMER, ui32TimerNumber, CTRL0);
 
-    AM_REGVAL(pui32ConfigReg) = (ui32TimerSegment &
-                                 (CTIMER_CTRL0_TMRA0CLR_Msk |
-                                  CTIMER_CTRL0_TMRB0CLR_Msk));
+    AM_CRITICAL_BEGIN
+    AM_REGVAL(pui32ConfigReg) |= (ui32TimerSegment &
+                                  (CTIMER_CTRL0_TMRA0CLR_Msk |
+                                   CTIMER_CTRL0_TMRB0CLR_Msk));
+    AM_CRITICAL_END
+
 } // ctimer_clr()
 
 //*****************************************************************************
@@ -878,12 +892,6 @@ am_hal_ctimer_config_trigger(uint32_t ui32TimerNumber,
     volatile uint32_t *pui32ConfigReg;
 
     //
-    // Make sure the timer is completely initialized on configuration by
-    // setting the CLR bit.
-    //
-    ctimer_clr(ui32TimerNumber, ui32TimerSegment);
-
-    //
     // Find the correct register to write based on the timer number.
     //
     pui32ConfigReg = (uint32_t*)CTIMERADDRn(CTIMER, ui32TimerNumber, AUX0);
@@ -1305,6 +1313,7 @@ am_hal_ctimer_output_config(uint32_t ui32TimerNumber,
 {
     uint32_t ux, ui32Ctx, ui32CtxPadNum;
     uint32_t ui32CtxOutcfgFnc, ui32CtxOutcfgMsk, ui32CfgShf;
+    uint32_t ui32OutcfgValue;
 
     am_hal_gpio_pincfg_t sPinCfg = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 
@@ -1414,23 +1423,31 @@ am_hal_ctimer_output_config(uint32_t ui32TimerNumber,
     //
     if ( ui32Ctx < 10 )
     {
-        CTIMER->OUTCFG0 &= ~ui32CtxOutcfgMsk;
-        CTIMER->OUTCFG0 |=  ui32CtxOutcfgFnc;
+        ui32OutcfgValue = CTIMER->OUTCFG0;
+        ui32OutcfgValue &= ~ui32CtxOutcfgMsk;
+        ui32OutcfgValue |=  ui32CtxOutcfgFnc;
+        CTIMER->OUTCFG0 = ui32OutcfgValue;
     }
     else if ( ui32Ctx < 20 )
     {
-        CTIMER->OUTCFG1 &= ~ui32CtxOutcfgMsk;
-        CTIMER->OUTCFG1 |=  ui32CtxOutcfgFnc;
+        ui32OutcfgValue = CTIMER->OUTCFG1;
+        ui32OutcfgValue &= ~ui32CtxOutcfgMsk;
+        ui32OutcfgValue |=  ui32CtxOutcfgFnc;
+        CTIMER->OUTCFG1 = ui32OutcfgValue;
     }
     else if ( ui32Ctx < 30 )
     {
-        CTIMER->OUTCFG2 &= ~ui32CtxOutcfgMsk;
-        CTIMER->OUTCFG2 |=  ui32CtxOutcfgFnc;
+        ui32OutcfgValue = CTIMER->OUTCFG2;
+        ui32OutcfgValue &= ~ui32CtxOutcfgMsk;
+        ui32OutcfgValue |=  ui32CtxOutcfgFnc;
+        CTIMER->OUTCFG2 = ui32OutcfgValue;
     }
     else
     {
-        CTIMER->OUTCFG3 &= ~ui32CtxOutcfgMsk;
-        CTIMER->OUTCFG3 |=  ui32CtxOutcfgFnc;
+        ui32OutcfgValue = CTIMER->OUTCFG3;
+        ui32OutcfgValue &= ~ui32CtxOutcfgMsk;
+        ui32OutcfgValue |=  ui32CtxOutcfgFnc;
+        CTIMER->OUTCFG3 = ui32OutcfgValue;
     }
 
     GPIO->CTENCFG &= ~(1 << ui32Ctx);

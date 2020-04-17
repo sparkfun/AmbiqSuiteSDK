@@ -17,26 +17,26 @@
 
 //*****************************************************************************
 //
-// Copyright (c) 2019, Ambiq Micro
+// Copyright (c) 2020, Ambiq Micro
 // All rights reserved.
-// 
+//
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided that the following conditions are met:
-// 
+//
 // 1. Redistributions of source code must retain the above copyright notice,
 // this list of conditions and the following disclaimer.
-// 
+//
 // 2. Redistributions in binary form must reproduce the above copyright
 // notice, this list of conditions and the following disclaimer in the
 // documentation and/or other materials provided with the distribution.
-// 
+//
 // 3. Neither the name of the copyright holder nor the names of its
 // contributors may be used to endorse or promote products derived from this
 // software without specific prior written permission.
-// 
+//
 // Third party software included in this distribution is subject to the
 // additional license terms as defined in the /docs/licenses directory.
-// 
+//
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
 // AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
 // IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
@@ -49,17 +49,20 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
-// This is part of revision 2.3.2 of the AmbiqSuite Development Package.
+// This is part of revision 2.4.2 of the AmbiqSuite Development Package.
 //
 //*****************************************************************************
 
 #include "am_mcu_apollo.h"
 #include "am_bsp.h"
 #include "am_util.h"
+
+#define FIREBALL_CARD           0
+
 #if FIREBALL_CARD
 #include "am_devices_fireball.h"
 #endif
-#include "am_devices_mspi_psram.h"
+#include "am_devices_mspi_psram_aps6404l.h"
 #include <string.h>
 
 //#define         XIP_UNCACHED
@@ -79,6 +82,7 @@ uint32_t        g_prime_num[ITERATION_NUM] = {10, 20, 50, 100, 200, 500, 1000, 2
 uint32_t        g_exp_prime[ITERATION_NUM] = {4, 8, 15, 25, 46, 95, 168, 303, 669, 1229};
 
 uint32_t        DMATCBBuffer[4096];
+void            *g_MSPIDevHdl;
 void            *g_MSPIHdl;
 
 uint32_t        g_DMON[4] = {0};
@@ -112,26 +116,15 @@ const unsigned char Kc_PRIME_MPI[SZ_PRIME_MPI] =
     0x70, 0x47,
 };
 
-am_hal_mspi_dev_config_t  MSPI_PSRAM_QuadCE0MSPIConfig =
+am_devices_mspi_psram_config_t MSPI_PSRAM_QuadCE0MSPIConfig =
 {
-    .eSpiMode             = AM_HAL_MSPI_SPI_MODE_0,
-    .eClockFreq           = AM_HAL_MSPI_CLK_8MHZ,
-#if defined(APS6404L)
-    .ui8TurnAround        = 6,
-#endif
-    .eAddrCfg             = AM_HAL_MSPI_ADDR_3_BYTE,
-    .eInstrCfg            = AM_HAL_MSPI_INSTR_1_BYTE,
-    .eDeviceConfig        = AM_HAL_MSPI_FLASH_QUAD_CE0,
-    .bSeparateIO          = false,
-    .bSendInstr           = true,
-    .bSendAddr            = true,
-    .bTurnaround          = true,
-    .ui8ReadInstr         = AM_DEVICES_MSPI_PSRAM_QUAD_READ,
-    .ui8WriteInstr        = AM_DEVICES_MSPI_PSRAM_QUAD_WRITE,
-    .ui32TCBSize          = sizeof(DMATCBBuffer) / sizeof(uint32_t),
-    .pTCB                 = DMATCBBuffer,
-    .scramblingStartAddr  = 0,
-    .scramblingEndAddr    = 0,
+    .eDeviceConfig            = AM_HAL_MSPI_FLASH_QUAD_CE0,
+    .eClockFreq               = AM_HAL_MSPI_CLK_8MHZ,
+    .eMixedMode               = AM_HAL_MSPI_XIPMIXED_NORMAL,
+    .ui32NBTxnBufLength       = sizeof(DMATCBBuffer) / sizeof(uint32_t),
+    .pNBTxnBuf                = DMATCBBuffer,
+    .ui32ScramblingStartAddr  = 0,
+    .ui32ScramblingEndAddr    = 0,
 };
 
 const am_hal_cachectrl_config_t cache_monitor_cachectrl =
@@ -143,6 +136,42 @@ const am_hal_cachectrl_config_t cache_monitor_cachectrl =
 
 float g_hit_rate = 0.0;
 uint32_t g_cache_miss = 0;
+
+//! MSPI interrupts.
+static const IRQn_Type mspi_interrupts[] =
+{
+    MSPI0_IRQn,
+#if defined(AM_PART_APOLLO3P)
+    MSPI1_IRQn,
+    MSPI2_IRQn,
+#endif
+};
+
+//
+// Take over the interrupt handler for whichever MSPI we're using.
+//
+#define psram_mspi_isr                                                          \
+    am_mspi_isr1(MSPI_TEST_MODULE)
+#define am_mspi_isr1(n)                                                        \
+    am_mspi_isr(n)
+#define am_mspi_isr(n)                                                         \
+    am_mspi ## n ## _isr
+
+//*****************************************************************************
+//
+// MSPI ISRs.
+//
+//*****************************************************************************
+void psram_mspi_isr(void)
+{
+    uint32_t      ui32Status;
+
+    am_hal_mspi_interrupt_status_get(g_MSPIHdl, &ui32Status, false);
+
+    am_hal_mspi_interrupt_clear(g_MSPIHdl, ui32Status);
+
+    am_hal_mspi_interrupt_service(g_MSPIHdl, ui32Status);
+}
 
 //*****************************************************************************
 //
@@ -160,7 +189,7 @@ mspi_psram_init(void)
     //
     // Configure the MSPI and PSRAM Device.
     //
-    ui32Status = am_devices_mspi_psram_init(MSPI_TEST_MODULE, (am_hal_mspi_dev_config_t *)&MSPI_PSRAM_QuadCE0MSPIConfig, &g_MSPIHdl);
+    ui32Status = am_devices_mspi_psram_init(MSPI_TEST_MODULE, &MSPI_PSRAM_QuadCE0MSPIConfig, &g_MSPIDevHdl, &g_MSPIHdl);
     if (AM_DEVICES_MSPI_PSRAM_STATUS_SUCCESS != ui32Status)
     {
         am_util_stdio_printf("Failed to configure the MSPI and PSRAM Device correctly!\n");
@@ -315,7 +344,7 @@ mspi_xip_init()
     // Write the executable function into the target sector.
     //
     am_util_stdio_printf("Writing Executable function of %d Bytes to address %d\n", SZ_PRIME_MPI, PSRAM_XIP_BASE);
-    ui32Status = am_devices_mspi_psram_write((uint8_t *)Kc_PRIME_MPI, PSRAM_XIP_OFFSET, SZ_PRIME_MPI, true);
+    ui32Status = am_devices_mspi_psram_write(g_MSPIDevHdl, (uint8_t *)Kc_PRIME_MPI, PSRAM_XIP_OFFSET, SZ_PRIME_MPI, true);
     if (AM_DEVICES_MSPI_PSRAM_STATUS_SUCCESS != ui32Status)
     {
         am_util_stdio_printf("Failed to write executable function to Flash Device!\n");
@@ -325,7 +354,7 @@ mspi_xip_init()
     // Set up for XIP operation.
     //
     am_util_stdio_printf("Putting the MSPI and External PSRAM into XIP mode\n");
-    ui32Status = am_devices_mspi_psram_enable_xip();
+    ui32Status = am_devices_mspi_psram_enable_xip(g_MSPIDevHdl);
     if (AM_DEVICES_MSPI_PSRAM_STATUS_SUCCESS != ui32Status)
     {
         am_util_stdio_printf("Failed to put the MSPI into XIP mode!\n");
@@ -355,6 +384,7 @@ mspi_xip_init()
     return 0;
 }
 
+#if FIREBALL_CARD
 int
 fireball_init(void)
 {
@@ -406,6 +436,7 @@ fireball_init(void)
     }
     return 0;
 }
+#endif
 
 int
 flush_mspi_psram_data(void)
@@ -432,7 +463,7 @@ flush_mspi_psram_data(void)
         //
         // Write the buffer into the target address in PSRAM
         //
-        ui32Status = am_devices_mspi_psram_write((uint8_t *)g_TempBuf[0], address, TEMP_BUFFER_SIZE, true);
+        ui32Status = am_devices_mspi_psram_write(g_MSPIDevHdl, (uint8_t *)g_TempBuf[0], address, TEMP_BUFFER_SIZE, true);
 
         AM_CRITICAL_BEGIN
         CACHECTRL->CACHECFG &= ~CACHECTRL_CACHECFG_ENABLE_MONITOR_Msk;
@@ -450,7 +481,7 @@ flush_mspi_psram_data(void)
         //
         // Read the data back into the RX buffer.
         //
-        ui32Status = am_devices_mspi_psram_read((uint8_t *)g_TempBuf[1], address, TEMP_BUFFER_SIZE, true);
+        ui32Status = am_devices_mspi_psram_read(g_MSPIDevHdl, (uint8_t *)g_TempBuf[1], address, TEMP_BUFFER_SIZE, true);
         if (AM_DEVICES_MSPI_PSRAM_STATUS_SUCCESS != ui32Status)
         {
             am_util_stdio_printf("\nFailed to read buffer to PSRAM Device!\n");
@@ -537,6 +568,9 @@ main(void)
         am_util_stdio_printf("Unable to initialize MSPI psram\n");
         while(1);
     }
+    NVIC_EnableIRQ(mspi_interrupts[MSPI_TEST_MODULE]);
+
+    am_hal_interrupt_master_enable();
     am_util_stdio_printf("DCACHE Performance Demonstration Start!\n");
     while(1)
     {

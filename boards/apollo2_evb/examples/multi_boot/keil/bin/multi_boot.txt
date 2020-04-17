@@ -4718,89 +4718,89 @@
     131  i.am_util_delay_ms         0x00001ee6   Lc    1  Sect  De 
     132  ../../../../../utils/am_util_stdio.c
                                     0x00000000   Lc  Abs  File  De 
-    133  ..\..\..\..\..\bootloader\am_bootloader.c
+    133  ../../../../../devices/am_devices_spiflash.c
                                     0x00000000   Lc  Abs  File  De 
-    134  .emb_text                  0x00000188   Lc    1  Sect  De   0x28
-    135  $v0                        0x00000188   Lc    1   --   De 
-    136  ../../../../../bootloader/am_bootloader.c
+    134  ..\..\..\..\..\bootloader\am_bootloader.c
                                     0x00000000   Lc  Abs  File  De 
-    137  i.am_bootloader_erase_flash_page
+    135  .emb_text                  0x00000188   Lc    1  Sect  De   0x28
+    136  $v0                        0x00000188   Lc    1   --   De 
+    137  ../../../../../bootloader/am_bootloader.c
+                                    0x00000000   Lc  Abs  File  De 
+    138  i.am_bootloader_erase_flash_page
                                     0x00000370   Lc    1  Sect  De 
-    138  i.am_bootloader_fast_crc32 0x0000039c   Lc    1  Sect  De 
-    139  i.am_bootloader_flag_page_update
+    139  i.am_bootloader_fast_crc32 0x0000039c   Lc    1  Sect  De 
+    140  i.am_bootloader_flag_page_update
                                     0x000003c8   Lc    1  Sect  De 
-    140  i.am_bootloader_flash_check
+    141  i.am_bootloader_flash_check
                                     0x00000418   Lc    1  Sect  De 
-    141  i.am_bootloader_image_run  0x00000484   Lc    1  Sect  De 
-    142  i.am_bootloader_partial_crc32
+    142  i.am_bootloader_image_run  0x00000484   Lc    1  Sect  De 
+    143  i.am_bootloader_partial_crc32
                                     0x0000049c   Lc    1  Sect  De 
-    143  i.am_bootloader_program_flash_page
+    144  i.am_bootloader_program_flash_page
                                     0x000004c8   Lc    1  Sect  De 
-    144  i.am_bootloader_validate_structure
+    145  i.am_bootloader_validate_structure
                                     0x000004fc   Lc    1  Sect  De 
-    145  i.am_bootloader_write_flash_within_page
+    146  i.am_bootloader_write_flash_within_page
                                     0x00000528   Lc    1  Sect  De 
-    146  i.am_hal_bootloader_override_check
+    147  i.am_hal_bootloader_override_check
                                     0x000005a0   Lc    1  Sect  De 
-    147  .constdata                 0x000025c8   Lc    1  Sect  De   0x400
-    148  g_pui32CRC32Table          0x000025c8   Lc    1  Data  De   0x400
-    149  ../../../../../bootloader/am_ios_boot_handlers.c
+    148  .constdata                 0x000025c8   Lc    1  Sect  De   0x400
+    149  g_pui32CRC32Table          0x000025c8   Lc    1  Data  De   0x400
+    150  ../../../../../bootloader/am_ios_boot_handlers.c
                                     0x00000000   Lc  Abs  File  De 
-    150  i.am_multiboot_cleanup_ios_interface
+    151  i.am_multiboot_cleanup_ios_interface
                                     0x00001260   Lc    1  Sect  De 
-    151  i.am_multiboot_ios_acc_isr_handler
+    152  i.am_multiboot_ios_acc_isr_handler
                                     0x000013e8   Lc    1  Sect  De 
-    152  i.am_multiboot_setup_ios_interface
+    153  i.am_multiboot_setup_ios_interface
                                     0x00001710   Lc    1  Sect  De 
-    153  .data                      0x10000004   Lc    2  Sect  De   0x1d
-    154  g_sIOSConfig               0x10000004   Lc    2  Data  De   0x18
-    155  g_iosIntPin                0x1000001c   Lc    2  Data  De   0x4
-    156  g_bIosImageValid           0x10000020   Lc    2  Data  De   0x1
-    157  ../../../../../bootloader/am_multi_boot.c
+    154  .data                      0x10000004   Lc    2  Sect  De   0x1d
+    155  g_sIOSConfig               0x10000004   Lc    2  Data  De   0x18
+    156  g_iosIntPin                0x1000001c   Lc    2  Data  De   0x4
+    157  g_bIosImageValid           0x10000020   Lc    2  Data  De   0x1
+    158  ../../../../../bootloader/am_multi_boot.c
                                     0x00000000   Lc  Abs  File  De 
-    158  i.am_multiboot_check_boot_from_flash
+    159  i.am_multiboot_check_boot_from_flash
                                     0x000011f4   Lc    1  Sect  De 
-    159  i.am_multiboot_flash_erase_page
+    160  i.am_multiboot_flash_erase_page
                                     0x00001364   Lc    1  Sect  De 
-    160  am_multiboot_flash_erase_page
+    161  am_multiboot_flash_erase_page
                                     0x00001365   Lc    1  Code  De   0x1e
-    161  i.am_multiboot_flash_read_page
+    162  i.am_multiboot_flash_read_page
                                     0x00001382   Lc    1  Sect  De 
-    162  am_multiboot_flash_read_page
+    163  am_multiboot_flash_read_page
                                     0x00001383   Lc    1  Code  De   0x26
-    163  i.am_multiboot_flash_write_page
+    164  i.am_multiboot_flash_write_page
                                     0x000013a8   Lc    1  Sect  De 
-    164  am_multiboot_flash_write_page
+    165  am_multiboot_flash_write_page
                                     0x000013a9   Lc    1  Code  De   0x26
-    165  i.am_multiboot_init        0x000013d0   Lc    1  Sect  De 
-    166  i.am_multiboot_ota_handler 0x000015e0   Lc    1  Sect  De 
-    167  i.check_flash_address_range
+    166  i.am_multiboot_init        0x000013d0   Lc    1  Sect  De 
+    167  i.am_multiboot_ota_handler 0x000015e0   Lc    1  Sect  De 
+    168  i.check_flash_address_range
                                     0x00001f04   Lc    1  Sect  De 
-    168  check_flash_address_range  0x00001f05   Lc    1  Code  De   0x5e
-    169  i.image_data_packet_read   0x00001f68   Lc    1  Sect  De 
-    170  i.image_start_packet_read  0x00002020   Lc    1  Sect  De 
-    171  i.program_image            0x00002388   Lc    1  Sect  De 
-    172  i.program_image_from_flash 0x000023d8   Lc    1  Sect  De 
-    173  program_image_from_flash   0x000023d9   Lc    1  Code  De   0xa8
-    174  i.read_from_flash          0x00002484   Lc    1  Sect  De 
-    175  i.write_to_flash           0x00002574   Lc    1  Sect  De 
-    176  .bss                       0x10002100   Lc    3  Sect  De   0x14
-    177  g_am_multiboot             0x10002100   Lc    3  Data  De   0x14
-    178  .data                      0x10000024   Lc    2  Sect  De   0x60
-    179  g_intFlashSize             0x10000080   Lc    2  Data  De   0x4
-    180  ../../../../../bootloader/am_uart_boot_handlers.c
+    169  check_flash_address_range  0x00001f05   Lc    1  Code  De   0x5e
+    170  i.image_data_packet_read   0x00001f68   Lc    1  Sect  De 
+    171  i.image_start_packet_read  0x00002020   Lc    1  Sect  De 
+    172  i.program_image            0x00002388   Lc    1  Sect  De 
+    173  i.program_image_from_flash 0x000023d8   Lc    1  Sect  De 
+    174  program_image_from_flash   0x000023d9   Lc    1  Code  De   0xa8
+    175  i.read_from_flash          0x00002484   Lc    1  Sect  De 
+    176  i.write_to_flash           0x00002574   Lc    1  Sect  De 
+    177  .bss                       0x10002100   Lc    3  Sect  De   0x14
+    178  g_am_multiboot             0x10002100   Lc    3  Data  De   0x14
+    179  .data                      0x10000024   Lc    2  Sect  De   0x60
+    180  g_intFlashSize             0x10000080   Lc    2  Data  De   0x4
+    181  ../../../../../bootloader/am_uart_boot_handlers.c
                                     0x00000000   Lc  Abs  File  De 
-    181  i.am_multiboot_setup_serial
+    182  i.am_multiboot_setup_serial
                                     0x00001a38   Lc    1  Sect  De 
-    182  i.am_multiboot_uart_detect_baudrate
+    183  i.am_multiboot_uart_detect_baudrate
                                     0x00001acc   Lc    1  Sect  De 
-    183  i.am_multiboot_uart_isr_handler
+    184  i.am_multiboot_uart_isr_handler
                                     0x00001c38   Lc    1  Sect  De 
-    184  i.ser_out                  0x000024d4   Lc    1  Sect  De 
-    185  .bss                       0x10002114   Lc    3  Sect  De   0x208
-    186  .data                      0x10000084   Lc    2  Sect  De   0x45
-    187  ../../../../../devices/am_devices_spiflash.c
-                                    0x00000000   Lc  Abs  File  De 
+    185  i.ser_out                  0x000024d4   Lc    1  Sect  De 
+    186  .bss                       0x10002114   Lc    3  Sect  De   0x208
+    187  .data                      0x10000084   Lc    2  Sect  De   0x45
     188  ../keil/startup_keil.s     0x00000000   Lc  Abs  File  De 
     189  STACK                      0x10002380   Lc    3  Sect  De   0x1000
     190  StackMem                   0x10002380   Lc    3  Data  De 
@@ -4812,81 +4812,81 @@
     196  $v0                        0x000001c8   Lc    1   --   De 
     197  ../am_hal_global.c         0x00000000   Lc  Abs  File  De 
     198  .data                      0x100000cc   Lc    2  Sect  De   0x4
-    199  ../am_hal_clkgen.c         0x00000000   Lc  Abs  File  De 
-    200  i.am_hal_clkgen_osc_stop   0x00000804   Lc    1  Sect  De 
-    201  i.am_hal_clkgen_sysclk_get 0x00000818   Lc    1  Sect  De 
-    202  i.am_hal_clkgen_sysclk_select
+    199  ../am_bsp.c                0x00000000   Lc  Abs  File  De 
+    200  i.am_bsp_low_power_init    0x00000554   Lc    1  Sect  De 
+    201  ../am_hal_clkgen.c         0x00000000   Lc  Abs  File  De 
+    202  i.am_hal_clkgen_osc_stop   0x00000804   Lc    1  Sect  De 
+    203  i.am_hal_clkgen_sysclk_get 0x00000818   Lc    1  Sect  De 
+    204  i.am_hal_clkgen_sysclk_select
                                     0x00000838   Lc    1  Sect  De 
-    203  i.am_hal_clkgen_uarten_set 0x000008a0   Lc    1  Sect  De 
-    204  ../am_hal_flash.c          0x00000000   Lc  Abs  File  De 
-    205  i.am_hal_flash_delay       0x000009bc   Lc    1  Sect  De 
-    206  i.am_hal_flash_page_erase  0x000009c4   Lc    1  Sect  De 
-    207  i.am_hal_flash_program_main
+    205  i.am_hal_clkgen_uarten_set 0x000008a0   Lc    1  Sect  De 
+    206  ../am_hal_flash.c          0x00000000   Lc  Abs  File  De 
+    207  i.am_hal_flash_delay       0x000009bc   Lc    1  Sect  De 
+    208  i.am_hal_flash_page_erase  0x000009c4   Lc    1  Sect  De 
+    209  i.am_hal_flash_program_main
                                     0x000009cc   Lc    1  Sect  De 
-    208  ../am_hal_gpio.c           0x00000000   Lc  Abs  File  De 
-    209  i.am_hal_gpio_int_clear    0x00000a24   Lc    1  Sect  De 
-    210  i.am_hal_gpio_int_disable  0x00000a48   Lc    1  Sect  De 
-    211  i.am_hal_gpio_int_enable   0x00000a7c   Lc    1  Sect  De 
-    212  ..\am_hal_interrupt.c      0x00000000   Lc  Abs  File  De 
-    213  .emb_text                  0x000001b0   Lc    1  Sect  De   0x16
-    214  $v0                        0x000001b0   Lc    1   --   De 
-    215  ../am_hal_interrupt.c      0x00000000   Lc  Abs  File  De 
-    216  i.am_hal_interrupt_disable 0x00000a98   Lc    1  Sect  De 
-    217  i.am_hal_interrupt_enable  0x00000ae4   Lc    1  Sect  De 
-    218  ..\am_hal_iom.c            0x00000000   Lc  Abs  File  De 
-    219  ../am_hal_iom.c            0x00000000   Lc  Abs  File  De 
-    220  ..\am_hal_ios.c            0x00000000   Lc  Abs  File  De 
-    221  ../am_hal_ios.c            0x00000000   Lc  Abs  File  De 
-    222  i.am_hal_ios_access_int_clear
+    210  ../am_hal_gpio.c           0x00000000   Lc  Abs  File  De 
+    211  i.am_hal_gpio_int_clear    0x00000a24   Lc    1  Sect  De 
+    212  i.am_hal_gpio_int_disable  0x00000a48   Lc    1  Sect  De 
+    213  i.am_hal_gpio_int_enable   0x00000a7c   Lc    1  Sect  De 
+    214  ..\am_hal_interrupt.c      0x00000000   Lc  Abs  File  De 
+    215  .emb_text                  0x000001b0   Lc    1  Sect  De   0x16
+    216  $v0                        0x000001b0   Lc    1   --   De 
+    217  ../am_hal_interrupt.c      0x00000000   Lc  Abs  File  De 
+    218  i.am_hal_interrupt_disable 0x00000a98   Lc    1  Sect  De 
+    219  i.am_hal_interrupt_enable  0x00000ae4   Lc    1  Sect  De 
+    220  ..\am_hal_iom.c            0x00000000   Lc  Abs  File  De 
+    221  ../am_hal_iom.c            0x00000000   Lc  Abs  File  De 
+    222  ..\am_hal_ios.c            0x00000000   Lc  Abs  File  De 
+    223  ../am_hal_ios.c            0x00000000   Lc  Abs  File  De 
+    224  i.am_hal_ios_access_int_clear
                                     0x00000b30   Lc    1  Sect  De 
-    223  i.am_hal_ios_access_int_enable
+    225  i.am_hal_ios_access_int_enable
                                     0x00000b3a   Lc    1  Sect  De 
-    224  i.am_hal_ios_access_int_status_get
+    226  i.am_hal_ios_access_int_status_get
                                     0x00000b4a   Lc    1  Sect  De 
-    225  i.am_hal_ios_config        0x00000b60   Lc    1  Sect  De 
-    226  i.am_hal_ios_int_clear     0x00000bf0   Lc    1  Sect  De 
-    227  i.am_hal_ios_int_enable    0x00000bfa   Lc    1  Sect  De 
-    228  .constdata                 0x000029c8   Lc    1  Sect  De   0x4
-    229  .data                      0x100000d0   Lc    2  Sect  De   0x14
-    230  ../am_hal_mcuctrl.c        0x00000000   Lc  Abs  File  De 
-    231  i.am_hal_mcuctrl_device_info_get
+    227  i.am_hal_ios_config        0x00000b60   Lc    1  Sect  De 
+    228  i.am_hal_ios_int_clear     0x00000bf0   Lc    1  Sect  De 
+    229  i.am_hal_ios_int_enable    0x00000bfa   Lc    1  Sect  De 
+    230  .constdata                 0x000029c8   Lc    1  Sect  De   0x4
+    231  .data                      0x100000d0   Lc    2  Sect  De   0x14
+    232  ../am_hal_mcuctrl.c        0x00000000   Lc  Abs  File  De 
+    233  i.am_hal_mcuctrl_device_info_get
                                     0x00000c0c   Lc    1  Sect  De 
-    232  .constdata                 0x000029cc   Lc    1  Sect  De   0x40
-    233  ../am_hal_reset.c          0x00000000   Lc  Abs  File  De 
-    234  i.am_hal_reset_poi         0x00000e60   Lc    1  Sect  De 
-    235  ../am_hal_sysctrl.c        0x00000000   Lc  Abs  File  De 
-    236  i.am_hal_sysctrl_sleep     0x00000e90   Lc    1  Sect  De 
-    237  i.setBuckZX                0x000024f8   Lc    1  Sect  De 
-    238  setBuckZX                  0x000024f9   Lc    1  Code  De   0x72
-    239  .data                      0x100000e4   Lc    2  Sect  De   0x1c
-    240  g_bBuckRestoreComplete     0x100000e4   Lc    2  Data  De   0x1
-    241  g_ui32BuckTimer            0x100000e8   Lc    2  Data  De   0x4
-    242  g_ui32BuckInputs           0x100000ec   Lc    2  Data  De   0x4
-    243  g_buckZX_chk               0x100000f0   Lc    2  Data  De   0x4
-    244  g_ui32SaveCoreBuckZX       0x100000f4   Lc    2  Data  De   0x4
-    245  g_ui32SaveMemBuckZX        0x100000f8   Lc    2  Data  De   0x4
-    246  g_ui32CoreBuck             0x100000fc   Lc    2  Data  De   0x4
-    247  ../am_hal_systick.c        0x00000000   Lc  Abs  File  De 
-    248  i.am_hal_systick_count     0x00000f94   Lc    1  Sect  De 
-    249  i.am_hal_systick_load      0x00000f9c   Lc    1  Sect  De 
-    250  i.am_hal_systick_start     0x00000fa8   Lc    1  Sect  De 
-    251  i.am_hal_systick_stop      0x00000fb6   Lc    1  Sect  De 
-    252  ../am_hal_uart.c           0x00000000   Lc  Abs  File  De 
-    253  i.am_hal_uart_char_transmit_polled
+    234  .constdata                 0x000029cc   Lc    1  Sect  De   0x40
+    235  ../am_hal_reset.c          0x00000000   Lc  Abs  File  De 
+    236  i.am_hal_reset_poi         0x00000e60   Lc    1  Sect  De 
+    237  ../am_hal_sysctrl.c        0x00000000   Lc  Abs  File  De 
+    238  i.am_hal_sysctrl_sleep     0x00000e90   Lc    1  Sect  De 
+    239  i.setBuckZX                0x000024f8   Lc    1  Sect  De 
+    240  setBuckZX                  0x000024f9   Lc    1  Code  De   0x72
+    241  .data                      0x100000e4   Lc    2  Sect  De   0x1c
+    242  g_bBuckRestoreComplete     0x100000e4   Lc    2  Data  De   0x1
+    243  g_ui32BuckTimer            0x100000e8   Lc    2  Data  De   0x4
+    244  g_ui32BuckInputs           0x100000ec   Lc    2  Data  De   0x4
+    245  g_buckZX_chk               0x100000f0   Lc    2  Data  De   0x4
+    246  g_ui32SaveCoreBuckZX       0x100000f4   Lc    2  Data  De   0x4
+    247  g_ui32SaveMemBuckZX        0x100000f8   Lc    2  Data  De   0x4
+    248  g_ui32CoreBuck             0x100000fc   Lc    2  Data  De   0x4
+    249  ../am_hal_systick.c        0x00000000   Lc  Abs  File  De 
+    250  i.am_hal_systick_count     0x00000f94   Lc    1  Sect  De 
+    251  i.am_hal_systick_load      0x00000f9c   Lc    1  Sect  De 
+    252  i.am_hal_systick_start     0x00000fa8   Lc    1  Sect  De 
+    253  i.am_hal_systick_stop      0x00000fb6   Lc    1  Sect  De 
+    254  ../am_hal_uart.c           0x00000000   Lc  Abs  File  De 
+    255  i.am_hal_uart_char_transmit_polled
                                     0x00000fc4   Lc    1  Sect  De 
-    254  i.am_hal_uart_clock_enable 0x00000fda   Lc    1  Sect  De 
-    255  i.am_hal_uart_config       0x00001000   Lc    1  Sect  De 
-    256  i.am_hal_uart_disable      0x000010d4   Lc    1  Sect  De 
-    257  i.am_hal_uart_enable       0x000010fe   Lc    1  Sect  De 
-    258  i.am_hal_uart_fifo_config  0x00001126   Lc    1  Sect  De 
-    259  i.am_hal_uart_int_clear    0x0000113c   Lc    1  Sect  De 
-    260  i.am_hal_uart_int_enable   0x0000114a   Lc    1  Sect  De 
-    261  i.am_hal_uart_int_status_get
+    256  i.am_hal_uart_clock_enable 0x00000fda   Lc    1  Sect  De 
+    257  i.am_hal_uart_config       0x00001000   Lc    1  Sect  De 
+    258  i.am_hal_uart_disable      0x000010d4   Lc    1  Sect  De 
+    259  i.am_hal_uart_enable       0x000010fe   Lc    1  Sect  De 
+    260  i.am_hal_uart_fifo_config  0x00001126   Lc    1  Sect  De 
+    261  i.am_hal_uart_int_clear    0x0000113c   Lc    1  Sect  De 
+    262  i.am_hal_uart_int_enable   0x0000114a   Lc    1  Sect  De 
+    263  i.am_hal_uart_int_status_get
                                     0x0000115c   Lc    1  Sect  De 
-    262  i.am_hal_uart_pwrctrl_enable
+    264  i.am_hal_uart_pwrctrl_enable
                                     0x00001170   Lc    1  Sect  De 
-    263  ../am_bsp.c                0x00000000   Lc  Abs  File  De 
-    264  i.am_bsp_low_power_init    0x00000554   Lc    1  Sect  De 
     265  ..\am_hal_ctimer.c         0x00000000   Lc  Abs  File  De 
     266  ../am_hal_ctimer.c         0x00000000   Lc  Abs  File  De 
     267  i.am_hal_ctimer_clear      0x000008e4   Lc    1  Sect  De 
@@ -5369,56 +5369,56 @@
            13    141: ../../../../../utils/am_util_delay.c
            14    178: i.am_util_delay_ms
            15    197: ../../../../../utils/am_util_stdio.c
-           16    234: ..\..\..\..\..\bootloader\am_bootloader.c
-           17    276: .emb_text
-           18    286: $v0
-           19    290: ../../../../../bootloader/am_bootloader.c
-           20    332: i.am_bootloader_erase_flash_page
-           21    365: i.am_bootloader_fast_crc32
-           22    392: i.am_bootloader_flag_page_update
-           23    425: i.am_bootloader_flash_check
-           24    453: i.am_bootloader_image_run
-           25    479: i.am_bootloader_partial_crc32
-           26    509: i.am_bootloader_program_flash_page
-           27    544: i.am_bootloader_validate_structure
-           28    579: i.am_bootloader_write_flash_within_page
-           29    619: i.am_hal_bootloader_override_check
-           30    654: .constdata
-           31    665: g_pui32CRC32Table
-           32    683: ../../../../../bootloader/am_ios_boot_handlers.c
-           33    732: i.am_multiboot_cleanup_ios_interface
-           34    769: i.am_multiboot_ios_acc_isr_handler
-           35    804: i.am_multiboot_setup_ios_interface
-           36    839: g_sIOSConfig
-           37    852: g_iosIntPin
-           38    864: g_bIosImageValid
-           39    881: ../../../../../bootloader/am_multi_boot.c
-           40    923: i.am_multiboot_check_boot_from_flash
-           41    960: i.am_multiboot_flash_erase_page
-           42    992: am_multiboot_flash_erase_page
-           43   1022: i.am_multiboot_flash_read_page
-           44   1053: am_multiboot_flash_read_page
-           45   1082: i.am_multiboot_flash_write_page
-           46   1114: am_multiboot_flash_write_page
-           47   1144: i.am_multiboot_init
-           48   1164: i.am_multiboot_ota_handler
-           49   1191: i.check_flash_address_range
-           50   1219: check_flash_address_range
-           51   1245: i.image_data_packet_read
-           52   1270: i.image_start_packet_read
-           53   1296: i.program_image
-           54   1312: i.program_image_from_flash
-           55   1339: program_image_from_flash
-           56   1364: i.read_from_flash
-           57   1382: i.write_to_flash
-           58   1399: g_am_multiboot
-           59   1414: g_intFlashSize
-           60   1429: ../../../../../bootloader/am_uart_boot_handlers.c
-           61   1479: i.am_multiboot_setup_serial
-           62   1507: i.am_multiboot_uart_detect_baudrate
-           63   1543: i.am_multiboot_uart_isr_handler
-           64   1575: i.ser_out
-           65   1585: ../../../../../devices/am_devices_spiflash.c
+           16    234: ../../../../../devices/am_devices_spiflash.c
+           17    279: ..\..\..\..\..\bootloader\am_bootloader.c
+           18    321: .emb_text
+           19    331: $v0
+           20    335: ../../../../../bootloader/am_bootloader.c
+           21    377: i.am_bootloader_erase_flash_page
+           22    410: i.am_bootloader_fast_crc32
+           23    437: i.am_bootloader_flag_page_update
+           24    470: i.am_bootloader_flash_check
+           25    498: i.am_bootloader_image_run
+           26    524: i.am_bootloader_partial_crc32
+           27    554: i.am_bootloader_program_flash_page
+           28    589: i.am_bootloader_validate_structure
+           29    624: i.am_bootloader_write_flash_within_page
+           30    664: i.am_hal_bootloader_override_check
+           31    699: .constdata
+           32    710: g_pui32CRC32Table
+           33    728: ../../../../../bootloader/am_ios_boot_handlers.c
+           34    777: i.am_multiboot_cleanup_ios_interface
+           35    814: i.am_multiboot_ios_acc_isr_handler
+           36    849: i.am_multiboot_setup_ios_interface
+           37    884: g_sIOSConfig
+           38    897: g_iosIntPin
+           39    909: g_bIosImageValid
+           40    926: ../../../../../bootloader/am_multi_boot.c
+           41    968: i.am_multiboot_check_boot_from_flash
+           42   1005: i.am_multiboot_flash_erase_page
+           43   1037: am_multiboot_flash_erase_page
+           44   1067: i.am_multiboot_flash_read_page
+           45   1098: am_multiboot_flash_read_page
+           46   1127: i.am_multiboot_flash_write_page
+           47   1159: am_multiboot_flash_write_page
+           48   1189: i.am_multiboot_init
+           49   1209: i.am_multiboot_ota_handler
+           50   1236: i.check_flash_address_range
+           51   1264: check_flash_address_range
+           52   1290: i.image_data_packet_read
+           53   1315: i.image_start_packet_read
+           54   1341: i.program_image
+           55   1357: i.program_image_from_flash
+           56   1384: program_image_from_flash
+           57   1409: i.read_from_flash
+           58   1427: i.write_to_flash
+           59   1444: g_am_multiboot
+           60   1459: g_intFlashSize
+           61   1474: ../../../../../bootloader/am_uart_boot_handlers.c
+           62   1524: i.am_multiboot_setup_serial
+           63   1552: i.am_multiboot_uart_detect_baudrate
+           64   1588: i.am_multiboot_uart_isr_handler
+           65   1620: i.ser_out
            66   1630: ../keil/startup_keil.s
            67   1653: STACK
            68   1659: StackMem
@@ -5427,66 +5427,66 @@
            71   1681: RESET
            72   1687: .text
            73   1693: ../am_hal_global.c
-           74   1712: ../am_hal_clkgen.c
-           75   1731: i.am_hal_clkgen_osc_stop
-           76   1756: i.am_hal_clkgen_sysclk_get
-           77   1783: i.am_hal_clkgen_sysclk_select
-           78   1813: i.am_hal_clkgen_uarten_set
-           79   1840: ../am_hal_flash.c
-           80   1858: i.am_hal_flash_delay
-           81   1879: i.am_hal_flash_page_erase
-           82   1905: i.am_hal_flash_program_main
-           83   1933: ../am_hal_gpio.c
-           84   1950: i.am_hal_gpio_int_clear
-           85   1974: i.am_hal_gpio_int_disable
-           86   2000: i.am_hal_gpio_int_enable
-           87   2025: ..\am_hal_interrupt.c
-           88   2047: ../am_hal_interrupt.c
-           89   2069: i.am_hal_interrupt_disable
-           90   2096: i.am_hal_interrupt_enable
-           91   2122: ..\am_hal_iom.c
-           92   2138: ../am_hal_iom.c
-           93   2154: ..\am_hal_ios.c
-           94   2170: ../am_hal_ios.c
-           95   2186: i.am_hal_ios_access_int_clear
-           96   2216: i.am_hal_ios_access_int_enable
-           97   2247: i.am_hal_ios_access_int_status_get
-           98   2282: i.am_hal_ios_config
-           99   2302: i.am_hal_ios_int_clear
-          100   2325: i.am_hal_ios_int_enable
-          101   2349: ../am_hal_mcuctrl.c
-          102   2369: i.am_hal_mcuctrl_device_info_get
-          103   2402: ../am_hal_reset.c
-          104   2420: i.am_hal_reset_poi
-          105   2439: ../am_hal_sysctrl.c
-          106   2459: i.am_hal_sysctrl_sleep
-          107   2482: i.setBuckZX
-          108   2494: setBuckZX
-          109   2504: g_bBuckRestoreComplete
-          110   2527: g_ui32BuckTimer
-          111   2543: g_ui32BuckInputs
-          112   2560: g_buckZX_chk
-          113   2573: g_ui32SaveCoreBuckZX
-          114   2594: g_ui32SaveMemBuckZX
-          115   2614: g_ui32CoreBuck
-          116   2629: ../am_hal_systick.c
-          117   2649: i.am_hal_systick_count
-          118   2672: i.am_hal_systick_load
-          119   2694: i.am_hal_systick_start
-          120   2717: i.am_hal_systick_stop
-          121   2739: ../am_hal_uart.c
-          122   2756: i.am_hal_uart_char_transmit_polled
-          123   2791: i.am_hal_uart_clock_enable
-          124   2818: i.am_hal_uart_config
-          125   2839: i.am_hal_uart_disable
-          126   2861: i.am_hal_uart_enable
-          127   2882: i.am_hal_uart_fifo_config
-          128   2908: i.am_hal_uart_int_clear
-          129   2932: i.am_hal_uart_int_enable
-          130   2957: i.am_hal_uart_int_status_get
-          131   2986: i.am_hal_uart_pwrctrl_enable
-          132   3015: ../am_bsp.c
-          133   3027: i.am_bsp_low_power_init
+           74   1712: ../am_bsp.c
+           75   1724: i.am_bsp_low_power_init
+           76   1748: ../am_hal_clkgen.c
+           77   1767: i.am_hal_clkgen_osc_stop
+           78   1792: i.am_hal_clkgen_sysclk_get
+           79   1819: i.am_hal_clkgen_sysclk_select
+           80   1849: i.am_hal_clkgen_uarten_set
+           81   1876: ../am_hal_flash.c
+           82   1894: i.am_hal_flash_delay
+           83   1915: i.am_hal_flash_page_erase
+           84   1941: i.am_hal_flash_program_main
+           85   1969: ../am_hal_gpio.c
+           86   1986: i.am_hal_gpio_int_clear
+           87   2010: i.am_hal_gpio_int_disable
+           88   2036: i.am_hal_gpio_int_enable
+           89   2061: ..\am_hal_interrupt.c
+           90   2083: ../am_hal_interrupt.c
+           91   2105: i.am_hal_interrupt_disable
+           92   2132: i.am_hal_interrupt_enable
+           93   2158: ..\am_hal_iom.c
+           94   2174: ../am_hal_iom.c
+           95   2190: ..\am_hal_ios.c
+           96   2206: ../am_hal_ios.c
+           97   2222: i.am_hal_ios_access_int_clear
+           98   2252: i.am_hal_ios_access_int_enable
+           99   2283: i.am_hal_ios_access_int_status_get
+          100   2318: i.am_hal_ios_config
+          101   2338: i.am_hal_ios_int_clear
+          102   2361: i.am_hal_ios_int_enable
+          103   2385: ../am_hal_mcuctrl.c
+          104   2405: i.am_hal_mcuctrl_device_info_get
+          105   2438: ../am_hal_reset.c
+          106   2456: i.am_hal_reset_poi
+          107   2475: ../am_hal_sysctrl.c
+          108   2495: i.am_hal_sysctrl_sleep
+          109   2518: i.setBuckZX
+          110   2530: setBuckZX
+          111   2540: g_bBuckRestoreComplete
+          112   2563: g_ui32BuckTimer
+          113   2579: g_ui32BuckInputs
+          114   2596: g_buckZX_chk
+          115   2609: g_ui32SaveCoreBuckZX
+          116   2630: g_ui32SaveMemBuckZX
+          117   2650: g_ui32CoreBuck
+          118   2665: ../am_hal_systick.c
+          119   2685: i.am_hal_systick_count
+          120   2708: i.am_hal_systick_load
+          121   2730: i.am_hal_systick_start
+          122   2753: i.am_hal_systick_stop
+          123   2775: ../am_hal_uart.c
+          124   2792: i.am_hal_uart_char_transmit_polled
+          125   2827: i.am_hal_uart_clock_enable
+          126   2854: i.am_hal_uart_config
+          127   2875: i.am_hal_uart_disable
+          128   2897: i.am_hal_uart_enable
+          129   2918: i.am_hal_uart_fifo_config
+          130   2944: i.am_hal_uart_int_clear
+          131   2968: i.am_hal_uart_int_enable
+          132   2993: i.am_hal_uart_int_status_get
+          133   3022: i.am_hal_uart_pwrctrl_enable
           134   3051: ..\am_hal_ctimer.c
           135   3070: ../am_hal_ctimer.c
           136   3089: i.am_hal_ctimer_clear

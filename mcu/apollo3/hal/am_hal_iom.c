@@ -5,7 +5,7 @@
 //!
 //! @brief Functions for interfacing with IO Master serial (SPI/I2C) modules.
 //!
-//! @addtogroup IOM3
+//! @addtogroup iom3 IO Master (SPI/I2C)
 //! @ingroup apollo3hal
 //! @{
 //
@@ -13,26 +13,26 @@
 
 //*****************************************************************************
 //
-// Copyright (c) 2019, Ambiq Micro
+// Copyright (c) 2020, Ambiq Micro
 // All rights reserved.
-// 
+//
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided that the following conditions are met:
-// 
+//
 // 1. Redistributions of source code must retain the above copyright notice,
 // this list of conditions and the following disclaimer.
-// 
+//
 // 2. Redistributions in binary form must reproduce the above copyright
 // notice, this list of conditions and the following disclaimer in the
 // documentation and/or other materials provided with the distribution.
-// 
+//
 // 3. Neither the name of the copyright holder nor the names of its
 // contributors may be used to endorse or promote products derived from this
 // software without specific prior written permission.
-// 
+//
 // Third party software included in this distribution is subject to the
 // additional license terms as defined in the /docs/licenses directory.
-// 
+//
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
 // AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
 // IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
@@ -45,7 +45,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
-// This is part of revision 2.3.2 of the AmbiqSuite Development Package.
+// This is part of revision 2.4.2 of the AmbiqSuite Development Package.
 //
 //*****************************************************************************
 
@@ -245,6 +245,10 @@ typedef struct
     uint32_t                ui32NextHPIdx;
     uint32_t                ui32LastHPIdxProcessed;
     am_hal_iom_dma_entry_t  *pHPTransactions;
+    // Max pending transactions based on NB Buffer size
+    uint32_t                ui32MaxPending;
+    // Number of back to back transactions with no callbacks
+    uint32_t                ui32NumUnSolicited;
 #else
     uint32_t                ui32NextIdx;
     am_hal_iom_txn_cmdlist_t   *pTransactions;
@@ -802,6 +806,7 @@ am_hal_iom_CQInit(void *pHandle, uint32_t ui32Length,
 
     pIOMState->pCmdQHdl = NULL;
     pIOMState->ui32MaxTransactions = 0;
+    pIOMState->ui32NumUnSolicited = 0;
 
     cqCfg.pCmdQBuf = pTCB;
     cqCfg.cmdQSize = ui32Length / 2;
@@ -964,6 +969,11 @@ am_hal_iom_CQDisable(void *pHandle)
     //
     return am_hal_cmdq_disable(pIOMState->pCmdQHdl);
 } // am_hal_iom_CQDisable()
+
+static void iom_dummy_callback(void *pCallbackCtxt, uint32_t status)
+{
+    // Dummy - Do nothing
+}
 
 static void iom_seq_loopback(void *pCallbackCtxt, uint32_t status)
 {
@@ -2264,6 +2274,15 @@ am_hal_iom_configure(void *pHandle, am_hal_iom_config_t *psConfig)
 
     pIOMState->pNBTxnBuf = psConfig->pNBTxnBuf;
     pIOMState->ui32NBTxnBufLength = psConfig->ui32NBTxnBufLength;
+#if (AM_HAL_IOM_CQ == 1)
+    // Worst case minimum CQ entries that can be accomodated in provided buffer
+    // Need to account for the wrap
+    pIOMState->ui32MaxPending = ((pIOMState->ui32NBTxnBufLength - 8) * 4 / AM_HAL_IOM_CQ_ENTRY_SIZE);
+    if (pIOMState->ui32MaxPending > AM_HAL_IOM_MAX_PENDING_TRANSACTIONS)
+    {
+        pIOMState->ui32MaxPending = AM_HAL_IOM_MAX_PENDING_TRANSACTIONS;
+    }
+#endif
     // Disable the DCX
     for (uint8_t i = 0; i <= AM_HAL_IOM_MAX_CS_SPI; i++)
     {
@@ -2669,6 +2688,7 @@ am_hal_iom_nonblocking_transfer(void *pHandle,
 
 
 #if (AM_HAL_IOM_CQ == 1)
+    am_hal_iom_callback_t pfnCallback1 = pfnCallback;
     if (!pIOMState->pCmdQHdl)
     {
         return AM_HAL_STATUS_INVALID_OPERATION;
@@ -2683,10 +2703,16 @@ am_hal_iom_nonblocking_transfer(void *pHandle,
         // Paused operations not allowed in block mode
         return AM_HAL_STATUS_INVALID_OPERATION;
     }
+    if ( !pfnCallback1 && !pIOMState->block && (pIOMState->eSeq == AM_HAL_IOM_SEQ_NONE) &&
+         (pIOMState->ui32NumUnSolicited >= (pIOMState->ui32MaxPending / 2)) )
+    {
+        // Need to schedule a dummy callback, to ensure ui32NumPendTransactions get updated in ISR
+        pfnCallback1 = iom_dummy_callback;
+    }
     //
     // DMA defaults to using the Command Queue
     //
-    ui32Status = am_hal_iom_CQAddTransaction(pHandle, psTransaction, pfnCallback, pCallbackCtxt);
+    ui32Status = am_hal_iom_CQAddTransaction(pHandle, psTransaction, pfnCallback1, pCallbackCtxt);
 
     if (ui32Status == AM_HAL_STATUS_SUCCESS)
     {
@@ -2703,7 +2729,7 @@ am_hal_iom_nonblocking_transfer(void *pHandle,
         //
         // Register for interrupt only if there is a callback
         //
-        ui32Status = am_hal_cmdq_post_block(pIOMState->pCmdQHdl, pfnCallback);
+        ui32Status = am_hal_cmdq_post_block(pIOMState->pCmdQHdl, pfnCallback1);
         if (ui32Status == AM_HAL_STATUS_SUCCESS)
         {
             ui32NumPend = pIOMState->ui32NumPendTransactions++;
@@ -2711,6 +2737,19 @@ am_hal_iom_nonblocking_transfer(void *pHandle,
             if (pfnCallback)
             {
                 pIOMState->bAutonomous = false;
+                pIOMState->ui32NumUnSolicited = 0;
+            }
+            else
+            {
+                if (pfnCallback1)
+                {
+                    // This implies we have already scheduled a dummy callback
+                    pIOMState->ui32NumUnSolicited = 0;
+                }
+                else
+                {
+                    pIOMState->ui32NumUnSolicited++;
+                }
             }
             if (0 == ui32NumPend)
             {
@@ -2937,6 +2976,7 @@ uint32_t am_hal_iom_control(void *pHandle, am_hal_iom_request_e eReq, void *pArg
                 pIOMState->ui32LastIdxProcessed = 0;
                 pIOMState->ui32NumSeqTransactions = 0;
                 pIOMState->ui32NumPendTransactions = 0;
+                pIOMState->ui32NumUnSolicited = 0;
                 pIOMState->eSeq = eSeq;
                 pIOMState->bAutonomous = true;
             }
@@ -3165,6 +3205,7 @@ uint32_t am_hal_iom_control(void *pHandle, am_hal_iom_request_e eReq, void *pArg
 #if (AM_HAL_IOM_CQ == 1)
             am_hal_iom_cq_raw_t *pCqRaw = (am_hal_iom_cq_raw_t *)pArgs;
             am_hal_cmdq_entry_t *pCQBlock;
+            am_hal_iom_callback_t pfnCallback1;
 
             uint32_t            ui32Critical = 0;
             uint32_t            index;
@@ -3206,10 +3247,17 @@ uint32_t am_hal_iom_control(void *pHandle, am_hal_iom_request_e eReq, void *pArg
             pCQBlock->address = (uint32_t)&IOMn(pIOMState->ui32Module)->CQSETCLEAR;
             pCQBlock->value = pCqRaw->ui32StatusSetClr;
 
+            pfnCallback1 = pCqRaw->pfnCallback;
+            if ( !pfnCallback1 && !pIOMState->block && (pIOMState->eSeq == AM_HAL_IOM_SEQ_NONE) &&
+                 (pIOMState->ui32NumUnSolicited >= (pIOMState->ui32MaxPending / 2)) )
+            {
+                // Need to schedule a dummy callback, to ensure ui32NumPendTransactions get updated in ISR
+                pfnCallback1 = iom_dummy_callback;
+            }
             //
             // Store the callback function pointer.
             //
-            pIOMState->pfnCallback[index & (AM_HAL_IOM_MAX_PENDING_TRANSACTIONS - 1)] = pCqRaw->pfnCallback;
+            pIOMState->pfnCallback[index & (AM_HAL_IOM_MAX_PENDING_TRANSACTIONS - 1)] = pfnCallback1;
             pIOMState->pCallbackCtxt[index & (AM_HAL_IOM_MAX_PENDING_TRANSACTIONS - 1)] = pCqRaw->pCallbackCtxt;
 
             //
@@ -3223,7 +3271,7 @@ uint32_t am_hal_iom_control(void *pHandle, am_hal_iom_request_e eReq, void *pArg
             //
             // Register for interrupt only if there is a callback
             //
-            status = am_hal_cmdq_post_block(pIOMState->pCmdQHdl, pCqRaw->pfnCallback);
+            status = am_hal_cmdq_post_block(pIOMState->pCmdQHdl, pfnCallback1);
 
             if (status == AM_HAL_STATUS_SUCCESS)
             {
@@ -3232,6 +3280,19 @@ uint32_t am_hal_iom_control(void *pHandle, am_hal_iom_request_e eReq, void *pArg
                 if (pCqRaw->pfnCallback)
                 {
                     pIOMState->bAutonomous = false;
+                    pIOMState->ui32NumUnSolicited = 0;
+                }
+                else
+                {
+                    if (pfnCallback1)
+                    {
+                        // This implies we have already scheduled a dummy callback
+                        pIOMState->ui32NumUnSolicited = 0;
+                    }
+                    else
+                    {
+                        pIOMState->ui32NumUnSolicited++;
+                    }
                 }
                 if (0 == ui32NumPend)
                 {

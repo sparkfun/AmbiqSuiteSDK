@@ -333,9 +333,9 @@
             <v6Rtti>0</v6Rtti>
             <VariousControls>
               <MiscControls></MiscControls>
-              <Define>AM_UTIL_FAULTISR_PRINT AM_PART_APOLLO3 FIREBALL_CARD AM_PACKAGE_BGA ADESTO_ATXP032 keil</Define>
+              <Define>AM_PACKAGE_BGA AM_PART_APOLLO3 AM_UTIL_FAULTISR_PRINT ADESTO_ATXP032 keil</Define>
               <Undefine></Undefine>
-              <IncludePath>../../../bsp;../../../../../CMSIS/ARM/Include;../../../../../CMSIS/AmbiqMicro/Include;../../../../../mcu/apollo3;../src;../../../../../devices;../../../../..;../../../../../utils</IncludePath>
+              <IncludePath>../../../../../devices;../../../../..;../../../../../CMSIS/AmbiqMicro/Include;../../../../../CMSIS/ARM/Include;../src;../../../bsp;../../../../../utils;../../../../../mcu/apollo3</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -415,9 +415,14 @@
               <FilePath>../../../../../devices/am_devices_fireball.c</FilePath>
             </File>
             <File>
-              <FileName>am_devices_mspi_flash.c</FileName>
+              <FileName>am_devices_mspi_atxp032.c</FileName>
               <FileType>1</FileType>
-              <FilePath>../../../../../devices/am_devices_mspi_flash.c</FilePath>
+              <FilePath>../../../../../devices/am_devices_mspi_atxp032.c</FilePath>
+            </File>
+            <File>
+              <FileName>am_devices_mspi_s25fs064s.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../../../../../devices/am_devices_mspi_s25fs064s.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -435,14 +440,14 @@
           <GroupName>lib</GroupName>
           <Files>
             <File>
-              <FileName>libam_hal.lib</FileName>
-              <FileType>4</FileType>
-              <FilePath>../../../../../mcu/apollo3/hal/keil/bin/libam_hal.lib</FilePath>
-            </File>
-            <File>
               <FileName>libam_bsp.lib</FileName>
               <FileType>4</FileType>
               <FilePath>../../../bsp/keil/bin/libam_bsp.lib</FilePath>
+            </File>
+            <File>
+              <FileName>libam_hal.lib</FileName>
+              <FileType>4</FileType>
+              <FilePath>../../../../../mcu/apollo3/hal/keil/bin/libam_hal.lib</FilePath>
             </File>
           </Files>
         </Group>

@@ -33,6 +33,7 @@
 #include "hci_api.h"
 #include "hci_main.h"
 #include "l2c_defs.h"
+#include "am_mcu_apollo.h"
 
 /**************************************************************************************************
   Macros
@@ -731,6 +732,15 @@ void HciCoreInit(void)
   hciCoreCb.maxRxAclLen = HCI_MAX_RX_ACL_LEN;
   hciCoreCb.aclQueueHi = HCI_ACL_QUEUE_HI;
   hciCoreCb.aclQueueLo = HCI_ACL_QUEUE_LO;
+
+  #if defined(AM_PART_APOLLO3) || defined(AM_PART_APOLLO3P)
+    if (APOLLO3_GE_B0)
+    {
+      // B0 has only less internal ACL buffers
+      hciCoreCb.aclQueueHi--;
+      hciCoreCb.aclQueueLo--;
+    }
+  #endif
   hciCoreCb.extResetSeq = NULL;
 
   hciCoreInit();

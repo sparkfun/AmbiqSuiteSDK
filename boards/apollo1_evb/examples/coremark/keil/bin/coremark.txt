@@ -31,8 +31,8 @@
     Program header entries: 1
     Section header entries: 16
 
-    Program header offset: 126176 (0x0001ece0)
-    Section header offset: 126208 (0x0001ed00)
+    Program header offset: 126180 (0x0001ece4)
+    Section header offset: 126212 (0x0001ed04)
 
     Section header string table index: 15
 
@@ -5334,40 +5334,40 @@
     164  i.crcu16                   0x000019dc   Lc    1  Sect  De 
     165  i.crcu32                   0x00001a26   Lc    1  Sect  De 
     166  i.get_seed_32              0x00001a40   Lc    1  Sect  De 
-    167  ../../../../../utils/am_util_delay.c
+    167  ../../../../../devices/am_devices_led.c
                                     0x00000000   Lc  Abs  File  De 
-    168  i.am_util_delay_ms         0x00000864   Lc    1  Sect  De 
-    169  ..\..\..\..\..\utils\am_util_faultisr.c
-                                    0x00000000   Lc  Abs  File  De 
-    170  .emb_text                  0x00000138   Lc    1  Sect  De   0x22
-    171  $v0                        0x00000138   Lc    1   --   De 
-    172  ../../../../../utils/am_util_faultisr.c
-                                    0x00000000   Lc  Abs  File  De 
-    173  i.am_util_faultisr_collect_data
-                                    0x00000880   Lc    1  Sect  De 
-    174  ../../../../../utils/am_util_stdio.c
-                                    0x00000000   Lc  Abs  File  De 
-    175  i.am_util_stdio_printf     0x00000930   Lc    1  Sect  De 
-    176  i.am_util_stdio_printf_init
-                                    0x00000964   Lc    1  Sect  De 
-    177  i.am_util_stdio_sprintf    0x00000970   Lc    1  Sect  De 
-    178  i.am_util_stdio_terminal_clear
-                                    0x00000984   Lc    1  Sect  De 
-    179  i.am_util_stdio_vsprintf   0x000009c0   Lc    1  Sect  De 
-    180  i.ndigits_in_u64           0x00002756   Lc    1  Sect  De 
-    181  ndigits_in_u64             0x00002757   Lc    1  Code  De   0xc6
-    182  i.uint64_to_str            0x00002ae8   Lc    1  Sect  De 
-    183  uint64_to_str              0x00002ae9   Lc    1  Code  De   0x126
-    184  .bss                       0x100004d4   Lc    3  Sect  De   0x100
-    185  g_prfbuf                   0x100004d4   Lc    3  Data  De   0x100
-    186  .data                      0x100000a0   Lc    2  Sect  De   0x8
-    187  g_bTxtXlate                0x100000a0   Lc    2  Data  De   0x1
-    188  ../../../../../devices/am_devices_led.c
-                                    0x00000000   Lc  Abs  File  De 
-    189  i.am_devices_led_array_init
+    168  i.am_devices_led_array_init
                                     0x000002c8   Lc    1  Sect  De 
-    190  i.am_devices_led_init      0x000002f4   Lc    1  Sect  De 
-    191  i.am_devices_led_on        0x00000480   Lc    1  Sect  De 
+    169  i.am_devices_led_init      0x000002f4   Lc    1  Sect  De 
+    170  i.am_devices_led_on        0x00000480   Lc    1  Sect  De 
+    171  ../../../../../utils/am_util_delay.c
+                                    0x00000000   Lc  Abs  File  De 
+    172  i.am_util_delay_ms         0x00000864   Lc    1  Sect  De 
+    173  ..\..\..\..\..\utils\am_util_faultisr.c
+                                    0x00000000   Lc  Abs  File  De 
+    174  .emb_text                  0x00000138   Lc    1  Sect  De   0x22
+    175  $v0                        0x00000138   Lc    1   --   De 
+    176  ../../../../../utils/am_util_faultisr.c
+                                    0x00000000   Lc  Abs  File  De 
+    177  i.am_util_faultisr_collect_data
+                                    0x00000880   Lc    1  Sect  De 
+    178  ../../../../../utils/am_util_stdio.c
+                                    0x00000000   Lc  Abs  File  De 
+    179  i.am_util_stdio_printf     0x00000930   Lc    1  Sect  De 
+    180  i.am_util_stdio_printf_init
+                                    0x00000964   Lc    1  Sect  De 
+    181  i.am_util_stdio_sprintf    0x00000970   Lc    1  Sect  De 
+    182  i.am_util_stdio_terminal_clear
+                                    0x00000984   Lc    1  Sect  De 
+    183  i.am_util_stdio_vsprintf   0x000009c0   Lc    1  Sect  De 
+    184  i.ndigits_in_u64           0x00002756   Lc    1  Sect  De 
+    185  ndigits_in_u64             0x00002757   Lc    1  Code  De   0xc6
+    186  i.uint64_to_str            0x00002ae8   Lc    1  Sect  De 
+    187  uint64_to_str              0x00002ae9   Lc    1  Code  De   0x126
+    188  .bss                       0x100004d4   Lc    3  Sect  De   0x100
+    189  g_prfbuf                   0x100004d4   Lc    3  Data  De   0x100
+    190  .data                      0x100000a0   Lc    2  Sect  De   0x8
+    191  g_bTxtXlate                0x100000a0   Lc    2  Data  De   0x1
     192  ../keil/startup_keil.s     0x00000000   Lc  Abs  File  De 
     193  STACK                      0x10000638   Lc    3  Sect  De   0x1000
     194  StackMem                   0x10000638   Lc    3  Data  De 
@@ -5909,29 +5909,29 @@
            47    658: i.crcu16
            48    667: i.crcu32
            49    676: i.get_seed_32
-           50    690: ../../../../../utils/am_util_delay.c
-           51    727: i.am_util_delay_ms
-           52    746: ..\..\..\..\..\utils\am_util_faultisr.c
-           53    786: .emb_text
-           54    796: $v0
-           55    800: ../../../../../utils/am_util_faultisr.c
-           56    840: i.am_util_faultisr_collect_data
-           57    872: ../../../../../utils/am_util_stdio.c
-           58    909: i.am_util_stdio_printf
-           59    932: i.am_util_stdio_printf_init
-           60    960: i.am_util_stdio_sprintf
-           61    984: i.am_util_stdio_terminal_clear
-           62   1015: i.am_util_stdio_vsprintf
-           63   1040: i.ndigits_in_u64
-           64   1057: ndigits_in_u64
-           65   1072: i.uint64_to_str
-           66   1088: uint64_to_str
-           67   1102: g_prfbuf
-           68   1111: g_bTxtXlate
-           69   1123: ../../../../../devices/am_devices_led.c
-           70   1163: i.am_devices_led_array_init
-           71   1191: i.am_devices_led_init
-           72   1213: i.am_devices_led_on
+           50    690: ../../../../../devices/am_devices_led.c
+           51    730: i.am_devices_led_array_init
+           52    758: i.am_devices_led_init
+           53    780: i.am_devices_led_on
+           54    800: ../../../../../utils/am_util_delay.c
+           55    837: i.am_util_delay_ms
+           56    856: ..\..\..\..\..\utils\am_util_faultisr.c
+           57    896: .emb_text
+           58    906: $v0
+           59    910: ../../../../../utils/am_util_faultisr.c
+           60    950: i.am_util_faultisr_collect_data
+           61    982: ../../../../../utils/am_util_stdio.c
+           62   1019: i.am_util_stdio_printf
+           63   1042: i.am_util_stdio_printf_init
+           64   1070: i.am_util_stdio_sprintf
+           65   1094: i.am_util_stdio_terminal_clear
+           66   1125: i.am_util_stdio_vsprintf
+           67   1150: i.ndigits_in_u64
+           68   1167: ndigits_in_u64
+           69   1182: i.uint64_to_str
+           70   1198: uint64_to_str
+           71   1212: g_prfbuf
+           72   1221: g_bTxtXlate
            73   1233: ../keil/startup_keil.s
            74   1256: STACK
            75   1262: StackMem
@@ -6288,7 +6288,7 @@
 
 
 ** Section #14 '.comment' (SHT_PROGBITS)
-    Size   : 18568 bytes
+    Size   : 18572 bytes
 
 
 ** Section #15 '.shstrtab' (SHT_STRTAB)

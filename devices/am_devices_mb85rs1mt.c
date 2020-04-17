@@ -8,26 +8,26 @@
 
 //*****************************************************************************
 //
-// Copyright (c) 2019, Ambiq Micro
+// Copyright (c) 2020, Ambiq Micro
 // All rights reserved.
-// 
+//
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided that the following conditions are met:
-// 
+//
 // 1. Redistributions of source code must retain the above copyright notice,
 // this list of conditions and the following disclaimer.
-// 
+//
 // 2. Redistributions in binary form must reproduce the above copyright
 // notice, this list of conditions and the following disclaimer in the
 // documentation and/or other materials provided with the distribution.
-// 
+//
 // 3. Neither the name of the copyright holder nor the names of its
 // contributors may be used to endorse or promote products derived from this
 // software without specific prior written permission.
-// 
+//
 // Third party software included in this distribution is subject to the
 // additional license terms as defined in the /docs/licenses directory.
-// 
+//
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
 // AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
 // IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
@@ -40,7 +40,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
-// This is part of revision 2.3.2 of the AmbiqSuite Development Package.
+// This is part of revision 2.4.2 of the AmbiqSuite Development Package.
 //
 //*****************************************************************************
 
@@ -53,8 +53,24 @@
 // Global variables.
 //
 //*****************************************************************************
-static void *g_pMB85RS1MTIOMHandle;
-static uint32_t g_MB85RS1MTCS;
+typedef struct
+{
+    uint32_t                    ui32Module;
+    uint32_t                    ui32CS;
+    void                        *pIomHandle;
+    bool                        bOccupied;
+} am_devices_iom_mb85rs1mt_t;
+
+am_devices_iom_mb85rs1mt_t gAmMb85rs1mt[AM_DEVICES_MB85RS1MT_MAX_DEVICE_NUM];
+
+am_hal_iom_config_t     g_sIomMb85rs1mtCfg =
+{
+    .eInterfaceMode       = AM_HAL_IOM_SPI_MODE,
+    .ui32ClockFreq        = AM_HAL_IOM_1MHZ,
+    .eSpiMode             = AM_HAL_IOM_SPI_MODE_0,
+    .ui32NBTxnBufLength   = 0,
+    .pNBTxnBuf = NULL,
+};
 
 //*****************************************************************************
 //
@@ -62,10 +78,11 @@ static uint32_t g_MB85RS1MTCS;
 //
 //*****************************************************************************
 static uint32_t
-am_device_command_write(uint32_t ui32InstrLen, uint32_t ui32Instr,
+am_device_command_write(void *pHandle, uint32_t ui32InstrLen, uint32_t ui32Instr,
                         uint32_t *pData, uint32_t ui32NumBytes)
 {
     am_hal_iom_transfer_t Transaction;
+    am_devices_iom_mb85rs1mt_t *pIom = (am_devices_iom_mb85rs1mt_t *)pHandle;
 
     //
     // Create the transaction.
@@ -75,7 +92,7 @@ am_device_command_write(uint32_t ui32InstrLen, uint32_t ui32Instr,
     Transaction.eDirection      = AM_HAL_IOM_TX;
     Transaction.ui32NumBytes    = ui32NumBytes;
     Transaction.pui32TxBuffer   = pData;
-    Transaction.uPeerInfo.ui32SpiChipSelect = g_MB85RS1MTCS;
+    Transaction.uPeerInfo.ui32SpiChipSelect = pIom->ui32CS;
     Transaction.bContinue       = false;
     Transaction.ui8RepeatCount  = 0;
     Transaction.ui32PauseCondition = 0;
@@ -84,7 +101,7 @@ am_device_command_write(uint32_t ui32InstrLen, uint32_t ui32Instr,
     //
     // Execute the transction over IOM.
     //
-    if (am_hal_iom_blocking_transfer(g_pMB85RS1MTIOMHandle, &Transaction))
+    if (am_hal_iom_blocking_transfer(pIom->pIomHandle, &Transaction))
     {
         return AM_DEVICES_MB85RS1MT_STATUS_ERROR;
     }
@@ -92,10 +109,11 @@ am_device_command_write(uint32_t ui32InstrLen, uint32_t ui32Instr,
 }
 
 static uint32_t
-am_device_command_read(uint32_t ui32InstrLen, uint32_t ui32Instr,
+am_device_command_read(void *pHandle, uint32_t ui32InstrLen, uint32_t ui32Instr,
                        uint32_t *pData, uint32_t ui32NumBytes)
 {
     am_hal_iom_transfer_t Transaction;
+    am_devices_iom_mb85rs1mt_t *pIom = (am_devices_iom_mb85rs1mt_t *)pHandle;
 
     //
     // Create the transaction.
@@ -105,7 +123,7 @@ am_device_command_read(uint32_t ui32InstrLen, uint32_t ui32Instr,
     Transaction.eDirection      = AM_HAL_IOM_RX;
     Transaction.ui32NumBytes    = ui32NumBytes;
     Transaction.pui32RxBuffer   = pData;
-    Transaction.uPeerInfo.ui32SpiChipSelect = g_MB85RS1MTCS;
+    Transaction.uPeerInfo.ui32SpiChipSelect = pIom->ui32CS;
     Transaction.bContinue       = false;
     Transaction.ui8RepeatCount  = 0;
     Transaction.ui32PauseCondition = 0;
@@ -114,7 +132,7 @@ am_device_command_read(uint32_t ui32InstrLen, uint32_t ui32Instr,
     //
     // Execute the transction over IOM.
     //
-    if (am_hal_iom_blocking_transfer(g_pMB85RS1MTIOMHandle, &Transaction))
+    if (am_hal_iom_blocking_transfer(pIom->pIomHandle, &Transaction))
     {
         return AM_DEVICES_MB85RS1MT_STATUS_ERROR;
     }
@@ -136,21 +154,39 @@ am_device_command_read(uint32_t ui32InstrLen, uint32_t ui32Instr,
 //
 //*****************************************************************************
 uint32_t
-am_devices_mb85rs1mt_init(uint32_t ui32Module, am_hal_iom_config_t *psIOMSettings, void **ppIomHandle)
+am_devices_mb85rs1mt_init(uint32_t ui32Module, am_devices_mb85rs1mt_config_t *pDevConfig, void **ppHandle, void **ppIomHandle)
 {
-  uint32_t g_CS[AM_REG_IOM_NUM_MODULES] =
-  {
+    void *pIomHandle;
+    am_hal_iom_config_t     stIOMMB85RS1MTSettings;
+
+    uint32_t g_CS[AM_REG_IOM_NUM_MODULES] =
+    {
       AM_BSP_IOM0_CS_CHNL,
       AM_BSP_IOM1_CS_CHNL,
-  #ifndef APOLLO3_FPGA
+#ifndef APOLLO3_FPGA
       AM_BSP_IOM2_CS_CHNL,
       AM_BSP_IOM3_CS_CHNL,
       AM_BSP_IOM4_CS_CHNL,
       AM_BSP_IOM5_CS_CHNL,
-  #endif
-  };
+#endif
+    };
 
-    if ( ui32Module > AM_REG_IOM_NUM_MODULES )
+    uint32_t      ui32Index = 0;
+
+    // Allocate a vacant device handle
+    for ( ui32Index = 0; ui32Index < AM_DEVICES_MB85RS1MT_MAX_DEVICE_NUM; ui32Index++ )
+    {
+        if ( gAmMb85rs1mt[ui32Index].bOccupied == false )
+        {
+            break;
+        }
+    }
+    if ( ui32Index == AM_DEVICES_MB85RS1MT_MAX_DEVICE_NUM )
+    {
+        return AM_DEVICES_MB85RS1MT_STATUS_ERROR;
+    }
+
+    if ( (ui32Module > AM_REG_IOM_NUM_MODULES)  || (pDevConfig == NULL) )
     {
         return AM_DEVICES_MB85RS1MT_STATUS_ERROR;
     }
@@ -169,6 +205,11 @@ am_devices_mb85rs1mt_init(uint32_t ui32Module, am_hal_iom_config_t *psIOMSetting
     am_hal_mcuctrl_fault_capture_enable();
 #endif // AM_APOLLO3_MCUCTRL
 
+    stIOMMB85RS1MTSettings = g_sIomMb85rs1mtCfg;
+    stIOMMB85RS1MTSettings.ui32NBTxnBufLength = pDevConfig->ui32NBTxnBufLength;
+    stIOMMB85RS1MTSettings.pNBTxnBuf = pDevConfig->pNBTxnBuf;
+    stIOMMB85RS1MTSettings.ui32ClockFreq = pDevConfig->ui32ClockFreq;
+
     //
     // Initialize the IOM instance.
     // Enable power to the IOM instance.
@@ -176,17 +217,20 @@ am_devices_mb85rs1mt_init(uint32_t ui32Module, am_hal_iom_config_t *psIOMSetting
     // Enable the IOM.
     // HAL Success return is 0
     //
-    if (am_hal_iom_initialize(ui32Module, &g_pMB85RS1MTIOMHandle) ||
-        am_hal_iom_power_ctrl(g_pMB85RS1MTIOMHandle, AM_HAL_SYSCTRL_WAKE, false) ||
-        am_hal_iom_configure(g_pMB85RS1MTIOMHandle, psIOMSettings) ||
-        am_hal_iom_enable(g_pMB85RS1MTIOMHandle))
+    if (am_hal_iom_initialize(ui32Module, &pIomHandle) ||
+        am_hal_iom_power_ctrl(pIomHandle, AM_HAL_SYSCTRL_WAKE, false) ||
+        am_hal_iom_configure(pIomHandle, &stIOMMB85RS1MTSettings) ||
+        am_hal_iom_enable(pIomHandle))
     {
         return AM_DEVICES_MB85RS1MT_STATUS_ERROR;
     }
     else
     {
-        *ppIomHandle = g_pMB85RS1MTIOMHandle;
-        g_MB85RS1MTCS = g_CS[ui32Module];
+        gAmMb85rs1mt[ui32Index].bOccupied = true;
+        gAmMb85rs1mt[ui32Index].ui32Module = ui32Module;
+        gAmMb85rs1mt[ui32Index].ui32CS = g_CS[ui32Module];
+        *ppIomHandle = gAmMb85rs1mt[ui32Index].pIomHandle = pIomHandle;
+        *ppHandle = (void *)&gAmMb85rs1mt[ui32Index];
         //
         // Return the status.
         //
@@ -207,27 +251,32 @@ am_devices_mb85rs1mt_init(uint32_t ui32Module, am_hal_iom_config_t *psIOMSetting
 //
 //*****************************************************************************
 uint32_t
-am_devices_mb85rs1mt_term(uint32_t ui32Module)
+am_devices_mb85rs1mt_term(void *pHandle)
 {
-    if ( ui32Module > AM_REG_IOM_NUM_MODULES )
+    am_devices_iom_mb85rs1mt_t *pIom = (am_devices_iom_mb85rs1mt_t *)pHandle;
+
+    if ( pIom->ui32Module > AM_REG_IOM_NUM_MODULES )
     {
         return AM_DEVICES_MB85RS1MT_STATUS_ERROR;
     }
 
     // Disable the pins
-    am_bsp_iom_pins_disable(ui32Module, AM_HAL_IOM_SPI_MODE);
+    am_bsp_iom_pins_disable(pIom->ui32Module, AM_HAL_IOM_SPI_MODE);
 
     //
     // Disable the IOM.
     //
-    am_hal_iom_disable(g_pMB85RS1MTIOMHandle);
+    am_hal_iom_disable(pIom->pIomHandle);
 
     //
     // Disable power to and uninitialize the IOM instance.
     //
-    am_hal_iom_power_ctrl(g_pMB85RS1MTIOMHandle, AM_HAL_SYSCTRL_DEEPSLEEP, false);
+    am_hal_iom_power_ctrl(pIom->pIomHandle, AM_HAL_SYSCTRL_DEEPSLEEP, false);
 
-    am_hal_iom_uninitialize(g_pMB85RS1MTIOMHandle);
+    am_hal_iom_uninitialize(pIom->pIomHandle);
+
+    // Free this device handle
+    pIom->bOccupied = false;
 
     //
     // Return the status.
@@ -249,12 +298,12 @@ am_devices_mb85rs1mt_term(uint32_t ui32Module)
 //
 //*****************************************************************************
 uint32_t
-am_devices_mb85rs1mt_read_id(uint32_t *pDeviceID)
+am_devices_mb85rs1mt_read_id(void *pHandle, uint32_t *pDeviceID)
 {
     //
     // Send the command sequence to read the Device ID.
     //
-    if (am_device_command_read(1, AM_DEVICES_MB85RS1MT_READ_DEVICE_ID, pDeviceID, 4))
+    if (am_device_command_read(pHandle, 1, AM_DEVICES_MB85RS1MT_READ_DEVICE_ID, pDeviceID, 4))
     {
         return AM_DEVICES_MB85RS1MT_STATUS_ERROR;
     }
@@ -278,12 +327,12 @@ am_devices_mb85rs1mt_read_id(uint32_t *pDeviceID)
 //
 //*****************************************************************************
 uint32_t
-am_devices_mb85rs1mt_status_get(uint32_t *pStatus)
+am_devices_mb85rs1mt_status_get(void *pHandle, uint32_t *pStatus)
 {
     //
     // Send the command sequence to read the device status.
     //
-    if (am_device_command_read(1, AM_DEVICES_MB85RS1MT_READ_STATUS, pStatus, 1))
+    if (am_device_command_read(pHandle, 1, AM_DEVICES_MB85RS1MT_READ_STATUS, pStatus, 1))
     {
         return AM_DEVICES_MB85RS1MT_STATUS_ERROR;
     }
@@ -301,7 +350,7 @@ am_devices_mb85rs1mt_status_get(uint32_t *pStatus)
 //
 //*****************************************************************************
 uint32_t
-am_devices_mb85rs1mt_command_send(uint32_t ui32Cmd)
+am_devices_mb85rs1mt_command_send(void *pHandle, uint32_t ui32Cmd)
 {
     uint32_t Dummy;
 
@@ -310,7 +359,7 @@ am_devices_mb85rs1mt_command_send(uint32_t ui32Cmd)
         //
         // Send the command to enable writing.
         //
-        if (am_device_command_write(1, AM_DEVICES_MB85RS1MT_WRITE_ENABLE, &Dummy, 0))
+        if (am_device_command_write(pHandle, 1, AM_DEVICES_MB85RS1MT_WRITE_ENABLE, &Dummy, 0))
         {
             return AM_DEVICES_MB85RS1MT_STATUS_ERROR;
         }
@@ -321,7 +370,7 @@ am_devices_mb85rs1mt_command_send(uint32_t ui32Cmd)
         //
         // Send the command to enable writing.
         //
-        if (am_device_command_write(1, AM_DEVICES_MB85RS1MT_WRITE_DISABLE, &Dummy, 0))
+        if (am_device_command_write(pHandle, 1, AM_DEVICES_MB85RS1MT_WRITE_DISABLE, &Dummy, 0))
         {
             return AM_DEVICES_MB85RS1MT_STATUS_ERROR;
         }
@@ -353,17 +402,18 @@ am_devices_mb85rs1mt_command_send(uint32_t ui32Cmd)
 //
 //*****************************************************************************
 uint32_t
-am_devices_mb85rs1mt_blocking_write(uint8_t *pui8TxBuffer,
+am_devices_mb85rs1mt_blocking_write(void *pHandle, uint8_t *pui8TxBuffer,
                                     uint32_t ui32WriteAddress,
                                     uint32_t ui32NumBytes)
 {
     am_hal_iom_transfer_t Transaction;
     uint32_t              Dummy;
+    am_devices_iom_mb85rs1mt_t *pIom = (am_devices_iom_mb85rs1mt_t *)pHandle;
 
     //
     // Send the WRITE ENABLE command to enable writing.
     //
-    if (am_device_command_write(1, AM_DEVICES_MB85RS1MT_WRITE_ENABLE, &Dummy, 0))
+    if (am_device_command_write(pHandle, 1, AM_DEVICES_MB85RS1MT_WRITE_ENABLE, &Dummy, 0))
     {
         return AM_DEVICES_MB85RS1MT_STATUS_ERROR;
     }
@@ -380,13 +430,13 @@ am_devices_mb85rs1mt_blocking_write(uint8_t *pui8TxBuffer,
     Transaction.ui32Instr       = AM_DEVICES_MB85RS1MT_WRITE;
     Transaction.ui32NumBytes    = 0;
     Transaction.pui32TxBuffer   = (uint32_t *)pui8TxBuffer;
-    Transaction.uPeerInfo.ui32SpiChipSelect = g_MB85RS1MTCS;
+    Transaction.uPeerInfo.ui32SpiChipSelect = pIom->ui32CS;
     Transaction.bContinue       = true;
 
     //
     // Start the transaction.
     //
-    if (am_hal_iom_blocking_transfer(g_pMB85RS1MTIOMHandle, &Transaction))
+    if (am_hal_iom_blocking_transfer(pIom->pIomHandle, &Transaction))
     {
         return AM_DEVICES_MB85RS1MT_STATUS_ERROR;
     }
@@ -399,13 +449,13 @@ am_devices_mb85rs1mt_blocking_write(uint8_t *pui8TxBuffer,
     Transaction.ui32Instr       = ui32WriteAddress & 0x00FFFFFF;
     Transaction.ui32NumBytes    = ui32NumBytes;
     Transaction.pui32TxBuffer   = (uint32_t *)pui8TxBuffer;
-    Transaction.uPeerInfo.ui32SpiChipSelect = g_MB85RS1MTCS;
+    Transaction.uPeerInfo.ui32SpiChipSelect = pIom->ui32CS;
     Transaction.bContinue       = false;
 
     //
     // Start the transaction.
     //
-    if (am_hal_iom_blocking_transfer(g_pMB85RS1MTIOMHandle, &Transaction))
+    if (am_hal_iom_blocking_transfer(pIom->pIomHandle, &Transaction))
     {
         return AM_DEVICES_MB85RS1MT_STATUS_ERROR;
     }
@@ -413,7 +463,7 @@ am_devices_mb85rs1mt_blocking_write(uint8_t *pui8TxBuffer,
     //
     // Send the command to disable writing.
     //
-    if (am_device_command_write(1, AM_DEVICES_MB85RS1MT_WRITE_DISABLE, &Dummy, 0))
+    if (am_device_command_write(pHandle, 1, AM_DEVICES_MB85RS1MT_WRITE_DISABLE, &Dummy, 0))
     {
         return AM_DEVICES_MB85RS1MT_STATUS_ERROR;
     }
@@ -443,7 +493,7 @@ am_devices_mb85rs1mt_blocking_write(uint8_t *pui8TxBuffer,
 //
 //*****************************************************************************
 uint32_t
-am_devices_mb85rs1mt_nonblocking_write_adv(uint8_t *pui8TxBuffer,
+am_devices_mb85rs1mt_nonblocking_write_adv(void *pHandle, uint8_t *pui8TxBuffer,
                                            uint32_t ui32WriteAddress,
                                            uint32_t ui32NumBytes,
                                            uint32_t ui32PauseCondition,
@@ -452,12 +502,13 @@ am_devices_mb85rs1mt_nonblocking_write_adv(uint8_t *pui8TxBuffer,
                                            void *pCallbackCtxt)
 {
     am_hal_iom_transfer_t Transaction;
+    am_devices_iom_mb85rs1mt_t *pIom = (am_devices_iom_mb85rs1mt_t *)pHandle;
 
     //
     // Common transaction parameters
     //
     Transaction.ui8Priority     = 1;        // High priority for now.
-    Transaction.uPeerInfo.ui32SpiChipSelect = g_MB85RS1MTCS;
+    Transaction.uPeerInfo.ui32SpiChipSelect = pIom->ui32CS;
     Transaction.ui8RepeatCount  = 0;
     Transaction.ui32PauseCondition = ui32PauseCondition;
 
@@ -475,7 +526,7 @@ am_devices_mb85rs1mt_nonblocking_write_adv(uint8_t *pui8TxBuffer,
     //
     // Start the transaction (no callback).
     //
-    if (am_hal_iom_nonblocking_transfer(g_pMB85RS1MTIOMHandle, &Transaction, 0, 0))
+    if (am_hal_iom_nonblocking_transfer(pIom->pIomHandle, &Transaction, 0, 0))
     {
         return AM_DEVICES_MB85RS1MT_STATUS_ERROR;
     }
@@ -497,7 +548,7 @@ am_devices_mb85rs1mt_nonblocking_write_adv(uint8_t *pui8TxBuffer,
     //
     // Start the transaction (no callback).
     //
-    if (am_hal_iom_nonblocking_transfer(g_pMB85RS1MTIOMHandle, &Transaction, 0, 0))
+    if (am_hal_iom_nonblocking_transfer(pIom->pIomHandle, &Transaction, 0, 0))
     {
         return AM_DEVICES_MB85RS1MT_STATUS_ERROR;
     }
@@ -520,7 +571,7 @@ am_devices_mb85rs1mt_nonblocking_write_adv(uint8_t *pui8TxBuffer,
         //
         // Start the transaction
         //
-        if (am_hal_iom_nonblocking_transfer(g_pMB85RS1MTIOMHandle, &Transaction, pfnCallback, pCallbackCtxt))
+        if (am_hal_iom_nonblocking_transfer(pIom->pIomHandle, &Transaction, pfnCallback, pCallbackCtxt))
         {
             return AM_DEVICES_MB85RS1MT_STATUS_ERROR;
         }
@@ -553,7 +604,7 @@ am_devices_mb85rs1mt_nonblocking_write_adv(uint8_t *pui8TxBuffer,
 //
 //*****************************************************************************
 uint32_t
-am_devices_mb85rs1mt_nonblocking_write(uint8_t *pui8TxBuffer,
+am_devices_mb85rs1mt_nonblocking_write(void *pHandle, uint8_t *pui8TxBuffer,
                                        uint32_t ui32WriteAddress,
                                        uint32_t ui32NumBytes,
                                        am_hal_iom_callback_t pfnCallback,
@@ -585,7 +636,7 @@ am_devices_mb85rs1mt_nonblocking_write(uint8_t *pui8TxBuffer,
     //
     // Start the transaction (no callback).
     //
-    if (am_hal_iom_nonblocking_transfer(g_pMB85RS1MTIOMHandle, &Transaction, 0, 0))
+    if (am_hal_iom_nonblocking_transfer(pHandle, &Transaction, 0, 0))
     {
         return AM_DEVICES_MB85RS1MT_STATUS_ERROR;
     }
@@ -613,7 +664,7 @@ am_devices_mb85rs1mt_nonblocking_write(uint8_t *pui8TxBuffer,
     //
     // Start the transaction, sending the callback.
     //
-    if (am_hal_iom_nonblocking_transfer(g_pMB85RS1MTIOMHandle, &Transaction, pfnCallback, pCallbackCtxt))
+    if (am_hal_iom_nonblocking_transfer(pHandle, &Transaction, pfnCallback, pCallbackCtxt))
     {
         return AM_DEVICES_MB85RS1MT_STATUS_ERROR;
     }
@@ -623,7 +674,7 @@ am_devices_mb85rs1mt_nonblocking_write(uint8_t *pui8TxBuffer,
     //
     return AM_DEVICES_MB85RS1MT_STATUS_SUCCESS;
 #else
-    return (am_devices_mb85rs1mt_nonblocking_write_adv(pui8TxBuffer,
+    return (am_devices_mb85rs1mt_nonblocking_write_adv(pHandle, pui8TxBuffer,
                                                    ui32WriteAddress,
                                                    ui32NumBytes,
                                                    0, 0, pfnCallback, pCallbackCtxt));
@@ -646,11 +697,12 @@ am_devices_mb85rs1mt_nonblocking_write(uint8_t *pui8TxBuffer,
 //
 //*****************************************************************************
 uint32_t
-am_devices_mb85rs1mt_blocking_read(uint8_t *pui8RxBuffer,
+am_devices_mb85rs1mt_blocking_read(void *pHandle, uint8_t *pui8RxBuffer,
                                    uint32_t ui32ReadAddress,
                                    uint32_t ui32NumBytes)
 {
     am_hal_iom_transfer_t Transaction;
+    am_devices_iom_mb85rs1mt_t *pIom = (am_devices_iom_mb85rs1mt_t *)pHandle;
 
     Transaction.ui8RepeatCount  = 0;
     Transaction.ui32PauseCondition       = 0;
@@ -665,13 +717,13 @@ am_devices_mb85rs1mt_blocking_read(uint8_t *pui8RxBuffer,
     Transaction.ui32Instr       = AM_DEVICES_MB85RS1MT_READ;
     Transaction.ui32NumBytes    = 0;
     Transaction.pui32TxBuffer   = (uint32_t *)pui8RxBuffer;
-    Transaction.uPeerInfo.ui32SpiChipSelect = g_MB85RS1MTCS;
+    Transaction.uPeerInfo.ui32SpiChipSelect = pIom->ui32CS;
     Transaction.bContinue       = true;
 
     //
     // Start the transaction.
     //
-    if (am_hal_iom_blocking_transfer(g_pMB85RS1MTIOMHandle, &Transaction))
+    if (am_hal_iom_blocking_transfer(pIom->pIomHandle, &Transaction))
     {
         return AM_DEVICES_MB85RS1MT_STATUS_ERROR;
     }
@@ -684,13 +736,13 @@ am_devices_mb85rs1mt_blocking_read(uint8_t *pui8RxBuffer,
     Transaction.ui32Instr       = ui32ReadAddress & 0x00FFFFFF;
     Transaction.ui32NumBytes    = ui32NumBytes;
     Transaction.pui32RxBuffer   = (uint32_t *)pui8RxBuffer;
-    Transaction.uPeerInfo.ui32SpiChipSelect = g_MB85RS1MTCS;
+    Transaction.uPeerInfo.ui32SpiChipSelect = pIom->ui32CS;
     Transaction.bContinue       = false;
 
     //
     // Start the transaction.
     //
-    if (am_hal_iom_blocking_transfer(g_pMB85RS1MTIOMHandle, &Transaction))
+    if (am_hal_iom_blocking_transfer(pIom->pIomHandle, &Transaction))
     {
         return AM_DEVICES_MB85RS1MT_STATUS_ERROR;
     }
@@ -717,13 +769,14 @@ am_devices_mb85rs1mt_blocking_read(uint8_t *pui8RxBuffer,
 //
 //*****************************************************************************
 uint32_t
-am_devices_mb85rs1mt_nonblocking_read(uint8_t *pui8RxBuffer,
+am_devices_mb85rs1mt_nonblocking_read(void *pHandle, uint8_t *pui8RxBuffer,
                                       uint32_t ui32ReadAddress,
                                       uint32_t ui32NumBytes,
                                       am_hal_iom_callback_t pfnCallback,
                                       void *pCallbackCtxt)
 {
     am_hal_iom_transfer_t      Transaction;
+    am_devices_iom_mb85rs1mt_t *pIom = (am_devices_iom_mb85rs1mt_t *)pHandle;
 
     Transaction.ui8RepeatCount  = 0;
     Transaction.ui32PauseCondition = 0;
@@ -734,22 +787,18 @@ am_devices_mb85rs1mt_nonblocking_read(uint8_t *pui8RxBuffer,
     // This one needs to keep CE asserted (via continue).
     //
 
-    // Corvette RX HW bug, CORVETTE-874. 0-byte xfer must be TX.
-    // This HW bug should be covered in the HAL, so test the HAL fix here by
-    // attempting to do a 0-byte RX transfer.
-//  Transaction.eDirection      = AM_HAL_IOM_TX;
     Transaction.eDirection      = AM_HAL_IOM_RX;
     Transaction.ui32InstrLen    = 1;
     Transaction.ui32Instr       = AM_DEVICES_MB85RS1MT_READ;
     Transaction.ui32NumBytes    = 0;
     Transaction.pui32TxBuffer   = (uint32_t *)pui8RxBuffer;
-    Transaction.uPeerInfo.ui32SpiChipSelect = g_MB85RS1MTCS;
+    Transaction.uPeerInfo.ui32SpiChipSelect = pIom->ui32CS;
     Transaction.bContinue       = true;
 
     //
     // Start the transaction (no callback).
     //
-    if (am_hal_iom_nonblocking_transfer(g_pMB85RS1MTIOMHandle, &Transaction, 0, 0))
+    if (am_hal_iom_nonblocking_transfer(pIom->pIomHandle, &Transaction, 0, 0))
     {
         return AM_DEVICES_MB85RS1MT_STATUS_ERROR;
     }
@@ -763,13 +812,13 @@ am_devices_mb85rs1mt_nonblocking_read(uint8_t *pui8RxBuffer,
     Transaction.ui32Instr       = ui32ReadAddress & 0x00FFFFFF;
     Transaction.ui32NumBytes    = ui32NumBytes;
     Transaction.pui32RxBuffer   = (uint32_t *)pui8RxBuffer;
-    Transaction.uPeerInfo.ui32SpiChipSelect = g_MB85RS1MTCS;
+    Transaction.uPeerInfo.ui32SpiChipSelect = pIom->ui32CS;
     Transaction.bContinue       = false;
 
     //
     // Start the transaction.
     //
-    if (am_hal_iom_nonblocking_transfer(g_pMB85RS1MTIOMHandle, &Transaction, pfnCallback, pCallbackCtxt))
+    if (am_hal_iom_nonblocking_transfer(pIom->pIomHandle, &Transaction, pfnCallback, pCallbackCtxt))
     {
         return AM_DEVICES_MB85RS1MT_STATUS_ERROR;
     }
@@ -797,13 +846,14 @@ am_devices_mb85rs1mt_nonblocking_read(uint8_t *pui8RxBuffer,
 //
 //*****************************************************************************
 uint32_t
-am_devices_mb85rs1mt_nonblocking_read_hiprio(uint8_t *pui8RxBuffer,
+am_devices_mb85rs1mt_nonblocking_read_hiprio(void *pHandle, uint8_t *pui8RxBuffer,
                                              uint32_t ui32ReadAddress,
                                              uint32_t ui32NumBytes,
                                              am_hal_iom_callback_t pfnCallback,
                                              void *pCallbackCtxt)
 {
     am_hal_iom_transfer_t      Transaction;
+    am_devices_iom_mb85rs1mt_t *pIom = (am_devices_iom_mb85rs1mt_t *)pHandle;
 
     Transaction.ui8RepeatCount  = 0;
     Transaction.ui32PauseCondition = 0;
@@ -819,13 +869,13 @@ am_devices_mb85rs1mt_nonblocking_read_hiprio(uint8_t *pui8RxBuffer,
     Transaction.ui32Instr       = AM_DEVICES_MB85RS1MT_READ;
     Transaction.ui32NumBytes    = 0;
     Transaction.pui32TxBuffer   = (uint32_t *)pui8RxBuffer;
-    Transaction.uPeerInfo.ui32SpiChipSelect = g_MB85RS1MTCS;
+    Transaction.uPeerInfo.ui32SpiChipSelect = pIom->ui32CS;
     Transaction.bContinue       = true;
 
     //
     // Start the transaction (no callback).
     //
-    if (am_hal_iom_highprio_transfer(g_pMB85RS1MTIOMHandle, &Transaction, 0, 0))
+    if (am_hal_iom_highprio_transfer(pIom->pIomHandle, &Transaction, 0, 0))
     {
         return AM_DEVICES_MB85RS1MT_STATUS_ERROR;
     }
@@ -839,13 +889,13 @@ am_devices_mb85rs1mt_nonblocking_read_hiprio(uint8_t *pui8RxBuffer,
     Transaction.ui32Instr       = ui32ReadAddress & 0x00FFFFFF;
     Transaction.ui32NumBytes    = ui32NumBytes;
     Transaction.pui32RxBuffer   = (uint32_t *)pui8RxBuffer;
-    Transaction.uPeerInfo.ui32SpiChipSelect = g_MB85RS1MTCS;
+    Transaction.uPeerInfo.ui32SpiChipSelect = pIom->ui32CS;
     Transaction.bContinue       = false;
 
     //
     // Start the transaction.
     //
-    if (am_hal_iom_highprio_transfer(g_pMB85RS1MTIOMHandle, &Transaction, pfnCallback, pCallbackCtxt))
+    if (am_hal_iom_highprio_transfer(pIom->pIomHandle, &Transaction, pfnCallback, pCallbackCtxt))
     {
         return AM_DEVICES_MB85RS1MT_STATUS_ERROR;
     }

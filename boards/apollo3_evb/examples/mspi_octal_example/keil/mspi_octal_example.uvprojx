@@ -333,9 +333,9 @@
             <v6Rtti>0</v6Rtti>
             <VariousControls>
               <MiscControls></MiscControls>
-              <Define>AM_PART_APOLLO3 AM_UTIL_FAULTISR_PRINT ADESTO_ATXP032 FIREBALL_CARD AM_PACKAGE_BGA keil</Define>
+              <Define>AM_PART_APOLLO3 AM_PACKAGE_BGA AM_UTIL_FAULTISR_PRINT FIREBALL_CARD keil</Define>
               <Undefine></Undefine>
-              <IncludePath>../../../../../mcu/apollo3;../../../../../CMSIS/ARM/Include;../../../../../CMSIS/AmbiqMicro/Include;../../../bsp;../../../../../utils;../../../../../devices;../src;../../../../..</IncludePath>
+              <IncludePath>../../../../../mcu/apollo3;../src;../../../../../CMSIS/ARM/Include;../../../../../devices;../../../../../CMSIS/AmbiqMicro/Include;../../../../..;../../../../../utils;../../../bsp</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -387,6 +387,21 @@
           </Files>
         </Group>
         <Group>
+          <GroupName>devices</GroupName>
+          <Files>
+            <File>
+              <FileName>am_devices_fireball.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../../../../../devices/am_devices_fireball.c</FilePath>
+            </File>
+            <File>
+              <FileName>am_devices_mspi_atxp032.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../../../../../devices/am_devices_mspi_atxp032.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
           <GroupName>utils</GroupName>
           <Files>
             <File>
@@ -403,21 +418,6 @@
               <FileName>am_util_stdio.c</FileName>
               <FileType>1</FileType>
               <FilePath>../../../../../utils/am_util_stdio.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>devices</GroupName>
-          <Files>
-            <File>
-              <FileName>am_devices_fireball.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../devices/am_devices_fireball.c</FilePath>
-            </File>
-            <File>
-              <FileName>am_devices_mspi_flash.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../devices/am_devices_mspi_flash.c</FilePath>
             </File>
           </Files>
         </Group>

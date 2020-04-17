@@ -2,10 +2,10 @@
 //
 //! @file mspi_flash_loader.c
 //!
-//! @brief MSPI External Flash Loading and Execution Example 
+//! @brief MSPI External Flash Loading and Execution Example
 //!
-//! Purpose: This example demonstrates loading a binary image from internal 
-//! flash to MSPI external quad flash, then executing the program using 
+//! Purpose: This example demonstrates loading a binary image from internal
+//! flash to MSPI external quad flash, then executing the program using
 //! XIP from the external flash.
 //!
 //! Printing takes place over the ITM at 1M Baud.
@@ -21,8 +21,8 @@
 //! Prepare the example as follows:
 //!     1. Generate hello_world example to load and execute at MSPI Flash XIP location 0x04000000.
 //!         i. In the /examples/hello_world/iar directory modify the FLASH region as follows:
-//!             change "define region FLASH = mem:[from 0x0000C000 to 0x000FC000];"
-//!             to "define region FLASH = mem:[from 0x04000000 to 0x040F0000];"
+//!             change "define region ROMEM = mem:[from 0x0000C000 to 0x000FC000];"
+//!             to "define region ROMEM = mem:[from 0x04000000 to 0x040F0000];"
 //!         ii. Execute "make" in the /examples/hello_world/iar directory to rebuild the project.
 //!     2. Copy /examples/hello_world/iar/bin/hello_world.bin into /boards/common3/examples/mspi_flash_loader/
 //!     3. Create the binary with mspi_flash_loader + external executable from Step #1.
@@ -42,26 +42,26 @@
 
 //*****************************************************************************
 //
-// Copyright (c) 2019, Ambiq Micro
+// Copyright (c) 2020, Ambiq Micro
 // All rights reserved.
-// 
+//
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided that the following conditions are met:
-// 
+//
 // 1. Redistributions of source code must retain the above copyright notice,
 // this list of conditions and the following disclaimer.
-// 
+//
 // 2. Redistributions in binary form must reproduce the above copyright
 // notice, this list of conditions and the following disclaimer in the
 // documentation and/or other materials provided with the distribution.
-// 
+//
 // 3. Neither the name of the copyright holder nor the names of its
 // contributors may be used to endorse or promote products derived from this
 // software without specific prior written permission.
-// 
+//
 // Third party software included in this distribution is subject to the
 // additional license terms as defined in the /docs/licenses directory.
-// 
+//
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
 // AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
 // IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
@@ -74,15 +74,27 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
-// This is part of revision 2.3.2 of the AmbiqSuite Development Package.
+// This is part of revision 2.4.2 of the AmbiqSuite Development Package.
 //
 //*****************************************************************************
 #include "am_mcu_apollo.h"
 #include "am_bsp.h"
-#include "am_devices_mspi_flash.h"
+#if defined(ADESTO_ATXP032)
+#include "am_devices_mspi_atxp032.h"
+#define am_devices_mspi_flash_config_t am_devices_mspi_atxp032_config_t
+#define AM_DEVICES_MSPI_FLASH_STATUS_SUCCESS AM_DEVICES_MSPI_ATXP032_STATUS_SUCCESS
+#define AM_DEVICES_MSPI_FLASH_SECTOR_SIZE    AM_DEVICES_MSPI_ATXP032_SECTOR_SIZE
+#elif defined(CYPRESS_S25FS064S)
+#include "am_devices_mspi_s25fs064s.h"
+#define am_devices_mspi_flash_config_t am_devices_mspi_s25fs064s_config_t
+#define AM_DEVICES_MSPI_FLASH_STATUS_SUCCESS AM_DEVICES_MSPI_S25FS064S_STATUS_SUCCESS
+#define AM_DEVICES_MSPI_FLASH_SECTOR_SIZE    AM_DEVICES_MSPI_S25FS064S_SECTOR_SIZE
+#else
+#error "Unknown FLASH Device"
+#endif
 #include "am_util.h"
 
-#if FIREBALL_CARD || FIREBALL2_CARD
+//#if FIREBALL_CARD || FIREBALL2_CARD
 //
 // The Fireball device card multiplexes various devices including each of an SPI
 // and I2C FRAM and MSPI flash devices.
@@ -91,7 +103,7 @@
 // to appropriate GPIO pins.
 //
 #include "am_devices_fireball.h"
-#endif // FIREBALL_CARD
+//#endif // FIREBALL_CARD
 
 
 // Location of the MSPI Flash in address space
@@ -104,6 +116,7 @@
 #define ENABLE_LOGGING
 
 #define MSPI_TEST_MODULE        0
+#define MSPI_TEST_FREQ          AM_HAL_MSPI_CLK_24MHZ
 
 #define DEFAULT_TIMEOUT         10000
 #define TEMP_BUFFER_SIZE        2048
@@ -113,97 +126,138 @@
 #define DEBUG_PRINT(...)
 #endif
 
+void            *g_FlashHdl;
+void            *g_MSPIHdl;
 uint32_t        g_TempBuf[TEMP_BUFFER_SIZE / 4];
 uint32_t        DMATCBBuffer[2560];
 
 // Patchable section of binary
 extern uint32_t __Patchable[];
 
-const am_hal_mspi_dev_config_t      MSPI_Flash_Serial_CE0_MSPIConfig =
+const am_devices_mspi_flash_config_t MSPI_Flash_Config =
 {
-  .eSpiMode             = AM_HAL_MSPI_SPI_MODE_0,
-  .eClockFreq           = AM_HAL_MSPI_CLK_24MHZ,
-#if defined(MICRON_N25Q256A)
-  .ui8TurnAround        = 3,
-  .eAddrCfg             = AM_HAL_MSPI_ADDR_3_BYTE,
-#elif defined (CYPRESS_S25FS064S)
-  .ui8TurnAround        = 3,
-  .eAddrCfg             = AM_HAL_MSPI_ADDR_3_BYTE,
-#elif defined (MACRONIX_MX25U12835F)
-  .ui8TurnAround        = 8,
-  .eAddrCfg             = AM_HAL_MSPI_ADDR_3_BYTE,
-#elif defined (ADESTO_ATXP032)
-  .ui8TurnAround        = 8,
-  .eAddrCfg             = AM_HAL_MSPI_ADDR_4_BYTE,
-#endif
-  .eInstrCfg            = AM_HAL_MSPI_INSTR_1_BYTE,
-  .eDeviceConfig        = AM_HAL_MSPI_FLASH_SERIAL_CE0,
-  .bSeparateIO          = true,
-  .bSendInstr           = true,
-  .bSendAddr            = true,
-  .bTurnaround          = true,
-  .ui8ReadInstr         = AM_DEVICES_MSPI_FLASH_FAST_READ,
-  .ui8WriteInstr        = AM_DEVICES_MSPI_FLASH_PAGE_PROGRAM,
-  .ui32TCBSize          = (sizeof(DMATCBBuffer) / sizeof(uint32_t)),
-  .pTCB                 = DMATCBBuffer,
-  .scramblingStartAddr  = 0,
-  .scramblingEndAddr    = 0,
+    .eDeviceConfig = AM_HAL_MSPI_FLASH_QUAD_CE0,
+    .eClockFreq = MSPI_TEST_FREQ,
+    .eMixedMode = AM_HAL_MSPI_XIPMIXED_NORMAL,
+    .pNBTxnBuf = DMATCBBuffer,
+    .ui32NBTxnBufLength = (sizeof(DMATCBBuffer) / sizeof(uint32_t)),
+    .ui32ScramblingStartAddr = 0,
+    .ui32ScramblingEndAddr = 0,
 };
 
-const am_hal_mspi_dev_config_t      MSPI_Flash_Quad_CE0_MSPIConfig =
+//
+// Typedef - to encapsulate device driver functions
+//
+typedef struct
 {
-  .eSpiMode             = AM_HAL_MSPI_SPI_MODE_0,
-  .eClockFreq           = AM_HAL_MSPI_CLK_24MHZ,
-#if defined(MICRON_N25Q256A)
-  .ui8TurnAround        = 3,
-  .eAddrCfg             = AM_HAL_MSPI_ADDR_3_BYTE,
-#elif defined (CYPRESS_S25FS064S)
-  .ui8TurnAround        = 3,
-  .eAddrCfg             = AM_HAL_MSPI_ADDR_3_BYTE,
-#elif defined (MACRONIX_MX25U12835F)
-  .ui8TurnAround        = 8,
-  .eAddrCfg             = AM_HAL_MSPI_ADDR_3_BYTE,
-#elif defined (ADESTO_ATXP032)
-  .ui8TurnAround        = 8,
-  .eAddrCfg             = AM_HAL_MSPI_ADDR_4_BYTE,
+    uint8_t  devName[20];
+    uint32_t (*flash_init)(uint32_t ui32Module, am_devices_mspi_flash_config_t *pDevConfig, void **ppHandle, void **ppMspiHandle);
+    uint32_t (*flash_term)(void *pHandle);
+
+    uint32_t (*flash_read_id)(void *pHandle);
+
+    uint32_t (*flash_write)(void *pHandle, uint8_t *pui8TxBuffer,
+                            uint32_t ui32WriteAddress,
+                            uint32_t ui32NumBytes,
+                            bool bWaitForCompletion);
+
+    uint32_t (*flash_read)(void *pHandle, uint8_t *pui8RxBuffer,
+                           uint32_t ui32ReadAddress,
+                           uint32_t ui32NumBytes,
+                           bool bWaitForCompletion);
+
+    uint32_t (*flash_mass_erase)(void *pHandle);
+    uint32_t (*flash_sector_erase)(void *pHandle, uint32_t ui32SectorAddress);
+
+    uint32_t (*flash_enable_xip)(void *pHandle);
+    uint32_t (*flash_disable_xip)(void *pHandle);
+    uint32_t (*flash_enable_scrambling)(void *pHandle);
+    uint32_t (*flash_disable_scrambling)(void *pHandle);
+
+    am_devices_fireball_control_e flash_fireball_control;
+} flash_device_func_t;
+
+flash_device_func_t device_func =
+{
+#if defined(ADESTO_ATXP032)
+    // Fireball installed MSPI FLASH device
+    .devName = "MSPI FLASH ATXP032",
+    .flash_init = am_devices_mspi_atxp032_init,
+    .flash_term = am_devices_mspi_atxp032_deinit,
+    .flash_read_id = am_devices_mspi_atxp032_id,
+    .flash_write = am_devices_mspi_atxp032_write,
+    .flash_read = am_devices_mspi_atxp032_read,
+    .flash_mass_erase = am_devices_mspi_atxp032_mass_erase,
+    .flash_sector_erase = am_devices_mspi_atxp032_sector_erase,
+    .flash_enable_xip = am_devices_mspi_atxp032_enable_xip,
+    .flash_disable_xip = am_devices_mspi_atxp032_disable_xip,
+    .flash_enable_scrambling = am_devices_mspi_atxp032_enable_scrambling,
+    .flash_disable_scrambling = am_devices_mspi_atxp032_disable_scrambling,
+#if FIREBALL_CARD
+    .flash_fireball_control = AM_DEVICES_FIREBALL_STATE_OCTAL_FLASH_CE0,
+#else
+    .flash_fireball_control = (am_devices_fireball_control_e)0,
 #endif
-  .eInstrCfg            = AM_HAL_MSPI_INSTR_1_BYTE,
-  .eDeviceConfig        = AM_HAL_MSPI_FLASH_QUAD_CE0,
-  .bSeparateIO          = false,
-  .bSendInstr           = true,
-  .bSendAddr            = true,
-  .bTurnaround          = true,
-#if (defined(MICRON_N25Q256A) || defined(MACRONIX_MX25U12835F) || defined(ADESTO_ATXP032))
-  .ui8ReadInstr         = AM_DEVICES_MSPI_FLASH_FAST_READ,
-#elif defined (CYPRESS_S25FS064S)
-  .ui8ReadInstr         = AM_DEVICES_MSPI_FLASH_QUAD_IO_READ,
-#endif          // TODO - Flag an error if another part.
-  .ui8WriteInstr        = AM_DEVICES_MSPI_FLASH_PAGE_PROGRAM,
-  .ui32TCBSize          = (sizeof(DMATCBBuffer) / sizeof(uint32_t)),
-  .pTCB                 = DMATCBBuffer,
-  .scramblingStartAddr  = 0,
-  .scramblingEndAddr    = 0,
+#elif defined(CYPRESS_S25FS064S)
+    // Fireball installed MSPI FLASH device
+    .devName = "MSPI FLASH S25FS064S",
+    .flash_init = am_devices_mspi_s25fs064s_init,
+    .flash_term = am_devices_mspi_s25fs064s_deinit,
+    .flash_read_id = am_devices_mspi_s25fs064s_id,
+    .flash_write = am_devices_mspi_s25fs064s_write,
+    .flash_read = am_devices_mspi_s25fs064s_read,
+    .flash_mass_erase = am_devices_mspi_s25fs064s_mass_erase,
+    .flash_sector_erase = am_devices_mspi_s25fs064s_sector_erase,
+    .flash_enable_xip = am_devices_mspi_s25fs064s_enable_xip,
+    .flash_disable_xip = am_devices_mspi_s25fs064s_disable_xip,
+    .flash_enable_scrambling = am_devices_mspi_s25fs064s_enable_scrambling,
+    .flash_disable_scrambling = am_devices_mspi_s25fs064s_disable_scrambling,
+#if FIREBALL_CARD
+    .flash_fireball_control = AM_DEVICES_FIREBALL_STATE_TWIN_QUAD_CE0_CE1,
+#else
+    .flash_fireball_control = 0,
+#endif
+#else
+#error "Unknown FLASH Device"
+#endif
 };
 
-const am_hal_mspi_dev_config_t      MSPI_Flash_OctalMSPIConfig =
+//! MSPI interrupts.
+static const IRQn_Type mspi_interrupts[] =
 {
-  .eSpiMode             = AM_HAL_MSPI_SPI_MODE_0,
-  .eClockFreq           = AM_HAL_MSPI_CLK_24MHZ,
-  .ui8TurnAround        = 8,
-  .eAddrCfg             = AM_HAL_MSPI_ADDR_4_BYTE,
-  .eInstrCfg            = AM_HAL_MSPI_INSTR_1_BYTE,
-  .eDeviceConfig        = AM_HAL_MSPI_FLASH_OCTAL_CE0,
-  .bSeparateIO          = false,
-  .bSendInstr           = true,
-  .bSendAddr            = true,
-  .bTurnaround          = true,
-  .ui8ReadInstr         = AM_DEVICES_MSPI_FLASH_FAST_READ,
-  .ui8WriteInstr        = AM_DEVICES_MSPI_FLASH_PAGE_PROGRAM,
-  .ui32TCBSize          = (sizeof(DMATCBBuffer) / sizeof(uint32_t)),
-  .pTCB                 = DMATCBBuffer,
-  .scramblingStartAddr  = 0,
-  .scramblingEndAddr    = 0,
+    MSPI0_IRQn,
+#if defined(AM_PART_APOLLO3P)
+    MSPI1_IRQn,
+    MSPI2_IRQn,
+#endif
 };
+
+//
+// Take over the interrupt handler for whichever MSPI we're using.
+//
+#define flash_mspi_isr                                                          \
+    am_mspi_isr1(MSPI_TEST_MODULE)
+#define am_mspi_isr1(n)                                                        \
+    am_mspi_isr(n)
+#define am_mspi_isr(n)                                                         \
+    am_mspi ## n ## _isr
+
+//*****************************************************************************
+//
+// MSPI ISRs.
+//
+//*****************************************************************************
+void flash_mspi_isr(void)
+{
+    uint32_t      ui32Status;
+
+    am_hal_mspi_interrupt_status_get(g_MSPIHdl, &ui32Status, false);
+
+    am_hal_mspi_interrupt_clear(g_MSPIHdl, ui32Status);
+
+    am_hal_mspi_interrupt_service(g_MSPIHdl, ui32Status);
+}
+
 
 // This function intializes the VTOR, SP and jumps the the Reset Vector of the image provided
 #if defined(__GNUC_STDC_INLINE__)
@@ -278,9 +332,8 @@ main(void)
 {
     uint32_t      ui32Status;
     uint32_t      u32InstallOffset;
-    void          *pHandle;
 
-    am_hal_mspi_dev_config_t MspiCfg = MSPI_Flash_Quad_CE0_MSPIConfig;
+    am_devices_mspi_flash_config_t MspiCfg = MSPI_Flash_Config;
     bool          bScramble = false;
     bool          bRun = false;
 
@@ -363,15 +416,11 @@ main(void)
     }
 #endif
 
-#if defined (ADESTO_ATXP032)
-    ui32Ret = am_devices_fireball_control(AM_DEVICES_FIREBALL_STATE_OCTAL_FLASH_CE0, 0);
-#else
-    ui32Ret = am_devices_fireball_control(AM_DEVICES_FIREBALL_STATE_TWIN_QUAD_CE0_CE1, 0);
-#endif
+    ui32Ret = am_devices_fireball_control(device_func.flash_fireball_control, 0);
     if ( ui32Ret != 0 )
     {
         DEBUG_PRINT("FAIL: am_devices_fireball_control(%d) returned 0x%X.\n",
-                             AM_DEVICES_FIREBALL_STATE_TWIN_QUAD_CE0_CE1, ui32Ret);
+                             device_func.flash_fireball_control, ui32Ret);
         return -1;
     }
 #endif // FIREBALL_CARD
@@ -389,8 +438,8 @@ main(void)
         if (__Patchable[3] & 0x1)
         {
             // Enable scrambling
-            MspiCfg.scramblingStartAddr = u32InstallOffset;
-            MspiCfg.scramblingEndAddr = u32InstallOffset + binSize - 1;
+            MspiCfg.ui32ScramblingStartAddr = u32InstallOffset;
+            MspiCfg.ui32ScramblingEndAddr = u32InstallOffset + binSize - 1;
             bScramble = true;
         }
         if (__Patchable[3] & 0x2)
@@ -415,18 +464,21 @@ main(void)
     //
     // Configure the MSPI and Flash Device.
     //
-    ui32Status = am_devices_mspi_flash_init(MSPI_TEST_MODULE, &MspiCfg, &pHandle);
+    ui32Status = device_func.flash_init(MSPI_TEST_MODULE, (void*)&MspiCfg, &g_FlashHdl, &g_MSPIHdl);
     if (AM_DEVICES_MSPI_FLASH_STATUS_SUCCESS != ui32Status)
     {
         DEBUG_PRINT("Failed to configure the MSPI and Flash Device correctly!\n");
         return -1;
     }
+    NVIC_EnableIRQ(mspi_interrupts[MSPI_TEST_MODULE]);
+
+    am_hal_interrupt_master_enable();
 
     //
     // Read the MSPI Device ID.
     //
 #if !defined (ADESTO_ATXP032)
-    ui32Status = am_devices_mspi_flash_id(MSPI_TEST_MODULE);
+    ui32Status = device_func.flash_read_id(g_FlashHdl);
     if (AM_DEVICES_MSPI_FLASH_STATUS_SUCCESS != ui32Status)
     {
         DEBUG_PRINT("Failed to read Flash Device ID!\n");
@@ -438,7 +490,7 @@ main(void)
     // Mass Erase
     DEBUG_PRINT("Initiating mass erase Flash Device!\n");
     DEBUG_PRINT("This takes about 40 seconds!\n");
-    ui32Status = am_devices_mspi_flash_mass_erase(MSPI_TEST_MODULE);
+    ui32Status = device_func.flash_mass_erase(g_FlashHdl);
     if (AM_DEVICES_MSPI_FLASH_STATUS_SUCCESS != ui32Status)
     {
         DEBUG_PRINT("Failed to mass erase Flash Device!\n");
@@ -455,7 +507,7 @@ main(void)
         // Erase the target sector.
         //
         DEBUG_PRINT("Erasing Sector %d\n", sector);
-        ui32Status = am_devices_mspi_flash_sector_erase(MSPI_TEST_MODULE, sector << 16);
+        ui32Status = device_func.flash_sector_erase(g_FlashHdl, sector << 16);
         if (AM_DEVICES_MSPI_FLASH_STATUS_SUCCESS != ui32Status)
         {
             DEBUG_PRINT("Failed to erase Flash Device sector!\n");
@@ -468,7 +520,7 @@ main(void)
     //
     // Enable XIP mode.
     //
-    ui32Status = am_devices_mspi_flash_enable(true, false);
+    ui32Status = device_func.flash_enable_xip(g_FlashHdl);
     if (AM_DEVICES_MSPI_FLASH_STATUS_SUCCESS != ui32Status)
     {
         am_util_stdio_printf("Failed to enable XIP mode in the MSPI!\n");
@@ -490,7 +542,7 @@ main(void)
     //
     // Make sure we aren't in XIP mode.
     //
-    ui32Status = am_devices_mspi_flash_disable_xip(MSPI_TEST_MODULE);
+    ui32Status = device_func.flash_disable_xip(g_FlashHdl);
     if (AM_DEVICES_MSPI_FLASH_STATUS_SUCCESS != ui32Status)
     {
         DEBUG_PRINT("Failed to disable XIP mode in the MSPI!\n");
@@ -503,7 +555,7 @@ main(void)
         // Turn on scrambling operation.
         //
         DEBUG_PRINT("Putting the MSPI into Scrambling mode\n");
-        ui32Status = am_devices_mspi_flash_enable(false, bScramble);
+        ui32Status = device_func.flash_enable_scrambling(g_FlashHdl);
         if (AM_DEVICES_MSPI_FLASH_STATUS_SUCCESS != ui32Status)
         {
             DEBUG_PRINT("Failed to enable MSPI scrambling!\n");
@@ -514,7 +566,7 @@ main(void)
     // Write the executable binary into MSPI flash
     //
     DEBUG_PRINT("Writing image to External Flash Device!\n");
-    ui32Status = am_devices_mspi_flash_write(MSPI_TEST_MODULE, (uint8_t *)binAddr, u32InstallOffset, binSize);
+    ui32Status = device_func.flash_write(g_FlashHdl, (uint8_t *)binAddr, u32InstallOffset, binSize, true);
     if (AM_DEVICES_MSPI_FLASH_STATUS_SUCCESS != ui32Status)
     {
         DEBUG_PRINT("Failed to write buffer to Flash Device!\n");
@@ -528,7 +580,7 @@ main(void)
         //
         // Read the data back into the RX buffer.
         //
-        ui32Status = am_devices_mspi_flash_read((uint8_t *)g_TempBuf, address, TEMP_BUFFER_SIZE, true);
+        ui32Status = device_func.flash_read(g_FlashHdl, (uint8_t *)g_TempBuf, address, TEMP_BUFFER_SIZE, true);
         if (AM_DEVICES_MSPI_FLASH_STATUS_SUCCESS != ui32Status)
         {
             DEBUG_PRINT("Failed to read buffer to Flash Device!\n");
@@ -557,7 +609,15 @@ main(void)
         // Set up for XIP operation.
         //
         DEBUG_PRINT("Putting the MSPI and External Flash into XIP mode\n");
-        ui32Status = am_devices_mspi_flash_enable(true, bScramble);
+        ui32Status = device_func.flash_enable_xip(g_FlashHdl);
+        if ( bScramble )
+        {
+            ui32Status = device_func.flash_enable_scrambling(g_FlashHdl);
+        }
+        else
+        {
+            ui32Status = device_func.flash_disable_scrambling(g_FlashHdl);
+        }
         if (AM_DEVICES_MSPI_FLASH_STATUS_SUCCESS != ui32Status)
         {
             DEBUG_PRINT("Failed to put the MSPI into XIP mode!\n");

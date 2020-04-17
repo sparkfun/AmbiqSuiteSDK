@@ -333,9 +333,9 @@
             <v6Rtti>0</v6Rtti>
             <VariousControls>
               <MiscControls></MiscControls>
-              <Define>AM_PACKAGE_BGA AM_PART_APOLLO3 FIREBALL_CARD=1 keil</Define>
+              <Define>FIREBALL_CARD=1 AM_PART_APOLLO3 AM_PACKAGE_BGA keil</Define>
               <Undefine></Undefine>
-              <IncludePath>../../../bsp;../../../../../mcu/apollo3;../../../../..;../../../../../CMSIS/AmbiqMicro/Include;../../../../../utils;../../../../../devices;../../../../../CMSIS/ARM/Include;../src</IncludePath>
+              <IncludePath>../../../../../mcu/apollo3;../../../../..;../../../bsp;../../../../../devices;../../../../../CMSIS/AmbiqMicro/Include;../../../../../CMSIS/ARM/Include;../../../../../utils;../src</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -387,26 +387,6 @@
           </Files>
         </Group>
         <Group>
-          <GroupName>devices</GroupName>
-          <Files>
-            <File>
-              <FileName>am_devices_fireball.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../devices/am_devices_fireball.c</FilePath>
-            </File>
-            <File>
-              <FileName>am_devices_mb85rc256v.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../devices/am_devices_mb85rc256v.c</FilePath>
-            </File>
-            <File>
-              <FileName>am_devices_mb85rs1mt.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../devices/am_devices_mb85rs1mt.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
           <GroupName>utils</GroupName>
           <Files>
             <File>
@@ -427,6 +407,26 @@
           </Files>
         </Group>
         <Group>
+          <GroupName>devices</GroupName>
+          <Files>
+            <File>
+              <FileName>am_devices_fireball.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../../../../../devices/am_devices_fireball.c</FilePath>
+            </File>
+            <File>
+              <FileName>am_devices_mb85rc256v.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../../../../../devices/am_devices_mb85rc256v.c</FilePath>
+            </File>
+            <File>
+              <FileName>am_devices_mb85rs1mt.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../../../../../devices/am_devices_mb85rs1mt.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
           <GroupName>keil</GroupName>
           <Files>
             <File>
@@ -440,14 +440,14 @@
           <GroupName>lib</GroupName>
           <Files>
             <File>
-              <FileName>libam_bsp.lib</FileName>
-              <FileType>4</FileType>
-              <FilePath>../../../bsp/keil/bin/libam_bsp.lib</FilePath>
-            </File>
-            <File>
               <FileName>libam_hal.lib</FileName>
               <FileType>4</FileType>
               <FilePath>../../../../../mcu/apollo3/hal/keil/bin/libam_hal.lib</FilePath>
+            </File>
+            <File>
+              <FileName>libam_bsp.lib</FileName>
+              <FileType>4</FileType>
+              <FilePath>../../../bsp/keil/bin/libam_bsp.lib</FilePath>
             </File>
           </Files>
         </Group>

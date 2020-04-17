@@ -5,13 +5,13 @@ Name:
 
 Description:
 ============
- MSPI External Flash Loading and Execution Example 
+ MSPI External Flash Loading and Execution Example
 
 
 Purpose:
 ========
-This example demonstrates loading a binary image from internal 
-flash to MSPI external quad flash, then executing the program using 
+This example demonstrates loading a binary image from internal
+flash to MSPI external quad flash, then executing the program using
 XIP from the external flash.
 
 Printing takes place over the ITM at 1M Baud.
@@ -28,8 +28,8 @@ This example will not build if proper startup/linker files are not used.
 Prepare the example as follows:
 1. Generate hello_world example to load and execute at MSPI Flash XIP location 0x04000000.
 i. In the /examples/hello_world/iar directory modify the FLASH region as follows:
-change "define region FLASH = mem:[from 0x0000C000 to 0x000FC000];"
-to "define region FLASH = mem:[from 0x04000000 to 0x040F0000];"
+change "define region ROMEM = mem:[from 0x0000C000 to 0x000FC000];"
+to "define region ROMEM = mem:[from 0x04000000 to 0x040F0000];"
 ii. Execute "make" in the /examples/hello_world/iar directory to rebuild the project.
 2. Copy /examples/hello_world/iar/bin/hello_world.bin into /boards/common3/examples/mspi_flash_loader/
 3. Create the binary with mspi_flash_loader + external executable from Step #1.

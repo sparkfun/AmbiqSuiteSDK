@@ -2,26 +2,26 @@
 #
 # Makefile - Rules for building the libraries, examples and docs.
 #
-# Copyright (c) 2019, Ambiq Micro
+# Copyright (c) 2020, Ambiq Micro
 # All rights reserved.
-# 
+#
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
-# 
+#
 # 1. Redistributions of source code must retain the above copyright notice,
 # this list of conditions and the following disclaimer.
-# 
+#
 # 2. Redistributions in binary form must reproduce the above copyright
 # notice, this list of conditions and the following disclaimer in the
 # documentation and/or other materials provided with the distribution.
-# 
+#
 # 3. Neither the name of the copyright holder nor the names of its
 # contributors may be used to endorse or promote products derived from this
 # software without specific prior written permission.
-# 
+#
 # Third party software included in this distribution is subject to the
 # additional license terms as defined in the /docs/licenses directory.
-# 
+#
 # THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
 # AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
 # IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
@@ -34,7 +34,7 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 #
-# This is part of revision 2.3.2 of the AmbiqSuite Development Package.
+# This is part of revision 2.4.2 of the AmbiqSuite Development Package.
 #
 #******************************************************************************
 TARGET := ble_freertos_prodtest_dats
@@ -80,95 +80,82 @@ all clean:
 else
 
 DEFINES = -DPART_$(PART)
-DEFINES+= -DAM_PACKAGE_BGA
-DEFINES+= -DAM_FREERTOS
-DEFINES+= -DAM_PART_APOLLO2
 DEFINES+= -DSEC_ECC_CFG=SEC_ECC_CFG_UECC
+DEFINES+= -DAM_PACKAGE_BGA
+DEFINES+= -DAM_PART_APOLLO2
+DEFINES+= -DAM_FREERTOS
 DEFINES+= -Dgcc
 
-INCLUDES = -I../../../../../third_party/exactle/wsf/sources/port/freertos
-INCLUDES+= -I../../../../../third_party/FreeRTOSv10.1.1/Source/include
-INCLUDES+= -I../../../../../third_party/exactle/ble-profiles/sources/profiles/uribeacon
-INCLUDES+= -I../../../../../third_party/FreeRTOSv10.1.1/Source/portable/GCC/AMapollo2
-INCLUDES+= -I../../../../../ambiq_ble/em9304
-INCLUDES+= -I../../../../../utils
-INCLUDES+= -I../../../../../third_party/exactle/ble-profiles/sources/profiles/gap
-INCLUDES+= -I../../../../../third_party/exactle/wsf/include
-INCLUDES+= -I../../../../../third_party/exactle/ble-host/sources/sec/common
-INCLUDES+= -I../src
-INCLUDES+= -I../../../../../third_party/exactle/ble-host/sources/stack/hci
-INCLUDES+= -I../../../../../third_party/exactle/ble-profiles/sources/services
-INCLUDES+= -I../../../../../third_party/exactle/ble-host/sources/stack/l2c
-INCLUDES+= -I../../../../../third_party/exactle/ble-host/sources/stack/dm
-INCLUDES+= -I../../../../../third_party/exactle/wsf/sources/util
-INCLUDES+= -I../../../../../third_party/exactle/ble-host/sources/hci/ambiq
-INCLUDES+= -I../../../../../third_party/exactle/ble-host/sources/stack/att
+INCLUDES = -I../../../../../mcu/apollo2
+INCLUDES+= -I../../../bsp
+INCLUDES+= -I../../../../../third_party/exactle/ble-profiles/sources/profiles
 INCLUDES+= -I../../../../../third_party/exactle/ble-profiles/sources/apps
 INCLUDES+= -I../../../../../third_party/uecc
-INCLUDES+= -I../../../../../third_party/exactle/wsf/sources
-INCLUDES+= -I../../../../../third_party/exactle/ble-profiles/sources/profiles/bas
-INCLUDES+= -I../../../../../third_party/exactle/ble-host/sources/hci/include
-INCLUDES+= -I../../../../../third_party/exactle/ble-profiles/sources/profiles/include
-INCLUDES+= -I../../../../../third_party/exactle/ble-profiles/sources/profiles/hid
-INCLUDES+= -I../../../../../third_party/exactle/ble-profiles/sources/profiles
-INCLUDES+= -I../../../../../devices
-INCLUDES+= -I../../../../../third_party/exactle/ble-profiles/include/app
-INCLUDES+= -I../../../../../third_party/exactle/ble-host/include
-INCLUDES+= -I../../../bsp
-INCLUDES+= -I../../../../../third_party/exactle/ble-host/sources/stack/cfg
 INCLUDES+= -I../../../../../third_party/exactle/ble-profiles/sources/apps/app
-INCLUDES+= -I../../../../../mcu/apollo2
+INCLUDES+= -I../../../../../third_party/FreeRTOSv10.1.1/Source/include
+INCLUDES+= -I../../../../../third_party/exactle/ble-profiles/sources/profiles/bas
+INCLUDES+= -I../../../../../third_party/exactle/ble-host/sources/stack/dm
+INCLUDES+= -I../../../../../third_party/exactle/ble-profiles/include/app
+INCLUDES+= -I../../../../../third_party/exactle/ble-profiles/sources/profiles/gap
+INCLUDES+= -I../../../../../third_party/exactle/ble-profiles/sources/profiles/hid
+INCLUDES+= -I../../../../../third_party/exactle/ble-host/sources/stack/l2c
 INCLUDES+= -I../../../../../third_party/exactle/ble-host/sources/hci/ambiq/em9304
-INCLUDES+= -I../../../../../third_party/exactle/ble-host/sources/stack/smp
-INCLUDES+= -I../../../../../third_party/exactle/ble-profiles/sources/profiles/gatt
+INCLUDES+= -I../../../../../devices
+INCLUDES+= -I../../../../../third_party/exactle/ble-profiles/sources/services
+INCLUDES+= -I../src
+INCLUDES+= -I../../../../../third_party/exactle/wsf/sources/port/freertos
+INCLUDES+= -I../../../../../ambiq_ble/em9304
+INCLUDES+= -I../../../../../third_party/exactle/ble-profiles/sources/profiles/uribeacon
+INCLUDES+= -I../../../../../third_party/exactle/ble-host/sources/hci/include
 INCLUDES+= -I../../../../../ambiq_ble/apps/prodtest_dats
+INCLUDES+= -I../../../../../third_party/exactle/ble-host/sources/sec/common
+INCLUDES+= -I../../../../../third_party/exactle/wsf/sources
+INCLUDES+= -I../../../../../third_party/exactle/ble-profiles/sources/profiles/gatt
+INCLUDES+= -I../../../../../third_party/exactle/ble-profiles/sources/profiles/include
+INCLUDES+= -I../../../../../third_party/exactle/ble-host/sources/stack/hci
+INCLUDES+= -I../../../../../third_party/exactle/ble-host/sources/stack/att
+INCLUDES+= -I../../../../../third_party/exactle/wsf/sources/util
+INCLUDES+= -I../../../../../third_party/exactle/ble-host/sources/stack/smp
+INCLUDES+= -I../../../../../third_party/FreeRTOSv10.1.1/Source/portable/GCC/AMapollo2
+INCLUDES+= -I../../../../../third_party/exactle/ble-host/sources/hci/ambiq
+INCLUDES+= -I../../../../../third_party/exactle/ble-host/include
+INCLUDES+= -I../../../../../utils
+INCLUDES+= -I../../../../../third_party/exactle/wsf/include
+INCLUDES+= -I../../../../../third_party/exactle/ble-host/sources/stack/cfg
 
-VPATH = ../../../../../third_party/exactle/wsf/sources/port/freertos
-VPATH+=:../../../../../third_party/exactle/ble-profiles/sources/profiles/bas
+VPATH = ../../../../../third_party/exactle/ble-profiles/sources/apps/hidapp
 VPATH+=:../../../../../third_party/FreeRTOSv10.1.1/Source/portable/MemMang
-VPATH+=:../../../../../third_party/exactle/ble-profiles/sources/profiles/hid
-VPATH+=:../../../../../ambiq_ble/apps/prodtest_dats
-VPATH+=:../../../../../ambiq_ble/em9304
-VPATH+=:../../../../../utils
-VPATH+=:../../../../../devices
 VPATH+=:../../../../../third_party/exactle/ble-host/sources/sec/uecc
-VPATH+=:../../../../../third_party/exactle/ble-profiles/sources/profiles/gap
-VPATH+=:../../../../../third_party/FreeRTOSv10.1.1/Source/portable/GCC/AMapollo2
+VPATH+=:../../../../../ambiq_ble/apps/prodtest_dats
 VPATH+=:../../../../../third_party/exactle/ble-host/sources/sec/common
-VPATH+=:../../../../../third_party/exactle/ble-host/sources/stack/cfg
-VPATH+=:../../../../../third_party/exactle/ble-profiles/sources/apps/app
-VPATH+=:../src
-VPATH+=:../../../../../third_party/exactle/ble-host/sources/stack/hci
-VPATH+=:../../../../../third_party/exactle/ble-profiles/sources/services
-VPATH+=:../../../../../third_party/exactle/ble-host/sources/stack/l2c
-VPATH+=:../../../../../third_party/exactle/ble-host/sources/stack/dm
-VPATH+=:../../../../../third_party/exactle/wsf/sources/util
-VPATH+=:../../../../../third_party/exactle/ble-host/sources/hci/ambiq
-VPATH+=:../../../../../third_party/exactle/ble-host/sources/stack/att
-VPATH+=:../../../../../third_party/exactle/ble-profiles/sources/apps/hidapp
-VPATH+=:../../../../../third_party/exactle/ble-host/sources/hci/ambiq/em9304
 VPATH+=:../../../../../third_party/uecc
-VPATH+=:../../../../../third_party/exactle/ble-profiles/sources/apps/app/common
-VPATH+=:../../../../../third_party/exactle/ble-host/sources/stack/smp
+VPATH+=:../../../../../third_party/exactle/ble-profiles/sources/apps/app
 VPATH+=:../../../../../third_party/exactle/ble-profiles/sources/profiles/gatt
 VPATH+=:../../../../../third_party/FreeRTOSv10.1.1/Source
+VPATH+=:../../../../../third_party/exactle/ble-profiles/sources/profiles/bas
+VPATH+=:../../../../../third_party/exactle/ble-host/sources/stack/hci
+VPATH+=:../../../../../third_party/exactle/ble-host/sources/stack/dm
+VPATH+=:../../../../../third_party/exactle/ble-host/sources/stack/att
+VPATH+=:../../../../../third_party/exactle/wsf/sources/util
+VPATH+=:../../../../../third_party/exactle/ble-profiles/sources/profiles/gap
+VPATH+=:../../../../../third_party/exactle/ble-profiles/sources/profiles/hid
+VPATH+=:../../../../../third_party/exactle/ble-host/sources/stack/smp
+VPATH+=:../src
+VPATH+=:../../../../../third_party/exactle/ble-host/sources/stack/l2c
+VPATH+=:../../../../../third_party/FreeRTOSv10.1.1/Source/portable/GCC/AMapollo2
+VPATH+=:../../../../../third_party/exactle/ble-host/sources/hci/ambiq
+VPATH+=:../../../../../third_party/exactle/ble-profiles/sources/apps/app/common
+VPATH+=:../../../../../third_party/exactle/ble-host/sources/hci/ambiq/em9304
+VPATH+=:../../../../../devices
+VPATH+=:../../../../../third_party/exactle/ble-profiles/sources/services
+VPATH+=:../../../../../utils
+VPATH+=:../../../../../third_party/exactle/wsf/sources/port/freertos
+VPATH+=:../../../../../third_party/exactle/ble-host/sources/stack/cfg
+VPATH+=:../../../../../ambiq_ble/em9304
 
-SRC = wsf_assert.c
-SRC += wsf_buf.c
-SRC += wsf_efs.c
-SRC += wsf_math.c
-SRC += wsf_msg.c
-SRC += wsf_os.c
-SRC += wsf_queue.c
-SRC += wsf_timer.c
-SRC += wsf_trace.c
-SRC += bas_main.c
-SRC += hid_main.c
-SRC += port.c
-SRC += em9304_init.c
-SRC += em9304_patches.c
+SRC = hidapp_main.c
 SRC += sec_ecc.c
-SRC += gap_main.c
+SRC += prodtest_dats_main.c
 SRC += sec_aes.c
 SRC += sec_aes_rev.c
 SRC += sec_ccm_hci.c
@@ -176,15 +163,11 @@ SRC += sec_cmac_hci.c
 SRC += sec_ecc_debug.c
 SRC += sec_ecc_hci.c
 SRC += sec_main.c
-SRC += cfg_stack.c
-SRC += ble_freertos_prodtest_dats.c
-SRC += radio_task.c
-SRC += rtos.c
+SRC += uECC.c
+SRC += uECC_ll.c
+SRC += gatt_main.c
+SRC += bas_main.c
 SRC += hci_main.c
-SRC += l2c_coc.c
-SRC += l2c_main.c
-SRC += l2c_master.c
-SRC += l2c_slave.c
 SRC += dm_adv.c
 SRC += dm_adv_ae.c
 SRC += dm_adv_leg.c
@@ -211,24 +194,6 @@ SRC += dm_sec_lesc.c
 SRC += dm_sec_master.c
 SRC += dm_sec_slave.c
 SRC += dm_sync_ae.c
-SRC += bda.c
-SRC += bstream.c
-SRC += calc128.c
-SRC += crc32.c
-SRC += print.c
-SRC += terminal.c
-SRC += wstr.c
-SRC += hci_cmd.c
-SRC += hci_cmd_ae.c
-SRC += hci_cmd_cte.c
-SRC += hci_cmd_past.c
-SRC += hci_cmd_phy.c
-SRC += hci_core.c
-SRC += hci_core_ps.c
-SRC += hci_evt.c
-SRC += hci_tr.c
-SRC += hci_vs.c
-SRC += hci_vs_ae.c
 SRC += attc_disc.c
 SRC += attc_main.c
 SRC += attc_proc.c
@@ -246,18 +211,15 @@ SRC += atts_sign.c
 SRC += atts_write.c
 SRC += att_main.c
 SRC += att_uuid.c
-SRC += hidapp_main.c
-SRC += hci_drv_em9304.c
-SRC += uECC.c
-SRC += uECC_ll.c
-SRC += app_db.c
-SRC += app_hw.c
-SRC += app_ui.c
-SRC += ui_console.c
-SRC += ui_lcd.c
-SRC += ui_main.c
-SRC += ui_platform.c
-SRC += ui_timer.c
+SRC += bda.c
+SRC += bstream.c
+SRC += calc128.c
+SRC += crc32.c
+SRC += print.c
+SRC += terminal.c
+SRC += wstr.c
+SRC += gap_main.c
+SRC += hid_main.c
 SRC += smpi_act.c
 SRC += smpi_sc_act.c
 SRC += smpi_sc_sm.c
@@ -272,8 +234,46 @@ SRC += smp_main.c
 SRC += smp_non.c
 SRC += smp_sc_act.c
 SRC += smp_sc_main.c
-SRC += gatt_main.c
-SRC += prodtest_dats_main.c
+SRC += wsf_assert.c
+SRC += wsf_buf.c
+SRC += wsf_efs.c
+SRC += wsf_math.c
+SRC += wsf_msg.c
+SRC += wsf_os.c
+SRC += wsf_queue.c
+SRC += wsf_timer.c
+SRC += wsf_trace.c
+SRC += l2c_coc.c
+SRC += l2c_main.c
+SRC += l2c_master.c
+SRC += l2c_slave.c
+SRC += port.c
+SRC += hci_cmd.c
+SRC += hci_cmd_ae.c
+SRC += hci_cmd_cte.c
+SRC += hci_cmd_past.c
+SRC += hci_cmd_phy.c
+SRC += hci_core.c
+SRC += hci_core_ps.c
+SRC += hci_evt.c
+SRC += hci_tr.c
+SRC += hci_vs.c
+SRC += hci_vs_ae.c
+SRC += app_db.c
+SRC += app_hw.c
+SRC += app_ui.c
+SRC += ui_console.c
+SRC += ui_lcd.c
+SRC += ui_main.c
+SRC += ui_platform.c
+SRC += ui_timer.c
+SRC += hci_drv_em9304.c
+SRC += ble_freertos_prodtest_dats.c
+SRC += radio_task.c
+SRC += rtos.c
+SRC += cfg_stack.c
+SRC += em9304_init.c
+SRC += em9304_patches.c
 SRC += app_disc.c
 SRC += app_main.c
 SRC += app_master.c
@@ -282,14 +282,7 @@ SRC += app_server.c
 SRC += app_slave.c
 SRC += app_slave_leg.c
 SRC += app_terminal.c
-SRC += am_util_delay.c
-SRC += am_util_faultisr.c
-SRC += am_util_stdio.c
-SRC += event_groups.c
-SRC += list.c
-SRC += queue.c
-SRC += tasks.c
-SRC += timers.c
+SRC += am_devices_em9304.c
 SRC += svc_batt.c
 SRC += svc_bps.c
 SRC += svc_core.c
@@ -311,8 +304,15 @@ SRC += svc_uricfg.c
 SRC += svc_wdxs.c
 SRC += svc_wp.c
 SRC += svc_wss.c
-SRC += am_devices_em9304.c
+SRC += am_util_delay.c
+SRC += am_util_faultisr.c
+SRC += am_util_stdio.c
 SRC += heap_2.c
+SRC += event_groups.c
+SRC += list.c
+SRC += queue.c
+SRC += tasks.c
+SRC += timers.c
 SRC += startup_gcc.c
 
 CSRC = $(filter %.c,$(SRC))
