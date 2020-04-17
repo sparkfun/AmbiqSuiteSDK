@@ -480,7 +480,7 @@
         0x000002c8:    b5f8        ..      PUSH     {r3-r7,lr}
         0x000002ca:    4604        .F      MOV      r4,r0
         0x000002cc:    f000fefa    ....    BL       am_hal_iom_enable ; 0x10c4
-        0x000002d0:    4d33        3M      LDR      r5,[pc,#204] ; [0x3a0] = 0x10000060
+        0x000002d0:    4d33        3M      LDR      r5,[pc,#204] ; [0x3a0] = 0x10000030
         0x000002d2:    4934        4I      LDR      r1,[pc,#208] ; [0x3a4] = 0xdeadbeef
         0x000002d4:    f8550034    U.4.    LDR      r0,[r5,r4,LSL #3]
         0x000002d8:    4288        .B      CMP      r0,r1
@@ -550,7 +550,7 @@
         0x0000039a:    f7ffbefd    ....    B.W      am_hal_interrupt_master_set ; 0x198
     $d
         0x0000039e:    0000        ..      DCW    0
-        0x000003a0:    10000060    `...    DCD    268435552
+        0x000003a0:    10000030    0...    DCD    268435504
         0x000003a4:    deadbeef    ....    DCD    3735928559
         0x000003a8:    40010000    ...@    DCD    1073807360
     $t
@@ -1848,12 +1848,12 @@
         0x000010d4:    f8d1211c    ...!    LDR      r2,[r1,#0x11c]
         0x000010d8:    f0424200    B..B    ORR      r2,r2,#0x80000000
         0x000010dc:    f8c1211c    ...!    STR      r2,[r1,#0x11c]
-        0x000010e0:    4a01        .J      LDR      r2,[pc,#4] ; [0x10e8] = 0x10000034
+        0x000010e0:    4a01        .J      LDR      r2,[pc,#4] ; [0x10e8] = 0x10000064
         0x000010e2:    2100        .!      MOVS     r1,#0
         0x000010e4:    5411        .T      STRB     r1,[r2,r0]
         0x000010e6:    4770        pG      BX       lr
     $d
-        0x000010e8:    10000034    4...    DCD    268435508
+        0x000010e8:    10000064    d...    DCD    268435556
     $t
     i.am_hal_iom_fifo_read
     am_hal_iom_fifo_read
@@ -2152,14 +2152,14 @@
         0x00001412:    4604        .F      MOV      r4,r0
         0x00001414:    2806        .(      CMP      r0,#6
         0x00001416:    bf38        8.      IT       CC
-        0x00001418:    4b47        GK      LDRCC    r3,[pc,#284] ; [0x1538] = 0x10000034
+        0x00001418:    4b47        GK      LDRCC    r3,[pc,#284] ; [0x1538] = 0x10000064
         0x0000141a:    d842        B.      BHI      0x14a2 ; am_hal_iom_i2c_read + 154
         0x0000141c:    d205        ..      BCS      0x142a ; am_hal_iom_i2c_read + 34
         0x0000141e:    bf00        ..      NOP      
         0x00001420:    f813c000    ....    LDRB     r12,[r3,r0]
         0x00001424:    f1bc0f00    ....    CMP      r12,#0
         0x00001428:    d1fa        ..      BNE      0x1420 ; am_hal_iom_i2c_read + 24
-        0x0000142a:    4e44        DN      LDR      r6,[pc,#272] ; [0x153c] = 0x1000003b
+        0x0000142a:    4e44        DN      LDR      r6,[pc,#272] ; [0x153c] = 0x1000006b
         0x0000142c:    2000        .       MOVS     r0,#0
         0x0000142e:    5530        0U      STRB     r0,[r6,r4]
         0x00001430:    b127        '.      CBZ      r7,0x143c ; am_hal_iom_i2c_read + 52
@@ -2209,7 +2209,7 @@
         0x000014aa:    5530        0U      STRB     r0,[r6,r4]
         0x000014ac:    f7fefe70    ..p.    BL       am_hal_interrupt_master_disable ; 0x190
         0x000014b0:    9002        ..      STR      r0,[sp,#8]
-        0x000014b2:    4821        !H      LDR      r0,[pc,#132] ; [0x1538] = 0x10000034
+        0x000014b2:    4821        !H      LDR      r0,[pc,#132] ; [0x1538] = 0x10000064
         0x000014b4:    5d00        .]      LDRB     r0,[r0,r4]
         0x000014b6:    2800        .(      CMP      r0,#0
         0x000014b8:    bf04        ..      ITT      EQ
@@ -2247,7 +2247,7 @@
         0x0000150e:    e002        ..      B        0x1516 ; am_hal_iom_i2c_read + 270
         0x00001510:    9802        ..      LDR      r0,[sp,#8]
         0x00001512:    f7fefe41    ..A.    BL       am_hal_interrupt_master_set ; 0x198
-        0x00001516:    490c        .I      LDR      r1,[pc,#48] ; [0x1548] = 0x10000030
+        0x00001516:    490c        .I      LDR      r1,[pc,#48] ; [0x1548] = 0x10000060
         0x00001518:    4620         F      MOV      r0,r4
         0x0000151a:    6809        .h      LDR      r1,[r1,#0]
         0x0000151c:    4788        .G      BLX      r1
@@ -2262,11 +2262,11 @@
         0x00001532:    e8bd8ff0    ....    POP      {r4-r11,pc}
     $d
         0x00001536:    0000        ..      DCW    0
-        0x00001538:    10000034    4...    DCD    268435508
-        0x0000153c:    1000003b    ;...    DCD    268435515
+        0x00001538:    10000064    d...    DCD    268435556
+        0x0000153c:    1000006b    k...    DCD    268435563
         0x00001540:    00004290    .B..    DCD    17040
         0x00001544:    10000720     ...    DCD    268437280
-        0x00001548:    10000030    0...    DCD    268435504
+        0x00001548:    10000060    `...    DCD    268435552
     $t
     i.am_hal_iom_i2c_read_nb
     am_hal_iom_i2c_read_nb
@@ -2275,7 +2275,7 @@
         0x00001552:    4689        .F      MOV      r9,r1
         0x00001554:    4604        .F      MOV      r4,r0
         0x00001556:    e9dd170a    ....    LDRD     r1,r7,[sp,#0x28]
-        0x0000155a:    4835        5H      LDR      r0,[pc,#212] ; [0x1630] = 0x10000034
+        0x0000155a:    4835        5H      LDR      r0,[pc,#212] ; [0x1630] = 0x10000064
         0x0000155c:    461e        .F      MOV      r6,r3
         0x0000155e:    4690        .F      MOV      r8,r2
         0x00001560:    2c06        .,      CMP      r4,#6
@@ -2288,7 +2288,7 @@
         0x00001570:    f810c002    ....    LDRB     r12,[r0,r2]
         0x00001574:    f1bc0f00    ....    CMP      r12,#0
         0x00001578:    d1fa        ..      BNE      0x1570 ; am_hal_iom_i2c_read_nb + 36
-        0x0000157a:    4d2e        .M      LDR      r5,[pc,#184] ; [0x1634] = 0x1000003b
+        0x0000157a:    4d2e        .M      LDR      r5,[pc,#184] ; [0x1634] = 0x1000006b
         0x0000157c:    2200        ."      MOVS     r2,#0
         0x0000157e:    552a        *U      STRB     r2,[r5,r4]
         0x00001580:    b12e        ..      CBZ      r6,0x158e ; am_hal_iom_i2c_read_nb + 66
@@ -2355,8 +2355,8 @@
         0x0000162a:    e8bd83f0    ....    POP      {r4-r9,pc}
     $d
         0x0000162e:    0000        ..      DCW    0
-        0x00001630:    10000034    4...    DCD    268435508
-        0x00001634:    1000003b    ;...    DCD    268435515
+        0x00001630:    10000064    d...    DCD    268435556
+        0x00001634:    1000006b    k...    DCD    268435563
         0x00001638:    00004290    .B..    DCD    17040
         0x0000163c:    10000690    ....    DCD    268437136
     $t
@@ -2372,7 +2372,7 @@
         0x00001650:    f04f0a00    O...    MOV      r10,#0
         0x00001654:    2806        .(      CMP      r0,#6
         0x00001656:    bf38        8.      IT       CC
-        0x00001658:    484a        JH      LDRCC    r0,[pc,#296] ; [0x1784] = 0x10000034
+        0x00001658:    484a        JH      LDRCC    r0,[pc,#296] ; [0x1784] = 0x10000064
         0x0000165a:    bf82        ..      ITTT     HI
         0x0000165c:    2002        .       MOVHI    r0,#2
         0x0000165e:    b003        ..      ADDHI    sp,sp,#0xc
@@ -2381,7 +2381,7 @@
         0x00001666:    5d02        .]      LDRB     r2,[r0,r4]
         0x00001668:    2a00        .*      CMP      r2,#0
         0x0000166a:    d1fc        ..      BNE      0x1666 ; am_hal_iom_i2c_read_nq + 38
-        0x0000166c:    f8df8118    ....    LDR      r8,[pc,#280] ; [0x1788] = 0x1000003b
+        0x0000166c:    f8df8118    ....    LDR      r8,[pc,#280] ; [0x1788] = 0x1000006b
         0x00001670:    f04f0200    O...    MOV      r2,#0
         0x00001674:    f8082004    ...     STRB     r2,[r8,r4]
         0x00001678:    b125        %.      CBZ      r5,0x1684 ; am_hal_iom_i2c_read_nq + 68
@@ -2479,8 +2479,8 @@
         0x0000177e:    f002f907    ....    BL       internal_iom_get_int_err ; 0x3990
         0x00001782:    e7bd        ..      B        0x1700 ; am_hal_iom_i2c_read_nq + 192
     $d
-        0x00001784:    10000034    4...    DCD    268435508
-        0x00001788:    1000003b    ;...    DCD    268435515
+        0x00001784:    10000064    d...    DCD    268435556
+        0x00001788:    1000006b    k...    DCD    268435563
         0x0000178c:    00004290    .B..    DCD    17040
         0x00001790:    50004204    .B.P    DCD    1342194180
         0x00001794:    10000708    ....    DCD    268437256
@@ -2494,13 +2494,13 @@
         0x000017a2:    4604        .F      MOV      r4,r0
         0x000017a4:    2806        .(      CMP      r0,#6
         0x000017a6:    bf38        8.      IT       CC
-        0x000017a8:    4845        EH      LDRCC    r0,[pc,#276] ; [0x18c0] = 0x10000034
+        0x000017a8:    4845        EH      LDRCC    r0,[pc,#276] ; [0x18c0] = 0x10000064
         0x000017aa:    d83f        ?.      BHI      0x182c ; am_hal_iom_i2c_write + 148
         0x000017ac:    d202        ..      BCS      0x17b4 ; am_hal_iom_i2c_write + 28
         0x000017ae:    5d03        .]      LDRB     r3,[r0,r4]
         0x000017b0:    2b00        .+      CMP      r3,#0
         0x000017b2:    d1fc        ..      BNE      0x17ae ; am_hal_iom_i2c_write + 22
-        0x000017b4:    4e43        CN      LDR      r6,[pc,#268] ; [0x18c4] = 0x1000003b
+        0x000017b4:    4e43        CN      LDR      r6,[pc,#268] ; [0x18c4] = 0x1000006b
         0x000017b6:    f04f0000    O...    MOV      r0,#0
         0x000017ba:    5530        0U      STRB     r0,[r6,r4]
         0x000017bc:    b127        '.      CBZ      r7,0x17c8 ; am_hal_iom_i2c_write + 48
@@ -2550,7 +2550,7 @@
         0x00001834:    5530        0U      STRB     r0,[r6,r4]
         0x00001836:    f7fefcab    ....    BL       am_hal_interrupt_master_disable ; 0x190
         0x0000183a:    9002        ..      STR      r0,[sp,#8]
-        0x0000183c:    4820         H      LDR      r0,[pc,#128] ; [0x18c0] = 0x10000034
+        0x0000183c:    4820         H      LDR      r0,[pc,#128] ; [0x18c0] = 0x10000064
         0x0000183e:    5d00        .]      LDRB     r0,[r0,r4]
         0x00001840:    2800        .(      CMP      r0,#0
         0x00001842:    bf04        ..      ITT      EQ
@@ -2588,7 +2588,7 @@
         0x00001898:    e002        ..      B        0x18a0 ; am_hal_iom_i2c_write + 264
         0x0000189a:    9802        ..      LDR      r0,[sp,#8]
         0x0000189c:    f7fefc7c    ..|.    BL       am_hal_interrupt_master_set ; 0x198
-        0x000018a0:    490b        .I      LDR      r1,[pc,#44] ; [0x18d0] = 0x10000030
+        0x000018a0:    490b        .I      LDR      r1,[pc,#44] ; [0x18d0] = 0x10000060
         0x000018a2:    4620         F      MOV      r0,r4
         0x000018a4:    6809        .h      LDR      r1,[r1,#0]
         0x000018a6:    4788        .G      BLX      r1
@@ -2602,11 +2602,11 @@
         0x000018ba:    b00b        ..      ADD      sp,sp,#0x2c
         0x000018bc:    e8bd8ff0    ....    POP      {r4-r11,pc}
     $d
-        0x000018c0:    10000034    4...    DCD    268435508
-        0x000018c4:    1000003b    ;...    DCD    268435515
+        0x000018c0:    10000064    d...    DCD    268435556
+        0x000018c4:    1000006b    k...    DCD    268435563
         0x000018c8:    00004290    .B..    DCD    17040
         0x000018cc:    10000720     ...    DCD    268437280
-        0x000018d0:    10000030    0...    DCD    268435504
+        0x000018d0:    10000060    `...    DCD    268435552
     $t
     i.am_hal_iom_i2c_write_nb
     am_hal_iom_i2c_write_nb
@@ -2614,7 +2614,7 @@
         0x000018d8:    b083        ..      SUB      sp,sp,#0xc
         0x000018da:    4604        .F      MOV      r4,r0
         0x000018dc:    e9dd9b10    ....    LDRD     r9,r11,[sp,#0x40]
-        0x000018e0:    4841        AH      LDR      r0,[pc,#260] ; [0x19e8] = 0x10000034
+        0x000018e0:    4841        AH      LDR      r0,[pc,#260] ; [0x19e8] = 0x10000064
         0x000018e2:    461e        .F      MOV      r6,r3
         0x000018e4:    2c06        .,      CMP      r4,#6
         0x000018e6:    bf82        ..      ITTT     HI
@@ -2625,7 +2625,7 @@
         0x000018f2:    5d01        .]      LDRB     r1,[r0,r4]
         0x000018f4:    2900        .)      CMP      r1,#0
         0x000018f6:    d1fc        ..      BNE      0x18f2 ; am_hal_iom_i2c_write_nb + 30
-        0x000018f8:    f8df80f0    ....    LDR      r8,[pc,#240] ; [0x19ec] = 0x1000003b
+        0x000018f8:    f8df80f0    ....    LDR      r8,[pc,#240] ; [0x19ec] = 0x1000006b
         0x000018fc:    f04f0500    O...    MOV      r5,#0
         0x00001900:    f8085004    ...P    STRB     r5,[r8,r4]
         0x00001904:    b136        6.      CBZ      r6,0x1914 ; am_hal_iom_i2c_write_nb + 64
@@ -2710,8 +2710,8 @@
         0x000019e2:    e8bd8ff0    ....    POP      {r4-r11,pc}
     $d
         0x000019e6:    0000        ..      DCW    0
-        0x000019e8:    10000034    4...    DCD    268435508
-        0x000019ec:    1000003b    ;...    DCD    268435515
+        0x000019e8:    10000064    d...    DCD    268435556
+        0x000019ec:    1000006b    k...    DCD    268435563
         0x000019f0:    00004290    .B..    DCD    17040
         0x000019f4:    10000690    ....    DCD    268437136
     $t
@@ -2724,7 +2724,7 @@
         0x00001a04:    4604        .F      MOV      r4,r0
         0x00001a06:    2806        .(      CMP      r0,#6
         0x00001a08:    bf38        8.      IT       CC
-        0x00001a0a:    4858        XH      LDRCC    r0,[pc,#352] ; [0x1b6c] = 0x10000034
+        0x00001a0a:    4858        XH      LDRCC    r0,[pc,#352] ; [0x1b6c] = 0x10000064
         0x00001a0c:    bf82        ..      ITTT     HI
         0x00001a0e:    2002        .       MOVHI    r0,#2
         0x00001a10:    b007        ..      ADDHI    sp,sp,#0x1c
@@ -2733,7 +2733,7 @@
         0x00001a18:    5d01        .]      LDRB     r1,[r0,r4]
         0x00001a1a:    2900        .)      CMP      r1,#0
         0x00001a1c:    d1fc        ..      BNE      0x1a18 ; am_hal_iom_i2c_write_nq + 32
-        0x00001a1e:    f8df8150    ..P.    LDR      r8,[pc,#336] ; [0x1b70] = 0x1000003b
+        0x00001a1e:    f8df8150    ..P.    LDR      r8,[pc,#336] ; [0x1b70] = 0x1000006b
         0x00001a22:    f04f0200    O...    MOV      r2,#0
         0x00001a26:    f8082004    ...     STRB     r2,[r8,r4]
         0x00001a2a:    b127        '.      CBZ      r7,0x1a36 ; am_hal_iom_i2c_write_nq + 62
@@ -2852,8 +2852,8 @@
         0x00001b66:    b007        ..      ADD      sp,sp,#0x1c
         0x00001b68:    e8bd8ff0    ....    POP      {r4-r11,pc}
     $d
-        0x00001b6c:    10000034    4...    DCD    268435508
-        0x00001b70:    1000003b    ;...    DCD    268435515
+        0x00001b6c:    10000064    d...    DCD    268435556
+        0x00001b70:    1000006b    k...    DCD    268435563
         0x00001b74:    00004290    .B..    DCD    17040
         0x00001b78:    50004204    .B.P    DCD    1342194180
         0x00001b7c:    10000708    ....    DCD    268437256
@@ -2899,7 +2899,7 @@
         0x00001bec:    2806        .(      CMP      r0,#6
         0x00001bee:    bf28        (.      IT       CS
         0x00001bf0:    e8bd81f0    ....    POPCS    {r4-r8,pc}
-        0x00001bf4:    4f0f        .O      LDR      r7,[pc,#60] ; [0x1c34] = 0x10000034
+        0x00001bf4:    4f0f        .O      LDR      r7,[pc,#60] ; [0x1c34] = 0x10000064
         0x00001bf6:    4810        .H      LDR      r0,[pc,#64] ; [0x1c38] = 0x10000720
         0x00001bf8:    eb040144    ..D.    ADD      r1,r4,r4,LSL #1
         0x00001bfc:    eb0006c1    ....    ADD      r6,r0,r1,LSL #3
@@ -2923,7 +2923,7 @@
         0x00001c2e:    f7febab3    ....    B        am_hal_interrupt_master_set ; 0x198
     $d
         0x00001c32:    0000        ..      DCW    0
-        0x00001c34:    10000034    4...    DCD    268435508
+        0x00001c34:    10000064    d...    DCD    268435556
         0x00001c38:    10000720     ...    DCD    268437280
     $t
     i.am_hal_iom_spi_read
@@ -2941,7 +2941,7 @@
         0x00001c58:    f24070ff    @..p    MOV      r0,#0x7ff
         0x00001c5c:    9f14        ..      LDR      r7,[sp,#0x50]
         0x00001c5e:    f8cc0208    ....    STR      r0,[r12,#0x208]
-        0x00001c62:    4d32        2M      LDR      r5,[pc,#200] ; [0x1d2c] = 0x1000003b
+        0x00001c62:    4d32        2M      LDR      r5,[pc,#200] ; [0x1d2c] = 0x1000006b
         0x00001c64:    2000        .       MOVS     r0,#0
         0x00001c66:    2b00        .+      CMP      r3,#0
         0x00001c68:    5528        (U      STRB     r0,[r5,r4]
@@ -2965,7 +2965,7 @@
         0x00001c9c:    5528        (U      STRB     r0,[r5,r4]
         0x00001c9e:    f7fefa77    ..w.    BL       am_hal_interrupt_master_disable ; 0x190
         0x00001ca2:    9002        ..      STR      r0,[sp,#8]
-        0x00001ca4:    4823        #H      LDR      r0,[pc,#140] ; [0x1d34] = 0x10000034
+        0x00001ca4:    4823        #H      LDR      r0,[pc,#140] ; [0x1d34] = 0x10000064
         0x00001ca6:    5d00        .]      LDRB     r0,[r0,r4]
         0x00001ca8:    2800        .(      CMP      r0,#0
         0x00001caa:    bf04        ..      ITT      EQ
@@ -3004,7 +3004,7 @@
         0x00001d04:    e002        ..      B        0x1d0c ; am_hal_iom_spi_read + 208
         0x00001d06:    9802        ..      LDR      r0,[sp,#8]
         0x00001d08:    f7fefa46    ..F.    BL       am_hal_interrupt_master_set ; 0x198
-        0x00001d0c:    490a        .I      LDR      r1,[pc,#40] ; [0x1d38] = 0x10000030
+        0x00001d0c:    490a        .I      LDR      r1,[pc,#40] ; [0x1d38] = 0x10000060
         0x00001d0e:    4620         F      MOV      r0,r4
         0x00001d10:    6809        .h      LDR      r1,[r1,#0]
         0x00001d12:    4788        .G      BLX      r1
@@ -3018,10 +3018,10 @@
         0x00001d26:    e8bd8ff0    ....    POP      {r4-r11,pc}
     $d
         0x00001d2a:    0000        ..      DCW    0
-        0x00001d2c:    1000003b    ;...    DCD    268435515
+        0x00001d2c:    1000006b    k...    DCD    268435563
         0x00001d30:    10000720     ...    DCD    268437280
-        0x00001d34:    10000034    4...    DCD    268435508
-        0x00001d38:    10000030    0...    DCD    268435504
+        0x00001d34:    10000064    d...    DCD    268435556
+        0x00001d38:    10000060    `...    DCD    268435552
     $t
     i.am_hal_iom_spi_read_nb
     am_hal_iom_spi_read_nb
@@ -3031,14 +3031,14 @@
         0x00001d42:    4770        pG      BXCS     lr
         0x00001d44:    e92d4fff    -..O    PUSH     {r0-r11,lr}
         0x00001d48:    b081        ..      SUB      sp,sp,#4
-        0x00001d4a:    f8df90f4    ....    LDR      r9,[pc,#244] ; [0x1e40] = 0x10000034
+        0x00001d4a:    f8df90f4    ....    LDR      r9,[pc,#244] ; [0x1e40] = 0x10000064
         0x00001d4e:    9d0e        ..      LDR      r5,[sp,#0x38]
         0x00001d50:    461e        .F      MOV      r6,r3
         0x00001d52:    4604        .F      MOV      r4,r0
         0x00001d54:    f8190004    ....    LDRB     r0,[r9,r4]
         0x00001d58:    2800        .(      CMP      r0,#0
         0x00001d5a:    d1fb        ..      BNE      0x1d54 ; am_hal_iom_spi_read_nb + 24
-        0x00001d5c:    f8df80e4    ....    LDR      r8,[pc,#228] ; [0x1e44] = 0x1000003b
+        0x00001d5c:    f8df80e4    ....    LDR      r8,[pc,#228] ; [0x1e44] = 0x1000006b
         0x00001d60:    2e00        ..      CMP      r6,#0
         0x00001d62:    f8080004    ....    STRB     r0,[r8,r4]
         0x00001d66:    9000        ..      STR      r0,[sp,#0]
@@ -3115,8 +3115,8 @@
         0x00001e3a:    b005        ..      ADD      sp,sp,#0x14
         0x00001e3c:    e8bd8ff0    ....    POP      {r4-r11,pc}
     $d
-        0x00001e40:    10000034    4...    DCD    268435508
-        0x00001e44:    1000003b    ;...    DCD    268435515
+        0x00001e40:    10000064    d...    DCD    268435556
+        0x00001e44:    1000006b    k...    DCD    268435563
         0x00001e48:    40020000    ...@    DCD    1073872896
         0x00001e4c:    50008000    ...P    DCD    1342210048
         0x00001e50:    50008204    ...P    DCD    1342210564
@@ -3135,13 +3135,13 @@
         0x00001e70:    2806        .(      CMP      r0,#6
         0x00001e72:    bf29        ).      ITETT    CS
         0x00001e74:    2002        .       MOVCS    r0,#2
-        0x00001e76:    4853        SH      LDRCC    r0,[pc,#332] ; [0x1fc4] = 0x10000034
+        0x00001e76:    4853        SH      LDRCC    r0,[pc,#332] ; [0x1fc4] = 0x10000064
         0x00001e78:    b004        ..      ADDCS    sp,sp,#0x10
         0x00001e7a:    e8bd9ff0    ....    POPCS    {r4-r12,pc}
         0x00001e7e:    5d01        .]      LDRB     r1,[r0,r4]
         0x00001e80:    2900        .)      CMP      r1,#0
         0x00001e82:    d1fc        ..      BNE      0x1e7e ; am_hal_iom_spi_read_nq + 30
-        0x00001e84:    f8df8140    ..@.    LDR      r8,[pc,#320] ; [0x1fc8] = 0x1000003b
+        0x00001e84:    f8df8140    ..@.    LDR      r8,[pc,#320] ; [0x1fc8] = 0x1000006b
         0x00001e88:    2000        .       MOVS     r0,#0
         0x00001e8a:    2d00        .-      CMP      r5,#0
         0x00001e8c:    f8080004    ....    STRB     r0,[r8,r4]
@@ -3255,8 +3255,8 @@
         0x00001fbe:    b004        ..      ADD      sp,sp,#0x10
         0x00001fc0:    e8bd9ff0    ....    POP      {r4-r12,pc}
     $d
-        0x00001fc4:    10000034    4...    DCD    268435508
-        0x00001fc8:    1000003b    ;...    DCD    268435515
+        0x00001fc4:    10000064    d...    DCD    268435556
+        0x00001fc8:    1000006b    k...    DCD    268435563
         0x00001fcc:    40020000    ...@    DCD    1073872896
         0x00001fd0:    50008204    ...P    DCD    1342210564
         0x00001fd4:    10000708    ....    DCD    268437256
@@ -3273,7 +3273,7 @@
         0x00001fec:    e92d4ff0    -..O    PUSH     {r4-r11,lr}
         0x00001ff0:    b08b        ..      SUB      sp,sp,#0x2c
         0x00001ff2:    4604        .F      MOV      r4,r0
-        0x00001ff4:    4d30        0M      LDR      r5,[pc,#192] ; [0x20b8] = 0x1000003b
+        0x00001ff4:    4d30        0M      LDR      r5,[pc,#192] ; [0x20b8] = 0x1000006b
         0x00001ff6:    2000        .       MOVS     r0,#0
         0x00001ff8:    9e14        ..      LDR      r6,[sp,#0x50]
         0x00001ffa:    5528        (U      STRB     r0,[r5,r4]
@@ -3296,7 +3296,7 @@
         0x0000202a:    f805b004    ....    STRB     r11,[r5,r4]
         0x0000202e:    f7fef8af    ....    BL       am_hal_interrupt_master_disable ; 0x190
         0x00002032:    9002        ..      STR      r0,[sp,#8]
-        0x00002034:    4822        "H      LDR      r0,[pc,#136] ; [0x20c0] = 0x10000034
+        0x00002034:    4822        "H      LDR      r0,[pc,#136] ; [0x20c0] = 0x10000064
         0x00002036:    5d00        .]      LDRB     r0,[r0,r4]
         0x00002038:    2800        .(      CMP      r0,#0
         0x0000203a:    bf04        ..      ITT      EQ
@@ -3335,7 +3335,7 @@
         0x00002092:    e002        ..      B        0x209a ; am_hal_iom_spi_write + 182
         0x00002094:    9802        ..      LDR      r0,[sp,#8]
         0x00002096:    f7fef87f    ....    BL       am_hal_interrupt_master_set ; 0x198
-        0x0000209a:    490a        .I      LDR      r1,[pc,#40] ; [0x20c4] = 0x10000030
+        0x0000209a:    490a        .I      LDR      r1,[pc,#40] ; [0x20c4] = 0x10000060
         0x0000209c:    4620         F      MOV      r0,r4
         0x0000209e:    6809        .h      LDR      r1,[r1,#0]
         0x000020a0:    4788        .G      BLX      r1
@@ -3348,10 +3348,10 @@
         0x000020b2:    b00b        ..      ADD      sp,sp,#0x2c
         0x000020b4:    e8bd8ff0    ....    POP      {r4-r11,pc}
     $d
-        0x000020b8:    1000003b    ;...    DCD    268435515
+        0x000020b8:    1000006b    k...    DCD    268435563
         0x000020bc:    10000720     ...    DCD    268437280
-        0x000020c0:    10000034    4...    DCD    268435508
-        0x000020c4:    10000030    0...    DCD    268435504
+        0x000020c0:    10000064    d...    DCD    268435556
+        0x000020c4:    10000060    `...    DCD    268435552
     $t
     i.am_hal_iom_spi_write_nb
     am_hal_iom_spi_write_nb
@@ -3363,13 +3363,13 @@
         0x000020d4:    b081        ..      SUB      sp,sp,#4
         0x000020d6:    4605        .F      MOV      r5,r0
         0x000020d8:    e9dd7b0e    ...{    LDRD     r7,r11,[sp,#0x38]
-        0x000020dc:    483c        <H      LDR      r0,[pc,#240] ; [0x21d0] = 0x10000034
+        0x000020dc:    483c        <H      LDR      r0,[pc,#240] ; [0x21d0] = 0x10000064
         0x000020de:    461c        .F      MOV      r4,r3
         0x000020e0:    4690        .F      MOV      r8,r2
         0x000020e2:    5d41        A]      LDRB     r1,[r0,r5]
         0x000020e4:    2900        .)      CMP      r1,#0
         0x000020e6:    d1fc        ..      BNE      0x20e2 ; am_hal_iom_spi_write_nb + 26
-        0x000020e8:    493a        :I      LDR      r1,[pc,#232] ; [0x21d4] = 0x1000003b
+        0x000020e8:    493a        :I      LDR      r1,[pc,#232] ; [0x21d4] = 0x1000006b
         0x000020ea:    2200        ."      MOVS     r2,#0
         0x000020ec:    2c00        .,      CMP      r4,#0
         0x000020ee:    554a        JU      STRB     r2,[r1,r5]
@@ -3456,8 +3456,8 @@
         0x000021ca:    f000f8bb    ....    BL       am_hal_iom_workaround_word_write ; 0x2344
         0x000021ce:    e7df        ..      B        0x2190 ; am_hal_iom_spi_write_nb + 200
     $d
-        0x000021d0:    10000034    4...    DCD    268435508
-        0x000021d4:    1000003b    ;...    DCD    268435515
+        0x000021d0:    10000064    d...    DCD    268435556
+        0x000021d4:    1000006b    k...    DCD    268435563
         0x000021d8:    40020000    ...@    DCD    1073872896
         0x000021dc:    10000690    ....    DCD    268437136
         0x000021e0:    5c00ff00    ...\    DCD    1543569152
@@ -3470,12 +3470,12 @@
         0x000021ea:    4770        pG      BXCS     lr
         0x000021ec:    e92d5fff    -.._    PUSH     {r0-r12,lr}
         0x000021f0:    4604        .F      MOV      r4,r0
-        0x000021f2:    484e        NH      LDR      r0,[pc,#312] ; [0x232c] = 0x10000034
+        0x000021f2:    484e        NH      LDR      r0,[pc,#312] ; [0x232c] = 0x10000064
         0x000021f4:    461d        .F      MOV      r5,r3
         0x000021f6:    5d01        .]      LDRB     r1,[r0,r4]
         0x000021f8:    2900        .)      CMP      r1,#0
         0x000021fa:    d1fc        ..      BNE      0x21f6 ; am_hal_iom_spi_write_nq + 18
-        0x000021fc:    f8df8130    ..0.    LDR      r8,[pc,#304] ; [0x2330] = 0x1000003b
+        0x000021fc:    f8df8130    ..0.    LDR      r8,[pc,#304] ; [0x2330] = 0x1000006b
         0x00002200:    4689        .F      MOV      r9,r1
         0x00002202:    2d00        .-      CMP      r5,#0
         0x00002204:    f8089004    ....    STRB     r9,[r8,r4]
@@ -3588,8 +3588,8 @@
         0x00002326:    b004        ..      ADD      sp,sp,#0x10
         0x00002328:    e8bd9ff0    ....    POP      {r4-r12,pc}
     $d
-        0x0000232c:    10000034    4...    DCD    268435508
-        0x00002330:    1000003b    ;...    DCD    268435515
+        0x0000232c:    10000064    d...    DCD    268435556
+        0x00002330:    1000006b    k...    DCD    268435563
         0x00002334:    40020000    ...@    DCD    1073872896
         0x00002338:    5c00ff00    ...\    DCD    1543569152
         0x0000233c:    50004204    .B.P    DCD    1342194180
@@ -4481,7 +4481,7 @@
         0x00002c96:    bf14        ..      ITE      NE
         0x00002c98:    2000        .       MOVNE    r0,#0
         0x00002c9a:    2002        .       MOVEQ    r0,#2
-        0x00002c9c:    4c2b        +L      LDR      r4,[pc,#172] ; [0x2d4c] = 0x10000044
+        0x00002c9c:    4c2b        +L      LDR      r4,[pc,#172] ; [0x2d4c] = 0x10000074
         0x00002c9e:    60e0        .`      STR      r0,[r4,#0xc]
         0x00002ca0:    6861        ah      LDR      r1,[r4,#4]
         0x00002ca2:    1e49        I.      SUBS     r1,r1,#1
@@ -4551,7 +4551,7 @@
         0x00002d42:    0000        ..      DCW    0
         0x00002d44:    e000ed10    ....    DCD    3758157072
         0x00002d48:    40020000    ...@    DCD    1073872896
-        0x00002d4c:    10000044    D...    DCD    268435524
+        0x00002d4c:    10000074    t...    DCD    268435572
         0x00002d50:    40021000    ...@    DCD    1073876992
     $t
     i.am_hal_tpiu_enable
@@ -6432,7 +6432,7 @@
         0x00003f2c:    6e98        .n      LDR      r0,[r3,#0x68]
         0x00003f2e:    6e99        .n      LDR      r1,[r3,#0x68]
         0x00003f30:    f3c00083    ....    UBFX     r0,r0,#2,#4
-        0x00003f34:    4a17        .J      LDR      r2,[pc,#92] ; [0x3f94] = 0x10000044
+        0x00003f34:    4a17        .J      LDR      r2,[pc,#92] ; [0x3f94] = 0x10000074
         0x00003f36:    f3c13143    ..C1    UBFX     r1,r1,#13,#4
         0x00003f3a:    f0140f02    ....    TST      r4,#2
         0x00003f3e:    bf14        ..      ITE      NE
@@ -6463,7 +6463,7 @@
     $d
         0x00003f8e:    0000        ..      DCW    0
         0x00003f90:    40020000    ...@    DCD    1073872896
-        0x00003f94:    10000044    D...    DCD    268435524
+        0x00003f94:    10000074    t...    DCD    268435572
     $t
     i.simple_strlen
     simple_strlen
@@ -6809,12 +6809,12 @@
     0x10000000:   00 00 00 00 00 00 00 00 01 00 00 00 00 09 3d 00    ..............=.
     0x10000010:   00 00 04 3c 00 00 00 00 40 42 0f 00 00 00 0c 78    ...<....@B.....x
     0x10000020:   00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00    ................
-    0x10000030:   e5 1b 00 00 00 00 00 00 00 00 00 00 00 00 00 00    ................
-    0x10000040:   00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00    ................
-    0x10000050:   00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00    ................
-    0x10000060:   06 00 00 00 0a 00 00 00 09 00 00 00 0a 00 00 00    ................
-    0x10000070:   19 00 00 00 2a 00 00 00 2b 00 00 00 2a 00 00 00    ....*...+...*...
-    0x10000080:   28 00 00 00 2a 00 00 00 31 00 00 00 2a 00 00 00    (...*...1...*...
+    0x10000030:   06 00 00 00 0a 00 00 00 09 00 00 00 0a 00 00 00    ................
+    0x10000040:   19 00 00 00 2a 00 00 00 2b 00 00 00 2a 00 00 00    ....*...+...*...
+    0x10000050:   28 00 00 00 2a 00 00 00 31 00 00 00 2a 00 00 00    (...*...1...*...
+    0x10000060:   e5 1b 00 00 00 00 00 00 00 00 00 00 00 00 00 00    ................
+    0x10000070:   00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00    ................
+    0x10000080:   00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00    ................
 
 
 ** Section #3 'SRAM' (SHT_NOBITS) [SHF_ALLOC + SHF_WRITE]
@@ -7079,89 +7079,89 @@
     213  $v0                        0x000001c4   Lc    1   --   De 
     214  ../am_hal_global.c         0x00000000   Lc  Abs  File  De 
     215  .data                      0x1000002c   Lc    2  Sect  De   0x4
-    216  ../am_hal_cachectrl.c      0x00000000   Lc  Abs  File  De 
-    217  i.am_hal_cachectrl_enable  0x00000794   Lc    1  Sect  De 
-    218  .constdata                 0x00004284   Lc    1  Sect  De   0xc
-    219  ../am_hal_clkgen.c         0x00000000   Lc  Abs  File  De 
-    220  i.am_hal_clkgen_osc_stop   0x00000864   Lc    1  Sect  De 
-    221  i.am_hal_clkgen_sysclk_get 0x00000878   Lc    1  Sect  De 
-    222  i.am_hal_clkgen_sysclk_select
-                                    0x00000898   Lc    1  Sect  De 
-    223  ../am_hal_flash.c          0x00000000   Lc  Abs  File  De 
-    224  i.am_hal_flash_delay       0x000009d8   Lc    1  Sect  De 
-    225  i.am_hal_flash_delay_status_change
-                                    0x000009e0   Lc    1  Sect  De 
-    226  ../am_hal_gpio.c           0x00000000   Lc  Abs  File  De 
-    227  i.am_hal_gpio_int_clear    0x00000a14   Lc    1  Sect  De 
-    228  i.am_hal_gpio_int_enable   0x00000a38   Lc    1  Sect  De 
-    229  i.am_hal_gpio_int_register 0x00000a54   Lc    1  Sect  De 
-    230  i.am_hal_gpio_int_service  0x00000aa4   Lc    1  Sect  De 
-    231  i.am_hal_gpio_int_status_get
-                                    0x00000afc   Lc    1  Sect  De 
-    232  .bss                       0x10000590   Lc    3  Sect  De   0x100
-    233  ..\am_hal_interrupt.c      0x00000000   Lc  Abs  File  De 
-    234  .emb_text                  0x00000188   Lc    1  Sect  De   0x16
-    235  $v0                        0x00000188   Lc    1   --   De 
-    236  ../am_hal_interrupt.c      0x00000000   Lc  Abs  File  De 
-    237  i.am_hal_interrupt_enable  0x00000dec   Lc    1  Sect  De 
-    238  ..\am_hal_iom.c            0x00000000   Lc  Abs  File  De 
-    239  .emb_text                  0x000001a0   Lc    1  Sect  De   0x24
-    240  $v0                        0x000001a0   Lc    1   --   De 
-    241  ../am_hal_iom.c            0x00000000   Lc  Abs  File  De 
-    242  i.am_hal_iom_config        0x00000e38   Lc    1  Sect  De 
-    243  i.am_hal_iom_enable        0x000010c4   Lc    1  Sect  De 
-    244  i.am_hal_iom_fifo_read     0x000010ec   Lc    1  Sect  De 
-    245  i.am_hal_iom_fifo_write    0x000011c4   Lc    1  Sect  De 
-    246  i.am_hal_iom_i2c_cmd_run   0x000012ac   Lc    1  Sect  De 
-    247  i.am_hal_iom_i2c_read      0x00001408   Lc    1  Sect  De 
-    248  i.am_hal_iom_i2c_read_nb   0x0000154c   Lc    1  Sect  De 
-    249  i.am_hal_iom_i2c_read_nq   0x00001640   Lc    1  Sect  De 
-    250  i.am_hal_iom_i2c_write     0x00001798   Lc    1  Sect  De 
-    251  i.am_hal_iom_i2c_write_nb  0x000018d4   Lc    1  Sect  De 
-    252  i.am_hal_iom_i2c_write_nq  0x000019f8   Lc    1  Sect  De 
-    253  i.am_hal_iom_pwrctrl_enable
-                                    0x00001b80   Lc    1  Sect  De 
-    254  i.am_hal_iom_sleeping_queue_flush
-                                    0x00001be4   Lc    1  Sect  De 
-    255  i.am_hal_iom_spi_read      0x00001c3c   Lc    1  Sect  De 
-    256  i.am_hal_iom_spi_read_nb   0x00001d3c   Lc    1  Sect  De 
-    257  i.am_hal_iom_spi_read_nq   0x00001e60   Lc    1  Sect  De 
-    258  i.am_hal_iom_spi_write     0x00001fe4   Lc    1  Sect  De 
-    259  i.am_hal_iom_spi_write_nb  0x000020c8   Lc    1  Sect  De 
-    260  i.am_hal_iom_spi_write_nq  0x000021e4   Lc    1  Sect  De 
-    261  i.am_hal_iom_workaround_word_write
-                                    0x00002344   Lc    1  Sect  De 
-    262  i.internal_iom_get_int_err 0x00003990   Lc    1  Sect  De 
-    263  internal_iom_get_int_err   0x00003991   Lc    1  Code  De   0x3a
-    264  .bss                       0x10000690   Lc    3  Sect  De   0x198
-    265  .constdata                 0x00004290   Lc    1  Sect  De   0x41
-    266  .data                      0x10000030   Lc    2  Sect  De   0x12
-    267  g_iom_error_status         0x1000003b   Lc    2  Data  De   0x7
-    268  ../am_hal_itm.c            0x00000000   Lc  Abs  File  De 
-    269  i.am_hal_itm_enable        0x000027f0   Lc    1  Sect  De 
-    270  i.am_hal_itm_print         0x00002848   Lc    1  Sect  De 
-    271  ../am_hal_sysctrl.c        0x00000000   Lc  Abs  File  De 
-    272  i.am_hal_sysctrl_sleep     0x00002c50   Lc    1  Sect  De 
-    273  i.setBuckZX                0x00003f1c   Lc    1  Sect  De 
-    274  setBuckZX                  0x00003f1d   Lc    1  Code  De   0x72
-    275  .data                      0x10000044   Lc    2  Sect  De   0x1c
-    276  g_bBuckRestoreComplete     0x10000044   Lc    2  Data  De   0x1
-    277  g_ui32BuckTimer            0x10000048   Lc    2  Data  De   0x4
-    278  g_ui32BuckInputs           0x1000004c   Lc    2  Data  De   0x4
-    279  g_buckZX_chk               0x10000050   Lc    2  Data  De   0x4
-    280  g_ui32SaveCoreBuckZX       0x10000054   Lc    2  Data  De   0x4
-    281  g_ui32SaveMemBuckZX        0x10000058   Lc    2  Data  De   0x4
-    282  g_ui32CoreBuck             0x1000005c   Lc    2  Data  De   0x4
-    283  ../am_bsp.c                0x00000000   Lc  Abs  File  De 
-    284  i.am_bsp_debug_printf_enable
+    216  ../am_bsp.c                0x00000000   Lc  Abs  File  De 
+    217  i.am_bsp_debug_printf_enable
                                     0x00000258   Lc    1  Sect  De 
-    285  i.am_bsp_iom_enable        0x000002c8   Lc    1  Sect  De 
-    286  i.am_bsp_iom_spi_pins_enable
+    218  i.am_bsp_iom_enable        0x000002c8   Lc    1  Sect  De 
+    219  i.am_bsp_iom_spi_pins_enable
                                     0x000003ac   Lc    1  Sect  De 
-    287  i.am_bsp_itm_string_print  0x00000750   Lc    1  Sect  De 
-    288  i.am_bsp_low_power_init    0x00000754   Lc    1  Sect  De 
-    289  .data                      0x10000060   Lc    2  Sect  De   0x30
-    290  g_SPIpins                  0x10000060   Lc    2  Data  De   0x30
+    220  i.am_bsp_itm_string_print  0x00000750   Lc    1  Sect  De 
+    221  i.am_bsp_low_power_init    0x00000754   Lc    1  Sect  De 
+    222  .data                      0x10000030   Lc    2  Sect  De   0x30
+    223  g_SPIpins                  0x10000030   Lc    2  Data  De   0x30
+    224  ../am_hal_cachectrl.c      0x00000000   Lc  Abs  File  De 
+    225  i.am_hal_cachectrl_enable  0x00000794   Lc    1  Sect  De 
+    226  .constdata                 0x00004284   Lc    1  Sect  De   0xc
+    227  ../am_hal_clkgen.c         0x00000000   Lc  Abs  File  De 
+    228  i.am_hal_clkgen_osc_stop   0x00000864   Lc    1  Sect  De 
+    229  i.am_hal_clkgen_sysclk_get 0x00000878   Lc    1  Sect  De 
+    230  i.am_hal_clkgen_sysclk_select
+                                    0x00000898   Lc    1  Sect  De 
+    231  ../am_hal_flash.c          0x00000000   Lc  Abs  File  De 
+    232  i.am_hal_flash_delay       0x000009d8   Lc    1  Sect  De 
+    233  i.am_hal_flash_delay_status_change
+                                    0x000009e0   Lc    1  Sect  De 
+    234  ../am_hal_gpio.c           0x00000000   Lc  Abs  File  De 
+    235  i.am_hal_gpio_int_clear    0x00000a14   Lc    1  Sect  De 
+    236  i.am_hal_gpio_int_enable   0x00000a38   Lc    1  Sect  De 
+    237  i.am_hal_gpio_int_register 0x00000a54   Lc    1  Sect  De 
+    238  i.am_hal_gpio_int_service  0x00000aa4   Lc    1  Sect  De 
+    239  i.am_hal_gpio_int_status_get
+                                    0x00000afc   Lc    1  Sect  De 
+    240  .bss                       0x10000590   Lc    3  Sect  De   0x100
+    241  ..\am_hal_interrupt.c      0x00000000   Lc  Abs  File  De 
+    242  .emb_text                  0x00000188   Lc    1  Sect  De   0x16
+    243  $v0                        0x00000188   Lc    1   --   De 
+    244  ../am_hal_interrupt.c      0x00000000   Lc  Abs  File  De 
+    245  i.am_hal_interrupt_enable  0x00000dec   Lc    1  Sect  De 
+    246  ..\am_hal_iom.c            0x00000000   Lc  Abs  File  De 
+    247  .emb_text                  0x000001a0   Lc    1  Sect  De   0x24
+    248  $v0                        0x000001a0   Lc    1   --   De 
+    249  ../am_hal_iom.c            0x00000000   Lc  Abs  File  De 
+    250  i.am_hal_iom_config        0x00000e38   Lc    1  Sect  De 
+    251  i.am_hal_iom_enable        0x000010c4   Lc    1  Sect  De 
+    252  i.am_hal_iom_fifo_read     0x000010ec   Lc    1  Sect  De 
+    253  i.am_hal_iom_fifo_write    0x000011c4   Lc    1  Sect  De 
+    254  i.am_hal_iom_i2c_cmd_run   0x000012ac   Lc    1  Sect  De 
+    255  i.am_hal_iom_i2c_read      0x00001408   Lc    1  Sect  De 
+    256  i.am_hal_iom_i2c_read_nb   0x0000154c   Lc    1  Sect  De 
+    257  i.am_hal_iom_i2c_read_nq   0x00001640   Lc    1  Sect  De 
+    258  i.am_hal_iom_i2c_write     0x00001798   Lc    1  Sect  De 
+    259  i.am_hal_iom_i2c_write_nb  0x000018d4   Lc    1  Sect  De 
+    260  i.am_hal_iom_i2c_write_nq  0x000019f8   Lc    1  Sect  De 
+    261  i.am_hal_iom_pwrctrl_enable
+                                    0x00001b80   Lc    1  Sect  De 
+    262  i.am_hal_iom_sleeping_queue_flush
+                                    0x00001be4   Lc    1  Sect  De 
+    263  i.am_hal_iom_spi_read      0x00001c3c   Lc    1  Sect  De 
+    264  i.am_hal_iom_spi_read_nb   0x00001d3c   Lc    1  Sect  De 
+    265  i.am_hal_iom_spi_read_nq   0x00001e60   Lc    1  Sect  De 
+    266  i.am_hal_iom_spi_write     0x00001fe4   Lc    1  Sect  De 
+    267  i.am_hal_iom_spi_write_nb  0x000020c8   Lc    1  Sect  De 
+    268  i.am_hal_iom_spi_write_nq  0x000021e4   Lc    1  Sect  De 
+    269  i.am_hal_iom_workaround_word_write
+                                    0x00002344   Lc    1  Sect  De 
+    270  i.internal_iom_get_int_err 0x00003990   Lc    1  Sect  De 
+    271  internal_iom_get_int_err   0x00003991   Lc    1  Code  De   0x3a
+    272  .bss                       0x10000690   Lc    3  Sect  De   0x198
+    273  .constdata                 0x00004290   Lc    1  Sect  De   0x41
+    274  .data                      0x10000060   Lc    2  Sect  De   0x12
+    275  g_iom_error_status         0x1000006b   Lc    2  Data  De   0x7
+    276  ../am_hal_itm.c            0x00000000   Lc  Abs  File  De 
+    277  i.am_hal_itm_enable        0x000027f0   Lc    1  Sect  De 
+    278  i.am_hal_itm_print         0x00002848   Lc    1  Sect  De 
+    279  ../am_hal_sysctrl.c        0x00000000   Lc  Abs  File  De 
+    280  i.am_hal_sysctrl_sleep     0x00002c50   Lc    1  Sect  De 
+    281  i.setBuckZX                0x00003f1c   Lc    1  Sect  De 
+    282  setBuckZX                  0x00003f1d   Lc    1  Code  De   0x72
+    283  .data                      0x10000074   Lc    2  Sect  De   0x1c
+    284  g_bBuckRestoreComplete     0x10000074   Lc    2  Data  De   0x1
+    285  g_ui32BuckTimer            0x10000078   Lc    2  Data  De   0x4
+    286  g_ui32BuckInputs           0x1000007c   Lc    2  Data  De   0x4
+    287  g_buckZX_chk               0x10000080   Lc    2  Data  De   0x4
+    288  g_ui32SaveCoreBuckZX       0x10000084   Lc    2  Data  De   0x4
+    289  g_ui32SaveMemBuckZX        0x10000088   Lc    2  Data  De   0x4
+    290  g_ui32CoreBuck             0x1000008c   Lc    2  Data  De   0x4
     291  ..\am_hal_ctimer.c         0x00000000   Lc  Abs  File  De 
     292  ../am_hal_ctimer.c         0x00000000   Lc  Abs  File  De 
     293  i.am_hal_ctimer_clear      0x00000900   Lc    1  Sect  De 
@@ -7578,8 +7578,8 @@
     634  g_ui32LastUpdate           0x10000020   Gb    2  Data  Hi   0x4
     635  g_pfnCharPrint             0x10000024   Gb    2  Data  Hi   0x4
     636  g_ui32HALflags             0x1000002c   Gb    2  Data  Hi   0x4
-    637  am_hal_iom_queue_flush     0x10000030   Gb    2  Data  Hi   0x4
-    638  g_bIomBusy                 0x10000034   Gb    2  Data  Hi   0x7
+    637  am_hal_iom_queue_flush     0x10000060   Gb    2  Data  Hi   0x4
+    638  g_bIomBusy                 0x10000064   Gb    2  Data  Hi   0x7
     639  g_pui8RcvBuf               0x10000090   Gb    3  Data  Hi   0x400
     640  am_hal_gpio_ppfnHandlers   0x10000590   Gb    3  Data  Hi   0x100
     641  g_psIOMBuffers             0x10000690   Gb    3  Data  Hi   0x78
@@ -7657,71 +7657,71 @@
            58    843: $v0
            59    847: .text
            60    853: ../am_hal_global.c
-           61    872: ../am_hal_cachectrl.c
-           62    894: i.am_hal_cachectrl_enable
-           63    920: ../am_hal_clkgen.c
-           64    939: i.am_hal_clkgen_osc_stop
-           65    964: i.am_hal_clkgen_sysclk_get
-           66    991: i.am_hal_clkgen_sysclk_select
-           67   1021: ../am_hal_flash.c
-           68   1039: i.am_hal_flash_delay
-           69   1060: i.am_hal_flash_delay_status_change
-           70   1095: ../am_hal_gpio.c
-           71   1112: i.am_hal_gpio_int_clear
-           72   1136: i.am_hal_gpio_int_enable
-           73   1161: i.am_hal_gpio_int_register
-           74   1188: i.am_hal_gpio_int_service
-           75   1214: i.am_hal_gpio_int_status_get
-           76   1243: ..\am_hal_interrupt.c
-           77   1265: .emb_text
-           78   1275: ../am_hal_interrupt.c
-           79   1297: i.am_hal_interrupt_enable
-           80   1323: ..\am_hal_iom.c
-           81   1339: ../am_hal_iom.c
-           82   1355: i.am_hal_iom_config
-           83   1375: i.am_hal_iom_enable
-           84   1395: i.am_hal_iom_fifo_read
-           85   1418: i.am_hal_iom_fifo_write
-           86   1442: i.am_hal_iom_i2c_cmd_run
-           87   1467: i.am_hal_iom_i2c_read
-           88   1489: i.am_hal_iom_i2c_read_nb
-           89   1514: i.am_hal_iom_i2c_read_nq
-           90   1539: i.am_hal_iom_i2c_write
-           91   1562: i.am_hal_iom_i2c_write_nb
-           92   1588: i.am_hal_iom_i2c_write_nq
-           93   1614: i.am_hal_iom_pwrctrl_enable
-           94   1642: i.am_hal_iom_sleeping_queue_flush
-           95   1676: i.am_hal_iom_spi_read
-           96   1698: i.am_hal_iom_spi_read_nb
-           97   1723: i.am_hal_iom_spi_read_nq
-           98   1748: i.am_hal_iom_spi_write
-           99   1771: i.am_hal_iom_spi_write_nb
-          100   1797: i.am_hal_iom_spi_write_nq
-          101   1823: i.am_hal_iom_workaround_word_write
-          102   1858: i.internal_iom_get_int_err
-          103   1885: internal_iom_get_int_err
-          104   1910: g_iom_error_status
-          105   1929: ../am_hal_itm.c
-          106   1945: i.am_hal_itm_enable
-          107   1965: i.am_hal_itm_print
-          108   1984: ../am_hal_sysctrl.c
-          109   2004: i.am_hal_sysctrl_sleep
-          110   2027: i.setBuckZX
-          111   2039: setBuckZX
-          112   2049: g_bBuckRestoreComplete
-          113   2072: g_ui32BuckTimer
-          114   2088: g_ui32BuckInputs
-          115   2105: g_buckZX_chk
-          116   2118: g_ui32SaveCoreBuckZX
-          117   2139: g_ui32SaveMemBuckZX
-          118   2159: g_ui32CoreBuck
-          119   2174: ../am_bsp.c
-          120   2186: i.am_bsp_debug_printf_enable
-          121   2215: i.am_bsp_iom_enable
-          122   2235: i.am_bsp_iom_spi_pins_enable
-          123   2264: i.am_bsp_itm_string_print
-          124   2290: i.am_bsp_low_power_init
-          125   2314: g_SPIpins
+           61    872: ../am_bsp.c
+           62    884: i.am_bsp_debug_printf_enable
+           63    913: i.am_bsp_iom_enable
+           64    933: i.am_bsp_iom_spi_pins_enable
+           65    962: i.am_bsp_itm_string_print
+           66    988: i.am_bsp_low_power_init
+           67   1012: g_SPIpins
+           68   1022: ../am_hal_cachectrl.c
+           69   1044: i.am_hal_cachectrl_enable
+           70   1070: ../am_hal_clkgen.c
+           71   1089: i.am_hal_clkgen_osc_stop
+           72   1114: i.am_hal_clkgen_sysclk_get
+           73   1141: i.am_hal_clkgen_sysclk_select
+           74   1171: ../am_hal_flash.c
+           75   1189: i.am_hal_flash_delay
+           76   1210: i.am_hal_flash_delay_status_change
+           77   1245: ../am_hal_gpio.c
+           78   1262: i.am_hal_gpio_int_clear
+           79   1286: i.am_hal_gpio_int_enable
+           80   1311: i.am_hal_gpio_int_register
+           81   1338: i.am_hal_gpio_int_service
+           82   1364: i.am_hal_gpio_int_status_get
+           83   1393: ..\am_hal_interrupt.c
+           84   1415: .emb_text
+           85   1425: ../am_hal_interrupt.c
+           86   1447: i.am_hal_interrupt_enable
+           87   1473: ..\am_hal_iom.c
+           88   1489: ../am_hal_iom.c
+           89   1505: i.am_hal_iom_config
+           90   1525: i.am_hal_iom_enable
+           91   1545: i.am_hal_iom_fifo_read
+           92   1568: i.am_hal_iom_fifo_write
+           93   1592: i.am_hal_iom_i2c_cmd_run
+           94   1617: i.am_hal_iom_i2c_read
+           95   1639: i.am_hal_iom_i2c_read_nb
+           96   1664: i.am_hal_iom_i2c_read_nq
+           97   1689: i.am_hal_iom_i2c_write
+           98   1712: i.am_hal_iom_i2c_write_nb
+           99   1738: i.am_hal_iom_i2c_write_nq
+          100   1764: i.am_hal_iom_pwrctrl_enable
+          101   1792: i.am_hal_iom_sleeping_queue_flush
+          102   1826: i.am_hal_iom_spi_read
+          103   1848: i.am_hal_iom_spi_read_nb
+          104   1873: i.am_hal_iom_spi_read_nq
+          105   1898: i.am_hal_iom_spi_write
+          106   1921: i.am_hal_iom_spi_write_nb
+          107   1947: i.am_hal_iom_spi_write_nq
+          108   1973: i.am_hal_iom_workaround_word_write
+          109   2008: i.internal_iom_get_int_err
+          110   2035: internal_iom_get_int_err
+          111   2060: g_iom_error_status
+          112   2079: ../am_hal_itm.c
+          113   2095: i.am_hal_itm_enable
+          114   2115: i.am_hal_itm_print
+          115   2134: ../am_hal_sysctrl.c
+          116   2154: i.am_hal_sysctrl_sleep
+          117   2177: i.setBuckZX
+          118   2189: setBuckZX
+          119   2199: g_bBuckRestoreComplete
+          120   2222: g_ui32BuckTimer
+          121   2238: g_ui32BuckInputs
+          122   2255: g_buckZX_chk
+          123   2268: g_ui32SaveCoreBuckZX
+          124   2289: g_ui32SaveMemBuckZX
+          125   2309: g_ui32CoreBuck
           126   2324: ..\am_hal_ctimer.c
           127   2343: ../am_hal_ctimer.c
           128   2362: i.am_hal_ctimer_clear

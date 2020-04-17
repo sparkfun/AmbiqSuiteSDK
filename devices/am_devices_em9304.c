@@ -8,26 +8,26 @@
 
 //*****************************************************************************
 //
-// Copyright (c) 2019, Ambiq Micro
+// Copyright (c) 2020, Ambiq Micro
 // All rights reserved.
-// 
+//
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided that the following conditions are met:
-// 
+//
 // 1. Redistributions of source code must retain the above copyright notice,
 // this list of conditions and the following disclaimer.
-// 
+//
 // 2. Redistributions in binary form must reproduce the above copyright
 // notice, this list of conditions and the following disclaimer in the
 // documentation and/or other materials provided with the distribution.
-// 
+//
 // 3. Neither the name of the copyright holder nor the names of its
 // contributors may be used to endorse or promote products derived from this
 // software without specific prior written permission.
-// 
+//
 // Third party software included in this distribution is subject to the
 // additional license terms as defined in the /docs/licenses directory.
-// 
+//
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
 // AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
 // IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
@@ -40,7 +40,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
-// This is part of revision 2.3.2 of the AmbiqSuite Development Package.
+// This is part of revision 2.4.2 of the AmbiqSuite Development Package.
 //
 //*****************************************************************************
 
@@ -678,14 +678,14 @@ am_devices_em9304_block_read(const am_devices_em9304_t *psDevice,
         }
         for (uint32_t i = 0; i < AM_DEVICES_EM9304_TIMEOUT; i++)
         {
-            
+
             if (!gIomDone)
             {
                 //
                 // Sleep while waiting for the IOM transaction to finish.
                 //
                 am_hal_sysctrl_sleep(AM_HAL_SYSCTRL_SLEEP_DEEP);
-                
+
             }
 
             if (gIomDone)
@@ -987,7 +987,14 @@ void am_devices_em9304_disable_interrupt(void)
 // Global variables.
 //
 //*****************************************************************************
-void *g_pEM9304IOMHandle;
+typedef struct
+{
+    uint32_t                    ui32Module;
+    void                        *pIomHandle;
+    bool                        bOccupied;
+} am_devices_iom_em9304_t;
+
+am_devices_iom_em9304_t gAmEm9304[AM_DEVICES_EM9304_MAX_DEVICE_NUM];
 
 //*****************************************************************************
 //
@@ -999,6 +1006,14 @@ const am_devices_em9304_t g_sEm9304 =
     .ui32IOMModule      = AM_BSP_EM9304_IOM,
     .ui32IOMChipSelect  = AM_BSP_GPIO_EM9304_CS,
     .ui32DREADY         = AM_BSP_GPIO_EM9304_INT
+};
+
+am_hal_iom_config_t     g_sIomEm9304Cfg =
+{
+    .eInterfaceMode       = AM_HAL_IOM_SPI_MODE,
+    .ui32ClockFreq        = AM_HAL_IOM_1MHZ,
+    .ui32NBTxnBufLength   = 0,
+    .pNBTxnBuf = NULL,
 };
 
 //*****************************************************************************
@@ -1049,8 +1064,30 @@ am_devices_em9304_config_pins(void)
 //
 //*****************************************************************************
 uint32_t
-am_devices_em9304_init(uint32_t ui32Module, am_hal_iom_config_t *psIomConfig, void **ppIomHandle)
+am_devices_em9304_init(uint32_t ui32Module, am_devices_em9304_config_t *pDevConfig, void **ppHandle, void **ppIomHandle)
 {
+    void *pIomHandle;
+    am_hal_iom_config_t     stIOMEM9304Settings;
+    uint32_t      ui32Index = 0;
+
+    // Allocate a vacant device handle
+    for ( ui32Index = 0; ui32Index < AM_DEVICES_EM9304_MAX_DEVICE_NUM; ui32Index++ )
+    {
+        if ( gAmEm9304[ui32Index].bOccupied == false )
+        {
+            break;
+        }
+    }
+    if ( ui32Index == AM_DEVICES_EM9304_MAX_DEVICE_NUM )
+    {
+        return AM_DEVICES_EM9304_STATUS_ERROR;
+    }
+
+    if ( (ui32Module > AM_REG_IOM_NUM_MODULES)  || (pDevConfig == NULL) )
+    {
+        return AM_DEVICES_EM9304_STATUS_ERROR;
+    }
+
     //
     // Configure the IOM pins.
     //
@@ -1070,18 +1107,69 @@ am_devices_em9304_init(uint32_t ui32Module, am_hal_iom_config_t *psIomConfig, vo
     am_hal_mcuctrl_fault_capture_enable();
 #endif // AM_APOLLO3_MCUCTRL
 
+    stIOMEM9304Settings = g_sIomEm9304Cfg;
+    stIOMEM9304Settings.ui32NBTxnBufLength = pDevConfig->ui32NBTxnBufLength;
+    stIOMEM9304Settings.pNBTxnBuf = pDevConfig->pNBTxnBuf;
+    stIOMEM9304Settings.ui32ClockFreq = pDevConfig->ui32ClockFreq;
+
     //
     // Initialize the IOM instance.
     //
-    if (am_hal_iom_initialize(ui32Module, &g_pEM9304IOMHandle) ||
-        am_hal_iom_power_ctrl(g_pEM9304IOMHandle, AM_HAL_SYSCTRL_WAKE, false) ||
-        am_hal_iom_configure(g_pEM9304IOMHandle, psIomConfig) ||
-        am_hal_iom_enable(g_pEM9304IOMHandle))
+    if (am_hal_iom_initialize(ui32Module, &pIomHandle) ||
+        am_hal_iom_power_ctrl(pIomHandle, AM_HAL_SYSCTRL_WAKE, false) ||
+        am_hal_iom_configure(pIomHandle, &stIOMEM9304Settings) ||
+        am_hal_iom_enable(pIomHandle))
     {
         return AM_DEVICES_EM9304_STATUS_ERROR;
     }
 
-    *ppIomHandle = g_pEM9304IOMHandle;
+    gAmEm9304[ui32Index].bOccupied = true;
+    gAmEm9304[ui32Index].ui32Module = ui32Module;
+    *ppIomHandle = gAmEm9304[ui32Index].pIomHandle = pIomHandle;
+    *ppHandle = (void *)&gAmEm9304[ui32Index];
+    //
+    // Return the status.
+    //
+    return AM_DEVICES_EM9304_STATUS_SUCCESS;
+}
+
+//*****************************************************************************
+//
+//! @brief EM9304 SPI/IOM de-initialization function.
+//!
+//! @param pHandle     - Device handle#
+//!
+//! @return status.
+//
+//*****************************************************************************
+uint32_t
+am_devices_em9304_term(void *pHandle)
+{
+    am_devices_iom_em9304_t *pIom = (am_devices_iom_em9304_t *)pHandle;
+
+    if ( pIom->ui32Module > AM_REG_IOM_NUM_MODULES )
+    {
+        return AM_DEVICES_EM9304_STATUS_ERROR;
+    }
+
+    // Disable the pins
+    am_bsp_iom_pins_disable(pIom->ui32Module, AM_HAL_IOM_SPI_MODE);
+
+    //
+    // Disable the IOM.
+    //
+    am_hal_iom_disable(pIom->pIomHandle);
+
+    //
+    // Disable power to and uninitialize the IOM instance.
+    //
+    am_hal_iom_power_ctrl(pIom->pIomHandle, AM_HAL_SYSCTRL_DEEPSLEEP, true);
+
+    am_hal_iom_uninitialize(pIom->pIomHandle);
+
+    // Free this device handle
+    pIom->bOccupied = false;
+
     //
     // Return the status.
     //

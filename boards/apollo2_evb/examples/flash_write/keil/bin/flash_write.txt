@@ -2440,33 +2440,33 @@
     109  $v0                        0x000001c4   Lc    1   --   De 
     110  ../am_hal_global.c         0x00000000   Lc  Abs  File  De 
     111  .data                      0x10000008   Lc    2  Sect  De   0x4
-    112  ../am_bsp.c                0x00000000   Lc  Abs  File  De 
-    113  i.am_bsp_debug_printf_enable
-                                    0x000002a4   Lc    1  Sect  De 
-    114  i.am_bsp_itm_string_print  0x00000314   Lc    1  Sect  De 
-    115  i.am_bsp_low_power_init    0x00000318   Lc    1  Sect  De 
-    116  ../am_hal_clkgen.c         0x00000000   Lc  Abs  File  De 
-    117  i.am_hal_clkgen_osc_stop   0x0000033a   Lc    1  Sect  De 
-    118  i.am_hal_clkgen_sysclk_get 0x00000350   Lc    1  Sect  De 
-    119  i.am_hal_clkgen_sysclk_select
+    112  ../am_hal_clkgen.c         0x00000000   Lc  Abs  File  De 
+    113  i.am_hal_clkgen_osc_stop   0x0000033a   Lc    1  Sect  De 
+    114  i.am_hal_clkgen_sysclk_get 0x00000350   Lc    1  Sect  De 
+    115  i.am_hal_clkgen_sysclk_select
                                     0x00000370   Lc    1  Sect  De 
-    120  ../am_hal_flash.c          0x00000000   Lc  Abs  File  De 
-    121  i.am_hal_flash_delay       0x000003dc   Lc    1  Sect  De 
-    122  i.am_hal_flash_mass_erase  0x000003e4   Lc    1  Sect  De 
-    123  i.am_hal_flash_page_erase  0x000003ec   Lc    1  Sect  De 
-    124  i.am_hal_flash_program_main
+    116  ../am_hal_flash.c          0x00000000   Lc  Abs  File  De 
+    117  i.am_hal_flash_delay       0x000003dc   Lc    1  Sect  De 
+    118  i.am_hal_flash_mass_erase  0x000003e4   Lc    1  Sect  De 
+    119  i.am_hal_flash_page_erase  0x000003ec   Lc    1  Sect  De 
+    120  i.am_hal_flash_program_main
                                     0x000003f4   Lc    1  Sect  De 
-    125  ..\am_hal_interrupt.c      0x00000000   Lc  Abs  File  De 
-    126  .emb_text                  0x000001ac   Lc    1  Sect  De   0x16
-    127  $v0                        0x000001ac   Lc    1   --   De 
-    128  ../am_hal_interrupt.c      0x00000000   Lc  Abs  File  De 
-    129  ../am_hal_itm.c            0x00000000   Lc  Abs  File  De 
-    130  i.am_hal_itm_enable        0x0000044c   Lc    1  Sect  De 
-    131  i.am_hal_itm_not_busy      0x000004a4   Lc    1  Sect  De 
-    132  i.am_hal_itm_print         0x000004bc   Lc    1  Sect  De 
-    133  ../am_hal_mcuctrl.c        0x00000000   Lc  Abs  File  De 
-    134  i.am_hal_mcuctrl_fault_status
+    121  ..\am_hal_interrupt.c      0x00000000   Lc  Abs  File  De 
+    122  .emb_text                  0x000001ac   Lc    1  Sect  De   0x16
+    123  $v0                        0x000001ac   Lc    1   --   De 
+    124  ../am_hal_interrupt.c      0x00000000   Lc  Abs  File  De 
+    125  ../am_hal_itm.c            0x00000000   Lc  Abs  File  De 
+    126  i.am_hal_itm_enable        0x0000044c   Lc    1  Sect  De 
+    127  i.am_hal_itm_not_busy      0x000004a4   Lc    1  Sect  De 
+    128  i.am_hal_itm_print         0x000004bc   Lc    1  Sect  De 
+    129  ../am_hal_mcuctrl.c        0x00000000   Lc  Abs  File  De 
+    130  i.am_hal_mcuctrl_fault_status
                                     0x000004ec   Lc    1  Sect  De 
+    131  ../am_bsp.c                0x00000000   Lc  Abs  File  De 
+    132  i.am_bsp_debug_printf_enable
+                                    0x000002a4   Lc    1  Sect  De 
+    133  i.am_bsp_itm_string_print  0x00000314   Lc    1  Sect  De 
+    134  i.am_bsp_low_power_init    0x00000318   Lc    1  Sect  De 
     135  ../am_hal_debug.c          0x00000000   Lc  Abs  File  De 
     136  i.am_hal_debug_error       0x000003d8   Lc    1  Sect  De 
     137  ../am_hal_gpio.c           0x00000000   Lc  Abs  File  De 
@@ -2877,27 +2877,27 @@
            48    739: RESET
            49    745: .text
            50    751: ../am_hal_global.c
-           51    770: ../am_bsp.c
-           52    782: i.am_bsp_debug_printf_enable
-           53    811: i.am_bsp_itm_string_print
-           54    837: i.am_bsp_low_power_init
-           55    861: ../am_hal_clkgen.c
-           56    880: i.am_hal_clkgen_osc_stop
-           57    905: i.am_hal_clkgen_sysclk_get
-           58    932: i.am_hal_clkgen_sysclk_select
-           59    962: ../am_hal_flash.c
-           60    980: i.am_hal_flash_delay
-           61   1001: i.am_hal_flash_mass_erase
-           62   1027: i.am_hal_flash_page_erase
-           63   1053: i.am_hal_flash_program_main
-           64   1081: ..\am_hal_interrupt.c
-           65   1103: ../am_hal_interrupt.c
-           66   1125: ../am_hal_itm.c
-           67   1141: i.am_hal_itm_enable
-           68   1161: i.am_hal_itm_not_busy
-           69   1183: i.am_hal_itm_print
-           70   1202: ../am_hal_mcuctrl.c
-           71   1222: i.am_hal_mcuctrl_fault_status
+           51    770: ../am_hal_clkgen.c
+           52    789: i.am_hal_clkgen_osc_stop
+           53    814: i.am_hal_clkgen_sysclk_get
+           54    841: i.am_hal_clkgen_sysclk_select
+           55    871: ../am_hal_flash.c
+           56    889: i.am_hal_flash_delay
+           57    910: i.am_hal_flash_mass_erase
+           58    936: i.am_hal_flash_page_erase
+           59    962: i.am_hal_flash_program_main
+           60    990: ..\am_hal_interrupt.c
+           61   1012: ../am_hal_interrupt.c
+           62   1034: ../am_hal_itm.c
+           63   1050: i.am_hal_itm_enable
+           64   1070: i.am_hal_itm_not_busy
+           65   1092: i.am_hal_itm_print
+           66   1111: ../am_hal_mcuctrl.c
+           67   1131: i.am_hal_mcuctrl_fault_status
+           68   1161: ../am_bsp.c
+           69   1173: i.am_bsp_debug_printf_enable
+           70   1202: i.am_bsp_itm_string_print
+           71   1228: i.am_bsp_low_power_init
            72   1252: ../am_hal_debug.c
            73   1270: i.am_hal_debug_error
            74   1291: ../am_hal_gpio.c

@@ -210,8 +210,8 @@
                     <state>iar</state>
           <state>AM_PART_APOLLO3</state>
           <state>AM_PACKAGE_BGA</state>
-          <state>FIREBALL_CARD</state>
           <state>APS6404L</state>
+          <state>FIREBALL_CARD</state>
                 </option>
                 <option>
                     <name>CCPreprocFile</name>
@@ -336,14 +336,14 @@
                 </option>
                 <option>
                     <name>CCIncludePath2</name>
+          <state>$PROJ_DIR$\..\..\..\..\..</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\CMSIS\ARM\Include</state>
+          <state>$PROJ_DIR$\..\src</state>
           <state>$PROJ_DIR$\..\..\..\..\..\utils</state>
           <state>$PROJ_DIR$\..\..\..\..\..\mcu\apollo3</state>
-          <state>$PROJ_DIR$\..\..\..\..\..\CMSIS\AmbiqMicro\Include</state>
-          <state>$PROJ_DIR$\..\..\..\..\..\devices</state>
-          <state>$PROJ_DIR$\..\..\..\..\..\CMSIS\ARM\Include</state>
           <state>$PROJ_DIR$\..\..\..\bsp</state>
-          <state>$PROJ_DIR$\..\..\..\..\..</state>
-          <state>$PROJ_DIR$\..\src</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\devices</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\CMSIS\AmbiqMicro\Include</state>
                 </option>
                 <option>
                     <name>CCStdIncCheck</name>
@@ -609,14 +609,14 @@
                 </option>
                 <option>
                     <name>AUserIncludes</name>
+          <state>$PROJ_DIR$\..\..\..\..\..</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\CMSIS\ARM\Include</state>
+          <state>$PROJ_DIR$\..\src</state>
           <state>$PROJ_DIR$\..\..\..\..\..\utils</state>
           <state>$PROJ_DIR$\..\..\..\..\..\mcu\apollo3</state>
-          <state>$PROJ_DIR$\..\..\..\..\..\CMSIS\AmbiqMicro\Include</state>
-          <state>$PROJ_DIR$\..\..\..\..\..\devices</state>
-          <state>$PROJ_DIR$\..\..\..\..\..\CMSIS\ARM\Include</state>
           <state>$PROJ_DIR$\..\..\..\bsp</state>
-          <state>$PROJ_DIR$\..\..\..\..\..</state>
-          <state>$PROJ_DIR$\..\src</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\devices</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\CMSIS\AmbiqMicro\Include</state>
                 </option>
                 <option>
                     <name>AExtraOptionsCheckV2</name>
@@ -1240,8 +1240,8 @@
                     <state>iar</state>
           <state>AM_PART_APOLLO3</state>
           <state>AM_PACKAGE_BGA</state>
-          <state>FIREBALL_CARD</state>
           <state>APS6404L</state>
+          <state>FIREBALL_CARD</state>
                 </option>
                 <option>
                     <name>CCPreprocFile</name>
@@ -1366,14 +1366,14 @@
                 </option>
                 <option>
                     <name>CCIncludePath2</name>
+          <state>$PROJ_DIR$\..\..\..\..\..</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\CMSIS\ARM\Include</state>
+          <state>$PROJ_DIR$\..\src</state>
           <state>$PROJ_DIR$\..\..\..\..\..\utils</state>
           <state>$PROJ_DIR$\..\..\..\..\..\mcu\apollo3</state>
-          <state>$PROJ_DIR$\..\..\..\..\..\CMSIS\AmbiqMicro\Include</state>
-          <state>$PROJ_DIR$\..\..\..\..\..\devices</state>
-          <state>$PROJ_DIR$\..\..\..\..\..\CMSIS\ARM\Include</state>
           <state>$PROJ_DIR$\..\..\..\bsp</state>
-          <state>$PROJ_DIR$\..\..\..\..\..</state>
-          <state>$PROJ_DIR$\..\src</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\devices</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\CMSIS\AmbiqMicro\Include</state>
                 </option>
                 <option>
                     <name>CCStdIncCheck</name>
@@ -2054,16 +2054,16 @@
         </settings>
     </configuration>
   <file>
-    <name>$PROJ_DIR$\..\..\..\..\..\third_party\prime_mpi\src\prime_mpi.c</name>
+    <name>$PROJ_DIR$\..\src\cache_monitor.c</name>
   </file>
   <file>
-    <name>$PROJ_DIR$\..\src\cache_monitor.c</name>
+    <name>$PROJ_DIR$\..\..\..\..\..\third_party\prime_mpi\src\prime_mpi.c</name>
   </file>
   <file>
     <name>$PROJ_DIR$\..\..\..\..\..\devices\am_devices_fireball.c</name>
   </file>
   <file>
-    <name>$PROJ_DIR$\..\..\..\..\..\devices\am_devices_mspi_psram.c</name>
+    <name>$PROJ_DIR$\..\..\..\..\..\devices\am_devices_mspi_psram_aps6404l.c</name>
   </file>
   <file>
     <name>$PROJ_DIR$\..\..\..\..\..\utils\am_util_delay.c</name>

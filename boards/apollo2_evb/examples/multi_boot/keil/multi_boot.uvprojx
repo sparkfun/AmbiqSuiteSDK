@@ -333,9 +333,9 @@
             <v6Rtti>0</v6Rtti>
             <VariousControls>
               <MiscControls></MiscControls>
-              <Define>AM_PART_APOLLO2 AM_PACKAGE_BGA AM_MULTIBOOT_CONFIG_FILE=\"am_multi_boot_config.h\" keil</Define>
+              <Define>AM_MULTIBOOT_CONFIG_FILE=\"am_multi_boot_config.h\" AM_PART_APOLLO2 AM_PACKAGE_BGA keil</Define>
               <Undefine></Undefine>
-              <IncludePath>../../../bsp;../../../../../mcu/apollo2;../../../../../bootloader;../../../../..;../../../../../utils;../src;../../../../../devices</IncludePath>
+              <IncludePath>../../../../../utils;../../../../../devices;../../../bsp;../../../../../mcu/apollo2;../../../../..;../src;../../../../../bootloader</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -407,6 +407,16 @@
           </Files>
         </Group>
         <Group>
+          <GroupName>devices</GroupName>
+          <Files>
+            <File>
+              <FileName>am_devices_spiflash.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../../../../../devices/am_devices_spiflash.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
           <GroupName>bootloader</GroupName>
           <Files>
             <File>
@@ -432,16 +442,6 @@
           </Files>
         </Group>
         <Group>
-          <GroupName>devices</GroupName>
-          <Files>
-            <File>
-              <FileName>am_devices_spiflash.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../devices/am_devices_spiflash.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
           <GroupName>keil</GroupName>
           <Files>
             <File>
@@ -455,14 +455,14 @@
           <GroupName>lib</GroupName>
           <Files>
             <File>
-              <FileName>libam_hal.lib</FileName>
-              <FileType>4</FileType>
-              <FilePath>../../../../../mcu/apollo2/hal/keil/bin/libam_hal.lib</FilePath>
-            </File>
-            <File>
               <FileName>libam_bsp.lib</FileName>
               <FileType>4</FileType>
               <FilePath>../../../bsp/keil/bin/libam_bsp.lib</FilePath>
+            </File>
+            <File>
+              <FileName>libam_hal.lib</FileName>
+              <FileType>4</FileType>
+              <FilePath>../../../../../mcu/apollo2/hal/keil/bin/libam_hal.lib</FilePath>
             </File>
           </Files>
         </Group>

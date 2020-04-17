@@ -1,0 +1,67 @@
+//*****************************************************************************
+//
+// APOLLO3P (AMA3B2KK-KBR) selftest_commander_keil.jlink
+//
+// This J-Link Commander batch file can be used to run the flash_selftest
+// example, which must execute from SRAM.
+//
+// For example, to run from a Windows Command Prompt:
+//  jlink -CommanderScript selftest_commander_keil.jlink
+//
+// The results are stored at address 0x10030000.
+//  0xFAE00000 = Pass, the flash tested good.
+//  0xFAE0xxxx = Fail, where xxxx is a failure code.
+//
+//*****************************************************************************
+//
+// Connect to the Ambiq Micro APOLLO3P device and halt.
+//
+device AMA3B2KK-KBR
+si SWD
+speed 1000
+halt
+
+//
+//  Load the KEIL binary into SRAM.
+//
+w4 10030000 0
+loadbin keil\bin\flash_selftest.bin 0x10000000
+
+//
+// Set the SP and PC.
+// The SP and PC values can be found as the first words in the .bin.
+//  SP = Word 0
+//  PC = Word 1
+// KEIL with PRINT_RESULTS enabled:  SP = 0x10007000, PC = 0x10000101
+//
+wreg MSP, 0x10007000
+setPC 0x10000101
+
+//
+// We're ready to go, start the test.
+//
+g
+
+//
+// Periodically check the result.
+// For a good part Apollo3 takes about 30s, Apollo3p about 50s.
+//
+sleep 30000
+mem32 0x10030000 1
+sleep 20000
+
+mem32 0x10030000 1
+sleep 1000
+
+
+//
+// Halt the MCU and print the final results.
+//
+//halt
+mem32 0x10030000 1
+mem32 0x10030004 2
+
+//
+// Close J-Link and quit.
+//
+qc

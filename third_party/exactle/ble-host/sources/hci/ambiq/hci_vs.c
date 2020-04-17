@@ -31,6 +31,7 @@
 #include "hci_main.h"
 #include "hci_cmd.h"
 #include "hci_apollo_config.h"
+#include "am_mcu_apollo.h"
 
 #if HCI_VS_TARGET == HCI_VS_GENERIC
 
@@ -189,7 +190,11 @@ void hciCoreResetSequence(uint8_t *pMsg)
 
         /* initialize ACL buffer accounting */
         #if defined(AM_PART_APOLLO3) || defined(AM_PART_APOLLO3P)
-        hciCoreCb.numBufs--;
+        // B0 has less data buffer compared to A1 and A0
+        if (!APOLLO3_GE_B0)
+        {
+          hciCoreCb.numBufs--;
+        }
         #endif
         hciCoreCb.availBufs = hciCoreCb.numBufs;
 

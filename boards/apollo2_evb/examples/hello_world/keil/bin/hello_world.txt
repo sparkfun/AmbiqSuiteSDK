@@ -3133,49 +3133,49 @@
     141  $v0                        0x000001c4   Lc    1   --   De 
     142  ../am_hal_global.c         0x00000000   Lc  Abs  File  De 
     143  .data                      0x10000008   Lc    2  Sect  De   0x4
-    144  ../am_bsp.c                0x00000000   Lc  Abs  File  De 
-    145  i.am_bsp_debug_printf_disable
-                                    0x000002a4   Lc    1  Sect  De 
-    146  i.am_bsp_debug_printf_enable
-                                    0x00000300   Lc    1  Sect  De 
-    147  i.am_bsp_itm_string_print  0x00000370   Lc    1  Sect  De 
-    148  i.am_bsp_low_power_init    0x00000374   Lc    1  Sect  De 
-    149  ../am_hal_cachectrl.c      0x00000000   Lc  Abs  File  De 
-    150  i.am_hal_cachectrl_enable  0x00000398   Lc    1  Sect  De 
-    151  .constdata                 0x000019a9   Lc    1  Sect  De   0xc
-    152  ../am_hal_clkgen.c         0x00000000   Lc  Abs  File  De 
-    153  i.am_hal_clkgen_osc_stop   0x00000468   Lc    1  Sect  De 
-    154  i.am_hal_clkgen_sysclk_get 0x0000047c   Lc    1  Sect  De 
-    155  i.am_hal_clkgen_sysclk_select
+    144  ../am_hal_cachectrl.c      0x00000000   Lc  Abs  File  De 
+    145  i.am_hal_cachectrl_enable  0x00000398   Lc    1  Sect  De 
+    146  .constdata                 0x000019a9   Lc    1  Sect  De   0xc
+    147  ../am_hal_clkgen.c         0x00000000   Lc  Abs  File  De 
+    148  i.am_hal_clkgen_osc_stop   0x00000468   Lc    1  Sect  De 
+    149  i.am_hal_clkgen_sysclk_get 0x0000047c   Lc    1  Sect  De 
+    150  i.am_hal_clkgen_sysclk_select
                                     0x0000049c   Lc    1  Sect  De 
-    156  ../am_hal_flash.c          0x00000000   Lc  Abs  File  De 
-    157  i.am_hal_flash_delay       0x000005dc   Lc    1  Sect  De 
-    158  ..\am_hal_interrupt.c      0x00000000   Lc  Abs  File  De 
-    159  .emb_text                  0x000001ac   Lc    1  Sect  De   0x16
-    160  $v0                        0x000001ac   Lc    1   --   De 
-    161  ../am_hal_interrupt.c      0x00000000   Lc  Abs  File  De 
-    162  ../am_hal_itm.c            0x00000000   Lc  Abs  File  De 
-    163  i.am_hal_itm_enable        0x000005e4   Lc    1  Sect  De 
-    164  i.am_hal_itm_not_busy      0x0000063c   Lc    1  Sect  De 
-    165  i.am_hal_itm_print         0x00000654   Lc    1  Sect  De 
-    166  ../am_hal_mcuctrl.c        0x00000000   Lc  Abs  File  De 
-    167  i.am_hal_mcuctrl_device_info_get
+    151  ../am_hal_flash.c          0x00000000   Lc  Abs  File  De 
+    152  i.am_hal_flash_delay       0x000005dc   Lc    1  Sect  De 
+    153  ..\am_hal_interrupt.c      0x00000000   Lc  Abs  File  De 
+    154  .emb_text                  0x000001ac   Lc    1  Sect  De   0x16
+    155  $v0                        0x000001ac   Lc    1   --   De 
+    156  ../am_hal_interrupt.c      0x00000000   Lc  Abs  File  De 
+    157  ../am_hal_itm.c            0x00000000   Lc  Abs  File  De 
+    158  i.am_hal_itm_enable        0x000005e4   Lc    1  Sect  De 
+    159  i.am_hal_itm_not_busy      0x0000063c   Lc    1  Sect  De 
+    160  i.am_hal_itm_print         0x00000654   Lc    1  Sect  De 
+    161  ../am_hal_mcuctrl.c        0x00000000   Lc  Abs  File  De 
+    162  i.am_hal_mcuctrl_device_info_get
                                     0x00000684   Lc    1  Sect  De 
-    168  i.am_hal_mcuctrl_fault_status
+    163  i.am_hal_mcuctrl_fault_status
                                     0x00000744   Lc    1  Sect  De 
-    169  .constdata                 0x000019b8   Lc    1  Sect  De   0x40
-    170  ../am_hal_sysctrl.c        0x00000000   Lc  Abs  File  De 
-    171  i.am_hal_sysctrl_sleep     0x000009f8   Lc    1  Sect  De 
-    172  i.setBuckZX                0x000016c0   Lc    1  Sect  De 
-    173  setBuckZX                  0x000016c1   Lc    1  Code  De   0x72
-    174  .data                      0x1000000c   Lc    2  Sect  De   0x1c
-    175  g_bBuckRestoreComplete     0x1000000c   Lc    2  Data  De   0x1
-    176  g_ui32BuckTimer            0x10000010   Lc    2  Data  De   0x4
-    177  g_ui32BuckInputs           0x10000014   Lc    2  Data  De   0x4
-    178  g_buckZX_chk               0x10000018   Lc    2  Data  De   0x4
-    179  g_ui32SaveCoreBuckZX       0x1000001c   Lc    2  Data  De   0x4
-    180  g_ui32SaveMemBuckZX        0x10000020   Lc    2  Data  De   0x4
-    181  g_ui32CoreBuck             0x10000024   Lc    2  Data  De   0x4
+    164  .constdata                 0x000019b8   Lc    1  Sect  De   0x40
+    165  ../am_hal_sysctrl.c        0x00000000   Lc  Abs  File  De 
+    166  i.am_hal_sysctrl_sleep     0x000009f8   Lc    1  Sect  De 
+    167  i.setBuckZX                0x000016c0   Lc    1  Sect  De 
+    168  setBuckZX                  0x000016c1   Lc    1  Code  De   0x72
+    169  .data                      0x1000000c   Lc    2  Sect  De   0x1c
+    170  g_bBuckRestoreComplete     0x1000000c   Lc    2  Data  De   0x1
+    171  g_ui32BuckTimer            0x10000010   Lc    2  Data  De   0x4
+    172  g_ui32BuckInputs           0x10000014   Lc    2  Data  De   0x4
+    173  g_buckZX_chk               0x10000018   Lc    2  Data  De   0x4
+    174  g_ui32SaveCoreBuckZX       0x1000001c   Lc    2  Data  De   0x4
+    175  g_ui32SaveMemBuckZX        0x10000020   Lc    2  Data  De   0x4
+    176  g_ui32CoreBuck             0x10000024   Lc    2  Data  De   0x4
+    177  ../am_bsp.c                0x00000000   Lc  Abs  File  De 
+    178  i.am_bsp_debug_printf_disable
+                                    0x000002a4   Lc    1  Sect  De 
+    179  i.am_bsp_debug_printf_enable
+                                    0x00000300   Lc    1  Sect  De 
+    180  i.am_bsp_itm_string_print  0x00000370   Lc    1  Sect  De 
+    181  i.am_bsp_low_power_init    0x00000374   Lc    1  Sect  De 
     182  ..\am_hal_ctimer.c         0x00000000   Lc  Abs  File  De 
     183  ../am_hal_ctimer.c         0x00000000   Lc  Abs  File  De 
     184  i.am_hal_ctimer_clear      0x00000504   Lc    1  Sect  De 
@@ -3625,39 +3625,39 @@
            61    989: RESET
            62    995: .text
            63   1001: ../am_hal_global.c
-           64   1020: ../am_bsp.c
-           65   1032: i.am_bsp_debug_printf_disable
-           66   1062: i.am_bsp_debug_printf_enable
-           67   1091: i.am_bsp_itm_string_print
-           68   1117: i.am_bsp_low_power_init
-           69   1141: ../am_hal_cachectrl.c
-           70   1163: i.am_hal_cachectrl_enable
-           71   1189: ../am_hal_clkgen.c
-           72   1208: i.am_hal_clkgen_osc_stop
-           73   1233: i.am_hal_clkgen_sysclk_get
-           74   1260: i.am_hal_clkgen_sysclk_select
-           75   1290: ../am_hal_flash.c
-           76   1308: i.am_hal_flash_delay
-           77   1329: ..\am_hal_interrupt.c
-           78   1351: ../am_hal_interrupt.c
-           79   1373: ../am_hal_itm.c
-           80   1389: i.am_hal_itm_enable
-           81   1409: i.am_hal_itm_not_busy
-           82   1431: i.am_hal_itm_print
-           83   1450: ../am_hal_mcuctrl.c
-           84   1470: i.am_hal_mcuctrl_device_info_get
-           85   1503: i.am_hal_mcuctrl_fault_status
-           86   1533: ../am_hal_sysctrl.c
-           87   1553: i.am_hal_sysctrl_sleep
-           88   1576: i.setBuckZX
-           89   1588: setBuckZX
-           90   1598: g_bBuckRestoreComplete
-           91   1621: g_ui32BuckTimer
-           92   1637: g_ui32BuckInputs
-           93   1654: g_buckZX_chk
-           94   1667: g_ui32SaveCoreBuckZX
-           95   1688: g_ui32SaveMemBuckZX
-           96   1708: g_ui32CoreBuck
+           64   1020: ../am_hal_cachectrl.c
+           65   1042: i.am_hal_cachectrl_enable
+           66   1068: ../am_hal_clkgen.c
+           67   1087: i.am_hal_clkgen_osc_stop
+           68   1112: i.am_hal_clkgen_sysclk_get
+           69   1139: i.am_hal_clkgen_sysclk_select
+           70   1169: ../am_hal_flash.c
+           71   1187: i.am_hal_flash_delay
+           72   1208: ..\am_hal_interrupt.c
+           73   1230: ../am_hal_interrupt.c
+           74   1252: ../am_hal_itm.c
+           75   1268: i.am_hal_itm_enable
+           76   1288: i.am_hal_itm_not_busy
+           77   1310: i.am_hal_itm_print
+           78   1329: ../am_hal_mcuctrl.c
+           79   1349: i.am_hal_mcuctrl_device_info_get
+           80   1382: i.am_hal_mcuctrl_fault_status
+           81   1412: ../am_hal_sysctrl.c
+           82   1432: i.am_hal_sysctrl_sleep
+           83   1455: i.setBuckZX
+           84   1467: setBuckZX
+           85   1477: g_bBuckRestoreComplete
+           86   1500: g_ui32BuckTimer
+           87   1516: g_ui32BuckInputs
+           88   1533: g_buckZX_chk
+           89   1546: g_ui32SaveCoreBuckZX
+           90   1567: g_ui32SaveMemBuckZX
+           91   1587: g_ui32CoreBuck
+           92   1602: ../am_bsp.c
+           93   1614: i.am_bsp_debug_printf_disable
+           94   1644: i.am_bsp_debug_printf_enable
+           95   1673: i.am_bsp_itm_string_print
+           96   1699: i.am_bsp_low_power_init
            97   1723: ..\am_hal_ctimer.c
            98   1742: ../am_hal_ctimer.c
            99   1761: i.am_hal_ctimer_clear

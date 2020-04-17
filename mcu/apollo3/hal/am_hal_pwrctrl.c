@@ -13,26 +13,26 @@
 
 //*****************************************************************************
 //
-// Copyright (c) 2019, Ambiq Micro
+// Copyright (c) 2020, Ambiq Micro
 // All rights reserved.
-// 
+//
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided that the following conditions are met:
-// 
+//
 // 1. Redistributions of source code must retain the above copyright notice,
 // this list of conditions and the following disclaimer.
-// 
+//
 // 2. Redistributions in binary form must reproduce the above copyright
 // notice, this list of conditions and the following disclaimer in the
 // documentation and/or other materials provided with the distribution.
-// 
+//
 // 3. Neither the name of the copyright holder nor the names of its
 // contributors may be used to endorse or promote products derived from this
 // software without specific prior written permission.
-// 
+//
 // Third party software included in this distribution is subject to the
 // additional license terms as defined in the /docs/licenses directory.
-// 
+//
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
 // AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
 // IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
@@ -45,7 +45,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
-// This is part of revision 2.3.2 of the AmbiqSuite Development Package.
+// This is part of revision 2.4.2 of the AmbiqSuite Development Package.
 //
 //*****************************************************************************
 
@@ -468,7 +468,7 @@ am_hal_pwrctrl_memory_enable(am_hal_pwrctrl_mem_e eMemConfig)
 uint32_t
 am_hal_pwrctrl_memory_deepsleep_powerdown(am_hal_pwrctrl_mem_e eMemConfig)
 {
-    if(eMemConfig >= AM_HAL_PWRCTRL_MEM_MAX)
+    if ( eMemConfig >= AM_HAL_PWRCTRL_MEM_MAX )
     {
         return AM_HAL_STATUS_FAIL;
     }
@@ -490,7 +490,7 @@ am_hal_pwrctrl_memory_deepsleep_powerdown(am_hal_pwrctrl_mem_e eMemConfig)
 uint32_t
 am_hal_pwrctrl_memory_deepsleep_retain(am_hal_pwrctrl_mem_e eMemConfig)
 {
-    if(eMemConfig >= AM_HAL_PWRCTRL_MEM_MAX)
+    if ( eMemConfig >= AM_HAL_PWRCTRL_MEM_MAX )
     {
         return AM_HAL_STATUS_FAIL;
     }
@@ -548,7 +548,15 @@ am_hal_pwrctrl_low_power_init(void)
         MCUCTRL->SIMOBUCK3_b.SIMOBUCKMEMLPHIGHTONTRIM   = 3;
         MCUCTRL->SIMOBUCK4_b.SIMOBUCKMEMLPLOWTONTRIM    = 3;
     }
-    
+
+    //
+    // Adjust the SIMOBUCK Timeout settings.
+    //
+    if (APOLLO3_GE_A1)
+    {
+        MCUCTRL->SIMOBUCK4_b.SIMOBUCKCOMP2TIMEOUTEN = 0;
+    }
+
     //
     // Configure cache for low power and performance.
     //
@@ -618,7 +626,7 @@ void am_hal_pwrctrl_blebuck_trim(void)
     CLKGEN->BLEBUCKTONADJ_b.TONADJUSTEN = CLKGEN_BLEBUCKTONADJ_TONADJUSTEN_DIS;
     AM_CRITICAL_END
   }
-  
+
 }
 
 //*****************************************************************************

@@ -2,26 +2,26 @@
 #
 # Makefile - Rules for building the libraries, examples and docs.
 #
-# Copyright (c) 2019, Ambiq Micro
+# Copyright (c) 2020, Ambiq Micro
 # All rights reserved.
-# 
+#
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
-# 
+#
 # 1. Redistributions of source code must retain the above copyright notice,
 # this list of conditions and the following disclaimer.
-# 
+#
 # 2. Redistributions in binary form must reproduce the above copyright
 # notice, this list of conditions and the following disclaimer in the
 # documentation and/or other materials provided with the distribution.
-# 
+#
 # 3. Neither the name of the copyright holder nor the names of its
 # contributors may be used to endorse or promote products derived from this
 # software without specific prior written permission.
-# 
+#
 # Third party software included in this distribution is subject to the
 # additional license terms as defined in the /docs/licenses directory.
-# 
+#
 # THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
 # AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
 # IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
@@ -34,7 +34,7 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 #
-# This is part of revision 2.3.2 of the AmbiqSuite Development Package.
+# This is part of revision 2.4.2 of the AmbiqSuite Development Package.
 #
 #******************************************************************************
 TARGET := bc_boot_demo
@@ -81,20 +81,20 @@ all clean:
 else
 
 DEFINES = -DPART_$(PART)
-DEFINES+= -DAM_PACKAGE_BGA
 DEFINES+= -DAM_PART_APOLLO
+DEFINES+= -DAM_PACKAGE_BGA
 DEFINES+= -Dgcc
 
-INCLUDES = -I../src
-INCLUDES+= -I../../../../../utils
-INCLUDES+= -I../../../../../mcu/apollo
+INCLUDES = -I../../../../../mcu/apollo
 INCLUDES+= -I../../../bsp
 INCLUDES+= -I../../../../..
 INCLUDES+= -I../../../../../devices
+INCLUDES+= -I../../../../../utils
+INCLUDES+= -I../src
 
-VPATH = ../src
-VPATH+=:../../../../../devices
+VPATH = ../../../../../devices
 VPATH+=:../../../../../utils
+VPATH+=:../src
 
 SRC = bc_boot_demo.c
 SRC += am_devices_led.c
@@ -112,8 +112,8 @@ OBJS+= $(ASRC:%.s=$(CONFIG)/%.o)
 DEPS = $(CSRC:%.c=$(CONFIG)/%.d)
 DEPS+= $(ASRC:%.s=$(CONFIG)/%.d)
 
-LIBS = ../../../../../mcu/apollo/hal/gcc/bin/libam_hal.a
-LIBS += ../../../bsp/gcc/bin/libam_bsp.a
+LIBS = ../../../bsp/gcc/bin/libam_bsp.a
+LIBS += ../../../../../mcu/apollo/hal/gcc/bin/libam_hal.a
 
 CFLAGS = -mthumb -mcpu=$(CPU) -mfpu=$(FPU) -mfloat-abi=$(FABI)
 CFLAGS+= -ffunction-sections -fdata-sections
@@ -169,11 +169,11 @@ clean:
 
 $(CONFIG)/%.d: ;
 
-../../../../../mcu/apollo/hal/gcc/bin/libam_hal.a:
-	$(MAKE) -C ../../../../../mcu/apollo/hal
-
 ../../../bsp/gcc/bin/libam_bsp.a:
 	$(MAKE) -C ../../../bsp
+
+../../../../../mcu/apollo/hal/gcc/bin/libam_hal.a:
+	$(MAKE) -C ../../../../../mcu/apollo/hal
 
 # Automatically include any generated dependencies
 -include $(DEPS)

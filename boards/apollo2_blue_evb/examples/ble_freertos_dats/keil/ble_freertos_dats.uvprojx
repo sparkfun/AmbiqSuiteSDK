@@ -333,9 +333,9 @@
             <v6Rtti>0</v6Rtti>
             <VariousControls>
               <MiscControls></MiscControls>
-              <Define>AM_PACKAGE_BGA AM_DEBUG_PRINTF WSF_TRACE_ENABLED AM_PART_APOLLO2 AM_FREERTOS SEC_ECC_CFG=SEC_ECC_CFG_UECC keil</Define>
+              <Define>AM_DEBUG_PRINTF AM_FREERTOS AM_PACKAGE_BGA SEC_ECC_CFG=SEC_ECC_CFG_UECC WSF_TRACE_ENABLED AM_PART_APOLLO2 keil</Define>
               <Undefine></Undefine>
-              <IncludePath>../../../../../third_party/exactle/ble-profiles/sources/services;../../../../../third_party/exactle/ble-host/sources/stack/l2c;../../../../../third_party/exactle/ble-profiles/sources/profiles/gap;../../../../../third_party/exactle/ble-host/sources/stack/cfg;../src;../../../../../third_party/exactle/ble-host/include;../../../../../third_party/exactle/ble-profiles/sources/apps;../../../../../third_party/exactle/ble-host/sources/hci/ambiq/em9304;../../../../../third_party/exactle/ble-profiles/sources/profiles;../../../../../utils;../../../bsp;../../../../../third_party/uecc;../../../../../third_party/exactle/ble-profiles/sources/profiles/gatt;../../../../../third_party/exactle/ble-host/sources/stack/dm;../../../../../ambiq_ble/em9304;../../../../../third_party/exactle/ble-host/sources/sec/common;../../../../../third_party/exactle/ble-profiles/include/app;../../../../../third_party/exactle/ble-host/sources/hci/include;../../../../../third_party/exactle/ble-host/sources/stack/hci;../../../../../third_party/exactle/wsf/include;../../../../../mcu/apollo2;../../../../../third_party/FreeRTOSv10.1.1/Source/portable/Keil/AMapollo2;../../../../../third_party/exactle/ble-profiles/sources/profiles/hid;../../../../../third_party/exactle/ble-host/sources/hci/ambiq;../../../../../third_party/exactle/ble-profiles/sources/apps/dats;../../../../../third_party/exactle/ble-profiles/sources/profiles/bas;../../../../../third_party/exactle/ble-profiles/sources/profiles/include;../../../../../third_party/exactle/wsf/sources/port/freertos;../../../../../third_party/exactle/ble-host/sources/stack/smp;../../../../../third_party/exactle/wsf/sources/util;../../../../../third_party/exactle/wsf/sources;../../../../../third_party/FreeRTOSv10.1.1/Source/include;../../../../../third_party/exactle/ble-profiles/sources/apps/app;../../../../../third_party/exactle/ble-host/sources/stack/att;../../../../../devices</IncludePath>
+              <IncludePath>../../../../../third_party/exactle/ble-host/sources/hci/include;../../../../../third_party/exactle/ble-host/include;../../../../../third_party/exactle/ble-profiles/sources/profiles/hid;../../../../../third_party/exactle/ble-profiles/sources/apps;../../../../../third_party/FreeRTOSv10.1.1/Source/portable/Keil/AMapollo2;../../../../../third_party/exactle/ble-profiles/sources/profiles/bas;../../../../../third_party/exactle/wsf/sources;../../../../../third_party/exactle/ble-profiles/sources/services;../../../../../third_party/exactle/ble-profiles/sources/profiles/gatt;../../../../../third_party/exactle/ble-host/sources/stack/dm;../../../../../utils;../../../../../third_party/exactle/ble-profiles/sources/profiles/gap;../../../../../third_party/exactle/ble-host/sources/hci/ambiq/em9304;../../../../../third_party/exactle/ble-profiles/sources/profiles/include;../../../../../third_party/exactle/wsf/sources/util;../../../../../third_party/exactle/ble-host/sources/stack/att;../../../../../third_party/exactle/ble-host/sources/sec/common;../src;../../../../../third_party/exactle/ble-profiles/sources/apps/dats;../../../../../third_party/uecc;../../../../../mcu/apollo2;../../../../../devices;../../../../../third_party/exactle/ble-profiles/sources/profiles;../../../../../third_party/exactle/wsf/sources/port/freertos;../../../../../ambiq_ble/em9304;../../../../../third_party/exactle/ble-host/sources/stack/hci;../../../../../third_party/exactle/ble-host/sources/stack/smp;../../../../../third_party/exactle/ble-host/sources/stack/cfg;../../../../../third_party/exactle/wsf/include;../../../../../third_party/exactle/ble-host/sources/stack/l2c;../../../../../third_party/FreeRTOSv10.1.1/Source/include;../../../bsp;../../../../../third_party/exactle/ble-host/sources/hci/ambiq;../../../../../third_party/exactle/ble-profiles/include/app;../../../../../third_party/exactle/ble-profiles/sources/apps/app</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -377,47 +377,22 @@
       </TargetOption>
       <Groups>
         <Group>
-          <GroupName>exactle_l2c</GroupName>
+          <GroupName>exactle_uecc</GroupName>
           <Files>
             <File>
-              <FileName>l2c_coc.c</FileName>
+              <FileName>sec_ecc.c</FileName>
               <FileType>1</FileType>
-              <FilePath>../../../../../third_party/exactle/ble-host/sources/stack/l2c/l2c_coc.c</FilePath>
-            </File>
-            <File>
-              <FileName>l2c_main.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../third_party/exactle/ble-host/sources/stack/l2c/l2c_main.c</FilePath>
-            </File>
-            <File>
-              <FileName>l2c_master.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../third_party/exactle/ble-host/sources/stack/l2c/l2c_master.c</FilePath>
-            </File>
-            <File>
-              <FileName>l2c_slave.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../third_party/exactle/ble-host/sources/stack/l2c/l2c_slave.c</FilePath>
+              <FilePath>../../../../../third_party/exactle/ble-host/sources/sec/uecc/sec_ecc.c</FilePath>
             </File>
           </Files>
         </Group>
         <Group>
-          <GroupName>exactle_hci</GroupName>
+          <GroupName>exactle_hid</GroupName>
           <Files>
             <File>
-              <FileName>hci_main.c</FileName>
+              <FileName>hid_main.c</FileName>
               <FileType>1</FileType>
-              <FilePath>../../../../../third_party/exactle/ble-host/sources/stack/hci/hci_main.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>exactle_gap</GroupName>
-          <Files>
-            <File>
-              <FileName>gap_main.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../third_party/exactle/ble-profiles/sources/profiles/gap/gap_main.c</FilePath>
+              <FilePath>../../../../../third_party/exactle/ble-profiles/sources/profiles/hid/hid_main.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -425,64 +400,39 @@
           <GroupName>exactle_common</GroupName>
           <Files>
             <File>
-              <FileName>app_db.c</FileName>
+              <FileName>sec_aes.c</FileName>
               <FileType>1</FileType>
-              <FilePath>../../../../../third_party/exactle/ble-profiles/sources/apps/app/common/app_db.c</FilePath>
+              <FilePath>../../../../../third_party/exactle/ble-host/sources/sec/common/sec_aes.c</FilePath>
             </File>
             <File>
-              <FileName>app_hw.c</FileName>
+              <FileName>sec_aes_rev.c</FileName>
               <FileType>1</FileType>
-              <FilePath>../../../../../third_party/exactle/ble-profiles/sources/apps/app/common/app_hw.c</FilePath>
+              <FilePath>../../../../../third_party/exactle/ble-host/sources/sec/common/sec_aes_rev.c</FilePath>
             </File>
             <File>
-              <FileName>app_ui.c</FileName>
+              <FileName>sec_ccm_hci.c</FileName>
               <FileType>1</FileType>
-              <FilePath>../../../../../third_party/exactle/ble-profiles/sources/apps/app/common/app_ui.c</FilePath>
+              <FilePath>../../../../../third_party/exactle/ble-host/sources/sec/common/sec_ccm_hci.c</FilePath>
             </File>
             <File>
-              <FileName>ui_console.c</FileName>
+              <FileName>sec_cmac_hci.c</FileName>
               <FileType>1</FileType>
-              <FilePath>../../../../../third_party/exactle/ble-profiles/sources/apps/app/common/ui_console.c</FilePath>
+              <FilePath>../../../../../third_party/exactle/ble-host/sources/sec/common/sec_cmac_hci.c</FilePath>
             </File>
             <File>
-              <FileName>ui_lcd.c</FileName>
+              <FileName>sec_ecc_debug.c</FileName>
               <FileType>1</FileType>
-              <FilePath>../../../../../third_party/exactle/ble-profiles/sources/apps/app/common/ui_lcd.c</FilePath>
+              <FilePath>../../../../../third_party/exactle/ble-host/sources/sec/common/sec_ecc_debug.c</FilePath>
             </File>
             <File>
-              <FileName>ui_main.c</FileName>
+              <FileName>sec_ecc_hci.c</FileName>
               <FileType>1</FileType>
-              <FilePath>../../../../../third_party/exactle/ble-profiles/sources/apps/app/common/ui_main.c</FilePath>
+              <FilePath>../../../../../third_party/exactle/ble-host/sources/sec/common/sec_ecc_hci.c</FilePath>
             </File>
             <File>
-              <FileName>ui_platform.c</FileName>
+              <FileName>sec_main.c</FileName>
               <FileType>1</FileType>
-              <FilePath>../../../../../third_party/exactle/ble-profiles/sources/apps/app/common/ui_platform.c</FilePath>
-            </File>
-            <File>
-              <FileName>ui_timer.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../third_party/exactle/ble-profiles/sources/apps/app/common/ui_timer.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>exactle_cfg</GroupName>
-          <Files>
-            <File>
-              <FileName>cfg_stack.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../third_party/exactle/ble-host/sources/stack/cfg/cfg_stack.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>FreeRTOSv10.1.1_AMapollo2</GroupName>
-          <Files>
-            <File>
-              <FileName>port.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../third_party/FreeRTOSv10.1.1/Source/portable/Keil/AMapollo2/port.c</FilePath>
+              <FilePath>../../../../../third_party/exactle/ble-host/sources/sec/common/sec_main.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -507,92 +457,47 @@
           </Files>
         </Group>
         <Group>
-          <GroupName>exactle_hid</GroupName>
-          <Files>
-            <File>
-              <FileName>hid_main.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../third_party/exactle/ble-profiles/sources/profiles/hid/hid_main.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>exactle_hidapp</GroupName>
-          <Files>
-            <File>
-              <FileName>hidapp_main.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../third_party/exactle/ble-profiles/sources/apps/hidapp/hidapp_main.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>exactle_ambiq</GroupName>
-          <Files>
-            <File>
-              <FileName>hci_cmd.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../third_party/exactle/ble-host/sources/hci/ambiq/hci_cmd.c</FilePath>
-            </File>
-            <File>
-              <FileName>hci_cmd_ae.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../third_party/exactle/ble-host/sources/hci/ambiq/hci_cmd_ae.c</FilePath>
-            </File>
-            <File>
-              <FileName>hci_cmd_cte.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../third_party/exactle/ble-host/sources/hci/ambiq/hci_cmd_cte.c</FilePath>
-            </File>
-            <File>
-              <FileName>hci_cmd_past.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../third_party/exactle/ble-host/sources/hci/ambiq/hci_cmd_past.c</FilePath>
-            </File>
-            <File>
-              <FileName>hci_cmd_phy.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../third_party/exactle/ble-host/sources/hci/ambiq/hci_cmd_phy.c</FilePath>
-            </File>
-            <File>
-              <FileName>hci_core.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../third_party/exactle/ble-host/sources/hci/ambiq/hci_core.c</FilePath>
-            </File>
-            <File>
-              <FileName>hci_core_ps.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../third_party/exactle/ble-host/sources/hci/ambiq/hci_core_ps.c</FilePath>
-            </File>
-            <File>
-              <FileName>hci_evt.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../third_party/exactle/ble-host/sources/hci/ambiq/hci_evt.c</FilePath>
-            </File>
-            <File>
-              <FileName>hci_tr.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../third_party/exactle/ble-host/sources/hci/ambiq/hci_tr.c</FilePath>
-            </File>
-            <File>
-              <FileName>hci_vs.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../third_party/exactle/ble-host/sources/hci/ambiq/hci_vs.c</FilePath>
-            </File>
-            <File>
-              <FileName>hci_vs_ae.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../third_party/exactle/ble-host/sources/hci/ambiq/hci_vs_ae.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
           <GroupName>exactle_dats</GroupName>
           <Files>
             <File>
               <FileName>dats_main.c</FileName>
               <FileType>1</FileType>
               <FilePath>../../../../../third_party/exactle/ble-profiles/sources/apps/dats/dats_main.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>FreeRTOSv10.1.1_AMapollo2</GroupName>
+          <Files>
+            <File>
+              <FileName>port.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../../../../../third_party/FreeRTOSv10.1.1/Source/portable/Keil/AMapollo2/port.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>exactle_bas</GroupName>
+          <Files>
+            <File>
+              <FileName>bas_main.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../../../../../third_party/exactle/ble-profiles/sources/profiles/bas/bas_main.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>uecc_uecc</GroupName>
+          <Files>
+            <File>
+              <FileName>uECC.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../../../../../third_party/uecc/uECC.c</FilePath>
+            </File>
+            <File>
+              <FileName>uECC_ll.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../../../../../third_party/uecc/uECC_ll.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -647,12 +552,27 @@
           </Files>
         </Group>
         <Group>
-          <GroupName>exactle_bas</GroupName>
+          <GroupName>exactle_gatt</GroupName>
           <Files>
             <File>
-              <FileName>bas_main.c</FileName>
+              <FileName>gatt_main.c</FileName>
               <FileType>1</FileType>
-              <FilePath>../../../../../third_party/exactle/ble-profiles/sources/profiles/bas/bas_main.c</FilePath>
+              <FilePath>../../../../../third_party/exactle/ble-profiles/sources/profiles/gatt/gatt_main.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>em9304</GroupName>
+          <Files>
+            <File>
+              <FileName>em9304_init.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../../../../../ambiq_ble/em9304/em9304_init.c</FilePath>
+            </File>
+            <File>
+              <FileName>em9304_patches.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../../../../../ambiq_ble/em9304/em9304_patches.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -732,177 +652,77 @@
           </Files>
         </Group>
         <Group>
-          <GroupName>exactle_em9304</GroupName>
+          <GroupName>exactle_common</GroupName>
           <Files>
             <File>
-              <FileName>hci_drv_em9304.c</FileName>
+              <FileName>app_db.c</FileName>
               <FileType>1</FileType>
-              <FilePath>../../../../../third_party/exactle/ble-host/sources/hci/ambiq/em9304/hci_drv_em9304.c</FilePath>
+              <FilePath>../../../../../third_party/exactle/ble-profiles/sources/apps/app/common/app_db.c</FilePath>
+            </File>
+            <File>
+              <FileName>app_hw.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../../../../../third_party/exactle/ble-profiles/sources/apps/app/common/app_hw.c</FilePath>
+            </File>
+            <File>
+              <FileName>app_ui.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../../../../../third_party/exactle/ble-profiles/sources/apps/app/common/app_ui.c</FilePath>
+            </File>
+            <File>
+              <FileName>ui_console.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../../../../../third_party/exactle/ble-profiles/sources/apps/app/common/ui_console.c</FilePath>
+            </File>
+            <File>
+              <FileName>ui_lcd.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../../../../../third_party/exactle/ble-profiles/sources/apps/app/common/ui_lcd.c</FilePath>
+            </File>
+            <File>
+              <FileName>ui_main.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../../../../../third_party/exactle/ble-profiles/sources/apps/app/common/ui_main.c</FilePath>
+            </File>
+            <File>
+              <FileName>ui_platform.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../../../../../third_party/exactle/ble-profiles/sources/apps/app/common/ui_platform.c</FilePath>
+            </File>
+            <File>
+              <FileName>ui_timer.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../../../../../third_party/exactle/ble-profiles/sources/apps/app/common/ui_timer.c</FilePath>
             </File>
           </Files>
         </Group>
         <Group>
-          <GroupName>exactle_uecc</GroupName>
+          <GroupName>exactle_hci</GroupName>
           <Files>
             <File>
-              <FileName>sec_ecc.c</FileName>
+              <FileName>hci_main.c</FileName>
               <FileType>1</FileType>
-              <FilePath>../../../../../third_party/exactle/ble-host/sources/sec/uecc/sec_ecc.c</FilePath>
+              <FilePath>../../../../../third_party/exactle/ble-host/sources/stack/hci/hci_main.c</FilePath>
             </File>
           </Files>
         </Group>
         <Group>
-          <GroupName>exactle_util</GroupName>
+          <GroupName>exactle_hidapp</GroupName>
           <Files>
             <File>
-              <FileName>bda.c</FileName>
+              <FileName>hidapp_main.c</FileName>
               <FileType>1</FileType>
-              <FilePath>../../../../../third_party/exactle/wsf/sources/util/bda.c</FilePath>
-            </File>
-            <File>
-              <FileName>bstream.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../third_party/exactle/wsf/sources/util/bstream.c</FilePath>
-            </File>
-            <File>
-              <FileName>calc128.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../third_party/exactle/wsf/sources/util/calc128.c</FilePath>
-            </File>
-            <File>
-              <FileName>crc32.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../third_party/exactle/wsf/sources/util/crc32.c</FilePath>
-            </File>
-            <File>
-              <FileName>print.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../third_party/exactle/wsf/sources/util/print.c</FilePath>
-            </File>
-            <File>
-              <FileName>terminal.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../third_party/exactle/wsf/sources/util/terminal.c</FilePath>
-            </File>
-            <File>
-              <FileName>wstr.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../third_party/exactle/wsf/sources/util/wstr.c</FilePath>
+              <FilePath>../../../../../third_party/exactle/ble-profiles/sources/apps/hidapp/hidapp_main.c</FilePath>
             </File>
           </Files>
         </Group>
         <Group>
-          <GroupName>exactle_att</GroupName>
+          <GroupName>exactle_cfg</GroupName>
           <Files>
             <File>
-              <FileName>attc_disc.c</FileName>
+              <FileName>cfg_stack.c</FileName>
               <FileType>1</FileType>
-              <FilePath>../../../../../third_party/exactle/ble-host/sources/stack/att/attc_disc.c</FilePath>
-            </File>
-            <File>
-              <FileName>attc_main.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../third_party/exactle/ble-host/sources/stack/att/attc_main.c</FilePath>
-            </File>
-            <File>
-              <FileName>attc_proc.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../third_party/exactle/ble-host/sources/stack/att/attc_proc.c</FilePath>
-            </File>
-            <File>
-              <FileName>attc_read.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../third_party/exactle/ble-host/sources/stack/att/attc_read.c</FilePath>
-            </File>
-            <File>
-              <FileName>attc_sign.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../third_party/exactle/ble-host/sources/stack/att/attc_sign.c</FilePath>
-            </File>
-            <File>
-              <FileName>attc_write.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../third_party/exactle/ble-host/sources/stack/att/attc_write.c</FilePath>
-            </File>
-            <File>
-              <FileName>atts_ccc.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../third_party/exactle/ble-host/sources/stack/att/atts_ccc.c</FilePath>
-            </File>
-            <File>
-              <FileName>atts_csf.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../third_party/exactle/ble-host/sources/stack/att/atts_csf.c</FilePath>
-            </File>
-            <File>
-              <FileName>atts_dyn.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../third_party/exactle/ble-host/sources/stack/att/atts_dyn.c</FilePath>
-            </File>
-            <File>
-              <FileName>atts_ind.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../third_party/exactle/ble-host/sources/stack/att/atts_ind.c</FilePath>
-            </File>
-            <File>
-              <FileName>atts_main.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../third_party/exactle/ble-host/sources/stack/att/atts_main.c</FilePath>
-            </File>
-            <File>
-              <FileName>atts_proc.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../third_party/exactle/ble-host/sources/stack/att/atts_proc.c</FilePath>
-            </File>
-            <File>
-              <FileName>atts_read.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../third_party/exactle/ble-host/sources/stack/att/atts_read.c</FilePath>
-            </File>
-            <File>
-              <FileName>atts_sign.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../third_party/exactle/ble-host/sources/stack/att/atts_sign.c</FilePath>
-            </File>
-            <File>
-              <FileName>atts_write.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../third_party/exactle/ble-host/sources/stack/att/atts_write.c</FilePath>
-            </File>
-            <File>
-              <FileName>att_main.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../third_party/exactle/ble-host/sources/stack/att/att_main.c</FilePath>
-            </File>
-            <File>
-              <FileName>att_uuid.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../third_party/exactle/ble-host/sources/stack/att/att_uuid.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>uecc_uecc</GroupName>
-          <Files>
-            <File>
-              <FileName>uECC.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../third_party/uecc/uECC.c</FilePath>
-            </File>
-            <File>
-              <FileName>uECC_ll.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../third_party/uecc/uECC_ll.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>exactle_gatt</GroupName>
-          <Files>
-            <File>
-              <FileName>gatt_main.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../third_party/exactle/ble-profiles/sources/profiles/gatt/gatt_main.c</FilePath>
+              <FilePath>../../../../../third_party/exactle/ble-host/sources/stack/cfg/cfg_stack.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -1042,57 +862,237 @@
           </Files>
         </Group>
         <Group>
-          <GroupName>em9304</GroupName>
+          <GroupName>exactle_l2c</GroupName>
           <Files>
             <File>
-              <FileName>em9304_init.c</FileName>
+              <FileName>l2c_coc.c</FileName>
               <FileType>1</FileType>
-              <FilePath>../../../../../ambiq_ble/em9304/em9304_init.c</FilePath>
+              <FilePath>../../../../../third_party/exactle/ble-host/sources/stack/l2c/l2c_coc.c</FilePath>
             </File>
             <File>
-              <FileName>em9304_patches.c</FileName>
+              <FileName>l2c_main.c</FileName>
               <FileType>1</FileType>
-              <FilePath>../../../../../ambiq_ble/em9304/em9304_patches.c</FilePath>
+              <FilePath>../../../../../third_party/exactle/ble-host/sources/stack/l2c/l2c_main.c</FilePath>
+            </File>
+            <File>
+              <FileName>l2c_master.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../../../../../third_party/exactle/ble-host/sources/stack/l2c/l2c_master.c</FilePath>
+            </File>
+            <File>
+              <FileName>l2c_slave.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../../../../../third_party/exactle/ble-host/sources/stack/l2c/l2c_slave.c</FilePath>
             </File>
           </Files>
         </Group>
         <Group>
-          <GroupName>exactle_common</GroupName>
+          <GroupName>exactle_gap</GroupName>
           <Files>
             <File>
-              <FileName>sec_aes.c</FileName>
+              <FileName>gap_main.c</FileName>
               <FileType>1</FileType>
-              <FilePath>../../../../../third_party/exactle/ble-host/sources/sec/common/sec_aes.c</FilePath>
+              <FilePath>../../../../../third_party/exactle/ble-profiles/sources/profiles/gap/gap_main.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>exactle_em9304</GroupName>
+          <Files>
+            <File>
+              <FileName>hci_drv_em9304.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../../../../../third_party/exactle/ble-host/sources/hci/ambiq/em9304/hci_drv_em9304.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>exactle_ambiq</GroupName>
+          <Files>
+            <File>
+              <FileName>hci_cmd.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../../../../../third_party/exactle/ble-host/sources/hci/ambiq/hci_cmd.c</FilePath>
             </File>
             <File>
-              <FileName>sec_aes_rev.c</FileName>
+              <FileName>hci_cmd_ae.c</FileName>
               <FileType>1</FileType>
-              <FilePath>../../../../../third_party/exactle/ble-host/sources/sec/common/sec_aes_rev.c</FilePath>
+              <FilePath>../../../../../third_party/exactle/ble-host/sources/hci/ambiq/hci_cmd_ae.c</FilePath>
             </File>
             <File>
-              <FileName>sec_ccm_hci.c</FileName>
+              <FileName>hci_cmd_cte.c</FileName>
               <FileType>1</FileType>
-              <FilePath>../../../../../third_party/exactle/ble-host/sources/sec/common/sec_ccm_hci.c</FilePath>
+              <FilePath>../../../../../third_party/exactle/ble-host/sources/hci/ambiq/hci_cmd_cte.c</FilePath>
             </File>
             <File>
-              <FileName>sec_cmac_hci.c</FileName>
+              <FileName>hci_cmd_past.c</FileName>
               <FileType>1</FileType>
-              <FilePath>../../../../../third_party/exactle/ble-host/sources/sec/common/sec_cmac_hci.c</FilePath>
+              <FilePath>../../../../../third_party/exactle/ble-host/sources/hci/ambiq/hci_cmd_past.c</FilePath>
             </File>
             <File>
-              <FileName>sec_ecc_debug.c</FileName>
+              <FileName>hci_cmd_phy.c</FileName>
               <FileType>1</FileType>
-              <FilePath>../../../../../third_party/exactle/ble-host/sources/sec/common/sec_ecc_debug.c</FilePath>
+              <FilePath>../../../../../third_party/exactle/ble-host/sources/hci/ambiq/hci_cmd_phy.c</FilePath>
             </File>
             <File>
-              <FileName>sec_ecc_hci.c</FileName>
+              <FileName>hci_core.c</FileName>
               <FileType>1</FileType>
-              <FilePath>../../../../../third_party/exactle/ble-host/sources/sec/common/sec_ecc_hci.c</FilePath>
+              <FilePath>../../../../../third_party/exactle/ble-host/sources/hci/ambiq/hci_core.c</FilePath>
             </File>
             <File>
-              <FileName>sec_main.c</FileName>
+              <FileName>hci_core_ps.c</FileName>
               <FileType>1</FileType>
-              <FilePath>../../../../../third_party/exactle/ble-host/sources/sec/common/sec_main.c</FilePath>
+              <FilePath>../../../../../third_party/exactle/ble-host/sources/hci/ambiq/hci_core_ps.c</FilePath>
+            </File>
+            <File>
+              <FileName>hci_evt.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../../../../../third_party/exactle/ble-host/sources/hci/ambiq/hci_evt.c</FilePath>
+            </File>
+            <File>
+              <FileName>hci_tr.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../../../../../third_party/exactle/ble-host/sources/hci/ambiq/hci_tr.c</FilePath>
+            </File>
+            <File>
+              <FileName>hci_vs.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../../../../../third_party/exactle/ble-host/sources/hci/ambiq/hci_vs.c</FilePath>
+            </File>
+            <File>
+              <FileName>hci_vs_ae.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../../../../../third_party/exactle/ble-host/sources/hci/ambiq/hci_vs_ae.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>exactle_util</GroupName>
+          <Files>
+            <File>
+              <FileName>bda.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../../../../../third_party/exactle/wsf/sources/util/bda.c</FilePath>
+            </File>
+            <File>
+              <FileName>bstream.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../../../../../third_party/exactle/wsf/sources/util/bstream.c</FilePath>
+            </File>
+            <File>
+              <FileName>calc128.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../../../../../third_party/exactle/wsf/sources/util/calc128.c</FilePath>
+            </File>
+            <File>
+              <FileName>crc32.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../../../../../third_party/exactle/wsf/sources/util/crc32.c</FilePath>
+            </File>
+            <File>
+              <FileName>print.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../../../../../third_party/exactle/wsf/sources/util/print.c</FilePath>
+            </File>
+            <File>
+              <FileName>terminal.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../../../../../third_party/exactle/wsf/sources/util/terminal.c</FilePath>
+            </File>
+            <File>
+              <FileName>wstr.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../../../../../third_party/exactle/wsf/sources/util/wstr.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>exactle_att</GroupName>
+          <Files>
+            <File>
+              <FileName>attc_disc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../../../../../third_party/exactle/ble-host/sources/stack/att/attc_disc.c</FilePath>
+            </File>
+            <File>
+              <FileName>attc_main.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../../../../../third_party/exactle/ble-host/sources/stack/att/attc_main.c</FilePath>
+            </File>
+            <File>
+              <FileName>attc_proc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../../../../../third_party/exactle/ble-host/sources/stack/att/attc_proc.c</FilePath>
+            </File>
+            <File>
+              <FileName>attc_read.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../../../../../third_party/exactle/ble-host/sources/stack/att/attc_read.c</FilePath>
+            </File>
+            <File>
+              <FileName>attc_sign.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../../../../../third_party/exactle/ble-host/sources/stack/att/attc_sign.c</FilePath>
+            </File>
+            <File>
+              <FileName>attc_write.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../../../../../third_party/exactle/ble-host/sources/stack/att/attc_write.c</FilePath>
+            </File>
+            <File>
+              <FileName>atts_ccc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../../../../../third_party/exactle/ble-host/sources/stack/att/atts_ccc.c</FilePath>
+            </File>
+            <File>
+              <FileName>atts_csf.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../../../../../third_party/exactle/ble-host/sources/stack/att/atts_csf.c</FilePath>
+            </File>
+            <File>
+              <FileName>atts_dyn.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../../../../../third_party/exactle/ble-host/sources/stack/att/atts_dyn.c</FilePath>
+            </File>
+            <File>
+              <FileName>atts_ind.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../../../../../third_party/exactle/ble-host/sources/stack/att/atts_ind.c</FilePath>
+            </File>
+            <File>
+              <FileName>atts_main.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../../../../../third_party/exactle/ble-host/sources/stack/att/atts_main.c</FilePath>
+            </File>
+            <File>
+              <FileName>atts_proc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../../../../../third_party/exactle/ble-host/sources/stack/att/atts_proc.c</FilePath>
+            </File>
+            <File>
+              <FileName>atts_read.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../../../../../third_party/exactle/ble-host/sources/stack/att/atts_read.c</FilePath>
+            </File>
+            <File>
+              <FileName>atts_sign.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../../../../../third_party/exactle/ble-host/sources/stack/att/atts_sign.c</FilePath>
+            </File>
+            <File>
+              <FileName>atts_write.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../../../../../third_party/exactle/ble-host/sources/stack/att/atts_write.c</FilePath>
+            </File>
+            <File>
+              <FileName>att_main.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../../../../../third_party/exactle/ble-host/sources/stack/att/att_main.c</FilePath>
+            </File>
+            <File>
+              <FileName>att_uuid.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../../../../../third_party/exactle/ble-host/sources/stack/att/att_uuid.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -1207,22 +1207,42 @@
           </Files>
         </Group>
         <Group>
-          <GroupName>FreeRTOSv10.1.1_MemMang</GroupName>
-          <Files>
-            <File>
-              <FileName>heap_2.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../third_party/FreeRTOSv10.1.1/Source/portable/MemMang/heap_2.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
           <GroupName>devices</GroupName>
           <Files>
             <File>
               <FileName>am_devices_em9304.c</FileName>
               <FileType>1</FileType>
               <FilePath>../../../../../devices/am_devices_em9304.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>FreeRTOSv10.1.1_Source</GroupName>
+          <Files>
+            <File>
+              <FileName>event_groups.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../../../../../third_party/FreeRTOSv10.1.1/Source/event_groups.c</FilePath>
+            </File>
+            <File>
+              <FileName>list.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../../../../../third_party/FreeRTOSv10.1.1/Source/list.c</FilePath>
+            </File>
+            <File>
+              <FileName>queue.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../../../../../third_party/FreeRTOSv10.1.1/Source/queue.c</FilePath>
+            </File>
+            <File>
+              <FileName>tasks.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../../../../../third_party/FreeRTOSv10.1.1/Source/tasks.c</FilePath>
+            </File>
+            <File>
+              <FileName>timers.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../../../../../third_party/FreeRTOSv10.1.1/Source/timers.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -1272,32 +1292,12 @@
           </Files>
         </Group>
         <Group>
-          <GroupName>FreeRTOSv10.1.1_Source</GroupName>
+          <GroupName>FreeRTOSv10.1.1_MemMang</GroupName>
           <Files>
             <File>
-              <FileName>event_groups.c</FileName>
+              <FileName>heap_2.c</FileName>
               <FileType>1</FileType>
-              <FilePath>../../../../../third_party/FreeRTOSv10.1.1/Source/event_groups.c</FilePath>
-            </File>
-            <File>
-              <FileName>list.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../third_party/FreeRTOSv10.1.1/Source/list.c</FilePath>
-            </File>
-            <File>
-              <FileName>queue.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../third_party/FreeRTOSv10.1.1/Source/queue.c</FilePath>
-            </File>
-            <File>
-              <FileName>tasks.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../third_party/FreeRTOSv10.1.1/Source/tasks.c</FilePath>
-            </File>
-            <File>
-              <FileName>timers.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../third_party/FreeRTOSv10.1.1/Source/timers.c</FilePath>
+              <FilePath>../../../../../third_party/FreeRTOSv10.1.1/Source/portable/MemMang/heap_2.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -1335,14 +1335,14 @@
           <GroupName>lib</GroupName>
           <Files>
             <File>
-              <FileName>libam_hal.lib</FileName>
-              <FileType>4</FileType>
-              <FilePath>../../../../../mcu/apollo2/hal/keil/bin/libam_hal.lib</FilePath>
-            </File>
-            <File>
               <FileName>libam_bsp.lib</FileName>
               <FileType>4</FileType>
               <FilePath>../../../bsp/keil/bin/libam_bsp.lib</FilePath>
+            </File>
+            <File>
+              <FileName>libam_hal.lib</FileName>
+              <FileType>4</FileType>
+              <FilePath>../../../../../mcu/apollo2/hal/keil/bin/libam_hal.lib</FilePath>
             </File>
           </Files>
         </Group>

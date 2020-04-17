@@ -23507,19 +23507,19 @@ Copyright (c) 2019, Ambiq Micro\nAll rights reserved.\n\nRedistribution and use 
             </field>
             <field>
               <name>ADCHPD</name>
-              <description>High pass filter control.</description>
+              <description>High pass filter disable.</description>
               <bitRange>[9:9]</bitRange>
               <access>read-write</access>
               <enumeratedValues>
                 <enumeratedValue>
                   <name>EN</name>
                   <description>Enable high pass filter.</description>
-                  <value>1</value>
+                  <value>0</value>
                 </enumeratedValue>
                 <enumeratedValue>
                   <name>DIS</name>
                   <description>Disable high pass filter.</description>
-                  <value>0</value>
+                  <value>1</value>
                 </enumeratedValue>
               </enumeratedValues>
             </field>

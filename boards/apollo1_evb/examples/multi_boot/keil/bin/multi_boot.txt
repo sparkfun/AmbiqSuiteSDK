@@ -31,8 +31,8 @@
     Program header entries: 1
     Section header entries: 16
 
-    Program header offset: 102028 (0x00018e8c)
-    Section header offset: 102060 (0x00018eac)
+    Program header offset: 102032 (0x00018e90)
+    Section header offset: 102064 (0x00018eb0)
 
     Section header string table index: 15
 
@@ -3948,89 +3948,89 @@
     129  i.am_util_delay_ms         0x0000179e   Lc    1  Sect  De 
     130  ../../../../../utils/am_util_stdio.c
                                     0x00000000   Lc  Abs  File  De 
-    131  ..\..\..\..\..\bootloader\am_bootloader.c
+    131  ../../../../../devices/am_devices_spiflash.c
                                     0x00000000   Lc  Abs  File  De 
-    132  .emb_text                  0x00000138   Lc    1  Sect  De   0x28
-    133  $v0                        0x00000138   Lc    1   --   De 
-    134  ../../../../../bootloader/am_bootloader.c
+    132  ..\..\..\..\..\bootloader\am_bootloader.c
                                     0x00000000   Lc  Abs  File  De 
-    135  i.am_bootloader_erase_flash_page
+    133  .emb_text                  0x00000138   Lc    1  Sect  De   0x28
+    134  $v0                        0x00000138   Lc    1   --   De 
+    135  ../../../../../bootloader/am_bootloader.c
+                                    0x00000000   Lc  Abs  File  De 
+    136  i.am_bootloader_erase_flash_page
                                     0x00000328   Lc    1  Sect  De 
-    136  i.am_bootloader_fast_crc32 0x00000354   Lc    1  Sect  De 
-    137  i.am_bootloader_flag_page_update
+    137  i.am_bootloader_fast_crc32 0x00000354   Lc    1  Sect  De 
+    138  i.am_bootloader_flag_page_update
                                     0x00000380   Lc    1  Sect  De 
-    138  i.am_bootloader_flash_check
+    139  i.am_bootloader_flash_check
                                     0x000003d0   Lc    1  Sect  De 
-    139  i.am_bootloader_image_run  0x0000043c   Lc    1  Sect  De 
-    140  i.am_bootloader_partial_crc32
+    140  i.am_bootloader_image_run  0x0000043c   Lc    1  Sect  De 
+    141  i.am_bootloader_partial_crc32
                                     0x00000454   Lc    1  Sect  De 
-    141  i.am_bootloader_program_flash_page
+    142  i.am_bootloader_program_flash_page
                                     0x00000480   Lc    1  Sect  De 
-    142  i.am_bootloader_validate_structure
+    143  i.am_bootloader_validate_structure
                                     0x000004b4   Lc    1  Sect  De 
-    143  i.am_bootloader_write_flash_within_page
+    144  i.am_bootloader_write_flash_within_page
                                     0x000004e0   Lc    1  Sect  De 
-    144  i.am_hal_bootloader_override_check
+    145  i.am_hal_bootloader_override_check
                                     0x00000558   Lc    1  Sect  De 
-    145  .constdata                 0x00001d60   Lc    1  Sect  De   0x400
-    146  g_pui32CRC32Table          0x00001d60   Lc    1  Data  De   0x400
-    147  ../../../../../bootloader/am_ios_boot_handlers.c
+    146  .constdata                 0x00001d60   Lc    1  Sect  De   0x400
+    147  g_pui32CRC32Table          0x00001d60   Lc    1  Data  De   0x400
+    148  ../../../../../bootloader/am_ios_boot_handlers.c
                                     0x00000000   Lc  Abs  File  De 
-    148  i.am_multiboot_cleanup_ios_interface
+    149  i.am_multiboot_cleanup_ios_interface
                                     0x00000c88   Lc    1  Sect  De 
-    149  i.am_multiboot_ios_acc_isr_handler
+    150  i.am_multiboot_ios_acc_isr_handler
                                     0x00000da4   Lc    1  Sect  De 
-    150  i.am_multiboot_setup_ios_interface
+    151  i.am_multiboot_setup_ios_interface
                                     0x000010cc   Lc    1  Sect  De 
-    151  .data                      0x10000004   Lc    2  Sect  De   0x1d
-    152  g_sIOSConfig               0x10000004   Lc    2  Data  De   0x18
-    153  g_iosIntPin                0x1000001c   Lc    2  Data  De   0x4
-    154  g_bIosImageValid           0x10000020   Lc    2  Data  De   0x1
-    155  ../../../../../bootloader/am_multi_boot.c
+    152  .data                      0x10000004   Lc    2  Sect  De   0x1d
+    153  g_sIOSConfig               0x10000004   Lc    2  Data  De   0x18
+    154  g_iosIntPin                0x1000001c   Lc    2  Data  De   0x4
+    155  g_bIosImageValid           0x10000020   Lc    2  Data  De   0x1
+    156  ../../../../../bootloader/am_multi_boot.c
                                     0x00000000   Lc  Abs  File  De 
-    156  i.am_multiboot_check_boot_from_flash
+    157  i.am_multiboot_check_boot_from_flash
                                     0x00000c1c   Lc    1  Sect  De 
-    157  i.am_multiboot_flash_erase_page
+    158  i.am_multiboot_flash_erase_page
                                     0x00000d20   Lc    1  Sect  De 
-    158  am_multiboot_flash_erase_page
+    159  am_multiboot_flash_erase_page
                                     0x00000d21   Lc    1  Code  De   0x1e
-    159  i.am_multiboot_flash_read_page
+    160  i.am_multiboot_flash_read_page
                                     0x00000d3e   Lc    1  Sect  De 
-    160  am_multiboot_flash_read_page
+    161  am_multiboot_flash_read_page
                                     0x00000d3f   Lc    1  Code  De   0x26
-    161  i.am_multiboot_flash_write_page
+    162  i.am_multiboot_flash_write_page
                                     0x00000d64   Lc    1  Sect  De 
-    162  am_multiboot_flash_write_page
+    163  am_multiboot_flash_write_page
                                     0x00000d65   Lc    1  Code  De   0x26
-    163  i.am_multiboot_init        0x00000d8c   Lc    1  Sect  De 
-    164  i.am_multiboot_ota_handler 0x00000f9c   Lc    1  Sect  De 
-    165  i.check_flash_address_range
+    164  i.am_multiboot_init        0x00000d8c   Lc    1  Sect  De 
+    165  i.am_multiboot_ota_handler 0x00000f9c   Lc    1  Sect  De 
+    166  i.check_flash_address_range
                                     0x000017bc   Lc    1  Sect  De 
-    166  check_flash_address_range  0x000017bd   Lc    1  Code  De   0x5e
-    167  i.image_data_packet_read   0x00001820   Lc    1  Sect  De 
-    168  i.image_start_packet_read  0x000018d8   Lc    1  Sect  De 
-    169  i.program_image            0x00001b9c   Lc    1  Sect  De 
-    170  i.program_image_from_flash 0x00001bec   Lc    1  Sect  De 
-    171  program_image_from_flash   0x00001bed   Lc    1  Code  De   0xa8
-    172  i.read_from_flash          0x00001c98   Lc    1  Sect  De 
-    173  i.write_to_flash           0x00001d0c   Lc    1  Sect  De 
-    174  .bss                       0x100008e4   Lc    3  Sect  De   0x14
-    175  g_am_multiboot             0x100008e4   Lc    3  Data  De   0x14
-    176  .data                      0x10000024   Lc    2  Sect  De   0x60
-    177  g_intFlashSize             0x10000080   Lc    2  Data  De   0x4
-    178  ../../../../../bootloader/am_uart_boot_handlers.c
+    167  check_flash_address_range  0x000017bd   Lc    1  Code  De   0x5e
+    168  i.image_data_packet_read   0x00001820   Lc    1  Sect  De 
+    169  i.image_start_packet_read  0x000018d8   Lc    1  Sect  De 
+    170  i.program_image            0x00001b9c   Lc    1  Sect  De 
+    171  i.program_image_from_flash 0x00001bec   Lc    1  Sect  De 
+    172  program_image_from_flash   0x00001bed   Lc    1  Code  De   0xa8
+    173  i.read_from_flash          0x00001c98   Lc    1  Sect  De 
+    174  i.write_to_flash           0x00001d0c   Lc    1  Sect  De 
+    175  .bss                       0x100008e4   Lc    3  Sect  De   0x14
+    176  g_am_multiboot             0x100008e4   Lc    3  Data  De   0x14
+    177  .data                      0x10000024   Lc    2  Sect  De   0x60
+    178  g_intFlashSize             0x10000080   Lc    2  Data  De   0x4
+    179  ../../../../../bootloader/am_uart_boot_handlers.c
                                     0x00000000   Lc  Abs  File  De 
-    179  i.am_multiboot_setup_serial
+    180  i.am_multiboot_setup_serial
                                     0x000012fc   Lc    1  Sect  De 
-    180  i.am_multiboot_uart_detect_baudrate
+    181  i.am_multiboot_uart_detect_baudrate
                                     0x00001384   Lc    1  Sect  De 
-    181  i.am_multiboot_uart_isr_handler
+    182  i.am_multiboot_uart_isr_handler
                                     0x000014f0   Lc    1  Sect  De 
-    182  i.ser_out                  0x00001ce8   Lc    1  Sect  De 
-    183  .bss                       0x100008f8   Lc    3  Sect  De   0x208
-    184  .data                      0x10000084   Lc    2  Sect  De   0x45
-    185  ../../../../../devices/am_devices_spiflash.c
-                                    0x00000000   Lc  Abs  File  De 
+    183  i.ser_out                  0x00001ce8   Lc    1  Sect  De 
+    184  .bss                       0x100008f8   Lc    3  Sect  De   0x208
+    185  .data                      0x10000084   Lc    2  Sect  De   0x45
     186  ../keil/startup_keil.s     0x00000000   Lc  Abs  File  De 
     187  STACK                      0x10000b60   Lc    3  Sect  De   0x1000
     188  StackMem                   0x10000b60   Lc    3  Data  De 
@@ -4542,56 +4542,56 @@
            13    141: ../../../../../utils/am_util_delay.c
            14    178: i.am_util_delay_ms
            15    197: ../../../../../utils/am_util_stdio.c
-           16    234: ..\..\..\..\..\bootloader\am_bootloader.c
-           17    276: .emb_text
-           18    286: $v0
-           19    290: ../../../../../bootloader/am_bootloader.c
-           20    332: i.am_bootloader_erase_flash_page
-           21    365: i.am_bootloader_fast_crc32
-           22    392: i.am_bootloader_flag_page_update
-           23    425: i.am_bootloader_flash_check
-           24    453: i.am_bootloader_image_run
-           25    479: i.am_bootloader_partial_crc32
-           26    509: i.am_bootloader_program_flash_page
-           27    544: i.am_bootloader_validate_structure
-           28    579: i.am_bootloader_write_flash_within_page
-           29    619: i.am_hal_bootloader_override_check
-           30    654: .constdata
-           31    665: g_pui32CRC32Table
-           32    683: ../../../../../bootloader/am_ios_boot_handlers.c
-           33    732: i.am_multiboot_cleanup_ios_interface
-           34    769: i.am_multiboot_ios_acc_isr_handler
-           35    804: i.am_multiboot_setup_ios_interface
-           36    839: g_sIOSConfig
-           37    852: g_iosIntPin
-           38    864: g_bIosImageValid
-           39    881: ../../../../../bootloader/am_multi_boot.c
-           40    923: i.am_multiboot_check_boot_from_flash
-           41    960: i.am_multiboot_flash_erase_page
-           42    992: am_multiboot_flash_erase_page
-           43   1022: i.am_multiboot_flash_read_page
-           44   1053: am_multiboot_flash_read_page
-           45   1082: i.am_multiboot_flash_write_page
-           46   1114: am_multiboot_flash_write_page
-           47   1144: i.am_multiboot_init
-           48   1164: i.am_multiboot_ota_handler
-           49   1191: i.check_flash_address_range
-           50   1219: check_flash_address_range
-           51   1245: i.image_data_packet_read
-           52   1270: i.image_start_packet_read
-           53   1296: i.program_image
-           54   1312: i.program_image_from_flash
-           55   1339: program_image_from_flash
-           56   1364: i.read_from_flash
-           57   1382: i.write_to_flash
-           58   1399: g_am_multiboot
-           59   1414: g_intFlashSize
-           60   1429: ../../../../../bootloader/am_uart_boot_handlers.c
-           61   1479: i.am_multiboot_setup_serial
-           62   1507: i.am_multiboot_uart_detect_baudrate
-           63   1543: i.am_multiboot_uart_isr_handler
-           64   1575: i.ser_out
-           65   1585: ../../../../../devices/am_devices_spiflash.c
+           16    234: ../../../../../devices/am_devices_spiflash.c
+           17    279: ..\..\..\..\..\bootloader\am_bootloader.c
+           18    321: .emb_text
+           19    331: $v0
+           20    335: ../../../../../bootloader/am_bootloader.c
+           21    377: i.am_bootloader_erase_flash_page
+           22    410: i.am_bootloader_fast_crc32
+           23    437: i.am_bootloader_flag_page_update
+           24    470: i.am_bootloader_flash_check
+           25    498: i.am_bootloader_image_run
+           26    524: i.am_bootloader_partial_crc32
+           27    554: i.am_bootloader_program_flash_page
+           28    589: i.am_bootloader_validate_structure
+           29    624: i.am_bootloader_write_flash_within_page
+           30    664: i.am_hal_bootloader_override_check
+           31    699: .constdata
+           32    710: g_pui32CRC32Table
+           33    728: ../../../../../bootloader/am_ios_boot_handlers.c
+           34    777: i.am_multiboot_cleanup_ios_interface
+           35    814: i.am_multiboot_ios_acc_isr_handler
+           36    849: i.am_multiboot_setup_ios_interface
+           37    884: g_sIOSConfig
+           38    897: g_iosIntPin
+           39    909: g_bIosImageValid
+           40    926: ../../../../../bootloader/am_multi_boot.c
+           41    968: i.am_multiboot_check_boot_from_flash
+           42   1005: i.am_multiboot_flash_erase_page
+           43   1037: am_multiboot_flash_erase_page
+           44   1067: i.am_multiboot_flash_read_page
+           45   1098: am_multiboot_flash_read_page
+           46   1127: i.am_multiboot_flash_write_page
+           47   1159: am_multiboot_flash_write_page
+           48   1189: i.am_multiboot_init
+           49   1209: i.am_multiboot_ota_handler
+           50   1236: i.check_flash_address_range
+           51   1264: check_flash_address_range
+           52   1290: i.image_data_packet_read
+           53   1315: i.image_start_packet_read
+           54   1341: i.program_image
+           55   1357: i.program_image_from_flash
+           56   1384: program_image_from_flash
+           57   1409: i.read_from_flash
+           58   1427: i.write_to_flash
+           59   1444: g_am_multiboot
+           60   1459: g_intFlashSize
+           61   1474: ../../../../../bootloader/am_uart_boot_handlers.c
+           62   1524: i.am_multiboot_setup_serial
+           63   1552: i.am_multiboot_uart_detect_baudrate
+           64   1588: i.am_multiboot_uart_isr_handler
+           65   1620: i.ser_out
            66   1630: ../keil/startup_keil.s
            67   1653: STACK
            68   1659: StackMem
@@ -4950,7 +4950,7 @@
 
 
 ** Section #14 '.comment' (SHT_PROGBITS)
-    Size   : 19680 bytes
+    Size   : 19684 bytes
 
 
 ** Section #15 '.shstrtab' (SHT_STRTAB)

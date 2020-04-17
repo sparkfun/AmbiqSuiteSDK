@@ -10,26 +10,26 @@
 
 # *****************************************************************************
 #
-#	Copyright (c) 2019, Ambiq Micro
+#	Copyright (c) 2020, Ambiq Micro
 #	All rights reserved.
-#	
+#
 #	Redistribution and use in source and binary forms, with or without
 #	modification, are permitted provided that the following conditions are met:
-#	
+#
 #	1. Redistributions of source code must retain the above copyright notice,
 #	this list of conditions and the following disclaimer.
-#	
+#
 #	2. Redistributions in binary form must reproduce the above copyright
 #	notice, this list of conditions and the following disclaimer in the
 #	documentation and/or other materials provided with the distribution.
-#	
+#
 #	3. Neither the name of the copyright holder nor the names of its
 #	contributors may be used to endorse or promote products derived from this
 #	software without specific prior written permission.
-#	
+#
 #	Third party software included in this distribution is subject to the
 #	additional license terms as defined in the /docs/licenses directory.
-#	
+#
 #	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
 #	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
 #	IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
@@ -42,7 +42,7 @@
 #	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 #	POSSIBILITY OF SUCH DAMAGE.
 #
-#  This is part of revision 2.3.2 of the AmbiqSuite Development Package.
+#  This is part of revision 2.4.2 of the AmbiqSuite Development Package.
 #
 # *****************************************************************************
 
@@ -67,7 +67,6 @@ filetemplateC = '''
 //! @brief BSP pin configuration definitions.
 //!
 //! @addtogroup BSP Board Support Package (BSP)
-//! @addtogroup apollo3_evb_bsp BSP for the Apollo3 Engineering Board
 //! @ingroup BSP
 //! @{{
 //
@@ -75,26 +74,26 @@ filetemplateC = '''
 
 //*****************************************************************************
 //
-// Copyright (c) 2019, Ambiq Micro
+// Copyright (c) 2020, Ambiq Micro
 // All rights reserved.
-// 
+//
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided that the following conditions are met:
-// 
+//
 // 1. Redistributions of source code must retain the above copyright notice,
 // this list of conditions and the following disclaimer.
-// 
+//
 // 2. Redistributions in binary form must reproduce the above copyright
 // notice, this list of conditions and the following disclaimer in the
 // documentation and/or other materials provided with the distribution.
-// 
+//
 // 3. Neither the name of the copyright holder nor the names of its
 // contributors may be used to endorse or promote products derived from this
 // software without specific prior written permission.
-// 
+//
 // Third party software included in this distribution is subject to the
 // additional license terms as defined in the /docs/licenses directory.
-// 
+//
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
 // AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
 // IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
@@ -107,7 +106,7 @@ filetemplateC = '''
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
-// This is part of revision 2.3.2 of the AmbiqSuite Development Package.
+// This is part of revision 2.4.2 of the AmbiqSuite Development Package.
 //
 //*****************************************************************************
 
@@ -139,26 +138,26 @@ filetemplateH = '''
 
 //*****************************************************************************
 //
-// Copyright (c) 2019, Ambiq Micro
+// Copyright (c) 2020, Ambiq Micro
 // All rights reserved.
-// 
+//
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided that the following conditions are met:
-// 
+//
 // 1. Redistributions of source code must retain the above copyright notice,
 // this list of conditions and the following disclaimer.
-// 
+//
 // 2. Redistributions in binary form must reproduce the above copyright
 // notice, this list of conditions and the following disclaimer in the
 // documentation and/or other materials provided with the distribution.
-// 
+//
 // 3. Neither the name of the copyright holder nor the names of its
 // contributors may be used to endorse or promote products derived from this
 // software without specific prior written permission.
-// 
+//
 // Third party software included in this distribution is subject to the
 // additional license terms as defined in the /docs/licenses directory.
-// 
+//
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
 // AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
 // IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
@@ -171,7 +170,7 @@ filetemplateH = '''
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
-// This is part of revision 2.3.2 of the AmbiqSuite Development Package.
+// This is part of revision 2.4.2 of the AmbiqSuite Development Package.
 //
 //*****************************************************************************
 
@@ -661,9 +660,8 @@ if __name__ == '__main__':
     version = get_version(args.input)
 
     # Redirect the script based on the version number.
-    if version == 0x0004:
-        apollo4_pinconfig.write_c_files(args.input, bCreateC)
-    else:
+
+    if version & 0xFF == 0x03:
         pinobj = get_pinobj(args.input)
 
         #

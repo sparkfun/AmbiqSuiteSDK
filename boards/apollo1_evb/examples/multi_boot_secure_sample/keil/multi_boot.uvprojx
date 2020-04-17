@@ -333,9 +333,9 @@
             <v6Rtti>0</v6Rtti>
             <VariousControls>
               <MiscControls></MiscControls>
-              <Define>AM_PACKAGE_BGA AM_PART_APOLLO AM_MULTIBOOT_CONFIG_FILE=\"am_multi_boot_config.h\" keil</Define>
+              <Define>AM_PART_APOLLO AM_PACKAGE_BGA AM_MULTIBOOT_CONFIG_FILE=\"am_multi_boot_config.h\" keil</Define>
               <Undefine></Undefine>
-              <IncludePath>../../../../../devices;../../../../../bootloader;../../../../../mcu/apollo;../../../bsp;../../../../..;../../../../../utils;../src</IncludePath>
+              <IncludePath>../src;../../../../..;../../../../../bootloader;../../../bsp;../../../../../devices;../../../../../utils;../../../../../mcu/apollo</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -392,21 +392,6 @@
           </Files>
         </Group>
         <Group>
-          <GroupName>utils</GroupName>
-          <Files>
-            <File>
-              <FileName>am_util_delay.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../utils/am_util_delay.c</FilePath>
-            </File>
-            <File>
-              <FileName>am_util_stdio.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../utils/am_util_stdio.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
           <GroupName>bootloader</GroupName>
           <Files>
             <File>
@@ -432,6 +417,21 @@
           </Files>
         </Group>
         <Group>
+          <GroupName>utils</GroupName>
+          <Files>
+            <File>
+              <FileName>am_util_delay.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../../../../../utils/am_util_delay.c</FilePath>
+            </File>
+            <File>
+              <FileName>am_util_stdio.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../../../../../utils/am_util_stdio.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
           <GroupName>keil</GroupName>
           <Files>
             <File>
@@ -445,14 +445,14 @@
           <GroupName>lib</GroupName>
           <Files>
             <File>
-              <FileName>libam_bsp.lib</FileName>
-              <FileType>4</FileType>
-              <FilePath>../../../bsp/keil/bin/libam_bsp.lib</FilePath>
-            </File>
-            <File>
               <FileName>libam_hal.lib</FileName>
               <FileType>4</FileType>
               <FilePath>../../../../../mcu/apollo/hal/keil/bin/libam_hal.lib</FilePath>
+            </File>
+            <File>
+              <FileName>libam_bsp.lib</FileName>
+              <FileType>4</FileType>
+              <FilePath>../../../bsp/keil/bin/libam_bsp.lib</FilePath>
             </File>
           </Files>
         </Group>

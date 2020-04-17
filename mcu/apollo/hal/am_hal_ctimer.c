@@ -13,26 +13,26 @@
 
 //*****************************************************************************
 //
-// Copyright (c) 2019, Ambiq Micro
+// Copyright (c) 2020, Ambiq Micro
 // All rights reserved.
-// 
+//
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided that the following conditions are met:
-// 
+//
 // 1. Redistributions of source code must retain the above copyright notice,
 // this list of conditions and the following disclaimer.
-// 
+//
 // 2. Redistributions in binary form must reproduce the above copyright
 // notice, this list of conditions and the following disclaimer in the
 // documentation and/or other materials provided with the distribution.
-// 
+//
 // 3. Neither the name of the copyright holder nor the names of its
 // contributors may be used to endorse or promote products derived from this
 // software without specific prior written permission.
-// 
+//
 // Third party software included in this distribution is subject to the
 // additional license terms as defined in the /docs/licenses directory.
-// 
+//
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
 // AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
 // IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
@@ -45,7 +45,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
-// This is part of revision 2.3.2 of the AmbiqSuite Development Package.
+// This is part of revision 2.4.2 of the AmbiqSuite Development Package.
 //
 //*****************************************************************************
 
@@ -184,23 +184,37 @@ back2back_reads( uint32_t u32TimerAddr, uint32_t u32Data[])
 
 //*****************************************************************************
 //
-// Write the ctimer configuration register with the CLR bit.
-// The CLR bit is required to completely initialize the timer at config time.
+// ctimer_clr()
+//
+// For the appropriate ctimer configuration register, set the CLR bit high
+// in the appropriate timer segment (A, B, or both).
+//
+// The CLR bit is required to be set in order to completely initialize
+// the timer at config time.  The timer clear occurs asynchrnously during the
+// low-to-high transition of the CLR bit.
+//
+// This function only sets the CLR bit.  It is assumed that the actual timer
+// configuration will occur following the call to this function and will clear
+// the CLR bit at that time.
 //
 //*****************************************************************************
 static void
 ctimer_clr(uint32_t ui32TimerNumber, uint32_t ui32TimerSegment)
 {
     //
-    // Find the correct control register and write the CLR bit.
+    // Find the address of the correct control register and set the CLR bit
+    // for the timer segment in that control register.
     //
     volatile uint32_t *pui32ConfigReg =
         (uint32_t *)(AM_REG_CTIMERn(0) + AM_REG_CTIMER_CTRL0_O +
                      (ui32TimerNumber * TIMER_OFFSET));
 
-    AM_REGVAL(pui32ConfigReg) = (ui32TimerSegment &
-                                 (AM_REG_CTIMER_CTRL0_TMRA0CLR_M |
-                                  AM_REG_CTIMER_CTRL0_TMRB0CLR_M));
+    AM_CRITICAL_BEGIN
+    AM_REGVAL(pui32ConfigReg) |= (ui32TimerSegment &
+                                  (AM_REG_CTIMER_CTRL0_TMRA0CLR_M |
+                                   AM_REG_CTIMER_CTRL0_TMRB0CLR_M));
+    AM_CRITICAL_END
+
 } // ctimer_clr()
 
 //*****************************************************************************

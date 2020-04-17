@@ -11,26 +11,26 @@
 
 //*****************************************************************************
 //
-// Copyright (c) 2019, Ambiq Micro
+// Copyright (c) 2020, Ambiq Micro
 // All rights reserved.
-// 
+//
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided that the following conditions are met:
-// 
+//
 // 1. Redistributions of source code must retain the above copyright notice,
 // this list of conditions and the following disclaimer.
-// 
+//
 // 2. Redistributions in binary form must reproduce the above copyright
 // notice, this list of conditions and the following disclaimer in the
 // documentation and/or other materials provided with the distribution.
-// 
+//
 // 3. Neither the name of the copyright holder nor the names of its
 // contributors may be used to endorse or promote products derived from this
 // software without specific prior written permission.
-// 
+//
 // Third party software included in this distribution is subject to the
 // additional license terms as defined in the /docs/licenses directory.
-// 
+//
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
 // AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
 // IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
@@ -43,7 +43,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
-// This is part of revision 2.3.2 of the AmbiqSuite Development Package.
+// This is part of revision 2.4.2 of the AmbiqSuite Development Package.
 //
 //*****************************************************************************
 #include <stdint.h>
@@ -466,7 +466,7 @@ fireball_set(uint64_t ui64GPIOLowMask[2],  uint64_t ui64GPIOHighMask[2])
     // FB3 requires more than 64 pins.
     // Repeat the previous loop to handle the extended pins.
     //
-    ui32GPIOnum = 0;
+    ui32GPIOnum = 64;
     while ( ui64GPIOLowMask[1]  ||  ui64GPIOHighMask[1] )
     {
         if ( ui64GPIOLowMask[1] & 0x1 )
@@ -553,7 +553,7 @@ am_devices_fireball_control(am_devices_fireball_control_e eControl,
 {
     // FB3 requires more than 64 pin masks for some settings.
     uint64_t ui64GPIOLowMask[2], ui64GPIOHighMask[2];
-    uint32_t ui32RetVal;
+    uint32_t ui32RetVal = AM_HAL_STATUS_SUCCESS;
 
 
     if ( eControl >= AM_DEVICES_FIREBALL_STATE_INVALID )
@@ -935,11 +935,11 @@ am_devices_fireball_control(am_devices_fireball_control_e eControl,
 
         case AM_DEVICES_FIREBALL2_STATE_MSPI_FRAM_PSRAM_FLASH_1P8:
             //
-            // GPIO LOW:  8,9,35,36,37
-            // GPIO HIGH: 34
+            // GPIO LOW:  8,9,35,36
+            // GPIO HIGH: 34,37
             //
-            ui64GPIOLowMask[0]  = ((uint64_t)0x7 << 35) | ((uint64_t)0x3 << 8);
-            ui64GPIOHighMask[0] = ((uint64_t)0x1 << 34);
+            ui64GPIOLowMask[0]  = ((uint64_t)0x3 << 35) | ((uint64_t)0x3 << 8);
+            ui64GPIOHighMask[0] = ((uint64_t)0x9 << 34);
             break;
 
         case AM_DEVICES_FIREBALL2_STATE_MSPI_PSRAM_FLASH_3P3:

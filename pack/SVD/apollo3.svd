@@ -20343,7 +20343,7 @@ BLE core only when this signal is 1.  The hardware will automatically wait for t
       <registers>
         <register>
           <name>PADREGA</name>
-          <description>Pad Configuration Register A (Pads 0-3)</description>
+          <description>Pad Configuration Register A (Pads 3-0)</description>
           <addressOffset>0x00000000</addressOffset>
           <size>32</size>
           <access>read-write</access>
@@ -20802,7 +20802,7 @@ BLE core only when this signal is 1.  The hardware will automatically wait for t
         </register>
         <register>
           <name>PADREGB</name>
-          <description>Pad Configuration Register B (Pads 4-7)</description>
+          <description>Pad Configuration Register B (Pads 7-4)</description>
           <addressOffset>0x00000004</addressOffset>
           <size>32</size>
           <access>read-write</access>
@@ -21248,7 +21248,7 @@ BLE core only when this signal is 1.  The hardware will automatically wait for t
         </register>
         <register>
           <name>PADREGC</name>
-          <description>Pad Configuration Register C (Pads 8-11)</description>
+          <description>Pad Configuration Register C (Pads 11-8)</description>
           <addressOffset>0x00000008</addressOffset>
           <size>32</size>
           <access>read-write</access>
@@ -21689,7 +21689,7 @@ BLE core only when this signal is 1.  The hardware will automatically wait for t
         </register>
         <register>
           <name>PADREGD</name>
-          <description>Pad Configuration Register D (Pads 12-15)</description>
+          <description>Pad Configuration Register D (Pads 15-12)</description>
           <addressOffset>0x0000000C</addressOffset>
           <size>32</size>
           <access>read-write</access>
@@ -22030,11 +22030,6 @@ BLE core only when this signal is 1.  The hardware will automatically wait for t
                   <value>3</value>
                 </enumeratedValue>
                 <enumeratedValue>
-                  <name>SLnCE</name>
-                  <description>Configure as the IOSLAVE SPI nCE signal</description>
-                  <value>4</value>
-                </enumeratedValue>
-                <enumeratedValue>
                   <name>PDMCLK</name>
                   <description>PDM serial clock output</description>
                   <value>5</value>
@@ -22109,7 +22104,7 @@ BLE core only when this signal is 1.  The hardware will automatically wait for t
         </register>
         <register>
           <name>PADREGE</name>
-          <description>Pad Configuration Register E (Pads 16-19)</description>
+          <description>Pad Configuration Register E (Pads 19-16)</description>
           <addressOffset>0x00000010</addressOffset>
           <size>32</size>
           <access>read-write</access>
@@ -22524,7 +22519,7 @@ BLE core only when this signal is 1.  The hardware will automatically wait for t
         </register>
         <register>
           <name>PADREGF</name>
-          <description>Pad Configuration Register F (Pads 20-23)</description>
+          <description>Pad Configuration Register F (Pads 23-20)</description>
           <addressOffset>0x00000014</addressOffset>
           <size>32</size>
           <access>read-write</access>
@@ -22934,7 +22929,7 @@ BLE core only when this signal is 1.  The hardware will automatically wait for t
         </register>
         <register>
           <name>PADREGG</name>
-          <description>Pad Configuration Register G (Pads 24-27)</description>
+          <description>Pad Configuration Register G (Pads 27-24)</description>
           <addressOffset>0x00000018</addressOffset>
           <size>32</size>
           <access>read-write</access>
@@ -23390,7 +23385,7 @@ BLE core only when this signal is 1.  The hardware will automatically wait for t
         </register>
         <register>
           <name>PADREGH</name>
-          <description>Pad Configuration Register H (Pads 28-31)</description>
+          <description>Pad Configuration Register H (Pads 31-28)</description>
           <addressOffset>0x0000001C</addressOffset>
           <size>32</size>
           <access>read-write</access>
@@ -23790,7 +23785,7 @@ BLE core only when this signal is 1.  The hardware will automatically wait for t
         </register>
         <register>
           <name>PADREGI</name>
-          <description>Pad Configuration Register I (Pads 32-35)</description>
+          <description>Pad Configuration Register I (Pads 35-32)</description>
           <addressOffset>0x00000020</addressOffset>
           <size>32</size>
           <access>read-write</access>
@@ -24195,7 +24190,7 @@ BLE core only when this signal is 1.  The hardware will automatically wait for t
         </register>
         <register>
           <name>PADREGJ</name>
-          <description>Pad Configuration Register J (Pads 36-39)</description>
+          <description>Pad Configuration Register J (Pads 39-36)</description>
           <addressOffset>0x00000024</addressOffset>
           <size>32</size>
           <access>read-write</access>
@@ -24659,7 +24654,7 @@ BLE core only when this signal is 1.  The hardware will automatically wait for t
         </register>
         <register>
           <name>PADREGK</name>
-          <description>Pad Configuration Register K (Pads 40-43)</description>
+          <description>Pad Configuration Register K (Pads 43-40)</description>
           <addressOffset>0x00000028</addressOffset>
           <size>32</size>
           <access>read-write</access>
@@ -25146,7 +25141,7 @@ BLE core only when this signal is 1.  The hardware will automatically wait for t
         </register>
         <register>
           <name>PADREGL</name>
-          <description>Pad Configuration Register L (Pads 44-47)</description>
+          <description>Pad Configuration Register L (Pads 47-44)</description>
           <addressOffset>0x0000002C</addressOffset>
           <size>32</size>
           <access>read-write</access>
@@ -25546,7 +25541,7 @@ BLE core only when this signal is 1.  The hardware will automatically wait for t
         </register>
         <register>
           <name>PADREGM</name>
-          <description>Pad Configuration Register M (Pads 48-49)</description>
+          <description>Pad Configuration Register M (Pads 49-48)</description>
           <addressOffset>0x00000030</addressOffset>
           <size>32</size>
           <access>read-write</access>
@@ -25798,7 +25793,7 @@ BLE core only when this signal is 1.  The hardware will automatically wait for t
         </register>
         <register>
           <name>CFGA</name>
-          <description>GPIO Configuration Register A (Pads 0-7)</description>
+          <description>GPIO Configuration Register A (Pads 7-0)</description>
           <addressOffset>0x00000040</addressOffset>
           <size>32</size>
           <access>read-write</access>
@@ -26322,7 +26317,7 @@ BLE core only when this signal is 1.  The hardware will automatically wait for t
         </register>
         <register>
           <name>CFGB</name>
-          <description>GPIO Configuration Register B (Pads 8-15)</description>
+          <description>GPIO Configuration Register B (Pads 15-8)</description>
           <addressOffset>0x00000044</addressOffset>
           <size>32</size>
           <access>read-write</access>
@@ -26846,7 +26841,7 @@ BLE core only when this signal is 1.  The hardware will automatically wait for t
         </register>
         <register>
           <name>CFGC</name>
-          <description>GPIO Configuration Register C (Pads 16-23)</description>
+          <description>GPIO Configuration Register C (Pads 23-16)</description>
           <addressOffset>0x00000048</addressOffset>
           <size>32</size>
           <access>read-write</access>
@@ -27370,7 +27365,7 @@ BLE core only when this signal is 1.  The hardware will automatically wait for t
         </register>
         <register>
           <name>CFGD</name>
-          <description>GPIO Configuration Register D (Pads 24-31)</description>
+          <description>GPIO Configuration Register D (Pads 31-24)</description>
           <addressOffset>0x0000004C</addressOffset>
           <size>32</size>
           <access>read-write</access>
@@ -27894,7 +27889,7 @@ BLE core only when this signal is 1.  The hardware will automatically wait for t
         </register>
         <register>
           <name>CFGE</name>
-          <description>GPIO Configuration Register E (Pads 32-39)</description>
+          <description>GPIO Configuration Register E (Pads 39-32)</description>
           <addressOffset>0x00000050</addressOffset>
           <size>32</size>
           <access>read-write</access>
@@ -28418,7 +28413,7 @@ BLE core only when this signal is 1.  The hardware will automatically wait for t
         </register>
         <register>
           <name>CFGF</name>
-          <description>GPIO Configuration Register F (Pads 40 -47)</description>
+          <description>GPIO Configuration Register F (Pads 47-40)</description>
           <addressOffset>0x00000054</addressOffset>
           <size>32</size>
           <access>read-write</access>
@@ -28942,7 +28937,7 @@ BLE core only when this signal is 1.  The hardware will automatically wait for t
         </register>
         <register>
           <name>CFGG</name>
-          <description>GPIO Configuration Register G (Pads 48-49)</description>
+          <description>GPIO Configuration Register G (Pads 49-48)</description>
           <addressOffset>0x00000058</addressOffset>
           <size>32</size>
           <access>read-write</access>
@@ -35769,7 +35764,7 @@ the start of the transaction, and will go low when the command is complete, and 
               <enumeratedValues>
                 <enumeratedValue>
                   <name>APOLLO3</name>
-                  <description>Apollo3 part number is 0x06xxxxxx.</description>
+                  <description>Apollo3 Blue part number is 0x06xxxxxx.</description>
                   <value>100663296</value>
                 </enumeratedValue>
                 <enumeratedValue>
@@ -35822,7 +35817,8 @@ Values:
 4: 256KB
 5: 512KB
 6: 1MB
-7: 384KB</description>
+7: 384KB
+8: 768KB</description>
                   <value>983040</value>
                 </enumeratedValue>
                 <enumeratedValue>
@@ -35865,7 +35861,8 @@ Values:
 0: 25 pins
 1: 49 pins
 2: 64 pins
-3: 81 pins</description>
+3: 81 pins
+4: 104 pins</description>
                   <value>56</value>
                 </enumeratedValue>
                 <enumeratedValue>
@@ -35905,7 +35902,7 @@ Values:
               <enumeratedValues>
                 <enumeratedValue>
                   <name>APOLLO3</name>
-                  <description>Apollo3 CHIPID0.</description>
+                  <description>Apollo3 Blue Plus CHIPID0.</description>
                   <value>0</value>
                 </enumeratedValue>
               </enumeratedValues>
@@ -35930,7 +35927,7 @@ Values:
               <enumeratedValues>
                 <enumeratedValue>
                   <name>APOLLO3</name>
-                  <description>Apollo3 CHIPID1.</description>
+                  <description>Apollo3 Blue Plus CHIPID1.</description>
                   <value>0</value>
                 </enumeratedValue>
               </enumeratedValues>
@@ -35961,18 +35958,13 @@ Values:
               <access>read-write</access>
               <enumeratedValues>
                 <enumeratedValue>
-                  <name>C</name>
-                  <description>Apollo3 revision C</description>
-                  <value>3</value>
-                </enumeratedValue>
-                <enumeratedValue>
                   <name>B</name>
-                  <description>Apollo3 revision B</description>
+                  <description>Apollo3 Blue revision B</description>
                   <value>2</value>
                 </enumeratedValue>
                 <enumeratedValue>
                   <name>A</name>
-                  <description>Apollo3 revision A</description>
+                  <description>Apollo3 Blue revision A</description>
                   <value>1</value>
                 </enumeratedValue>
               </enumeratedValues>
@@ -35985,12 +35977,12 @@ Values:
               <enumeratedValues>
                 <enumeratedValue>
                   <name>REV1</name>
-                  <description>Apollo3 minor rev 1.</description>
+                  <description>Apollo3 Blue minor rev 1.</description>
                   <value>2</value>
                 </enumeratedValue>
                 <enumeratedValue>
                   <name>REV0</name>
-                  <description>Apollo3 minor rev 0.  Minor revision value, succeeding minor revisions will increment from this value.</description>
+                  <description>Apollo3 Blue minor rev 0.  Minor revision value, succeeding minor revisions will increment from this value.</description>
                   <value>1</value>
                 </enumeratedValue>
               </enumeratedValues>
@@ -36365,7 +36357,7 @@ Values:
         </register>
         <register>
           <name>ADCREFCOMP</name>
-          <description>ADC Referece Keeper and Comparator Control</description>
+          <description>ADC Reference Keeper and Comparator Control</description>
           <addressOffset>0x0000011C</addressOffset>
           <size>32</size>
           <access>read-write</access>
@@ -36428,7 +36420,7 @@ Values:
               <enumeratedValues>
                 <enumeratedValue>
                   <name>PWRUPBOD</name>
-                  <description>Power up xtal on BOD</description>
+                  <description>Power up XTAL on BOD.</description>
                   <value>0</value>
                 </enumeratedValue>
                 <enumeratedValue>
@@ -36562,22 +36554,22 @@ Values:
               <enumeratedValues>
                 <enumeratedValue>
                   <name>SEC1</name>
-                  <description>Warmup period of 1-2 seconds</description>
+                  <description>Warm-up period of 1-2 seconds</description>
                   <value>0</value>
                 </enumeratedValue>
                 <enumeratedValue>
                   <name>SEC2</name>
-                  <description>Warmup period of 2-4 seconds</description>
+                  <description>Warm-up period of 2-4 seconds</description>
                   <value>1</value>
                 </enumeratedValue>
                 <enumeratedValue>
                   <name>SEC4</name>
-                  <description>Warmup period of 4-8 seconds</description>
+                  <description>Warm-up period of 4-8 seconds</description>
                   <value>2</value>
                 </enumeratedValue>
                 <enumeratedValue>
                   <name>SEC8</name>
-                  <description>Warmup period of 8-16 seconds</description>
+                  <description>Warm-up period of 8-16 seconds</description>
                   <value>3</value>
                 </enumeratedValue>
               </enumeratedValues>
@@ -36603,7 +36595,7 @@ Values:
             </field>
             <field>
               <name>RESERVED_RW_0</name>
-              <description>Reserved bits, always leave unchanged.  The MISCCTRL register must be modified via atomic RMW, leaving this bitfield completely unmodified.  Failure to do so will result in unpredictable behavior.</description>
+              <description>Reserved bits, always leave unchanged. The MISCCTRL register must be modified via atomic RMW, leaving this bit field completely unmodified. Failure to do so will result in unpredictable behavior.</description>
               <bitRange>[4:0]</bitRange>
               <access>read-write</access>
 
@@ -36742,13 +36734,13 @@ Values:
           <fields>
             <field>
               <name>INFO0_VALID</name>
-              <description>Indicates whether info0 contains valid data</description>
+              <description>Indicates whether INFO0 contains valid data</description>
               <bitRange>[2:2]</bitRange>
               <access>read-write</access>
               <enumeratedValues>
                 <enumeratedValue>
                   <name>VALID</name>
-                  <description>Flash info0 (customer) space contains valid data.</description>
+                  <description>Flash INFO0 (customer) space contains valid data.</description>
                   <value>1</value>
                 </enumeratedValue>
               </enumeratedValues>
@@ -37063,22 +37055,22 @@ Values:
                 </enumeratedValue>
                 <enumeratedValue>
                   <name>HFRCDIV2</name>
-                  <description>Selects HFRC divided by 2 as the source TPIU clk</description>
+                  <description>Selects HFRC divided by 2 as the source TPIU clock</description>
                   <value>1</value>
                 </enumeratedValue>
                 <enumeratedValue>
                   <name>HFRCDIV8</name>
-                  <description>Selects HFRC divided by 8 as the source TPIU clk</description>
+                  <description>Selects HFRC divided by 8 as the source TPIU clock</description>
                   <value>2</value>
                 </enumeratedValue>
                 <enumeratedValue>
                   <name>HFRCDIV16</name>
-                  <description>Selects HFRC divided by 16 as the source TPIU clk</description>
+                  <description>Selects HFRC divided by 16 as the source TPIU clock</description>
                   <value>3</value>
                 </enumeratedValue>
                 <enumeratedValue>
                   <name>HFRCDIV32</name>
-                  <description>Selects HFRC divided by 32 as the source TPIU clk</description>
+                  <description>Selects HFRC divided by 32 as the source TPIU clock</description>
                   <value>4</value>
                 </enumeratedValue>
               </enumeratedValues>
@@ -37148,7 +37140,7 @@ Values:
           <fields>
             <field>
               <name>HYSTERESIS</name>
-              <description>This field determines how long the DMA will remain active during deep sleep before shutting down and returning the system to full deep sleep.  Values are based on a 94KHz clock and are roughly 10us increments for a range of ~10us to 2.55ms</description>
+              <description>This field determines how long the DMA will remain active during deep sleep before shutting down and returning the system to full deep sleep. Values are based on a 94KHz clock and are roughly 10 us increments for a range of ~10 us to 2.55 ms</description>
               <bitRange>[15:8]</bitRange>
               <access>read-write</access>
 
@@ -37203,28 +37195,28 @@ Values:
           <fields>
             <field>
               <name>DPREFETCH_CACHE</name>
-              <description>Secondary prefetch feature that will cache prefetched data across bus waitstates (requires DPREFETCH to be set).</description>
+              <description>Secondary pre-fetch feature that will cache pre-fetched data across bus wait states (requires DPREFETCH to be set).</description>
               <bitRange>[5:5]</bitRange>
               <access>read-write</access>
 
             </field>
             <field>
               <name>DPREFETCH</name>
-              <description>When set, data bus accesses to the SRAM banks will be prefetched (normally 2 cycle read access).  Use of this mode bit is only recommended if the work flow has a large number of sequential accesses.</description>
+              <description>When set, data bus accesses to the SRAM banks will be pre-fetched (normally 2 cycle read access).  Use of this mode bit is only recommended if the work flow has a large number of sequential accesses.</description>
               <bitRange>[4:4]</bitRange>
               <access>read-write</access>
 
             </field>
             <field>
               <name>IPREFETCH_CACHE</name>
-              <description>Secondary prefetch feature that will cache prefetched data across bus waitstates (requires IPREFETCH to be set).</description>
+              <description>Secondary pre-fetch feature that will cache pre-fetched data across bus wait states (requires IPREFETCH to be set).</description>
               <bitRange>[1:1]</bitRange>
               <access>read-write</access>
 
             </field>
             <field>
               <name>IPREFETCH</name>
-              <description>When set, instruction accesses to the SRAM banks will be prefetched (normally 2 cycle read access).  Generally, this mode bit should be set for improved performance when executing instructions from SRAM.</description>
+              <description>When set, instruction accesses to the SRAM banks will be pre-fetched (normally 2 cycle read access).  Generally, this mode bit should be set for improved performance when executing instructions from SRAM.</description>
               <bitRange>[0:0]</bitRange>
               <access>read-write</access>
 
@@ -37257,19 +37249,134 @@ Values:
           </fields>
         </register>
         <register>
+          <name>SIMOBUCK2</name>
+          <description>SIMO Buck Control Reg 2</description>
+          <addressOffset>0x00000354</addressOffset>
+          <size>32</size>
+          <access>read-write</access>
+          <resetValue>0x00AA0000</resetValue>
+          <resetMask>0xFFFFFFFF</resetMask>
+
+          <fields>
+            <field>
+              <name>RESERVED_RW_24</name>
+              <description>Reserved bits, always leave unchanged. The SIMOBUCK2 register must be modified via atomic RMW, leaving this bit field completely unmodified. Failure to do so will result in unpredictable behavior.</description>
+              <bitRange>[31:24]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <field>
+              <name>SIMOBUCKCORELPLOWTONTRIM</name>
+              <description>simobuck_core_lp_low_ton_trim</description>
+              <bitRange>[23:20]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <field>
+              <name>SIMOBUCKCORELPHIGHTONTRIM</name>
+              <description>simobuck_core_lp_high_ton_trim</description>
+              <bitRange>[19:16]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <field>
+              <name>RESERVED_RW_0</name>
+              <description>Reserved bits, always leave unchanged. The SIMOBUCK2 register must be modified via atomic RMW, leaving this bit field completely unmodified. Failure to do so will result in unpredictable behavior.</description>
+              <bitRange>[15:0]</bitRange>
+              <access>read-write</access>
+
+            </field>
+          </fields>
+        </register>
+        <register>
+          <name>SIMOBUCK3</name>
+          <description>SIMO Buck Control Reg 3</description>
+          <addressOffset>0x00000358</addressOffset>
+          <size>32</size>
+          <access>read-write</access>
+          <resetValue>0x5000AAAA</resetValue>
+          <resetMask>0xFFFFFFFF</resetMask>
+
+          <fields>
+            <field>
+              <name>RESERVED_RW_31</name>
+              <description>Reserved bits, always leave unchanged. The SIMOBUCK2 register must be modified via atomic RMW, leaving this bit field completely unmodified. Failure to do so will result in unpredictable behavior.</description>
+              <bitRange>[31:31]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <field>
+              <name>SIMOBUCKMEMLPHIGHTONTRIM</name>
+              <description>simobuck_mem_lp_high_ton_trim</description>
+              <bitRange>[30:27]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <field>
+              <name>RESERVED_RW_16</name>
+              <description>Reserved bits, always leave unchanged. The SIMOBUCK3 register must be modified via atomic RMW, leaving this bit field completely unmodified. Failure to do so will result in unpredictable behavior.</description>
+              <bitRange>[26:16]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <field>
+              <name>SIMOBUCKMEMLPLOWTOFFTRIM</name>
+              <description>simobuck_mem_lp_low_toff_trim</description>
+              <bitRange>[15:12]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <field>
+              <name>SIMOBUCKMEMLPHIGHTOFFTRIM</name>
+              <description>simobuck_mem_lp_high_toff_trim</description>
+              <bitRange>[11:8]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <field>
+              <name>SIMOBUCKCORELPLOWTOFFTRIM</name>
+              <description>simobuck_core_lp_low_toff_trim</description>
+              <bitRange>[7:4]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <field>
+              <name>SIMOBUCKCORELPHIGHTOFFTRIM</name>
+              <description>simobuck_core_lp_high_toff_trim</description>
+              <bitRange>[3:0]</bitRange>
+              <access>read-write</access>
+
+            </field>
+          </fields>
+        </register>
+        <register>
           <name>SIMOBUCK4</name>
-          <description>SIMO Buck Control Reg1</description>
+          <description>SIMO Buck Control Reg 4</description>
           <addressOffset>0x0000035C</addressOffset>
           <size>32</size>
           <access>read-write</access>
           <resetValue>0x3C8D80AA</resetValue>
-          <resetMask>0x00600000</resetMask>
+          <resetMask>0x0160000F</resetMask>
 
           <fields>
+            <field>
+              <name>SIMOBUCKCOMP2TIMEOUTEN</name>
+              <description>simobuck_comp2_timeout_en</description>
+              <bitRange>[24:24]</bitRange>
+              <access>read-write</access>
+
+            </field>
             <field>
               <name>SIMOBUCKCLKDIVSEL</name>
               <description>simobuck_clkdiv_sel</description>
               <bitRange>[22:21]</bitRange>
+              <access>read-write</access>
+
+            </field>
+            <field>
+              <name>SIMOBUCKMEMLPLOWTONTRIM</name>
+              <description>simobuck_mem_lp_low_ton_trim</description>
+              <bitRange>[3:0]</bitRange>
               <access>read-write</access>
 
             </field>
@@ -37466,7 +37573,7 @@ Values:
     <peripheral>
       <name>MSPI</name>
       <version>1.0</version>
-      <description>Multibit SPI Master</description>
+      <description>Multi-bit SPI Master</description>
       <!-- <groupName>GROUP_MSPI</groupName> -->
       <baseAddress>0x50014000</baseAddress>
       <size>32</size>
@@ -37484,7 +37591,7 @@ Values:
       <registers>
         <register>
           <name>CTRL</name>
-          <description>MSPI PIO Transfer Control/Status Register</description>
+          <description>MSPI PIO Transfer Control/Status</description>
           <addressOffset>0x00000000</addressOffset>
           <size>32</size>
           <access>read-write</access>
@@ -37501,7 +37608,7 @@ Values:
             </field>
             <field>
               <name>PIOSCRAMBLE</name>
-              <description>Enables data scrambling for PIO opertions.  This should only be used for data operations and never for commands to a device.</description>
+              <description>Enables data scrambling for PIO operations. This should only be used for data operations and never for commands to a device.</description>
               <bitRange>[11:11]</bitRange>
               <access>read-write</access>
 
@@ -37543,7 +37650,7 @@ Values:
             </field>
             <field>
               <name>QUADCMD</name>
-              <description>Flag indicating that the operation is a command that should be replicated to both devices in paired QUAD mode.  This is typically only used when reading/writing configuration registers in paired flash devices (do not set for memory transfers).</description>
+              <description>Flag indicating that the operation is a command that should be replicated to both devices in paired QUAD mode. This is typically only used when reading/writing configuration registers in paired flash devices (do not set for memory transfers).</description>
               <bitRange>[3:3]</bitRange>
               <access>read-write</access>
 
@@ -37557,7 +37664,7 @@ Values:
             </field>
             <field>
               <name>STATUS</name>
-              <description>Command status:  1 indicates command has completed.  Cleared by writing 1 to this bit or starting a new transfer.</description>
+              <description>Command status:  1 indicates command has completed. Cleared by writing 1 to this bit or starting a new transfer.</description>
               <bitRange>[1:1]</bitRange>
               <access>read-write</access>
 
@@ -37573,7 +37680,7 @@ Values:
         </register>
         <register>
           <name>CFG</name>
-          <description>MSPI Transfer Configuration Register</description>
+          <description>MSPI Transfer Configuration</description>
           <addressOffset>0x00000004</addressOffset>
           <size>32</size>
           <access>read-write</access>
@@ -37619,14 +37726,14 @@ Values:
             </field>
             <field>
               <name>TURNAROUND</name>
-              <description>Number of turnaound cycles (for TX->RX transitions).  Qualified by ENTURN or XIPENTURN bit field.</description>
+              <description>Number of turnaround cycles (for TX->RX transitions). Qualified by ENTURN or XIPENTURN bit field.</description>
               <bitRange>[13:8]</bitRange>
               <access>read-write</access>
 
             </field>
             <field>
               <name>SEPIO</name>
-              <description>Separate IO configuration.  This bit should be set when the target device has separate MOSI and MISO pins.  Respective IN/OUT bits below should be set to map pins.</description>
+              <description>Separate IO configuration. This bit should be set when the target device has separate MOSI and MISO pins. Respective IN/OUT bits below should be set to map pins.</description>
               <bitRange>[7:7]</bitRange>
               <access>read-write</access>
 
@@ -37648,29 +37755,35 @@ enum
             </field>
             <field>
               <name>ASIZE</name>
-              <description>Address Size.  Address bytes to send from ADDR register
-  name    =   A1
-  value   =   0x0
-  desc    =   Send one address byte
-enum
-  name    =   A2
-  value   =   0x1
-  desc    =   Send two address bytes
-enum
-  name    =   A3
-  value   =   0x2
-  desc    =   Send three address bytes
-enum
-  name    =   A4
-  value   =   0x3
-  desc    =   Send four address bytes</description>
+              <description>Address Size. Address bytes to send from ADDR register</description>
               <bitRange>[5:4]</bitRange>
               <access>read-write</access>
-
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>A1</name>
+                  <description>Send one address byte</description>
+                  <value>0</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>A2</name>
+                  <description>Send two address bytes</description>
+                  <value>1</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>A3</name>
+                  <description>Send three address bytes</description>
+                  <value>2</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>A4</name>
+                  <description>Send four address bytes</description>
+                  <value>3</value>
+                </enumeratedValue>
+              </enumeratedValues>
             </field>
             <field>
               <name>DEVCFG</name>
-              <description>Flash configuration for XIP and AUTO DMA operations. Controls value for SER (Slave Enable) for XIP operations and address generation for DMA/XIP modes.  Also used to configure SPIFRF (frame format).</description>
+              <description>Flash configuration for XIP and AUTO DMA operations. Controls value for SER (Slave Enable) for XIP operations and address generation for DMA/XIP modes. Also used to configure SPIFRF (frame format).</description>
               <bitRange>[3:0]</bitRange>
               <access>read-write</access>
               <enumeratedValues>
@@ -37730,7 +37843,7 @@ enum
         </register>
         <register>
           <name>ADDR</name>
-          <description>MSPI Transfer Address Register</description>
+          <description>MSPI Transfer Address</description>
           <addressOffset>0x00000008</addressOffset>
           <size>32</size>
           <access>read-write</access>
@@ -37740,7 +37853,7 @@ enum
           <fields>
             <field>
               <name>ADDR</name>
-              <description>Optional Address field to send (after optional instruction field) - qualified by ASIZE in CMD register.  NOTE:  This register is aliased to DMADEVADDR.</description>
+              <description>Optional Address field to send (after optional instruction field) - qualified by ASIZE in CMD register. NOTE:  This register is aliased to DMADEVADDR.</description>
               <bitRange>[31:0]</bitRange>
               <access>read-write</access>
 
@@ -37778,7 +37891,7 @@ enum
           <fields>
             <field>
               <name>TXFIFO</name>
-              <description>Data to be transmitted.  Data should normall be aligned to the LSB (pad the upper bits with zeros) unless BIGENDIAN is set.</description>
+              <description>Data to be transmitted. Data should normally be aligned to the LSB (pad the upper bits with zeros) unless BIGENDIAN is set.</description>
               <bitRange>[31:0]</bitRange>
               <access>read-write</access>
 
@@ -37797,7 +37910,7 @@ enum
           <fields>
             <field>
               <name>RXFIFO</name>
-              <description>Receive data.  Data is aligned to the LSB (padded zeros on upper bits) unless BIGENDIAN is set.</description>
+              <description>Receive data. Data is aligned to the LSB (padded zeros on upper bits) unless BIGENDIAN is set.</description>
               <bitRange>[31:0]</bitRange>
               <access>read-write</access>
 
@@ -37844,7 +37957,7 @@ enum
         </register>
         <register>
           <name>THRESHOLD</name>
-          <description>TX/RX FIFO Threshhold Levels</description>
+          <description>TX/RX FIFO Threshold Levels</description>
           <addressOffset>0x00000020</addressOffset>
           <size>32</size>
           <access>read-write</access>
@@ -37880,31 +37993,36 @@ enum
           <fields>
             <field>
               <name>PRSTN</name>
-              <description>Peripheral reset.  Master reset to the entire MSPI module (DMA, XIP, and transfer state machines).  1=normal operation, 0=in reset.</description>
+              <description>Peripheral reset. Master reset to the entire MSPI module (DMA, XIP, and transfer state machines). 1=normal operation, 0=in reset.</description>
               <bitRange>[31:31]</bitRange>
               <access>read-write</access>
 
             </field>
             <field>
               <name>IPRSTN</name>
-              <description>IP block reset. Write to 0 to put the transfer module in reset or 1 for normal operation.  This may be required after error conditions to clear the transfer on the bus.</description>
+              <description>IP block reset. Write to 0 to put the transfer module in reset or 1 for normal operation. This may be required after error conditions to clear the transfer on the bus.</description>
               <bitRange>[30:30]</bitRange>
               <access>read-write</access>
 
             </field>
             <field>
               <name>FIFORESET</name>
-              <description>Reset MSPI FIFO (active high).  1=reset FIFO, 0=normal operation.   May be used to manually flush the FIFO in error handling.</description>
+              <description>Reset MSPI FIFO (active high). 1=reset FIFO, 0=normal operation. May be used to manually flush the FIFO in error handling.</description>
               <bitRange>[29:29]</bitRange>
               <access>read-write</access>
 
             </field>
             <field>
               <name>CLKDIV</name>
-              <description>Clock Divider.  Allows dividing 48 MHz base clock by integer multiples.  Enumerations are provided for common frequency, but any integer divide from 48 MHz is allowed.  Odd divide ratios will result in a 33/66 percent duty cycle with a long low clock pulse (to allow longer round-trip for read data).</description>
+              <description>Clock Divider. Allows dividing 48 MHz base clock by integer multiples. Enumerations are provided for common frequency, but any integer divide from 48 MHz is allowed. Odd divide ratios will result in a 33/66 percent duty cycle with a long low clock pulse (to allow longer round-trip for read data).</description>
               <bitRange>[13:8]</bitRange>
               <access>read-write</access>
               <enumeratedValues>
+                <enumeratedValue>
+                  <name>CLK48</name>
+                  <description>48 MHz MSPI clock</description>
+                  <value>1</value>
+                </enumeratedValue>
                 <enumeratedValue>
                   <name>CLK24</name>
                   <description>24 MHz MSPI clock</description>
@@ -37940,44 +38058,44 @@ enum
               <enumeratedValues>
                 <enumeratedValue>
                   <name>IOM0</name>
-                  <description>ERROR: desc VALUE MISSING</description>
+                  <description>IOM0</description>
                   <value>0</value>
                 </enumeratedValue>
                 <enumeratedValue>
                   <name>IOM1</name>
-                  <description>ERROR: desc VALUE MISSING</description>
+                  <description>IOM1</description>
                   <value>1</value>
                 </enumeratedValue>
                 <enumeratedValue>
                   <name>IOM2</name>
-                  <description>ERROR: desc VALUE MISSING</description>
+                  <description>IOM2</description>
                   <value>2</value>
                 </enumeratedValue>
                 <enumeratedValue>
                   <name>IOM3</name>
-                  <description>ERROR: desc VALUE MISSING</description>
+                  <description>IOM3</description>
                   <value>3</value>
                 </enumeratedValue>
                 <enumeratedValue>
                   <name>IOM4</name>
-                  <description>ERROR: desc VALUE MISSING</description>
+                  <description>IOM4</description>
                   <value>4</value>
                 </enumeratedValue>
                 <enumeratedValue>
                   <name>IOM5</name>
-                  <description>ERROR: desc VALUE MISSING</description>
+                  <description>IOM5</description>
                   <value>5</value>
                 </enumeratedValue>
                 <enumeratedValue>
                   <name>DISABLED</name>
-                  <description>No IOM selected.  Signals always zero.</description>
+                  <description>No IOM selected. Signals always zero.</description>
                   <value>7</value>
                 </enumeratedValue>
               </enumeratedValues>
             </field>
             <field>
               <name>TXNEG</name>
-              <description>Launches TX data a half clock cycle (~10ns) early.  This should normally be programmed to zero (NORMAL).</description>
+              <description>Launches TX data a half clock cycle (~10 ns) early. This should normally be programmed to zero (NORMAL).</description>
               <bitRange>[3:3]</bitRange>
               <access>read-write</access>
               <enumeratedValues>
@@ -37995,7 +38113,7 @@ enum
             </field>
             <field>
               <name>RXNEG</name>
-              <description>Adjusts the RX capture phase to the negedge of the 48MHz internal clock (~10ns early).  For normal operation, it is expected that RXNEG will be set to 0.</description>
+              <description>Adjusts the RX capture phase to the negedge of the 48MHz internal clock (~10 ns early). For normal operation, it is expected that RXNEG will be set to 0.</description>
               <bitRange>[2:2]</bitRange>
               <access>read-write</access>
               <enumeratedValues>
@@ -38013,7 +38131,7 @@ enum
             </field>
             <field>
               <name>RXCAP</name>
-              <description>Controls RX data capture phase.  A setting of 0 (NORMAL) captures read data at the normal capture point relative to the internal clock launch point.  However, to accomodate chip/pad/board delays, a setting of RXCAP of 1 is expected to be used to align the capture point with the return data window.  This bit is used in conjunction with RXNEG to provide 4 unique capture points, all about 10ns apart.</description>
+              <description>Controls RX data capture phase. A setting of 0 (NORMAL) captures read data at the normal capture point relative to the internal clock launch point. However, to accommodate chip/pad/board delays, a setting of RXCAP of 1 is expected to be used to align the capture point with the return data window. This bit is used in conjunction with RXNEG to provide 4 unique capture points, all about 10 ns apart.</description>
               <bitRange>[1:1]</bitRange>
               <access>read-write</access>
               <enumeratedValues>
@@ -38031,7 +38149,7 @@ enum
             </field>
             <field>
               <name>APBCLK</name>
-              <description>Enable continuous APB clock.  For power-efficient operation, APBCLK should be set to 0.</description>
+              <description>Enable continuous APB clock. For power-efficient operation, APBCLK should be set to 0.</description>
               <bitRange>[0:0]</bitRange>
               <access>read-write</access>
               <enumeratedValues>
@@ -38061,7 +38179,7 @@ enum
           <fields>
             <field>
               <name>REVCS</name>
-              <description>Reverse CS connections.  Allows CS1 to be associated with lower data lanes and CS0 to be associated with upper data lines</description>
+              <description>Reverse CS connections. Allows CS1 to be associated with lower data lanes and CS0 to be associated with upper data lines</description>
               <bitRange>[21:21]</bitRange>
               <access>read-write</access>
 
@@ -38096,35 +38214,35 @@ enum
             </field>
             <field>
               <name>OUT7</name>
-              <description>Output pad 7 configuration.  0=data[7] 1=data[3]</description>
+              <description>Output pad 7 configuration. 0=data[7] 1=data[3]</description>
               <bitRange>[4:4]</bitRange>
               <access>read-write</access>
 
             </field>
             <field>
               <name>OUT6</name>
-              <description>Output pad 6 configuration.  0=data[6] 1=data[2]</description>
+              <description>Output pad 6 configuration. 0=data[6] 1=data[2]</description>
               <bitRange>[3:3]</bitRange>
               <access>read-write</access>
 
             </field>
             <field>
               <name>OUT5</name>
-              <description>Output pad 5 configuration.  0=data[5] 1=data[1]</description>
+              <description>Output pad 5 configuration. 0=data[5] 1=data[1]</description>
               <bitRange>[2:2]</bitRange>
               <access>read-write</access>
 
             </field>
             <field>
               <name>OUT4</name>
-              <description>Output pad 4 configuration.  0=data[4] 1=data[0]</description>
+              <description>Output pad 4 configuration. 0=data[4] 1=data[0]</description>
               <bitRange>[1:1]</bitRange>
               <access>read-write</access>
 
             </field>
             <field>
               <name>OUT3</name>
-              <description>Output pad 3 configuration.  0=data[3] 1=CLK</description>
+              <description>Output pad 3 configuration. 0=data[3] 1=CLK</description>
               <bitRange>[0:0]</bitRange>
               <access>read-write</access>
 
@@ -38143,7 +38261,7 @@ enum
           <fields>
             <field>
               <name>OUTEN</name>
-              <description>Output pad enable configuration.  Indicates which pads should be driven.  Bits [3:0] are Quad0 data, [7:4] are Quad1 data, and [8] is clock.</description>
+              <description>Output pad enable configuration. Indicates which pads should be driven. Bits [3:0] are Quad0 data, [7:4] are Quad1 data, and [8] is clock.</description>
               <bitRange>[8:0]</bitRange>
               <access>read-write</access>
               <enumeratedValues>
@@ -38197,7 +38315,7 @@ enum
             </field>
             <field>
               <name>XIPMIXED</name>
-              <description>Reserved.  Set to 0x0</description>
+              <description>Reserved. Set to 0x0</description>
               <bitRange>[10:8]</bitRange>
               <access>read-write</access>
 
@@ -38238,17 +38356,17 @@ enum
               <enumeratedValues>
                 <enumeratedValue>
                   <name>NOACK</name>
-                  <description>No acknowledege sent.  Data IOs are tristated the first turnaround cycle</description>
+                  <description>No acknowledgment sent. Data IOs are tri-stated the first turnaround cycle</description>
                   <value>0</value>
                 </enumeratedValue>
                 <enumeratedValue>
                   <name>ACK</name>
-                  <description>Positive acknowledege sent.  Data IOs are driven to 0 the first turnaround cycle to acknowledge XIP mode</description>
+                  <description>Positive acknowledgment sent. Data IOs are driven to 0 the first turnaround cycle to acknowledge XIP mode</description>
                   <value>2</value>
                 </enumeratedValue>
                 <enumeratedValue>
                   <name>TERMINATE</name>
-                  <description>Negative acknowledege sent.  Data IOs are driven to 1 the first turnaround cycle to terminate XIP mode.  XIPSENDI should be reenabled for the next transfer</description>
+                  <description>Negative acknowledgment sent. Data IOs are driven to 1 the first turnaround cycle to terminate XIP mode. XIPSENDI should be re-enabled for the next transfer</description>
                   <value>3</value>
                 </enumeratedValue>
               </enumeratedValues>
@@ -38274,21 +38392,21 @@ enum
           <fields>
             <field>
               <name>SCRENABLE</name>
-              <description>Enables Data Scrambling Region.  When 1 reads and writes to the range will be scrambled.  When 0, data will be read/written unmodified.  Address range is specified in 64K granularity and the START/END ranges are included within the range.</description>
+              <description>Enables Data Scrambling Region. When 1 reads and writes to the range will be scrambled. When 0, data will be read/written unmodified. Address range is specified in 64K granularity and the START/END ranges are included within the range.</description>
               <bitRange>[31:31]</bitRange>
               <access>read-write</access>
 
             </field>
             <field>
               <name>SCREND</name>
-              <description>Scrambling region end address [25:16] (64K block granularity).  The END block is the LAST block included in the scrambled address range.</description>
+              <description>Scrambling region end address [25:16] (64K block granularity). The END block is the LAST block included in the scrambled address range.</description>
               <bitRange>[25:16]</bitRange>
               <access>read-write</access>
 
             </field>
             <field>
               <name>SCRSTART</name>
-              <description>Scrambling region start address [25:16] (64K block granularity).  The START block is the FIRST block included in the scrambled address range.</description>
+              <description>Scrambling region start address [25:16] (64K block granularity). The START block is the FIRST block included in the scrambled address range.</description>
               <bitRange>[9:0]</bitRange>
               <access>read-write</access>
 
@@ -38307,7 +38425,7 @@ enum
           <fields>
             <field>
               <name>SCRERR</name>
-              <description>Scrambling Alignment Error.  Scrambling operations must be aligned to word (4-byte) start address.</description>
+              <description>Scrambling Alignment Error. Scrambling operations must be aligned to word (4-byte) start address.</description>
               <bitRange>[12:12]</bitRange>
               <access>read-write</access>
 
@@ -38328,7 +38446,7 @@ enum
             </field>
             <field>
               <name>CQUPD</name>
-              <description>Command Queue Update Interrupt.  Issued whenever the CQ performs an operation where address bit[0] is set.  Useful for triggering CURIDX interrupts.</description>
+              <description>Command Queue Update Interrupt. Issued whenever the CQ performs an operation where address bit[0] is set. Useful for triggering CURIDX interrupts.</description>
               <bitRange>[9:9]</bitRange>
               <access>read-write</access>
 
@@ -38391,7 +38509,7 @@ enum
             </field>
             <field>
               <name>CMDCMP</name>
-              <description>Transfer complete.  Note that DMA and CQ operations are layered, so CMDCMP, DCMP, and CQ* can all be signalled simultaneously</description>
+              <description>Transfer complete. Note that DMA and CQ operations are layered, so CMDCMP, DCMP, and CQ* can all be signaled simultaneously.</description>
               <bitRange>[0:0]</bitRange>
               <access>read-write</access>
 
@@ -38410,7 +38528,7 @@ enum
           <fields>
             <field>
               <name>SCRERR</name>
-              <description>Scrambling Alignment Error.  Scrambling operations must be aligned to word (4-byte) start address.</description>
+              <description>Scrambling Alignment Error. Scrambling operations must be aligned to word (4-byte) start address.</description>
               <bitRange>[12:12]</bitRange>
               <access>read-write</access>
 
@@ -38431,7 +38549,7 @@ enum
             </field>
             <field>
               <name>CQUPD</name>
-              <description>Command Queue Update Interrupt.  Issued whenever the CQ performs an operation where address bit[0] is set.  Useful for triggering CURIDX interrupts.</description>
+              <description>Command Queue Update Interrupt. Issued whenever the CQ performs an operation where address bit[0] is set. Useful for triggering CURIDX interrupts.</description>
               <bitRange>[9:9]</bitRange>
               <access>read-write</access>
 
@@ -38494,7 +38612,7 @@ enum
             </field>
             <field>
               <name>CMDCMP</name>
-              <description>Transfer complete.  Note that DMA and CQ operations are layered, so CMDCMP, DCMP, and CQ* can all be signalled simultaneously</description>
+              <description>Transfer complete. Note that DMA and CQ operations are layered, so CMDCMP, DCMP, and CQ* can all be signaled simultaneously.</description>
               <bitRange>[0:0]</bitRange>
               <access>read-write</access>
 
@@ -38513,7 +38631,7 @@ enum
           <fields>
             <field>
               <name>SCRERR</name>
-              <description>Scrambling Alignment Error.  Scrambling operations must be aligned to word (4-byte) start address.</description>
+              <description>Scrambling Alignment Error. Scrambling operations must be aligned to word (4-byte) start address.</description>
               <bitRange>[12:12]</bitRange>
               <access>read-write</access>
 
@@ -38534,7 +38652,7 @@ enum
             </field>
             <field>
               <name>CQUPD</name>
-              <description>Command Queue Update Interrupt.  Issued whenever the CQ performs an operation where address bit[0] is set.  Useful for triggering CURIDX interrupts.</description>
+              <description>Command Queue Update Interrupt. Issued whenever the CQ performs an operation where address bit[0] is set. Useful for triggering CURIDX interrupts.</description>
               <bitRange>[9:9]</bitRange>
               <access>read-write</access>
 
@@ -38597,7 +38715,7 @@ enum
             </field>
             <field>
               <name>CMDCMP</name>
-              <description>Transfer complete.  Note that DMA and CQ operations are layered, so CMDCMP, DCMP, and CQ* can all be signalled simultaneously</description>
+              <description>Transfer complete. Note that DMA and CQ operations are layered, so CMDCMP, DCMP, and CQ* can all be signaled simultaneously.</description>
               <bitRange>[0:0]</bitRange>
               <access>read-write</access>
 
@@ -38616,7 +38734,7 @@ enum
           <fields>
             <field>
               <name>SCRERR</name>
-              <description>Scrambling Alignment Error.  Scrambling operations must be aligned to word (4-byte) start address.</description>
+              <description>Scrambling Alignment Error. Scrambling operations must be aligned to word (4-byte) start address.</description>
               <bitRange>[12:12]</bitRange>
               <access>read-write</access>
 
@@ -38637,7 +38755,7 @@ enum
             </field>
             <field>
               <name>CQUPD</name>
-              <description>Command Queue Update Interrupt.  Issued whenever the CQ performs an operation where address bit[0] is set.  Useful for triggering CURIDX interrupts.</description>
+              <description>Command Queue Update Interrupt. Issued whenever the CQ performs an operation where address bit[0] is set. Useful for triggering CURIDX interrupts.</description>
               <bitRange>[9:9]</bitRange>
               <access>read-write</access>
 
@@ -38700,7 +38818,7 @@ enum
             </field>
             <field>
               <name>CMDCMP</name>
-              <description>Transfer complete.  Note that DMA and CQ operations are layered, so CMDCMP, DCMP, and CQ* can all be signalled simultaneously</description>
+              <description>Transfer complete. Note that DMA and CQ operations are layered, so CMDCMP, DCMP, and CQ* can all be signaled simultaneously.</description>
               <bitRange>[0:0]</bitRange>
               <access>read-write</access>
 
@@ -38709,7 +38827,7 @@ enum
         </register>
         <register>
           <name>DMACFG</name>
-          <description>DMA Configuration Register</description>
+          <description>DMA Configuration</description>
           <addressOffset>0x00000250</addressOffset>
           <size>32</size>
           <access>read-write</access>
@@ -38778,7 +38896,7 @@ enum
                 </enumeratedValue>
                 <enumeratedValue>
                   <name>EN</name>
-                  <description>Enable HW controlled DMA Function to manage DMA to flash devices.  HW will automatically handle issuance of instruction/address bytes based on settings in the FLASH register.</description>
+                  <description>Enable HW controlled DMA Function to manage DMA to flash devices. HW will automatically handle issuance of instruction/address bytes based on settings in the FLASH register.</description>
                   <value>3</value>
                 </enumeratedValue>
               </enumeratedValues>
@@ -38787,7 +38905,7 @@ enum
         </register>
         <register>
           <name>DMASTAT</name>
-          <description>DMA Status Register</description>
+          <description>DMA Status</description>
           <addressOffset>0x00000254</addressOffset>
           <size>32</size>
           <access>read-write</access>
@@ -38818,7 +38936,7 @@ enum
             </field>
             <field>
               <name>DMATIP</name>
-              <description>DMA Transfer In Progress indicator.  1 will indicate that a DMA transfer is active.  The DMA transfer may be waiting on data, transferring data, or waiting for priority.  All of these will be indicated with a 1.  A 0 will indicate that the DMA is fully complete and no further transactions will be done.</description>
+              <description>DMA Transfer In Progress indicator. 1 will indicate that a DMA transfer is active. The DMA transfer may be waiting on data, transferring data, or waiting for priority. All of these will be indicated with a 1. A 0 will indicate that the DMA is fully complete and no further transactions will be done.</description>
               <bitRange>[0:0]</bitRange>
               <access>read-write</access>
 
@@ -38827,7 +38945,7 @@ enum
         </register>
         <register>
           <name>DMATARGADDR</name>
-          <description>DMA Target Address Register</description>
+          <description>DMA Target Address</description>
           <addressOffset>0x00000258</addressOffset>
           <size>32</size>
           <access>read-write</access>
@@ -38846,7 +38964,7 @@ enum
         </register>
         <register>
           <name>DMADEVADDR</name>
-          <description>DMA Device Address Register</description>
+          <description>DMA Device Address</description>
           <addressOffset>0x0000025C</addressOffset>
           <size>32</size>
           <access>read-write</access>
@@ -38894,7 +39012,7 @@ enum
           <fields>
             <field>
               <name>BCOUNT</name>
-              <description>Burst transfer size in bytes. This is the number of bytes transferred when a FIFO trigger event occurs.  Recommended values are 16 or 32.</description>
+              <description>Burst transfer size in bytes. This is the number of bytes transferred when a FIFO trigger event occurs. Recommended values are 16 or 32.</description>
               <bitRange>[7:0]</bitRange>
               <access>read-write</access>
 
@@ -38903,7 +39021,7 @@ enum
         </register>
         <register>
           <name>DMATHRESH</name>
-          <description>DMA Transmit Trigger Threshhold</description>
+          <description>DMA Transmit Trigger Threshold</description>
           <addressOffset>0x00000278</addressOffset>
           <size>32</size>
           <access>read-write</access>
@@ -38913,7 +39031,7 @@ enum
           <fields>
             <field>
               <name>DMATHRESH</name>
-              <description>DMA transfer FIFO level trigger.  For read operations, DMA is triggered when the FIFO level is greater than this value.  For write operations, DMA is triggered when the FIFO level is less than this level.  Each DMA operation will consist of BCOUNT bytes.</description>
+              <description>DMA transfer FIFO level trigger. For read operations, DMA is triggered when the FIFO level is greater than this value. For write operations, DMA is triggered when the FIFO level is less than this level. Each DMA operation will consist of BCOUNT bytes.</description>
               <bitRange>[3:0]</bitRange>
               <access>read-write</access>
 
@@ -38922,7 +39040,7 @@ enum
         </register>
         <register>
           <name>CQCFG</name>
-          <description>Command Queue Configuration Register</description>
+          <description>Command Queue Configuration</description>
           <addressOffset>0x000002A0</addressOffset>
           <size>32</size>
           <access>read-write</access>
@@ -38932,7 +39050,7 @@ enum
           <fields>
             <field>
               <name>CQAUTOCLEARMASK</name>
-              <description>Enable clear of CQMASK after each pause operation.  This may be useful when using software flags to pause CQ.</description>
+              <description>Enable clear of CQMASK after each pause operation. This may be useful when using software flags to pause CQ.</description>
               <bitRange>[3:3]</bitRange>
               <access>read-write</access>
 
@@ -38946,7 +39064,7 @@ enum
             </field>
             <field>
               <name>CQPRI</name>
-              <description>Sets the Priority of the command queue dma request</description>
+              <description>Sets the Priority of the command queue DMA request</description>
               <bitRange>[1:1]</bitRange>
               <access>read-write</access>
               <enumeratedValues>
@@ -38984,7 +39102,7 @@ enum
         </register>
         <register>
           <name>CQADDR</name>
-          <description>CQ Target Read Address Register</description>
+          <description>CQ Target Read Address</description>
           <addressOffset>0x000002A8</addressOffset>
           <size>32</size>
           <access>read-write</access>
@@ -38994,7 +39112,7 @@ enum
           <fields>
             <field>
               <name>CQADDR</name>
-              <description>Address of command queue buffer in SRAM or flash.  The buffer address must be aligned to a word boundary.</description>
+              <description>Address of command queue buffer in SRAM or flash. The buffer address must be aligned to a word boundary.</description>
               <bitRange>[28:0]</bitRange>
               <access>read-write</access>
 
@@ -39003,7 +39121,7 @@ enum
         </register>
         <register>
           <name>CQSTAT</name>
-          <description>Command Queue Status Register</description>
+          <description>Command Queue Status</description>
           <addressOffset>0x000002AC</addressOffset>
           <size>32</size>
           <access>read-write</access>
@@ -39034,7 +39152,7 @@ enum
             </field>
             <field>
               <name>CQTIP</name>
-              <description>Command queue Transfer In Progress indicator.  1 will indicate that a CQ transfer is active and this will remain active even when paused waiting for external event.</description>
+              <description>Command queue Transfer In Progress indicator. 1 will indicate that a CQ transfer is active and this will remain active even when paused waiting for external event.</description>
               <bitRange>[0:0]</bitRange>
               <access>read-write</access>
 
@@ -39043,7 +39161,7 @@ enum
         </register>
         <register>
           <name>CQFLAGS</name>
-          <description>Command Queue Flag Register</description>
+          <description>Command Queue Flags</description>
           <addressOffset>0x000002B0</addressOffset>
           <size>32</size>
           <access>read-write</access>
@@ -39053,13 +39171,13 @@ enum
           <fields>
             <field>
               <name>CQFLAGS</name>
-              <description>Current flag status (read-only).  Bits [7:0] are software controllable and bits [15:8] are hardware status.</description>
+              <description>Current flag status (read-only). Bits [7:0] are software controllable and bits [15:8] are hardware status.</description>
               <bitRange>[15:0]</bitRange>
               <access>read-write</access>
               <enumeratedValues>
                 <enumeratedValue>
                   <name>STOP</name>
-                  <description>CQ Stop Flag.  When set, CQ processing will complete.</description>
+                  <description>CQ Stop Flag. When set, CQ processing will complete.</description>
                   <value>32768</value>
                 </enumeratedValue>
                 <enumeratedValue>
@@ -39079,52 +39197,52 @@ enum
                 </enumeratedValue>
                 <enumeratedValue>
                   <name>IOM1READY</name>
-                  <description>IOM Buffer 1 Ready Status (from selected IOM).  This status is the result of XNOR'ing the IOM0START with the incoming status from the IOM.  When high, MSPI can send to the buffer.</description>
+                  <description>IOM Buffer 1 Ready Status (from selected IOM). This status is the result of XNOR'ing the IOM0START with the incoming status from the IOM. When high, MSPI can send to the buffer.</description>
                   <value>512</value>
                 </enumeratedValue>
                 <enumeratedValue>
                   <name>IOM0READY</name>
-                  <description>IOM Buffer 0 Ready Status (from selected IOM).  This status is the result of XNOR'ing the IOM0START with the incoming status from the IOM.  When high, MSPI can send to the buffer.</description>
+                  <description>IOM Buffer 0 Ready Status (from selected IOM). This status is the result of XNOR'ing the IOM0START with the incoming status from the IOM. When high, MSPI can send to the buffer.</description>
                   <value>256</value>
                 </enumeratedValue>
                 <enumeratedValue>
                   <name>SWFLAG7</name>
-                  <description>Software flag 7.  Can be used by software to start/pause operations</description>
+                  <description>Software flag 7. Can be used by software to start/pause operations.</description>
                   <value>128</value>
                 </enumeratedValue>
                 <enumeratedValue>
                   <name>SWFLAG6</name>
-                  <description>Software flag 6. Can be used by software to start/pause operatoins</description>
+                  <description>Software flag 6. Can be used by software to start/pause operations.</description>
                   <value>64</value>
                 </enumeratedValue>
                 <enumeratedValue>
                   <name>SWFLAG5</name>
-                  <description>Software flag 5.  Can be used by software to start/pause operations</description>
+                  <description>Software flag 5. Can be used by software to start/pause operations.</description>
                   <value>32</value>
                 </enumeratedValue>
                 <enumeratedValue>
                   <name>SWFLAG4</name>
-                  <description>Software flag 4. Can be used by software to start/pause operatoins</description>
+                  <description>Software flag 4. Can be used by software to start/pause operations.</description>
                   <value>16</value>
                 </enumeratedValue>
                 <enumeratedValue>
                   <name>SWFLAG3</name>
-                  <description>Software flag 3.  Can be used by software to start/pause operations</description>
+                  <description>Software flag 3. Can be used by software to start/pause operations.</description>
                   <value>8</value>
                 </enumeratedValue>
                 <enumeratedValue>
                   <name>SWFLAG2</name>
-                  <description>Software flag 2. Can be used by software to start/pause operatoins</description>
+                  <description>Software flag 2. Can be used by software to start/pause operations.</description>
                   <value>4</value>
                 </enumeratedValue>
                 <enumeratedValue>
                   <name>SWFLAG1</name>
-                  <description>Software flag 1.  Can be used by software to start/pause operations</description>
+                  <description>Software flag 1. Can be used by software to start/pause operations.</description>
                   <value>2</value>
                 </enumeratedValue>
                 <enumeratedValue>
                   <name>SWFLAG0</name>
-                  <description>Software flag 0. Can be used by software to start/pause operatoins</description>
+                  <description>Software flag 0. Can be used by software to start/pause operations.</description>
                   <value>1</value>
                 </enumeratedValue>
               </enumeratedValues>
@@ -39133,7 +39251,7 @@ enum
         </register>
         <register>
           <name>CQSETCLEAR</name>
-          <description>Command Queue Flag Set/Clear Register</description>
+          <description>Command Queue Flag Set/Clear</description>
           <addressOffset>0x000002B4</addressOffset>
           <size>32</size>
           <access>read-write</access>
@@ -39157,7 +39275,7 @@ enum
             </field>
             <field>
               <name>CQFSET</name>
-              <description>Set CQFlag status bits.  Set has priority over clear if both are high.</description>
+              <description>Set CQFlag status bits. Set has priority over clear if both are high.</description>
               <bitRange>[7:0]</bitRange>
               <access>read-write</access>
 
@@ -39166,7 +39284,7 @@ enum
         </register>
         <register>
           <name>CQPAUSE</name>
-          <description>Command Queue Pause Mask Register</description>
+          <description>Command Queue Pause Mask</description>
           <addressOffset>0x000002B8</addressOffset>
           <size>32</size>
           <access>read-write</access>
@@ -39182,7 +39300,7 @@ enum
               <enumeratedValues>
                 <enumeratedValue>
                   <name>STOP</name>
-                  <description>CQ Stop Flag.  When set, CQ processing will complete.</description>
+                  <description>CQ Stop Flag. When set, CQ processing will complete.</description>
                   <value>32768</value>
                 </enumeratedValue>
                 <enumeratedValue>
@@ -39202,52 +39320,52 @@ enum
                 </enumeratedValue>
                 <enumeratedValue>
                   <name>IOM1READY</name>
-                  <description>IOM Buffer 1 Ready Status (from selected IOM).  This status is the result of XNOR'ing the IOM0START with the incoming status from the IOM.  When high, MSPI can send to the buffer.</description>
+                  <description>IOM Buffer 1 Ready Status (from selected IOM). This status is the result of XNOR'ing the IOM0START with the incoming status from the IOM. When high, MSPI can send to the buffer.</description>
                   <value>512</value>
                 </enumeratedValue>
                 <enumeratedValue>
                   <name>IOM0READY</name>
-                  <description>IOM Buffer 0 Ready Status (from selected IOM).  This status is the result of XNOR'ing the IOM0START with the incoming status from the IOM.  When high, MSPI can send to the buffer.</description>
+                  <description>IOM Buffer 0 Ready Status (from selected IOM). This status is the result of XNOR'ing the IOM0START with the incoming status from the IOM. When high, MSPI can send to the buffer.</description>
                   <value>256</value>
                 </enumeratedValue>
                 <enumeratedValue>
                   <name>SWFLAG7</name>
-                  <description>Software flag 7.  Can be used by software to start/pause operations</description>
+                  <description>Software flag 7. Can be used by software to start/pause operations.</description>
                   <value>128</value>
                 </enumeratedValue>
                 <enumeratedValue>
                   <name>SWFLAG6</name>
-                  <description>Software flag 6. Can be used by software to start/pause operatoins</description>
+                  <description>Software flag 6. Can be used by software to start/pause operations.</description>
                   <value>64</value>
                 </enumeratedValue>
                 <enumeratedValue>
                   <name>SWFLAG5</name>
-                  <description>Software flag 5.  Can be used by software to start/pause operations</description>
+                  <description>Software flag 5. Can be used by software to start/pause operations.</description>
                   <value>32</value>
                 </enumeratedValue>
                 <enumeratedValue>
                   <name>SWFLAG4</name>
-                  <description>Software flag 4. Can be used by software to start/pause operatoins</description>
+                  <description>Software flag 4. Can be used by software to start/pause operations.</description>
                   <value>16</value>
                 </enumeratedValue>
                 <enumeratedValue>
                   <name>SWFLAG3</name>
-                  <description>Software flag 3.  Can be used by software to start/pause operations</description>
+                  <description>Software flag 3. Can be used by software to start/pause operations.</description>
                   <value>8</value>
                 </enumeratedValue>
                 <enumeratedValue>
                   <name>SWFLAG2</name>
-                  <description>Software flag 2. Can be used by software to start/pause operatoins</description>
+                  <description>Software flag 2. Can be used by software to start/pause operations.</description>
                   <value>4</value>
                 </enumeratedValue>
                 <enumeratedValue>
                   <name>SWFLAG1</name>
-                  <description>Software flag 1.  Can be used by software to start/pause operations</description>
+                  <description>Software flag 1. Can be used by software to start/pause operations.</description>
                   <value>2</value>
                 </enumeratedValue>
                 <enumeratedValue>
                   <name>SWFLAG0</name>
-                  <description>Software flag 0. Can be used by software to start/pause operatoins</description>
+                  <description>Software flag 0. Can be used by software to start/pause operations.</description>
                   <value>1</value>
                 </enumeratedValue>
               </enumeratedValues>
@@ -39266,7 +39384,7 @@ enum
           <fields>
             <field>
               <name>CQCURIDX</name>
-              <description>Can be used to indicate the current position of the command  queue by having CQ operations write this field.  A CQ hardware status flag indicates when CURIDX and ENDIDX are not equal, allowing SW to pause the CQ processing until the end index is updated.</description>
+              <description>Can be used to indicate the current position of the command  queue by having CQ operations write this field. A CQ hardware status flag indicates when CURIDX and ENDIDX are not equal, allowing SW to pause the CQ processing until the end index is updated.</description>
               <bitRange>[7:0]</bitRange>
               <access>read-write</access>
 
@@ -39285,7 +39403,7 @@ enum
           <fields>
             <field>
               <name>CQENDIDX</name>
-              <description>Can be used to indicate the end position of the command queue.  A CQ hardware status bit indices when CURIDX != ENDIDX so that the CQ can be paused when it reaches the end pointer.</description>
+              <description>Can be used to indicate the end position of the command queue. A CQ hardware status bit indices when CURIDX != ENDIDX so that the CQ can be paused when it reaches the end pointer.</description>
               <bitRange>[7:0]</bitRange>
               <access>read-write</access>
 

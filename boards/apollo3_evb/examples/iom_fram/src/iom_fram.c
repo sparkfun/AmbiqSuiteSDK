@@ -23,26 +23,26 @@
 
 //*****************************************************************************
 //
-// Copyright (c) 2019, Ambiq Micro
+// Copyright (c) 2020, Ambiq Micro
 // All rights reserved.
-// 
+//
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided that the following conditions are met:
-// 
+//
 // 1. Redistributions of source code must retain the above copyright notice,
 // this list of conditions and the following disclaimer.
-// 
+//
 // 2. Redistributions in binary form must reproduce the above copyright
 // notice, this list of conditions and the following disclaimer in the
 // documentation and/or other materials provided with the distribution.
-// 
+//
 // 3. Neither the name of the copyright holder nor the names of its
 // contributors may be used to endorse or promote products derived from this
 // software without specific prior written permission.
-// 
+//
 // Third party software included in this distribution is subject to the
 // additional license terms as defined in the /docs/licenses directory.
-// 
+//
 // THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
 // AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
 // IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
@@ -55,7 +55,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
-// This is part of revision 2.3.2 of the AmbiqSuite Development Package.
+// This is part of revision 2.4.2 of the AmbiqSuite Development Package.
 //
 //*****************************************************************************
 
@@ -104,30 +104,30 @@
 #if (FRAM_DEVICE_MB85RS1MT == 1)
 #include "am_devices_mb85rs1mt.h"
 #define FRAM_DEVICE_ID          AM_DEVICES_MB85RS1MT_ID
-#define FRAM_IOM_MODE           AM_HAL_IOM_SPI_MODE
+#define am_iom_test_devices_t   am_devices_mb85rs1mt_config_t
 #elif (FRAM_DEVICE_MB85RQ4ML == 1)
 #include "am_devices_mb85rq4ml.h"
 #define FRAM_DEVICE_ID          AM_DEVICES_MB85RQ4ML_ID
-#define FRAM_IOM_MODE           AM_HAL_IOM_SPI_MODE
+#define am_iom_test_devices_t   am_devices_mb85rq4ml_config_t
 #elif (FRAM_DEVICE_MB85RC256V == 1)
 #include "am_devices_mb85rc256v.h"
 #define FRAM_DEVICE_ID          AM_DEVICES_MB85RC256V_ID
-#define FRAM_IOM_MODE           AM_HAL_IOM_I2C_MODE
+#define am_iom_test_devices_t   am_devices_mb85rc256v_config_t
 #elif (FRAM_DEVICE_MB85RS64V == 1)
 #include "am_devices_mb85rs64v.h"
 #define FRAM_DEVICE_ID          AM_DEVICES_MB85RS64V_ID
-#define FRAM_IOM_MODE           AM_HAL_IOM_SPI_MODE
+#define am_iom_test_devices_t   am_devices_mb85rs64v_config_t
 #elif (FRAM_DEVICE_MB85RC64TA == 1)
 #include "am_devices_mb85rc256v.h"
 #define FRAM_DEVICE_ID          AM_DEVICES_MB85RC64TA_ID
-#define FRAM_IOM_MODE           AM_HAL_IOM_I2C_MODE
+#define am_iom_test_devices_t   am_devices_mb85rc256v_config_t
 #else
 #error "Unknown FRAM Device"
 #endif
 
-#define IOM_INTERRUPT1(n)       AM_HAL_INTERRUPT_IOMASTER ## n
-#define IOM_INTERRUPT(n)        IOM_INTERRUPT1(n)
 #define FRAM_IOM_IRQn           ((IRQn_Type)(IOMSTR0_IRQn + FRAM_IOM_MODULE))
+
+#define FRAM_IOM_FREQ           AM_HAL_IOM_1MHZ
 
 //
 // Typedef - to encapsulate device driver functions
@@ -135,26 +135,26 @@
 typedef struct
 {
     uint8_t  devName[20];
-    uint32_t (*fram_init)(uint32_t ui32Module, am_hal_iom_config_t *psIOMSettings, void **ppIomHandle);
-    uint32_t (*fram_term)(uint32_t ui32Module);
+    uint32_t (*fram_init)(uint32_t ui32Module, am_iom_test_devices_t *pDevConfig, void **ppHandle, void **ppIomHandle);
+    uint32_t (*fram_term)(void *pHandle);
 
-    uint32_t (*fram_read_id)(uint32_t *pDeviceID);
+    uint32_t (*fram_read_id)(void *pHandle, uint32_t *pDeviceID);
 
-    uint32_t (*fram_blocking_write)(uint8_t *ui8TxBuffer,
+    uint32_t (*fram_blocking_write)(void *pHandle, uint8_t *ui8TxBuffer,
                              uint32_t ui32WriteAddress,
                              uint32_t ui32NumBytes);
 
-    uint32_t (*fram_nonblocking_write)(uint8_t *ui8TxBuffer,
+    uint32_t (*fram_nonblocking_write)(void *pHandle, uint8_t *ui8TxBuffer,
                                 uint32_t ui32WriteAddress,
                                 uint32_t ui32NumBytes,
                                 am_hal_iom_callback_t pfnCallback,
                                 void *pCallbackCtxt);
 
-    uint32_t (*fram_blocking_read)(uint8_t *pui8RxBuffer,
+    uint32_t (*fram_blocking_read)(void *pHandle, uint8_t *pui8RxBuffer,
                             uint32_t ui32ReadAddress,
                             uint32_t ui32NumBytes);
 
-    uint32_t (*fram_nonblocking_read)(uint8_t *pui8RxBuffer,
+    uint32_t (*fram_nonblocking_read)(void *pHandle, uint8_t *pui8RxBuffer,
                                                       uint32_t ui32ReadAddress,
                                                       uint32_t ui32NumBytes,
                                                       am_hal_iom_callback_t pfnCallback,
@@ -169,6 +169,7 @@ typedef struct
 //*****************************************************************************
 volatile bool                           g_bReadFram = false;
 volatile bool                           g_bVerifyReadData = false;
+void                                    *g_IomDevHdl;
 void                                    *g_pIOMHandle;
 am_hal_iom_buffer(PATTERN_BUF_SIZE)     gPatternBuf;
 am_hal_iom_buffer(PATTERN_BUF_SIZE)     gRxBuf;
@@ -243,7 +244,7 @@ fram_device_func_t device_func =
     .fram_blocking_write = am_devices_mb85rs64v_blocking_write,
     .fram_nonblocking_write = am_devices_mb85rs64v_nonblocking_write,
     .fram_blocking_read = am_devices_mb85rs64v_blocking_read,
-    .fram_nonblocking_read = ,
+    .fram_nonblocking_read = am_devices_mb85rs64v_nonblocking_read,
     .fram_fireball_control = 0,
 #elif (FRAM_DEVICE_MB85RC64TA == 1)
     // Fireball installed I2C FRAM device
@@ -282,12 +283,6 @@ am_hal_ctimer_config_t g_sTimer0 =
 
     // No configuration for Timer0B.
     0,
-};
-
-am_hal_iom_config_t     g_sIomCfg =
-{
-    .eInterfaceMode       = FRAM_IOM_MODE,
-    .ui32ClockFreq        = AM_HAL_IOM_1MHZ,
 };
 
 //*****************************************************************************
@@ -391,11 +386,6 @@ fram_init(void)
     uint32_t ui32Status;
     uint32_t ui32DeviceId = 0;
 
-    // Set up IOM
-    // Initialize the Device
-    g_sIomCfg.ui32NBTxnBufLength = sizeof(DMATCBBuffer) / 4;
-    g_sIomCfg.pNBTxnBuf = &DMATCBBuffer[0];
-
 #if FIREBALL_CARD || FIREBALL2_CARD
     uint32_t ui32Ret, ui32ID;
 
@@ -448,10 +438,15 @@ fram_init(void)
     }
 #endif // FIREBALL_CARD
 
-    ui32Status = device_func.fram_init(FRAM_IOM_MODULE, &g_sIomCfg, &g_pIOMHandle);
+    am_iom_test_devices_t stFramConfig;
+    stFramConfig.ui32ClockFreq = FRAM_IOM_FREQ;
+    stFramConfig.pNBTxnBuf = DMATCBBuffer;
+    stFramConfig.ui32NBTxnBufLength = sizeof(DMATCBBuffer) / 4;
+
+    ui32Status = device_func.fram_init(FRAM_IOM_MODULE, &stFramConfig, &g_IomDevHdl, &g_pIOMHandle);
     if (0 == ui32Status)
     {
-        ui32Status = device_func.fram_read_id(&ui32DeviceId);
+        ui32Status = device_func.fram_read_id(g_IomDevHdl, &ui32DeviceId);
 
         if ((ui32Status  != 0) || (ui32DeviceId != FRAM_DEVICE_ID))
         {
@@ -460,7 +455,7 @@ fram_init(void)
         am_util_stdio_printf("%s Found\n", device_func.devName);
         // Set up a pattern data in FRAM memory
         am_util_stdio_printf("Setting up data pattern in FRAM using blocking write\n");
-        return device_func.fram_blocking_write(&gPatternBuf.bytes[0], 0, PATTERN_BUF_SIZE);
+        return device_func.fram_blocking_write(g_IomDevHdl, &gPatternBuf.bytes[0], 0, PATTERN_BUF_SIZE);
     }
     else
     {
@@ -511,7 +506,7 @@ read_fram(void)
 {
     uint32_t ui32Status;
     // Initiate read of a block of data from FRAM
-    ui32Status = device_func.fram_nonblocking_read(&gRxBuf.bytes[0], 0, PATTERN_BUF_SIZE, read_complete, 0);
+    ui32Status = device_func.fram_nonblocking_read(g_IomDevHdl, &gRxBuf.bytes[0], 0, PATTERN_BUF_SIZE, read_complete, 0);
     if (ui32Status == 0)
     {
         g_bReadFram = false;
@@ -521,7 +516,7 @@ read_fram(void)
 void
 fram_term(void)
 {
-    device_func.fram_term(FRAM_IOM_MODULE);
+    device_func.fram_term(g_IomDevHdl);
 }
 
 //*****************************************************************************

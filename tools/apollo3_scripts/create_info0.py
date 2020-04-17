@@ -378,7 +378,7 @@ def parse_arguments():
     parser.add_argument('--srprot3', dest='srprot3', type=auto_int, default = hex(0xFFFFFFFF),
                         help='SBL overridable Copy Protections Mask for flash#3 (Default 0xFFFFFFFF)')
 
-    parser.add_argument('--chipType', dest='chip', type=str, default='apollo3',
+    parser.add_argument('--chipType', dest='chip', type=str, required=True,
                         choices = ['apollo3', 'apollo3p'],
                         help='Chip Type: apollo3, apollo3p (default = apollo3)')
  

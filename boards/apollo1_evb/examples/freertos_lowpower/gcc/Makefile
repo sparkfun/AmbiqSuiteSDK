@@ -2,26 +2,26 @@
 #
 # Makefile - Rules for building the libraries, examples and docs.
 #
-# Copyright (c) 2019, Ambiq Micro
+# Copyright (c) 2020, Ambiq Micro
 # All rights reserved.
-# 
+#
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
-# 
+#
 # 1. Redistributions of source code must retain the above copyright notice,
 # this list of conditions and the following disclaimer.
-# 
+#
 # 2. Redistributions in binary form must reproduce the above copyright
 # notice, this list of conditions and the following disclaimer in the
 # documentation and/or other materials provided with the distribution.
-# 
+#
 # 3. Neither the name of the copyright holder nor the names of its
 # contributors may be used to endorse or promote products derived from this
 # software without specific prior written permission.
-# 
+#
 # Third party software included in this distribution is subject to the
 # additional license terms as defined in the /docs/licenses directory.
-# 
+#
 # THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
 # AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
 # IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
@@ -34,7 +34,7 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 #
-# This is part of revision 2.3.2 of the AmbiqSuite Development Package.
+# This is part of revision 2.4.2 of the AmbiqSuite Development Package.
 #
 #******************************************************************************
 TARGET := freertos_lowpower
@@ -81,44 +81,44 @@ all clean:
 else
 
 DEFINES = -DPART_$(PART)
-DEFINES+= -DAM_PACKAGE_BGA
-DEFINES+= -DAM_DEBUG_PRINTF
 DEFINES+= -DAM_PART_APOLLO
+DEFINES+= -DAM_PACKAGE_BGA
 DEFINES+= -DAM_FREERTOS
+DEFINES+= -DAM_DEBUG_PRINTF
 DEFINES+= -Dgcc
 
-INCLUDES = -I../../../bsp
-INCLUDES+= -I../src
-INCLUDES+= -I../../../../../third_party/FreeRTOSv10.1.1/Source/portable/GCC/AMapollo
-INCLUDES+= -I../../../../../utils
-INCLUDES+= -I../../../../..
+INCLUDES = -I../../../../../third_party/FreeRTOSv10.1.1/Source/include
 INCLUDES+= -I../../../../../devices
-INCLUDES+= -I../../../../../third_party/FreeRTOSv10.1.1/Source/include
+INCLUDES+= -I../../../../../third_party/FreeRTOSv10.1.1/Source/portable/GCC/AMapollo
 INCLUDES+= -I../../../../../mcu/apollo
+INCLUDES+= -I../../../../..
+INCLUDES+= -I../../../../../utils
+INCLUDES+= -I../../../bsp
+INCLUDES+= -I../src
 
-VPATH = ../../../../../third_party/FreeRTOSv10.1.1/Source
-VPATH+=:../src
-VPATH+=:../../../../../third_party/FreeRTOSv10.1.1/Source/portable/GCC/AMapollo
-VPATH+=:../../../../../utils
+VPATH = ../../../../../devices
 VPATH+=:../../../../../third_party/FreeRTOSv10.1.1/Source/portable/MemMang
-VPATH+=:../../../../../devices
+VPATH+=:../../../../../third_party/FreeRTOSv10.1.1/Source/portable/GCC/AMapollo
+VPATH+=:../../../../../third_party/FreeRTOSv10.1.1/Source
+VPATH+=:../../../../../utils
+VPATH+=:../src
 
-SRC = freertos_lowpower.c
+SRC = port.c
+SRC += freertos_lowpower.c
 SRC += led_task.c
 SRC += rtos.c
-SRC += port.c
-SRC += am_util_debug.c
-SRC += am_util_delay.c
-SRC += am_util_faultisr.c
-SRC += am_util_stdio.c
+SRC += am_devices_button.c
+SRC += am_devices_led.c
+SRC += heap_2.c
 SRC += event_groups.c
 SRC += list.c
 SRC += queue.c
 SRC += tasks.c
 SRC += timers.c
-SRC += am_devices_button.c
-SRC += am_devices_led.c
-SRC += heap_2.c
+SRC += am_util_debug.c
+SRC += am_util_delay.c
+SRC += am_util_faultisr.c
+SRC += am_util_stdio.c
 SRC += startup_gcc.c
 
 CSRC = $(filter %.c,$(SRC))

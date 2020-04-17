@@ -2849,15 +2849,15 @@
      62  $t                         0x0000192e   Lc    1   --   De 
      63  $d.realdata                0x0000196a   Lc    1   --   De 
      64  $d.realdata                0x10000000   Lc    2   --   De 
-     65  ../src/prime.c             0x00000000   Lc  Abs  File  De 
-     66  i.main                     0x000012a8   Lc    1  Sect  De 
-     67  i.uart_disable             0x00001608   Lc    1  Sect  De 
-     68  i.uart_init                0x00001694   Lc    1  Sect  De 
-     69  .conststring               0x00001978   Lc    1  Sect  De   0x52
-     70  .data                      0x10000000   Lc    2  Sect  De   0x14
-     71  ../../../../../third_party/prime_mpi/src/prime_mpi.c
+     65  ../../../../../third_party/prime_mpi/src/prime_mpi.c
                                     0x00000000   Lc  Abs  File  De 
-     72  i.prime_number             0x000015ca   Lc    1  Sect  De 
+     66  i.prime_number             0x000015ca   Lc    1  Sect  De 
+     67  ../src/prime.c             0x00000000   Lc  Abs  File  De 
+     68  i.main                     0x000012a8   Lc    1  Sect  De 
+     69  i.uart_disable             0x00001608   Lc    1  Sect  De 
+     70  i.uart_init                0x00001694   Lc    1  Sect  De 
+     71  .conststring               0x00001978   Lc    1  Sect  De   0x52
+     72  .data                      0x10000000   Lc    2  Sect  De   0x14
      73  ../../../../../utils/am_util_delay.c
                                     0x00000000   Lc  Abs  File  De 
      74  i.am_util_delay_ms         0x00000a20   Lc    1  Sect  De 
@@ -3312,14 +3312,14 @@
             1      1: $d
             2      4: $t
             3      7: $d.realdata
-            4     19: ../src/prime.c
-            5     34: i.main
-            6     41: i.uart_disable
-            7     56: i.uart_init
-            8     68: .conststring
-            9     81: .data
-           10     87: ../../../../../third_party/prime_mpi/src/prime_mpi.c
-           11    140: i.prime_number
+            4     19: ../../../../../third_party/prime_mpi/src/prime_mpi.c
+            5     72: i.prime_number
+            6     87: ../src/prime.c
+            7    102: i.main
+            8    109: i.uart_disable
+            9    124: i.uart_init
+           10    136: .conststring
+           11    149: .data
            12    155: ../../../../../utils/am_util_delay.c
            13    192: i.am_util_delay_ms
            14    211: ..\..\..\..\..\utils\am_util_faultisr.c

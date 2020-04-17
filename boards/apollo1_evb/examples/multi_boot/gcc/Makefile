@@ -2,26 +2,26 @@
 #
 # Makefile - Rules for building the libraries, examples and docs.
 #
-# Copyright (c) 2019, Ambiq Micro
+# Copyright (c) 2020, Ambiq Micro
 # All rights reserved.
-# 
+#
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
-# 
+#
 # 1. Redistributions of source code must retain the above copyright notice,
 # this list of conditions and the following disclaimer.
-# 
+#
 # 2. Redistributions in binary form must reproduce the above copyright
 # notice, this list of conditions and the following disclaimer in the
 # documentation and/or other materials provided with the distribution.
-# 
+#
 # 3. Neither the name of the copyright holder nor the names of its
 # contributors may be used to endorse or promote products derived from this
 # software without specific prior written permission.
-# 
+#
 # Third party software included in this distribution is subject to the
 # additional license terms as defined in the /docs/licenses directory.
-# 
+#
 # THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
 # AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
 # IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
@@ -34,7 +34,7 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 #
-# This is part of revision 2.3.2 of the AmbiqSuite Development Package.
+# This is part of revision 2.4.2 of the AmbiqSuite Development Package.
 #
 #******************************************************************************
 TARGET := multi_boot
@@ -81,33 +81,33 @@ all clean:
 else
 
 DEFINES = -DPART_$(PART)
-DEFINES+= -D'AM_MULTIBOOT_CONFIG_FILE="am_multi_boot_config.h"'
 DEFINES+= -DAM_PACKAGE_BGA
 DEFINES+= -DAM_PART_APOLLO
+DEFINES+= -D'AM_MULTIBOOT_CONFIG_FILE="am_multi_boot_config.h"'
 DEFINES+= -Dgcc
 
-INCLUDES = -I../../../../../mcu/apollo
+INCLUDES = -I../../../../../utils
 INCLUDES+= -I../../../../../devices
 INCLUDES+= -I../../../../..
 INCLUDES+= -I../src
+INCLUDES+= -I../../../../../mcu/apollo
 INCLUDES+= -I../../../bsp
-INCLUDES+= -I../../../../../utils
 INCLUDES+= -I../../../../../bootloader
 
 VPATH = ../../../../../utils
-VPATH+=:../../../../../bootloader
 VPATH+=:../../../../../devices
+VPATH+=:../../../../../bootloader
 VPATH+=:../src
 
 SRC = extflash.c
 SRC += multi_boot.c
 SRC += am_util_delay.c
 SRC += am_util_stdio.c
+SRC += am_devices_spiflash.c
 SRC += am_bootloader.c
 SRC += am_ios_boot_handlers.c
 SRC += am_multi_boot.c
 SRC += am_uart_boot_handlers.c
-SRC += am_devices_spiflash.c
 SRC += startup_gcc.c
 
 CSRC = $(filter %.c,$(SRC))
