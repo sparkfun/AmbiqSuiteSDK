@@ -1,5 +1,5 @@
 # AmbiqSuiteSDK
-A copy of the AmbiqSuite SDK available on GitHub. Can be used to include AmbiqSuite as a submodule. Cannot be used to change the SDK since we are not the owners. To report issues contact Ambiq Micro
+A copy of the AmbiqSuite SDK available on GitHub. Can be used to include AmbiqSuite as a submodule. Can be used to track issues with the SDK, however it is not maintained by AmbiqMicro so the issues may not be resolved upstream.
 
 # Current Version
 2.4.2
@@ -30,6 +30,18 @@ make BOARD=$YOUR_BOARD bootload_asb     # bootloads using the Ambiq Secure Bootl
 
 # Advanced Usage
 All the convenient functionality that we've added to the AmbiqSuiteSDK comes from our [SparkFun AmbiqSuite Apollo3 BSPs](https://github.com/sparkfun/SparkFun_Apollo3_AmbiqSuite_BSPs). That repo contains more [detailed documentation for advanced usage](https://github.com/sparkfun/SparkFun_Apollo3_AmbiqSuite_BSPs#advanced-usage).
+
+# Repository Structure
+In addition to including the [SparkFun BSPs](https://github.com/sparkfun/SparkFun_Apollo3_AmbiqSuite_BSPs)This repo catalogs information about the AmbiqSuite SDK. Various branches serve different purposes:
+
+### Branch Purposes
+
+Pattern | Use | Addtl. info
+---|---|---
+master | mirrors latest SDK available from AmbiqMicro | 
+\*-archive | provides an archive of the SDK as released by AmbiqMicro at each version | 
+\*-patch-\*description| provides a version of the SDK patched beyond AmbiqMicro release
+
 
 # Submodules
 Git submodules can be used to reuse code between repositories. Some special precautions can be necessary when working with them -- most notably the need to clone the contents of submodules explicitly. Here's how to do that:
