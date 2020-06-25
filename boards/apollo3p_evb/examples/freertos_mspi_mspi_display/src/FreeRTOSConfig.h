@@ -54,10 +54,10 @@ extern "C"
 #define configUSE_PREEMPTION                    1
 #define configUSE_PORT_OPTIMISED_TASK_SELECTION 0
 
-#ifdef AM_PART_APOLLO2
-    #define configCPU_CLOCK_HZ                  48000000UL
-#else
+#ifdef AM_PART_APOLLO
     #define configCPU_CLOCK_HZ                  24000000UL
+#else
+    #define configCPU_CLOCK_HZ                  48000000UL
 #endif
 #define configTICK_RATE_HZ                      1000
 #define configMAX_PRIORITIES                    4
