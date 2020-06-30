@@ -38,7 +38,8 @@ In addition to including the [SparkFun BSPs](https://github.com/sparkfun/SparkFu
 
 Pattern | Use | Addtl. info
 ---|---|---
-master | mirrors latest SDK available from AmbiqMicro | 
+master | contains the most up-to-date version of the SDK along with all patches |
+mirror | mirrors latest SDK available from AmbiqMicro | 
 \*-archive | provides an archive of the SDK as released by AmbiqMicro at each version | 
 \*-patch-\*description| provides a version of the SDK patched beyond AmbiqMicro release
 
