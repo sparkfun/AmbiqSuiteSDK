@@ -46,6 +46,11 @@
 #ifndef HCI_DRV_APOLLO3_H
 #define HCI_DRV_APOLLO3_H
 
+#ifdef __cplusplus
+extern "C"
+{
+#endif
+
 //*****************************************************************************
 //
 // NATIONZ vendor specific events
@@ -75,5 +80,9 @@ void   HciVsA3_CarrierWaveMode(uint8_t txchannel);
 extern void HciDrvHandler(wsfEventMask_t event, wsfMsgHdr_t *pMsg);
 extern void HciDrvHandlerInit(wsfHandlerId_t handlerId);
 extern void HciDrvIntService(void);
+
+#ifdef __cplusplus
+};
+#endif
 
 #endif // HCI_DRV_APOLLO3_H
