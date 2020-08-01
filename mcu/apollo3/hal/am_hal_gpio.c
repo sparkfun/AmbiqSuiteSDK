@@ -59,15 +59,33 @@
 //
 // Generally define GPIO PADREG and GPIOCFG bitfields
 //
+// PADREG registers
 #define PADREG_FLD_76_S         6
 #define PADREG_FLD_FNSEL_S      3
 #define PADREG_FLD_DRVSTR_S     2
 #define PADREG_FLD_INPEN_S      1
 #define PADREG_FLD_PULLUP_S     0
 
+#define PADREG_FLD_76_Msk       0xA0
+#define PADREG_FLD_FNSEL_Msk    0x38
+#define PADREG_FLD_DRVSTR_Msk   0x04
+#define PADREG_FLD_INPEN_Msk    0x02
+#define PADREG_FLD_PULLUP_Msk   0x01
+
+// ALTPADCFG registers
+#define ALTPADCFG_FLD_DRVSTR1_S 0
+
+#define ALTPADCFG_FLD_DRVSTR1_Msk   0x01
+
+// CFG registers
 #define GPIOCFG_FLD_INTD_S      3
 #define GPIOCFG_FLD_OUTCFG_S    1
 #define GPIOCFG_FLD_INCFG_S     0
+
+#define GPIOCFG_FLD_INTD_Msk    0x08
+#define GPIOCFG_FLD_OUTCFG_Msk  0x06
+#define GPIOCFG_FLD_INCFG_Msk   0x01
+
 
 //*****************************************************************************
 //
@@ -1263,38 +1281,59 @@ uint32_t ap3_get_pincfg(uint32_t ui32Pin, am_hal_gpio_pincfg_t* pbfGpioCfg){
     //     uint32_t uRsvd22        : 10;    // [31:22]
     // } am_hal_gpio_pincfg_t;
 
-    // the things to fill up
-    uint32_t uFuncSel = 0;
-    uint32_t ePowerSw = 0;
-    uint32_t ePullup = 0;
-    uint32_t eDriveStrength = 0;
-    uint32_t eGPOutcfg = 0;
-    uint32_t eGPInput = 0;
-    uint32_t eIntDir = 0;
-    uint32_t eGPRdZero = 0;
-    uint32_t uIOMnum = 0;
-    uint32_t uNCE = 0;
-    uint32_t eCEpol = 0;
-
     // helpers
-    uint32_t ui32GPCfgAddr = AM_REGADDR(GPIO, CFGA) + ((ui32Pin >> 1) & ~0x3);
     uint32_t ui32PadregAddr = AM_REGADDR(GPIO, PADREGA) + (ui32Pin & ~0x3);
-    uint32_t ui32AltpadAddr = AM_REGADDR(GPIO, ALTPADCFGA) + (ui32Pin & ~0x3);
-    uint32_t ui32GPCfgShft = ((ui32Pin & 0x7) << 2);
-    uint32_t ui32PadShft = ((ui32Pin & 0x3) << 3);
+    uint32_t ui32AltpadcfgAddr = AM_REGADDR(GPIO, ALTPADCFGA) + (ui32Pin & ~0x3);
+    uint32_t ui32CfgAddr = AM_REGADDR(GPIO, CFGA) + ((ui32Pin >> 1) & ~0x3);
+
+    uint32_t ui32PadregShft = ((ui32Pin & 0x3) << 3);
+    uint32_t ui32AltpadcfgShft = ((ui32Pin & 0x7) << 2);
+    uint32_t ui32CfgShft = ((ui32Pin & 0x7) << 2);
+    
+    // the pad's register values
+    uint32_t ui32Padreg = (AM_REGVAL(ui32PadregAddr) >> ui32PadregShft);
+    uint32_t ui32Altpadcfg = (AM_REGVAL(ui32AltpadcfgAddr) >> ui32AltpadcfgShft);
+    uint32_t ui32Cfg = (AM_REGVAL(ui32CfgAddr) >> ui32CfgShft);
 
     // filling things
-    uFuncSel        = (((AM_REGVAL(ui32PadregAddr) >> ui32PadShft) & PADREG_FNSEL_Msk) >> PADREG_FLD_FNSEL_S);
-    ePowerSw        = (((AM_REGVAL(/* todo */) >> ) & /* todo */) >> /* todo */ );
-    ePullup         = (((AM_REGVAL(/* todo */) >> ) & /* todo */) >> PADREG_FLD_PULLUP_S );
-    eDriveStrength  = (((AM_REGVAL(/* todo */) >> ) & /* todo */) >> PADREG_FLD_DRVSTR_S );
-    eGPOutcfg       = (((AM_REGVAL(/* todo */) >> ) & /* todo */) >> GPIOCFG_FLD_OUTCFG_S );
-    eGPInput        = (((AM_REGVAL(/* todo */) >> ) & /* todo */) >> /* todo */ );
-    eIntDir         = (((AM_REGVAL(/* todo */) >> ) & /* todo */) >> GPIOCFG_FLD_INTD_S );
-    eGPRdZero       = (((AM_REGVAL(/* todo */) >> ) & /* todo */) >> /* todo */ );
-    uIOMnum         = (((AM_REGVAL(/* todo */) >> ) & /* todo */) >> /* todo */ );
-    uNCE            = (((AM_REGVAL(/* todo */) >> ) & /* todo */) >> /* todo */ );
-    eCEpol          = (((AM_REGVAL(/* todo */) >> ) & /* todo */) >> /* todo */ );
+    uint32_t uFuncSel        = ((ui32Padreg & PADREG_FLD_FNSEL_Msk) >> PADREG_FLD_FNSEL_S);
+    uint32_t eDriveStrength  = ((((ui32Altpadcfg & ALTPADCFG_FLD_DRVSTR1_Msk) >> ALTPADCFG_FLD_DRVSTR1_S) << 1) | ((ui32Padreg & PADREG_FLD_DRVSTR_Msk) >> PADREG_FLD_DRVSTR_S));
+    uint32_t eGPOutcfg       = ((ui32Cfg & GPIOCFG_FLD_OUTCFG_Msk) >> GPIOCFG_FLD_OUTCFG_S );
+    uint32_t eGPInput        = ((ui32Padreg & PADREG_FLD_INPEN_Msk) >> PADREG_FLD_INPEN_S );
+    uint32_t eIntDir         = ((((ui32Cfg & GPIOCFG_FLD_INCFG_Msk) >> GPIOCFG_FLD_INCFG_S) << 1) | ((ui32Cfg & GPIOCFG_FLD_INTD_Msk) >> GPIOCFG_FLD_INTD_S));
+
+    // there is interplay between eIntDir and eGPRdZero - this is the best method
+    uint32_t eGPRdZero = AM_HAL_GPIO_PIN_RDZERO_READPIN;
+    if(eIntDir == AM_HAL_GPIO_PIN_INTDIR_NONE){
+        eGPRdZero = AM_HAL_GPIO_PIN_RDZERO_ZERO;
+    }
+
+    uint32_t ePowerSw = ((ui32Padreg & PADREG_FLD_76_Msk) >> PADREG_FLD_76_S);
+    if(!(g_ui8Bit76Capabilities[ui32Pin] & (CAP_VDD | CAP_VSS))){
+        ePowerSw = AM_HAL_GPIO_PIN_POWERSW_NONE;
+    }
+
+    // all pins indicate a pullup using the bit in PADREG_FLD_PULLUP_Msk
+    uint32_t ePullup = ((ui32Padreg & PADREG_FLD_PULLUP_Msk) >> PADREG_FLD_PULLUP_S);
+    if(g_ui8Bit76Capabilities[ui32Pin] & CAP_PUP){
+        // pins that have addtl. pullup capabilities indicate the config 
+        // using the FLD_76 area of the padreg
+        // the configuration of such a pin for 1_5K or WEAK is identical
+        ePullup = AM_HAL_GPIO_PIN_PULLUP_1_5K;
+        ePullup += ((ui32Padreg & PADREG_FLD_76_Msk) >> PADREG_FLD_76_S);
+    }
+    if(ui32Pin == 20){
+        if(ePullup){
+            // pad 20 can't have a pullup, so it must be a pull down
+            ePullup = AM_HAL_GPIO_PIN_PULLDOWN;
+        }
+    }
+
+    // // note: these settings are not properrly recovered - do not rely on a partial 
+    // //       pinconfig to retain these settings
+    // uIOMnum
+    // uNCE   
+    // eCEpol 
 
     // pass out
     pbfGpioCfg->uFuncSel       = uFuncSel;
@@ -1305,12 +1344,11 @@ uint32_t ap3_get_pincfg(uint32_t ui32Pin, am_hal_gpio_pincfg_t* pbfGpioCfg){
     pbfGpioCfg->eGPInput       = eGPInput;
     pbfGpioCfg->eIntDir        = eIntDir;
     pbfGpioCfg->eGPRdZero      = eGPRdZero;
-    pbfGpioCfg->uIOMnum        = uIOMnum;
-    pbfGpioCfg->uNCE           = uNCE;
-    pbfGpioCfg->eCEpol         = eCEpol;
+    // pbfGpioCfg->uIOMnum        = uIOMnum;
+    // pbfGpioCfg->uNCE           = uNCE;
+    // pbfGpioCfg->eCEpol         = eCEpol;
 
-    // return AM_HAL_STATUS_SUCCESS;
-    return AM_HAL_STATUS_FAIL;
+    return AM_HAL_STATUS_SUCCESS;
 }
 
 //*****************************************************************************	
@@ -1330,18 +1368,25 @@ uint32_t ap3_get_pincfg(uint32_t ui32Pin, am_hal_gpio_pincfg_t* pbfGpioCfg){
 //*****************************************************************************	
 uint32_t ap3_hal_gpio_pinconfig_partial(uint32_t ui32Pin, am_hal_gpio_pincfg_t bfGpioCfg, am_hal_gpio_pincfg_allow_t sAllowableChanges) //am_hal_gpio_pincfg_t bfGpioCfgMsk)	
 {	
-    uint32_t status = AM_HAL_STATUS_SUCCESS;
-
     // get current config
-    am_hal_gpio_pincfg_t current;
-    status = ap3_get_pincfg(ui32Pin, &current);
+    am_hal_gpio_pincfg_t new_cfg;
+    ap3_get_pincfg(ui32Pin, &new_cfg);
 
-    // // merge only valid reconfigs
-    // am_hal_gpio_pincfg_t merged_config;
-    // todo:
+    // change only requested fields
+    if(sAllowableChanges.uFuncSel)          { new_cfg.uFuncSel          = bfGpioCfg.uFuncSel;       }
+    if(sAllowableChanges.ePowerSw)          { new_cfg.ePowerSw          = bfGpioCfg.ePowerSw;       }
+    if(sAllowableChanges.ePullup)           { new_cfg.ePullup           = bfGpioCfg.ePullup;        }
+    if(sAllowableChanges.eDriveStrength)    { new_cfg.eDriveStrength    = bfGpioCfg.eDriveStrength; }
+    if(sAllowableChanges.eGPOutcfg)         { new_cfg.eGPOutcfg         = bfGpioCfg.eGPOutcfg;      }
+    if(sAllowableChanges.eGPInput)          { new_cfg.eGPInput          = bfGpioCfg.eGPInput;       }
+    if(sAllowableChanges.eIntDir)           { new_cfg.eIntDir           = bfGpioCfg.eIntDir;        }
+    if(sAllowableChanges.eGPRdZero)         { new_cfg.eGPRdZero         = bfGpioCfg.eGPRdZero;      }
+    if(sAllowableChanges.uIOMnum)           { new_cfg.uIOMnum           = bfGpioCfg.uIOMnum;        }
+    if(sAllowableChanges.uNCE)              { new_cfg.uNCE              = bfGpioCfg.uNCE;           }
+    if(sAllowableChanges.eCEpol)            { new_cfg.eCEpol            = bfGpioCfg.eCEpol;         }
 
     // call normal function
-    return am_hal_gpio_pinconfig(ui32Pin, merged_config);
+    return am_hal_gpio_pinconfig(ui32Pin, new_cfg);
 }
 
 

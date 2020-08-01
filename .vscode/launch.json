@@ -1,0 +1,24 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "cortex-debug",
+            "request": "launch",
+            "name": "Cortex Debug",
+            // "cwd": "${workspaceRoot}/boards_sfe/common/examples/i2c",
+            "cwd": "${workspaceRoot}/boards_sfe/common/examples/spi",
+            // "executable": "${workspaceRoot}/boards_sfe/common/examples/i2c/gcc/redboard_artemis_atp/bin/i2c_asb.axf",
+            "executable": "${workspaceRoot}/boards_sfe/common/examples/spi/gcc/redboard_artemis_atp/bin/spi_asb.axf",
+            "serverpath": "C:/Program Files (x86)/SEGGER/JLink/JLinkGDBServerCL.exe",
+            "servertype": "jlink",
+            "device": "AMA3B1KK-KBR",
+            "interface": "swd", // or "jtag" - but usually "swd"
+            "serialNumber": "", //if you have more than one J-Link probe add the serial number here 
+            "runToMain": true,
+            // "svdFile": "C:/path_to_ambiq_dfp/AmbiqMicro.Apollo_DFP.1.1.0/SVD/apollo3.svd",
+        }
+    ]
+}
