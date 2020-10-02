@@ -31,8 +31,8 @@
     Program header entries: 1
     Section header entries: 16
 
-    Program header offset: 82596 (0x000142a4)
-    Section header offset: 82628 (0x000142c4)
+    Program header offset: 82600 (0x000142a8)
+    Section header offset: 82632 (0x000142c8)
 
     Section header string table index: 15
 
@@ -489,7 +489,7 @@
     i.am_bsp_debug_printf_disable
     am_bsp_debug_printf_disable
         0x100002ec:    b570        p.      PUSH     {r4-r6,lr}
-        0x100002ee:    4c15        .L      LDR      r4,[pc,#84] ; [0x10000344] = 0x10004030
+        0x100002ee:    4c15        .L      LDR      r4,[pc,#84] ; [0x10000344] = 0x10004040
         0x100002f0:    4d15        .M      LDR      r5,[pc,#84] ; [0x10000348] = 0x10002030
         0x100002f2:    6820         h      LDR      r0,[r4,#0]
         0x100002f4:    2801        .(      CMP      r0,#1
@@ -522,13 +522,13 @@
         0x1000033e:    2029        )       MOVS     r0,#0x29
         0x10000340:    f000ba3a    ..:.    B.W      am_hal_gpio_pinconfig ; 0x100007b8
     $d
-        0x10000344:    10004030    0@..    DCD    268451888
+        0x10000344:    10004040    @@..    DCD    268451904
         0x10000348:    10002030    0 ..    DCD    268443696
     $t
     i.am_bsp_itm_printf_enable
     am_bsp_itm_printf_enable
         0x1000034c:    b500        ..      PUSH     {lr}
-        0x1000034e:    490a        .I      LDR      r1,[pc,#40] ; [0x10000378] = 0x10004030
+        0x1000034e:    490a        .I      LDR      r1,[pc,#40] ; [0x10000378] = 0x10004040
         0x10000350:    b085        ..      SUB      sp,sp,#0x14
         0x10000352:    2001        .       MOVS     r0,#1
         0x10000354:    6008        .`      STR      r0,[r1,#0]
@@ -546,7 +546,7 @@
         0x10000374:    b005        ..      ADD      sp,sp,#0x14
         0x10000376:    bd00        ..      POP      {pc}
     $d
-        0x10000378:    10004030    0@..    DCD    268451888
+        0x10000378:    10004040    @@..    DCD    268451904
         0x1000037c:    000f4240    @B..    DCD    1000000
         0x10000380:    100023fc    .#..    DCD    268444668
         0x10000384:    10000b2d    -...    DCD    268438317
@@ -860,7 +860,7 @@
         0x10000666:    2100        .!      MOVNE    r1,#0
         0x10000668:    d007        ..      BEQ      0x1000067a ; am_hal_ctimer_config + 98
         0x1000066a:    bf00        ..      NOP      
-        0x1000066c:    4a07        .J      LDR      r2,[pc,#28] ; [0x1000068c] = 0x10004088
+        0x1000066c:    4a07        .J      LDR      r2,[pc,#28] ; [0x1000068c] = 0x10004030
         0x1000066e:    f3c00044    ..D.    UBFX     r0,r0,#1,#5
         0x10000672:    eb020246    ..F.    ADD      r2,r2,r6,LSL #1
         0x10000676:    5450        PT      STRB     r0,[r2,r1]
@@ -874,7 +874,7 @@
     $d
         0x10000686:    0000        ..      DCW    0
         0x10000688:    4000800c    ...@    DCD    1073774604
-        0x1000068c:    10004088    .@..    DCD    268451976
+        0x1000068c:    10004030    0@..    DCD    268451888
     $t
     i.am_hal_ctimer_read
     am_hal_ctimer_read
@@ -887,7 +887,7 @@
         0x1000069e:    2101        .!      MOVEQ    r1,#1
         0x100006a0:    2100        .!      MOVNE    r1,#0
         0x100006a2:    481b        .H      LDR      r0,[pc,#108] ; [0x10000710] = 0x10001ed0
-        0x100006a4:    4b1b        .K      LDR      r3,[pc,#108] ; [0x10000714] = 0x10004088
+        0x100006a4:    4b1b        .K      LDR      r3,[pc,#108] ; [0x10000714] = 0x10004030
         0x100006a6:    eb030342    ..B.    ADD      r3,r3,r2,LSL #1
         0x100006aa:    f8500022    P.".    LDR      r0,[r0,r2,LSL #2]
         0x100006ae:    5c5a        Z\      LDRB     r2,[r3,r1]
@@ -932,7 +932,7 @@
         0x1000070e:    e7d1        ..      B        0x100006b4 ; am_hal_ctimer_read + 36
     $d
         0x10000710:    10001ed0    ....    DCD    268443344
-        0x10000714:    10004088    .@..    DCD    268451976
+        0x10000714:    10004030    0@..    DCD    268451888
         0x10000718:    10001ef0    ....    DCD    268443376
     $t
     i.am_hal_ctimer_start
@@ -955,7 +955,7 @@
         0x10000744:    f3c14244    ..DB    UBFXEQ   r2,r1,#17,#5
         0x10000748:    2000        .       MOVNE    r0,#0
         0x1000074a:    f3c10244    ..D.    UBFXNE   r2,r1,#1,#5
-        0x1000074e:    4b06        .K      LDR      r3,[pc,#24] ; [0x10000768] = 0x10004088
+        0x1000074e:    4b06        .K      LDR      r3,[pc,#24] ; [0x10000768] = 0x10004030
         0x10000750:    eb030346    ..F.    ADD      r3,r3,r6,LSL #1
         0x10000754:    541a        .T      STRB     r2,[r3,r0]
         0x10000756:    6029        )`      STR      r1,[r5,#0]
@@ -965,7 +965,7 @@
     $d
         0x10000762:    0000        ..      DCW    0
         0x10000764:    4000800c    ...@    DCD    1073774604
-        0x10000768:    10004088    .@..    DCD    268451976
+        0x10000768:    10004030    0@..    DCD    268451888
     $t
     i.am_hal_ctimer_stop
     am_hal_ctimer_stop
@@ -3620,13 +3620,13 @@
     0x10004000:   00 00 03 10 04 00 03 10 08 00 03 10 00 00 00 00    ................
     0x10004010:   00 00 00 00 00 00 00 00 01 00 00 00 88 01 00 00    ................
     0x10004020:   00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00    ................
-    0x10004030:   00 00 00 00 00 00 00 00 0a 00 00 00 03 00 00 00    ................
-    0x10004040:   1e 00 00 00 03 00 00 00 0f 00 00 00 03 00 00 00    ................
-    0x10004050:   0e 00 00 00 03 00 00 00 11 00 00 00 03 00 00 00    ................
-    0x10004060:   00 c2 01 00 60 00 00 00 00 00 00 00 00 00 00 00    ....`...........
-    0x10004070:   00 00 00 00 12 00 00 00 a0 55 00 10 00 04 00 00    .........U......
-    0x10004080:   a0 59 00 10 00 04 00 00 ff ff ff ff ff ff ff ff    .Y..............
-    0x10004090:   ff ff ff ff ff ff ff ff 00 00 00 00                ............
+    0x10004030:   ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff    ................
+    0x10004040:   00 00 00 00 00 00 00 00 0a 00 00 00 03 00 00 00    ................
+    0x10004050:   1e 00 00 00 03 00 00 00 0f 00 00 00 03 00 00 00    ................
+    0x10004060:   0e 00 00 00 03 00 00 00 11 00 00 00 03 00 00 00    ................
+    0x10004070:   00 c2 01 00 60 00 00 00 00 00 00 00 00 00 00 00    ....`...........
+    0x10004080:   00 00 00 00 12 00 00 00 a0 55 00 10 00 04 00 00    .........U......
+    0x10004090:   a0 59 00 10 00 04 00 00 00 00 00 00                .Y..........
 
 
 ** Section #3 'SRAM' (SHT_NOBITS) [SHF_ALLOC + SHF_WRITE]
@@ -3643,7 +3643,7 @@
 
 
 ** Section #6 '.debug_info' (SHT_PROGBITS)
-    Size   : 12724 bytes
+    Size   : 12084 bytes
 
 
 ** Section #7 '.debug_line' (SHT_PROGBITS)
@@ -3787,95 +3787,95 @@
     110  .text                      0x1000020c   Lc    1  Sect  De   0x18
     111  $v0                        0x1000020c   Lc    1   --   De 
     112  ..\am_hal_global.c         0x00000000   Lc  Abs  File  De 
-    113  ../am_hal_global.c         0x00000000   Lc  Abs  File  De 
-    114  .data                      0x1000402c   Lc    2  Sect  De   0x4
-    115  ..\am_bsp.c                0x00000000   Lc  Abs  File  De 
-    116  ../am_bsp.c                0x00000000   Lc  Abs  File  De 
-    117  i.am_bsp_debug_printf_disable
-                                    0x100002ec   Lc    1  Sect  De 
-    118  i.am_bsp_itm_printf_enable 0x1000034c   Lc    1  Sect  De 
-    119  .bss                       0x100055a0   Lc    3  Sect  De   0x400
-    120  pui8UartTxBuffer           0x100055a0   Lc    3  Data  De   0x400
-    121  .bss                       0x100059a0   Lc    3  Sect  De   0x400
-    122  pui8UartRxBuffer           0x100059a0   Lc    3  Data  De   0x400
-    123  .data                      0x10004030   Lc    2  Sect  De   0x58
-    124  g_ui32PrintInterface       0x10004030   Lc    2  Data  De   0x4
-    125  g_sCOMUART                 0x10004034   Lc    2  Data  De   0x4
-    126  g_sBspUartBufferedConfig   0x10004060   Lc    2  Data  De   0x28
-    127  ..\am_hal_cachectrl.c      0x00000000   Lc  Abs  File  De 
-    128  ../am_hal_cachectrl.c      0x00000000   Lc  Abs  File  De 
-    129  i.am_hal_cachectrl_config  0x10000460   Lc    1  Sect  De 
-    130  i.am_hal_cachectrl_enable  0x100004ac   Lc    1  Sect  De 
-    131  ..\am_hal_clkgen.c         0x00000000   Lc  Abs  File  De 
-    132  ../am_hal_clkgen.c         0x00000000   Lc  Abs  File  De 
-    133  i.am_hal_clkgen_control    0x100004c0   Lc    1  Sect  De 
-    134  i.am_hal_clkgen_status_get 0x100005bc   Lc    1  Sect  De 
-    135  ..\am_hal_ctimer.c         0x00000000   Lc  Abs  File  De 
-    136  .emb_text                  0x100001d8   Lc    1  Sect  De   0x1c
-    137  $v0                        0x100001d8   Lc    1   --   De 
-    138  ../am_hal_ctimer.c         0x00000000   Lc  Abs  File  De 
-    139  i.am_hal_ctimer_clear      0x100005f0   Lc    1  Sect  De 
-    140  i.am_hal_ctimer_config     0x10000618   Lc    1  Sect  De 
-    141  i.am_hal_ctimer_read       0x10000690   Lc    1  Sect  De 
-    142  i.am_hal_ctimer_start      0x1000071c   Lc    1  Sect  De 
-    143  i.am_hal_ctimer_stop       0x1000076c   Lc    1  Sect  De 
-    144  .constdata                 0x10001ed0   Lc    1  Sect  De   0x100
-    145  g_ui32TMRAddrTbl           0x10001ed0   Lc    1  Data  De   0x20
-    146  g_ui8TmrClkSrcMask         0x10001ef0   Lc    1  Data  De   0x20
-    147  CTx_tbl                    0x10001f10   Lc    1  Data  De   0x40
-    148  outcfg_tbl                 0x10001f50   Lc    1  Data  De   0x80
-    149  .data                      0x10004088   Lc    2  Sect  De   0x10
-    150  g_ui8ClkSrc                0x10004088   Lc    2  Data  De   0x10
-    151  ..\am_hal_flash.c          0x00000000   Lc  Abs  File  De 
-    152  ../am_hal_flash.c          0x00000000   Lc  Abs  File  De 
-    153  i.am_hal_flash_delay       0x10000794   Lc    1  Sect  De 
-    154  .constdata                 0x10001fd0   Lc    1  Sect  De   0x60
-    155  ..\am_hal_gpio.c           0x00000000   Lc  Abs  File  De 
-    156  ../am_hal_gpio.c           0x00000000   Lc  Abs  File  De 
-    157  i.am_hal_gpio_pinconfig    0x100007b8   Lc    1  Sect  De 
-    158  .constdata                 0x10002030   Lc    1  Sect  De   0x162
-    159  g_ui8Inpen                 0x10002034   Lc    1  Data  De   0x32
-    160  g_ui8Bit76Capabilities     0x10002066   Lc    1  Data  De   0x32
-    161  g_ui8nCEpins               0x10002098   Lc    1  Data  De   0x32
-    162  g_ui8NCEtable              0x100020ca   Lc    1  Data  De   0xc8
-    163  .constdata                 0x10002194   Lc    1  Sect  De   0x4
-    164  ..\am_hal_pwrctrl.c        0x00000000   Lc  Abs  File  De 
-    165  ../am_hal_pwrctrl.c        0x00000000   Lc  Abs  File  De 
-    166  i.am_hal_pwrctrl_memory_enable
+    113  .emb_text                  0x100001d8   Lc    1  Sect  De   0x1c
+    114  $v0                        0x100001d8   Lc    1   --   De 
+    115  ../am_hal_global.c         0x00000000   Lc  Abs  File  De 
+    116  .data                      0x1000402c   Lc    2  Sect  De   0x4
+    117  ..\am_hal_cachectrl.c      0x00000000   Lc  Abs  File  De 
+    118  ../am_hal_cachectrl.c      0x00000000   Lc  Abs  File  De 
+    119  i.am_hal_cachectrl_config  0x10000460   Lc    1  Sect  De 
+    120  i.am_hal_cachectrl_enable  0x100004ac   Lc    1  Sect  De 
+    121  ..\am_hal_clkgen.c         0x00000000   Lc  Abs  File  De 
+    122  ../am_hal_clkgen.c         0x00000000   Lc  Abs  File  De 
+    123  i.am_hal_clkgen_control    0x100004c0   Lc    1  Sect  De 
+    124  i.am_hal_clkgen_status_get 0x100005bc   Lc    1  Sect  De 
+    125  ..\am_hal_ctimer.c         0x00000000   Lc  Abs  File  De 
+    126  ../am_hal_ctimer.c         0x00000000   Lc  Abs  File  De 
+    127  i.am_hal_ctimer_clear      0x100005f0   Lc    1  Sect  De 
+    128  i.am_hal_ctimer_config     0x10000618   Lc    1  Sect  De 
+    129  i.am_hal_ctimer_read       0x10000690   Lc    1  Sect  De 
+    130  i.am_hal_ctimer_start      0x1000071c   Lc    1  Sect  De 
+    131  i.am_hal_ctimer_stop       0x1000076c   Lc    1  Sect  De 
+    132  .constdata                 0x10001ed0   Lc    1  Sect  De   0x100
+    133  g_ui32TMRAddrTbl           0x10001ed0   Lc    1  Data  De   0x20
+    134  g_ui8TmrClkSrcMask         0x10001ef0   Lc    1  Data  De   0x20
+    135  CTx_tbl                    0x10001f10   Lc    1  Data  De   0x40
+    136  outcfg_tbl                 0x10001f50   Lc    1  Data  De   0x80
+    137  .data                      0x10004030   Lc    2  Sect  De   0x10
+    138  g_ui8ClkSrc                0x10004030   Lc    2  Data  De   0x10
+    139  ..\am_hal_flash.c          0x00000000   Lc  Abs  File  De 
+    140  ../am_hal_flash.c          0x00000000   Lc  Abs  File  De 
+    141  i.am_hal_flash_delay       0x10000794   Lc    1  Sect  De 
+    142  .constdata                 0x10001fd0   Lc    1  Sect  De   0x60
+    143  ..\am_hal_gpio.c           0x00000000   Lc  Abs  File  De 
+    144  ../am_hal_gpio.c           0x00000000   Lc  Abs  File  De 
+    145  i.am_hal_gpio_pinconfig    0x100007b8   Lc    1  Sect  De 
+    146  .constdata                 0x10002030   Lc    1  Sect  De   0x162
+    147  g_ui8Inpen                 0x10002034   Lc    1  Data  De   0x32
+    148  g_ui8Bit76Capabilities     0x10002066   Lc    1  Data  De   0x32
+    149  g_ui8nCEpins               0x10002098   Lc    1  Data  De   0x32
+    150  g_ui8NCEtable              0x100020ca   Lc    1  Data  De   0xc8
+    151  .constdata                 0x10002194   Lc    1  Sect  De   0x4
+    152  ..\am_hal_pwrctrl.c        0x00000000   Lc  Abs  File  De 
+    153  ../am_hal_pwrctrl.c        0x00000000   Lc  Abs  File  De 
+    154  i.am_hal_pwrctrl_memory_enable
                                     0x10000b5c   Lc    1  Sect  De 
-    167  i.am_hal_pwrctrl_periph_disable
+    155  i.am_hal_pwrctrl_periph_disable
                                     0x10000bc8   Lc    1  Sect  De 
-    168  i.am_hal_pwrctrl_periph_enable
+    156  i.am_hal_pwrctrl_periph_enable
                                     0x10000c18   Lc    1  Sect  De 
-    169  .constdata                 0x10002198   Lc    1  Sect  De   0x264
-    170  ..\am_bsp_pins.c           0x00000000   Lc  Abs  File  De 
-    171  ../am_bsp_pins.c           0x00000000   Lc  Abs  File  De 
-    172  .constdata                 0x100023fc   Lc    1  Sect  De   0x4
-    173  ..\am_hal_debug.c          0x00000000   Lc  Abs  File  De 
-    174  ../am_hal_debug.c          0x00000000   Lc  Abs  File  De 
-    175  ..\am_hal_interrupt.c      0x00000000   Lc  Abs  File  De 
-    176  .emb_text                  0x100001f4   Lc    1  Sect  De   0x16
-    177  $v0                        0x100001f4   Lc    1   --   De 
-    178  ../am_hal_interrupt.c      0x00000000   Lc  Abs  File  De 
-    179  ..\am_hal_itm.c            0x00000000   Lc  Abs  File  De 
-    180  ../am_hal_itm.c            0x00000000   Lc  Abs  File  De 
-    181  i.am_hal_itm_disable       0x10000a38   Lc    1  Sect  De 
-    182  i.am_hal_itm_enable        0x10000ae4   Lc    1  Sect  De 
-    183  i.am_hal_itm_print         0x10000b2c   Lc    1  Sect  De 
-    184  ..\am_hal_reset.c          0x00000000   Lc  Abs  File  De 
-    185  ../am_hal_reset.c          0x00000000   Lc  Abs  File  De 
-    186  .data                      0x10004098   Lc    2  Sect  De   0x4
-    187  ..\am_hal_rtc.c            0x00000000   Lc  Abs  File  De 
-    188  ../am_hal_rtc.c            0x00000000   Lc  Abs  File  De 
-    189  ..\am_hal_tpiu.c           0x00000000   Lc  Abs  File  De 
-    190  ../am_hal_tpiu.c           0x00000000   Lc  Abs  File  De 
-    191  i.am_hal_tpiu_enable       0x10000c68   Lc    1  Sect  De 
-    192  ..\am_hal_uart.c           0x00000000   Lc  Abs  File  De 
-    193  ../am_hal_uart.c           0x00000000   Lc  Abs  File  De 
-    194  i.am_hal_uart_deinitialize 0x10000cf8   Lc    1  Sect  De 
-    195  i.am_hal_uart_power_control
+    157  .constdata                 0x10002198   Lc    1  Sect  De   0x264
+    158  ..\am_bsp.c                0x00000000   Lc  Abs  File  De 
+    159  ../am_bsp.c                0x00000000   Lc  Abs  File  De 
+    160  i.am_bsp_debug_printf_disable
+                                    0x100002ec   Lc    1  Sect  De 
+    161  i.am_bsp_itm_printf_enable 0x1000034c   Lc    1  Sect  De 
+    162  .bss                       0x100055a0   Lc    3  Sect  De   0x400
+    163  pui8UartTxBuffer           0x100055a0   Lc    3  Data  De   0x400
+    164  .bss                       0x100059a0   Lc    3  Sect  De   0x400
+    165  pui8UartRxBuffer           0x100059a0   Lc    3  Data  De   0x400
+    166  .data                      0x10004040   Lc    2  Sect  De   0x58
+    167  g_ui32PrintInterface       0x10004040   Lc    2  Data  De   0x4
+    168  g_sCOMUART                 0x10004044   Lc    2  Data  De   0x4
+    169  g_sBspUartBufferedConfig   0x10004070   Lc    2  Data  De   0x28
+    170  ..\am_hal_debug.c          0x00000000   Lc  Abs  File  De 
+    171  ../am_hal_debug.c          0x00000000   Lc  Abs  File  De 
+    172  ..\am_hal_interrupt.c      0x00000000   Lc  Abs  File  De 
+    173  .emb_text                  0x100001f4   Lc    1  Sect  De   0x16
+    174  $v0                        0x100001f4   Lc    1   --   De 
+    175  ../am_hal_interrupt.c      0x00000000   Lc  Abs  File  De 
+    176  ..\am_hal_itm.c            0x00000000   Lc  Abs  File  De 
+    177  ../am_hal_itm.c            0x00000000   Lc  Abs  File  De 
+    178  i.am_hal_itm_disable       0x10000a38   Lc    1  Sect  De 
+    179  i.am_hal_itm_enable        0x10000ae4   Lc    1  Sect  De 
+    180  i.am_hal_itm_print         0x10000b2c   Lc    1  Sect  De 
+    181  ..\am_hal_reset.c          0x00000000   Lc  Abs  File  De 
+    182  ../am_hal_reset.c          0x00000000   Lc  Abs  File  De 
+    183  .data                      0x10004098   Lc    2  Sect  De   0x4
+    184  ..\am_hal_rtc.c            0x00000000   Lc  Abs  File  De 
+    185  ../am_hal_rtc.c            0x00000000   Lc  Abs  File  De 
+    186  ..\am_hal_tpiu.c           0x00000000   Lc  Abs  File  De 
+    187  ../am_hal_tpiu.c           0x00000000   Lc  Abs  File  De 
+    188  i.am_hal_tpiu_enable       0x10000c68   Lc    1  Sect  De 
+    189  ..\am_hal_uart.c           0x00000000   Lc  Abs  File  De 
+    190  ../am_hal_uart.c           0x00000000   Lc  Abs  File  De 
+    191  i.am_hal_uart_deinitialize 0x10000cf8   Lc    1  Sect  De 
+    192  i.am_hal_uart_power_control
                                     0x10000d28   Lc    1  Sect  De 
-    196  i.am_hal_uart_tx_flush     0x10000e14   Lc    1  Sect  De 
+    193  i.am_hal_uart_tx_flush     0x10000e14   Lc    1  Sect  De 
+    194  ..\am_bsp_pins.c           0x00000000   Lc  Abs  File  De 
+    195  ../am_bsp_pins.c           0x00000000   Lc  Abs  File  De 
+    196  .constdata                 0x100023fc   Lc    1  Sect  De   0x4
     197  ..\am_hal_queue.c          0x00000000   Lc  Abs  File  De 
     198  ../am_hal_queue.c          0x00000000   Lc  Abs  File  De 
     199  dc.s                       0x00000000   Lc  Abs  File  De 
@@ -4226,7 +4226,7 @@
     485  g_TestSA1                  0x10004014   Gb    2  Data  Hi   0x4
     486  g_pfnCharPrint             0x10004028   Gb    2  Data  Hi   0x4
     487  g_ui32HALflags             0x1000402c   Gb    2  Data  Hi   0x4
-    488  am_bsp_psLEDs              0x10004038   Gb    2  Data  Hi   0x28
+    488  am_bsp_psLEDs              0x10004048   Gb    2  Data  Hi   0x28
     489  gAmHalResetStatus          0x10004098   Gb    2  Data  Hi   0x4
     490  g_ui32RowBuffer            0x100050a0   Gb    3  Data  Hi   0x200
     491  g_ui32RowBufferNot         0x100052a0   Gb    3  Data  Hi   0x200
@@ -4273,75 +4273,75 @@
            30    425: $v0
            31    429: .text
            32    435: ..\am_hal_global.c
-           33    454: ../am_hal_global.c
-           34    473: ..\am_bsp.c
-           35    485: ../am_bsp.c
-           36    497: i.am_bsp_debug_printf_disable
-           37    527: i.am_bsp_itm_printf_enable
-           38    554: pui8UartTxBuffer
-           39    571: pui8UartRxBuffer
-           40    588: g_ui32PrintInterface
-           41    609: g_sCOMUART
-           42    620: g_sBspUartBufferedConfig
-           43    645: ..\am_hal_cachectrl.c
-           44    667: ../am_hal_cachectrl.c
-           45    689: i.am_hal_cachectrl_config
-           46    715: i.am_hal_cachectrl_enable
-           47    741: ..\am_hal_clkgen.c
-           48    760: ../am_hal_clkgen.c
-           49    779: i.am_hal_clkgen_control
-           50    803: i.am_hal_clkgen_status_get
-           51    830: ..\am_hal_ctimer.c
-           52    849: .emb_text
-           53    859: ../am_hal_ctimer.c
-           54    878: i.am_hal_ctimer_clear
-           55    900: i.am_hal_ctimer_config
-           56    923: i.am_hal_ctimer_read
-           57    944: i.am_hal_ctimer_start
-           58    966: i.am_hal_ctimer_stop
-           59    987: g_ui32TMRAddrTbl
-           60   1004: g_ui8TmrClkSrcMask
-           61   1023: CTx_tbl
-           62   1031: outcfg_tbl
-           63   1042: g_ui8ClkSrc
-           64   1054: ..\am_hal_flash.c
-           65   1072: ../am_hal_flash.c
-           66   1090: i.am_hal_flash_delay
-           67   1111: ..\am_hal_gpio.c
-           68   1128: ../am_hal_gpio.c
-           69   1145: i.am_hal_gpio_pinconfig
-           70   1169: g_ui8Inpen
-           71   1180: g_ui8Bit76Capabilities
-           72   1203: g_ui8nCEpins
-           73   1216: g_ui8NCEtable
-           74   1230: ..\am_hal_pwrctrl.c
-           75   1250: ../am_hal_pwrctrl.c
-           76   1270: i.am_hal_pwrctrl_memory_enable
-           77   1301: i.am_hal_pwrctrl_periph_disable
-           78   1333: i.am_hal_pwrctrl_periph_enable
-           79   1364: ..\am_bsp_pins.c
-           80   1381: ../am_bsp_pins.c
-           81   1398: ..\am_hal_debug.c
-           82   1416: ../am_hal_debug.c
-           83   1434: ..\am_hal_interrupt.c
-           84   1456: ../am_hal_interrupt.c
-           85   1478: ..\am_hal_itm.c
-           86   1494: ../am_hal_itm.c
-           87   1510: i.am_hal_itm_disable
-           88   1531: i.am_hal_itm_enable
-           89   1551: i.am_hal_itm_print
-           90   1570: ..\am_hal_reset.c
-           91   1588: ../am_hal_reset.c
-           92   1606: ..\am_hal_rtc.c
-           93   1622: ../am_hal_rtc.c
-           94   1638: ..\am_hal_tpiu.c
-           95   1655: ../am_hal_tpiu.c
-           96   1672: i.am_hal_tpiu_enable
-           97   1693: ..\am_hal_uart.c
-           98   1710: ../am_hal_uart.c
-           99   1727: i.am_hal_uart_deinitialize
-          100   1754: i.am_hal_uart_power_control
-          101   1782: i.am_hal_uart_tx_flush
+           33    454: .emb_text
+           34    464: ../am_hal_global.c
+           35    483: ..\am_hal_cachectrl.c
+           36    505: ../am_hal_cachectrl.c
+           37    527: i.am_hal_cachectrl_config
+           38    553: i.am_hal_cachectrl_enable
+           39    579: ..\am_hal_clkgen.c
+           40    598: ../am_hal_clkgen.c
+           41    617: i.am_hal_clkgen_control
+           42    641: i.am_hal_clkgen_status_get
+           43    668: ..\am_hal_ctimer.c
+           44    687: ../am_hal_ctimer.c
+           45    706: i.am_hal_ctimer_clear
+           46    728: i.am_hal_ctimer_config
+           47    751: i.am_hal_ctimer_read
+           48    772: i.am_hal_ctimer_start
+           49    794: i.am_hal_ctimer_stop
+           50    815: g_ui32TMRAddrTbl
+           51    832: g_ui8TmrClkSrcMask
+           52    851: CTx_tbl
+           53    859: outcfg_tbl
+           54    870: g_ui8ClkSrc
+           55    882: ..\am_hal_flash.c
+           56    900: ../am_hal_flash.c
+           57    918: i.am_hal_flash_delay
+           58    939: ..\am_hal_gpio.c
+           59    956: ../am_hal_gpio.c
+           60    973: i.am_hal_gpio_pinconfig
+           61    997: g_ui8Inpen
+           62   1008: g_ui8Bit76Capabilities
+           63   1031: g_ui8nCEpins
+           64   1044: g_ui8NCEtable
+           65   1058: ..\am_hal_pwrctrl.c
+           66   1078: ../am_hal_pwrctrl.c
+           67   1098: i.am_hal_pwrctrl_memory_enable
+           68   1129: i.am_hal_pwrctrl_periph_disable
+           69   1161: i.am_hal_pwrctrl_periph_enable
+           70   1192: ..\am_bsp.c
+           71   1204: ../am_bsp.c
+           72   1216: i.am_bsp_debug_printf_disable
+           73   1246: i.am_bsp_itm_printf_enable
+           74   1273: pui8UartTxBuffer
+           75   1290: pui8UartRxBuffer
+           76   1307: g_ui32PrintInterface
+           77   1328: g_sCOMUART
+           78   1339: g_sBspUartBufferedConfig
+           79   1364: ..\am_hal_debug.c
+           80   1382: ../am_hal_debug.c
+           81   1400: ..\am_hal_interrupt.c
+           82   1422: ../am_hal_interrupt.c
+           83   1444: ..\am_hal_itm.c
+           84   1460: ../am_hal_itm.c
+           85   1476: i.am_hal_itm_disable
+           86   1497: i.am_hal_itm_enable
+           87   1517: i.am_hal_itm_print
+           88   1536: ..\am_hal_reset.c
+           89   1554: ../am_hal_reset.c
+           90   1572: ..\am_hal_rtc.c
+           91   1588: ../am_hal_rtc.c
+           92   1604: ..\am_hal_tpiu.c
+           93   1621: ../am_hal_tpiu.c
+           94   1638: i.am_hal_tpiu_enable
+           95   1659: ..\am_hal_uart.c
+           96   1676: ../am_hal_uart.c
+           97   1693: i.am_hal_uart_deinitialize
+           98   1720: i.am_hal_uart_power_control
+           99   1748: i.am_hal_uart_tx_flush
+          100   1771: ..\am_bsp_pins.c
+          101   1788: ../am_bsp_pins.c
           102   1805: ..\am_hal_queue.c
           103   1823: ../am_hal_queue.c
           104   1841: dc.s
@@ -4601,7 +4601,7 @@
 
 
 ** Section #14 '.comment' (SHT_PROGBITS)
-    Size   : 21864 bytes
+    Size   : 22508 bytes
 
 
 ** Section #15 '.shstrtab' (SHT_STRTAB)

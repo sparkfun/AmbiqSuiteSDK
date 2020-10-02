@@ -13,7 +13,7 @@
 
 //*****************************************************************************
 //
-// Copyright (c) 2020, Ambiq Micro
+// Copyright (c) 2020, Ambiq Micro, Inc.
 // All rights reserved.
 //
 // Redistribution and use in source and binary forms, with or without
@@ -45,7 +45,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
-// This is part of revision 2.4.2 of the AmbiqSuite Development Package.
+// This is part of revision 2.5.1 of the AmbiqSuite Development Package.
 //
 //*****************************************************************************
 
@@ -111,11 +111,11 @@ typedef enum
 // Macros to check whether Apollo3 bucks are enabled.
 //
 //*****************************************************************************
-#define am_hal_pwrctrl_simobuck_enabled_check()                           \
-        (AM_BFR(PWRCTRL, SUPPLYSTATUS, SIMOBUCKON))
+#define am_hal_pwrctrl_simobuck_enabled_check()                             \
+        (PWRCTRL->SUPPLYSTATUS_b.SIMOBUCKON)
 
-#define am_hal_pwrctrl_blebuck_enabled_check()                            \
-        (AM_BFR(PWRCTRL, SUPPLYSTATUS, BLEBUCKON))
+#define am_hal_pwrctrl_blebuck_enabled_check()                              \
+        (PWRCTRL->SUPPLYSTATUS_b.BLEBUCKON)
 
 //*****************************************************************************
 //

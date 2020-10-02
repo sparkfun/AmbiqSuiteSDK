@@ -32,10 +32,10 @@ loadbin gcc\bin\flash_selftest.bin 0x10000000
 // The SP and PC values can be found as the first words in the .bin.
 //  SP = Word 0
 //  PC = Word 1
-// GCC with PRINT_RESULTS enabled:  SP = 0x10007000, PC = 0x100014A5
+// GCC with PRINT_RESULTS enabled:  SP = 0x10007000, PC = 0x100015F9
 //
 wreg MSP, 0x10007000
-setPC 0x100014A5
+setPC 0x100015F9
 
 //
 // We're ready to go, start the test.

@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+<?xml-stylesheet type="text/xsl" href="xml_devices.xsl"?>
+<!DOCTYPE device SYSTEM "xml_devices.dtd">
+<device file_name="docs/vcomp_regs.xml" file_mod_date="May 29 10:05:02 2014">
+  <short_description>Voltage Comparator</short_description>
+  <device_name>VCOMP</device_name>
+  <instance_base>REG_VCOMP_BASEADDR: 0x4000C000</instance_base>
+  <ioregisters>
+    <ioreg_index/>
+    <ioreg>
+    <ioreg_name>VCMP_CFG</ioreg_name>
+    <ioreg_offset>0x00000000</ioreg_offset>
+    <ioreg_intro>Configuration Register</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="20" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="12" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="16" name="LVLSEL" readwrite="RW" access_macro="REG_VCOMP_VCMP_CFG_LVLSEL_WR" reset_value="0x0" width="4">
+        <ioreg_bf_description>"This bitfield selects the voltage level for the negative input to the comparator."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="10" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="6" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="8" name="NSEL" readwrite="RW" access_macro="REG_VCOMP_VCMP_CFG_NSEL_WR" reset_value="0x0" width="2">
+        <ioreg_bf_description>"This bitfield selects the negative input to the comparator."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="2" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="6" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="PSEL" readwrite="RW" access_macro="REG_VCOMP_VCMP_CFG_PSEL_WR" reset_value="0x0" width="2">
+        <ioreg_bf_description>"This bitfield selects the positive input to the comparator."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>VCMP_STAT</ioreg_name>
+    <ioreg_offset>0x00000004</ioreg_offset>
+    <ioreg_intro>Status Register</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="2" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="30" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="1" name="PWDSTAT" readwrite="RO" access_macro="REG_VCOMP_VCMP_STAT_PWDSTAT_RD" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit indicates the power down state of the voltage comparator."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="CMPOUT" readwrite="RO" access_macro="REG_VCOMP_VCMP_STAT_CMPOUT_RD" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is 1 if the positive input of the comparator is greater than the negative input."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>VCMP_PWDKEY</ioreg_name>
+    <ioreg_offset>0x00000008</ioreg_offset>
+    <ioreg_intro>Key Register for Powering Down the Voltage Comparator</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="0" name="VALUE" readwrite="RW" access_macro="REG_VCOMP_VCMP_PWDKEY_VALUE_WR" reset_value="0x0" width="32">
+        <ioreg_bf_description>Key value. (0x37 unlocks)
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>VCMP_IEREN</ioreg_name>
+    <ioreg_offset>0x00000200</ioreg_offset>
+    <ioreg_intro>Votage Comparator Interrupt registers</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="2" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="30" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="1" name="OUTHI" readwrite="RW" access_macro="REG_VCOMP_VCMP_IEREN_OUTHI_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the vcompout high interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="OUTLOW" readwrite="RW" access_macro="REG_VCOMP_VCMP_IEREN_OUTLOW_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the vcompout low interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>VCMP_IERSTAT</ioreg_name>
+    <ioreg_offset>0x00000204</ioreg_offset>
+    <ioreg_intro>Votage Comparator Interrupt registers</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="2" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="30" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="1" name="OUTHI" readwrite="RW" access_macro="REG_VCOMP_VCMP_IERSTAT_OUTHI_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the vcompout high interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="OUTLOW" readwrite="RW" access_macro="REG_VCOMP_VCMP_IERSTAT_OUTLOW_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the vcompout low interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>VCMP_IERCLR</ioreg_name>
+    <ioreg_offset>0x00000208</ioreg_offset>
+    <ioreg_intro>Votage Comparator Interrupt registers</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="2" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="30" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="1" name="OUTHI" readwrite="RW" access_macro="REG_VCOMP_VCMP_IERCLR_OUTHI_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the vcompout high interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="OUTLOW" readwrite="RW" access_macro="REG_VCOMP_VCMP_IERCLR_OUTLOW_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the vcompout low interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>VCMP_IERSET</ioreg_name>
+    <ioreg_offset>0x0000020c</ioreg_offset>
+    <ioreg_intro>Votage Comparator Interrupt registers</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="2" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="30" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="1" name="OUTHI" readwrite="RW" access_macro="REG_VCOMP_VCMP_IERSET_OUTHI_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the vcompout high interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="OUTLOW" readwrite="RW" access_macro="REG_VCOMP_VCMP_IERSET_OUTLOW_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the vcompout low interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg_bigpicture/>
+  </ioregisters>
+</device>

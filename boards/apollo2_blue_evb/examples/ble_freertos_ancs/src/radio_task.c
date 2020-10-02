@@ -8,7 +8,7 @@
 
 //*****************************************************************************
 //
-// Copyright (c) 2020, Ambiq Micro
+// Copyright (c) 2020, Ambiq Micro, Inc.
 // All rights reserved.
 //
 // Redistribution and use in source and binary forms, with or without
@@ -40,7 +40,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
-// This is part of revision 2.4.2 of the AmbiqSuite Development Package.
+// This is part of revision 2.5.1 of the AmbiqSuite Development Package.
 //
 //*****************************************************************************
 
@@ -110,6 +110,16 @@ TaskHandle_t radio_task_handle;
 //*****************************************************************************
 void exactle_stack_init(void);
 
+void button_handler(wsfEventMask_t event, wsfMsgHdr_t *pMsg);
+void setup_buttons(void);
+//*****************************************************************************
+//
+// Timer for buttons.
+//
+//*****************************************************************************
+wsfHandlerId_t ButtonHandlerId;
+wsfTimer_t ButtonTimer;
+
 //*****************************************************************************
 //
 // WSF buffer pools.
@@ -151,6 +161,67 @@ void ble_data_ready_handler(wsfEventMask_t event, wsfMsgHdr_t *pMsg)
     }
 }
 
+//*****************************************************************************
+//
+// Poll the buttons.
+//
+//*****************************************************************************
+void
+button_handler(wsfEventMask_t event, wsfMsgHdr_t *pMsg)
+{
+    //
+    // Restart the button timer.
+    //
+    WsfTimerStartMs(&ButtonTimer, 10);
+
+    //
+    // Every time we get a button timer tick, check all of our buttons.
+    //
+    am_devices_button_array_tick(am_bsp_psButtons, AM_BSP_NUM_BUTTONS);
+
+    //
+    // If we got a a press, do something with it.
+    //
+    if ( am_devices_button_released(am_bsp_psButtons[0]) )
+    {
+       // am_util_debug_printf("Got Button 0 Press\n");
+        AppUiBtnTest(APP_UI_BTN_1_DOWN);
+    }
+
+    if ( am_devices_button_released(am_bsp_psButtons[1]) )
+    {
+       // am_util_debug_printf("Got Button 1 Press\n");
+        AppUiBtnTest(APP_UI_BTN_1_SHORT);
+    }
+
+    if ( am_devices_button_released(am_bsp_psButtons[2]) )
+    {
+       // am_util_debug_printf("Got Button 2 Press\n");
+        AppUiBtnTest(APP_UI_BTN_1_MED);
+    }
+}
+
+
+
+//*****************************************************************************
+//
+// Sets up a button interface.
+//
+//*****************************************************************************
+void
+setup_buttons(void)
+{
+    //
+    // Enable the buttons for user interaction.
+    //
+    am_devices_button_array_init(am_bsp_psButtons, AM_BSP_NUM_BUTTONS);
+
+    //
+    // Start a timer.
+    //
+    ButtonTimer.handlerId = ButtonHandlerId;
+    WsfTimerStartSec(&ButtonTimer, 2);
+}
 
 //*****************************************************************************
 //
@@ -228,6 +299,7 @@ exactle_stack_init(void)
     AncsHandlerInit(handlerId);
 
     g_bleDataReadyHandlerId = WsfOsSetNextHandler(ble_data_ready_handler);
+    ButtonHandlerId = WsfOsSetNextHandler(button_handler);
 }
 
 
@@ -246,15 +318,6 @@ am_uart_isr(void)
     //
     ui32Status = AM_REGn(UART, 0, MIS);
     AM_REGn(UART, 0, IEC) = ui32Status;
-
-    //
-    // Allow the HCI driver to respond to the interrupt.
-    //
-    //HciDrvUartISR(ui32Status);
-
-    // Signal radio task to run
-
-    WsfTaskSetReady(0, 0);
 
 }
 
@@ -344,6 +407,11 @@ RadioTask(void *pvParameters)
     // Initialize the main ExactLE stack.
     //
     exactle_stack_init();
+
+    //
+    // Prep the buttons for use
+    //
+    setup_buttons();
 
     //
     // Enable BLE data ready interrupt

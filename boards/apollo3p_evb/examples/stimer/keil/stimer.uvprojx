@@ -335,7 +335,7 @@
               <MiscControls></MiscControls>
               <Define>AM_PACKAGE_BGA AM_PART_APOLLO3P keil</Define>
               <Undefine></Undefine>
-              <IncludePath>../../../../../devices;../../../../../CMSIS/AmbiqMicro/Include;../../../../..;../../../../../CMSIS/ARM/Include;../../../../../utils;../src;../../../../../mcu/apollo3p;../../../bsp</IncludePath>
+              <IncludePath>../../../../../devices;../../../../../mcu/apollo3p;../../../../../CMSIS/AmbiqMicro/Include;../../../bsp;../../../../../utils;../../../../..;../../../../../CMSIS/ARM/Include;../src</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -387,6 +387,16 @@
           </Files>
         </Group>
         <Group>
+          <GroupName>devices</GroupName>
+          <Files>
+            <File>
+              <FileName>am_devices_led.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../../../../../devices/am_devices_led.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
           <GroupName>utils</GroupName>
           <Files>
             <File>
@@ -403,16 +413,6 @@
               <FileName>am_util_stdio.c</FileName>
               <FileType>1</FileType>
               <FilePath>../../../../../utils/am_util_stdio.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>devices</GroupName>
-          <Files>
-            <File>
-              <FileName>am_devices_led.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../devices/am_devices_led.c</FilePath>
             </File>
           </Files>
         </Group>

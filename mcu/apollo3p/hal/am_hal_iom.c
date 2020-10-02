@@ -13,7 +13,7 @@
 
 //*****************************************************************************
 //
-// Copyright (c) 2020, Ambiq Micro
+// Copyright (c) 2020, Ambiq Micro, Inc.
 // All rights reserved.
 //
 // Redistribution and use in source and binary forms, with or without
@@ -45,7 +45,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
-// This is part of revision 2.4.2 of the AmbiqSuite Development Package.
+// This is part of revision 2.5.1 of the AmbiqSuite Development Package.
 //
 //*****************************************************************************
 
@@ -1933,7 +1933,10 @@ am_hal_iom_power_ctrl(void *pHandle,
             //
             // Enable power control.
             //
-            am_hal_pwrctrl_periph_enable((am_hal_pwrctrl_periph_e)(AM_HAL_PWRCTRL_PERIPH_IOM0 + pIOMState->ui32Module));
+            if ( AM_HAL_STATUS_SUCCESS != am_hal_pwrctrl_periph_enable((am_hal_pwrctrl_periph_e)(AM_HAL_PWRCTRL_PERIPH_IOM0 + pIOMState->ui32Module)) )
+            {
+                return AM_HAL_STATUS_HW_ERR;
+            }
 
             if (bRetainState)
             {
@@ -1943,7 +1946,6 @@ am_hal_iom_power_ctrl(void *pHandle,
                 IOMn(pIOMState->ui32Module)->CLKCFG     = pIOMState->registerState.regCLKCFG;
                 IOMn(pIOMState->ui32Module)->SUBMODCTRL = pIOMState->registerState.regSUBMODCTRL;
                 IOMn(pIOMState->ui32Module)->CQADDR     = pIOMState->registerState.regCQADDR;
-                IOMn(pIOMState->ui32Module)->CQFLAGS    = pIOMState->registerState.regCQFLAGS;
                 IOMn(pIOMState->ui32Module)->CQPAUSEEN  = pIOMState->registerState.regCQPAUSEEN;
                 IOMn(pIOMState->ui32Module)->CQCURIDX   = pIOMState->registerState.regCQCURIDX;
                 IOMn(pIOMState->ui32Module)->CQENDIDX   = pIOMState->registerState.regCQENDIDX;
@@ -1952,6 +1954,10 @@ am_hal_iom_power_ctrl(void *pHandle,
                 IOMn(pIOMState->ui32Module)->INTEN      = pIOMState->registerState.regINTEN;
                 IOMn(pIOMState->ui32Module)->DMATRIGEN  = pIOMState->registerState.regDMATRIGEN;
 
+                // CQFGLAGS are Read-Only and hence can not be directly restored.
+                // We can try to restore the SWFlags here. Hardware flags depend on external conditions
+                // and hence can not be restored (assuming the external conditions remain the same, it should be set automatically.
+                IOMn(pIOMState->ui32Module)->CQSETCLEAR = AM_HAL_IOM_SC_SET(pIOMState->registerState.regCQFLAGS & 0xFF);
                 //
                 // Set CQCFG last - can not set the enable yet
                 //
@@ -1995,7 +2001,10 @@ am_hal_iom_power_ctrl(void *pHandle,
             //
             // Disable power control.
             //
-            am_hal_pwrctrl_periph_disable((am_hal_pwrctrl_periph_e)(AM_HAL_PWRCTRL_PERIPH_IOM0 + pIOMState->ui32Module));
+            if ( AM_HAL_STATUS_SUCCESS != am_hal_pwrctrl_periph_disable((am_hal_pwrctrl_periph_e)(AM_HAL_PWRCTRL_PERIPH_IOM0 + pIOMState->ui32Module)) )
+            {
+                return AM_HAL_STATUS_HW_ERR;
+            }
             break;
 
         default:
@@ -2915,18 +2924,27 @@ am_hal_iom_spi_blocking_fullduplex(void *pHandle,
             //
             // Safe to read the FIFO, read 4 bytes
             //
-            *pui32RxBuffer++ = IOMn(ui32Module)->FIFOPOP;
+            uint32_t ui32Read;
+            ui32Read = IOMn(ui32Module)->FIFOPOP;
 #if MANUAL_POP
             IOMn(ui32Module)->FIFOPOP = 0x11111111;
 #endif
             ui32FifoSiz -= 4;
             if (ui32RxBytes >= 4)
             {
+                *pui32RxBuffer++ = ui32Read;
                 ui32RxBytes -= 4;
             }
             else
             {
-                ui32RxBytes = 0;
+                // Copy byte by byte - so as to not corrupt the rest of the buffer
+                uint8_t *pui8Buffer = (uint8_t *)pui32RxBuffer;
+                do
+                {
+                    *pui8Buffer++ = ui32Read & 0xFF;
+                    ui32Read >>= 8;
+                } while (--ui32RxBytes);
+
             }
         }
     }
@@ -2940,28 +2958,31 @@ am_hal_iom_spi_blocking_fullduplex(void *pHandle,
                             IOM0_STATUS_IDLEST_Msk,
                             true);
 
-    if ( ui32Status != AM_HAL_STATUS_SUCCESS )
+    if ( ui32Status == AM_HAL_STATUS_SUCCESS )
     {
-        return ui32Status;
-    }
+        ui32Status = internal_iom_get_int_err(ui32Module, 0);
 
-    ui32Status = internal_iom_get_int_err(ui32Module, 0);
-
-    if (ui32Status == AM_HAL_STATUS_SUCCESS)
-    {
-        if (ui32Bytes)
+        if (ui32Status == AM_HAL_STATUS_SUCCESS)
         {
-            // Indicates transaction did not finish for some reason
-            ui32Status = AM_HAL_STATUS_FAIL;
+            if (ui32Bytes)
+            {
+                // Indicates transaction did not finish for some reason
+                ui32Status = AM_HAL_STATUS_FAIL;
+            }
         }
     }
-    else
+
+    if ( ui32Status != AM_HAL_STATUS_SUCCESS )
     {
         // Do Error recovery
         // Reset Submodule & FIFO
         internal_iom_reset_on_error(pIOMState, IOMn(ui32Module)->INTSTAT);
     }
 
+    //
+    // Revert FULLDUPLEX mode
+    //
+    IOMn(ui32Module)->MSPICFG &= ~_VAL2FLD(IOM0_MSPICFG_FULLDUP, 1);
     //
     // Clear interrupts
     // Re-enable IOM interrupts.
@@ -3038,7 +3059,9 @@ uint32_t am_hal_iom_control(void *pHandle, am_hal_iom_request_e eReq, void *pArg
                 status = AM_HAL_STATUS_INVALID_ARG;
             }
             break;
-        case AM_HAL_IOM_REQ_SPI_FULLDUPLEX:
+        case AM_HAL_IOM_REQ_SPI_FULLDUPLEX: // Not supported
+            status = AM_HAL_STATUS_INVALID_OPERATION;
+#if 0
             if (pArgs)
             {
                 IOMn(ui32Module)->MSPICFG_b.FULLDUP = *((uint32_t *)pArgs);
@@ -3047,6 +3070,7 @@ uint32_t am_hal_iom_control(void *pHandle, am_hal_iom_request_e eReq, void *pArg
             {
                 status = AM_HAL_STATUS_INVALID_ARG;
             }
+#endif
             break;
         case AM_HAL_IOM_REQ_SPI_RDTHRESH:
             if (pArgs)

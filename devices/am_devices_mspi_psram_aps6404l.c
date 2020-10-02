@@ -8,7 +8,7 @@
 
 //*****************************************************************************
 //
-// Copyright (c) 2020, Ambiq Micro
+// Copyright (c) 2020, Ambiq Micro, Inc.
 // All rights reserved.
 //
 // Redistribution and use in source and binary forms, with or without
@@ -40,7 +40,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
-// This is part of revision 2.4.2 of the AmbiqSuite Development Package.
+// This is part of revision 2.5.1 of the AmbiqSuite Development Package.
 //
 //*****************************************************************************
 
@@ -57,20 +57,57 @@
 //*****************************************************************************
 #define AM_DEVICES_MSPI_PSRAM_TIMEOUT             1000000
 
+#if defined(AM_PART_APOLLO4) || defined(AM_PART_APOLLO4B)
+am_hal_mspi_xip_config_t gXipConfig[] =
+{
+  {
+    .ui32APBaseAddr       = MSPI0_APERTURE_START_ADDR,
+    .eAPMode              = AM_HAL_MSPI_AP_READ_WRITE,
+    .eAPSize              = AM_HAL_MSPI_AP_SIZE64M,
+    .scramblingStartAddr  = 0,
+    .scramblingEndAddr    = 0,
+  },
+  {
+    .ui32APBaseAddr       = MSPI1_APERTURE_START_ADDR,
+    .eAPMode              = AM_HAL_MSPI_AP_READ_WRITE,
+    .eAPSize              = AM_HAL_MSPI_AP_SIZE64M,
+    .scramblingStartAddr  = 0,
+    .scramblingEndAddr    = 0,
+  },
+  {
+    .ui32APBaseAddr       = MSPI2_APERTURE_START_ADDR,
+    .eAPMode              = AM_HAL_MSPI_AP_READ_WRITE,
+    .eAPSize              = AM_HAL_MSPI_AP_SIZE64M,
+    .scramblingStartAddr  = 0,
+    .scramblingEndAddr    = 0,
+  }
+};
+
+am_hal_mspi_config_t gMspiCfg =
+{
+  .ui32TCBSize          = 0,
+  .pTCB                 = NULL,
+  .bClkonD4             = 0
+};
+#endif
+
 am_hal_mspi_dev_config_t  SerialCE0MSPIConfig =
 {
   .ui8TurnAround        = 8,
   .eAddrCfg             = AM_HAL_MSPI_ADDR_3_BYTE,
   .eInstrCfg            = AM_HAL_MSPI_INSTR_1_BYTE,
+#if defined(AM_PART_APOLLO4) || defined(AM_PART_APOLLO4B)
+  .ui16ReadInstr         = AM_DEVICES_MSPI_PSRAM_FAST_READ,
+  .ui16WriteInstr        = AM_DEVICES_MSPI_PSRAM_WRITE,
+#else
   .ui8ReadInstr         = AM_DEVICES_MSPI_PSRAM_FAST_READ,
   .ui8WriteInstr        = AM_DEVICES_MSPI_PSRAM_WRITE,
+#endif
   .eDeviceConfig        = AM_HAL_MSPI_FLASH_SERIAL_CE0,
   .eSpiMode             = AM_HAL_MSPI_SPI_MODE_0,
   .eClockFreq           = AM_HAL_MSPI_CLK_24MHZ,
-  .eXipMixedMode        = AM_HAL_MSPI_XIPMIXED_NORMAL,
   .bSendAddr            = true,
   .bSendInstr           = true,
-  .bSeparateIO          = true,
   .bTurnaround          = true,
 #if defined(AM_PART_APOLLO3P)
   .ui8WriteLatency      = 0,
@@ -79,10 +116,21 @@ am_hal_mspi_dev_config_t  SerialCE0MSPIConfig =
   .ui16DMATimeLimit     = 80,
   .eDMABoundary         = AM_HAL_MSPI_BOUNDARY_BREAK1K,
 #endif
+#if defined(AM_PART_APOLLO4) || defined(AM_PART_APOLLO4B)
+  .ui8WriteLatency      = 0,
+  .bEnWriteLatency      = false,
+  .bEmulateDDR          = false,
+  .ui16DMATimeLimit     = 80,
+  .eDMABoundary         = AM_HAL_MSPI_BOUNDARY_BREAK1K,
+#if defined(AM_PART_APOLL4)
+  .eDeviceNum           = AM_HAL_MSPI_DEVICE0,
+#endif
+#else
   .ui32TCBSize          = 0,
   .pTCB                 = NULL,
   .scramblingStartAddr  = 0,
   .scramblingEndAddr    = 0,
+#endif
 };
 
 am_hal_mspi_dev_config_t  SerialCE1MSPIConfig =
@@ -90,15 +138,18 @@ am_hal_mspi_dev_config_t  SerialCE1MSPIConfig =
   .ui8TurnAround        = 8,
   .eAddrCfg             = AM_HAL_MSPI_ADDR_3_BYTE,
   .eInstrCfg            = AM_HAL_MSPI_INSTR_1_BYTE,
+#if defined(AM_PART_APOLLO4) || defined(AM_PART_APOLLO4B)
+  .ui16ReadInstr         = AM_DEVICES_MSPI_PSRAM_FAST_READ,
+  .ui16WriteInstr        = AM_DEVICES_MSPI_PSRAM_WRITE,
+#else
   .ui8ReadInstr         = AM_DEVICES_MSPI_PSRAM_FAST_READ,
   .ui8WriteInstr        = AM_DEVICES_MSPI_PSRAM_WRITE,
+#endif
   .eDeviceConfig        = AM_HAL_MSPI_FLASH_SERIAL_CE1,
   .eSpiMode             = AM_HAL_MSPI_SPI_MODE_0,
   .eClockFreq           = AM_HAL_MSPI_CLK_24MHZ,
-  .eXipMixedMode        = AM_HAL_MSPI_XIPMIXED_NORMAL,
   .bSendAddr            = true,
   .bSendInstr           = true,
-  .bSeparateIO          = true,
   .bTurnaround          = true,
 #if defined(AM_PART_APOLLO3P)
   .ui8WriteLatency      = 0,
@@ -107,10 +158,21 @@ am_hal_mspi_dev_config_t  SerialCE1MSPIConfig =
   .ui16DMATimeLimit     = 80,
   .eDMABoundary         = AM_HAL_MSPI_BOUNDARY_BREAK1K,
 #endif
+#if defined(AM_PART_APOLLO4) || defined(AM_PART_APOLLO4B)
+  .ui8WriteLatency      = 0,
+  .bEnWriteLatency      = false,
+  .bEmulateDDR          = false,
+  .ui16DMATimeLimit     = 80,
+  .eDMABoundary         = AM_HAL_MSPI_BOUNDARY_BREAK1K,
+#if defined(AM_PART_APOLL4)
+  .eDeviceNum           = AM_HAL_MSPI_DEVICE0,
+#endif
+#else
   .ui32TCBSize          = 0,
   .pTCB                 = NULL,
   .scramblingStartAddr  = 0,
   .scramblingEndAddr    = 0,
+#endif
 };
 
 am_hal_mspi_dev_config_t  QuadCE0MSPIConfig =
@@ -118,15 +180,18 @@ am_hal_mspi_dev_config_t  QuadCE0MSPIConfig =
   .ui8TurnAround        = 6,
   .eAddrCfg             = AM_HAL_MSPI_ADDR_3_BYTE,
   .eInstrCfg            = AM_HAL_MSPI_INSTR_1_BYTE,
+#if defined(AM_PART_APOLLO4) || defined(AM_PART_APOLLO4B)
+  .ui16ReadInstr         = AM_DEVICES_MSPI_PSRAM_QUAD_READ,
+  .ui16WriteInstr        = AM_DEVICES_MSPI_PSRAM_QUAD_WRITE,
+#else
   .ui8ReadInstr         = AM_DEVICES_MSPI_PSRAM_QUAD_READ,
   .ui8WriteInstr        = AM_DEVICES_MSPI_PSRAM_QUAD_WRITE,
+#endif
   .eDeviceConfig        = AM_HAL_MSPI_FLASH_QUAD_CE0,
   .eSpiMode             = AM_HAL_MSPI_SPI_MODE_0,
   .eClockFreq           = AM_HAL_MSPI_CLK_24MHZ,
-  .eXipMixedMode        = AM_HAL_MSPI_XIPMIXED_NORMAL,
   .bSendAddr            = true,
   .bSendInstr           = true,
-  .bSeparateIO          = false,
   .bTurnaround          = true,
 #if defined(AM_PART_APOLLO3P)
   .ui8WriteLatency      = 0,
@@ -135,10 +200,21 @@ am_hal_mspi_dev_config_t  QuadCE0MSPIConfig =
   .ui16DMATimeLimit     = 30,
   .eDMABoundary         = AM_HAL_MSPI_BOUNDARY_BREAK1K,
 #endif
+#if defined(AM_PART_APOLLO4) || defined(AM_PART_APOLLO4B)
+  .ui8WriteLatency      = 0,
+  .bEnWriteLatency      = false,
+  .bEmulateDDR          = false,
+  .ui16DMATimeLimit     = 30,
+  .eDMABoundary         = AM_HAL_MSPI_BOUNDARY_BREAK1K,
+#if defined(AM_PART_APOLL4)
+  .eDeviceNum           = AM_HAL_MSPI_DEVICE0,
+#endif
+#else
   .ui32TCBSize          = 0,
   .pTCB                 = NULL,
   .scramblingStartAddr  = 0,
   .scramblingEndAddr    = 0,
+#endif
 };
 
 am_hal_mspi_dev_config_t  QuadCE1MSPIConfig =
@@ -146,15 +222,18 @@ am_hal_mspi_dev_config_t  QuadCE1MSPIConfig =
   .ui8TurnAround        = 6,
   .eAddrCfg             = AM_HAL_MSPI_ADDR_3_BYTE,
   .eInstrCfg            = AM_HAL_MSPI_INSTR_1_BYTE,
+#if defined(AM_PART_APOLLO4) || defined(AM_PART_APOLLO4B)
+  .ui16ReadInstr         = AM_DEVICES_MSPI_PSRAM_QUAD_READ,
+  .ui16WriteInstr        = AM_DEVICES_MSPI_PSRAM_QUAD_WRITE,
+#else
   .ui8ReadInstr         = AM_DEVICES_MSPI_PSRAM_QUAD_READ,
   .ui8WriteInstr        = AM_DEVICES_MSPI_PSRAM_QUAD_WRITE,
+#endif
   .eDeviceConfig        = AM_HAL_MSPI_FLASH_QUAD_CE1,
   .eSpiMode             = AM_HAL_MSPI_SPI_MODE_0,
   .eClockFreq           = AM_HAL_MSPI_CLK_24MHZ,
-  .eXipMixedMode        = AM_HAL_MSPI_XIPMIXED_NORMAL,
   .bSendAddr            = true,
   .bSendInstr           = true,
-  .bSeparateIO          = false,
   .bTurnaround          = true,
 #if defined(AM_PART_APOLLO3P)
   .ui8WriteLatency      = 0,
@@ -163,10 +242,21 @@ am_hal_mspi_dev_config_t  QuadCE1MSPIConfig =
   .ui16DMATimeLimit     = 30,
   .eDMABoundary         = AM_HAL_MSPI_BOUNDARY_BREAK1K,
 #endif
+#if defined(AM_PART_APOLLO4) || defined(AM_PART_APOLLO4B)
+  .ui8WriteLatency      = 0,
+  .bEnWriteLatency      = false,
+  .bEmulateDDR          = false,
+  .ui16DMATimeLimit     = 30,
+  .eDMABoundary         = AM_HAL_MSPI_BOUNDARY_BREAK1K,
+#if defined(AM_PART_APOLL4)
+  .eDeviceNum           = AM_HAL_MSPI_DEVICE0,
+#endif
+#else
   .ui32TCBSize          = 0,
   .pTCB                 = NULL,
   .scramblingStartAddr  = 0,
   .scramblingEndAddr    = 0,
+#endif
 };
 
 typedef struct
@@ -233,7 +323,16 @@ am_device_command_write(void *pMspiHandle,
   Transaction.bEnWRLatency            = false;
   Transaction.bContinue               = false;
 #endif
+#if !defined(AM_PART_APOLLO4) && !defined(AM_PART_APOLLO4B)
   Transaction.bQuadCmd                = false;
+#else
+  Transaction.bDCX                    = false;
+  Transaction.bEnWRLatency            = false;
+  Transaction.bContinue               = false;
+#if defined(AM_PART_APOLLO4)
+  Transaction.eDeviceNum              = AM_HAL_MSPI_DEVICE0;
+#endif
+#endif
   Transaction.pui32Buffer             = pData;
 
   // Execute the transction over MSPI.
@@ -271,7 +370,16 @@ am_device_command_read(void *pMspiHandle,
   Transaction.bEnWRLatency            = false;
   Transaction.bContinue               = false;
 #endif
+#if !defined(AM_PART_APOLLO4) && !defined(AM_PART_APOLLO4B)
   Transaction.bQuadCmd                = false;
+#else
+  Transaction.bDCX                    = false;
+  Transaction.bEnWRLatency            = false;
+  Transaction.bContinue               = false;
+#if defined(AM_PART_APOLLO4)
+  Transaction.eDeviceNum              = AM_HAL_MSPI_DEVICE0;
+#endif
+#endif
   Transaction.pui32Buffer             = pData;
 
   // Execute the transction over MSPI.
@@ -404,6 +512,10 @@ psram_nonblocking_transfer(am_devices_mspi_psram_t *pPsram,
     {
       Transaction.ui32StatusSetClr = ui32StatusSetClr;
     }
+#if defined(AM_PART_APOLLO4)
+  Transaction.eDeviceNum              = AM_HAL_MSPI_DEVICE0;
+#endif
+
     if (bHiPrio)
     {
       ui32Status = am_hal_mspi_highprio_transfer(pPsram->pMspiHandle, &Transaction, AM_HAL_MSPI_TRANS_DMA,
@@ -463,11 +575,15 @@ am_devices_mspi_psram_init(uint32_t ui32Module, am_devices_mspi_psram_config_t *
     //
     // Enable fault detection.
     //
+#if defined(AM_PART_APOLLO4) || defined(AM_PART_APOLLO4B)
+    am_hal_fault_capture_enable();
+#else
 #if AM_APOLLO3_MCUCTRL
     am_hal_mcuctrl_control(AM_HAL_MCUCTRL_CONTROL_FAULT_CAPTURE_ENABLE, 0);
 #else // AM_APOLLO3_MCUCTRL
     am_hal_mcuctrl_fault_capture_enable();
 #endif // AM_APOLLO3_MCUCTRL
+#endif
 
     // Allocate a vacant device handle
     for ( ui32Index = 0; ui32Index < AM_DEVICES_MSPI_PSRAM_MAX_DEVICE_NUM; ui32Index++ )
@@ -494,20 +610,24 @@ am_devices_mspi_psram_init(uint32_t ui32Module, am_devices_mspi_psram_config_t *
             mspiDevCfg = SerialCE1MSPIConfig;
             break;
         case AM_HAL_MSPI_FLASH_QUAD_CE0:
+        case AM_HAL_MSPI_FLASH_QUAD_CE0_1_4_4:
             mspiDevCfg = QuadCE0MSPIConfig;
             break;
         case AM_HAL_MSPI_FLASH_QUAD_CE1:
+        case AM_HAL_MSPI_FLASH_QUAD_CE1_1_4_4:
             mspiDevCfg = QuadCE1MSPIConfig;
             break;
         default:
             return AM_DEVICES_MSPI_PSRAM_STATUS_ERROR;
     }
+    mspiDevCfg.eDeviceConfig = pDevCfg->eDeviceConfig;
     mspiDevCfg.eClockFreq = pDevCfg->eClockFreq;
+#if !defined(AM_PART_APOLLO4) && !defined(AM_PART_APOLLO4B)
     mspiDevCfg.ui32TCBSize = pDevCfg->ui32NBTxnBufLength;
     mspiDevCfg.pTCB = pDevCfg->pNBTxnBuf;
     mspiDevCfg.scramblingStartAddr = pDevCfg->ui32ScramblingStartAddr;
     mspiDevCfg.scramblingEndAddr = pDevCfg->ui32ScramblingEndAddr;
-    mspiDevCfg.eXipMixedMode = pDevCfg->eMixedMode;
+#endif
 
 #if defined(AM_PART_APOLLO3)
     //
@@ -535,11 +655,13 @@ am_devices_mspi_psram_init(uint32_t ui32Module, am_devices_mspi_psram_config_t *
     {
         case AM_HAL_MSPI_FLASH_SERIAL_CE0:
         case AM_HAL_MSPI_FLASH_QUAD_CE0:
+        case AM_HAL_MSPI_FLASH_QUAD_CE0_1_4_4:
             psMSPISettings0 = &QuadCE0MSPIConfig;
             psMSPISettings1 = &SerialCE0MSPIConfig;
             break;
         case AM_HAL_MSPI_FLASH_SERIAL_CE1:
         case AM_HAL_MSPI_FLASH_QUAD_CE1:
+        case AM_HAL_MSPI_FLASH_QUAD_CE1_1_4_4:
             psMSPISettings0 = &QuadCE1MSPIConfig;
             psMSPISettings1 = &SerialCE1MSPIConfig;
             break;
@@ -547,7 +669,7 @@ am_devices_mspi_psram_init(uint32_t ui32Module, am_devices_mspi_psram_config_t *
             return AM_DEVICES_MSPI_PSRAM_STATUS_ERROR;
             //break;
     }
-    psMSPISettings0->eXipMixedMode = pDevCfg->eMixedMode;
+    psMSPISettings0->eDeviceConfig = pDevCfg->eDeviceConfig;
 
     // First configure in Quad mode and reset
     if (AM_HAL_STATUS_SUCCESS != am_hal_mspi_initialize(ui32Module, &pMspiHandle))
@@ -562,11 +684,36 @@ am_devices_mspi_psram_init(uint32_t ui32Module, am_devices_mspi_psram_config_t *
         return AM_DEVICES_MSPI_PSRAM_STATUS_ERROR;
     }
 
+#if defined(AM_PART_APOLLO4) || defined(AM_PART_APOLLO4B)
+    am_hal_mspi_config_t    mspiCfg = gMspiCfg;
+    mspiCfg.ui32TCBSize = pDevCfg->ui32NBTxnBufLength;
+    mspiCfg.pTCB = pDevCfg->pNBTxnBuf;
+    if (AM_HAL_STATUS_SUCCESS != am_hal_mspi_configure(pMspiHandle, &mspiCfg))
+    {
+        am_util_stdio_printf("Error - Failed to configure MSPI device.\n");
+        return AM_DEVICES_MSPI_PSRAM_STATUS_ERROR;
+    }
+#endif
+
     if (AM_HAL_STATUS_SUCCESS != am_hal_mspi_device_configure(pMspiHandle, psMSPISettings0))
     {
         am_util_stdio_printf("Error - Failed to configure MSPI device.\n");
         return AM_DEVICES_MSPI_PSRAM_STATUS_ERROR;
     }
+
+#if defined(AM_PART_APOLLO4) || defined(AM_PART_APOLLO4B)
+    am_hal_mspi_xip_config_t    xipCfg = gXipConfig[ui32Module];
+#if defined(AM_PART_APOLLO4)
+    xipCfg.eDeviceNum = psMSPISettings0->eDeviceNum;
+#endif
+    xipCfg.scramblingStartAddr = pDevCfg->ui32ScramblingStartAddr;
+    xipCfg.scramblingEndAddr = pDevCfg->ui32ScramblingEndAddr;
+    ui32Status = am_hal_mspi_control(pMspiHandle, AM_HAL_MSPI_REQ_XIP_CONFIG, &xipCfg);
+    if (AM_HAL_STATUS_SUCCESS != ui32Status)
+    {
+      return AM_DEVICES_MSPI_PSRAM_STATUS_ERROR;
+    }
+#endif
 
     if (AM_HAL_STATUS_SUCCESS != am_hal_mspi_enable(pMspiHandle))
     {
@@ -574,7 +721,6 @@ am_devices_mspi_psram_init(uint32_t ui32Module, am_devices_mspi_psram_config_t *
         return AM_DEVICES_MSPI_PSRAM_STATUS_ERROR;
     }
     am_bsp_mspi_pins_enable(ui32Module, psMSPISettings0->eDeviceConfig);
-
     am_util_delay_us(150);
 
     if (AM_HAL_STATUS_SUCCESS != am_devices_mspi_psram_aps6404l_reset(pMspiHandle))
@@ -590,7 +736,9 @@ am_devices_mspi_psram_init(uint32_t ui32Module, am_devices_mspi_psram_config_t *
             // Nothing to do.  Device defaults to SPI mode.
             break;
         case AM_HAL_MSPI_FLASH_QUAD_CE0:
+        case AM_HAL_MSPI_FLASH_QUAD_CE0_1_4_4:
         case AM_HAL_MSPI_FLASH_QUAD_CE1:
+        case AM_HAL_MSPI_FLASH_QUAD_CE1_1_4_4:
             ui32Status = am_device_command_write(pMspiHandle, AM_DEVICES_MSPI_PSRAM_QUAD_MODE_EXIT, false, 0, &ui32PIOBuffer, 0);
             if (AM_HAL_STATUS_SUCCESS != ui32Status)
             {
@@ -620,7 +768,7 @@ am_devices_mspi_psram_init(uint32_t ui32Module, am_devices_mspi_psram_config_t *
         am_util_stdio_printf("Error - Failed to enable MSPI.\n");
         return AM_DEVICES_MSPI_PSRAM_STATUS_ERROR;
     }
-    am_bsp_mspi_pins_enable(ui32Module, psMSPISettings1->eDeviceConfig);
+//    am_bsp_mspi_pins_enable(ui32Module, psMSPISettings1->eDeviceConfig);
 
     am_util_delay_us(150);
 
@@ -649,7 +797,9 @@ am_devices_mspi_psram_init(uint32_t ui32Module, am_devices_mspi_psram_config_t *
             // Nothing to do.  Device defaults to SPI mode.
             break;
         case AM_HAL_MSPI_FLASH_QUAD_CE0:
+        case AM_HAL_MSPI_FLASH_QUAD_CE0_1_4_4:
         case AM_HAL_MSPI_FLASH_QUAD_CE1:
+        case AM_HAL_MSPI_FLASH_QUAD_CE1_1_4_4:
             ui32Status = am_device_command_write(pMspiHandle, AM_DEVICES_MSPI_PSRAM_QUAD_MODE_ENTER, false, 0, &ui32PIOBuffer, 0);
             if (AM_HAL_STATUS_SUCCESS != ui32Status)
             {
@@ -744,7 +894,9 @@ am_devices_mspi_psram_deinit(void *pHandle)
             // Nothing to do.  Device defaults to SPI mode.
             break;
         case AM_HAL_MSPI_FLASH_QUAD_CE0:
+        case AM_HAL_MSPI_FLASH_QUAD_CE0_1_4_4:
         case AM_HAL_MSPI_FLASH_QUAD_CE1:
+        case AM_HAL_MSPI_FLASH_QUAD_CE1_1_4_4:
             ui32Status = am_device_command_write(pPsram->pMspiHandle, AM_DEVICES_MSPI_PSRAM_QUAD_MODE_EXIT, false, 0, &ui32PIOBuffer, 0);
             if (AM_HAL_STATUS_SUCCESS != ui32Status)
             {
@@ -862,7 +1014,11 @@ am_devices_mspi_psram_read(void *pHandle,
       //
       // Call the BOOTROM cycle function to delay for about 1 microsecond.
       //
+#if !defined(AM_PART_APOLLO4) && !defined(AM_PART_APOLLO4B)
       am_hal_flash_delay( FLASH_CYCLES_US(1) );
+#else
+      am_hal_delay_us(1);
+#endif
     }
 
     // Check the status.
@@ -1085,7 +1241,11 @@ am_devices_mspi_psram_write(void *pHandle,
       //
       // Call the BOOTROM cycle function to delay for about 1 microsecond.
       //
+#if !defined(AM_PART_APOLLO4) && !defined(AM_PART_APOLLO4B)
       am_hal_flash_delay( FLASH_CYCLES_US(1) );
+#else
+      am_hal_delay_us(1);
+#endif
     }
 
     // Check the status.
@@ -1265,10 +1425,26 @@ am_devices_mspi_psram_enable_xip(void *pHandle)
   uint32_t ui32Status;
   am_devices_mspi_psram_t *pPsram = (am_devices_mspi_psram_t *)pHandle;
 
+#if defined(AM_PART_APOLLO4) || defined(AM_PART_APOLLO4B)
+  //
+  // Set Aperture XIP range
+  //
+  ui32Status = am_hal_mspi_control(pPsram->pMspiHandle, AM_HAL_MSPI_REQ_XIP_CONFIG, &gXipConfig[pPsram->ui32Module]);
+  if (AM_HAL_STATUS_SUCCESS != ui32Status)
+  {
+    return AM_DEVICES_MSPI_PSRAM_STATUS_ERROR;
+  }
+#endif
+
   //
   // Enable XIP on the MSPI.
   //
+#if defined(AM_PART_APOLLO4) || defined(AM_PART_APOLLO4B)
+  ui32Status = am_hal_mspi_control(pPsram->pMspiHandle, AM_HAL_MSPI_REQ_XIP_EN, &gXipConfig[pPsram->ui32Module]);
+#else
   ui32Status = am_hal_mspi_control(pPsram->pMspiHandle, AM_HAL_MSPI_REQ_XIP_EN, NULL);
+#endif
+
   if (AM_HAL_STATUS_SUCCESS != ui32Status)
   {
     return AM_DEVICES_MSPI_PSRAM_STATUS_ERROR;
@@ -1295,7 +1471,11 @@ am_devices_mspi_psram_disable_xip(void *pHandle)
   //
   // Disable XIP on the MSPI.
   //
+#if defined(AM_PART_APOLLO4) || defined(AM_PART_APOLLO4B)
+  ui32Status = am_hal_mspi_control(pPsram->pMspiHandle, AM_HAL_MSPI_REQ_XIP_DIS, &gXipConfig[pPsram->ui32Module]);
+#else
   ui32Status = am_hal_mspi_control(pPsram->pMspiHandle, AM_HAL_MSPI_REQ_XIP_DIS, NULL);
+#endif
   if (AM_HAL_STATUS_SUCCESS != ui32Status)
   {
     return AM_DEVICES_MSPI_PSRAM_STATUS_ERROR;
@@ -1322,7 +1502,11 @@ am_devices_mspi_psram_enable_scrambling(void *pHandle)
   //
   // Enable scrambling on the MSPI.
   //
+#if defined(AM_PART_APOLLO4) || defined(AM_PART_APOLLO4B)
+  ui32Status = am_hal_mspi_control(pPsram->pMspiHandle, AM_HAL_MSPI_REQ_SCRAMB_EN, &gXipConfig[pPsram->ui32Module]);
+#else
   ui32Status = am_hal_mspi_control(pPsram->pMspiHandle, AM_HAL_MSPI_REQ_SCRAMB_EN, NULL);
+#endif
   if (AM_HAL_STATUS_SUCCESS != ui32Status)
   {
     return AM_DEVICES_MSPI_PSRAM_STATUS_ERROR;
@@ -1348,7 +1532,11 @@ am_devices_mspi_psram_disable_scrambling(void *pHandle)
   //
   // Disable Scrambling on the MSPI.
   //
+#if defined(AM_PART_APOLLO4) || defined(AM_PART_APOLLO4B)
+  ui32Status = am_hal_mspi_control(pPsram->pMspiHandle, AM_HAL_MSPI_REQ_SCRAMB_DIS, &gXipConfig[pPsram->ui32Module]);
+#else
   ui32Status = am_hal_mspi_control(pPsram->pMspiHandle, AM_HAL_MSPI_REQ_SCRAMB_DIS, NULL);
+#endif
   if (AM_HAL_STATUS_SUCCESS != ui32Status)
   {
     return AM_DEVICES_MSPI_PSRAM_STATUS_ERROR;

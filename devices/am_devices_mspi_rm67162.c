@@ -8,7 +8,7 @@
 
 //*****************************************************************************
 //
-// Copyright (c) 2020, Ambiq Micro
+// Copyright (c) 2020, Ambiq Micro, Inc.
 // All rights reserved.
 //
 // Redistribution and use in source and binary forms, with or without
@@ -40,7 +40,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
-// This is part of revision 2.4.2 of the AmbiqSuite Development Package.
+// This is part of revision 2.5.1 of the AmbiqSuite Development Package.
 //
 //*****************************************************************************
 
@@ -96,7 +96,6 @@ static am_hal_mspi_dev_config_t  SerialDisplayMSPICfg =
     .bEnWriteLatency      = false,
     .bSendAddr            = false,
     .bSendInstr           = true,
-    .bSeparateIO          = false,
     .bTurnaround          = false,
     .bEmulateDDR          = false,
     .ui16DMATimeLimit     = 0,
@@ -110,11 +109,14 @@ static am_hal_mspi_dev_config_t  SerialDisplayMSPICfg =
 typedef struct
 {
     uint32_t                    ui32Module;
+    am_hal_mspi_clock_e         eClockFreq;
     void                        *pMspiHandle;
     bool                        bOccupied;
 } am_devices_mspi_rm67162_t;
 
 am_devices_mspi_rm67162_t gAmRm67162[AM_DEVICES_MSPI_RM67162_MAX_DEVICE_NUM];
+
+am_hal_mspi_clock_e g_MaxReadFreq = AM_HAL_MSPI_CLK_8MHZ;
 
 void pfnMSPI_RM67162_Callback(void *pCallbackCtxt, uint32_t status)
 {
@@ -171,6 +173,7 @@ am_devices_rm67162_command_read(void *pHandle,
 {
   am_hal_mspi_pio_transfer_t  Transaction;
   am_devices_mspi_rm67162_t *pDisplay = (am_devices_mspi_rm67162_t *)pHandle;
+  uint32_t        ui32Status = AM_DEVICES_RM67162_STATUS_SUCCESS;
 
   // Create the individual write transaction.
   Transaction.ui32NumBytes            = ui32NumBytes;
@@ -185,7 +188,9 @@ am_devices_rm67162_command_read(void *pHandle,
   Transaction.bEnWRLatency            = false;
   Transaction.bQuadCmd                = false;
   Transaction.bContinue               = false;
-  Transaction.pui32Buffer             = (uint32_t *)pData;
+  Transaction.pui32Buffer             = pData;
+
+  am_hal_mspi_control(pDisplay->pMspiHandle, AM_HAL_MSPI_REQ_CLOCK_CONFIG, &g_MaxReadFreq);
 
   //
   // Execute the transction over MSPI.
@@ -194,9 +199,10 @@ am_devices_rm67162_command_read(void *pHandle,
                                     &Transaction,
                                     AM_DEVICES_MSPI_TIMEOUT))
   {
-    return AM_DEVICES_RM67162_STATUS_ERROR;
+    ui32Status = AM_DEVICES_RM67162_STATUS_ERROR;
   }
-  return AM_DEVICES_RM67162_STATUS_SUCCESS;
+  am_hal_mspi_control(pDisplay->pMspiHandle, AM_HAL_MSPI_REQ_CLOCK_CONFIG, &pDisplay->eClockFreq);
+  return ui32Status;
 }
 
 //*****************************************************************************
@@ -375,6 +381,17 @@ am_devices_rm67162_blocking_read(void *pHandle,
   Transaction.bContinue               = true;
   Transaction.pui32Buffer             = NULL;
 
+  am_hal_mspi_control(pDisplay->pMspiHandle, AM_HAL_MSPI_REQ_CLOCK_CONFIG, &g_MaxReadFreq);
+
+  //
+  // Execute the transction over MSPI.
+  //
+  if (am_hal_mspi_blocking_transfer(pDisplay->pMspiHandle, &Transaction, AM_DEVICES_MSPI_TIMEOUT))
+  {
+    am_hal_mspi_control(pDisplay->pMspiHandle, AM_HAL_MSPI_REQ_CLOCK_CONFIG, &pDisplay->eClockFreq);
+    return AM_DEVICES_RM67162_STATUS_ERROR;
+  }
+
   while (ui32NumBytes)
   {
     // Create the individual write transaction.
@@ -399,13 +416,14 @@ am_devices_rm67162_blocking_read(void *pHandle,
                                       &Transaction,
                                       AM_DEVICES_MSPI_TIMEOUT))
     {
+      am_hal_mspi_control(pDisplay->pMspiHandle, AM_HAL_MSPI_REQ_CLOCK_CONFIG, &pDisplay->eClockFreq);
       return AM_DEVICES_RM67162_STATUS_ERROR;
     }
 
     ui32NumBytes -= Transaction.ui32NumBytes;
     pui8RxBuffer += Transaction.ui32NumBytes;
   }
-
+  am_hal_mspi_control(pDisplay->pMspiHandle, AM_HAL_MSPI_REQ_CLOCK_CONFIG, &pDisplay->eClockFreq);
   return AM_DEVICES_RM67162_STATUS_SUCCESS;
 }
 
@@ -591,6 +609,8 @@ am_devices_rm67162_nonblocking_read(void *pHandle,
   Transaction.ui32PauseCondition        = 0;
   Transaction.ui32StatusSetClr          = 0;
 
+  am_hal_mspi_control(pDisplay->pMspiHandle, AM_HAL_MSPI_REQ_CLOCK_CONFIG, &g_MaxReadFreq);
+
   //
   // Execute the transction over MSPI.
   //
@@ -600,6 +620,7 @@ am_devices_rm67162_nonblocking_read(void *pHandle,
                                        pfnMSPI_RM67162_Callback,
                                        (void *)&bDMAComplete))
   {
+    am_hal_mspi_control(pDisplay->pMspiHandle, AM_HAL_MSPI_REQ_CLOCK_CONFIG, &pDisplay->eClockFreq);
     return AM_DEVICES_RM67162_STATUS_ERROR;
   }
 
@@ -621,9 +642,11 @@ am_devices_rm67162_nonblocking_read(void *pHandle,
     // Check the status.
     if (!bDMAComplete)
     {
+      am_hal_mspi_control(pDisplay->pMspiHandle, AM_HAL_MSPI_REQ_CLOCK_CONFIG, &pDisplay->eClockFreq);
       return AM_DEVICES_RM67162_STATUS_ERROR;
     }
   }
+  am_hal_mspi_control(pDisplay->pMspiHandle, AM_HAL_MSPI_REQ_CLOCK_CONFIG, &pDisplay->eClockFreq);
   return AM_DEVICES_RM67162_STATUS_SUCCESS;
 }
 
@@ -784,7 +807,6 @@ am_devices_mspi_rm67162_init(uint32_t ui32Module,
   mspiDevCfg.pTCB = psMSPISettings->pNBTxnBuf;
   mspiDevCfg.scramblingStartAddr = psMSPISettings->ui32ScramblingStartAddr;
   mspiDevCfg.scramblingEndAddr = psMSPISettings->ui32ScramblingEndAddr;
-  mspiDevCfg.eXipMixedMode = psMSPISettings->eMixedMode;
 
   //
   // Configure the MSPI pins.
@@ -831,6 +853,7 @@ am_devices_mspi_rm67162_init(uint32_t ui32Module,
 
     gAmRm67162[ui32Index].pMspiHandle = pMspiHandle;
     gAmRm67162[ui32Index].ui32Module = ui32Module;
+    gAmRm67162[ui32Index].eClockFreq = psMSPISettings->eClockFreq;
     *ppMspiHandle = pMspiHandle;
     *ppHandle = (void *)&gAmRm67162[ui32Index];
 
@@ -923,7 +946,6 @@ am_devices_rm67162_term(void *pHandle)
 uint32_t
 am_devices_rm67162_read_id(void *pHandle, uint32_t *pdata)
 {
-
     if (am_devices_rm67162_command_read(pHandle, AM_DEVICES_RM67162_READ_ID, pdata, 3, true))
     {
         return AM_DEVICES_RM67162_STATUS_ERROR;

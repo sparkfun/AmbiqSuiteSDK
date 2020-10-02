@@ -333,9 +333,9 @@
             <v6Rtti>0</v6Rtti>
             <VariousControls>
               <MiscControls></MiscControls>
-              <Define>AM_FREERTOS AM_DEBUG_PRINTF APS6404L AM_PART_APOLLO3P AM_PACKAGE_BGA FIREBALL_CARD AM_UTIL_FAULTISR_PRINT keil</Define>
+              <Define>AM_UTIL_FAULTISR_PRINT AM_FREERTOS APS6404L AM_DEBUG_PRINTF AM_PART_APOLLO3P AM_PACKAGE_BGA keil</Define>
               <Undefine></Undefine>
-              <IncludePath>../../../../../CMSIS/AmbiqMicro/Include;../../../../../mcu/apollo3p;../../../bsp;../src;../../../../../utils;../../../../../third_party/FreeRTOSv10.1.1/Source/include;../../../../../third_party/FreeRTOSv10.1.1/Source/portable/Keil/AMapollo2;../../../../../CMSIS/ARM/Include;../../../../../devices;../../../../..</IncludePath>
+              <IncludePath>../../../../../mcu/apollo3p;../src;../../../../../CMSIS/AmbiqMicro/Include;../../../../../devices;../../../../../third_party/FreeRTOSv10.1.1/Source/portable/Keil/AMapollo2;../../../bsp;../../../../../third_party/FreeRTOSv10.1.1/Source/include;../../../../..;../../../../../CMSIS/ARM/Include;../../../../../utils</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -422,36 +422,6 @@
           </Files>
         </Group>
         <Group>
-          <GroupName>FreeRTOSv10.1.1_Source</GroupName>
-          <Files>
-            <File>
-              <FileName>event_groups.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../third_party/FreeRTOSv10.1.1/Source/event_groups.c</FilePath>
-            </File>
-            <File>
-              <FileName>list.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../third_party/FreeRTOSv10.1.1/Source/list.c</FilePath>
-            </File>
-            <File>
-              <FileName>queue.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../third_party/FreeRTOSv10.1.1/Source/queue.c</FilePath>
-            </File>
-            <File>
-              <FileName>tasks.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../third_party/FreeRTOSv10.1.1/Source/tasks.c</FilePath>
-            </File>
-            <File>
-              <FileName>timers.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../third_party/FreeRTOSv10.1.1/Source/timers.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
           <GroupName>utils</GroupName>
           <Files>
             <File>
@@ -480,11 +450,6 @@
           <GroupName>devices</GroupName>
           <Files>
             <File>
-              <FileName>am_devices_fireball.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../devices/am_devices_fireball.c</FilePath>
-            </File>
-            <File>
               <FileName>am_devices_mspi_psram_aps6404l.c</FileName>
               <FileType>1</FileType>
               <FilePath>../../../../../devices/am_devices_mspi_psram_aps6404l.c</FilePath>
@@ -503,6 +468,36 @@
               <FileName>heap_2.c</FileName>
               <FileType>1</FileType>
               <FilePath>../../../../../third_party/FreeRTOSv10.1.1/Source/portable/MemMang/heap_2.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>FreeRTOSv10.1.1_Source</GroupName>
+          <Files>
+            <File>
+              <FileName>event_groups.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../../../../../third_party/FreeRTOSv10.1.1/Source/event_groups.c</FilePath>
+            </File>
+            <File>
+              <FileName>list.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../../../../../third_party/FreeRTOSv10.1.1/Source/list.c</FilePath>
+            </File>
+            <File>
+              <FileName>queue.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../../../../../third_party/FreeRTOSv10.1.1/Source/queue.c</FilePath>
+            </File>
+            <File>
+              <FileName>tasks.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../../../../../third_party/FreeRTOSv10.1.1/Source/tasks.c</FilePath>
+            </File>
+            <File>
+              <FileName>timers.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../../../../../third_party/FreeRTOSv10.1.1/Source/timers.c</FilePath>
             </File>
           </Files>
         </Group>

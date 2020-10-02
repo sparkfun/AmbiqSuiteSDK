@@ -8,7 +8,7 @@
 
 //*****************************************************************************
 //
-// Copyright (c) 2020, Ambiq Micro
+// Copyright (c) 2020, Ambiq Micro, Inc.
 // All rights reserved.
 //
 // Redistribution and use in source and binary forms, with or without
@@ -40,7 +40,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
-// This is part of revision 2.4.2 of the AmbiqSuite Development Package.
+// This is part of revision 2.5.1 of the AmbiqSuite Development Package.
 //
 //*****************************************************************************
 
@@ -66,6 +66,40 @@ typedef struct
     bool                        bOccupied;
 } am_devices_mspi_atxp032_t;
 
+#if defined(AM_PART_APOLLO4) || defined(AM_PART_APOLLO4B)
+am_hal_mspi_xip_config_t gXipConfig[] =
+{
+  {
+    .ui32APBaseAddr       = MSPI0_APERTURE_START_ADDR,
+    .eAPMode              = AM_HAL_MSPI_AP_READ_WRITE,
+    .eAPSize              = AM_HAL_MSPI_AP_SIZE64M,
+    .scramblingStartAddr  = 0,
+    .scramblingEndAddr    = 0,
+  },
+  {
+    .ui32APBaseAddr       = MSPI1_APERTURE_START_ADDR,
+    .eAPMode              = AM_HAL_MSPI_AP_READ_WRITE,
+    .eAPSize              = AM_HAL_MSPI_AP_SIZE64M,
+    .scramblingStartAddr  = 0,
+    .scramblingEndAddr    = 0,
+  },
+  {
+    .ui32APBaseAddr       = MSPI2_APERTURE_START_ADDR,
+    .eAPMode              = AM_HAL_MSPI_AP_READ_WRITE,
+    .eAPSize              = AM_HAL_MSPI_AP_SIZE64M,
+    .scramblingStartAddr  = 0,
+    .scramblingEndAddr    = 0,
+  }
+};
+
+am_hal_mspi_config_t gMspiCfg =
+{
+  .ui32TCBSize          = 0,
+  .pTCB                 = NULL,
+  .bClkonD4             = 0
+};
+#endif
+
 am_devices_mspi_atxp032_t gAmAtxp032[AM_DEVICES_MSPI_ATXP032_MAX_DEVICE_NUM];
 
 am_hal_mspi_dev_config_t MSPI_ATXP032_Serial_CE0_MSPIConfig =
@@ -76,12 +110,16 @@ am_hal_mspi_dev_config_t MSPI_ATXP032_Serial_CE0_MSPIConfig =
     .eAddrCfg             = AM_HAL_MSPI_ADDR_4_BYTE,
     .eInstrCfg            = AM_HAL_MSPI_INSTR_1_BYTE,
     .eDeviceConfig        = AM_HAL_MSPI_FLASH_SERIAL_CE0,
-    .bSeparateIO          = true,
     .bSendInstr           = true,
     .bSendAddr            = true,
     .bTurnaround          = true,
-    .ui8ReadInstr         = AM_DEVICES_MSPI_ATXP032_FAST_READ,
-    .ui8WriteInstr        = AM_DEVICES_MSPI_ATXP032_PAGE_PROGRAM,
+#if defined(AM_PART_APOLLO4) || defined(AM_PART_APOLLO4B)
+  .ui16ReadInstr         = AM_DEVICES_MSPI_ATXP032_FAST_READ,
+  .ui16WriteInstr        = AM_DEVICES_MSPI_ATXP032_PAGE_PROGRAM,
+#else
+  .ui8ReadInstr         = AM_DEVICES_MSPI_ATXP032_FAST_READ,
+  .ui8WriteInstr        = AM_DEVICES_MSPI_ATXP032_PAGE_PROGRAM,
+#endif
 #if defined(AM_PART_APOLLO3P)
     .ui8WriteLatency      = 0,
     .bEnWriteLatency      = false,
@@ -89,10 +127,21 @@ am_hal_mspi_dev_config_t MSPI_ATXP032_Serial_CE0_MSPIConfig =
     .ui16DMATimeLimit     = 0,
     .eDMABoundary         = AM_HAL_MSPI_BOUNDARY_NONE,
 #endif
+#if defined(AM_PART_APOLLO4) || defined(AM_PART_APOLLO4B)
+    .ui8WriteLatency      = 0,
+    .bEnWriteLatency      = false,
+    .bEmulateDDR          = false,
+    .ui16DMATimeLimit     = 0,
+    .eDMABoundary         = AM_HAL_MSPI_BOUNDARY_NONE,
+#if defined(AM_PART_APOLLO4)
+    .eDeviceNum           = AM_HAL_MSPI_DEVICE0,
+#endif
+#else
     .ui32TCBSize          = 0,
     .pTCB                 = NULL,
     .scramblingStartAddr  = 0,
     .scramblingEndAddr    = 0,
+#endif
 };
 
 am_hal_mspi_dev_config_t MSPI_ATXP032_Serial_CE1_MSPIConfig =
@@ -103,12 +152,16 @@ am_hal_mspi_dev_config_t MSPI_ATXP032_Serial_CE1_MSPIConfig =
     .eAddrCfg             = AM_HAL_MSPI_ADDR_4_BYTE,
     .eInstrCfg            = AM_HAL_MSPI_INSTR_1_BYTE,
     .eDeviceConfig        = AM_HAL_MSPI_FLASH_SERIAL_CE1,
-    .bSeparateIO          = true,
     .bSendInstr           = true,
     .bSendAddr            = true,
     .bTurnaround          = true,
-    .ui8ReadInstr         = AM_DEVICES_MSPI_ATXP032_FAST_READ,
-    .ui8WriteInstr        = AM_DEVICES_MSPI_ATXP032_PAGE_PROGRAM,
+#if defined(AM_PART_APOLLO4) || defined(AM_PART_APOLLO4B)
+  .ui16ReadInstr         = AM_DEVICES_MSPI_ATXP032_FAST_READ,
+  .ui16WriteInstr        = AM_DEVICES_MSPI_ATXP032_PAGE_PROGRAM,
+#else
+  .ui8ReadInstr         = AM_DEVICES_MSPI_ATXP032_FAST_READ,
+  .ui8WriteInstr        = AM_DEVICES_MSPI_ATXP032_PAGE_PROGRAM,
+#endif
 #if defined(AM_PART_APOLLO3P)
     .ui8WriteLatency      = 0,
     .bEnWriteLatency      = false,
@@ -116,10 +169,21 @@ am_hal_mspi_dev_config_t MSPI_ATXP032_Serial_CE1_MSPIConfig =
     .ui16DMATimeLimit     = 0,
     .eDMABoundary         = AM_HAL_MSPI_BOUNDARY_NONE,
 #endif
+#if defined(AM_PART_APOLLO4) || defined(AM_PART_APOLLO4B)
+    .ui8WriteLatency      = 0,
+    .bEnWriteLatency      = false,
+    .bEmulateDDR          = false,
+    .ui16DMATimeLimit     = 0,
+    .eDMABoundary         = AM_HAL_MSPI_BOUNDARY_NONE,
+#if defined(AM_PART_APOLLO4)
+    .eDeviceNum           = AM_HAL_MSPI_DEVICE0,
+#endif
+#else
     .ui32TCBSize          = 0,
     .pTCB                 = NULL,
     .scramblingStartAddr  = 0,
     .scramblingEndAddr    = 0,
+#endif
 };
 
 am_hal_mspi_dev_config_t MSPI_ATXP032_Quad_CE0_MSPIConfig =
@@ -130,12 +194,16 @@ am_hal_mspi_dev_config_t MSPI_ATXP032_Quad_CE0_MSPIConfig =
   .eAddrCfg             = AM_HAL_MSPI_ADDR_4_BYTE,
   .eInstrCfg            = AM_HAL_MSPI_INSTR_1_BYTE,
   .eDeviceConfig        = AM_HAL_MSPI_FLASH_QUAD_CE0,
-  .bSeparateIO          = false,
   .bSendInstr           = true,
   .bSendAddr            = true,
   .bTurnaround          = true,
+#if defined(AM_PART_APOLLO4) || defined(AM_PART_APOLLO4B)
+  .ui16ReadInstr         = AM_DEVICES_MSPI_ATXP032_FAST_READ,
+  .ui16WriteInstr        = AM_DEVICES_MSPI_ATXP032_PAGE_PROGRAM,
+#else
   .ui8ReadInstr         = AM_DEVICES_MSPI_ATXP032_FAST_READ,
   .ui8WriteInstr        = AM_DEVICES_MSPI_ATXP032_PAGE_PROGRAM,
+#endif
 #if defined(AM_PART_APOLLO3P)
     .ui8WriteLatency      = 0,
     .bEnWriteLatency      = false,
@@ -143,10 +211,21 @@ am_hal_mspi_dev_config_t MSPI_ATXP032_Quad_CE0_MSPIConfig =
     .ui16DMATimeLimit     = 0,
     .eDMABoundary         = AM_HAL_MSPI_BOUNDARY_NONE,
 #endif
+#if defined(AM_PART_APOLLO4) || defined(AM_PART_APOLLO4B)
+    .ui8WriteLatency      = 0,
+    .bEnWriteLatency      = false,
+    .bEmulateDDR          = false,
+    .ui16DMATimeLimit     = 0,
+    .eDMABoundary         = AM_HAL_MSPI_BOUNDARY_NONE,
+#if defined(AM_PART_APOLLO4)
+    .eDeviceNum           = AM_HAL_MSPI_DEVICE0,
+#endif
+#else
     .ui32TCBSize          = 0,
     .pTCB                 = NULL,
-  .scramblingStartAddr  = 0,
-  .scramblingEndAddr    = 0,
+    .scramblingStartAddr  = 0,
+    .scramblingEndAddr    = 0,
+#endif
 };
 
 am_hal_mspi_dev_config_t MSPI_ATXP032_Quad_CE1_MSPIConfig =
@@ -157,12 +236,16 @@ am_hal_mspi_dev_config_t MSPI_ATXP032_Quad_CE1_MSPIConfig =
     .eAddrCfg             = AM_HAL_MSPI_ADDR_4_BYTE,
     .eInstrCfg            = AM_HAL_MSPI_INSTR_1_BYTE,
     .eDeviceConfig        = AM_HAL_MSPI_FLASH_QUAD_CE1,
-    .bSeparateIO          = false,
     .bSendInstr           = true,
     .bSendAddr            = true,
     .bTurnaround          = true,
-    .ui8ReadInstr         = AM_DEVICES_MSPI_ATXP032_FAST_READ,
-    .ui8WriteInstr        = AM_DEVICES_MSPI_ATXP032_PAGE_PROGRAM,
+#if defined(AM_PART_APOLLO4) || defined(AM_PART_APOLLO4B)
+  .ui16ReadInstr         = AM_DEVICES_MSPI_ATXP032_FAST_READ,
+  .ui16WriteInstr        = AM_DEVICES_MSPI_ATXP032_PAGE_PROGRAM,
+#else
+  .ui8ReadInstr         = AM_DEVICES_MSPI_ATXP032_FAST_READ,
+  .ui8WriteInstr        = AM_DEVICES_MSPI_ATXP032_PAGE_PROGRAM,
+#endif
 #if defined(AM_PART_APOLLO3P)
     .ui8WriteLatency      = 0,
     .bEnWriteLatency      = false,
@@ -170,10 +253,21 @@ am_hal_mspi_dev_config_t MSPI_ATXP032_Quad_CE1_MSPIConfig =
     .ui16DMATimeLimit     = 0,
     .eDMABoundary         = AM_HAL_MSPI_BOUNDARY_NONE,
 #endif
+#if defined(AM_PART_APOLLO4) || defined(AM_PART_APOLLO4B)
+    .ui8WriteLatency      = 0,
+    .bEnWriteLatency      = false,
+    .bEmulateDDR          = false,
+    .ui16DMATimeLimit     = 0,
+    .eDMABoundary         = AM_HAL_MSPI_BOUNDARY_NONE,
+#if defined(AM_PART_APOLLO4)
+    .eDeviceNum           = AM_HAL_MSPI_DEVICE0,
+#endif
+#else
     .ui32TCBSize          = 0,
     .pTCB                 = NULL,
     .scramblingStartAddr  = 0,
     .scramblingEndAddr    = 0,
+#endif
 };
 
 am_hal_mspi_dev_config_t MSPI_ATXP032_Octal_CE0_MSPIConfig =
@@ -184,12 +278,16 @@ am_hal_mspi_dev_config_t MSPI_ATXP032_Octal_CE0_MSPIConfig =
   .eAddrCfg             = AM_HAL_MSPI_ADDR_4_BYTE,
   .eInstrCfg            = AM_HAL_MSPI_INSTR_1_BYTE,
   .eDeviceConfig        = AM_HAL_MSPI_FLASH_OCTAL_CE0,
-  .bSeparateIO          = false,
   .bSendInstr           = true,
   .bSendAddr            = true,
   .bTurnaround          = true,
+#if defined(AM_PART_APOLLO4) || defined(AM_PART_APOLLO4B)
+  .ui16ReadInstr         = AM_DEVICES_MSPI_ATXP032_FAST_READ,
+  .ui16WriteInstr        = AM_DEVICES_MSPI_ATXP032_PAGE_PROGRAM,
+#else
   .ui8ReadInstr         = AM_DEVICES_MSPI_ATXP032_FAST_READ,
   .ui8WriteInstr        = AM_DEVICES_MSPI_ATXP032_PAGE_PROGRAM,
+#endif
 #if defined(AM_PART_APOLLO3P)
     .ui8WriteLatency      = 0,
     .bEnWriteLatency      = false,
@@ -197,10 +295,21 @@ am_hal_mspi_dev_config_t MSPI_ATXP032_Octal_CE0_MSPIConfig =
     .ui16DMATimeLimit     = 0,
     .eDMABoundary         = AM_HAL_MSPI_BOUNDARY_NONE,
 #endif
+#if defined(AM_PART_APOLLO4) || defined(AM_PART_APOLLO4B)
+    .ui8WriteLatency      = 0,
+    .bEnWriteLatency      = false,
+    .bEmulateDDR          = false,
+    .ui16DMATimeLimit     = 0,
+    .eDMABoundary         = AM_HAL_MSPI_BOUNDARY_NONE,
+#if defined(AM_PART_APOLLO4)
+    .eDeviceNum           = AM_HAL_MSPI_DEVICE0,
+#endif
+#else
     .ui32TCBSize          = 0,
     .pTCB                 = NULL,
-  .scramblingStartAddr  = 0,
-  .scramblingEndAddr    = 0,
+    .scramblingStartAddr  = 0,
+    .scramblingEndAddr    = 0,
+#endif
 };
 
 am_hal_mspi_dev_config_t MSPI_ATXP032_Octal_CE1_MSPIConfig =
@@ -211,12 +320,16 @@ am_hal_mspi_dev_config_t MSPI_ATXP032_Octal_CE1_MSPIConfig =
   .eAddrCfg             = AM_HAL_MSPI_ADDR_4_BYTE,
   .eInstrCfg            = AM_HAL_MSPI_INSTR_1_BYTE,
   .eDeviceConfig        = AM_HAL_MSPI_FLASH_OCTAL_CE1,
-  .bSeparateIO          = false,
   .bSendInstr           = true,
   .bSendAddr            = true,
   .bTurnaround          = true,
+#if defined(AM_PART_APOLLO4) || defined(AM_PART_APOLLO4B)
+  .ui16ReadInstr         = AM_DEVICES_MSPI_ATXP032_FAST_READ,
+  .ui16WriteInstr        = AM_DEVICES_MSPI_ATXP032_PAGE_PROGRAM,
+#else
   .ui8ReadInstr         = AM_DEVICES_MSPI_ATXP032_FAST_READ,
   .ui8WriteInstr        = AM_DEVICES_MSPI_ATXP032_PAGE_PROGRAM,
+#endif
 #if defined(AM_PART_APOLLO3P)
     .ui8WriteLatency      = 0,
     .bEnWriteLatency      = false,
@@ -224,10 +337,21 @@ am_hal_mspi_dev_config_t MSPI_ATXP032_Octal_CE1_MSPIConfig =
     .ui16DMATimeLimit     = 0,
     .eDMABoundary         = AM_HAL_MSPI_BOUNDARY_NONE,
 #endif
+#if defined(AM_PART_APOLLO4) || defined(AM_PART_APOLLO4B)
+    .ui8WriteLatency      = 0,
+    .bEnWriteLatency      = false,
+    .bEmulateDDR          = false,
+    .ui16DMATimeLimit     = 0,
+    .eDMABoundary         = AM_HAL_MSPI_BOUNDARY_NONE,
+#if defined(AM_PART_APOLLO4)
+    .eDeviceNum           = AM_HAL_MSPI_DEVICE0,
+#endif
+#else
     .ui32TCBSize          = 0,
     .pTCB                 = NULL,
-  .scramblingStartAddr  = 0,
-  .scramblingEndAddr    = 0,
+    .scramblingStartAddr  = 0,
+    .scramblingEndAddr    = 0,
+#endif
 };
 
 struct
@@ -292,11 +416,6 @@ am_device_init_flash(void *pHandle)
         case AM_HAL_MSPI_FLASH_SERIAL_CE1:
             am_devices_mspi_atxp032_command_write(pHandle, AM_DEVICES_ATXP032_RETURN_TO_SPI_MODE, false, 0, ui32PIOBuffer, 0);
             break;
-        case AM_HAL_MSPI_FLASH_DUAL_CE0:
-        case AM_HAL_MSPI_FLASH_DUAL_CE1:
-        case AM_HAL_MSPI_FLASH_QUADPAIRED:
-        case AM_HAL_MSPI_FLASH_QUADPAIRED_SERIAL:
-            return AM_DEVICES_MSPI_ATXP032_STATUS_ERROR;
         case AM_HAL_MSPI_FLASH_QUAD_CE0:
         case AM_HAL_MSPI_FLASH_QUAD_CE1:
             am_devices_mspi_atxp032_command_write(pHandle, AM_DEVICES_ATXP032_ENTER_QUAD_MODE, false, 0, ui32PIOBuffer, 0);
@@ -305,6 +424,8 @@ am_device_init_flash(void *pHandle)
         case AM_HAL_MSPI_FLASH_OCTAL_CE1:
             am_devices_mspi_atxp032_command_write(pHandle, AM_DEVICES_ATXP032_ENTER_OCTAL_MODE, false, 0, ui32PIOBuffer, 0);
             break;
+        default:
+            return AM_DEVICES_MSPI_ATXP032_STATUS_ERROR;
     }
 
     return AM_DEVICES_MSPI_ATXP032_STATUS_SUCCESS;
@@ -339,10 +460,7 @@ am_device_deinit_flash(void *pHandle)
                 return AM_DEVICES_MSPI_ATXP032_STATUS_ERROR;
             }
             break;
-        case AM_HAL_MSPI_FLASH_DUAL_CE0:
-        case AM_HAL_MSPI_FLASH_DUAL_CE1:
-        case AM_HAL_MSPI_FLASH_QUADPAIRED:
-        case AM_HAL_MSPI_FLASH_QUADPAIRED_SERIAL:
+        default:
             return AM_DEVICES_MSPI_ATXP032_STATUS_ERROR;
             //break;
     }
@@ -362,7 +480,7 @@ am_devices_mspi_atxp032_command_write(void *pHandle, uint8_t ui8Instr, bool bSen
 {
     uint32_t ui32Status;
     am_devices_mspi_atxp032_t *pFlash = (am_devices_mspi_atxp032_t *)pHandle;
-    am_hal_mspi_pio_transfer_t      stMSPIFlashPIOTransaction = {0};
+    am_hal_mspi_pio_transfer_t  stMSPIFlashPIOTransaction = {0};
 
     // Create the individual write transaction.
     stMSPIFlashPIOTransaction.ui32NumBytes       = ui32NumBytes;
@@ -375,15 +493,16 @@ am_devices_mspi_atxp032_command_write(void *pHandle, uint8_t ui8Instr, bool bSen
 #if 0 // A3DS-25 Deprecate MSPI CONT
     stMSPIFlashPIOTransaction.bContinue          = false;
 #endif // A3DS-25
-    if (AM_HAL_MSPI_FLASH_QUADPAIRED == pFlash->stSetting.eDeviceConfig)
-    {
-        stMSPIFlashPIOTransaction.bQuadCmd         = true;
-    }
-    else
-    {
-        stMSPIFlashPIOTransaction.bQuadCmd         = false;
-    }
     stMSPIFlashPIOTransaction.pui32Buffer        = pData;
+
+#if defined(AM_PART_APOLLO4) || defined(AM_PART_APOLLO4B)
+#if defined(AM_PART_APOLLO4)
+    stMSPIFlashPIOTransaction.eDeviceNum         = AM_HAL_MSPI_DEVICE0;
+#endif
+    stMSPIFlashPIOTransaction.bDCX               = false;
+    stMSPIFlashPIOTransaction.bEnWRLatency       = false;
+    stMSPIFlashPIOTransaction.bContinue          = false;
+#endif
 
     // Execute the transction over MSPI.
     ui32Status = am_hal_mspi_blocking_transfer(pFlash->pMspiHandle, &stMSPIFlashPIOTransaction,
@@ -416,17 +535,17 @@ am_devices_mspi_atxp032_command_read(void *pHandle, uint8_t ui8Instr, bool bSend
 #if 0 // A3DS-25 Deprecate MSPI CONT
     stMSPIFlashPIOTransaction.bContinue          = false;
 #endif // A3DS-25
-    if (AM_HAL_MSPI_FLASH_QUADPAIRED == pFlash->stSetting.eDeviceConfig)
-    {
-        stMSPIFlashPIOTransaction.ui32NumBytes     = ui32NumBytes * 2;
-        stMSPIFlashPIOTransaction.bQuadCmd      = true;
-    }
-    else
-    {
-        stMSPIFlashPIOTransaction.ui32NumBytes     = ui32NumBytes;
-        stMSPIFlashPIOTransaction.bQuadCmd      = false;
-    }
+    stMSPIFlashPIOTransaction.ui32NumBytes     = ui32NumBytes;
     stMSPIFlashPIOTransaction.pui32Buffer        = pData;
+
+#if defined(AM_PART_APOLLO4) || defined(AM_PART_APOLLO4B)
+#if defined(AM_PART_APOLLO4)
+    stMSPIFlashPIOTransaction.eDeviceNum         = AM_HAL_MSPI_DEVICE0;
+#endif
+    stMSPIFlashPIOTransaction.bDCX               = false;
+    stMSPIFlashPIOTransaction.bEnWRLatency       = false;
+    stMSPIFlashPIOTransaction.bContinue          = false;
+#endif
 
     // Execute the transction over MSPI.
     ui32Status = am_hal_mspi_blocking_transfer(pFlash->pMspiHandle, &stMSPIFlashPIOTransaction,
@@ -494,10 +613,12 @@ am_devices_mspi_atxp032_init(uint32_t ui32Module, am_devices_mspi_atxp032_config
         {
             psConfig = g_ATXP032_DevConfig[i].psDevConfig;
             psConfig->eClockFreq = psMSPISettings->eClockFreq;
+#if !defined(AM_PART_APOLLO4) && !defined(AM_PART_APOLLO4B)
             psConfig->pTCB = psMSPISettings->pNBTxnBuf;
             psConfig->ui32TCBSize = psMSPISettings->ui32NBTxnBufLength;
             psConfig->scramblingStartAddr = psMSPISettings->ui32ScramblingStartAddr;
             psConfig->scramblingEndAddr = psMSPISettings->ui32ScramblingEndAddr;
+#endif
             break;
         }
     }
@@ -505,11 +626,15 @@ am_devices_mspi_atxp032_init(uint32_t ui32Module, am_devices_mspi_atxp032_config
     //
     // Enable fault detection.
     //
+#if defined(AM_PART_APOLLO4) || defined(AM_PART_APOLLO4B)
+    am_hal_fault_capture_enable();
+#else
 #if AM_APOLLO3_MCUCTRL
     am_hal_mcuctrl_control(AM_HAL_MCUCTRL_CONTROL_FAULT_CAPTURE_ENABLE, 0);
 #else // AM_APOLLO3_MCUCTRL
     am_hal_mcuctrl_fault_capture_enable();
 #endif // AM_APOLLO3_MCUCTRL
+#endif // !AM_PART_APOLLO4
 
     //
     // Configure the MSPI for Serial or Quad-Paired Serial operation during initialization.
@@ -525,18 +650,30 @@ am_devices_mspi_atxp032_init(uint32_t ui32Module, am_devices_mspi_atxp032_config
                 am_util_stdio_printf("Error - Failed to initialize MSPI.\n");
                 return AM_DEVICES_MSPI_ATXP032_STATUS_ERROR;
             }
-
             if (AM_HAL_STATUS_SUCCESS != am_hal_mspi_power_control(pMspiHandle, AM_HAL_SYSCTRL_WAKE, false))
             {
                 am_util_stdio_printf("Error - Failed to power on MSPI.\n");
                 return AM_DEVICES_MSPI_ATXP032_STATUS_ERROR;
             }
-
+#if defined(AM_PART_APOLLO4) || defined(AM_PART_APOLLO4B)
+            {
+              am_hal_mspi_config_t    mspiCfg = gMspiCfg;
+              mspiCfg.ui32TCBSize = psMSPISettings->ui32NBTxnBufLength;
+              mspiCfg.pTCB = psMSPISettings->pNBTxnBuf;
+              if (AM_HAL_STATUS_SUCCESS != am_hal_mspi_configure(pMspiHandle, &mspiCfg))
+              {
+                am_util_stdio_printf("Error - Failed to configure MSPI device.\n");
+                return AM_DEVICES_MSPI_ATXP032_STATUS_ERROR;
+              }
+            }
+#endif
             if (AM_HAL_STATUS_SUCCESS != am_hal_mspi_device_configure(pMspiHandle, &MSPI_ATXP032_Serial_CE0_MSPIConfig))
             {
                 am_util_stdio_printf("Error - Failed to configure MSPI.\n");
                 return AM_DEVICES_MSPI_ATXP032_STATUS_ERROR;
             }
+
+
             if (AM_HAL_STATUS_SUCCESS != am_hal_mspi_enable(pMspiHandle))
             {
                 am_util_stdio_printf("Error - Failed to enable MSPI.\n");
@@ -560,6 +697,18 @@ am_devices_mspi_atxp032_init(uint32_t ui32Module, am_devices_mspi_atxp032_config
                 return AM_DEVICES_MSPI_ATXP032_STATUS_ERROR;
             }
 
+#if defined(AM_PART_APOLLO4) || defined(AM_PART_APOLLO4B)
+            {
+              am_hal_mspi_config_t    mspiCfg = gMspiCfg;
+              mspiCfg.ui32TCBSize = psMSPISettings->ui32NBTxnBufLength;
+              mspiCfg.pTCB = psMSPISettings->pNBTxnBuf;
+              if (AM_HAL_STATUS_SUCCESS != am_hal_mspi_configure(pMspiHandle, &mspiCfg))
+              {
+                am_util_stdio_printf("Error - Failed to configure MSPI device.\n");
+                return AM_DEVICES_MSPI_ATXP032_STATUS_ERROR;
+              }
+            }
+#endif
             if (AM_HAL_STATUS_SUCCESS != am_hal_mspi_device_configure(pMspiHandle, &MSPI_ATXP032_Serial_CE1_MSPIConfig))
             {
                 am_util_stdio_printf("Error - Failed to configure MSPI.\n");
@@ -572,10 +721,7 @@ am_devices_mspi_atxp032_init(uint32_t ui32Module, am_devices_mspi_atxp032_config
             }
             am_bsp_mspi_pins_enable(ui32Module, MSPI_ATXP032_Serial_CE1_MSPIConfig.eDeviceConfig);
             break;
-        case AM_HAL_MSPI_FLASH_DUAL_CE0:
-        case AM_HAL_MSPI_FLASH_DUAL_CE1:
-        case AM_HAL_MSPI_FLASH_QUADPAIRED:
-        case AM_HAL_MSPI_FLASH_QUADPAIRED_SERIAL:
+        default:
             return AM_DEVICES_MSPI_ATXP032_STATUS_ERROR;
             //break;
     }
@@ -597,7 +743,7 @@ am_devices_mspi_atxp032_init(uint32_t ui32Module, am_devices_mspi_atxp032_config
     {
         return AM_DEVICES_MSPI_ATXP032_STATUS_ERROR;
     }
-
+    am_devices_mspi_atxp032_enable_xip((void*)&gAmAtxp032[ui32Index]);
     // Disable MSPI defore re-configuring it
     ui32Status = am_hal_mspi_disable(pMspiHandle);
     if (AM_HAL_STATUS_SUCCESS != ui32Status)
@@ -737,12 +883,13 @@ am_devices_mspi_atxp032_deinit(void *pHandle)
     //
     // Clear the Flash Caching.
     //
+#if !defined(AM_PART_APOLLO4) && !defined(AM_PART_APOLLO4B)
 #if AM_CMSIS_REGS
     CACHECTRL->CACHECFG = 0;
 #else // AM_CMSIS_REGS
     AM_REG(CACHECTRL, CACHECFG) = 0;
 #endif // AM_CMSIS_REGS
-
+#endif // !AM_PART_APOLLO4
     //
     // Return the status.
     //
@@ -877,6 +1024,10 @@ am_devices_mspi_atxp032_read_adv(void *pHandle, uint8_t *pui8RxBuffer,
     // Clear the post-processing
     Transaction.ui32StatusSetClr = ui32StatusSetClr;
 
+#if defined(AM_PART_APOLLO4)
+    Transaction.eDeviceNum         = AM_HAL_MSPI_DEVICE0;
+#endif
+
     // Check the transaction status.
     ui32Status = am_hal_mspi_nonblocking_transfer(pFlash->pMspiHandle, &Transaction,
                                                   AM_HAL_MSPI_TRANS_DMA, pfnCallback, pCallbackCtxt);
@@ -936,6 +1087,10 @@ am_devices_mspi_atxp032_read(void *pHandle, uint8_t *pui8RxBuffer,
     // Clear the post-processing
     Transaction.ui32StatusSetClr = 0;
 
+#if defined(AM_PART_APOLLO4)
+    Transaction.eDeviceNum         = AM_HAL_MSPI_DEVICE0;
+#endif
+
     if (bWaitForCompletion)
     {
         // Start the transaction.
@@ -958,7 +1113,7 @@ am_devices_mspi_atxp032_read(void *pHandle, uint8_t *pui8RxBuffer,
             //
             // Call the BOOTROM cycle function to delay for about 1 microsecond.
             //
-            am_hal_flash_delay( FLASH_CYCLES_US(1) );
+            am_util_delay_us(1);
         }
 
         // Check the status.
@@ -1029,6 +1184,10 @@ am_devices_mspi_atxp032_read_hiprio(void *pHandle, uint8_t *pui8RxBuffer,
     // Clear the post-processing
     Transaction.ui32StatusSetClr = 0;
 
+#if defined(AM_PART_APOLLO4)
+    Transaction.eDeviceNum         = AM_HAL_MSPI_DEVICE0;
+#endif
+
     if (bWaitForCompletion)
     {
         // Start the transaction.
@@ -1051,7 +1210,7 @@ am_devices_mspi_atxp032_read_hiprio(void *pHandle, uint8_t *pui8RxBuffer,
             //
             // Call the BOOTROM cycle function to delay for about 1 microsecond.
             //
-            am_hal_flash_delay( FLASH_CYCLES_US(1) );
+            am_util_delay_us(1);
         }
 
         // Check the status.
@@ -1161,6 +1320,10 @@ am_devices_mspi_atxp032_write(void *pHandle, uint8_t *pui8TxBuffer,
         // Clear the post-processing
         Transaction.ui32StatusSetClr = 0;
 
+#if defined(AM_PART_APOLLO4)
+    Transaction.eDeviceNum         = AM_HAL_MSPI_DEVICE0;
+#endif
+
         // Start the transaction.
         volatile bool bDMAComplete = false;
         ui32Status = am_hal_mspi_nonblocking_transfer(pFlash->pMspiHandle, &Transaction, AM_HAL_MSPI_TRANS_DMA, pfnMSPI_ATXP032_Callback, (void*)&bDMAComplete);
@@ -1181,7 +1344,7 @@ am_devices_mspi_atxp032_write(void *pHandle, uint8_t *pui8TxBuffer,
             //
             // Call the BOOTROM cycle function to delay for about 1 microsecond.
             //
-            am_hal_flash_delay( FLASH_CYCLES_US(1) );
+            am_util_delay_us(1);
         }
 
         // Check the status.
@@ -1213,10 +1376,7 @@ am_devices_mspi_atxp032_write(void *pHandle, uint8_t *pui8TxBuffer,
                     am_devices_mspi_atxp032_command_read(pHandle, AM_DEVICES_MSPI_ATXP032_READ_STATUS, false, 0, ui32PIOBuffer, 6);
                     bWriteComplete = (0 == (ui32PIOBuffer[1] & AM_DEVICES_ATXP032_WIP));
                     break;
-                case AM_HAL_MSPI_FLASH_DUAL_CE0:
-                case AM_HAL_MSPI_FLASH_DUAL_CE1:
-                case AM_HAL_MSPI_FLASH_QUADPAIRED:
-                case AM_HAL_MSPI_FLASH_QUADPAIRED_SERIAL:
+                default:
                     return AM_DEVICES_MSPI_ATXP032_STATUS_ERROR;
             }
 
@@ -1399,10 +1559,7 @@ am_devices_mspi_atxp032_sector_erase(void *pHandle, uint32_t ui32SectorAddress)
                 am_devices_mspi_atxp032_command_read(pHandle, AM_DEVICES_MSPI_ATXP032_READ_STATUS, false, 0, ui32PIOBuffer, 6);
                 bEraseComplete = (0 == (ui32PIOBuffer[1] & AM_DEVICES_ATXP032_WIP));
                 break;
-            case AM_HAL_MSPI_FLASH_DUAL_CE0:
-            case AM_HAL_MSPI_FLASH_DUAL_CE1:
-            case AM_HAL_MSPI_FLASH_QUADPAIRED:
-            case AM_HAL_MSPI_FLASH_QUADPAIRED_SERIAL:
+            default:
                 return AM_DEVICES_MSPI_ATXP032_STATUS_ERROR;
         }
 
@@ -1450,10 +1607,25 @@ am_devices_mspi_atxp032_enable_xip(void *pHandle)
     uint32_t ui32Status;
     am_devices_mspi_atxp032_t *pFlash = (am_devices_mspi_atxp032_t *)pHandle;
 
+#if defined(AM_PART_APOLLO4) || defined(AM_PART_APOLLO4B)
+    //
+    // Set Aperture XIP range
+    //
+    ui32Status = am_hal_mspi_control(pFlash->pMspiHandle, AM_HAL_MSPI_REQ_XIP_CONFIG, &gXipConfig[pFlash->ui32Module]);
+    if (AM_HAL_STATUS_SUCCESS != ui32Status)
+    {
+        return AM_DEVICES_MSPI_ATXP032_STATUS_ERROR;
+    }
+#endif
+
     //
     // Enable XIP on the MSPI.
     //
+#if defined(AM_PART_APOLLO4) || defined(AM_PART_APOLLO4B)
+    ui32Status = am_hal_mspi_control(pFlash->pMspiHandle, AM_HAL_MSPI_REQ_XIP_EN, &gXipConfig[pFlash->ui32Module]);
+#else
     ui32Status = am_hal_mspi_control(pFlash->pMspiHandle, AM_HAL_MSPI_REQ_XIP_EN, NULL);
+#endif
     if (AM_HAL_STATUS_SUCCESS != ui32Status)
     {
         return AM_DEVICES_MSPI_ATXP032_STATUS_ERROR;
@@ -1501,7 +1673,11 @@ am_devices_mspi_atxp032_disable_xip(void *pHandle)
     //
     // Disable XIP on the MSPI.
     //
+#if defined(AM_PART_APOLLO4) || defined(AM_PART_APOLLO4B)
+    ui32Status = am_hal_mspi_control(pFlash->pMspiHandle, AM_HAL_MSPI_REQ_XIP_DIS, &gXipConfig[pFlash->ui32Module]);
+#else
     ui32Status = am_hal_mspi_control(pFlash->pMspiHandle, AM_HAL_MSPI_REQ_XIP_DIS, NULL);
+#endif
     if (AM_HAL_STATUS_SUCCESS != ui32Status)
     {
         return AM_DEVICES_MSPI_ATXP032_STATUS_ERROR;
@@ -1528,7 +1704,11 @@ am_devices_mspi_atxp032_enable_scrambling(void *pHandle)
     //
     // Enable scrambling on the MSPI.
     //
+#if defined(AM_PART_APOLLO4) || defined(AM_PART_APOLLO4B)
+    ui32Status = am_hal_mspi_control(pFlash->pMspiHandle, AM_HAL_MSPI_REQ_SCRAMB_EN, &gXipConfig[pFlash->ui32Module]);
+#else
     ui32Status = am_hal_mspi_control(pFlash->pMspiHandle, AM_HAL_MSPI_REQ_SCRAMB_EN, NULL);
+#endif
     if (AM_HAL_STATUS_SUCCESS != ui32Status)
     {
         return AM_DEVICES_MSPI_ATXP032_STATUS_ERROR;
@@ -1564,7 +1744,11 @@ am_devices_mspi_atxp032_disable_scrambling(void *pHandle)
     //
     // Disable Scrambling on the MSPI.
     //
+#if defined(AM_PART_APOLLO4) || defined(AM_PART_APOLLO4B)
+    ui32Status = am_hal_mspi_control(pFlash->pMspiHandle, AM_HAL_MSPI_REQ_SCRAMB_DIS, &gXipConfig[pFlash->ui32Module]);
+#else
     ui32Status = am_hal_mspi_control(pFlash->pMspiHandle, AM_HAL_MSPI_REQ_SCRAMB_DIS, NULL);
+#endif
     if (AM_HAL_STATUS_SUCCESS != ui32Status)
     {
         return AM_DEVICES_MSPI_ATXP032_STATUS_ERROR;

@@ -1,0 +1,674 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+<?xml-stylesheet type="text/xsl" href="xml_devices.xsl"?>
+<!DOCTYPE device SYSTEM "xml_devices.dtd">
+<device file_name="docs/adc_regs.xml" file_mod_date="May 29 10:05:02 2014">
+  <short_description>Analog Digital Converter Control</short_description>
+  <device_name>ADC</device_name>
+  <instance_base>REG_ADC_BASEADDR: 0x50008000</instance_base>
+  <ioregisters>
+    <ioreg_index/>
+    <ioreg>
+    <ioreg_name>ADCCFG</ioreg_name>
+    <ioreg_offset>0x00000000</ioreg_offset>
+    <ioreg_intro>Configuration Register</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="26" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="6" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="24" name="CLKSEL" readwrite="RW" access_macro="REG_ADC_ADCCFG_CLKSEL_WR" reset_value="0x0" width="2">
+        <ioreg_bf_description>"This bitfield selects the source and frequency for the ADC clock."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="21" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="3" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="20" name="TRIGPOL" readwrite="RW" access_macro="REG_ADC_ADCCFG_TRIGPOL_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit selects the ADC trigger polarity.
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="16" name="TRIGSEL" readwrite="RW" access_macro="REG_ADC_ADCCFG_TRIGSEL_WR" reset_value="0x0" width="4">
+        <ioreg_bf_description>"This bitfield selects the ADC trigger source."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="10" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="6" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="8" name="REFSEL" readwrite="RW" access_macro="REG_ADC_ADCCFG_REFSEL_WR" reset_value="0x0" width="2">
+        <ioreg_bf_description>"This bitfield selects the ADC reference voltage."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="5" name="OPMODE" readwrite="RW" access_macro="REG_ADC_ADCCFG_OPMODE_WR" reset_value="0x0" width="3">
+        <ioreg_bf_description>"This bit enables repeating scan mode."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="3" name="LPMODE" readwrite="RW" access_macro="REG_ADC_ADCCFG_LPMODE_WR" reset_value="0x0" width="2">
+        <ioreg_bf_description>"This bit enables repeating scan mode."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="2" name="RPTEN" readwrite="RWx" access_macro="REG_ADC_ADCCFG_RPTEN_RD" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit enables repeating scan mode."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="1" name="TMPSEN" readwrite="RW" access_macro="REG_ADC_ADCCFG_TMPSEN_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This enables power to the temperature sensor module."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="ADCEN" readwrite="RW" access_macro="REG_ADC_ADCCFG_ADCEN_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit enables the ADC module."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>ADCSTAT</ioreg_name>
+    <ioreg_offset>0x00000004</ioreg_offset>
+    <ioreg_intro>Chip Revision</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="2" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="30" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="PWDSTAT" readwrite="RO" access_macro="REG_ADC_ADCSTAT_PWDSTAT_RD" reset_value="0x0" width="2">
+        <ioreg_bf_description>"This bitfield indicates the power-status of the ADC. 2'b00=Powered On, 2'b01=Power Switch On, ADC Low Power Mode 1, 2'b10=Power switch off, ADC disabled."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>ADCSWT</ioreg_name>
+    <ioreg_offset>0x00000008</ioreg_offset>
+    <ioreg_intro>Software trigger for conversion</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="8" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="24" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="ADCSWT" readwrite="RW" access_macro="REG_ADC_ADCSWT_ADCSWT_WR" reset_value="0x0" width="8">
+        <ioreg_bf_description>"Generate a sotware trigger."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>ADCSL0CFG</ioreg_name>
+    <ioreg_offset>0x0000000c</ioreg_offset>
+    <ioreg_intro>Slot 0 Configuration Register</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="27" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="5" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="24" name="ADSEL0" readwrite="RW" access_macro="REG_ADC_ADCSL0CFG_ADSEL0_WR" reset_value="0x0" width="3">
+        <ioreg_bf_description>"This bitfield selects the number of measurements to average in the accumulate divide module for this slot."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="19" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="5" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="16" name="THSEL0" readwrite="RW" access_macro="REG_ADC_ADCSL0CFG_THSEL0_WR" reset_value="0x0" width="3">
+        <ioreg_bf_description>"This bitfield selects the track and hold delay for this slot."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="12" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="4" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="8" name="CHSEL0" readwrite="RW" access_macro="REG_ADC_ADCSL0CFG_CHSEL0_WR" reset_value="0x0" width="4">
+        <ioreg_bf_description>"This bitfield selects the channel input for this slot."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="2" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="6" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="1" name="WCEN0" readwrite="RW" access_macro="REG_ADC_ADCSL0CFG_WCEN0_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit enables the window compare function for this slot."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="SLEN0" readwrite="RW" access_macro="REG_ADC_ADCSL0CFG_SLEN0_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit enables this slot for ADC conversions."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>ADCSL1CFG</ioreg_name>
+    <ioreg_offset>0x00000010</ioreg_offset>
+    <ioreg_intro>Slot 1 Configuration Register</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="27" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="5" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="24" name="ADSEL1" readwrite="RW" access_macro="REG_ADC_ADCSL1CFG_ADSEL1_WR" reset_value="0x0" width="3">
+        <ioreg_bf_description>"This bitfield selects the number of measurements to average in the accumulate divide module for this slot."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="19" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="5" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="16" name="THSEL1" readwrite="RW" access_macro="REG_ADC_ADCSL1CFG_THSEL1_WR" reset_value="0x0" width="3">
+        <ioreg_bf_description>"This bitfield selects the track and hold delay for this slot."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="12" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="4" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="8" name="CHSEL1" readwrite="RW" access_macro="REG_ADC_ADCSL1CFG_CHSEL1_WR" reset_value="0x0" width="4">
+        <ioreg_bf_description>"This bitfield selects the channel input for this slot."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="2" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="6" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="1" name="WCEN1" readwrite="RW" access_macro="REG_ADC_ADCSL1CFG_WCEN1_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit enables the window compare function for this slot."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="SLEN1" readwrite="RW" access_macro="REG_ADC_ADCSL1CFG_SLEN1_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit enables this slot for ADC conversions."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>ADCSL2CFG</ioreg_name>
+    <ioreg_offset>0x00000014</ioreg_offset>
+    <ioreg_intro>Slot 2 Configuration Register</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="27" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="5" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="24" name="ADSEL2" readwrite="RW" access_macro="REG_ADC_ADCSL2CFG_ADSEL2_WR" reset_value="0x0" width="3">
+        <ioreg_bf_description>"This bitfield selects the number of measurements to average in the accumulate divide module for this slot."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="19" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="5" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="16" name="THSEL2" readwrite="RW" access_macro="REG_ADC_ADCSL2CFG_THSEL2_WR" reset_value="0x0" width="3">
+        <ioreg_bf_description>"This bitfield selects the track and hold delay for this slot."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="12" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="4" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="8" name="CHSEL2" readwrite="RW" access_macro="REG_ADC_ADCSL2CFG_CHSEL2_WR" reset_value="0x0" width="4">
+        <ioreg_bf_description>"This bitfield selects the channel input for this slot."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="2" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="6" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="1" name="WCEN2" readwrite="RW" access_macro="REG_ADC_ADCSL2CFG_WCEN2_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit enables the window compare function for this slot."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="SLEN2" readwrite="RW" access_macro="REG_ADC_ADCSL2CFG_SLEN2_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit enables this slot for ADC conversions."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>ADCSL3CFG</ioreg_name>
+    <ioreg_offset>0x00000018</ioreg_offset>
+    <ioreg_intro>Slot 3 Configuration Register</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="27" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="5" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="24" name="ADSEL3" readwrite="RW" access_macro="REG_ADC_ADCSL3CFG_ADSEL3_WR" reset_value="0x0" width="3">
+        <ioreg_bf_description>"This bitfield selects the number of measurements to average in the accumulate divide module for this slot."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="19" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="5" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="16" name="THSEL3" readwrite="RW" access_macro="REG_ADC_ADCSL3CFG_THSEL3_WR" reset_value="0x0" width="3">
+        <ioreg_bf_description>"This bitfield selects the track and hold delay for this slot."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="12" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="4" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="8" name="CHSEL3" readwrite="RW" access_macro="REG_ADC_ADCSL3CFG_CHSEL3_WR" reset_value="0x0" width="4">
+        <ioreg_bf_description>"This bitfield selects the channel input for this slot."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="2" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="6" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="1" name="WCEN3" readwrite="RW" access_macro="REG_ADC_ADCSL3CFG_WCEN3_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit enables the window compare function for this slot."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="SLEN3" readwrite="RW" access_macro="REG_ADC_ADCSL3CFG_SLEN3_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit enables this slot for ADC conversions."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>ADCSL4CFG</ioreg_name>
+    <ioreg_offset>0x0000001c</ioreg_offset>
+    <ioreg_intro>Slot 4 Configuration Register</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="27" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="5" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="24" name="ADSEL4" readwrite="RW" access_macro="REG_ADC_ADCSL4CFG_ADSEL4_WR" reset_value="0x0" width="3">
+        <ioreg_bf_description>"This bitfield selects the number of measurements to average in the accumulate divide module for this slot."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="19" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="5" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="16" name="THSEL4" readwrite="RW" access_macro="REG_ADC_ADCSL4CFG_THSEL4_WR" reset_value="0x0" width="3">
+        <ioreg_bf_description>"This bitfield selects the track and hold delay for this slot."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="12" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="4" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="8" name="CHSEL4" readwrite="RW" access_macro="REG_ADC_ADCSL4CFG_CHSEL4_WR" reset_value="0x0" width="4">
+        <ioreg_bf_description>"This bitfield selects the channel input for this slot."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="2" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="6" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="1" name="WCEN4" readwrite="RW" access_macro="REG_ADC_ADCSL4CFG_WCEN4_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit enables the window compare function for this slot."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="SLEN4" readwrite="RW" access_macro="REG_ADC_ADCSL4CFG_SLEN4_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit enables this slot for ADC conversions."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>ADCSL5CFG</ioreg_name>
+    <ioreg_offset>0x00000020</ioreg_offset>
+    <ioreg_intro>Slot 5 Configuration Register</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="27" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="5" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="24" name="ADSEL5" readwrite="RW" access_macro="REG_ADC_ADCSL5CFG_ADSEL5_WR" reset_value="0x0" width="3">
+        <ioreg_bf_description>"This bitfield selects the number of measurements to average in the accumulate divide module for this slot."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="19" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="5" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="16" name="THSEL5" readwrite="RW" access_macro="REG_ADC_ADCSL5CFG_THSEL5_WR" reset_value="0x0" width="3">
+        <ioreg_bf_description>"This bitfield selects the track and hold delay for this slot."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="12" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="4" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="8" name="CHSEL5" readwrite="RW" access_macro="REG_ADC_ADCSL5CFG_CHSEL5_WR" reset_value="0x0" width="4">
+        <ioreg_bf_description>"This bitfield selects the channel input for this slot."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="2" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="6" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="1" name="WCEN5" readwrite="RW" access_macro="REG_ADC_ADCSL5CFG_WCEN5_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit enables the window compare function for this slot."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="SLEN5" readwrite="RW" access_macro="REG_ADC_ADCSL5CFG_SLEN5_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit enables this slot for ADC conversions."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>ADCSL6CFG</ioreg_name>
+    <ioreg_offset>0x00000024</ioreg_offset>
+    <ioreg_intro>Slot 6 Configuration Register</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="27" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="5" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="24" name="ADSEL6" readwrite="RW" access_macro="REG_ADC_ADCSL6CFG_ADSEL6_WR" reset_value="0x0" width="3">
+        <ioreg_bf_description>"This bitfield selects the number of measurements to average in the accumulate divide module for this slot."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="19" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="5" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="16" name="THSEL6" readwrite="RW" access_macro="REG_ADC_ADCSL6CFG_THSEL6_WR" reset_value="0x0" width="3">
+        <ioreg_bf_description>"This bitfield selects the track and hold delay for this slot."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="12" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="4" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="8" name="CHSEL6" readwrite="RW" access_macro="REG_ADC_ADCSL6CFG_CHSEL6_WR" reset_value="0x0" width="4">
+        <ioreg_bf_description>"This bitfield selects the channel input for this slot."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="2" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="6" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="1" name="WCEN6" readwrite="RW" access_macro="REG_ADC_ADCSL6CFG_WCEN6_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit enables the window compare function for this slot."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="SLEN6" readwrite="RW" access_macro="REG_ADC_ADCSL6CFG_SLEN6_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit enables this slot for ADC conversions."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>ADCSL7CFG</ioreg_name>
+    <ioreg_offset>0x00000028</ioreg_offset>
+    <ioreg_intro>Slot 7 Configuration Register</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="27" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="5" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="24" name="ADSEL7" readwrite="RW" access_macro="REG_ADC_ADCSL7CFG_ADSEL7_WR" reset_value="0x0" width="3">
+        <ioreg_bf_description>"This bitfield selects the number of measurements to average in the accumulate divide module for this slot."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="19" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="5" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="16" name="THSEL7" readwrite="RW" access_macro="REG_ADC_ADCSL7CFG_THSEL7_WR" reset_value="0x0" width="3">
+        <ioreg_bf_description>"This bitfield selects the track and hold delay for this slot."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="12" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="4" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="8" name="CHSEL7" readwrite="RW" access_macro="REG_ADC_ADCSL7CFG_CHSEL7_WR" reset_value="0x0" width="4">
+        <ioreg_bf_description>"This bitfield selects the channel input for this slot."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="2" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="6" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="1" name="WCEN7" readwrite="RW" access_macro="REG_ADC_ADCSL7CFG_WCEN7_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit enables the window compare function for this slot."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="SLEN7" readwrite="RW" access_macro="REG_ADC_ADCSL7CFG_SLEN7_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit enables this slot for ADC conversions."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>ADCWLIM</ioreg_name>
+    <ioreg_offset>0x0000002c</ioreg_offset>
+    <ioreg_intro>Window Comparator Limits Register</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="16" name="ULIM" readwrite="RW" access_macro="REG_ADC_ADCWLIM_ULIM_WR" reset_value="0x0" width="16">
+        <ioreg_bf_description>"This bitfield sets the upper limit for the wondow comparator."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="LLIM" readwrite="RW" access_macro="REG_ADC_ADCWLIM_LLIM_WR" reset_value="0x0" width="16">
+        <ioreg_bf_description>"This bitfield sets the lower limit for the wondow comparator."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>ADCFIFO</ioreg_name>
+    <ioreg_offset>0x00000030</ioreg_offset>
+    <ioreg_intro>Current FIFO Pointer</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="27" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="5" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="24" name="SLOTNUM" readwrite="RW" access_macro="REG_ADC_ADCFIFO_SLOTNUM_WR" reset_value="0x0" width="3">
+        <ioreg_bf_description>"This bitfield hold the slot number associated with this FIFO data."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="20" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="4" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="16" name="FIFOCNT" readwrite="RW" access_macro="REG_ADC_ADCFIFO_FIFOCNT_WR" reset_value="0x0" width="4">
+        <ioreg_bf_description>"These bits hold the number of valid entries in the ADC FIFO."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="FIFODATA" readwrite="RW" access_macro="REG_ADC_ADCFIFO_FIFODATA_WR" reset_value="0x0" width="16">
+        <ioreg_bf_description>"This bitfield holds the oldest data in the FIFO."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>ADC_IEREN</ioreg_name>
+    <ioreg_offset>0x00000200</ioreg_offset>
+    <ioreg_intro>ADC Interrupt registers</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="6" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="26" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="5" name="WCINC" readwrite="RW" access_macro="REG_ADC_ADC_IEREN_WCINC_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"Window comparator voltage incursion interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="4" name="WCEXC" readwrite="RW" access_macro="REG_ADC_ADC_IEREN_WCEXC_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"Window comparator voltage excursion interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="3" name="FIFOOVR2" readwrite="RW" access_macro="REG_ADC_ADC_IEREN_FIFOOVR2_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"FIFO 100% full interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="2" name="FIFOOVR1" readwrite="RW" access_macro="REG_ADC_ADC_IEREN_FIFOOVR1_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"FIFO 75% full interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="1" name="SCNCMP" readwrite="RW" access_macro="REG_ADC_ADC_IEREN_SCNCMP_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"ADC scan complete interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="CNVCMP" readwrite="RW" access_macro="REG_ADC_ADC_IEREN_CNVCMP_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"ADC conversion complete interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>ADC_IERSTAT</ioreg_name>
+    <ioreg_offset>0x00000204</ioreg_offset>
+    <ioreg_intro>ADC Interrupt registers</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="6" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="26" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="5" name="WCINC" readwrite="RW" access_macro="REG_ADC_ADC_IERSTAT_WCINC_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"Window comparator voltage incursion interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="4" name="WCEXC" readwrite="RW" access_macro="REG_ADC_ADC_IERSTAT_WCEXC_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"Window comparator voltage excursion interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="3" name="FIFOOVR2" readwrite="RW" access_macro="REG_ADC_ADC_IERSTAT_FIFOOVR2_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"FIFO 100% full interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="2" name="FIFOOVR1" readwrite="RW" access_macro="REG_ADC_ADC_IERSTAT_FIFOOVR1_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"FIFO 75% full interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="1" name="SCNCMP" readwrite="RW" access_macro="REG_ADC_ADC_IERSTAT_SCNCMP_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"ADC scan complete interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="CNVCMP" readwrite="RW" access_macro="REG_ADC_ADC_IERSTAT_CNVCMP_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"ADC conversion complete interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>ADC_IERCLR</ioreg_name>
+    <ioreg_offset>0x00000208</ioreg_offset>
+    <ioreg_intro>ADC Interrupt registers</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="6" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="26" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="5" name="WCINC" readwrite="RW" access_macro="REG_ADC_ADC_IERCLR_WCINC_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"Window comparator voltage incursion interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="4" name="WCEXC" readwrite="RW" access_macro="REG_ADC_ADC_IERCLR_WCEXC_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"Window comparator voltage excursion interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="3" name="FIFOOVR2" readwrite="RW" access_macro="REG_ADC_ADC_IERCLR_FIFOOVR2_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"FIFO 100% full interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="2" name="FIFOOVR1" readwrite="RW" access_macro="REG_ADC_ADC_IERCLR_FIFOOVR1_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"FIFO 75% full interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="1" name="SCNCMP" readwrite="RW" access_macro="REG_ADC_ADC_IERCLR_SCNCMP_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"ADC scan complete interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="CNVCMP" readwrite="RW" access_macro="REG_ADC_ADC_IERCLR_CNVCMP_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"ADC conversion complete interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>ADC_IERSET</ioreg_name>
+    <ioreg_offset>0x0000020c</ioreg_offset>
+    <ioreg_intro>ADC Interrupt registers</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="6" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="26" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="5" name="WCINC" readwrite="RW" access_macro="REG_ADC_ADC_IERSET_WCINC_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"Window comparator voltage incursion interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="4" name="WCEXC" readwrite="RW" access_macro="REG_ADC_ADC_IERSET_WCEXC_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"Window comparator voltage excursion interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="3" name="FIFOOVR2" readwrite="RW" access_macro="REG_ADC_ADC_IERSET_FIFOOVR2_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"FIFO 100% full interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="2" name="FIFOOVR1" readwrite="RW" access_macro="REG_ADC_ADC_IERSET_FIFOOVR1_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"FIFO 75% full interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="1" name="SCNCMP" readwrite="RW" access_macro="REG_ADC_ADC_IERSET_SCNCMP_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"ADC scan complete interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="CNVCMP" readwrite="RW" access_macro="REG_ADC_ADC_IERSET_CNVCMP_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"ADC conversion complete interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg_bigpicture/>
+  </ioregisters>
+</device>

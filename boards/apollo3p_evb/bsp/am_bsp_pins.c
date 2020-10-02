@@ -6,7 +6,6 @@
 //! @brief BSP pin configuration definitions.
 //!
 //! @addtogroup BSP Board Support Package (BSP)
-//! @addtogroup apollo3_evb_bsp BSP for the Apollo3 Engineering Board
 //! @ingroup BSP
 //! @{
 //
@@ -14,7 +13,7 @@
 
 //*****************************************************************************
 //
-// Copyright (c) 2020, Ambiq Micro
+// Copyright (c) 2020, Ambiq Micro, Inc.
 // All rights reserved.
 //
 // Redistribution and use in source and binary forms, with or without
@@ -46,7 +45,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
-// This is part of revision 2.4.2 of the AmbiqSuite Development Package.
+// This is part of revision 2.5.1 of the AmbiqSuite Development Package.
 //
 //*****************************************************************************
 
@@ -419,10 +418,50 @@ const am_hal_gpio_pincfg_t g_AM_BSP_GPIO_IOM1_SDA =
 
 //*****************************************************************************
 //
-//  IOM2_CS pin: I/O Master 2 chip select.
+//  FT_BRIDGE_SCK pin: FT_BRIDGE I/O Master 2 SPI clock signal.
 //
 //*****************************************************************************
-const am_hal_gpio_pincfg_t g_AM_BSP_GPIO_IOM2_CS =
+const am_hal_gpio_pincfg_t g_AM_BSP_GPIO_FT_BRIDGE_SCK =
+{
+    .uFuncSel            = AM_HAL_PIN_27_M2SCK,
+    .ePullup             = AM_HAL_GPIO_PIN_PULLUP_1_5K,
+    .eDriveStrength      = AM_HAL_GPIO_PIN_DRIVESTRENGTH_12MA,
+    .eGPOutcfg           = AM_HAL_GPIO_PIN_OUTCFG_OPENDRAIN,
+    .bIomMSPIn           = 1,
+    .uIOMnum             = 2
+};
+
+//*****************************************************************************
+//
+//  FT_BRIDGE_MOSI pin: FT_BRIDGE I/O Master 2 SPI MOSI signal. NOTE: pin shared with AMOLED QSPI CS on Cygnus.
+//
+//*****************************************************************************
+const am_hal_gpio_pincfg_t g_AM_BSP_GPIO_FT_BRIDGE_MOSI =
+{
+    .uFuncSel            = AM_HAL_PIN_28_M2MOSI,
+    .eDriveStrength      = AM_HAL_GPIO_PIN_DRIVESTRENGTH_12MA,
+    .bIomMSPIn           = 1,
+    .uIOMnum             = 2
+};
+
+//*****************************************************************************
+//
+//  FT_BRIDGE_MISO pin: FT_BRIDGE I/O Master 2 SPI MISO signal.
+//
+//*****************************************************************************
+const am_hal_gpio_pincfg_t g_AM_BSP_GPIO_FT_BRIDGE_MISO =
+{
+    .uFuncSel            = AM_HAL_PIN_25_M2MISO,
+    .bIomMSPIn           = 1,
+    .uIOMnum             = 2
+};
+
+//*****************************************************************************
+//
+//  FT_BRIDGE_SS pin: FT_BRIDGE I/O Master 2 slave select.  IOM2 CE3 shared with the Cygnus board's FTDI device.
+//
+//*****************************************************************************
+const am_hal_gpio_pincfg_t g_AM_BSP_GPIO_FT_BRIDGE_SS =
 {
     .uFuncSel            = AM_HAL_PIN_15_NCE15,
     .eDriveStrength      = AM_HAL_GPIO_PIN_DRIVESTRENGTH_12MA,
@@ -433,44 +472,6 @@ const am_hal_gpio_pincfg_t g_AM_BSP_GPIO_IOM2_CS =
     .uIOMnum             = 2,
     .uNCE                = 3,
     .eCEpol              = AM_HAL_GPIO_PIN_CEPOL_ACTIVELOW
-};
-
-//*****************************************************************************
-//
-//  IOM2_MISO pin: I/O Master 2 SPI MISO signal.
-//
-//*****************************************************************************
-const am_hal_gpio_pincfg_t g_AM_BSP_GPIO_IOM2_MISO =
-{
-    .uFuncSel            = AM_HAL_PIN_25_M2MISO,
-    .bIomMSPIn           = 1,
-    .uIOMnum             = 2
-};
-
-//*****************************************************************************
-//
-//  IOM2_MOSI pin: I/O Master 2 SPI MOSI signal.
-//
-//*****************************************************************************
-const am_hal_gpio_pincfg_t g_AM_BSP_GPIO_IOM2_MOSI =
-{
-    .uFuncSel            = AM_HAL_PIN_28_M2MOSI,
-    .eDriveStrength      = AM_HAL_GPIO_PIN_DRIVESTRENGTH_12MA,
-    .bIomMSPIn           = 1,
-    .uIOMnum             = 2
-};
-
-//*****************************************************************************
-//
-//  IOM2_SCK pin: I/O Master 2 SPI SCK signal.
-//
-//*****************************************************************************
-const am_hal_gpio_pincfg_t g_AM_BSP_GPIO_IOM2_SCK =
-{
-    .uFuncSel            = AM_HAL_PIN_27_M2SCK,
-    .eDriveStrength      = AM_HAL_GPIO_PIN_DRIVESTRENGTH_12MA,
-    .bIomMSPIn           = 1,
-    .uIOMnum             = 2
 };
 
 //*****************************************************************************
@@ -768,7 +769,7 @@ const am_hal_gpio_pincfg_t g_AM_BSP_GPIO_IOM5_SDA =
 //*****************************************************************************
 const am_hal_gpio_pincfg_t g_AM_BSP_GPIO_MSPI0_CE0 =
 {
-    .uFuncSel            = AM_HAL_PIN_37_NCE37,
+    .uFuncSel            = AM_HAL_PIN_28_NCE28,
     .eDriveStrength      = AM_HAL_GPIO_PIN_DRIVESTRENGTH_12MA,
     .eGPOutcfg           = AM_HAL_GPIO_PIN_OUTCFG_PUSHPULL,
     .eGPInput            = AM_HAL_GPIO_PIN_INPUT_NONE,
@@ -786,14 +787,14 @@ const am_hal_gpio_pincfg_t g_AM_BSP_GPIO_MSPI0_CE0 =
 //*****************************************************************************
 const am_hal_gpio_pincfg_t g_AM_BSP_GPIO_MSPI0_CE1 =
 {
-    .uFuncSel            = AM_HAL_PIN_12_NCE12,
+    .uFuncSel            = AM_HAL_PIN_46_NCE46,
     .eDriveStrength      = AM_HAL_GPIO_PIN_DRIVESTRENGTH_12MA,
     .eGPOutcfg           = AM_HAL_GPIO_PIN_OUTCFG_PUSHPULL,
     .eGPInput            = AM_HAL_GPIO_PIN_INPUT_NONE,
     .eIntDir             = AM_HAL_GPIO_PIN_INTDIR_LO2HI,
     .bIomMSPIn           = 0,
     .uIOMnum             = 0,
-    .uNCE                = 0,
+    .uNCE                = 1,
     .eCEpol              = AM_HAL_GPIO_PIN_CEPOL_ACTIVELOW
 };
 
@@ -1151,12 +1152,24 @@ const am_hal_gpio_pincfg_t g_AM_BSP_GPIO_MSPI2_SCK =
 
 //*****************************************************************************
 //
+//  DISPLAY_PWRCTRL pin: Display power control.
+//
+//*****************************************************************************
+const am_hal_gpio_pincfg_t g_AM_BSP_GPIO_DISPLAY_PWRCTRL =
+{
+    .uFuncSel            = AM_HAL_PIN_39_GPIO,
+    .eDriveStrength      = AM_HAL_GPIO_PIN_DRIVESTRENGTH_2MA,
+    .eGPOutcfg           = AM_HAL_GPIO_PIN_OUTCFG_PUSHPULL
+};
+
+//*****************************************************************************
+//
 //  DISPLAY_TE pin: Display TE signal.
 //
 //*****************************************************************************
 const am_hal_gpio_pincfg_t g_AM_BSP_GPIO_DISPLAY_TE =
 {
-    .uFuncSel            = AM_HAL_PIN_72_GPIO,
+    .uFuncSel            = AM_HAL_PIN_38_GPIO,
     .eDriveStrength      = AM_HAL_GPIO_PIN_DRIVESTRENGTH_2MA,
     .eGPInput            = AM_HAL_GPIO_PIN_INPUT_ENABLE,
     .eIntDir             = AM_HAL_GPIO_PIN_INTDIR_LO2HI
@@ -1169,7 +1182,43 @@ const am_hal_gpio_pincfg_t g_AM_BSP_GPIO_DISPLAY_TE =
 //*****************************************************************************
 const am_hal_gpio_pincfg_t g_AM_BSP_GPIO_DISPLAY_RESET =
 {
-    .uFuncSel            = AM_HAL_PIN_73_GPIO,
+    .uFuncSel            = AM_HAL_PIN_11_GPIO,
+    .eDriveStrength      = AM_HAL_GPIO_PIN_DRIVESTRENGTH_2MA,
+    .eGPOutcfg           = AM_HAL_GPIO_PIN_OUTCFG_PUSHPULL
+};
+
+//*****************************************************************************
+//
+//  DISPLAY_PVIO_EN pin: Display reset control.
+//
+//*****************************************************************************
+const am_hal_gpio_pincfg_t g_AM_BSP_GPIO_DISPLAY_PVIO_EN =
+{
+    .uFuncSel            = AM_HAL_PIN_40_GPIO,
+    .eDriveStrength      = AM_HAL_GPIO_PIN_DRIVESTRENGTH_2MA,
+    .eGPOutcfg           = AM_HAL_GPIO_PIN_OUTCFG_PUSHPULL
+};
+
+//*****************************************************************************
+//
+//  DISPLAY_P3V3_EN pin: Display reset control.
+//
+//*****************************************************************************
+const am_hal_gpio_pincfg_t g_AM_BSP_GPIO_DISPLAY_P3V3_EN =
+{
+    .uFuncSel            = AM_HAL_PIN_31_GPIO,
+    .eDriveStrength      = AM_HAL_GPIO_PIN_DRIVESTRENGTH_2MA,
+    .eGPOutcfg           = AM_HAL_GPIO_PIN_OUTCFG_PUSHPULL
+};
+
+//*****************************************************************************
+//
+//  DISPLAY_OLED_EN pin: Display reset control.
+//
+//*****************************************************************************
+const am_hal_gpio_pincfg_t g_AM_BSP_GPIO_DISPLAY_OLED_EN =
+{
+    .uFuncSel            = AM_HAL_PIN_49_GPIO,
     .eDriveStrength      = AM_HAL_GPIO_PIN_DRIVESTRENGTH_2MA,
     .eGPOutcfg           = AM_HAL_GPIO_PIN_OUTCFG_PUSHPULL
 };
@@ -1182,7 +1231,6 @@ const am_hal_gpio_pincfg_t g_AM_BSP_GPIO_DISPLAY_RESET =
 const am_hal_gpio_pincfg_t g_AM_BSP_GPIO_IOS_CE =
 {
     .uFuncSel            = AM_HAL_PIN_3_SLnCE,
-    .eDriveStrength      = AM_HAL_GPIO_PIN_DRIVESTRENGTH_12MA,
     .eGPInput            = AM_HAL_GPIO_PIN_INPUT_ENABLE,
     .uNCE                = 0,
     .eCEpol              = AM_HAL_GPIO_PIN_CEPOL_ACTIVELOW
@@ -1195,7 +1243,8 @@ const am_hal_gpio_pincfg_t g_AM_BSP_GPIO_IOS_CE =
 //*****************************************************************************
 const am_hal_gpio_pincfg_t g_AM_BSP_GPIO_IOS_MISO =
 {
-    .uFuncSel            = AM_HAL_PIN_2_SLMISO
+    .uFuncSel            = AM_HAL_PIN_2_SLMISO,
+    .eDriveStrength      = AM_HAL_GPIO_PIN_DRIVESTRENGTH_12MA
 };
 
 //*****************************************************************************
@@ -1206,7 +1255,6 @@ const am_hal_gpio_pincfg_t g_AM_BSP_GPIO_IOS_MISO =
 const am_hal_gpio_pincfg_t g_AM_BSP_GPIO_IOS_MOSI =
 {
     .uFuncSel            = AM_HAL_PIN_1_SLMOSI,
-    .eDriveStrength      = AM_HAL_GPIO_PIN_DRIVESTRENGTH_12MA,
     .eGPInput            = AM_HAL_GPIO_PIN_INPUT_ENABLE
 };
 
@@ -1218,7 +1266,6 @@ const am_hal_gpio_pincfg_t g_AM_BSP_GPIO_IOS_MOSI =
 const am_hal_gpio_pincfg_t g_AM_BSP_GPIO_IOS_SCK =
 {
     .uFuncSel            = AM_HAL_PIN_0_SLSCK,
-    .eDriveStrength      = AM_HAL_GPIO_PIN_DRIVESTRENGTH_12MA,
     .eGPInput            = AM_HAL_GPIO_PIN_INPUT_ENABLE
 };
 
@@ -1230,7 +1277,6 @@ const am_hal_gpio_pincfg_t g_AM_BSP_GPIO_IOS_SCK =
 const am_hal_gpio_pincfg_t g_AM_BSP_GPIO_IOS_SCL =
 {
     .uFuncSel            = AM_HAL_PIN_0_SLSCL,
-    .eDriveStrength      = AM_HAL_GPIO_PIN_DRIVESTRENGTH_12MA,
     .eGPInput            = AM_HAL_GPIO_PIN_INPUT_ENABLE
 };
 
@@ -1243,7 +1289,6 @@ const am_hal_gpio_pincfg_t g_AM_BSP_GPIO_IOS_SDA =
 {
     .uFuncSel            = AM_HAL_PIN_1_SLSDAWIR3,
     .ePullup             = AM_HAL_GPIO_PIN_PULLUP_1_5K,
-    .eDriveStrength      = AM_HAL_GPIO_PIN_DRIVESTRENGTH_12MA,
     .eGPOutcfg           = AM_HAL_GPIO_PIN_OUTCFG_OPENDRAIN
 };
 
@@ -1331,24 +1376,6 @@ const am_hal_gpio_pincfg_t g_AM_BSP_GPIO_SWDCK =
 const am_hal_gpio_pincfg_t g_AM_BSP_GPIO_SWDIO =
 {
     .uFuncSel            = AM_HAL_PIN_21_SWDIO
-};
-
-//*****************************************************************************
-//
-//  FIREBALL_CE pin: Fireball device test board chip select.
-//
-//*****************************************************************************
-const am_hal_gpio_pincfg_t g_AM_BSP_GPIO_FIREBALL_CE =
-{
-    .uFuncSel            = AM_HAL_PIN_30_NCE30,
-    .eDriveStrength      = AM_HAL_GPIO_PIN_DRIVESTRENGTH_12MA,
-    .eGPOutcfg           = AM_HAL_GPIO_PIN_OUTCFG_PUSHPULL,
-    .eGPInput            = AM_HAL_GPIO_PIN_INPUT_NONE,
-    .eIntDir             = AM_HAL_GPIO_PIN_INTDIR_LO2HI,
-    .bIomMSPIn           = 1,
-    .uIOMnum             = 5,
-    .uNCE                = 3,
-    .eCEpol              = AM_HAL_GPIO_PIN_CEPOL_ACTIVELOW
 };
 
 //*****************************************************************************

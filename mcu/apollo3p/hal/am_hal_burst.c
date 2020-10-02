@@ -13,7 +13,7 @@
 
 //*****************************************************************************
 //
-// Copyright (c) 2020, Ambiq Micro
+// Copyright (c) 2020, Ambiq Micro, Inc.
 // All rights reserved.
 //
 // Redistribution and use in source and binary forms, with or without
@@ -45,7 +45,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
-// This is part of revision 2.4.2 of the AmbiqSuite Development Package.
+// This is part of revision 2.5.1 of the AmbiqSuite Development Package.
 //
 //*****************************************************************************
 
@@ -85,15 +85,6 @@ am_hal_burst_mode_initialize(am_hal_burst_avail_e *peBurstAvail)
     // Enable the Burst Feature Event (DEVPWREVENTEN).
     //
     PWRCTRL->DEVPWREVENTEN_b.BURSTEVEN = 1;
-
-    //
-    // BLE buck is shared by Burst as well
-    // Enable the BLE buck trim values if in use
-    //
-    if (PWRCTRL->SUPPLYSRC_b.BLEBUCKEN)
-    {
-      am_hal_pwrctrl_blebuck_trim();
-    }
 
     //
     // Enable the Burst Functionality (FEATUREENABLE).

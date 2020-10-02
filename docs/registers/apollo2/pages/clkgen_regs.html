@@ -25,7 +25,7 @@
                             <img alt="Logo" src="../resources/am_logo.png" />
                         </td>
                         <td style="padding-left: 0.5em;">
-                            <div id="projectname">Apollo Register Documentation &#160;<span id="projectnumber">v2.4.2</span></div>
+                            <div id="projectname">Apollo Register Documentation &#160;<span id="projectnumber">v${version}</span></div>
                         </td>
                     </tr>
                 </tbody>
@@ -159,17 +159,6 @@
                     <tr id="row_0_0_">
                         <td class="entry">
                             <span style="width:32px;display:inline-block;">&#160;</span>
-                            <span class="h5">0x00000024:</span>
-                        </td>
-                        <td class="entry">
-                            <span style="width:32px;display:inline-block;">&#160;</span>
-                            <a class="el" href="#HFVAL" target="_self">HFVAL - HFADJ readback</a>
-                        </td>
-                    </tr>
-
-                    <tr id="row_0_0_">
-                        <td class="entry">
-                            <span style="width:32px;display:inline-block;">&#160;</span>
                             <span class="h5">0x00000028:</span>
                         </td>
                         <td class="entry">
@@ -208,17 +197,6 @@
                         <td class="entry">
                             <span style="width:32px;display:inline-block;">&#160;</span>
                             <a class="el" href="#UARTEN" target="_self">UARTEN - UART Enable</a>
-                        </td>
-                    </tr>
-
-                    <tr id="row_0_0_">
-                        <td class="entry">
-                            <span style="width:32px;display:inline-block;">&#160;</span>
-                            <span class="h5">0x00000038:</span>
-                        </td>
-                        <td class="entry">
-                            <span style="width:32px;display:inline-block;">&#160;</span>
-                            <a class="el" href="#FRCHFRC" target="_self">FRCHFRC - Force HFRC On</a>
                         </td>
                     </tr>
 
@@ -966,7 +944,7 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                             <td>5:0</td>
                             <td>CKSEL</td>
                             <td>RW</td>
-                            <td>CLKOUT signal select<br><br>
+                            <td>CLKOUT signal select.  Note that HIGH_DRIVE should be selected if any high frequencies (such as from HFRC) are selected for CLKOUT.<br><br>
                                  LFRC                 = 0x0 - LFRC<br>
                              XT_DIV2              = 0x1 - XT / 2<br>
                              XT_DIV4              = 0x2 - XT / 4<br>
@@ -978,13 +956,13 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                              XT                   = 0x17 - XT<br>
                              CG_100Hz             = 0x18 - 100 Hz as selected in CLKGEN<br>
                              HFRC                 = 0x19 - HFRC<br>
-                             HFRC_DIV2            = 0x1A - HFRC / 2<br>
-                             HFRC_DIV4            = 0x1B - HFRC / 4<br>
-                             HFRC_DIV8            = 0x1C - HFRC / 8<br>
-                             HFRC_DIV32           = 0x1D - HFRC / 32<br>
-                             HFRC_DIV64           = 0x1E - HFRC / 64<br>
-                             HFRC_DIV128          = 0x1F - HFRC / 128<br>
-                             HFRC_DIV256          = 0x20 - HFRC / 256<br>
+                             HFRC_DIV4            = 0x1A - HFRC / 4<br>
+                             HFRC_DIV8            = 0x1B - HFRC / 8<br>
+                             HFRC_DIV16           = 0x1C - HFRC / 16<br>
+                             HFRC_DIV64           = 0x1D - HFRC / 64<br>
+                             HFRC_DIV128          = 0x1E - HFRC / 128<br>
+                             HFRC_DIV256          = 0x1F - HFRC / 256<br>
+                             HFRC_DIV512          = 0x20 - HFRC / 512<br>
                              FLASH_CLK            = 0x22 - Flash Clock<br>
                              LFRC_DIV2            = 0x23 - LFRC / 2<br>
                              LFRC_DIV32           = 0x24 - LFRC / 32<br>
@@ -1583,130 +1561,6 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
 
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 id="HFVAL" class="panel-title">HFVAL - HFADJ readback</h3>
-            </div>
-            <div class="panel-body">
-                <h3>Address:</h3>
-                <table style="margin:10px">
-                    <tr id="row_0_0_">
-                        <td class="entry">
-                            <span style="width:32px;display:inline-block;">&#160;</span>
-                            <span class="h5">Instance 0 Address:</span>
-                        </td>
-                        <td class="entry">
-                            <span style="width:32px;display:inline-block;">&#160;</span>
-                            <span class="h5">0x40004024</span>
-                        </td>
-                    </tr>
-
-                </table>
-                <h3>Description:</h3>
-                <p>HFADJ readback</p>
-                <h3>Example Macro Usage:</h3>
-                <pre style="margin:10px" class="language-pascal"><span style='color:#3f7f59; '>//
-// All macro-based register writes follow the same basic format. For
-// single-instance modules, you may use the simpler AM_REG macro. For
-// multi-instance macros, you will need to specify the instance number using
-// the AM_REGn macro format.
-//
-// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
-// AM_REGn(&lt;MODULE&gt;, &lt;INSTANCE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
-//
-// For registers that do not have specific enumeration values, you may use this alternate format instead.
-//
-// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;(&lt;NUMBER&gt;);
-//
-// For example, the following three lines of code are equivalent methods of
-// writing the value for 12MHZ to the CLKSEL field in the ADC_CFG register.
-//</span>
-AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
-AM_REGn(ADC, 0, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
-AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
-                <h3>Register Fields:</h3>
-                <table style="margin:10px" class="table table-bordered table-condensed">
-                    <thead>
-                        <tr>
-                            <th>31</th>
-                            <th>30</th>
-                            <th>29</th>
-                            <th>28</th>
-                            <th>27</th>
-                            <th>26</th>
-                            <th>25</th>
-                            <th>24</th>
-                            <th>23</th>
-                            <th>22</th>
-                            <th>21</th>
-                            <th>20</th>
-                            <th>19</th>
-                            <th>18</th>
-                            <th>17</th>
-                            <th>16</th>
-                            <th>15</th>
-                            <th>14</th>
-                            <th>13</th>
-                            <th>12</th>
-                            <th>11</th>
-                            <th>10</th>
-                            <th>9</th>
-                            <th>8</th>
-                            <th>7</th>
-                            <th>6</th>
-                            <th>5</th>
-                            <th>4</th>
-                            <th>3</th>
-                            <th>2</th>
-                            <th>1</th>
-                            <th>0</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td align="center" colspan="21">RSVD
-                                <br>0x0</td>
-
-                            <td align="center" colspan="11">HFTUNERB
-                                <br>0x0</td>
-
-                        </tr>
-                    </tbody>
-                </table>
-                <br>
-
-                <table style="margin:10px" class="table table-bordered table-condensed">
-                    <thead>
-                        <tr>
-                            <th>Bits</th>
-                            <th>Name</th>
-                            <th>RW</th>
-                            <th>Description</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>31:11</td>
-                            <td>RSVD</td>
-                            <td>RO</td>
-                            <td>RESERVED<br><br>
-                                </td>
-                        </tr>
-
-                        <tr>
-                            <td>10:0</td>
-                            <td>HFTUNERB</td>
-                            <td>RO</td>
-                            <td>Current HFTUNE value<br><br>
-                                </td>
-                        </tr>
-
-                    </tbody>
-                </table>
-                <br>
-            </div>
-        </div>
-
-        <div class="panel panel-default">
-            <div class="panel-heading">
                 <h3 id="CLOCKEN" class="panel-title">CLOCKEN - Clock Enable Status</h3>
             </div>
             <div class="panel-body">
@@ -1809,7 +1663,38 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                             <td>CLOCKEN</td>
                             <td>RO</td>
                             <td>Clock enable status<br><br>
-                                </td>
+                                 ADC_CLKEN            = 0x1 - Clock enable for the ADC.<br>
+                             CTIMER_CLKEN         = 0x2 - Clock enable for the CTIMER.<br>
+                             CTIMER0A_CLKEN       = 0x4 - Clock enable for the CTIMER0A.<br>
+                             CTIMER0B_CLKEN       = 0x8 - Clock enable for the CTIMER0B.<br>
+                             CTIMER1A_CLKEN       = 0x10 - Clock enable for the CTIMER1A.<br>
+                             CTIMER1B_CLKEN       = 0x20 - Clock enable for the CTIMER1B.<br>
+                             CTIMER2A_CLKEN       = 0x40 - Clock enable for the CTIMER2A.<br>
+                             CTIMER2B_CLKEN       = 0x80 - Clock enable for the CTIMER2B.<br>
+                             CTIMER3A_CLKEN       = 0x100 - Clock enable for the CTIMER3A.<br>
+                             CTIMER3B_CLKEN       = 0x200 - Clock enable for the CTIMER3B.<br>
+                             IOMSTR0_CLKEN        = 0x400 - Clock enable for the IO Master 0.<br>
+                             IOMSTR1_CLKEN        = 0x800 - Clock enable for the IO Master 1.<br>
+                             IOMSTR2_CLKEN        = 0x1000 - Clock enable for the IO Master 2.<br>
+                             IOMSTR3_CLKEN        = 0x2000 - Clock enable for the IO Master 3.<br>
+                             IOMSTR4_CLKEN        = 0x4000 - Clock enable for the IO Master 4.<br>
+                             IOMSTR5_CLKEN        = 0x8000 - Clock enable for the IO Master 5.<br>
+                             IOMSTRIFC0_CLKEN     = 0x10000 - Clock enable for the IO Master IFC0.<br>
+                             IOMSTRIFC1_CLKEN     = 0x20000 - Clock enable for the IO Master IFC1.<br>
+                             IOMSTRIFC2_CLKEN     = 0x40000 - Clock enable for the IO Master IFC2.<br>
+                             IOMSTRIFC3_CLKEN     = 0x80000 - Clock enable for the IO Master IFC3.<br>
+                             IOMSTRIFC4_CLKEN     = 0x100000 - Clock enable for the IO Master IFC4.<br>
+                             IOMSTRIFC5_CLKEN     = 0x200000 - Clock enable for the IO Master IFC5.<br>
+                             IOSLAVE_CLKEN        = 0x400000 - Clock enable for the IO Slave.<br>
+                             PDM_CLKEN            = 0x800000 - Clock enable for the PDM.<br>
+                             PDMIFC_CLKEN         = 0x1000000 - Clock enable for the PDM IFC.<br>
+                             RSTGEN_CLKEN         = 0x2000000 - Clock enable for the RSTGEN.<br>
+                             SRAM_WIPE_CLKEN      = 0x4000000 - Clock enable for the SRAM_WIPE.<br>
+                             STIMER_CLKEN         = 0x8000000 - Clock enable for the STIMER.<br>
+                             STIMER_CNT_CLKEN     = 0x10000000 - Clock enable for the STIMER_CNT.<br>
+                             TPIU_CLKEN           = 0x20000000 - Clock enable for the TPIU.<br>
+                             UART0_HCLK_CLKEN     = 0x40000000 - Clock enable for the UART0_HCLK.<br>
+                             UART0HF_CLKEN        = 0x80000000 - Clock enable for the UART0HF.</td>
                         </tr>
 
                     </tbody>
@@ -1922,7 +1807,11 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                             <td>CLOCKEN2</td>
                             <td>RO</td>
                             <td>Clock enable status 2<br><br>
-                                </td>
+                                 UART1_HCLK_CLKEN     = 0x1 - Clock enable for the UART1_HCLK.<br>
+                             UART1HF_CLKEN        = 0x2 - Clock enable for the UART1HF.<br>
+                             WDT_CLKEN            = 0x4 - Clock enable for the WDT.<br>
+                             XT_32KHz_EN          = 0x40000000 - Clock enable for the XT_32KHz.<br>
+                             FRCHFRC              = 0x80000000 - Force HFRC On Status.</td>
                         </tr>
 
                     </tbody>
@@ -2035,7 +1924,14 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                             <td>CLOCKEN3</td>
                             <td>RO</td>
                             <td>Clock enable status 3<br><br>
-                                </td>
+                                 periph_all_xtal_en   = 0x1000000 - At least 1 peripherial is requesting for XTAL Clock<br>
+                             periph_all_hfrc_en   = 0x2000000 - At least 1 peripherial is requesting for HFRC Clock<br>
+                             HFADJEN              = 0x4000000 - HFRC Adjust Enable Status<br>
+                             HFRC_en_out          = 0x8000000 - HFRC is enabled during adjustment status<br>
+                             RTC_SOURCE           = 0x10000000 - Selects the RTC oscillator (0 => LFRC, 1 => XT)<br>
+                             XTAL_EN              = 0x20000000 - XT is enabled Status<br>
+                             HFRC_EN              = 0x40000000 - HFRC is enabled Status<br>
+                             FLASHCLK_EN          = 0x80000000 - Flash Clock is enabled Status</td>
                         </tr>
 
                     </tbody>
@@ -2188,131 +2084,6 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                              EN                   = 0x1 - Enable the UART0 system clock<br>
                              REDUCE_FREQ          = 0x2 - Run UART_Hclk at the same frequency as UART_hfclk<br>
                              EN_POWER_SAV         = 0x3 - Enable UART_hclk to reduce to UART_hfclk at low power mode</td>
-                        </tr>
-
-                    </tbody>
-                </table>
-                <br>
-            </div>
-        </div>
-
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 id="FRCHFRC" class="panel-title">FRCHFRC - Force HFRC On</h3>
-            </div>
-            <div class="panel-body">
-                <h3>Address:</h3>
-                <table style="margin:10px">
-                    <tr id="row_0_0_">
-                        <td class="entry">
-                            <span style="width:32px;display:inline-block;">&#160;</span>
-                            <span class="h5">Instance 0 Address:</span>
-                        </td>
-                        <td class="entry">
-                            <span style="width:32px;display:inline-block;">&#160;</span>
-                            <span class="h5">0x40004038</span>
-                        </td>
-                    </tr>
-
-                </table>
-                <h3>Description:</h3>
-                <p>Force HFRC On</p>
-                <h3>Example Macro Usage:</h3>
-                <pre style="margin:10px" class="language-pascal"><span style='color:#3f7f59; '>//
-// All macro-based register writes follow the same basic format. For
-// single-instance modules, you may use the simpler AM_REG macro. For
-// multi-instance macros, you will need to specify the instance number using
-// the AM_REGn macro format.
-//
-// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
-// AM_REGn(&lt;MODULE&gt;, &lt;INSTANCE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
-//
-// For registers that do not have specific enumeration values, you may use this alternate format instead.
-//
-// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;(&lt;NUMBER&gt;);
-//
-// For example, the following three lines of code are equivalent methods of
-// writing the value for 12MHZ to the CLKSEL field in the ADC_CFG register.
-//</span>
-AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
-AM_REGn(ADC, 0, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
-AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
-                <h3>Register Fields:</h3>
-                <table style="margin:10px" class="table table-bordered table-condensed">
-                    <thead>
-                        <tr>
-                            <th>31</th>
-                            <th>30</th>
-                            <th>29</th>
-                            <th>28</th>
-                            <th>27</th>
-                            <th>26</th>
-                            <th>25</th>
-                            <th>24</th>
-                            <th>23</th>
-                            <th>22</th>
-                            <th>21</th>
-                            <th>20</th>
-                            <th>19</th>
-                            <th>18</th>
-                            <th>17</th>
-                            <th>16</th>
-                            <th>15</th>
-                            <th>14</th>
-                            <th>13</th>
-                            <th>12</th>
-                            <th>11</th>
-                            <th>10</th>
-                            <th>9</th>
-                            <th>8</th>
-                            <th>7</th>
-                            <th>6</th>
-                            <th>5</th>
-                            <th>4</th>
-                            <th>3</th>
-                            <th>2</th>
-                            <th>1</th>
-                            <th>0</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td align="center" colspan="31">RSVD
-                                <br>0x0</td>
-
-                            <td align="center" colspan="1">FRCHFRC
-                                <br>0x0</td>
-
-                        </tr>
-                    </tbody>
-                </table>
-                <br>
-
-                <table style="margin:10px" class="table table-bordered table-condensed">
-                    <thead>
-                        <tr>
-                            <th>Bits</th>
-                            <th>Name</th>
-                            <th>RW</th>
-                            <th>Description</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>31:1</td>
-                            <td>RSVD</td>
-                            <td>RO</td>
-                            <td>RESERVED<br><br>
-                                </td>
-                        </tr>
-
-                        <tr>
-                            <td>0</td>
-                            <td>FRCHFRC</td>
-                            <td>RW</td>
-                            <td>Force HFRC On .<br><br>
-                                 NOFRC                = 0x0 - HFRC stops in deep sleep mode<br>
-                             FRC                  = 0x1 - HFRC runs in deep sleep mode</td>
                         </tr>
 
                     </tbody>
@@ -2957,7 +2728,7 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
             <small>
                 AmbiqSuite Register Documentation&nbsp;
                 <a href="http://www.ambiqmicro.com">
-                <img class="footer" src="../resources/ambiqmicro_logo.png" alt="Ambiq Micro"/></a>&nbsp&nbsp Copyright &copy; 2014&nbsp&nbsp<br />
+                <img class="footer" src="../resources/ambiqmicro_logo.png" alt="Ambiq Micro"/></a>&nbsp&nbsp Copyright &copy; 2020&nbsp&nbsp<br />
                 This documentation is licensed and distributed under the <a rel="license" href="http://opensource.org/licenses/BSD-3-Clause">BSD 3-Clause License</a>.&nbsp&nbsp<br/>
             </small>
         </div>

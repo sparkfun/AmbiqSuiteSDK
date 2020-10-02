@@ -11,7 +11,7 @@
 
 //*****************************************************************************
 //
-// Copyright (c) 2020, Ambiq Micro
+// Copyright (c) 2020, Ambiq Micro, Inc.
 // All rights reserved.
 //
 // Redistribution and use in source and binary forms, with or without
@@ -43,7 +43,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
-// This is part of revision 2.4.2 of the AmbiqSuite Development Package.
+// This is part of revision 2.5.1 of the AmbiqSuite Development Package.
 //
 //*****************************************************************************
 
@@ -73,6 +73,10 @@
 #include "ancs_api.h"
 
 #include "am_util.h"
+
+#if defined(AMS_ENABLE) && (AMS_ENABLE == 1)
+#include "amsc_api.h"
+#endif
 
 static volatile bool ph_incoming = false;
 static uint32_t ph_notiuid;
@@ -115,7 +119,7 @@ static struct
   wsfHandlerId_t    handlerId;
   uint8_t           discState;
   uint16_t          connInterval;     /* connection interval */
-} ancsCb;
+}ancsCb;
 
 /**************************************************************************************************
   Configurable Parameters
@@ -204,12 +208,19 @@ static const uint8_t ancsAdvDataDisc[] =
     UINT16_TO_BYTES(ATT_UUID_DEVICE_INFO_SERVICE),
 
     /*! device name */
-    5,                                     /*! length */
+    12,                                    /*! length */
     DM_ADV_TYPE_LOCAL_NAME,                /*! AD type */
     'A',                                   //advertise data has to be shorter than 31 bytes.
+    'M',
+    '-',
+    'A',
     'N',
     'C',
-    'S'
+    'S',
+    '/',
+    'A',
+    'M',
+    'S',
 };
 
 /*! scan data, discoverable mode */
@@ -230,14 +241,26 @@ enum
 {
   ANCS_DISC_GATT_SVC,      /* GATT service */
   ANCS_DISC_ANCS_SVC,      /* discover ANCS service */
+#if defined(AMS_ENABLE) && (AMS_ENABLE == 1)
+  DISC_AMS_SVC,            /* discover AMS service*/
+#endif
   ANCS_DISC_SVC_MAX        /* Discovery complete */
 };
-
 
 /*! Start of each service's handles in the the handle list */
 #define ANCS_DISC_GATT_START        0
 #define ANCS_DISC_ANCS_START        (ANCS_DISC_GATT_START + GATT_HDL_LIST_LEN)
+
+#if defined(AMS_ENABLE) && (AMS_ENABLE == 1)
+#define DISC_AMS_START      (ANCS_DISC_ANCS_START + ANCC_HDL_LIST_LEN)
+#define ANCS_DISC_HDL_LIST_LEN      (DISC_AMS_START + AMSC_HDL_LIST_LEN)
+uint16_t *pAmsHdlList = &ancsCb.hdlList[DISC_AMS_START];
+static const uint8_t amsRmtCmdCccNtfVal[] = {UINT16_TO_BYTES(ATT_CLIENT_CFG_NOTIFY)};
+static const uint8_t amsUpdtEntyCccNtfVal[] = {UINT16_TO_BYTES(ATT_CLIENT_CFG_NOTIFY)};
+#else
 #define ANCS_DISC_HDL_LIST_LEN      (ANCS_DISC_ANCS_START + ANCC_HDL_LIST_LEN)
+#endif
+
 
 /*! Pointers into handle list for each service's handles */
 static uint16_t *pAncsGattHdlList = &ancsCb.hdlList[ANCS_DISC_GATT_START];
@@ -268,6 +291,10 @@ static const attcDiscCfg_t ancsDiscCfgList[] =
 
   /* Write:  ANCS setting ccc descriptor */
   {ancsCccNtfVal, sizeof(ancsCccNtfVal), (ANCC_DATA_SOURCE_CCC_HDL_IDX + ANCS_DISC_ANCS_START)},
+#if defined(AMS_ENABLE) && (AMS_ENABLE == 1)
+  {amsRmtCmdCccNtfVal, sizeof(amsRmtCmdCccNtfVal), (AMSC_REMOTE_COMMAND_CCC_HDL_IDX + DISC_AMS_START)},
+  {amsUpdtEntyCccNtfVal, sizeof(amsUpdtEntyCccNtfVal), (AMSC_ENTITY_UPDATE_CCC_HDL_IDX + DISC_AMS_START)},
+#endif
 };
 
 /* Characteristic configuration list length */
@@ -448,6 +475,15 @@ static void ancsValueUpdate(attEvt_t *pMsg)
     {
         AnccNtfValueUpdate(pAncsAnccHdlList, pMsg, ANCC_ACTION_TIMER_IND);
     }
+#if defined(AMS_ENABLE) && (AMS_ENABLE == 1)
+    else if ((pMsg->handle == pAmsHdlList[AMSC_ENTITY_ATTRIBUTE_HDL_IDX])   ||
+             (pMsg->handle == pAmsHdlList[AMSC_ENTITY_UPDATE_HDL_IDX])      ||
+             (pMsg->handle == pAmsHdlList[AMSC_REMOTE_COMMAND_HDL_IDX]) )
+    {
+
+        AmscValueUpdate(pAmsHdlList, pMsg);
+    }
+#endif
     else
     {
         APP_TRACE_INFO0("Data received from other other handle");
@@ -478,6 +514,12 @@ static void ancsBtnCback(uint8_t btn)
     /* button actions when connected */
     if ((connId = AppConnIsOpen()) != DM_CONN_ID_NONE)
     {
+#if defined(AMS_ENABLE) && (AMS_ENABLE == 1)
+        if ( AmscGetPeerDevAmsStatus() == AMS_SUPPORT_SUCCESS )
+        {
+            AmscOnBtnCback(connId, btn);
+        }
+#endif
         switch (btn)
         {
             case APP_UI_BTN_1_DOWN:
@@ -569,15 +611,40 @@ static void ancsDiscCback(dmConnId_t connId, uint8_t status)
 
     case APP_DISC_FAILED:
       APP_TRACE_INFO1("!!!!!Disc Failed. discState = %d!!!!!", ancsCb.discState);
+
+#if defined(AMS_ENABLE) && (AMS_ENABLE == 1)
+      if ( ancsCb.discState == DISC_AMS_SVC )
+      {
+          AmscSetPeerDevAmsStatus(AMS_SUPPORT_FAIL);
+      }
+#endif
+
     case APP_DISC_CMPL:
       //expecting only ancs service to be discovered
+
+#if defined(AMS_ENABLE) && (AMS_ENABLE == 1)
+      if ( (ancsCb.discState == DISC_AMS_SVC ) &&
+           (AmscGetPeerDevAmsStatus() == AMS_SUPPORT_INVALID) )
+      {
+          AmscSetPeerDevAmsStatus(AMS_SUPPORT_SUCCESS);
+      }
+#endif
       ancsCb.discState++;
+      APP_TRACE_INFO1("APP_DISC_CMPL, discState=%d", ancsCb.discState);
       if (ancsCb.discState == ANCS_DISC_ANCS_SVC)
       {
         /* discover ANCS service */
         AnccSvcDiscover(connId, pAncsAnccHdlList);
         APP_TRACE_INFO0("Discovering ANCS.");
       }
+#if defined(AMS_ENABLE) && (AMS_ENABLE == 1)
+      else if ( ancsCb.discState == DISC_AMS_SVC )
+      {
+          /* discover AMS service */
+          AmscDiscover(connId, pAmsHdlList);
+          APP_TRACE_INFO0("Discovering AMS.");
+      }
+#endif
       else
       {
         /* discovery complete */
@@ -600,6 +667,12 @@ static void ancsDiscCback(dmConnId_t connId, uint8_t status)
     case APP_DISC_CFG_CMPL:
       AppDiscComplete(connId, status);
       APP_TRACE_INFO0("Finished Disc CFG.");
+#if defined(AMS_ENABLE) && (AMS_ENABLE == 1)
+        if ( AmscGetPeerDevAmsStatus() == AMS_SUPPORT_SUCCESS )
+        {
+            AmscEnityUpdate(connId);
+        }
+#endif
       break;
 
     case APP_DISC_CFG_CONN_START:
@@ -645,7 +718,11 @@ static void ancsProcMsg(ancsMsg_t *pMsg)
           break;
 
         case ATTC_WRITE_RSP:    // write respose after Control point operation.
-            APP_TRACE_INFO0("------------ATTC_WRITE_RSP------------");
+        case ATTC_WRITE_CMD_RSP:
+            APP_TRACE_INFO0("------------ATTC_WRITE_RSP-----------");
+#if defined(AMS_ENABLE) && (AMS_ENABLE == 1)
+            AmscAttcWriteRsp(pAmsHdlList, ((attEvt_t *)pMsg));
+#endif
           break;
 
         case ATTS_HANDLE_VALUE_CNF:
@@ -677,12 +754,20 @@ static void ancsProcMsg(ancsMsg_t *pMsg)
         case DM_CONN_OPEN_IND:
             /* set bondable here to enable bond/pair after disconnect */
             AnccConnOpen(pMsg->hdr.param, pAncsAnccHdlList);
+
+#if defined(AMS_ENABLE) && (AMS_ENABLE == 1)
+            AmscConnOpen(pMsg->hdr.param, pAmsHdlList);
+#endif
             uiEvent = APP_UI_CONN_OPEN;
         break;
 
         case DM_CONN_CLOSE_IND:
             ancsClose(pMsg);
             AnccConnClose();
+
+#if defined(AMS_ENABLE) && (AMS_ENABLE == 1)
+            AmscConnClose();
+#endif
             uiEvent = APP_UI_CONN_CLOSE;
         break;
 

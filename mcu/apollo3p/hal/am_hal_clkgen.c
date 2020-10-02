@@ -13,7 +13,7 @@
 
 // ****************************************************************************
 //
-// Copyright (c) 2020, Ambiq Micro
+// Copyright (c) 2020, Ambiq Micro, Inc.
 // All rights reserved.
 //
 // Redistribution and use in source and binary forms, with or without
@@ -45,7 +45,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
-// This is part of revision 2.4.2 of the AmbiqSuite Development Package.
+// This is part of revision 2.5.1 of the AmbiqSuite Development Package.
 //
 // ****************************************************************************
 
@@ -106,7 +106,7 @@ am_hal_clkgen_control(am_hal_clkgen_control_e eControl, void *pArgs)
 
         case AM_HAL_CLKGEN_CONTROL_XTAL_STOP:
             // Software Workaround to guarantee proper function of HFADJ.
-            if (APOLLO3_B0)
+            if (APOLLO3_GE_B0)
             {
                 MCUCTRL->XTALCTRL_b.XTALICOMPTRIM = 1;
             }

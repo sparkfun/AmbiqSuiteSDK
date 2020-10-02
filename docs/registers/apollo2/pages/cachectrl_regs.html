@@ -1,0 +1,2513 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=9" />
+    <meta name="generator" content="AmbiqMicro" />
+    <title>AmbiqSuite User Guide: AmbiqSuite Apollo Device Register Overview</title>
+    <link href="../resources/tabs.css" rel="stylesheet" type="text/css" />
+    <link href="../resources/bootstrap.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="../resources/jquery.js"></script>
+    <script type="text/javascript" src="../resources/dynsections.js"></script>
+    <link href="search/search.css" rel="stylesheet" type="text/css" />
+    <link href="../resources/customdoxygen.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+    <div id="top">
+        <!-- do not remove this div, it is closed by doxygen! -->
+        <div id="titlearea">
+            <table cellspacing="0" cellpadding="0">
+                <tbody>
+                    <tr style="height: 56px;">
+                        <td id="projectlogo">
+                            <img alt="Logo" src="../resources/am_logo.png" />
+                        </td>
+                        <td style="padding-left: 0.5em;">
+                            <div id="projectname">Apollo Register Documentation &#160;<span id="projectnumber">v${version}</span></div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <!-- end header part -->
+        <div id="navrow1" class="tabs">
+            <ul class="tablist">
+                <li class="current"><a href="../index.html"><span>Main&#160;Page</span></a>
+                </li>
+        </div>
+        </li>
+        </ul>
+    </div>
+    </div>
+    <!-- top -->
+    <!-- window showing the filter options -->
+    <div class="header">
+        <div class="headertitle">
+            <div class="title">CACHECTRL - Flash Cache Controller</div>
+        </div>
+    </div>
+    <!--header-->
+    <body>
+        <br>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title"> CACHECTRL Register Index</h3>
+            </div>
+            <div class="panel-body">
+                <table>
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x00000000:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <a class="el" href="#CACHECFG" target="_self">CACHECFG - Flash Cache Control Register</a>
+                        </td>
+                    </tr>
+
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x00000004:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <a class="el" href="#FLASHCFG" target="_self">FLASHCFG - Flash Control Register</a>
+                        </td>
+                    </tr>
+
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x00000008:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <a class="el" href="#CTRL" target="_self">CTRL - Cache Control</a>
+                        </td>
+                    </tr>
+
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x00000010:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <a class="el" href="#NCR0START" target="_self">NCR0START - Flash Cache Noncachable Region 0 Start Address.</a>
+                        </td>
+                    </tr>
+
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x00000014:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <a class="el" href="#NCR0END" target="_self">NCR0END - Flash Cache Noncachable Region 0 End</a>
+                        </td>
+                    </tr>
+
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x00000018:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <a class="el" href="#NCR1START" target="_self">NCR1START - Flash Cache Noncachable Region 1 Start</a>
+                        </td>
+                    </tr>
+
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x0000001C:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <a class="el" href="#NCR1END" target="_self">NCR1END - Flash Cache Noncachable Region 1 End</a>
+                        </td>
+                    </tr>
+
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x00000030:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <a class="el" href="#CACHEMODE" target="_self">CACHEMODE - Flash Cache Mode Register.  Used to trim performance/power.</a>
+                        </td>
+                    </tr>
+
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x00000040:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <a class="el" href="#DMON0" target="_self">DMON0 - Data Cache Total Accesses</a>
+                        </td>
+                    </tr>
+
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x00000044:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <a class="el" href="#DMON1" target="_self">DMON1 - Data Cache Tag Lookups</a>
+                        </td>
+                    </tr>
+
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x00000048:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <a class="el" href="#DMON2" target="_self">DMON2 - Data Cache Hits</a>
+                        </td>
+                    </tr>
+
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x0000004C:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <a class="el" href="#DMON3" target="_self">DMON3 - Data Cache Line Hits</a>
+                        </td>
+                    </tr>
+
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x00000050:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <a class="el" href="#IMON0" target="_self">IMON0 - Instruction Cache Total Accesses</a>
+                        </td>
+                    </tr>
+
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x00000054:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <a class="el" href="#IMON1" target="_self">IMON1 - Instruction Cache Tag Lookups</a>
+                        </td>
+                    </tr>
+
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x00000058:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <a class="el" href="#IMON2" target="_self">IMON2 - Instruction Cache Hits</a>
+                        </td>
+                    </tr>
+
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x0000005C:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <a class="el" href="#IMON3" target="_self">IMON3 - Instruction Cache Line Hits</a>
+                        </td>
+                    </tr>
+
+                </table>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 id="CACHECFG" class="panel-title">CACHECFG - Flash Cache Control Register</h3>
+            </div>
+            <div class="panel-body">
+                <h3>Address:</h3>
+                <table style="margin:10px">
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">Instance 0 Address:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x40018000</span>
+                        </td>
+                    </tr>
+
+                </table>
+                <h3>Description:</h3>
+                <p>Flash Cache Control Register</p>
+                <h3>Example Macro Usage:</h3>
+                <pre style="margin:10px" class="language-pascal"><span style='color:#3f7f59; '>//
+// All macro-based register writes follow the same basic format. For
+// single-instance modules, you may use the simpler AM_REG macro. For
+// multi-instance macros, you will need to specify the instance number using
+// the AM_REGn macro format.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+// AM_REGn(&lt;MODULE&gt;, &lt;INSTANCE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+//
+// For registers that do not have specific enumeration values, you may use this alternate format instead.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;(&lt;NUMBER&gt;);
+//
+// For example, the following three lines of code are equivalent methods of
+// writing the value for 12MHZ to the CLKSEL field in the ADC_CFG register.
+//</span>
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REGn(ADC, 0, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
+                <h3>Register Fields:</h3>
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>31</th>
+                            <th>30</th>
+                            <th>29</th>
+                            <th>28</th>
+                            <th>27</th>
+                            <th>26</th>
+                            <th>25</th>
+                            <th>24</th>
+                            <th>23</th>
+                            <th>22</th>
+                            <th>21</th>
+                            <th>20</th>
+                            <th>19</th>
+                            <th>18</th>
+                            <th>17</th>
+                            <th>16</th>
+                            <th>15</th>
+                            <th>14</th>
+                            <th>13</th>
+                            <th>12</th>
+                            <th>11</th>
+                            <th>10</th>
+                            <th>9</th>
+                            <th>8</th>
+                            <th>7</th>
+                            <th>6</th>
+                            <th>5</th>
+                            <th>4</th>
+                            <th>3</th>
+                            <th>2</th>
+                            <th>1</th>
+                            <th>0</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td align="center" colspan="7">RSVD
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">ENABLE_MONITOR
+                                <br>0x0</td>
+
+                            <td align="center" colspan="3">RSVD
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">DATA_CLKGATE
+                                <br>0x1</td>
+
+                            <td align="center" colspan="4">SMDLY
+                                <br>0x6</td>
+
+                            <td align="center" colspan="4">DLY
+                                <br>0x6</td>
+
+                            <td align="center" colspan="1">CACHE_LS
+                                <br>0x1</td>
+
+                            <td align="center" colspan="1">CACHE_CLKGATE
+                                <br>0x1</td>
+
+                            <td align="center" colspan="1">DCACHE_ENABLE
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">ICACHE_ENABLE
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">SERIAL
+                                <br>0x0</td>
+
+                            <td align="center" colspan="3">CONFIG
+                                <br>0x5</td>
+
+                            <td align="center" colspan="1">ENABLE_NC1
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">ENABLE_NC0
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">LRU
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">ENABLE
+                                <br>0x0</td>
+
+                        </tr>
+                    </tbody>
+                </table>
+                <br>
+
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>Bits</th>
+                            <th>Name</th>
+                            <th>RW</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>31:25</td>
+                            <td>RSVD</td>
+                            <td>RO</td>
+                            <td>This bitfield is reserved for future use.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>24</td>
+                            <td>ENABLE_MONITOR</td>
+                            <td>RW</td>
+                            <td>Enable Cache Monitoring Stats.  Only enable this for debug/performance analysis since it will consume additional power.  See IMON/DMON registers for data.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>23:21</td>
+                            <td>RSVD</td>
+                            <td>RO</td>
+                            <td>This bitfield is reserved for future use.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>20</td>
+                            <td>DATA_CLKGATE</td>
+                            <td>RW</td>
+                            <td>Enable clock gating of entire cache data array subsystem.  This should be enabled for normal operation.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>19:16</td>
+                            <td>SMDLY</td>
+                            <td>RW</td>
+                            <td>Unused.  Should be left at default value.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>15:12</td>
+                            <td>DLY</td>
+                            <td>RW</td>
+                            <td>Unused.  Should be left at default value.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>11</td>
+                            <td>CACHE_LS</td>
+                            <td>RW</td>
+                            <td>Enable LS (light sleep) of cache RAMs.  This should not be enabled for normal operation.  When this bit is set, the cache's RAMS will be put into light sleep mode while inactive.  NOTE:  if the cache is actively used, this may have an adverse affect on power since entering/exiting LS mode may consume more power than would be saved.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>10</td>
+                            <td>CACHE_CLKGATE</td>
+                            <td>RW</td>
+                            <td>Enable clock gating of individual cache RAMs.  This bit should be enabled for normal operation for lowest power consumption.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>9</td>
+                            <td>DCACHE_ENABLE</td>
+                            <td>RW</td>
+                            <td>Enable Flash Data Caching.  When set to 1, all instruction accesses to flash will be cached.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>8</td>
+                            <td>ICACHE_ENABLE</td>
+                            <td>RW</td>
+                            <td>Enable Flash Instruction Caching.  When set to 1, all instruction accesses to flash will be cached.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>7</td>
+                            <td>SERIAL</td>
+                            <td>RW</td>
+                            <td>Bitfield should always be programmed to 0.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>6:4</td>
+                            <td>CONFIG</td>
+                            <td>RW</td>
+                            <td>Sets the cache configuration.  Only a single configuration of 0x5 is valid.<br><br>
+                                 W2_128B_512E         = 0x5 - Two-way set associative, 128-bit linesize, 512 entries (8 SRAMs active)</td>
+                        </tr>
+
+                        <tr>
+                            <td>3</td>
+                            <td>ENABLE_NC1</td>
+                            <td>RW</td>
+                            <td>Enable Non-cacheable region 1.  See the NCR1 registers to set the region boundaries and size.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>2</td>
+                            <td>ENABLE_NC0</td>
+                            <td>RW</td>
+                            <td>Enable Non-cacheable region 0.  See the NCR0 registers to set the region boundaries and size.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>1</td>
+                            <td>LRU</td>
+                            <td>RW</td>
+                            <td>Sets the cache replacement policy.  0=LRR (least recently replaced), 1=LRU (least recently used).  LRR minimizes writes to the TAG SRAM and is recommended.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>0</td>
+                            <td>ENABLE</td>
+                            <td>RW</td>
+                            <td>Enables the main flash cache controller logic and enables power to the cache RAMs.  Instruction and Data caching need to be enabled independently using the ICACHE_ENABLE and DCACHE_ENABLE bits.<br><br>
+                                </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+                <br>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 id="FLASHCFG" class="panel-title">FLASHCFG - Flash Control Register</h3>
+            </div>
+            <div class="panel-body">
+                <h3>Address:</h3>
+                <table style="margin:10px">
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">Instance 0 Address:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x40018004</span>
+                        </td>
+                    </tr>
+
+                </table>
+                <h3>Description:</h3>
+                <p>Flash Control Register</p>
+                <h3>Example Macro Usage:</h3>
+                <pre style="margin:10px" class="language-pascal"><span style='color:#3f7f59; '>//
+// All macro-based register writes follow the same basic format. For
+// single-instance modules, you may use the simpler AM_REG macro. For
+// multi-instance macros, you will need to specify the instance number using
+// the AM_REGn macro format.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+// AM_REGn(&lt;MODULE&gt;, &lt;INSTANCE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+//
+// For registers that do not have specific enumeration values, you may use this alternate format instead.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;(&lt;NUMBER&gt;);
+//
+// For example, the following three lines of code are equivalent methods of
+// writing the value for 12MHZ to the CLKSEL field in the ADC_CFG register.
+//</span>
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REGn(ADC, 0, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
+                <h3>Register Fields:</h3>
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>31</th>
+                            <th>30</th>
+                            <th>29</th>
+                            <th>28</th>
+                            <th>27</th>
+                            <th>26</th>
+                            <th>25</th>
+                            <th>24</th>
+                            <th>23</th>
+                            <th>22</th>
+                            <th>21</th>
+                            <th>20</th>
+                            <th>19</th>
+                            <th>18</th>
+                            <th>17</th>
+                            <th>16</th>
+                            <th>15</th>
+                            <th>14</th>
+                            <th>13</th>
+                            <th>12</th>
+                            <th>11</th>
+                            <th>10</th>
+                            <th>9</th>
+                            <th>8</th>
+                            <th>7</th>
+                            <th>6</th>
+                            <th>5</th>
+                            <th>4</th>
+                            <th>3</th>
+                            <th>2</th>
+                            <th>1</th>
+                            <th>0</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td align="center" colspan="29">RSVD
+                                <br>0x0</td>
+
+                            <td align="center" colspan="3">RD_WAIT
+                                <br>0x1</td>
+
+                        </tr>
+                    </tbody>
+                </table>
+                <br>
+
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>Bits</th>
+                            <th>Name</th>
+                            <th>RW</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>31:3</td>
+                            <td>RSVD</td>
+                            <td>RO</td>
+                            <td>This bitfield is reserved for future use.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>2:0</td>
+                            <td>RD_WAIT</td>
+                            <td>RW</td>
+                            <td>Sets read waitstates for flash accesses (in clock cycles).  This should be left at the default value for normal flash operation.<br><br>
+                                </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+                <br>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 id="CTRL" class="panel-title">CTRL - Cache Control</h3>
+            </div>
+            <div class="panel-body">
+                <h3>Address:</h3>
+                <table style="margin:10px">
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">Instance 0 Address:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x40018008</span>
+                        </td>
+                    </tr>
+
+                </table>
+                <h3>Description:</h3>
+                <p>Cache Control</p>
+                <h3>Example Macro Usage:</h3>
+                <pre style="margin:10px" class="language-pascal"><span style='color:#3f7f59; '>//
+// All macro-based register writes follow the same basic format. For
+// single-instance modules, you may use the simpler AM_REG macro. For
+// multi-instance macros, you will need to specify the instance number using
+// the AM_REGn macro format.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+// AM_REGn(&lt;MODULE&gt;, &lt;INSTANCE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+//
+// For registers that do not have specific enumeration values, you may use this alternate format instead.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;(&lt;NUMBER&gt;);
+//
+// For example, the following three lines of code are equivalent methods of
+// writing the value for 12MHZ to the CLKSEL field in the ADC_CFG register.
+//</span>
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REGn(ADC, 0, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
+                <h3>Register Fields:</h3>
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>31</th>
+                            <th>30</th>
+                            <th>29</th>
+                            <th>28</th>
+                            <th>27</th>
+                            <th>26</th>
+                            <th>25</th>
+                            <th>24</th>
+                            <th>23</th>
+                            <th>22</th>
+                            <th>21</th>
+                            <th>20</th>
+                            <th>19</th>
+                            <th>18</th>
+                            <th>17</th>
+                            <th>16</th>
+                            <th>15</th>
+                            <th>14</th>
+                            <th>13</th>
+                            <th>12</th>
+                            <th>11</th>
+                            <th>10</th>
+                            <th>9</th>
+                            <th>8</th>
+                            <th>7</th>
+                            <th>6</th>
+                            <th>5</th>
+                            <th>4</th>
+                            <th>3</th>
+                            <th>2</th>
+                            <th>1</th>
+                            <th>0</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td align="center" colspan="21">RSVD
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">FLASH1_SLM_ENABLE
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">FLASH1_SLM_DISABLE
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">FLASH1_SLM_STATUS
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">RSVD
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">FLASH0_SLM_ENABLE
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">FLASH0_SLM_DISABLE
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">FLASH0_SLM_STATUS
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">RSVD
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">CACHE_READY
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">RESET_STAT
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">INVALIDATE
+                                <br>0x0</td>
+
+                        </tr>
+                    </tbody>
+                </table>
+                <br>
+
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>Bits</th>
+                            <th>Name</th>
+                            <th>RW</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>31:11</td>
+                            <td>RSVD</td>
+                            <td>RO</td>
+                            <td>This bitfield is reserved for future use.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>10</td>
+                            <td>FLASH1_SLM_ENABLE</td>
+                            <td>WO</td>
+                            <td>Enable Flash Sleep Mode.  After writing this bit, the flash instance 1 will enter a low-power mode until the CPU writes the SLM_DISABLE bit or a flash access occurs.  Wake from SLM requires ~5us, so this should only be set if the flash will not be accessed for reasonably long time.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>9</td>
+                            <td>FLASH1_SLM_DISABLE</td>
+                            <td>WO</td>
+                            <td>Disable Flash Sleep Mode.  Allows CPU to manually disable SLM mode.  Performing a flash read will also wake the array.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>8</td>
+                            <td>FLASH1_SLM_STATUS</td>
+                            <td>RO</td>
+                            <td>Flash Sleep Mode Status.  When 1, flash instance 1 is asleep.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>7</td>
+                            <td>RSVD</td>
+                            <td>RO</td>
+                            <td>This bitfield is reserved for future use.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>6</td>
+                            <td>FLASH0_SLM_ENABLE</td>
+                            <td>WO</td>
+                            <td>Enable Flash Sleep Mode.  After writing this bit, the flash instance 0 will enter a low-power mode until the CPU writes the SLM_DISABLE bit or a flash access occurs.  Wake from SLM requires ~5us, so this should only be set if the flash will not be accessed for reasonably long time.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>5</td>
+                            <td>FLASH0_SLM_DISABLE</td>
+                            <td>WO</td>
+                            <td>Disable Flash Sleep Mode.  Allows CPU to manually disable SLM mode.  Performing a flash read will also wake the array.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>4</td>
+                            <td>FLASH0_SLM_STATUS</td>
+                            <td>RO</td>
+                            <td>Flash Sleep Mode Status.  When 1, flash instance 0 is asleep.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>3</td>
+                            <td>RSVD</td>
+                            <td>RO</td>
+                            <td>This bitfield is reserved for future use.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>2</td>
+                            <td>CACHE_READY</td>
+                            <td>RO</td>
+                            <td>Cache Ready Status.  A value of 1 indicates the cache is enabled and not processing an invalidate operation.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>1</td>
+                            <td>RESET_STAT</td>
+                            <td>WO</td>
+                            <td>Writing a 1 to this bitfield will reset the cache monitor statistics (DMON0-3, IMON0-3).  Statistic gathering can be paused/stopped by disabling the MONITOR_ENABLE bit in CACHECFG, which will maintain the count values until the stats are reset by writing this bitfield.<br><br>
+                                 CLEAR                = 0x1 - Clear Cache Stats</td>
+                        </tr>
+
+                        <tr>
+                            <td>0</td>
+                            <td>INVALIDATE</td>
+                            <td>WO</td>
+                            <td>Writing a 1 to this bitfield invalidates the flash cache contents.<br><br>
+                                 GO                   = 0x1 - Initiate a programming operation to flash info.</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+                <br>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 id="NCR0START" class="panel-title">NCR0START - Flash Cache Noncachable Region 0 Start Address.</h3>
+            </div>
+            <div class="panel-body">
+                <h3>Address:</h3>
+                <table style="margin:10px">
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">Instance 0 Address:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x40018010</span>
+                        </td>
+                    </tr>
+
+                </table>
+                <h3>Description:</h3>
+                <p>Flash Cache Noncachable Region 0 Start Address.</p>
+                <h3>Example Macro Usage:</h3>
+                <pre style="margin:10px" class="language-pascal"><span style='color:#3f7f59; '>//
+// All macro-based register writes follow the same basic format. For
+// single-instance modules, you may use the simpler AM_REG macro. For
+// multi-instance macros, you will need to specify the instance number using
+// the AM_REGn macro format.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+// AM_REGn(&lt;MODULE&gt;, &lt;INSTANCE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+//
+// For registers that do not have specific enumeration values, you may use this alternate format instead.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;(&lt;NUMBER&gt;);
+//
+// For example, the following three lines of code are equivalent methods of
+// writing the value for 12MHZ to the CLKSEL field in the ADC_CFG register.
+//</span>
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REGn(ADC, 0, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
+                <h3>Register Fields:</h3>
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>31</th>
+                            <th>30</th>
+                            <th>29</th>
+                            <th>28</th>
+                            <th>27</th>
+                            <th>26</th>
+                            <th>25</th>
+                            <th>24</th>
+                            <th>23</th>
+                            <th>22</th>
+                            <th>21</th>
+                            <th>20</th>
+                            <th>19</th>
+                            <th>18</th>
+                            <th>17</th>
+                            <th>16</th>
+                            <th>15</th>
+                            <th>14</th>
+                            <th>13</th>
+                            <th>12</th>
+                            <th>11</th>
+                            <th>10</th>
+                            <th>9</th>
+                            <th>8</th>
+                            <th>7</th>
+                            <th>6</th>
+                            <th>5</th>
+                            <th>4</th>
+                            <th>3</th>
+                            <th>2</th>
+                            <th>1</th>
+                            <th>0</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td align="center" colspan="12">RSVD
+                                <br>0x0</td>
+
+                            <td align="center" colspan="16">ADDR
+                                <br>0x0</td>
+
+                            <td align="center" colspan="4">RSVD
+                                <br>0x0</td>
+
+                        </tr>
+                    </tbody>
+                </table>
+                <br>
+
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>Bits</th>
+                            <th>Name</th>
+                            <th>RW</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>31:20</td>
+                            <td>RSVD</td>
+                            <td>RO</td>
+                            <td>This bitfield is reserved for future use.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>19:4</td>
+                            <td>ADDR</td>
+                            <td>RW</td>
+                            <td>Start address for non-cacheable region 0.  The physical address of the start of this region should be programmed to this register and must be aligned to a 16-byte boundary (thus the lower 4 address bits are unused).<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>3:0</td>
+                            <td>RSVD</td>
+                            <td>RO</td>
+                            <td>This bitfield is reserved for future use.<br><br>
+                                </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+                <br>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 id="NCR0END" class="panel-title">NCR0END - Flash Cache Noncachable Region 0 End</h3>
+            </div>
+            <div class="panel-body">
+                <h3>Address:</h3>
+                <table style="margin:10px">
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">Instance 0 Address:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x40018014</span>
+                        </td>
+                    </tr>
+
+                </table>
+                <h3>Description:</h3>
+                <p>Flash Cache Noncachable Region 0 End</p>
+                <h3>Example Macro Usage:</h3>
+                <pre style="margin:10px" class="language-pascal"><span style='color:#3f7f59; '>//
+// All macro-based register writes follow the same basic format. For
+// single-instance modules, you may use the simpler AM_REG macro. For
+// multi-instance macros, you will need to specify the instance number using
+// the AM_REGn macro format.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+// AM_REGn(&lt;MODULE&gt;, &lt;INSTANCE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+//
+// For registers that do not have specific enumeration values, you may use this alternate format instead.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;(&lt;NUMBER&gt;);
+//
+// For example, the following three lines of code are equivalent methods of
+// writing the value for 12MHZ to the CLKSEL field in the ADC_CFG register.
+//</span>
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REGn(ADC, 0, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
+                <h3>Register Fields:</h3>
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>31</th>
+                            <th>30</th>
+                            <th>29</th>
+                            <th>28</th>
+                            <th>27</th>
+                            <th>26</th>
+                            <th>25</th>
+                            <th>24</th>
+                            <th>23</th>
+                            <th>22</th>
+                            <th>21</th>
+                            <th>20</th>
+                            <th>19</th>
+                            <th>18</th>
+                            <th>17</th>
+                            <th>16</th>
+                            <th>15</th>
+                            <th>14</th>
+                            <th>13</th>
+                            <th>12</th>
+                            <th>11</th>
+                            <th>10</th>
+                            <th>9</th>
+                            <th>8</th>
+                            <th>7</th>
+                            <th>6</th>
+                            <th>5</th>
+                            <th>4</th>
+                            <th>3</th>
+                            <th>2</th>
+                            <th>1</th>
+                            <th>0</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td align="center" colspan="12">RSVD
+                                <br>0x0</td>
+
+                            <td align="center" colspan="16">ADDR
+                                <br>0x0</td>
+
+                            <td align="center" colspan="4">RSVD
+                                <br>0x0</td>
+
+                        </tr>
+                    </tbody>
+                </table>
+                <br>
+
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>Bits</th>
+                            <th>Name</th>
+                            <th>RW</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>31:20</td>
+                            <td>RSVD</td>
+                            <td>RO</td>
+                            <td>This bitfield is reserved for future use.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>19:4</td>
+                            <td>ADDR</td>
+                            <td>RW</td>
+                            <td>End address for non-cacheable region 0.  The physical address of the end of this region should be programmed to this register and must be aligned to a 16-byte boundary (thus the lower 4 address bits are unused).<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>3:0</td>
+                            <td>RSVD</td>
+                            <td>RO</td>
+                            <td>This bitfield is reserved for future use.<br><br>
+                                </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+                <br>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 id="NCR1START" class="panel-title">NCR1START - Flash Cache Noncachable Region 1 Start</h3>
+            </div>
+            <div class="panel-body">
+                <h3>Address:</h3>
+                <table style="margin:10px">
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">Instance 0 Address:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x40018018</span>
+                        </td>
+                    </tr>
+
+                </table>
+                <h3>Description:</h3>
+                <p>Flash Cache Noncachable Region 1 Start</p>
+                <h3>Example Macro Usage:</h3>
+                <pre style="margin:10px" class="language-pascal"><span style='color:#3f7f59; '>//
+// All macro-based register writes follow the same basic format. For
+// single-instance modules, you may use the simpler AM_REG macro. For
+// multi-instance macros, you will need to specify the instance number using
+// the AM_REGn macro format.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+// AM_REGn(&lt;MODULE&gt;, &lt;INSTANCE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+//
+// For registers that do not have specific enumeration values, you may use this alternate format instead.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;(&lt;NUMBER&gt;);
+//
+// For example, the following three lines of code are equivalent methods of
+// writing the value for 12MHZ to the CLKSEL field in the ADC_CFG register.
+//</span>
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REGn(ADC, 0, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
+                <h3>Register Fields:</h3>
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>31</th>
+                            <th>30</th>
+                            <th>29</th>
+                            <th>28</th>
+                            <th>27</th>
+                            <th>26</th>
+                            <th>25</th>
+                            <th>24</th>
+                            <th>23</th>
+                            <th>22</th>
+                            <th>21</th>
+                            <th>20</th>
+                            <th>19</th>
+                            <th>18</th>
+                            <th>17</th>
+                            <th>16</th>
+                            <th>15</th>
+                            <th>14</th>
+                            <th>13</th>
+                            <th>12</th>
+                            <th>11</th>
+                            <th>10</th>
+                            <th>9</th>
+                            <th>8</th>
+                            <th>7</th>
+                            <th>6</th>
+                            <th>5</th>
+                            <th>4</th>
+                            <th>3</th>
+                            <th>2</th>
+                            <th>1</th>
+                            <th>0</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td align="center" colspan="12">RSVD
+                                <br>0x0</td>
+
+                            <td align="center" colspan="16">ADDR
+                                <br>0x0</td>
+
+                            <td align="center" colspan="4">RSVD
+                                <br>0x0</td>
+
+                        </tr>
+                    </tbody>
+                </table>
+                <br>
+
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>Bits</th>
+                            <th>Name</th>
+                            <th>RW</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>31:20</td>
+                            <td>RSVD</td>
+                            <td>RO</td>
+                            <td>This bitfield is reserved for future use.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>19:4</td>
+                            <td>ADDR</td>
+                            <td>RW</td>
+                            <td>Start address for non-cacheable region 1.  The physical address of the start of this region should be programmed to this register and must be aligned to a 16-byte boundary (thus the lower 4 address bits are unused).<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>3:0</td>
+                            <td>RSVD</td>
+                            <td>RO</td>
+                            <td>This bitfield is reserved for future use.<br><br>
+                                </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+                <br>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 id="NCR1END" class="panel-title">NCR1END - Flash Cache Noncachable Region 1 End</h3>
+            </div>
+            <div class="panel-body">
+                <h3>Address:</h3>
+                <table style="margin:10px">
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">Instance 0 Address:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x4001801C</span>
+                        </td>
+                    </tr>
+
+                </table>
+                <h3>Description:</h3>
+                <p>Flash Cache Noncachable Region 1 End</p>
+                <h3>Example Macro Usage:</h3>
+                <pre style="margin:10px" class="language-pascal"><span style='color:#3f7f59; '>//
+// All macro-based register writes follow the same basic format. For
+// single-instance modules, you may use the simpler AM_REG macro. For
+// multi-instance macros, you will need to specify the instance number using
+// the AM_REGn macro format.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+// AM_REGn(&lt;MODULE&gt;, &lt;INSTANCE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+//
+// For registers that do not have specific enumeration values, you may use this alternate format instead.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;(&lt;NUMBER&gt;);
+//
+// For example, the following three lines of code are equivalent methods of
+// writing the value for 12MHZ to the CLKSEL field in the ADC_CFG register.
+//</span>
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REGn(ADC, 0, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
+                <h3>Register Fields:</h3>
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>31</th>
+                            <th>30</th>
+                            <th>29</th>
+                            <th>28</th>
+                            <th>27</th>
+                            <th>26</th>
+                            <th>25</th>
+                            <th>24</th>
+                            <th>23</th>
+                            <th>22</th>
+                            <th>21</th>
+                            <th>20</th>
+                            <th>19</th>
+                            <th>18</th>
+                            <th>17</th>
+                            <th>16</th>
+                            <th>15</th>
+                            <th>14</th>
+                            <th>13</th>
+                            <th>12</th>
+                            <th>11</th>
+                            <th>10</th>
+                            <th>9</th>
+                            <th>8</th>
+                            <th>7</th>
+                            <th>6</th>
+                            <th>5</th>
+                            <th>4</th>
+                            <th>3</th>
+                            <th>2</th>
+                            <th>1</th>
+                            <th>0</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td align="center" colspan="12">RSVD
+                                <br>0x0</td>
+
+                            <td align="center" colspan="16">ADDR
+                                <br>0x0</td>
+
+                            <td align="center" colspan="4">RSVD
+                                <br>0x0</td>
+
+                        </tr>
+                    </tbody>
+                </table>
+                <br>
+
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>Bits</th>
+                            <th>Name</th>
+                            <th>RW</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>31:20</td>
+                            <td>RSVD</td>
+                            <td>RO</td>
+                            <td>This bitfield is reserved for future use.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>19:4</td>
+                            <td>ADDR</td>
+                            <td>RW</td>
+                            <td>End address for non-cacheable region 1.  The physical address of the end of this region should be programmed to this register and must be aligned to a 16-byte boundary (thus the lower 4 address bits are unused).<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>3:0</td>
+                            <td>RSVD</td>
+                            <td>RO</td>
+                            <td>This bitfield is reserved for future use.<br><br>
+                                </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+                <br>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 id="CACHEMODE" class="panel-title">CACHEMODE - Flash Cache Mode Register.  Used to trim performance/power.</h3>
+            </div>
+            <div class="panel-body">
+                <h3>Address:</h3>
+                <table style="margin:10px">
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">Instance 0 Address:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x40018030</span>
+                        </td>
+                    </tr>
+
+                </table>
+                <h3>Description:</h3>
+                <p>Flash Cache Mode Register.  Used to trim performance/power.</p>
+                <h3>Example Macro Usage:</h3>
+                <pre style="margin:10px" class="language-pascal"><span style='color:#3f7f59; '>//
+// All macro-based register writes follow the same basic format. For
+// single-instance modules, you may use the simpler AM_REG macro. For
+// multi-instance macros, you will need to specify the instance number using
+// the AM_REGn macro format.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+// AM_REGn(&lt;MODULE&gt;, &lt;INSTANCE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+//
+// For registers that do not have specific enumeration values, you may use this alternate format instead.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;(&lt;NUMBER&gt;);
+//
+// For example, the following three lines of code are equivalent methods of
+// writing the value for 12MHZ to the CLKSEL field in the ADC_CFG register.
+//</span>
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REGn(ADC, 0, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
+                <h3>Register Fields:</h3>
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>31</th>
+                            <th>30</th>
+                            <th>29</th>
+                            <th>28</th>
+                            <th>27</th>
+                            <th>26</th>
+                            <th>25</th>
+                            <th>24</th>
+                            <th>23</th>
+                            <th>22</th>
+                            <th>21</th>
+                            <th>20</th>
+                            <th>19</th>
+                            <th>18</th>
+                            <th>17</th>
+                            <th>16</th>
+                            <th>15</th>
+                            <th>14</th>
+                            <th>13</th>
+                            <th>12</th>
+                            <th>11</th>
+                            <th>10</th>
+                            <th>9</th>
+                            <th>8</th>
+                            <th>7</th>
+                            <th>6</th>
+                            <th>5</th>
+                            <th>4</th>
+                            <th>3</th>
+                            <th>2</th>
+                            <th>1</th>
+                            <th>0</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td align="center" colspan="26">RSVD
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">THROTTLE6
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">THROTTLE5
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">THROTTLE4
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">THROTTLE3
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">THROTTLE2
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">THROTTLE1
+                                <br>0x0</td>
+
+                        </tr>
+                    </tbody>
+                </table>
+                <br>
+
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>Bits</th>
+                            <th>Name</th>
+                            <th>RW</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>31:6</td>
+                            <td>RSVD</td>
+                            <td>RO</td>
+                            <td>This bitfield is reserved for future use.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>5</td>
+                            <td>THROTTLE6</td>
+                            <td>RW</td>
+                            <td>Disallow Simultaneous Data RAM reads (from 2 line hits on each bus).  Value should be left at zero for optimal performance.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>4</td>
+                            <td>THROTTLE5</td>
+                            <td>RW</td>
+                            <td>Disallow Data RAM reads (from line hits) during lookup read ops.  Value should be left at zero for optimal performance.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>3</td>
+                            <td>THROTTLE4</td>
+                            <td>RW</td>
+                            <td>Disallow Data RAM reads (from line hits) on tag RAM fill cycles. Value should be left at zero for optimal performance.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>2</td>
+                            <td>THROTTLE3</td>
+                            <td>RW</td>
+                            <td>Disallow cache data RAM writes on data RAM read cycles. Value should be left at zero for optimal performance.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>1</td>
+                            <td>THROTTLE2</td>
+                            <td>RW</td>
+                            <td>Disallow cache data RAM writes on tag RAM read cycles. Value should be left at zero for optimal performance.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>0</td>
+                            <td>THROTTLE1</td>
+                            <td>RW</td>
+                            <td>Disallow cache data RAM writes on tag RAM fill cycles. Value should be left at zero for optimal performance.<br><br>
+                                </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+                <br>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 id="DMON0" class="panel-title">DMON0 - Data Cache Total Accesses</h3>
+            </div>
+            <div class="panel-body">
+                <h3>Address:</h3>
+                <table style="margin:10px">
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">Instance 0 Address:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x40018040</span>
+                        </td>
+                    </tr>
+
+                </table>
+                <h3>Description:</h3>
+                <p>Data Cache Total Accesses</p>
+                <h3>Example Macro Usage:</h3>
+                <pre style="margin:10px" class="language-pascal"><span style='color:#3f7f59; '>//
+// All macro-based register writes follow the same basic format. For
+// single-instance modules, you may use the simpler AM_REG macro. For
+// multi-instance macros, you will need to specify the instance number using
+// the AM_REGn macro format.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+// AM_REGn(&lt;MODULE&gt;, &lt;INSTANCE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+//
+// For registers that do not have specific enumeration values, you may use this alternate format instead.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;(&lt;NUMBER&gt;);
+//
+// For example, the following three lines of code are equivalent methods of
+// writing the value for 12MHZ to the CLKSEL field in the ADC_CFG register.
+//</span>
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REGn(ADC, 0, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
+                <h3>Register Fields:</h3>
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>31</th>
+                            <th>30</th>
+                            <th>29</th>
+                            <th>28</th>
+                            <th>27</th>
+                            <th>26</th>
+                            <th>25</th>
+                            <th>24</th>
+                            <th>23</th>
+                            <th>22</th>
+                            <th>21</th>
+                            <th>20</th>
+                            <th>19</th>
+                            <th>18</th>
+                            <th>17</th>
+                            <th>16</th>
+                            <th>15</th>
+                            <th>14</th>
+                            <th>13</th>
+                            <th>12</th>
+                            <th>11</th>
+                            <th>10</th>
+                            <th>9</th>
+                            <th>8</th>
+                            <th>7</th>
+                            <th>6</th>
+                            <th>5</th>
+                            <th>4</th>
+                            <th>3</th>
+                            <th>2</th>
+                            <th>1</th>
+                            <th>0</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td align="center" colspan="32">DACCESS_COUNT
+                                <br>0x0</td>
+
+                        </tr>
+                    </tbody>
+                </table>
+                <br>
+
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>Bits</th>
+                            <th>Name</th>
+                            <th>RW</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>31:0</td>
+                            <td>DACCESS_COUNT</td>
+                            <td>RO</td>
+                            <td>Total accesses to data cache<br><br>
+                                </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+                <br>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 id="DMON1" class="panel-title">DMON1 - Data Cache Tag Lookups</h3>
+            </div>
+            <div class="panel-body">
+                <h3>Address:</h3>
+                <table style="margin:10px">
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">Instance 0 Address:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x40018044</span>
+                        </td>
+                    </tr>
+
+                </table>
+                <h3>Description:</h3>
+                <p>Data Cache Tag Lookups</p>
+                <h3>Example Macro Usage:</h3>
+                <pre style="margin:10px" class="language-pascal"><span style='color:#3f7f59; '>//
+// All macro-based register writes follow the same basic format. For
+// single-instance modules, you may use the simpler AM_REG macro. For
+// multi-instance macros, you will need to specify the instance number using
+// the AM_REGn macro format.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+// AM_REGn(&lt;MODULE&gt;, &lt;INSTANCE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+//
+// For registers that do not have specific enumeration values, you may use this alternate format instead.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;(&lt;NUMBER&gt;);
+//
+// For example, the following three lines of code are equivalent methods of
+// writing the value for 12MHZ to the CLKSEL field in the ADC_CFG register.
+//</span>
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REGn(ADC, 0, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
+                <h3>Register Fields:</h3>
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>31</th>
+                            <th>30</th>
+                            <th>29</th>
+                            <th>28</th>
+                            <th>27</th>
+                            <th>26</th>
+                            <th>25</th>
+                            <th>24</th>
+                            <th>23</th>
+                            <th>22</th>
+                            <th>21</th>
+                            <th>20</th>
+                            <th>19</th>
+                            <th>18</th>
+                            <th>17</th>
+                            <th>16</th>
+                            <th>15</th>
+                            <th>14</th>
+                            <th>13</th>
+                            <th>12</th>
+                            <th>11</th>
+                            <th>10</th>
+                            <th>9</th>
+                            <th>8</th>
+                            <th>7</th>
+                            <th>6</th>
+                            <th>5</th>
+                            <th>4</th>
+                            <th>3</th>
+                            <th>2</th>
+                            <th>1</th>
+                            <th>0</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td align="center" colspan="32">DLOOKUP_COUNT
+                                <br>0x0</td>
+
+                        </tr>
+                    </tbody>
+                </table>
+                <br>
+
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>Bits</th>
+                            <th>Name</th>
+                            <th>RW</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>31:0</td>
+                            <td>DLOOKUP_COUNT</td>
+                            <td>RO</td>
+                            <td>Total tag lookups from data cache<br><br>
+                                </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+                <br>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 id="DMON2" class="panel-title">DMON2 - Data Cache Hits</h3>
+            </div>
+            <div class="panel-body">
+                <h3>Address:</h3>
+                <table style="margin:10px">
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">Instance 0 Address:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x40018048</span>
+                        </td>
+                    </tr>
+
+                </table>
+                <h3>Description:</h3>
+                <p>Data Cache Hits</p>
+                <h3>Example Macro Usage:</h3>
+                <pre style="margin:10px" class="language-pascal"><span style='color:#3f7f59; '>//
+// All macro-based register writes follow the same basic format. For
+// single-instance modules, you may use the simpler AM_REG macro. For
+// multi-instance macros, you will need to specify the instance number using
+// the AM_REGn macro format.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+// AM_REGn(&lt;MODULE&gt;, &lt;INSTANCE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+//
+// For registers that do not have specific enumeration values, you may use this alternate format instead.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;(&lt;NUMBER&gt;);
+//
+// For example, the following three lines of code are equivalent methods of
+// writing the value for 12MHZ to the CLKSEL field in the ADC_CFG register.
+//</span>
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REGn(ADC, 0, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
+                <h3>Register Fields:</h3>
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>31</th>
+                            <th>30</th>
+                            <th>29</th>
+                            <th>28</th>
+                            <th>27</th>
+                            <th>26</th>
+                            <th>25</th>
+                            <th>24</th>
+                            <th>23</th>
+                            <th>22</th>
+                            <th>21</th>
+                            <th>20</th>
+                            <th>19</th>
+                            <th>18</th>
+                            <th>17</th>
+                            <th>16</th>
+                            <th>15</th>
+                            <th>14</th>
+                            <th>13</th>
+                            <th>12</th>
+                            <th>11</th>
+                            <th>10</th>
+                            <th>9</th>
+                            <th>8</th>
+                            <th>7</th>
+                            <th>6</th>
+                            <th>5</th>
+                            <th>4</th>
+                            <th>3</th>
+                            <th>2</th>
+                            <th>1</th>
+                            <th>0</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td align="center" colspan="32">DHIT_COUNT
+                                <br>0x0</td>
+
+                        </tr>
+                    </tbody>
+                </table>
+                <br>
+
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>Bits</th>
+                            <th>Name</th>
+                            <th>RW</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>31:0</td>
+                            <td>DHIT_COUNT</td>
+                            <td>RO</td>
+                            <td>Cache hits from lookup operations<br><br>
+                                </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+                <br>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 id="DMON3" class="panel-title">DMON3 - Data Cache Line Hits</h3>
+            </div>
+            <div class="panel-body">
+                <h3>Address:</h3>
+                <table style="margin:10px">
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">Instance 0 Address:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x4001804C</span>
+                        </td>
+                    </tr>
+
+                </table>
+                <h3>Description:</h3>
+                <p>Data Cache Line Hits</p>
+                <h3>Example Macro Usage:</h3>
+                <pre style="margin:10px" class="language-pascal"><span style='color:#3f7f59; '>//
+// All macro-based register writes follow the same basic format. For
+// single-instance modules, you may use the simpler AM_REG macro. For
+// multi-instance macros, you will need to specify the instance number using
+// the AM_REGn macro format.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+// AM_REGn(&lt;MODULE&gt;, &lt;INSTANCE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+//
+// For registers that do not have specific enumeration values, you may use this alternate format instead.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;(&lt;NUMBER&gt;);
+//
+// For example, the following three lines of code are equivalent methods of
+// writing the value for 12MHZ to the CLKSEL field in the ADC_CFG register.
+//</span>
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REGn(ADC, 0, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
+                <h3>Register Fields:</h3>
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>31</th>
+                            <th>30</th>
+                            <th>29</th>
+                            <th>28</th>
+                            <th>27</th>
+                            <th>26</th>
+                            <th>25</th>
+                            <th>24</th>
+                            <th>23</th>
+                            <th>22</th>
+                            <th>21</th>
+                            <th>20</th>
+                            <th>19</th>
+                            <th>18</th>
+                            <th>17</th>
+                            <th>16</th>
+                            <th>15</th>
+                            <th>14</th>
+                            <th>13</th>
+                            <th>12</th>
+                            <th>11</th>
+                            <th>10</th>
+                            <th>9</th>
+                            <th>8</th>
+                            <th>7</th>
+                            <th>6</th>
+                            <th>5</th>
+                            <th>4</th>
+                            <th>3</th>
+                            <th>2</th>
+                            <th>1</th>
+                            <th>0</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td align="center" colspan="32">DLINE_COUNT
+                                <br>0x0</td>
+
+                        </tr>
+                    </tbody>
+                </table>
+                <br>
+
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>Bits</th>
+                            <th>Name</th>
+                            <th>RW</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>31:0</td>
+                            <td>DLINE_COUNT</td>
+                            <td>RO</td>
+                            <td>Cache hits from line cache<br><br>
+                                </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+                <br>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 id="IMON0" class="panel-title">IMON0 - Instruction Cache Total Accesses</h3>
+            </div>
+            <div class="panel-body">
+                <h3>Address:</h3>
+                <table style="margin:10px">
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">Instance 0 Address:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x40018050</span>
+                        </td>
+                    </tr>
+
+                </table>
+                <h3>Description:</h3>
+                <p>Instruction Cache Total Accesses</p>
+                <h3>Example Macro Usage:</h3>
+                <pre style="margin:10px" class="language-pascal"><span style='color:#3f7f59; '>//
+// All macro-based register writes follow the same basic format. For
+// single-instance modules, you may use the simpler AM_REG macro. For
+// multi-instance macros, you will need to specify the instance number using
+// the AM_REGn macro format.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+// AM_REGn(&lt;MODULE&gt;, &lt;INSTANCE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+//
+// For registers that do not have specific enumeration values, you may use this alternate format instead.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;(&lt;NUMBER&gt;);
+//
+// For example, the following three lines of code are equivalent methods of
+// writing the value for 12MHZ to the CLKSEL field in the ADC_CFG register.
+//</span>
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REGn(ADC, 0, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
+                <h3>Register Fields:</h3>
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>31</th>
+                            <th>30</th>
+                            <th>29</th>
+                            <th>28</th>
+                            <th>27</th>
+                            <th>26</th>
+                            <th>25</th>
+                            <th>24</th>
+                            <th>23</th>
+                            <th>22</th>
+                            <th>21</th>
+                            <th>20</th>
+                            <th>19</th>
+                            <th>18</th>
+                            <th>17</th>
+                            <th>16</th>
+                            <th>15</th>
+                            <th>14</th>
+                            <th>13</th>
+                            <th>12</th>
+                            <th>11</th>
+                            <th>10</th>
+                            <th>9</th>
+                            <th>8</th>
+                            <th>7</th>
+                            <th>6</th>
+                            <th>5</th>
+                            <th>4</th>
+                            <th>3</th>
+                            <th>2</th>
+                            <th>1</th>
+                            <th>0</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td align="center" colspan="32">IACCESS_COUNT
+                                <br>0x0</td>
+
+                        </tr>
+                    </tbody>
+                </table>
+                <br>
+
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>Bits</th>
+                            <th>Name</th>
+                            <th>RW</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>31:0</td>
+                            <td>IACCESS_COUNT</td>
+                            <td>RO</td>
+                            <td>Total accesses to Instruction cache<br><br>
+                                </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+                <br>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 id="IMON1" class="panel-title">IMON1 - Instruction Cache Tag Lookups</h3>
+            </div>
+            <div class="panel-body">
+                <h3>Address:</h3>
+                <table style="margin:10px">
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">Instance 0 Address:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x40018054</span>
+                        </td>
+                    </tr>
+
+                </table>
+                <h3>Description:</h3>
+                <p>Instruction Cache Tag Lookups</p>
+                <h3>Example Macro Usage:</h3>
+                <pre style="margin:10px" class="language-pascal"><span style='color:#3f7f59; '>//
+// All macro-based register writes follow the same basic format. For
+// single-instance modules, you may use the simpler AM_REG macro. For
+// multi-instance macros, you will need to specify the instance number using
+// the AM_REGn macro format.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+// AM_REGn(&lt;MODULE&gt;, &lt;INSTANCE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+//
+// For registers that do not have specific enumeration values, you may use this alternate format instead.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;(&lt;NUMBER&gt;);
+//
+// For example, the following three lines of code are equivalent methods of
+// writing the value for 12MHZ to the CLKSEL field in the ADC_CFG register.
+//</span>
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REGn(ADC, 0, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
+                <h3>Register Fields:</h3>
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>31</th>
+                            <th>30</th>
+                            <th>29</th>
+                            <th>28</th>
+                            <th>27</th>
+                            <th>26</th>
+                            <th>25</th>
+                            <th>24</th>
+                            <th>23</th>
+                            <th>22</th>
+                            <th>21</th>
+                            <th>20</th>
+                            <th>19</th>
+                            <th>18</th>
+                            <th>17</th>
+                            <th>16</th>
+                            <th>15</th>
+                            <th>14</th>
+                            <th>13</th>
+                            <th>12</th>
+                            <th>11</th>
+                            <th>10</th>
+                            <th>9</th>
+                            <th>8</th>
+                            <th>7</th>
+                            <th>6</th>
+                            <th>5</th>
+                            <th>4</th>
+                            <th>3</th>
+                            <th>2</th>
+                            <th>1</th>
+                            <th>0</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td align="center" colspan="32">ILOOKUP_COUNT
+                                <br>0x0</td>
+
+                        </tr>
+                    </tbody>
+                </table>
+                <br>
+
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>Bits</th>
+                            <th>Name</th>
+                            <th>RW</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>31:0</td>
+                            <td>ILOOKUP_COUNT</td>
+                            <td>RO</td>
+                            <td>Total tag lookups from Instruction cache<br><br>
+                                </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+                <br>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 id="IMON2" class="panel-title">IMON2 - Instruction Cache Hits</h3>
+            </div>
+            <div class="panel-body">
+                <h3>Address:</h3>
+                <table style="margin:10px">
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">Instance 0 Address:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x40018058</span>
+                        </td>
+                    </tr>
+
+                </table>
+                <h3>Description:</h3>
+                <p>Instruction Cache Hits</p>
+                <h3>Example Macro Usage:</h3>
+                <pre style="margin:10px" class="language-pascal"><span style='color:#3f7f59; '>//
+// All macro-based register writes follow the same basic format. For
+// single-instance modules, you may use the simpler AM_REG macro. For
+// multi-instance macros, you will need to specify the instance number using
+// the AM_REGn macro format.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+// AM_REGn(&lt;MODULE&gt;, &lt;INSTANCE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+//
+// For registers that do not have specific enumeration values, you may use this alternate format instead.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;(&lt;NUMBER&gt;);
+//
+// For example, the following three lines of code are equivalent methods of
+// writing the value for 12MHZ to the CLKSEL field in the ADC_CFG register.
+//</span>
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REGn(ADC, 0, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
+                <h3>Register Fields:</h3>
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>31</th>
+                            <th>30</th>
+                            <th>29</th>
+                            <th>28</th>
+                            <th>27</th>
+                            <th>26</th>
+                            <th>25</th>
+                            <th>24</th>
+                            <th>23</th>
+                            <th>22</th>
+                            <th>21</th>
+                            <th>20</th>
+                            <th>19</th>
+                            <th>18</th>
+                            <th>17</th>
+                            <th>16</th>
+                            <th>15</th>
+                            <th>14</th>
+                            <th>13</th>
+                            <th>12</th>
+                            <th>11</th>
+                            <th>10</th>
+                            <th>9</th>
+                            <th>8</th>
+                            <th>7</th>
+                            <th>6</th>
+                            <th>5</th>
+                            <th>4</th>
+                            <th>3</th>
+                            <th>2</th>
+                            <th>1</th>
+                            <th>0</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td align="center" colspan="32">IHIT_COUNT
+                                <br>0x0</td>
+
+                        </tr>
+                    </tbody>
+                </table>
+                <br>
+
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>Bits</th>
+                            <th>Name</th>
+                            <th>RW</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>31:0</td>
+                            <td>IHIT_COUNT</td>
+                            <td>RO</td>
+                            <td>Cache hits from lookup operations<br><br>
+                                </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+                <br>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 id="IMON3" class="panel-title">IMON3 - Instruction Cache Line Hits</h3>
+            </div>
+            <div class="panel-body">
+                <h3>Address:</h3>
+                <table style="margin:10px">
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">Instance 0 Address:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x4001805C</span>
+                        </td>
+                    </tr>
+
+                </table>
+                <h3>Description:</h3>
+                <p>Instruction Cache Line Hits</p>
+                <h3>Example Macro Usage:</h3>
+                <pre style="margin:10px" class="language-pascal"><span style='color:#3f7f59; '>//
+// All macro-based register writes follow the same basic format. For
+// single-instance modules, you may use the simpler AM_REG macro. For
+// multi-instance macros, you will need to specify the instance number using
+// the AM_REGn macro format.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+// AM_REGn(&lt;MODULE&gt;, &lt;INSTANCE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+//
+// For registers that do not have specific enumeration values, you may use this alternate format instead.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;(&lt;NUMBER&gt;);
+//
+// For example, the following three lines of code are equivalent methods of
+// writing the value for 12MHZ to the CLKSEL field in the ADC_CFG register.
+//</span>
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REGn(ADC, 0, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
+                <h3>Register Fields:</h3>
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>31</th>
+                            <th>30</th>
+                            <th>29</th>
+                            <th>28</th>
+                            <th>27</th>
+                            <th>26</th>
+                            <th>25</th>
+                            <th>24</th>
+                            <th>23</th>
+                            <th>22</th>
+                            <th>21</th>
+                            <th>20</th>
+                            <th>19</th>
+                            <th>18</th>
+                            <th>17</th>
+                            <th>16</th>
+                            <th>15</th>
+                            <th>14</th>
+                            <th>13</th>
+                            <th>12</th>
+                            <th>11</th>
+                            <th>10</th>
+                            <th>9</th>
+                            <th>8</th>
+                            <th>7</th>
+                            <th>6</th>
+                            <th>5</th>
+                            <th>4</th>
+                            <th>3</th>
+                            <th>2</th>
+                            <th>1</th>
+                            <th>0</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td align="center" colspan="32">ILINE_COUNT
+                                <br>0x0</td>
+
+                        </tr>
+                    </tbody>
+                </table>
+                <br>
+
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>Bits</th>
+                            <th>Name</th>
+                            <th>RW</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>31:0</td>
+                            <td>ILINE_COUNT</td>
+                            <td>RO</td>
+                            <td>Cache hits from line cache<br><br>
+                                </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+                <br>
+            </div>
+        </div>
+
+    </body>
+
+    <hr size="1">
+    <body>
+        <div id="footer" align="right">
+            <small>
+                AmbiqSuite Register Documentation&nbsp;
+                <a href="http://www.ambiqmicro.com">
+                <img class="footer" src="../resources/ambiqmicro_logo.png" alt="Ambiq Micro"/></a>&nbsp&nbsp Copyright &copy; 2020&nbsp&nbsp<br />
+                This documentation is licensed and distributed under the <a rel="license" href="http://opensource.org/licenses/BSD-3-Clause">BSD 3-Clause License</a>.&nbsp&nbsp<br/>
+            </small>
+        </div>
+    </body>
+</html>
+

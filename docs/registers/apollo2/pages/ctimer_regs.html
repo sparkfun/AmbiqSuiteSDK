@@ -25,7 +25,7 @@
                             <img alt="Logo" src="../resources/am_logo.png" />
                         </td>
                         <td style="padding-left: 0.5em;">
-                            <div id="projectname">Apollo Register Documentation &#160;<span id="projectnumber">v2.4.2</span></div>
+                            <div id="projectname">Apollo Register Documentation &#160;<span id="projectnumber">v${version}</span></div>
                         </td>
                     </tr>
                 </tbody>
@@ -351,28 +351,6 @@
                         <td class="entry">
                             <span style="width:32px;display:inline-block;">&#160;</span>
                             <a class="el" href="#SCMPR7" target="_self">SCMPR7 - Compare Register H</a>
-                        </td>
-                    </tr>
-
-                    <tr id="row_0_0_">
-                        <td class="entry">
-                            <span style="width:32px;display:inline-block;">&#160;</span>
-                            <span class="h5">0x0000013C:</span>
-                        </td>
-                        <td class="entry">
-                            <span style="width:32px;display:inline-block;">&#160;</span>
-                            <a class="el" href="#SDEBUG" target="_self">SDEBUG - Debug Register</a>
-                        </td>
-                    </tr>
-
-                    <tr id="row_0_0_">
-                        <td class="entry">
-                            <span style="width:32px;display:inline-block;">&#160;</span>
-                            <span class="h5">0x00000140:</span>
-                        </td>
-                        <td class="entry">
-                            <span style="width:32px;display:inline-block;">&#160;</span>
-                            <a class="el" href="#DBGRO" target="_self">DBGRO - Debug Reasd Only Register</a>
                         </td>
                     </tr>
 
@@ -1139,7 +1117,7 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                             <td>Counter/Timer B0 Function Select.<br><br>
                                  SINGLECOUNT          = 0x0 - Single count (output toggles and sticks).  Count to CMPR0B0, stop.<br>
                              REPEATEDCOUNT        = 0x1 - Repeated count (periodic 1-clock-cycle-wide pulses).  Count to CMPR0B0, restart.<br>
-                             PULSE_ONCE           = 0x2 - Pulse once (aka one-shot).  Count to CMPR0B0, assert, count to CMPR1B, deassert, stop.<br>
+                             PULSE_ONCE           = 0x2 - Pulse once (aka one-shot).  Count to CMPR0B0, assert, count to CMPR1B0, deassert, stop.<br>
                              PULSE_CONT           = 0x3 - Pulse continously.  Count to CMPR0B0, assert, count to CMPR1B0, deassert, restart.<br>
                              CONTINUOUS           = 0x4 - Continuous run (aka Free Run).  Count continuously.</td>
                         </tr>
@@ -1150,22 +1128,22 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                             <td>RW</td>
                             <td>Counter/Timer B0 Clock Select.<br><br>
                                  TMRPIN               = 0x0 - Clock source is TMRPINB.<br>
-                             HFRC                 = 0x1 - Clock source is the HFRC / 4<br>
-                             HFRC_DIV8            = 0x2 - Clock source is HFRC / 16<br>
-                             HFRC_DIV128          = 0x3 - Clock source is HFRC / 256<br>
-                             HFRC_DIV512          = 0x4 - Clock source is HFRC / 1024<br>
-                             HFRC_DIV2K           = 0x5 - Clock source is HFRC / 4096<br>
+                             HFRC_DIV4            = 0x1 - Clock source is HFRC / 4<br>
+                             HFRC_DIV16           = 0x2 - Clock source is HFRC / 16<br>
+                             HFRC_DIV256          = 0x3 - Clock source is HFRC / 256<br>
+                             HFRC_DIV1024         = 0x4 - Clock source is HFRC / 1024<br>
+                             HFRC_DIV4K           = 0x5 - Clock source is HFRC / 4096<br>
                              XT                   = 0x6 - Clock source is the XT (uncalibrated).<br>
                              XT_DIV2              = 0x7 - Clock source is XT / 2<br>
                              XT_DIV16             = 0x8 - Clock source is XT / 16<br>
-                             XT_DIV256            = 0x9 - Clock source is XT / 124<br>
+                             XT_DIV256            = 0x9 - Clock source is XT / 256<br>
                              LFRC_DIV2            = 0xA - Clock source is LFRC / 2<br>
                              LFRC_DIV32           = 0xB - Clock source is LFRC / 32<br>
                              LFRC_DIV1K           = 0xC - Clock source is LFRC / 1024<br>
                              LFRC                 = 0xD - Clock source is LFRC<br>
                              RTC_100HZ            = 0xE - Clock source is 100 Hz from the current RTC oscillator.<br>
                              HCLK                 = 0xF - Clock source is HCLK.<br>
-                             BUCKB                = 0x10 - Clock source is buck converter stream B.</td>
+                             BUCKB                = 0x10 - Clock source is buck converter stream from CORE Buck.</td>
                         </tr>
 
                         <tr>
@@ -1191,7 +1169,7 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                             <td>RW</td>
                             <td>Counter/Timer A0 Output Enable bit.<br><br>
                                  DIS                  = 0x0 - Counter/Timer A holds the TMRPINA signal at the value TMRA0POL.<br>
-                             EN                   = 0x1 - Enable counter/timer B0 to generate a signal on TMRPINB.</td>
+                             EN                   = 0x1 - Enable counter/timer A0 to generate a signal on TMRPINA.</td>
                         </tr>
 
                         <tr>
@@ -1237,7 +1215,7 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                             <td>Counter/Timer A0 Function Select.<br><br>
                                  SINGLECOUNT          = 0x0 - Single count (output toggles and sticks).  Count to CMPR0A0, stop.<br>
                              REPEATEDCOUNT        = 0x1 - Repeated count (periodic 1-clock-cycle-wide pulses).  Count to CMPR0A0, restart.<br>
-                             PULSE_ONCE           = 0x2 - Pulse once (aka one-shot).  Count to CMPR0A0, assert, count to CMPR1B, deassert, stop.<br>
+                             PULSE_ONCE           = 0x2 - Pulse once (aka one-shot).  Count to CMPR0A0, assert, count to CMPR1A0, deassert, stop.<br>
                              PULSE_CONT           = 0x3 - Pulse continously.  Count to CMPR0A0, assert, count to CMPR1A0, deassert, restart.<br>
                              CONTINUOUS           = 0x4 - Continuous run (aka Free Run).  Count continuously.</td>
                         </tr>
@@ -1248,22 +1226,22 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                             <td>RW</td>
                             <td>Counter/Timer A0 Clock Select.<br><br>
                                  TMRPIN               = 0x0 - Clock source is TMRPINA.<br>
-                             HFRC                 = 0x1 - Clock source is the HFRC / 4<br>
-                             HFRC_DIV8            = 0x2 - Clock source is HFRC / 16<br>
-                             HFRC_DIV128          = 0x3 - Clock source is HFRC / 256<br>
-                             HFRC_DIV512          = 0x4 - Clock source is HFRC / 1024<br>
-                             HFRC_DIV2K           = 0x5 - Clock source is HFRC / 4096<br>
+                             HFRC_DIV4            = 0x1 - Clock source is HFRC / 4<br>
+                             HFRC_DIV16           = 0x2 - Clock source is HFRC / 16<br>
+                             HFRC_DIV256          = 0x3 - Clock source is HFRC / 256<br>
+                             HFRC_DIV1024         = 0x4 - Clock source is HFRC / 1024<br>
+                             HFRC_DIV4K           = 0x5 - Clock source is HFRC / 4096<br>
                              XT                   = 0x6 - Clock source is the XT (uncalibrated).<br>
                              XT_DIV2              = 0x7 - Clock source is XT / 2<br>
                              XT_DIV16             = 0x8 - Clock source is XT / 16<br>
-                             XT_DIV256            = 0x9 - Clock source is XT / 124<br>
+                             XT_DIV256            = 0x9 - Clock source is XT / 256<br>
                              LFRC_DIV2            = 0xA - Clock source is LFRC / 2<br>
                              LFRC_DIV32           = 0xB - Clock source is LFRC / 32<br>
                              LFRC_DIV1K           = 0xC - Clock source is LFRC / 1024<br>
                              LFRC                 = 0xD - Clock source is LFRC<br>
                              RTC_100HZ            = 0xE - Clock source is 100 Hz from the current RTC oscillator.<br>
-                             HCLK                 = 0xF - Clock source is HCLK.<br>
-                             BUCKA                = 0x10 - Clock source is buck converter stream A.</td>
+                             HCLK_DIV4            = 0xF - Clock source is HCLK / 4.<br>
+                             BUCKA                = 0x10 - Clock source is buck converter stream from MEM Buck.</td>
                         </tr>
 
                         <tr>
@@ -1875,7 +1853,7 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                             <td>Counter/Timer B1 Function Select.<br><br>
                                  SINGLECOUNT          = 0x0 - Single count (output toggles and sticks).  Count to CMPR0B1, stop.<br>
                              REPEATEDCOUNT        = 0x1 - Repeated count (periodic 1-clock-cycle-wide pulses).  Count to CMPR0B1, restart.<br>
-                             PULSE_ONCE           = 0x2 - Pulse once (aka one-shot).  Count to CMPR0B1, assert, count to CMPR1B, deassert, stop.<br>
+                             PULSE_ONCE           = 0x2 - Pulse once (aka one-shot).  Count to CMPR0B1, assert, count to CMPR1B1, deassert, stop.<br>
                              PULSE_CONT           = 0x3 - Pulse continously.  Count to CMPR0B1, assert, count to CMPR1B1, deassert, restart.<br>
                              CONTINUOUS           = 0x4 - Continuous run (aka Free Run).  Count continuously.</td>
                         </tr>
@@ -1886,22 +1864,22 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                             <td>RW</td>
                             <td>Counter/Timer B1 Clock Select.<br><br>
                                  TMRPIN               = 0x0 - Clock source is TMRPINB.<br>
-                             HFRC                 = 0x1 - Clock source is the HFRC / 4<br>
-                             HFRC_DIV8            = 0x2 - Clock source is HFRC / 16<br>
-                             HFRC_DIV128          = 0x3 - Clock source is HFRC / 256<br>
-                             HFRC_DIV512          = 0x4 - Clock source is HFRC / 1024<br>
-                             HFRC_DIV2K           = 0x5 - Clock source is HFRC / 4096<br>
+                             HFRC_DIV4            = 0x1 - Clock source is HFRC / 4<br>
+                             HFRC_DIV16           = 0x2 - Clock source is HFRC / 16<br>
+                             HFRC_DIV256          = 0x3 - Clock source is HFRC / 256<br>
+                             HFRC_DIV1024         = 0x4 - Clock source is HFRC / 1024<br>
+                             HFRC_DIV4K           = 0x5 - Clock source is HFRC / 4096<br>
                              XT                   = 0x6 - Clock source is the XT (uncalibrated).<br>
                              XT_DIV2              = 0x7 - Clock source is XT / 2<br>
                              XT_DIV16             = 0x8 - Clock source is XT / 16<br>
-                             XT_DIV256            = 0x9 - Clock source is XT / 124<br>
+                             XT_DIV256            = 0x9 - Clock source is XT / 256<br>
                              LFRC_DIV2            = 0xA - Clock source is LFRC / 2<br>
                              LFRC_DIV32           = 0xB - Clock source is LFRC / 32<br>
                              LFRC_DIV1K           = 0xC - Clock source is LFRC / 1024<br>
                              LFRC                 = 0xD - Clock source is LFRC<br>
                              RTC_100HZ            = 0xE - Clock source is 100 Hz from the current RTC oscillator.<br>
                              HCLK                 = 0xF - Clock source is HCLK.<br>
-                             BUCKB                = 0x10 - Clock source is buck converter stream B.</td>
+                             BUCKB                = 0x10 - Clock source is buck converter stream from CORE Buck.</td>
                         </tr>
 
                         <tr>
@@ -1927,7 +1905,7 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                             <td>RW</td>
                             <td>Counter/Timer A1 Output Enable bit.<br><br>
                                  DIS                  = 0x0 - Counter/Timer A holds the TMRPINA signal at the value TMRA1POL.<br>
-                             EN                   = 0x1 - Enable counter/timer B1 to generate a signal on TMRPINB.</td>
+                             EN                   = 0x1 - Enable counter/timer A1 to generate a signal on TMRPINA.</td>
                         </tr>
 
                         <tr>
@@ -1973,7 +1951,7 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                             <td>Counter/Timer A1 Function Select.<br><br>
                                  SINGLECOUNT          = 0x0 - Single count (output toggles and sticks).  Count to CMPR0A1, stop.<br>
                              REPEATEDCOUNT        = 0x1 - Repeated count (periodic 1-clock-cycle-wide pulses).  Count to CMPR0A1, restart.<br>
-                             PULSE_ONCE           = 0x2 - Pulse once (aka one-shot).  Count to CMPR0A1, assert, count to CMPR1B, deassert, stop.<br>
+                             PULSE_ONCE           = 0x2 - Pulse once (aka one-shot).  Count to CMPR0A1, assert, count to CMPR1A1, deassert, stop.<br>
                              PULSE_CONT           = 0x3 - Pulse continously.  Count to CMPR0A1, assert, count to CMPR1A1, deassert, restart.<br>
                              CONTINUOUS           = 0x4 - Continuous run (aka Free Run).  Count continuously.</td>
                         </tr>
@@ -1984,22 +1962,22 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                             <td>RW</td>
                             <td>Counter/Timer A1 Clock Select.<br><br>
                                  TMRPIN               = 0x0 - Clock source is TMRPINA.<br>
-                             HFRC                 = 0x1 - Clock source is the HFRC / 4<br>
-                             HFRC_DIV8            = 0x2 - Clock source is HFRC / 16<br>
-                             HFRC_DIV128          = 0x3 - Clock source is HFRC / 256<br>
-                             HFRC_DIV512          = 0x4 - Clock source is HFRC / 1024<br>
-                             HFRC_DIV2K           = 0x5 - Clock source is HFRC / 4096<br>
+                             HFRC_DIV4            = 0x1 - Clock source is HFRC / 4<br>
+                             HFRC_DIV16           = 0x2 - Clock source is HFRC / 16<br>
+                             HFRC_DIV256          = 0x3 - Clock source is HFRC / 256<br>
+                             HFRC_DIV1024         = 0x4 - Clock source is HFRC / 1024<br>
+                             HFRC_DIV4K           = 0x5 - Clock source is HFRC / 4096<br>
                              XT                   = 0x6 - Clock source is the XT (uncalibrated).<br>
                              XT_DIV2              = 0x7 - Clock source is XT / 2<br>
                              XT_DIV16             = 0x8 - Clock source is XT / 16<br>
-                             XT_DIV256            = 0x9 - Clock source is XT / 124<br>
+                             XT_DIV256            = 0x9 - Clock source is XT / 256<br>
                              LFRC_DIV2            = 0xA - Clock source is LFRC / 2<br>
                              LFRC_DIV32           = 0xB - Clock source is LFRC / 32<br>
                              LFRC_DIV1K           = 0xC - Clock source is LFRC / 1024<br>
                              LFRC                 = 0xD - Clock source is LFRC<br>
                              RTC_100HZ            = 0xE - Clock source is 100 Hz from the current RTC oscillator.<br>
                              HCLK                 = 0xF - Clock source is HCLK.<br>
-                             BUCKA                = 0x10 - Clock source is buck converter stream A.</td>
+                             BUCKA                = 0x10 - Clock source is buck converter stream from MEM Buck.</td>
                         </tr>
 
                         <tr>
@@ -2611,7 +2589,7 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                             <td>Counter/Timer B2 Function Select.<br><br>
                                  SINGLECOUNT          = 0x0 - Single count (output toggles and sticks).  Count to CMPR0B2, stop.<br>
                              REPEATEDCOUNT        = 0x1 - Repeated count (periodic 1-clock-cycle-wide pulses).  Count to CMPR0B2, restart.<br>
-                             PULSE_ONCE           = 0x2 - Pulse once (aka one-shot).  Count to CMPR0B2, assert, count to CMPR1B, deassert, stop.<br>
+                             PULSE_ONCE           = 0x2 - Pulse once (aka one-shot).  Count to CMPR0B2, assert, count to CMPR1B2, deassert, stop.<br>
                              PULSE_CONT           = 0x3 - Pulse continously.  Count to CMPR0B2, assert, count to CMPR1B2, deassert, restart.<br>
                              CONTINUOUS           = 0x4 - Continuous run (aka Free Run).  Count continuously.</td>
                         </tr>
@@ -2622,22 +2600,22 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                             <td>RW</td>
                             <td>Counter/Timer B2 Clock Select.<br><br>
                                  TMRPIN               = 0x0 - Clock source is TMRPINB.<br>
-                             HFRC                 = 0x1 - Clock source is the HFRC / 4<br>
-                             HFRC_DIV8            = 0x2 - Clock source is HFRC / 16<br>
-                             HFRC_DIV128          = 0x3 - Clock source is HFRC / 256<br>
-                             HFRC_DIV512          = 0x4 - Clock source is HFRC / 1024<br>
-                             HFRC_DIV2K           = 0x5 - Clock source is HFRC / 4096<br>
+                             HFRC_DIV4            = 0x1 - Clock source is HFRC / 4<br>
+                             HFRC_DIV16           = 0x2 - Clock source is HFRC / 16<br>
+                             HFRC_DIV256          = 0x3 - Clock source is HFRC / 256<br>
+                             HFRC_DIV1024         = 0x4 - Clock source is HFRC / 1024<br>
+                             HFRC_DIV4K           = 0x5 - Clock source is HFRC / 4096<br>
                              XT                   = 0x6 - Clock source is the XT (uncalibrated).<br>
                              XT_DIV2              = 0x7 - Clock source is XT / 2<br>
                              XT_DIV16             = 0x8 - Clock source is XT / 16<br>
-                             XT_DIV256            = 0x9 - Clock source is XT / 124<br>
+                             XT_DIV256            = 0x9 - Clock source is XT / 256<br>
                              LFRC_DIV2            = 0xA - Clock source is LFRC / 2<br>
                              LFRC_DIV32           = 0xB - Clock source is LFRC / 32<br>
                              LFRC_DIV1K           = 0xC - Clock source is LFRC / 1024<br>
                              LFRC                 = 0xD - Clock source is LFRC<br>
                              RTC_100HZ            = 0xE - Clock source is 100 Hz from the current RTC oscillator.<br>
                              HCLK                 = 0xF - Clock source is HCLK.<br>
-                             BUCKB                = 0x10 - Clock source is buck converter stream B.</td>
+                             BUCKA                = 0x10 - Clock source is buck converter stream from MEM Buck.</td>
                         </tr>
 
                         <tr>
@@ -2663,7 +2641,7 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                             <td>RW</td>
                             <td>Counter/Timer A2 Output Enable bit.<br><br>
                                  DIS                  = 0x0 - Counter/Timer A holds the TMRPINA signal at the value TMRA2POL.<br>
-                             EN                   = 0x1 - Enable counter/timer B2 to generate a signal on TMRPINB.</td>
+                             EN                   = 0x1 - Enable counter/timer A2 to generate a signal on TMRPINA.</td>
                         </tr>
 
                         <tr>
@@ -2709,7 +2687,7 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                             <td>Counter/Timer A2 Function Select.<br><br>
                                  SINGLECOUNT          = 0x0 - Single count (output toggles and sticks).  Count to CMPR0A2, stop.<br>
                              REPEATEDCOUNT        = 0x1 - Repeated count (periodic 1-clock-cycle-wide pulses).  Count to CMPR0A2, restart.<br>
-                             PULSE_ONCE           = 0x2 - Pulse once (aka one-shot).  Count to CMPR0A2, assert, count to CMPR1B, deassert, stop.<br>
+                             PULSE_ONCE           = 0x2 - Pulse once (aka one-shot).  Count to CMPR0A2, assert, count to CMPR1A2, deassert, stop.<br>
                              PULSE_CONT           = 0x3 - Pulse continously.  Count to CMPR0A2, assert, count to CMPR1A2, deassert, restart.<br>
                              CONTINUOUS           = 0x4 - Continuous run (aka Free Run).  Count continuously.</td>
                         </tr>
@@ -2720,22 +2698,22 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                             <td>RW</td>
                             <td>Counter/Timer A2 Clock Select.<br><br>
                                  TMRPIN               = 0x0 - Clock source is TMRPINA.<br>
-                             HFRC                 = 0x1 - Clock source is the HFRC / 4<br>
-                             HFRC_DIV8            = 0x2 - Clock source is HFRC / 16<br>
-                             HFRC_DIV128          = 0x3 - Clock source is HFRC / 256<br>
-                             HFRC_DIV512          = 0x4 - Clock source is HFRC / 1024<br>
-                             HFRC_DIV2K           = 0x5 - Clock source is HFRC / 4096<br>
+                             HFRC_DIV4            = 0x1 - Clock source is HFRC / 4<br>
+                             HFRC_DIV16           = 0x2 - Clock source is HFRC / 16<br>
+                             HFRC_DIV256          = 0x3 - Clock source is HFRC / 256<br>
+                             HFRC_DIV1024         = 0x4 - Clock source is HFRC / 1024<br>
+                             HFRC_DIV4K           = 0x5 - Clock source is HFRC / 4096<br>
                              XT                   = 0x6 - Clock source is the XT (uncalibrated).<br>
                              XT_DIV2              = 0x7 - Clock source is XT / 2<br>
                              XT_DIV16             = 0x8 - Clock source is XT / 16<br>
-                             XT_DIV256            = 0x9 - Clock source is XT / 124<br>
+                             XT_DIV256            = 0x9 - Clock source is XT / 256<br>
                              LFRC_DIV2            = 0xA - Clock source is LFRC / 2<br>
                              LFRC_DIV32           = 0xB - Clock source is LFRC / 32<br>
                              LFRC_DIV1K           = 0xC - Clock source is LFRC / 1024<br>
                              LFRC                 = 0xD - Clock source is LFRC<br>
                              RTC_100HZ            = 0xE - Clock source is 100 Hz from the current RTC oscillator.<br>
                              HCLK                 = 0xF - Clock source is HCLK.<br>
-                             BUCKA                = 0x10 - Clock source is buck converter stream A.</td>
+                             BUCKB                = 0x10 - Clock source is buck converter stream from CORE Buck.</td>
                         </tr>
 
                         <tr>
@@ -3350,7 +3328,7 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                             <td>Counter/Timer B3 Function Select.<br><br>
                                  SINGLECOUNT          = 0x0 - Single count (output toggles and sticks).  Count to CMPR0B3, stop.<br>
                              REPEATEDCOUNT        = 0x1 - Repeated count (periodic 1-clock-cycle-wide pulses).  Count to CMPR0B3, restart.<br>
-                             PULSE_ONCE           = 0x2 - Pulse once (aka one-shot).  Count to CMPR0B3, assert, count to CMPR1B, deassert, stop.<br>
+                             PULSE_ONCE           = 0x2 - Pulse once (aka one-shot).  Count to CMPR0B3, assert, count to CMPR1B3, deassert, stop.<br>
                              PULSE_CONT           = 0x3 - Pulse continously.  Count to CMPR0B3, assert, count to CMPR1B3, deassert, restart.<br>
                              CONTINUOUS           = 0x4 - Continuous run (aka Free Run).  Count continuously.</td>
                         </tr>
@@ -3361,22 +3339,22 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                             <td>RW</td>
                             <td>Counter/Timer B3 Clock Select.<br><br>
                                  TMRPIN               = 0x0 - Clock source is TMRPINB.<br>
-                             HFRC                 = 0x1 - Clock source is the HFRC / 4<br>
-                             HFRC_DIV8            = 0x2 - Clock source is HFRC / 16<br>
-                             HFRC_DIV128          = 0x3 - Clock source is HFRC / 256<br>
-                             HFRC_DIV512          = 0x4 - Clock source is HFRC / 1024<br>
-                             HFRC_DIV2K           = 0x5 - Clock source is HFRC / 4096<br>
+                             HFRC_DIV4            = 0x1 - Clock source is HFRC / 4<br>
+                             HFRC_DIV16           = 0x2 - Clock source is HFRC / 16<br>
+                             HFRC_DIV256          = 0x3 - Clock source is HFRC / 256<br>
+                             HFRC_DIV1024         = 0x4 - Clock source is HFRC / 1024<br>
+                             HFRC_DIV4K           = 0x5 - Clock source is HFRC / 4096<br>
                              XT                   = 0x6 - Clock source is the XT (uncalibrated).<br>
                              XT_DIV2              = 0x7 - Clock source is XT / 2<br>
                              XT_DIV16             = 0x8 - Clock source is XT / 16<br>
-                             XT_DIV256            = 0x9 - Clock source is XT / 124<br>
+                             XT_DIV256            = 0x9 - Clock source is XT / 256<br>
                              LFRC_DIV2            = 0xA - Clock source is LFRC / 2<br>
                              LFRC_DIV32           = 0xB - Clock source is LFRC / 32<br>
                              LFRC_DIV1K           = 0xC - Clock source is LFRC / 1024<br>
                              LFRC                 = 0xD - Clock source is LFRC<br>
                              RTC_100HZ            = 0xE - Clock source is 100 Hz from the current RTC oscillator.<br>
                              HCLK                 = 0xF - Clock source is HCLK.<br>
-                             BUCKB                = 0x10 - Clock source is buck converter stream B.</td>
+                             BUCKA                = 0x10 - Clock source is buck converter stream from MEM Buck.</td>
                         </tr>
 
                         <tr>
@@ -3410,7 +3388,7 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                             <td>RW</td>
                             <td>Counter/Timer A3 Output Enable bit.<br><br>
                                  DIS                  = 0x0 - Counter/Timer A holds the TMRPINA signal at the value TMRA3POL.<br>
-                             EN                   = 0x1 - Enable counter/timer B3 to generate a signal on TMRPINB.</td>
+                             EN                   = 0x1 - Enable counter/timer A3 to generate a signal on TMRPINA.</td>
                         </tr>
 
                         <tr>
@@ -3456,7 +3434,7 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                             <td>Counter/Timer A3 Function Select.<br><br>
                                  SINGLECOUNT          = 0x0 - Single count (output toggles and sticks).  Count to CMPR0A3, stop.<br>
                              REPEATEDCOUNT        = 0x1 - Repeated count (periodic 1-clock-cycle-wide pulses).  Count to CMPR0A3, restart.<br>
-                             PULSE_ONCE           = 0x2 - Pulse once (aka one-shot).  Count to CMPR0A3, assert, count to CMPR1B, deassert, stop.<br>
+                             PULSE_ONCE           = 0x2 - Pulse once (aka one-shot).  Count to CMPR0A3, assert, count to CMPR1A3, deassert, stop.<br>
                              PULSE_CONT           = 0x3 - Pulse continously.  Count to CMPR0A3, assert, count to CMPR1A3, deassert, restart.<br>
                              CONTINUOUS           = 0x4 - Continuous run (aka Free Run).  Count continuously.</td>
                         </tr>
@@ -3467,22 +3445,22 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                             <td>RW</td>
                             <td>Counter/Timer A3 Clock Select.<br><br>
                                  TMRPIN               = 0x0 - Clock source is TMRPINA.<br>
-                             HFRC                 = 0x1 - Clock source is the HFRC / 4<br>
-                             HFRC_DIV8            = 0x2 - Clock source is HFRC / 16<br>
-                             HFRC_DIV128          = 0x3 - Clock source is HFRC / 256<br>
-                             HFRC_DIV512          = 0x4 - Clock source is HFRC / 1024<br>
-                             HFRC_DIV2K           = 0x5 - Clock source is HFRC / 4096<br>
+                             HFRC_DIV4            = 0x1 - Clock source is HFRC / 4<br>
+                             HFRC_DIV16           = 0x2 - Clock source is HFRC / 16<br>
+                             HFRC_DIV256          = 0x3 - Clock source is HFRC / 256<br>
+                             HFRC_DIV1024         = 0x4 - Clock source is HFRC / 1024<br>
+                             HFRC_DIV4K           = 0x5 - Clock source is HFRC / 4096<br>
                              XT                   = 0x6 - Clock source is the XT (uncalibrated).<br>
                              XT_DIV2              = 0x7 - Clock source is XT / 2<br>
                              XT_DIV16             = 0x8 - Clock source is XT / 16<br>
-                             XT_DIV256            = 0x9 - Clock source is XT / 124<br>
+                             XT_DIV256            = 0x9 - Clock source is XT / 256<br>
                              LFRC_DIV2            = 0xA - Clock source is LFRC / 2<br>
                              LFRC_DIV32           = 0xB - Clock source is LFRC / 32<br>
                              LFRC_DIV1K           = 0xC - Clock source is LFRC / 1024<br>
                              LFRC                 = 0xD - Clock source is LFRC<br>
                              RTC_100HZ            = 0xE - Clock source is 100 Hz from the current RTC oscillator.<br>
                              HCLK                 = 0xF - Clock source is HCLK.<br>
-                             BUCKA                = 0x10 - Clock source is buck converter stream A.</td>
+                             BUCKB                = 0x10 - Clock source is buck converter stream from CORE Buck.</td>
                         </tr>
 
                         <tr>
@@ -3648,7 +3626,7 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                             <td>30</td>
                             <td>CLEAR</td>
                             <td>RW</td>
-                            <td>Set this bit to one to clear the System Timer register.<br><br>
+                            <td>Set this bit to one to clear the System Timer register.  If this bit is set to '1', the system timer register will stay cleared.  It needs to be set to '0' for the system timer to start running.<br><br>
                                  RUN                  = 0x0 - Let the COUNTER register run on its input clock.<br>
                              CLEAR                = 0x1 - Stop the COUNTER register for loading.</td>
                         </tr>
@@ -4057,7 +4035,7 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
 
                 </table>
                 <h3>Description:</h3>
-                <p>The VALUE in this bit field is used to compare against the VALUE in the COUNTER register. If the match criterion in the configuration register is met then a corresponding interrupt status bit is set.  The match criterion is defined as COUNTER equal to COMPARE or optionally COUNTER great than or equal to COMPARE. To establish a desired value in this COMPARE register, write the number of ticks in the future to this register to indicate when to interrupt. The hardware does the addition to the COUNTER value in the STIMER clock domain so that the math is precise. Reading this register shows the COUNTER value at which this interrupt will occur.</p>
+                <p>The VALUE in this bit field is used to compare against the VALUE in the COUNTER register. If the match criterion in the configuration register is met then a corresponding interrupt status bit is set.  The match criterion is defined as COUNTER equal to COMPARE. To establish a desired value in this COMPARE register, write the number of ticks in the future to this register to indicate when to interrupt. The hardware does the addition to the COUNTER value in the STIMER clock domain so that the math is precise. Reading this register shows the COUNTER value at which this interrupt will occur.</p>
                 <h3>Example Macro Usage:</h3>
                 <pre style="margin:10px" class="language-pascal"><span style='color:#3f7f59; '>//
 // All macro-based register writes follow the same basic format. For
@@ -4140,7 +4118,7 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                             <td>31:0</td>
                             <td>VALUE</td>
                             <td>RW</td>
-                            <td>Compare this value to the value in the COUNTER register according to the match criterion, as selected in the MATCH bit field in the CFG register.<br><br>
+                            <td>Compare this value to the value in the COUNTER register according to the match criterion, as selected in the COMPARE_A_EN bit in the REG_CTIMER_STCGF register.<br><br>
                                 </td>
                         </tr>
 
@@ -4170,7 +4148,7 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
 
                 </table>
                 <h3>Description:</h3>
-                <p>The VALUE in this bit field is used to compare against the VALUE in the COUNTER register. If the match criterion in the configuration register is met then a corresponding interrupt status bit is set.  The match criterion is defined as COUNTER equal to COMPARE or optionally COUNTER great than or equal to COMPARE. To establish a desired value in this COMPARE register, write the number of ticks in the future to this register to indicate when to interrupt. The hardware does the addition to the COUNTER value in the STIMER clock domain so that the math is precise. Reading this register shows the COUNTER value at which this interrupt will occur.</p>
+                <p>The VALUE in this bit field is used to compare against the VALUE in the COUNTER register. If the match criterion in the configuration register is met then a corresponding interrupt status bit is set.  The match criterion is defined as COUNTER equal to COMPARE. To establish a desired value in this COMPARE register, write the number of ticks in the future to this register to indicate when to interrupt. The hardware does the addition to the COUNTER value in the STIMER clock domain so that the math is precise. Reading this register shows the COUNTER value at which this interrupt will occur.</p>
                 <h3>Example Macro Usage:</h3>
                 <pre style="margin:10px" class="language-pascal"><span style='color:#3f7f59; '>//
 // All macro-based register writes follow the same basic format. For
@@ -4253,7 +4231,7 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                             <td>31:0</td>
                             <td>VALUE</td>
                             <td>RW</td>
-                            <td>Compare this value to the value in the COUNTER register according to the match criterion, as selected in the MATCH bit field in the CFG register.<br><br>
+                            <td>Compare this value to the value in the COUNTER register according to the match criterion, as selected in the COMPARE_B_EN bit in the REG_CTIMER_STCGF register.<br><br>
                                 </td>
                         </tr>
 
@@ -4283,7 +4261,7 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
 
                 </table>
                 <h3>Description:</h3>
-                <p>The VALUE in this bit field is used to compare against the VALUE in the COUNTER register. If the match criterion in the configuration register is met then a corresponding interrupt status bit is set.  The match criterion is defined as COUNTER equal to COMPARE or optionally COUNTER great than or equal to COMPARE. To establish a desired value in this COMPARE register, write the number of ticks in the future to this register to indicate when to interrupt. The hardware does the addition to the COUNTER value in the STIMER clock domain so that the math is precise. Reading this register shows the COUNTER value at which this interrupt will occur.</p>
+                <p>The VALUE in this bit field is used to compare against the VALUE in the COUNTER register. If the match criterion in the configuration register is met then a corresponding interrupt status bit is set.  The match criterion is defined as COUNTER equal to COMPARE. To establish a desired value in this COMPARE register, write the number of ticks in the future to this register to indicate when to interrupt. The hardware does the addition to the COUNTER value in the STIMER clock domain so that the math is precise. Reading this register shows the COUNTER value at which this interrupt will occur.</p>
                 <h3>Example Macro Usage:</h3>
                 <pre style="margin:10px" class="language-pascal"><span style='color:#3f7f59; '>//
 // All macro-based register writes follow the same basic format. For
@@ -4366,7 +4344,7 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                             <td>31:0</td>
                             <td>VALUE</td>
                             <td>RW</td>
-                            <td>Compare this value to the value in the COUNTER register according to the match criterion, as selected in the MATCH bit field in the CFG register.<br><br>
+                            <td>Compare this value to the value in the COUNTER register according to the match criterion, as selected in the COMPARE_C_EN bit in the REG_CTIMER_STCGF register.<br><br>
                                 </td>
                         </tr>
 
@@ -4396,7 +4374,7 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
 
                 </table>
                 <h3>Description:</h3>
-                <p>The VALUE in this bit field is used to compare against the VALUE in the COUNTER register. If the match criterion in the configuration register is met then a corresponding interrupt status bit is set.  The match criterion is defined as COUNTER equal to COMPARE or optionally COUNTER great than or equal to COMPARE. To establish a desired value in this COMPARE register, write the number of ticks in the future to this register to indicate when to interrupt. The hardware does the addition to the COUNTER value in the STIMER clock domain so that the math is precise. Reading this register shows the COUNTER value at which this interrupt will occur.</p>
+                <p>The VALUE in this bit field is used to compare against the VALUE in the COUNTER register. If the match criterion in the configuration register is met then a corresponding interrupt status bit is set.  The match criterion is defined as COUNTER equal to COMPARE. To establish a desired value in this COMPARE register, write the number of ticks in the future to this register to indicate when to interrupt. The hardware does the addition to the COUNTER value in the STIMER clock domain so that the math is precise. Reading this register shows the COUNTER value at which this interrupt will occur.</p>
                 <h3>Example Macro Usage:</h3>
                 <pre style="margin:10px" class="language-pascal"><span style='color:#3f7f59; '>//
 // All macro-based register writes follow the same basic format. For
@@ -4479,7 +4457,7 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                             <td>31:0</td>
                             <td>VALUE</td>
                             <td>RW</td>
-                            <td>Compare this value to the value in the COUNTER register according to the match criterion, as selected in the MATCH bit field in the CFG register.<br><br>
+                            <td>Compare this value to the value in the COUNTER register according to the match criterion, as selected in the COMPARE_D_EN bit in the REG_CTIMER_STCGF register.<br><br>
                                 </td>
                         </tr>
 
@@ -4509,7 +4487,7 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
 
                 </table>
                 <h3>Description:</h3>
-                <p>The VALUE in this bit field is used to compare against the VALUE in the COUNTER register. If the match criterion in the configuration register is met then a corresponding interrupt status bit is set.  The match criterion is defined as COUNTER equal to COMPARE or optionally COUNTER great than or equal to COMPARE. To establish a desired value in this COMPARE register, write the number of ticks in the future to this register to indicate when to interrupt. The hardware does the addition to the COUNTER value in the STIMER clock domain so that the math is precise. Reading this register shows the COUNTER value at which this interrupt will occur.</p>
+                <p>The VALUE in this bit field is used to compare against the VALUE in the COUNTER register. If the match criterion in the configuration register is met then a corresponding interrupt status bit is set.  The match criterion is defined as COUNTER equal to COMPARE. To establish a desired value in this COMPARE register, write the number of ticks in the future to this register to indicate when to interrupt. The hardware does the addition to the COUNTER value in the STIMER clock domain so that the math is precise. Reading this register shows the COUNTER value at which this interrupt will occur.</p>
                 <h3>Example Macro Usage:</h3>
                 <pre style="margin:10px" class="language-pascal"><span style='color:#3f7f59; '>//
 // All macro-based register writes follow the same basic format. For
@@ -4592,7 +4570,7 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                             <td>31:0</td>
                             <td>VALUE</td>
                             <td>RW</td>
-                            <td>Compare this value to the value in the COUNTER register according to the match criterion, as selected in the MATCH bit field in the CFG register.<br><br>
+                            <td>Compare this value to the value in the COUNTER register according to the match criterion, as selected in the COMPARE_E_EN bit in the REG_CTIMER_STCGF register.<br><br>
                                 </td>
                         </tr>
 
@@ -4622,7 +4600,7 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
 
                 </table>
                 <h3>Description:</h3>
-                <p>The VALUE in this bit field is used to compare against the VALUE in the COUNTER register. If the match criterion in the configuration register is met then a corresponding interrupt status bit is set.  The match criterion is defined as COUNTER equal to COMPARE or optionally COUNTER great than or equal to COMPARE. To establish a desired value in this COMPARE register, write the number of ticks in the future to this register to indicate when to interrupt. The hardware does the addition to the COUNTER value in the STIMER clock domain so that the math is precise. Reading this register shows the COUNTER value at which this interrupt will occur.</p>
+                <p>The VALUE in this bit field is used to compare against the VALUE in the COUNTER register. If the match criterion in the configuration register is met then a corresponding interrupt status bit is set.  The match criterion is defined as COUNTER equal to COMPARE. To establish a desired value in this COMPARE register, write the number of ticks in the future to this register to indicate when to interrupt. The hardware does the addition to the COUNTER value in the STIMER clock domain so that the math is precise. Reading this register shows the COUNTER value at which this interrupt will occur.</p>
                 <h3>Example Macro Usage:</h3>
                 <pre style="margin:10px" class="language-pascal"><span style='color:#3f7f59; '>//
 // All macro-based register writes follow the same basic format. For
@@ -4705,7 +4683,7 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                             <td>31:0</td>
                             <td>VALUE</td>
                             <td>RW</td>
-                            <td>Compare this value to the value in the COUNTER register according to the match criterion, as selected in the MATCH bit field in the CFG register.<br><br>
+                            <td>Compare this value to the value in the COUNTER register according to the match criterion, as selected in the COMPARE_F_EN bit in the REG_CTIMER_STCGF register.<br><br>
                                 </td>
                         </tr>
 
@@ -4735,7 +4713,7 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
 
                 </table>
                 <h3>Description:</h3>
-                <p>The VALUE in this bit field is used to compare against the VALUE in the COUNTER register. If the match criterion in the configuration register is met then a corresponding interrupt status bit is set.  The match criterion is defined as COUNTER equal to COMPARE or optionally COUNTER great than or equal to COMPARE. To establish a desired value in this COMPARE register, write the number of ticks in the future to this register to indicate when to interrupt. The hardware does the addition to the COUNTER value in the STIMER clock domain so that the math is precise. Reading this register shows the COUNTER value at which this interrupt will occur.</p>
+                <p>The VALUE in this bit field is used to compare against the VALUE in the COUNTER register. If the match criterion in the configuration register is met then a corresponding interrupt status bit is set.  The match criterion is defined as COUNTER equal to COMPARE. To establish a desired value in this COMPARE register, write the number of ticks in the future to this register to indicate when to interrupt. The hardware does the addition to the COUNTER value in the STIMER clock domain so that the math is precise. Reading this register shows the COUNTER value at which this interrupt will occur.</p>
                 <h3>Example Macro Usage:</h3>
                 <pre style="margin:10px" class="language-pascal"><span style='color:#3f7f59; '>//
 // All macro-based register writes follow the same basic format. For
@@ -4818,7 +4796,7 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                             <td>31:0</td>
                             <td>VALUE</td>
                             <td>RW</td>
-                            <td>Compare this value to the value in the COUNTER register according to the match criterion, as selected in the MATCH bit field in the CFG register.<br><br>
+                            <td>Compare this value to the value in the COUNTER register according to the match criterion, as selected in the COMPARE_G_EN bit in the REG_CTIMER_STCGF register.<br><br>
                                 </td>
                         </tr>
 
@@ -4848,7 +4826,7 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
 
                 </table>
                 <h3>Description:</h3>
-                <p>The VALUE in this bit field is used to compare against the VALUE in the COUNTER register. If the match criterion in the configuration register is met then a corresponding interrupt status bit is set.  The match criterion is defined as COUNTER equal to COMPARE or optionally COUNTER great than or equal to COMPARE. To establish a desired value in this COMPARE register, write the number of ticks in the future to this register to indicate when to interrupt. The hardware does the addition to the COUNTER value in the STIMER clock domain so that the math is precise.</p>
+                <p>The VALUE in this bit field is used to compare against the VALUE in the COUNTER register. If the match criterion in the configuration register is met then a corresponding interrupt status bit is set.  The match criterion is defined as COUNTER equal to COMPARE. To establish a desired value in this COMPARE register, write the number of ticks in the future to this register to indicate when to interrupt. The hardware does the addition to the COUNTER value in the STIMER clock domain so that the math is precise.</p>
                 <h3>Example Macro Usage:</h3>
                 <pre style="margin:10px" class="language-pascal"><span style='color:#3f7f59; '>//
 // All macro-based register writes follow the same basic format. For
@@ -4931,244 +4909,7 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                             <td>31:0</td>
                             <td>VALUE</td>
                             <td>RW</td>
-                            <td>Compare this value to the value in the COUNTER register according to the match criterion, as selected in the MATCH bit field in the CFG register.<br><br>
-                                </td>
-                        </tr>
-
-                    </tbody>
-                </table>
-                <br>
-            </div>
-        </div>
-
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 id="SDEBUG" class="panel-title">SDEBUG - Debug Register</h3>
-            </div>
-            <div class="panel-body">
-                <h3>Address:</h3>
-                <table style="margin:10px">
-                    <tr id="row_0_0_">
-                        <td class="entry">
-                            <span style="width:32px;display:inline-block;">&#160;</span>
-                            <span class="h5">Instance 0 Address:</span>
-                        </td>
-                        <td class="entry">
-                            <span style="width:32px;display:inline-block;">&#160;</span>
-                            <span class="h5">0x4000813C</span>
-                        </td>
-                    </tr>
-
-                </table>
-                <h3>Description:</h3>
-                <p>The debug register provides diagnostic control of the STIMER block. It can freeze the counter register so that it can be safely written for test purposes. The designer will add additional internal state read back bit fields to this register during design, such as state machine bits, enable bits and information that would otherwise be unobservable in real silicon.</p>
-                <h3>Example Macro Usage:</h3>
-                <pre style="margin:10px" class="language-pascal"><span style='color:#3f7f59; '>//
-// All macro-based register writes follow the same basic format. For
-// single-instance modules, you may use the simpler AM_REG macro. For
-// multi-instance macros, you will need to specify the instance number using
-// the AM_REGn macro format.
-//
-// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
-// AM_REGn(&lt;MODULE&gt;, &lt;INSTANCE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
-//
-// For registers that do not have specific enumeration values, you may use this alternate format instead.
-//
-// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;(&lt;NUMBER&gt;);
-//
-// For example, the following three lines of code are equivalent methods of
-// writing the value for 12MHZ to the CLKSEL field in the ADC_CFG register.
-//</span>
-AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
-AM_REGn(ADC, 0, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
-AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
-                <h3>Register Fields:</h3>
-                <table style="margin:10px" class="table table-bordered table-condensed">
-                    <thead>
-                        <tr>
-                            <th>31</th>
-                            <th>30</th>
-                            <th>29</th>
-                            <th>28</th>
-                            <th>27</th>
-                            <th>26</th>
-                            <th>25</th>
-                            <th>24</th>
-                            <th>23</th>
-                            <th>22</th>
-                            <th>21</th>
-                            <th>20</th>
-                            <th>19</th>
-                            <th>18</th>
-                            <th>17</th>
-                            <th>16</th>
-                            <th>15</th>
-                            <th>14</th>
-                            <th>13</th>
-                            <th>12</th>
-                            <th>11</th>
-                            <th>10</th>
-                            <th>9</th>
-                            <th>8</th>
-                            <th>7</th>
-                            <th>6</th>
-                            <th>5</th>
-                            <th>4</th>
-                            <th>3</th>
-                            <th>2</th>
-                            <th>1</th>
-                            <th>0</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td align="center" colspan="24">RSVD
-                                <br>0x0</td>
-
-                            <td align="center" colspan="8">FSM_RO
-                                <br>0x0</td>
-
-                        </tr>
-                    </tbody>
-                </table>
-                <br>
-
-                <table style="margin:10px" class="table table-bordered table-condensed">
-                    <thead>
-                        <tr>
-                            <th>Bits</th>
-                            <th>Name</th>
-                            <th>RW</th>
-                            <th>Description</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>31:8</td>
-                            <td>RSVD</td>
-                            <td>RO</td>
-                            <td>RESERVED.<br><br>
-                                </td>
-                        </tr>
-
-                        <tr>
-                            <td>7:0</td>
-                            <td>FSM_RO</td>
-                            <td>RO</td>
-                            <td>The designer should wire in interest read only observability bits here.<br><br>
-                                </td>
-                        </tr>
-
-                    </tbody>
-                </table>
-                <br>
-            </div>
-        </div>
-
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 id="DBGRO" class="panel-title">DBGRO - Debug Reasd Only Register</h3>
-            </div>
-            <div class="panel-body">
-                <h3>Address:</h3>
-                <table style="margin:10px">
-                    <tr id="row_0_0_">
-                        <td class="entry">
-                            <span style="width:32px;display:inline-block;">&#160;</span>
-                            <span class="h5">Instance 0 Address:</span>
-                        </td>
-                        <td class="entry">
-                            <span style="width:32px;display:inline-block;">&#160;</span>
-                            <span class="h5">0x40008140</span>
-                        </td>
-                    </tr>
-
-                </table>
-                <h3>Description:</h3>
-                <p>The STIMER debug read only register provides additional debug information regarding the existence of the STIMER in an MCU and also indicates which revision of the block is present.</p>
-                <h3>Example Macro Usage:</h3>
-                <pre style="margin:10px" class="language-pascal"><span style='color:#3f7f59; '>//
-// All macro-based register writes follow the same basic format. For
-// single-instance modules, you may use the simpler AM_REG macro. For
-// multi-instance macros, you will need to specify the instance number using
-// the AM_REGn macro format.
-//
-// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
-// AM_REGn(&lt;MODULE&gt;, &lt;INSTANCE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
-//
-// For registers that do not have specific enumeration values, you may use this alternate format instead.
-//
-// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;(&lt;NUMBER&gt;);
-//
-// For example, the following three lines of code are equivalent methods of
-// writing the value for 12MHZ to the CLKSEL field in the ADC_CFG register.
-//</span>
-AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
-AM_REGn(ADC, 0, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
-AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
-                <h3>Register Fields:</h3>
-                <table style="margin:10px" class="table table-bordered table-condensed">
-                    <thead>
-                        <tr>
-                            <th>31</th>
-                            <th>30</th>
-                            <th>29</th>
-                            <th>28</th>
-                            <th>27</th>
-                            <th>26</th>
-                            <th>25</th>
-                            <th>24</th>
-                            <th>23</th>
-                            <th>22</th>
-                            <th>21</th>
-                            <th>20</th>
-                            <th>19</th>
-                            <th>18</th>
-                            <th>17</th>
-                            <th>16</th>
-                            <th>15</th>
-                            <th>14</th>
-                            <th>13</th>
-                            <th>12</th>
-                            <th>11</th>
-                            <th>10</th>
-                            <th>9</th>
-                            <th>8</th>
-                            <th>7</th>
-                            <th>6</th>
-                            <th>5</th>
-                            <th>4</th>
-                            <th>3</th>
-                            <th>2</th>
-                            <th>1</th>
-                            <th>0</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td align="center" colspan="32">VALUE
-                                <br>0xc001d00d</td>
-
-                        </tr>
-                    </tbody>
-                </table>
-                <br>
-
-                <table style="margin:10px" class="table table-bordered table-condensed">
-                    <thead>
-                        <tr>
-                            <th>Bits</th>
-                            <th>Name</th>
-                            <th>RW</th>
-                            <th>Description</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>31:0</td>
-                            <td>VALUE</td>
-                            <td>RO</td>
-                            <td>Always read back the fixed value of 0xc001d00d to add in validation of the block and to test the bus connections to the block. Subsequent version of this block will read a different 32-bit pattern<br><br>
+                            <td>Compare this value to the value in the COUNTER register according to the match criterion, as selected in the COMPARE_H_EN bit in the REG_CTIMER_STCGF register.<br><br>
                                 </td>
                         </tr>
 
@@ -8157,7 +7898,7 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
             <small>
                 AmbiqSuite Register Documentation&nbsp;
                 <a href="http://www.ambiqmicro.com">
-                <img class="footer" src="../resources/ambiqmicro_logo.png" alt="Ambiq Micro"/></a>&nbsp&nbsp Copyright &copy; 2014&nbsp&nbsp<br />
+                <img class="footer" src="../resources/ambiqmicro_logo.png" alt="Ambiq Micro"/></a>&nbsp&nbsp Copyright &copy; 2020&nbsp&nbsp<br />
                 This documentation is licensed and distributed under the <a rel="license" href="http://opensource.org/licenses/BSD-3-Clause">BSD 3-Clause License</a>.&nbsp&nbsp<br/>
             </small>
         </div>

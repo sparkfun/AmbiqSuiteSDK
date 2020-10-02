@@ -13,7 +13,7 @@
 
 //*****************************************************************************
 //
-// Copyright (c) 2020, Ambiq Micro
+// Copyright (c) 2020, Ambiq Micro, Inc.
 // All rights reserved.
 //
 // Redistribution and use in source and binary forms, with or without
@@ -45,7 +45,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
-// This is part of revision 2.4.2 of the AmbiqSuite Development Package.
+// This is part of revision 2.5.1 of the AmbiqSuite Development Package.
 //
 //*****************************************************************************
 
@@ -155,18 +155,44 @@ g_ui8TmrClkSrcMask[32] =  // 5-bit field = 32 table entries
 //  OUTCFG 7 = A7OUT2.
 //
 //*****************************************************************************
-#define CTXPADNUM(ctx)  ((CTx_tbl[ctx] >> 0) & 0x3f)
-#define CTXPADFNC(ctx)  ((CTx_tbl[ctx] >> 8) & 0x7)
+#define CTXPADNUM(ctx, ctx_idx)  ((CTx_tbl[ctx][ctx_idx] >> 0) & 0x7f)
+#define CTXPADFNC(ctx, ctx_idx)  ((CTx_tbl[ctx][ctx_idx] >> 8) & 0x7)
 #define CTX(pad, fn)    ((fn << 8) | (pad << 0))
-static const uint16_t CTx_tbl[32] =
+
+static const uint16_t CTx_tbl[32][2] =
 {
-    CTX(12,2), CTX(25,2), CTX(13,2), CTX(26,2), CTX(18,2),      // 0 - 4
-    CTX(27,2), CTX(19,2), CTX(28,2), CTX( 5,7), CTX(29,2),      // 5 - 9
-    CTX( 6,5), CTX(30,2), CTX(22,2), CTX(31,2), CTX(23,2),      // 10 - 14
-    CTX(32,2), CTX(42,2), CTX( 4,6), CTX(43,2), CTX( 7,7),      // 15 - 19
-    CTX(44,2), CTX(24,5), CTX(45,2), CTX(33,6), CTX(46,2),      // 20 - 24
-    CTX(39,2), CTX(47,2), CTX(35,5), CTX(48,2), CTX(37,7),      // 25 - 29
-    CTX(49,2), CTX(11,2)                                        // 30 - 31
+    CTX(12,2), CTX(50,2),      // 0
+    CTX(25,2), CTX(51,2),      // 1
+    CTX(13,2), CTX(52,2),      // 2
+    CTX(26,2), CTX(53,2),      // 3
+    CTX(18,2), CTX(54,2),      // 4
+    CTX(27,2), CTX(55,2),      // 5
+    CTX(19,2), CTX(56,2),      // 6
+    CTX(28,2), CTX(57,2),      // 7
+    CTX( 5,7), CTX(58,2),      // 8
+    CTX(29,2), CTX(59,2),      // 9
+    CTX( 6,5), CTX(60,2),      // 10
+    CTX(30,2), CTX(61,2),      // 11
+    CTX(22,2), CTX(62,2),      // 12
+    CTX(31,2), CTX(63,2),      // 13
+    CTX(23,2), CTX(64,2),      // 14
+    CTX(32,2), CTX(65,2),      // 15
+    CTX(42,2), CTX(66,2),      // 16
+    CTX( 4,6), CTX(67,2),      // 17
+    CTX(43,2), CTX(68,2),      // 18
+    CTX( 7,7), CTX(69,2),      // 19  
+    CTX(44,2), CTX(70,2),      // 20
+    CTX(24,5), CTX(71,2),      // 21
+    CTX(45,2), CTX(72,2),      // 22 
+    CTX(33,6), CTX(73,2),      // 23
+    CTX(46,2), 0xFFFF,         // 24
+    CTX(39,2), 0xFFFF,         // 25
+    CTX(47,2), 0xFFFF,         // 26
+    CTX(35,5), 0xFFFF,         // 27
+    CTX(48,2), 0xFFFF,         // 28
+    CTX(37,7), 0xFFFF,         // 29
+    CTX(49,2), 0xFFFF,         // 30
+    CTX(11,2), 0xFFFF,         // 31                              
 };
 
 #define OUTC(timB,timN,N2)      ((N2 << 4) | (timB << 3) | (timN << 0))
@@ -208,96 +234,6 @@ static const uint8_t outcfg_tbl[32][4] =
     {OUTC(1,7,0), OUTC(1,3,0), OUTC(0,4,1), OUTC(0,0,1)},     // CTX30: B7OUT,  B3OUT,  A4OUT2, A0OUT2
     {OUTC(1,7,1), OUTC(0,6,0), OUTC(1,7,0), OUTC(1,3,1)},     // CTX31: B7OUT2, A6OUT,  B7OUT,  B3OUT2
 };
-
-//*****************************************************************************
-//
-// Static function for reading the timer value.
-//
-//*****************************************************************************
-#if (defined (__ARMCC_VERSION)) && (__ARMCC_VERSION < 6000000)
-__asm void
-am_hal_triple_read( uint32_t u32TimerAddr, uint32_t ui32Data[])
-{
-    push    {r1, r4}                // Save r1=ui32Data, r4
-    mrs     r4, PRIMASK             // Save current interrupt state
-    cpsid   i                       // Disable INTs while reading the reg
-    ldr     r1, [r0, #0]            // Read the designated register 3 times
-    ldr     r2, [r0, #0]            //  "
-    ldr     r3, [r0, #0]            //  "
-    msr     PRIMASK, r4             // Restore interrupt state
-    pop     {r0, r4}                // Get r0=ui32Data, restore r4
-    str     r1, [r0, #0]            // Store 1st read value to array
-    str     r2, [r0, #4]            // Store 2nd read value to array
-    str     r3, [r0, #8]            // Store 3rd read value to array
-    bx      lr                      // Return to caller
-}
-#elif (defined (__ARMCC_VERSION)) && (__ARMCC_VERSION >= 6000000)
-void
-am_hal_triple_read(uint32_t u32TimerAddr, uint32_t ui32Data[])
-{
-  __asm (
-    " push  {R1, R4}\n"
-    " mrs   R4, PRIMASK\n"
-    " cpsid i\n"
-    " nop\n"
-    " ldr   R1, [R0, #0]\n"
-    " ldr   R2, [R0, #0]\n"
-    " ldr   R3, [R0, #0]\n"
-    " msr   PRIMASK, r4\n"
-    " pop   {R0, R4}\n"
-    " str   R1, [R0, #0]\n"
-    " str   R2, [R0, #4]\n"
-    " str   R3, [R0, #8]\n"
-    :
-    : [u32TimerAddr] "r" (u32TimerAddr),
-      [u32Data] "r" (&u32Data[0])
-    : "r0", "r1", "r2", "r3", "r4"
-  );
-}
-#elif defined(__GNUC_STDC_INLINE__)
-__attribute__((naked))
-void
-am_hal_triple_read(uint32_t u32TimerAddr, uint32_t ui32Data[])
-{
-    __asm
-    (
-        "   push    {r1, r4}\n"                 // Save r1=ui32Data, r4
-        "   mrs     r4, PRIMASK \n"             // Save current interrupt state
-        "   cpsid   i           \n"             // Disable INTs while reading the reg
-        "   ldr     r1, [r0, #0]\n"             // Read the designated register 3 times
-        "   ldr     r2, [r0, #0]\n"             //  "
-        "   ldr     r3, [r0, #0]\n"             //  "
-        "   msr     PRIMASK, r4 \n"             // Restore interrupt state
-        "   pop     {r0, r4}\n"                 // Get r0=ui32Data, restore r4
-        "   str     r1, [r0, #0]\n"             // Store 1st read value to array
-        "   str     r2, [r0, #4]\n"             // Store 2nd read value to array
-        "   str     r3, [r0, #8]\n"             // Store 3rd read value to array
-        "   bx      lr          \n"             // Return to caller
-    );
-}
-#elif defined(__IAR_SYSTEMS_ICC__)
-#pragma diag_suppress = Pe940   // Suppress IAR compiler warning about missing
-                                // return statement on a non-void function
-__stackless void
-am_hal_triple_read( uint32_t u32TimerAddr, uint32_t ui32Data[])
-{
-    __asm(" push    {r1, r4}    ");         // Save r1=ui32Data, r4
-    __asm(" mrs     r4, PRIMASK ");         // Save current interrupt state
-    __asm(" cpsid   i           ");         // Disable INTs while reading the reg
-    __asm(" ldr     r1, [r0, #0]");         // Read the designated register 3 times
-    __asm(" ldr     r2, [r0, #0]");         //  "
-    __asm(" ldr     r3, [r0, #0]");         //  "
-    __asm(" msr     PRIMASK, r4 ");         // Restore interrupt state
-    __asm(" pop     {r0, r4}    ");         // Get r0=ui32Data, restore r4
-    __asm(" str     r1, [r0, #0]");         // Store 1st read value to array
-    __asm(" str     r2, [r0, #4]");         // Store 2nd read value to array
-    __asm(" str     r3, [r0, #8]");         // Store 3rd read value to array
-    __asm(" bx      lr          ");         // Return to caller
-}
-#pragma diag_default = Pe940    // Restore IAR compiler warning
-#else
-#error Compiler is unknown, please contact Ambiq support team
-#endif
 
 
 
@@ -1312,12 +1248,13 @@ am_hal_ctimer_output_config(uint32_t ui32TimerNumber,
                             uint32_t eDriveStrength)
 {
     uint32_t ux, ui32Ctx, ui32CtxPadNum;
+    uint32_t ui32CtxIdx;	
     uint32_t ui32CtxOutcfgFnc, ui32CtxOutcfgMsk, ui32CfgShf;
     uint32_t ui32OutcfgValue;
 
     am_hal_gpio_pincfg_t sPinCfg = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 
-    if ( (ui32PadNum > 49)  ||  (ui32TimerNumber > 7)   ||
+    if ( (ui32PadNum > AM_HAL_GPIO_MAX_PADS)  ||  (ui32TimerNumber > 7)   ||
          (eOutputType > AM_HAL_CTIMER_OUTPUT_FORCE1)    ||
          ( (ui32TimerSegment != AM_HAL_CTIMER_TIMERA) &&
            (ui32TimerSegment != AM_HAL_CTIMER_TIMERB) &&
@@ -1331,12 +1268,22 @@ am_hal_ctimer_output_config(uint32_t ui32TimerNumber,
     //
     for ( ux = 0; ux < 32; ux++ )
     {
-        ui32CtxPadNum = CTXPADNUM(ux);
+        ui32CtxPadNum = CTXPADNUM(ux, 0);
         if ( ui32CtxPadNum == ui32PadNum )
         {
             ui32Ctx = ux;
+            ui32CtxIdx = 0;
             break;
         }
+
+        ui32CtxPadNum = CTXPADNUM(ux, 1);
+        if ( ui32CtxPadNum == ui32PadNum )
+        {
+            ui32Ctx = ux;
+            ui32CtxIdx = 1;
+            break;
+        }
+        
         ui32CtxPadNum = 0xFF;
     }
 
@@ -1460,7 +1407,7 @@ am_hal_ctimer_output_config(uint32_t ui32TimerNumber,
     //
     // Configure the GPIO for the given pad.
     //
-    sPinCfg.uFuncSel = CTXPADFNC(ui32Ctx);
+    sPinCfg.uFuncSel = CTXPADFNC(ui32Ctx, ui32CtxIdx);
     sPinCfg.eDriveStrength = eDriveStrength;
     am_hal_gpio_pinconfig(ui32CtxPadNum, sPinCfg);
 

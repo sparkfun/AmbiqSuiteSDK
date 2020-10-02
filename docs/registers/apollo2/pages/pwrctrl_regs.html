@@ -1,0 +1,1927 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=9" />
+    <meta name="generator" content="AmbiqMicro" />
+    <title>AmbiqSuite User Guide: AmbiqSuite Apollo Device Register Overview</title>
+    <link href="../resources/tabs.css" rel="stylesheet" type="text/css" />
+    <link href="../resources/bootstrap.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="../resources/jquery.js"></script>
+    <script type="text/javascript" src="../resources/dynsections.js"></script>
+    <link href="search/search.css" rel="stylesheet" type="text/css" />
+    <link href="../resources/customdoxygen.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+    <div id="top">
+        <!-- do not remove this div, it is closed by doxygen! -->
+        <div id="titlearea">
+            <table cellspacing="0" cellpadding="0">
+                <tbody>
+                    <tr style="height: 56px;">
+                        <td id="projectlogo">
+                            <img alt="Logo" src="../resources/am_logo.png" />
+                        </td>
+                        <td style="padding-left: 0.5em;">
+                            <div id="projectname">Apollo Register Documentation &#160;<span id="projectnumber">v${version}</span></div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <!-- end header part -->
+        <div id="navrow1" class="tabs">
+            <ul class="tablist">
+                <li class="current"><a href="../index.html"><span>Main&#160;Page</span></a>
+                </li>
+        </div>
+        </li>
+        </ul>
+    </div>
+    </div>
+    <!-- top -->
+    <!-- window showing the filter options -->
+    <div class="header">
+        <div class="headertitle">
+            <div class="title">PWRCTRL - PWR Controller Register Bank</div>
+        </div>
+    </div>
+    <!--header-->
+    <body>
+        <br>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title"> PWRCTRL Register Index</h3>
+            </div>
+            <div class="panel-body">
+                <table>
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x00000000:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <a class="el" href="#SUPPLYSRC" target="_self">SUPPLYSRC - Memory and Core Voltage Supply Source Select Register</a>
+                        </td>
+                    </tr>
+
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x00000004:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <a class="el" href="#POWERSTATUS" target="_self">POWERSTATUS - Power Status Register for MCU supplies and peripherals</a>
+                        </td>
+                    </tr>
+
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x00000008:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <a class="el" href="#DEVICEEN" target="_self">DEVICEEN - DEVICE ENABLES for SHELBY</a>
+                        </td>
+                    </tr>
+
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x0000000C:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <a class="el" href="#SRAMPWDINSLEEP" target="_self">SRAMPWDINSLEEP - Powerdown an SRAM Banks in Deep Sleep mode</a>
+                        </td>
+                    </tr>
+
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x00000010:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <a class="el" href="#MEMEN" target="_self">MEMEN - Disables individual banks of the MEMORY array</a>
+                        </td>
+                    </tr>
+
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x00000014:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <a class="el" href="#PWRONSTATUS" target="_self">PWRONSTATUS - POWER ON Status</a>
+                        </td>
+                    </tr>
+
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x00000018:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <a class="el" href="#SRAMCTRL" target="_self">SRAMCTRL - SRAM Control register</a>
+                        </td>
+                    </tr>
+
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x0000001C:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <a class="el" href="#ADCSTATUS" target="_self">ADCSTATUS - Power Status Register for ADC Block</a>
+                        </td>
+                    </tr>
+
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x00000020:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <a class="el" href="#MISCOPT" target="_self">MISCOPT - Power Optimization Control Bits</a>
+                        </td>
+                    </tr>
+
+                </table>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 id="SUPPLYSRC" class="panel-title">SUPPLYSRC - Memory and Core Voltage Supply Source Select Register</h3>
+            </div>
+            <div class="panel-body">
+                <h3>Address:</h3>
+                <table style="margin:10px">
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">Instance 0 Address:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x40021000</span>
+                        </td>
+                    </tr>
+
+                </table>
+                <h3>Description:</h3>
+                <p>Memory and Core Voltage Supply Source Select Register</p>
+                <h3>Example Macro Usage:</h3>
+                <pre style="margin:10px" class="language-pascal"><span style='color:#3f7f59; '>//
+// All macro-based register writes follow the same basic format. For
+// single-instance modules, you may use the simpler AM_REG macro. For
+// multi-instance macros, you will need to specify the instance number using
+// the AM_REGn macro format.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+// AM_REGn(&lt;MODULE&gt;, &lt;INSTANCE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+//
+// For registers that do not have specific enumeration values, you may use this alternate format instead.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;(&lt;NUMBER&gt;);
+//
+// For example, the following three lines of code are equivalent methods of
+// writing the value for 12MHZ to the CLKSEL field in the ADC_CFG register.
+//</span>
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REGn(ADC, 0, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
+                <h3>Register Fields:</h3>
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>31</th>
+                            <th>30</th>
+                            <th>29</th>
+                            <th>28</th>
+                            <th>27</th>
+                            <th>26</th>
+                            <th>25</th>
+                            <th>24</th>
+                            <th>23</th>
+                            <th>22</th>
+                            <th>21</th>
+                            <th>20</th>
+                            <th>19</th>
+                            <th>18</th>
+                            <th>17</th>
+                            <th>16</th>
+                            <th>15</th>
+                            <th>14</th>
+                            <th>13</th>
+                            <th>12</th>
+                            <th>11</th>
+                            <th>10</th>
+                            <th>9</th>
+                            <th>8</th>
+                            <th>7</th>
+                            <th>6</th>
+                            <th>5</th>
+                            <th>4</th>
+                            <th>3</th>
+                            <th>2</th>
+                            <th>1</th>
+                            <th>0</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td align="center" colspan="29">RSVD
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">SWITCH_LDO_IN_SLEEP
+                                <br>0x1</td>
+
+                            <td align="center" colspan="1">COREBUCKEN
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">MEMBUCKEN
+                                <br>0x0</td>
+
+                        </tr>
+                    </tbody>
+                </table>
+                <br>
+
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>Bits</th>
+                            <th>Name</th>
+                            <th>RW</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>31:3</td>
+                            <td>RSVD</td>
+                            <td>RO</td>
+                            <td>RESERVED.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>2</td>
+                            <td>SWITCH_LDO_IN_SLEEP</td>
+                            <td>RW</td>
+                            <td>Switches the CORE DOMAIN from BUCK mode (if enabled) to LDO when CPU is in DEEP SLEEP. If all the devices are off then this does not matter and LDO (low power mode) is used<br><br>
+                                 EN                   = 0x1 - Automatically switch from CORE BUCK to CORE LDO when CPU is in DEEP SLEEP</td>
+                        </tr>
+
+                        <tr>
+                            <td>1</td>
+                            <td>COREBUCKEN</td>
+                            <td>RW</td>
+                            <td>Enables and Selects the Core Buck as the supply for the low-voltage power domain.<br><br>
+                                 EN                   = 0x1 - Enable the Core Buck for the low-voltage power domain.</td>
+                        </tr>
+
+                        <tr>
+                            <td>0</td>
+                            <td>MEMBUCKEN</td>
+                            <td>RW</td>
+                            <td>Enables and select the Memory Buck as the supply for the Flash and SRAM power domain.<br><br>
+                                 EN                   = 0x1 - Enable the Memory Buck as the supply for flash and SRAM.</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+                <br>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 id="POWERSTATUS" class="panel-title">POWERSTATUS - Power Status Register for MCU supplies and peripherals</h3>
+            </div>
+            <div class="panel-body">
+                <h3>Address:</h3>
+                <table style="margin:10px">
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">Instance 0 Address:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x40021004</span>
+                        </td>
+                    </tr>
+
+                </table>
+                <h3>Description:</h3>
+                <p>Power Status Register for MCU supplies and peripherals</p>
+                <h3>Example Macro Usage:</h3>
+                <pre style="margin:10px" class="language-pascal"><span style='color:#3f7f59; '>//
+// All macro-based register writes follow the same basic format. For
+// single-instance modules, you may use the simpler AM_REG macro. For
+// multi-instance macros, you will need to specify the instance number using
+// the AM_REGn macro format.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+// AM_REGn(&lt;MODULE&gt;, &lt;INSTANCE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+//
+// For registers that do not have specific enumeration values, you may use this alternate format instead.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;(&lt;NUMBER&gt;);
+//
+// For example, the following three lines of code are equivalent methods of
+// writing the value for 12MHZ to the CLKSEL field in the ADC_CFG register.
+//</span>
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REGn(ADC, 0, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
+                <h3>Register Fields:</h3>
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>31</th>
+                            <th>30</th>
+                            <th>29</th>
+                            <th>28</th>
+                            <th>27</th>
+                            <th>26</th>
+                            <th>25</th>
+                            <th>24</th>
+                            <th>23</th>
+                            <th>22</th>
+                            <th>21</th>
+                            <th>20</th>
+                            <th>19</th>
+                            <th>18</th>
+                            <th>17</th>
+                            <th>16</th>
+                            <th>15</th>
+                            <th>14</th>
+                            <th>13</th>
+                            <th>12</th>
+                            <th>11</th>
+                            <th>10</th>
+                            <th>9</th>
+                            <th>8</th>
+                            <th>7</th>
+                            <th>6</th>
+                            <th>5</th>
+                            <th>4</th>
+                            <th>3</th>
+                            <th>2</th>
+                            <th>1</th>
+                            <th>0</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td align="center" colspan="30">RSVD
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">COREBUCKON
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">MEMBUCKON
+                                <br>0x0</td>
+
+                        </tr>
+                    </tbody>
+                </table>
+                <br>
+
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>Bits</th>
+                            <th>Name</th>
+                            <th>RW</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>31:2</td>
+                            <td>RSVD</td>
+                            <td>RO</td>
+                            <td>RESERVED.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>1</td>
+                            <td>COREBUCKON</td>
+                            <td>RO</td>
+                            <td>Indicates whether the Core low-voltage domain is supplied from the LDO or the Buck.<br><br>
+                                 LDO                  = 0x0 - Indicates the the LDO is supplying the Core low-voltage.<br>
+                             BUCK                 = 0x1 - Indicates the the Buck is supplying the Core low-voltage.</td>
+                        </tr>
+
+                        <tr>
+                            <td>0</td>
+                            <td>MEMBUCKON</td>
+                            <td>RO</td>
+                            <td>Indicate whether the Memory power domain is supplied from the LDO or the Buck.<br><br>
+                                 LDO                  = 0x0 - Indicates the LDO is supplying the memory power domain.<br>
+                             BUCK                 = 0x1 - Indicates the Buck is supplying the memory power domain.</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+                <br>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 id="DEVICEEN" class="panel-title">DEVICEEN - DEVICE ENABLES for SHELBY</h3>
+            </div>
+            <div class="panel-body">
+                <h3>Address:</h3>
+                <table style="margin:10px">
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">Instance 0 Address:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x40021008</span>
+                        </td>
+                    </tr>
+
+                </table>
+                <h3>Description:</h3>
+                <p>DEVICE ENABLES for SHELBY</p>
+                <h3>Example Macro Usage:</h3>
+                <pre style="margin:10px" class="language-pascal"><span style='color:#3f7f59; '>//
+// All macro-based register writes follow the same basic format. For
+// single-instance modules, you may use the simpler AM_REG macro. For
+// multi-instance macros, you will need to specify the instance number using
+// the AM_REGn macro format.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+// AM_REGn(&lt;MODULE&gt;, &lt;INSTANCE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+//
+// For registers that do not have specific enumeration values, you may use this alternate format instead.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;(&lt;NUMBER&gt;);
+//
+// For example, the following three lines of code are equivalent methods of
+// writing the value for 12MHZ to the CLKSEL field in the ADC_CFG register.
+//</span>
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REGn(ADC, 0, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
+                <h3>Register Fields:</h3>
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>31</th>
+                            <th>30</th>
+                            <th>29</th>
+                            <th>28</th>
+                            <th>27</th>
+                            <th>26</th>
+                            <th>25</th>
+                            <th>24</th>
+                            <th>23</th>
+                            <th>22</th>
+                            <th>21</th>
+                            <th>20</th>
+                            <th>19</th>
+                            <th>18</th>
+                            <th>17</th>
+                            <th>16</th>
+                            <th>15</th>
+                            <th>14</th>
+                            <th>13</th>
+                            <th>12</th>
+                            <th>11</th>
+                            <th>10</th>
+                            <th>9</th>
+                            <th>8</th>
+                            <th>7</th>
+                            <th>6</th>
+                            <th>5</th>
+                            <th>4</th>
+                            <th>3</th>
+                            <th>2</th>
+                            <th>1</th>
+                            <th>0</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td align="center" colspan="21">RSVD
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">PWRPDM
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">PWRADC
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">PWRUART1
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">PWRUART0
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">IO_MASTER5
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">IO_MASTER4
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">IO_MASTER3
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">IO_MASTER2
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">IO_MASTER1
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">IO_MASTER0
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">IO_SLAVE
+                                <br>0x0</td>
+
+                        </tr>
+                    </tbody>
+                </table>
+                <br>
+
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>Bits</th>
+                            <th>Name</th>
+                            <th>RW</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>31:11</td>
+                            <td>RSVD</td>
+                            <td>RO</td>
+                            <td>RESERVED.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>10</td>
+                            <td>PWRPDM</td>
+                            <td>RW</td>
+                            <td>Enable PDM Digital Block<br><br>
+                                 EN                   = 0x1 - Enable PDM<br>
+                             DIS                  = 0x0 - Disables PDM</td>
+                        </tr>
+
+                        <tr>
+                            <td>9</td>
+                            <td>PWRADC</td>
+                            <td>RW</td>
+                            <td>Enable ADC Digital Block<br><br>
+                                 EN                   = 0x1 - Enable ADC<br>
+                             DIS                  = 0x0 - Disables ADC</td>
+                        </tr>
+
+                        <tr>
+                            <td>8</td>
+                            <td>PWRUART1</td>
+                            <td>RW</td>
+                            <td>Enable UART 1<br><br>
+                                 EN                   = 0x1 - Enable UART 1<br>
+                             DIS                  = 0x0 - Disables UART 1</td>
+                        </tr>
+
+                        <tr>
+                            <td>7</td>
+                            <td>PWRUART0</td>
+                            <td>RW</td>
+                            <td>Enable UART 0<br><br>
+                                 EN                   = 0x1 - Enable UART 0<br>
+                             DIS                  = 0x0 - Disables UART 0</td>
+                        </tr>
+
+                        <tr>
+                            <td>6</td>
+                            <td>IO_MASTER5</td>
+                            <td>RW</td>
+                            <td>Enable IO MASTER 5<br><br>
+                                 EN                   = 0x1 - Enable IO MASTER 5<br>
+                             DIS                  = 0x0 - Disables IO MASTER 5</td>
+                        </tr>
+
+                        <tr>
+                            <td>5</td>
+                            <td>IO_MASTER4</td>
+                            <td>RW</td>
+                            <td>Enable IO MASTER 4<br><br>
+                                 EN                   = 0x1 - Enable IO MASTER 4<br>
+                             DIS                  = 0x0 - Disables IO MASTER 4</td>
+                        </tr>
+
+                        <tr>
+                            <td>4</td>
+                            <td>IO_MASTER3</td>
+                            <td>RW</td>
+                            <td>Enable IO MASTER 3<br><br>
+                                 EN                   = 0x1 - Enable IO MASTER 3<br>
+                             DIS                  = 0x0 - Disables IO MASTER 3</td>
+                        </tr>
+
+                        <tr>
+                            <td>3</td>
+                            <td>IO_MASTER2</td>
+                            <td>RW</td>
+                            <td>Enable IO MASTER 2<br><br>
+                                 EN                   = 0x1 - Enable IO MASTER 2<br>
+                             DIS                  = 0x0 - Disables IO MASTER 2</td>
+                        </tr>
+
+                        <tr>
+                            <td>2</td>
+                            <td>IO_MASTER1</td>
+                            <td>RW</td>
+                            <td>Enable IO MASTER 1<br><br>
+                                 EN                   = 0x1 - Enable IO MASTER 1<br>
+                             DIS                  = 0x0 - Disables IO MASTER 1</td>
+                        </tr>
+
+                        <tr>
+                            <td>1</td>
+                            <td>IO_MASTER0</td>
+                            <td>RW</td>
+                            <td>Enable IO MASTER 0<br><br>
+                                 EN                   = 0x1 - Enable IO MASTER 0<br>
+                             DIS                  = 0x0 - Disables IO MASTER 0</td>
+                        </tr>
+
+                        <tr>
+                            <td>0</td>
+                            <td>IO_SLAVE</td>
+                            <td>RW</td>
+                            <td>Enable IO SLAVE<br><br>
+                                 EN                   = 0x1 - Enable IO SLAVE<br>
+                             DIS                  = 0x0 - Disables IO SLAVE</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+                <br>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 id="SRAMPWDINSLEEP" class="panel-title">SRAMPWDINSLEEP - Powerdown an SRAM Banks in Deep Sleep mode</h3>
+            </div>
+            <div class="panel-body">
+                <h3>Address:</h3>
+                <table style="margin:10px">
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">Instance 0 Address:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x4002100C</span>
+                        </td>
+                    </tr>
+
+                </table>
+                <h3>Description:</h3>
+                <p>Powerdown an SRAM Banks in Deep Sleep mode</p>
+                <h3>Example Macro Usage:</h3>
+                <pre style="margin:10px" class="language-pascal"><span style='color:#3f7f59; '>//
+// All macro-based register writes follow the same basic format. For
+// single-instance modules, you may use the simpler AM_REG macro. For
+// multi-instance macros, you will need to specify the instance number using
+// the AM_REGn macro format.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+// AM_REGn(&lt;MODULE&gt;, &lt;INSTANCE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+//
+// For registers that do not have specific enumeration values, you may use this alternate format instead.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;(&lt;NUMBER&gt;);
+//
+// For example, the following three lines of code are equivalent methods of
+// writing the value for 12MHZ to the CLKSEL field in the ADC_CFG register.
+//</span>
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REGn(ADC, 0, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
+                <h3>Register Fields:</h3>
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>31</th>
+                            <th>30</th>
+                            <th>29</th>
+                            <th>28</th>
+                            <th>27</th>
+                            <th>26</th>
+                            <th>25</th>
+                            <th>24</th>
+                            <th>23</th>
+                            <th>22</th>
+                            <th>21</th>
+                            <th>20</th>
+                            <th>19</th>
+                            <th>18</th>
+                            <th>17</th>
+                            <th>16</th>
+                            <th>15</th>
+                            <th>14</th>
+                            <th>13</th>
+                            <th>12</th>
+                            <th>11</th>
+                            <th>10</th>
+                            <th>9</th>
+                            <th>8</th>
+                            <th>7</th>
+                            <th>6</th>
+                            <th>5</th>
+                            <th>4</th>
+                            <th>3</th>
+                            <th>2</th>
+                            <th>1</th>
+                            <th>0</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td align="center" colspan="1">CACHE_PWD_SLP
+                                <br>0x0</td>
+
+                            <td align="center" colspan="20">RSVD
+                                <br>0x0</td>
+
+                            <td align="center" colspan="11">SRAMSLEEPPOWERDOWN
+                                <br>0x0</td>
+
+                        </tr>
+                    </tbody>
+                </table>
+                <br>
+
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>Bits</th>
+                            <th>Name</th>
+                            <th>RW</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>31</td>
+                            <td>CACHE_PWD_SLP</td>
+                            <td>RW</td>
+                            <td>Enable CACHE BANKS to power down in deep sleep<br><br>
+                                 EN                   = 0x1 - CACHE BANKS POWER DOWN in CORE SLEEP<br>
+                             DIS                  = 0x0 - CACHE BANKS STAYS in Retention in CORE SLEEP</td>
+                        </tr>
+
+                        <tr>
+                            <td>30:11</td>
+                            <td>RSVD</td>
+                            <td>RO</td>
+                            <td>RESERVED.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>10:0</td>
+                            <td>SRAMSLEEPPOWERDOWN</td>
+                            <td>RW</td>
+                            <td>Selects which SRAM banks are powered down in deep sleep mode, causing the contents of the bank to be lost.<br><br>
+                                 NONE                 = 0x0 - All banks retained<br>
+                             GROUP0_SRAM0         = 0x1 - 0KB-8KB SRAM<br>
+                             GROUP0_SRAM1         = 0x2 - 8KB-16KB SRAM<br>
+                             GROUP0_SRAM2         = 0x4 - 16KB-24KB SRAM<br>
+                             GROUP0_SRAM3         = 0x8 - 24KB-32KB SRAM<br>
+                             GROUP1               = 0x10 - 32KB-64KB SRAMs<br>
+                             GROUP2               = 0x20 - 64KB-96KB SRAMs<br>
+                             GROUP3               = 0x40 - 96KB-128KB SRAMs<br>
+                             GROUP4               = 0x80 - 128KB-160KB SRAMs<br>
+                             GROUP5               = 0x100 - 160KB-192KB SRAMs<br>
+                             GROUP6               = 0x200 - 192KB-224KB SRAMs<br>
+                             GROUP7               = 0x400 - 224KB-256KB SRAMs<br>
+                             SRAM8K               = 0x1 - Do not Retain lower 8KB<br>
+                             SRAM16K              = 0x3 - Do not Retain lower 16KB<br>
+                             SRAM32K              = 0xF - Do not Retain lower 32KB<br>
+                             SRAM64K              = 0x1F - Do not Retain lower 64KB<br>
+                             SRAM128K             = 0x7F - Do not Retain lower 128KB<br>
+                             ALLBUTLOWER8K        = 0x7FE - All banks but lower 8k powered down.<br>
+                             ALLBUTLOWER16K       = 0x7FC - All banks but lower 16k powered down.<br>
+                             ALLBUTLOWER24K       = 0x7F8 - All banks but lower 24k powered down.<br>
+                             ALLBUTLOWER32K       = 0x7F0 - All banks but lower 32k powered down.<br>
+                             ALLBUTLOWER64K       = 0x7E0 - All banks but lower 64k powered down.<br>
+                             ALLBUTLOWER128K      = 0x780 - All banks but lower 128k powered down.<br>
+                             ALL                  = 0x7FF - All banks powered down.</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+                <br>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 id="MEMEN" class="panel-title">MEMEN - Disables individual banks of the MEMORY array</h3>
+            </div>
+            <div class="panel-body">
+                <h3>Address:</h3>
+                <table style="margin:10px">
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">Instance 0 Address:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x40021010</span>
+                        </td>
+                    </tr>
+
+                </table>
+                <h3>Description:</h3>
+                <p>Disables individual banks of the MEMORY array</p>
+                <h3>Example Macro Usage:</h3>
+                <pre style="margin:10px" class="language-pascal"><span style='color:#3f7f59; '>//
+// All macro-based register writes follow the same basic format. For
+// single-instance modules, you may use the simpler AM_REG macro. For
+// multi-instance macros, you will need to specify the instance number using
+// the AM_REGn macro format.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+// AM_REGn(&lt;MODULE&gt;, &lt;INSTANCE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+//
+// For registers that do not have specific enumeration values, you may use this alternate format instead.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;(&lt;NUMBER&gt;);
+//
+// For example, the following three lines of code are equivalent methods of
+// writing the value for 12MHZ to the CLKSEL field in the ADC_CFG register.
+//</span>
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REGn(ADC, 0, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
+                <h3>Register Fields:</h3>
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>31</th>
+                            <th>30</th>
+                            <th>29</th>
+                            <th>28</th>
+                            <th>27</th>
+                            <th>26</th>
+                            <th>25</th>
+                            <th>24</th>
+                            <th>23</th>
+                            <th>22</th>
+                            <th>21</th>
+                            <th>20</th>
+                            <th>19</th>
+                            <th>18</th>
+                            <th>17</th>
+                            <th>16</th>
+                            <th>15</th>
+                            <th>14</th>
+                            <th>13</th>
+                            <th>12</th>
+                            <th>11</th>
+                            <th>10</th>
+                            <th>9</th>
+                            <th>8</th>
+                            <th>7</th>
+                            <th>6</th>
+                            <th>5</th>
+                            <th>4</th>
+                            <th>3</th>
+                            <th>2</th>
+                            <th>1</th>
+                            <th>0</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td align="center" colspan="1">CACHEB2
+                                <br>0x1</td>
+
+                            <td align="center" colspan="1">RSVD
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">CACHEB0
+                                <br>0x1</td>
+
+                            <td align="center" colspan="16">RSVD
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">FLASH1
+                                <br>0x1</td>
+
+                            <td align="center" colspan="1">FLASH0
+                                <br>0x1</td>
+
+                            <td align="center" colspan="11">SRAMEN
+                                <br>0x7ff</td>
+
+                        </tr>
+                    </tbody>
+                </table>
+                <br>
+
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>Bits</th>
+                            <th>Name</th>
+                            <th>RW</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>31</td>
+                            <td>CACHEB2</td>
+                            <td>RW</td>
+                            <td>Enable CACHE BANK 2<br><br>
+                                 EN                   = 0x1 - Enable CACHE BANK 2<br>
+                             DIS                  = 0x0 - Disable CACHE BANK 2</td>
+                        </tr>
+
+                        <tr>
+                            <td>30</td>
+                            <td>RSVD</td>
+                            <td>RO</td>
+                            <td>Reserved<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>29</td>
+                            <td>CACHEB0</td>
+                            <td>RW</td>
+                            <td>Enable CACHE BANK 0<br><br>
+                                 EN                   = 0x1 - Enable CACHE BANK 0<br>
+                             DIS                  = 0x0 - Disable CACHE BANK 0</td>
+                        </tr>
+
+                        <tr>
+                            <td>28:13</td>
+                            <td>RSVD</td>
+                            <td>RO</td>
+                            <td>RESERVED.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>12</td>
+                            <td>FLASH1</td>
+                            <td>RW</td>
+                            <td>Enable FLASH1<br><br>
+                                 EN                   = 0x1 - Enable FLASH1<br>
+                             DIS                  = 0x0 - Disables FLASH1</td>
+                        </tr>
+
+                        <tr>
+                            <td>11</td>
+                            <td>FLASH0</td>
+                            <td>RW</td>
+                            <td>Enable FLASH 0<br><br>
+                                 EN                   = 0x1 - Enable FLASH 0<br>
+                             DIS                  = 0x0 - Disables FLASH 0</td>
+                        </tr>
+
+                        <tr>
+                            <td>10:0</td>
+                            <td>SRAMEN</td>
+                            <td>RW</td>
+                            <td>Enables power for selected SRAM banks (else an access to its address space to generate a Hard Fault).<br><br>
+                                 NONE                 = 0x0 - All banks disabled<br>
+                             GROUP0_SRAM0         = 0x1 - 0KB-8KB SRAM<br>
+                             GROUP0_SRAM1         = 0x2 - 8KB-16KB SRAM<br>
+                             GROUP0_SRAM2         = 0x4 - 16KB-24KB SRAM<br>
+                             GROUP0_SRAM3         = 0x8 - 24KB-32KB SRAM<br>
+                             GROUP1               = 0x10 - 32KB-64KB SRAMs<br>
+                             GROUP2               = 0x20 - 64KB-96KB SRAMs<br>
+                             GROUP3               = 0x40 - 96KB-128KB SRAMs<br>
+                             GROUP4               = 0x80 - 128KB-160KB SRAMs<br>
+                             GROUP5               = 0x100 - 160KB-192KB SRAMs<br>
+                             GROUP6               = 0x200 - 192KB-224KB SRAMs<br>
+                             GROUP7               = 0x400 - 224KB-256KB SRAMs<br>
+                             SRAM8K               = 0x1 - ENABLE lower 8KB<br>
+                             SRAM16K              = 0x3 - ENABLE lower 16KB<br>
+                             SRAM32K              = 0xF - ENABLE lower 32KB<br>
+                             SRAM64K              = 0x1F - ENABLE lower 64KB<br>
+                             SRAM128K             = 0x7F - ENABLE lower 128KB<br>
+                             SRAM256K             = 0x7FF - ENABLE lower 256KB<br>
+                             ALL                  = 0x7FF - All banks ENABLED</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+                <br>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 id="PWRONSTATUS" class="panel-title">PWRONSTATUS - POWER ON Status</h3>
+            </div>
+            <div class="panel-body">
+                <h3>Address:</h3>
+                <table style="margin:10px">
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">Instance 0 Address:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x40021014</span>
+                        </td>
+                    </tr>
+
+                </table>
+                <h3>Description:</h3>
+                <p>POWER ON Status</p>
+                <h3>Example Macro Usage:</h3>
+                <pre style="margin:10px" class="language-pascal"><span style='color:#3f7f59; '>//
+// All macro-based register writes follow the same basic format. For
+// single-instance modules, you may use the simpler AM_REG macro. For
+// multi-instance macros, you will need to specify the instance number using
+// the AM_REGn macro format.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+// AM_REGn(&lt;MODULE&gt;, &lt;INSTANCE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+//
+// For registers that do not have specific enumeration values, you may use this alternate format instead.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;(&lt;NUMBER&gt;);
+//
+// For example, the following three lines of code are equivalent methods of
+// writing the value for 12MHZ to the CLKSEL field in the ADC_CFG register.
+//</span>
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REGn(ADC, 0, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
+                <h3>Register Fields:</h3>
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>31</th>
+                            <th>30</th>
+                            <th>29</th>
+                            <th>28</th>
+                            <th>27</th>
+                            <th>26</th>
+                            <th>25</th>
+                            <th>24</th>
+                            <th>23</th>
+                            <th>22</th>
+                            <th>21</th>
+                            <th>20</th>
+                            <th>19</th>
+                            <th>18</th>
+                            <th>17</th>
+                            <th>16</th>
+                            <th>15</th>
+                            <th>14</th>
+                            <th>13</th>
+                            <th>12</th>
+                            <th>11</th>
+                            <th>10</th>
+                            <th>9</th>
+                            <th>8</th>
+                            <th>7</th>
+                            <th>6</th>
+                            <th>5</th>
+                            <th>4</th>
+                            <th>3</th>
+                            <th>2</th>
+                            <th>1</th>
+                            <th>0</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td align="center" colspan="1">RSVD
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">RSVD
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">RSVD
+                                <br>0x0</td>
+
+                            <td align="center" colspan="7">RSVD
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">PD_CACHEB2
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">RSVD
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">PD_CACHEB0
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">PD_GRP7_SRAM
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">PD_GRP6_SRAM
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">PD_GRP5_SRAM
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">PD_GRP4_SRAM
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">PD_GRP3_SRAM
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">PD_GRP2_SRAM
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">PD_GRP1_SRAM
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">PD_GRP0_SRAM3
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">PD_GRP0_SRAM2
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">PD_GRP0_SRAM1
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">PD_GRP0_SRAM0
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">PDADC
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">PD_FLAM1
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">PD_FLAM0
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">PD_PDM
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">PDC
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">PDB
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">PDA
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">RSVD
+                                <br>0x0</td>
+
+                        </tr>
+                    </tbody>
+                </table>
+                <br>
+
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>Bits</th>
+                            <th>Name</th>
+                            <th>RW</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>31</td>
+                            <td>RSVD</td>
+                            <td>RO</td>
+                            <td>RESERVED<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>30</td>
+                            <td>RSVD</td>
+                            <td>RO</td>
+                            <td>RESERVED<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>29</td>
+                            <td>RSVD</td>
+                            <td>RO</td>
+                            <td>RESERVED<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>28:22</td>
+                            <td>RSVD</td>
+                            <td>RO</td>
+                            <td>This bitfield is reserved for future use.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>21</td>
+                            <td>PD_CACHEB2</td>
+                            <td>RO</td>
+                            <td>This bit is 1 if power is supplied to CACHE BANK 2<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>20</td>
+                            <td>RSVD</td>
+                            <td>RO</td>
+                            <td>Reserved<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>19</td>
+                            <td>PD_CACHEB0</td>
+                            <td>RO</td>
+                            <td>This bit is 1 if power is supplied to CACHE BANK 0<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>18</td>
+                            <td>PD_GRP7_SRAM</td>
+                            <td>RO</td>
+                            <td>This bit is 1 if power is supplied to SRAM domain PD_GRP7<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>17</td>
+                            <td>PD_GRP6_SRAM</td>
+                            <td>RO</td>
+                            <td>This bit is 1 if power is supplied to SRAM domain PD_GRP6<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>16</td>
+                            <td>PD_GRP5_SRAM</td>
+                            <td>RO</td>
+                            <td>This bit is 1 if power is supplied to SRAM domain PD_GRP5<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>15</td>
+                            <td>PD_GRP4_SRAM</td>
+                            <td>RO</td>
+                            <td>This bit is 1 if power is supplied to SRAM domain PD_GRP4<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>14</td>
+                            <td>PD_GRP3_SRAM</td>
+                            <td>RO</td>
+                            <td>This bit is 1 if power is supplied to SRAM domain PD_GRP3<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>13</td>
+                            <td>PD_GRP2_SRAM</td>
+                            <td>RO</td>
+                            <td>This bit is 1 if power is supplied to SRAM domain PD_GRP2<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>12</td>
+                            <td>PD_GRP1_SRAM</td>
+                            <td>RO</td>
+                            <td>This bit is 1 if power is supplied to SRAM domain PD_GRP1<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>11</td>
+                            <td>PD_GRP0_SRAM3</td>
+                            <td>RO</td>
+                            <td>This bit is 1 if power is supplied to SRAM domain PD_SRAM0_3<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>10</td>
+                            <td>PD_GRP0_SRAM2</td>
+                            <td>RO</td>
+                            <td>This bit is 1 if power is supplied to SRAM domain PD_SRAM0_2<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>9</td>
+                            <td>PD_GRP0_SRAM1</td>
+                            <td>RO</td>
+                            <td>This bit is 1 if power is supplied to SRAM domain SRAM0_1<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>8</td>
+                            <td>PD_GRP0_SRAM0</td>
+                            <td>RO</td>
+                            <td>This bit is 1 if power is supplied to SRAM domain SRAM0_0<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>7</td>
+                            <td>PDADC</td>
+                            <td>RO</td>
+                            <td>This bit is 1 if power is supplied to domain PD_ADC<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>6</td>
+                            <td>PD_FLAM1</td>
+                            <td>RO</td>
+                            <td>This bit is 1 if power is supplied to domain PD_FLAM1<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>5</td>
+                            <td>PD_FLAM0</td>
+                            <td>RO</td>
+                            <td>This bit is 1 if power is supplied to domain PD_FLAM0<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>4</td>
+                            <td>PD_PDM</td>
+                            <td>RO</td>
+                            <td>This bit is 1 if power is supplied to domain PD_PDM<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>3</td>
+                            <td>PDC</td>
+                            <td>RO</td>
+                            <td>This bit is 1 if power is supplied to power domain C, which supplies IOM3-5.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>2</td>
+                            <td>PDB</td>
+                            <td>RO</td>
+                            <td>This bit is 1 if power is supplied to power domain B, which supplies IOM0-2.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>1</td>
+                            <td>PDA</td>
+                            <td>RO</td>
+                            <td>This bit is 1 if power is supplied to power domain A, which supplies IOS and UART0,1.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>0</td>
+                            <td>RSVD</td>
+                            <td>RO</td>
+                            <td>RESERVED<br><br>
+                                </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+                <br>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 id="SRAMCTRL" class="panel-title">SRAMCTRL - SRAM Control register</h3>
+            </div>
+            <div class="panel-body">
+                <h3>Address:</h3>
+                <table style="margin:10px">
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">Instance 0 Address:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x40021018</span>
+                        </td>
+                    </tr>
+
+                </table>
+                <h3>Description:</h3>
+                <p>SRAM Control register</p>
+                <h3>Example Macro Usage:</h3>
+                <pre style="margin:10px" class="language-pascal"><span style='color:#3f7f59; '>//
+// All macro-based register writes follow the same basic format. For
+// single-instance modules, you may use the simpler AM_REG macro. For
+// multi-instance macros, you will need to specify the instance number using
+// the AM_REGn macro format.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+// AM_REGn(&lt;MODULE&gt;, &lt;INSTANCE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+//
+// For registers that do not have specific enumeration values, you may use this alternate format instead.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;(&lt;NUMBER&gt;);
+//
+// For example, the following three lines of code are equivalent methods of
+// writing the value for 12MHZ to the CLKSEL field in the ADC_CFG register.
+//</span>
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REGn(ADC, 0, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
+                <h3>Register Fields:</h3>
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>31</th>
+                            <th>30</th>
+                            <th>29</th>
+                            <th>28</th>
+                            <th>27</th>
+                            <th>26</th>
+                            <th>25</th>
+                            <th>24</th>
+                            <th>23</th>
+                            <th>22</th>
+                            <th>21</th>
+                            <th>20</th>
+                            <th>19</th>
+                            <th>18</th>
+                            <th>17</th>
+                            <th>16</th>
+                            <th>15</th>
+                            <th>14</th>
+                            <th>13</th>
+                            <th>12</th>
+                            <th>11</th>
+                            <th>10</th>
+                            <th>9</th>
+                            <th>8</th>
+                            <th>7</th>
+                            <th>6</th>
+                            <th>5</th>
+                            <th>4</th>
+                            <th>3</th>
+                            <th>2</th>
+                            <th>1</th>
+                            <th>0</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td align="center" colspan="29">RSVD
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">SRAM_MASTER_CLKGATE
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">SRAM_CLKGATE
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">SRAM_LIGHT_SLEEP
+                                <br>0x1</td>
+
+                        </tr>
+                    </tbody>
+                </table>
+                <br>
+
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>Bits</th>
+                            <th>Name</th>
+                            <th>RW</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>31:3</td>
+                            <td>RSVD</td>
+                            <td>RO</td>
+                            <td>This bitfield is reserved for future use.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>2</td>
+                            <td>SRAM_MASTER_CLKGATE</td>
+                            <td>RW</td>
+                            <td>Enables top-level clock gating in the SRAM block.  This bit should be enabled for lowest power operation.<br><br>
+                                 EN                   = 0x1 - Enable Master SRAM Clock Gate<br>
+                             DIS                  = 0x0 - Disables Master SRAM Clock Gating</td>
+                        </tr>
+
+                        <tr>
+                            <td>1</td>
+                            <td>SRAM_CLKGATE</td>
+                            <td>RW</td>
+                            <td>Enables individual per-RAM clock gating in the SRAM block.  This bit should be enabled for lowest power operation.<br><br>
+                                 EN                   = 0x1 - Enable Individual SRAM Clock Gating<br>
+                             DIS                  = 0x0 - Disables Individual SRAM Clock Gating</td>
+                        </tr>
+
+                        <tr>
+                            <td>0</td>
+                            <td>SRAM_LIGHT_SLEEP</td>
+                            <td>RW</td>
+                            <td>Enable LS (light sleep) of cache RAMs.  When this bit is set, the RAMS will be put into light sleep mode while inactive.  NOTE:  if the SRAM is actively used, this may have an adverse affect on power since entering/exiting LS mode may consume more power than would be saved.<br><br>
+                                 EN                   = 0x1 - Enable LIGHT SLEEP for SRAMs<br>
+                             DIS                  = 0x0 - Disables LIGHT SLEEP for SRAMs</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+                <br>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 id="ADCSTATUS" class="panel-title">ADCSTATUS - Power Status Register for ADC Block</h3>
+            </div>
+            <div class="panel-body">
+                <h3>Address:</h3>
+                <table style="margin:10px">
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">Instance 0 Address:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x4002101C</span>
+                        </td>
+                    </tr>
+
+                </table>
+                <h3>Description:</h3>
+                <p>Power Status Register for ADC Block</p>
+                <h3>Example Macro Usage:</h3>
+                <pre style="margin:10px" class="language-pascal"><span style='color:#3f7f59; '>//
+// All macro-based register writes follow the same basic format. For
+// single-instance modules, you may use the simpler AM_REG macro. For
+// multi-instance macros, you will need to specify the instance number using
+// the AM_REGn macro format.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+// AM_REGn(&lt;MODULE&gt;, &lt;INSTANCE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+//
+// For registers that do not have specific enumeration values, you may use this alternate format instead.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;(&lt;NUMBER&gt;);
+//
+// For example, the following three lines of code are equivalent methods of
+// writing the value for 12MHZ to the CLKSEL field in the ADC_CFG register.
+//</span>
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REGn(ADC, 0, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
+                <h3>Register Fields:</h3>
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>31</th>
+                            <th>30</th>
+                            <th>29</th>
+                            <th>28</th>
+                            <th>27</th>
+                            <th>26</th>
+                            <th>25</th>
+                            <th>24</th>
+                            <th>23</th>
+                            <th>22</th>
+                            <th>21</th>
+                            <th>20</th>
+                            <th>19</th>
+                            <th>18</th>
+                            <th>17</th>
+                            <th>16</th>
+                            <th>15</th>
+                            <th>14</th>
+                            <th>13</th>
+                            <th>12</th>
+                            <th>11</th>
+                            <th>10</th>
+                            <th>9</th>
+                            <th>8</th>
+                            <th>7</th>
+                            <th>6</th>
+                            <th>5</th>
+                            <th>4</th>
+                            <th>3</th>
+                            <th>2</th>
+                            <th>1</th>
+                            <th>0</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td align="center" colspan="26">RSVD
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">ADC_REFBUF_PWD
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">ADC_REFKEEP_PWD
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">ADC_VBAT_PWD
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">ADC_VPTAT_PWD
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">ADC_BGT_PWD
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">ADC_PWD
+                                <br>0x0</td>
+
+                        </tr>
+                    </tbody>
+                </table>
+                <br>
+
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>Bits</th>
+                            <th>Name</th>
+                            <th>RW</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>31:6</td>
+                            <td>RSVD</td>
+                            <td>RO</td>
+                            <td>RESERVED.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>5</td>
+                            <td>ADC_REFBUF_PWD</td>
+                            <td>RO</td>
+                            <td>This bit indicates that the ADC REFBUF is powered down<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>4</td>
+                            <td>ADC_REFKEEP_PWD</td>
+                            <td>RO</td>
+                            <td>This bit indicates that the ADC REFKEEP is powered down<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>3</td>
+                            <td>ADC_VBAT_PWD</td>
+                            <td>RO</td>
+                            <td>This bit indicates that the ADC VBAT resistor divider is powered down<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>2</td>
+                            <td>ADC_VPTAT_PWD</td>
+                            <td>RO</td>
+                            <td>This bit indicates that the ADC temperature sensor input buffer is powered down<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>1</td>
+                            <td>ADC_BGT_PWD</td>
+                            <td>RO</td>
+                            <td>This bit indicates that the ADC Band Gap is powered down<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>0</td>
+                            <td>ADC_PWD</td>
+                            <td>RO</td>
+                            <td>This bit indicates that the ADC is powered down<br><br>
+                                </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+                <br>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 id="MISCOPT" class="panel-title">MISCOPT - Power Optimization Control Bits</h3>
+            </div>
+            <div class="panel-body">
+                <h3>Address:</h3>
+                <table style="margin:10px">
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">Instance 0 Address:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x40021020</span>
+                        </td>
+                    </tr>
+
+                </table>
+                <h3>Description:</h3>
+                <p>Power Optimization Control Bits</p>
+                <h3>Example Macro Usage:</h3>
+                <pre style="margin:10px" class="language-pascal"><span style='color:#3f7f59; '>//
+// All macro-based register writes follow the same basic format. For
+// single-instance modules, you may use the simpler AM_REG macro. For
+// multi-instance macros, you will need to specify the instance number using
+// the AM_REGn macro format.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+// AM_REGn(&lt;MODULE&gt;, &lt;INSTANCE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+//
+// For registers that do not have specific enumeration values, you may use this alternate format instead.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;(&lt;NUMBER&gt;);
+//
+// For example, the following three lines of code are equivalent methods of
+// writing the value for 12MHZ to the CLKSEL field in the ADC_CFG register.
+//</span>
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REGn(ADC, 0, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
+                <h3>Register Fields:</h3>
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>31</th>
+                            <th>30</th>
+                            <th>29</th>
+                            <th>28</th>
+                            <th>27</th>
+                            <th>26</th>
+                            <th>25</th>
+                            <th>24</th>
+                            <th>23</th>
+                            <th>22</th>
+                            <th>21</th>
+                            <th>20</th>
+                            <th>19</th>
+                            <th>18</th>
+                            <th>17</th>
+                            <th>16</th>
+                            <th>15</th>
+                            <th>14</th>
+                            <th>13</th>
+                            <th>12</th>
+                            <th>11</th>
+                            <th>10</th>
+                            <th>9</th>
+                            <th>8</th>
+                            <th>7</th>
+                            <th>6</th>
+                            <th>5</th>
+                            <th>4</th>
+                            <th>3</th>
+                            <th>2</th>
+                            <th>1</th>
+                            <th>0</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td align="center" colspan="29">RSVD
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">DIS_LDOLPMODE_TIMERS
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">RSVD01
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">RSVD00
+                                <br>0x0</td>
+
+                        </tr>
+                    </tbody>
+                </table>
+                <br>
+
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>Bits</th>
+                            <th>Name</th>
+                            <th>RW</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>31:3</td>
+                            <td>RSVD</td>
+                            <td>RO</td>
+                            <td>RESERVED.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>2</td>
+                            <td>DIS_LDOLPMODE_TIMERS</td>
+                            <td>RW</td>
+                            <td>Setting this bit will enable the MEM LDO to be in LPMODE during deep sleep even when the ctimers or stimers are running<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>1</td>
+                            <td>RSVD01</td>
+                            <td>RW</td>
+                            <td>RESERVED - this field should not be modified<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>0</td>
+                            <td>RSVD00</td>
+                            <td>RW</td>
+                            <td>RESERVED - this field should not be modified<br><br>
+                                </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+                <br>
+            </div>
+        </div>
+
+    </body>
+
+    <hr size="1">
+    <body>
+        <div id="footer" align="right">
+            <small>
+                AmbiqSuite Register Documentation&nbsp;
+                <a href="http://www.ambiqmicro.com">
+                <img class="footer" src="../resources/ambiqmicro_logo.png" alt="Ambiq Micro"/></a>&nbsp&nbsp Copyright &copy; 2020&nbsp&nbsp<br />
+                This documentation is licensed and distributed under the <a rel="license" href="http://opensource.org/licenses/BSD-3-Clause">BSD 3-Clause License</a>.&nbsp&nbsp<br/>
+            </small>
+        </div>
+    </body>
+</html>
+

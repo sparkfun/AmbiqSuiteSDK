@@ -25,7 +25,7 @@
                             <img alt="Logo" src="../resources/am_logo.png" />
                         </td>
                         <td style="padding-left: 0.5em;">
-                            <div id="projectname">Apollo Register Documentation &#160;<span id="projectnumber">v2.4.2</span></div>
+                            <div id="projectname">Apollo Register Documentation &#160;<span id="projectnumber">v${version}</span></div>
                         </td>
                     </tr>
                 </tbody>
@@ -97,7 +97,7 @@
                         </td>
                         <td class="entry">
                             <span style="width:32px;display:inline-block;">&#160;</span>
-                            <a class="el" href="#MEMPWDINSLEEP" target="_self">MEMPWDINSLEEP - Powerdown SRAM banks in Deep Sleep mode</a>
+                            <a class="el" href="#MEMPWDINSLEEP" target="_self">MEMPWDINSLEEP - Power-down SRAM banks in Deep Sleep mode</a>
                         </td>
                     </tr>
 
@@ -433,7 +433,7 @@ ADCn(0)-&gt;CFG_b.CLKSEL = ADC_CFG_CLKSEL_HFRC; <span style='color:#3f7f59; '>//
                             <td>1</td>
                             <td>BLEBUCKON</td>
                             <td>RO</td>
-                            <td>Indicates whether the BLE (if supported) domain and burst (if supported) domain is supplied from the LDO or the Buck. Buck will be powered up only if there is an active request for BLEH domain or Burst mode and appropriate reature is allowed.<br><br>
+                            <td>Indicates whether the BLE (if supported) domain and burst (if supported) domain is supplied from the LDO or the Buck. Buck will be powered up only if there is an active request for BLEH domain or Burst mode and appropriate feature is allowed.<br><br>
                                  LDO                  = 0x0 - Indicates the the LDO is supplying the BLE/Burst power domain<br>
                              BUCK                 = 0x1 - Indicates the the Buck is supplying the BLE/Burst power domain</td>
                         </tr>
@@ -735,7 +735,7 @@ ADCn(0)-&gt;CFG_b.CLKSEL = ADC_CFG_CLKSEL_HFRC; <span style='color:#3f7f59; '>//
 
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 id="MEMPWDINSLEEP" class="panel-title">MEMPWDINSLEEP - Powerdown SRAM banks in Deep Sleep mode</h3>
+                <h3 id="MEMPWDINSLEEP" class="panel-title">MEMPWDINSLEEP - Power-down SRAM banks in Deep Sleep mode</h3>
             </div>
             <div class="panel-body">
                 <h3>Address:</h3>
@@ -753,7 +753,7 @@ ADCn(0)-&gt;CFG_b.CLKSEL = ADC_CFG_CLKSEL_HFRC; <span style='color:#3f7f59; '>//
 
                 </table>
                 <h3>Description:</h3>
-                <p>This controls the power down of the SRAM banks in deep sleep mode. If this is set, then the power for that SRAM bank will be gated when the core goes into deep sleep. Upon wake, the data within the SRAMs will be erased. If this is not set, retention voltage will be applied to the SRAM bank when the core goes into deep sleep. Upon wake, the data within the SRAMs are retained. Do not set this if the SRAM bank is used as the target for DMA transfer while CPU in deepsleep.</p>
+                <p>This controls the power down of the SRAM banks in deep sleep mode. If this is set, then the power for that SRAM bank will be gated when the core goes into deep sleep. Upon wake, the data within the SRAMs will be erased. If this is not set, retention voltage will be applied to the SRAM bank when the core goes into deep sleep. Upon wake, the data within the SRAMs are retained. Do not set this if the SRAM bank is used as the target for DMA transfer while CPU in deep sleep.</p>
                 <h3>Example Macro Usage:</h3>
                 <pre style="margin:10px" class="language-pascal"><span style='color:#3f7f59; '>//
 // Register access is all performed through the standard CMSIS structure-based
@@ -867,18 +867,18 @@ ADCn(0)-&gt;CFG_b.CLKSEL = ADC_CFG_CLKSEL_HFRC; <span style='color:#3f7f59; '>//
                             <td>14</td>
                             <td>FLASH1PWDSLP</td>
                             <td>RW</td>
-                            <td>Powerdown flash1 in deep sleep<br><br>
-                                 EN                   = 0x1 - Flash1 is powered down during deepsleep<br>
-                             DIS                  = 0x0 - Flash1 is kept powered on during deepsleep</td>
+                            <td>Power-down FLASH1 in deep sleep<br><br>
+                                 EN                   = 0x1 - FLASH1 is powered down during deep sleep<br>
+                             DIS                  = 0x0 - FLASH1 is kept powered on during deep sleep</td>
                         </tr>
 
                         <tr>
                             <td>13</td>
                             <td>FLASH0PWDSLP</td>
                             <td>RW</td>
-                            <td>Powerdown flash0 in deep sleep<br><br>
-                                 EN                   = 0x1 - Flash0 is powered down during deepsleep<br>
-                             DIS                  = 0x0 - Flash0 is kept powered on during deepsleep</td>
+                            <td>Power-down FLASH0 in deep sleep<br><br>
+                                 EN                   = 0x1 - FLASH0 is powered down during deep sleep<br>
+                             DIS                  = 0x0 - FLASH0 is kept powered on during deep sleep</td>
                         </tr>
 
                         <tr>
@@ -897,9 +897,9 @@ ADCn(0)-&gt;CFG_b.CLKSEL = ADC_CFG_CLKSEL_HFRC; <span style='color:#3f7f59; '>//
                              GROUP7               = 0x80 - SRAM GROUP7 powered down (288KB-320KB)<br>
                              GROUP8               = 0x100 - SRAM GROUP8 powered down (320KB-352KB)<br>
                              GROUP9               = 0x200 - SRAM GROUP9 powered down (352KB-384KB)<br>
-                             SRAM32K              = 0x1 - Powerdown lower 32k SRAM (64KB-96KB)<br>
-                             SRAM64K              = 0x3 - Powerdown lower 64k SRAM (64KB-128KB)<br>
-                             SRAM128K             = 0xF - Powerdown lower 128k SRAM (64KB-192KB)<br>
+                             SRAM32K              = 0x1 - Power-down lower 32k SRAM (64KB-96KB)<br>
+                             SRAM64K              = 0x3 - Power-down lower 64k SRAM (64KB-128KB)<br>
+                             SRAM128K             = 0xF - Power-down lower 128k SRAM (64KB-192KB)<br>
                              ALLBUTLOWER32K       = 0x3FE - All SRAM banks but lower 32k powered down (96KB-384KB).<br>
                              ALLBUTLOWER64K       = 0x3FC - All banks but lower 64k powered down.<br>
                              ALLBUTLOWER128K      = 0x3F0 - All banks but lower 128k powered down.<br>
@@ -946,7 +946,7 @@ ADCn(0)-&gt;CFG_b.CLKSEL = ADC_CFG_CLKSEL_HFRC; <span style='color:#3f7f59; '>//
 
                 </table>
                 <h3>Description:</h3>
-                <p>This register enables the individual banks for the memories. When set, power will be enabled to the banks. This register works in conjection with the MEMPWDINSLEEP register.  When this register is set, then the MEMPWRINSLEEP register will determine whether power is enabled to the SRAMs in deep sleep. If this register is not set, then power will always be disabled to the memory bank.</p>
+                <p>This register enables the individual banks for the memories. When set, power will be enabled to the banks. This register works in conjunction with the MEMPWDINSLEEP register. When this register is set, then the MEMPWRINSLEEP register will determine whether power is enabled to the SRAMs in deep sleep. If this register is not set, then power will always be disabled to the memory bank.</p>
                 <h3>Example Macro Usage:</h3>
                 <pre style="margin:10px" class="language-pascal"><span style='color:#3f7f59; '>//
 // Register access is all performed through the standard CMSIS structure-based
@@ -1046,7 +1046,7 @@ ADCn(0)-&gt;CFG_b.CLKSEL = ADC_CFG_CLKSEL_HFRC; <span style='color:#3f7f59; '>//
                             <td>31</td>
                             <td>CACHEB2</td>
                             <td>RW</td>
-                            <td>Power up Cache Bank 2. This works in conjunction with Cache enable from flash_cache module. To power up cache bank2, cache has to be enabled and this bit has to be set.<br><br>
+                            <td>Power up Cache Bank 2. This works in conjunction with Cache enable from flash_cache module. To power up cache bank 2, cache has to be enabled and this bit has to be set.<br><br>
                                  EN                   = 0x1 - Power up Cache Bank 2<br>
                              DIS                  = 0x0 - Power down Cache Bank 2</td>
                         </tr>
@@ -1055,7 +1055,7 @@ ADCn(0)-&gt;CFG_b.CLKSEL = ADC_CFG_CLKSEL_HFRC; <span style='color:#3f7f59; '>//
                             <td>30</td>
                             <td>CACHEB0</td>
                             <td>RW</td>
-                            <td>Power up Cache Bank 0. This works in conjunction with Cache enable from flash_cache module. To power up cache bank0, cache has to be enabled and this bit has to be set.<br><br>
+                            <td>Power up Cache Bank 0. This works in conjunction with Cache enable from flash_cache module. To power up cache bank 0, cache has to be enabled and this bit has to be set.<br><br>
                                  EN                   = 0x1 - Power up Cache Bank 0<br>
                              DIS                  = 0x0 - Power down Cache Bank 0</td>
                         </tr>
@@ -1072,18 +1072,18 @@ ADCn(0)-&gt;CFG_b.CLKSEL = ADC_CFG_CLKSEL_HFRC; <span style='color:#3f7f59; '>//
                             <td>14</td>
                             <td>FLASH1</td>
                             <td>RW</td>
-                            <td>Power up Flash1<br><br>
-                                 EN                   = 0x1 - Power up Flash1<br>
-                             DIS                  = 0x0 - Power down Flash1</td>
+                            <td>Power up FLASH1<br><br>
+                                 EN                   = 0x1 - Power up FLASH1<br>
+                             DIS                  = 0x0 - Power down FLASH1</td>
                         </tr>
 
                         <tr>
                             <td>13</td>
                             <td>FLASH0</td>
                             <td>RW</td>
-                            <td>Power up Flash0<br><br>
-                                 EN                   = 0x1 - Power up Flash0<br>
-                             DIS                  = 0x0 - Power down Flash0</td>
+                            <td>Power up FLASH0<br><br>
+                                 EN                   = 0x1 - Power up FLASH0<br>
+                             DIS                  = 0x0 - Power down FLASH0</td>
                         </tr>
 
                         <tr>
@@ -1148,7 +1148,7 @@ ADCn(0)-&gt;CFG_b.CLKSEL = ADC_CFG_CLKSEL_HFRC; <span style='color:#3f7f59; '>//
 
                 </table>
                 <h3>Description:</h3>
-                <p>It provides the power status for all the memory banks including- caches, flash (0 and 1) and all the SRAM groups. The status here should reflect the enable provided by the MEMPWREN register.  There may be a lag time between setting the bits in MEMPWREN register and MEMPWRSTATUS register, due to the need to cycle the power gate and isolation seqeunces to the memory banks.</p>
+                <p>It provides the power status for all the memory banks including- caches, FLASH (0 and 1) and all the SRAM groups. The status here should reflect the enable provided by the MEMPWREN register. There may be a lag time between setting the bits in MEMPWREN register and MEMPWRSTATUS register, due to the need to cycle the power gate and isolation sequences to the memory banks.</p>
                 <h3>Example Macro Usage:</h3>
                 <pre style="margin:10px" class="language-pascal"><span style='color:#3f7f59; '>//
 // Register access is all performed through the standard CMSIS structure-based
@@ -1281,7 +1281,7 @@ ADCn(0)-&gt;CFG_b.CLKSEL = ADC_CFG_CLKSEL_HFRC; <span style='color:#3f7f59; '>//
                             <td>31:17</td>
                             <td>RSVD</td>
                             <td>RO</td>
-                            <td>This bitfield is reserved for future use.<br><br>
+                            <td>This bit field is reserved for future use.<br><br>
                                 </td>
                         </tr>
 
@@ -1447,7 +1447,7 @@ ADCn(0)-&gt;CFG_b.CLKSEL = ADC_CFG_CLKSEL_HFRC; <span style='color:#3f7f59; '>//
 
                 </table>
                 <h3>Description:</h3>
-                <p>This provides the power status for the peripheral devices- BLEL, PDM, PDM, MSPI, SCARD, ADC, UART0 & 1, IOM5 to 0, IOSLAVE and MCUL (DMA and Fabrics) and MCUH (ARM core).  The status here should reflect the enable provided by the DEVPWREN register. There may be a lag time between setting the bits in DEVPWREN register and DEVPWRSTATUS register, due to the need to cycle the power gate, isolation and reset seqeunces to the device power domains.</p>
+                <p>This provides the power status for the peripheral devices- BLEL, PDM, PDM, MSPI, SCARD, ADC, UART0 and 1, IOM5 to 0, IOSLAVE and MCUL (DMA and Fabrics) and MCUH (ARM core). The status here should reflect the enable provided by the DEVPWREN register. There may be a lag time between setting the bits in DEVPWREN register and DEVPWRSTATUS register, due to the need to cycle the power gate, isolation and reset sequences to the device power domains.</p>
                 <h3>Example Macro Usage:</h3>
                 <pre style="margin:10px" class="language-pascal"><span style='color:#3f7f59; '>//
 // Register access is all performed through the standard CMSIS structure-based
@@ -1507,13 +1507,13 @@ ADCn(0)-&gt;CFG_b.CLKSEL = ADC_CFG_CLKSEL_HFRC; <span style='color:#3f7f59; '>//
                     </thead>
                     <tbody>
                         <tr>
-                            <td align="center" colspan="1">SYSDEEPSLEEP
+                            <td align="center" colspan="1">RSVD
                                 <br>0x0</td>
 
-                            <td align="center" colspan="1">COREDEEPSLEEP
+                            <td align="center" colspan="1">RSVD
                                 <br>0x0</td>
 
-                            <td align="center" colspan="1">CORESLEEP
+                            <td align="center" colspan="1">RSVD
                                 <br>0x0</td>
 
                             <td align="center" colspan="19">RSVD
@@ -1566,25 +1566,25 @@ ADCn(0)-&gt;CFG_b.CLKSEL = ADC_CFG_CLKSEL_HFRC; <span style='color:#3f7f59; '>//
                     <tbody>
                         <tr>
                             <td>31</td>
-                            <td>SYSDEEPSLEEP</td>
+                            <td>RSVD</td>
                             <td>RO</td>
-                            <td>This bit is 1 if SYSTEM has been in Deep Sleep.  Write '1' to this bit to clear it.<br><br>
+                            <td>RESERVED<br><br>
                                 </td>
                         </tr>
 
                         <tr>
                             <td>30</td>
-                            <td>COREDEEPSLEEP</td>
+                            <td>RSVD</td>
                             <td>RO</td>
-                            <td>This bit is 1 if CORE has been in Deep Sleep.  Write '1' to this bit to clear it.<br><br>
+                            <td>RESERVED<br><br>
                                 </td>
                         </tr>
 
                         <tr>
                             <td>29</td>
-                            <td>CORESLEEP</td>
+                            <td>RSVD</td>
                             <td>RO</td>
-                            <td>This bit is 1 if CORE has been in SLEEP State.  Write '1' to this bit to clear it.<br><br>
+                            <td>RESERVED<br><br>
                                 </td>
                         </tr>
 
@@ -1592,7 +1592,7 @@ ADCn(0)-&gt;CFG_b.CLKSEL = ADC_CFG_CLKSEL_HFRC; <span style='color:#3f7f59; '>//
                             <td>28:10</td>
                             <td>RSVD</td>
                             <td>RO</td>
-                            <td>This bitfield is reserved for future use.<br><br>
+                            <td>This bit field is reserved for future use.<br><br>
                                 </td>
                         </tr>
 
@@ -1799,7 +1799,7 @@ ADCn(0)-&gt;CFG_b.CLKSEL = ADC_CFG_CLKSEL_HFRC; <span style='color:#3f7f59; '>//
                             <td>31:20</td>
                             <td>RSVD</td>
                             <td>RO</td>
-                            <td>This bitfield is reserved for future use.<br><br>
+                            <td>This bit field is reserved for future use.<br><br>
                                 </td>
                         </tr>
 
@@ -1807,7 +1807,7 @@ ADCn(0)-&gt;CFG_b.CLKSEL = ADC_CFG_CLKSEL_HFRC; <span style='color:#3f7f59; '>//
                             <td>19:8</td>
                             <td>SRAMLIGHTSLEEP</td>
                             <td>RW</td>
-                            <td>Light Sleep enable for each TCM/SRAM bank.  When 1, corresponding bank will be put into light sleep.  For optimal power, banks should be put into light sleep while the system is active but the bank has minimal or no accesses.<br><br>
+                            <td>Light Sleep enable for each TCM/SRAM bank. When 1, corresponding bank will be put into light sleep. For optimal power, banks should be put into light sleep while the system is active but the bank has minimal or no accesses.<br><br>
                                  ALL                  = 0xFF - Enable LIGHT SLEEP for ALL SRAMs<br>
                              DIS                  = 0x0 - Disables LIGHT SLEEP for ALL SRAMs</td>
                         </tr>
@@ -1816,7 +1816,7 @@ ADCn(0)-&gt;CFG_b.CLKSEL = ADC_CFG_CLKSEL_HFRC; <span style='color:#3f7f59; '>//
                             <td>7:3</td>
                             <td>RSVD</td>
                             <td>RO</td>
-                            <td>This bitfield is reserved for future use.<br><br>
+                            <td>This bit field is reserved for future use.<br><br>
                                 </td>
                         </tr>
 
@@ -1842,7 +1842,7 @@ ADCn(0)-&gt;CFG_b.CLKSEL = ADC_CFG_CLKSEL_HFRC; <span style='color:#3f7f59; '>//
                             <td>0</td>
                             <td>RSVD</td>
                             <td>RO</td>
-                            <td>This bitfield is reserved for future use.<br><br>
+                            <td>This bit field is reserved for future use.<br><br>
                                 </td>
                         </tr>
 
@@ -1872,7 +1872,7 @@ ADCn(0)-&gt;CFG_b.CLKSEL = ADC_CFG_CLKSEL_HFRC; <span style='color:#3f7f59; '>//
 
                 </table>
                 <h3>Description:</h3>
-                <p>This provides the power status for various blocks within the ADC.  These status comes directly from the ADC module and is captured through this interface.</p>
+                <p>This provides the power status for various blocks within the ADC. These status comes directly from the ADC module and is captured through this interface.</p>
                 <h3>Example Macro Usage:</h3>
                 <pre style="margin:10px" class="language-pascal"><span style='color:#3f7f59; '>//
 // Register access is all performed through the standard CMSIS structure-based
@@ -2113,25 +2113,25 @@ ADCn(0)-&gt;CFG_b.CLKSEL = ADC_CFG_CLKSEL_HFRC; <span style='color:#3f7f59; '>//
                             <td align="center" colspan="24">RSVD
                                 <br>0x0</td>
 
-                            <td align="center" colspan="1">FORCEBLEBUCKACT
+                            <td align="center" colspan="1">RSVD07
                                 <br>0x0</td>
 
                             <td align="center" colspan="1">MEMVRLPBLE
                                 <br>0x0</td>
 
-                            <td align="center" colspan="2">FORCEMEMVRADC
+                            <td align="center" colspan="2">RSVD04
                                 <br>0x0</td>
 
                             <td align="center" colspan="1">FORCEMEMVRLPTIMERS
                                 <br>0x0</td>
 
-                            <td align="center" colspan="1">FORCECOREVRLPTIMERS
+                            <td align="center" colspan="1">RSVD02
                                 <br>0x0</td>
 
-                            <td align="center" colspan="1">FORCECOREVRLPPDM
+                            <td align="center" colspan="1">RSVD01
                                 <br>0x0</td>
 
-                            <td align="center" colspan="1">SIMOBUCKEN
+                            <td align="center" colspan="1">RSVD00
                                 <br>0x0</td>
 
                         </tr>
@@ -2159,9 +2159,9 @@ ADCn(0)-&gt;CFG_b.CLKSEL = ADC_CFG_CLKSEL_HFRC; <span style='color:#3f7f59; '>//
 
                         <tr>
                             <td>7</td>
-                            <td>FORCEBLEBUCKACT</td>
+                            <td>RSVD07</td>
                             <td>RW</td>
-                            <td>Control Bit to enable BLE Buck to be in active state when BLE Buck is enabled. Default behavior is to be in active only when Burst or BLEH power on are requested.<br><br>
+                            <td>RESERVED - this field should not be modified<br><br>
                                 </td>
                         </tr>
 
@@ -2176,12 +2176,10 @@ ADCn(0)-&gt;CFG_b.CLKSEL = ADC_CFG_CLKSEL_HFRC; <span style='color:#3f7f59; '>//
 
                         <tr>
                             <td>5:4</td>
-                            <td>FORCEMEMVRADC</td>
+                            <td>RSVD04</td>
                             <td>RW</td>
-                            <td>Control Bit to force mem VR to LP or ACT mode in deep sleep when ADC is powered ON. 0x3 results in picking LP mode.<br><br>
-                                 ACT                  = 0x2 - In this mode if all the other domains but ADC are powered down, mem VR will stay in ACT mode.<br>
-                             LP                   = 0x1 - In this mode if all the other domains but ADC are powered down, mem VR will stay in LP mode.<br>
-                             DIS                  = 0x0 - In this mode if all the other domains but ADC are powered down, mem VR will duty cycle between active and LP modes depending on ADC sampling.</td>
+                            <td>RESERVED - this field should not be modified<br><br>
+                                </td>
                         </tr>
 
                         <tr>
@@ -2194,27 +2192,26 @@ ADCn(0)-&gt;CFG_b.CLKSEL = ADC_CFG_CLKSEL_HFRC; <span style='color:#3f7f59; '>//
 
                         <tr>
                             <td>2</td>
-                            <td>FORCECOREVRLPTIMERS</td>
+                            <td>RSVD02</td>
                             <td>RW</td>
-                            <td>Control Bit to force Core VR to LP mode in deep sleep even when hfrc based ctimer or stimer is running.<br><br>
+                            <td>RESERVED - this field should not be modified<br><br>
                                 </td>
                         </tr>
 
                         <tr>
                             <td>1</td>
-                            <td>FORCECOREVRLPPDM</td>
+                            <td>RSVD01</td>
                             <td>RW</td>
-                            <td>Control bit to enable the core VR to go into LP mode with HCPA/B/C/MSPI are powered off but PDM is powered on<br><br>
+                            <td>RESERVED - this field should not be modified<br><br>
                                 </td>
                         </tr>
 
                         <tr>
                             <td>0</td>
-                            <td>SIMOBUCKEN</td>
+                            <td>RSVD00</td>
                             <td>RW</td>
-                            <td>Enables and Selects the SIMO Buck as the supply for the low-voltage power domain.  It takes the initial value from the bit set in Customer INFO space.<br><br>
-                                 EN                   = 0x1 - Enable the SIMO Buck<br>
-                             DIS                  = 0x0 - Disable the SIMO Buck</td>
+                            <td>RESERVED - this field should not be modified<br><br>
+                                </td>
                         </tr>
 
                     </tbody>
@@ -2625,7 +2622,7 @@ ADCn(0)-&gt;CFG_b.CLKSEL = ADC_CFG_CLKSEL_HFRC; <span style='color:#3f7f59; '>//
                             <td>14</td>
                             <td>FLASH1EN</td>
                             <td>RW</td>
-                            <td>Control Flash power-on status event<br><br>
+                            <td>Control FLASH power-on status event<br><br>
                                  EN                   = 0x1 - Enable FLASH status event<br>
                              DIS                  = 0x0 - Disables FLASH status event</td>
                         </tr>
@@ -2634,7 +2631,7 @@ ADCn(0)-&gt;CFG_b.CLKSEL = ADC_CFG_CLKSEL_HFRC; <span style='color:#3f7f59; '>//
                             <td>13</td>
                             <td>FLASH0EN</td>
                             <td>RW</td>
-                            <td>Control Flash power-on status event<br><br>
+                            <td>Control FLASH power-on status event<br><br>
                                  EN                   = 0x1 - Enable FLASH status event<br>
                              DIS                  = 0x0 - Disables FLASH status event</td>
                         </tr>
@@ -2684,7 +2681,7 @@ ADCn(0)-&gt;CFG_b.CLKSEL = ADC_CFG_CLKSEL_HFRC; <span style='color:#3f7f59; '>//
             <small>
                 AmbiqSuite Register Documentation&nbsp;
                 <a href="http://www.ambiqmicro.com">
-                <img class="footer" src="../resources/ambiqmicro_logo.png" alt="Ambiq Micro"/></a>&nbsp&nbsp Copyright &copy; 2019&nbsp&nbsp<br />
+                <img class="footer" src="../resources/ambiqmicro_logo.png" alt="Ambiq Micro"/></a>&nbsp&nbsp Copyright &copy; 2020&nbsp&nbsp<br />
                 This documentation is licensed and distributed under the <a rel="license" href="http://opensource.org/licenses/BSD-3-Clause">BSD 3-Clause License</a>.&nbsp&nbsp<br/>
             </small>
         </div>

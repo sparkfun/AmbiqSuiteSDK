@@ -8,7 +8,7 @@
 
 //*****************************************************************************
 //
-// Copyright (c) 2020, Ambiq Micro
+// Copyright (c) 2020, Ambiq Micro, Inc.
 // All rights reserved.
 //
 // Redistribution and use in source and binary forms, with or without
@@ -40,7 +40,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
-// This is part of revision 2.4.2 of the AmbiqSuite Development Package.
+// This is part of revision 2.5.1 of the AmbiqSuite Development Package.
 //
 //*****************************************************************************
 
@@ -160,7 +160,6 @@ typedef struct
 {
     am_hal_mspi_device_e eDeviceConfig;
     am_hal_mspi_clock_e eClockFreq;
-    am_hal_mspi_xipmixed_mode_e eMixedMode;
     uint32_t *pNBTxnBuf;
     uint32_t ui32NBTxnBufLength;
     uint32_t ui32ScramblingStartAddr;
@@ -214,10 +213,6 @@ am_devices_mspi_s25fs064s_read_adv(void *pHandle, uint8_t *pui8RxBuffer,
                                uint32_t ui32StatusSetClr,
                                am_hal_mspi_callback_t pfnCallback,
                                void *pCallbackCtxt);
-
-extern am_devices_mspi_s25fs064s_config_t 
-am_devices_mspi_s25fs064s_mode_switch(void *pHandle,
-                                  am_devices_mspi_s25fs064s_config_t *pMSPISettings);
 
 extern uint32_t
 am_devices_mspi_s25fs064s_read_hiprio(void *pHandle, uint8_t *pui8RxBuffer,

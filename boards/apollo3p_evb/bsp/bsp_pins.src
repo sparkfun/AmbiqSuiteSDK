@@ -8,7 +8,7 @@
 
 # *****************************************************************************
 #
-# Copyright (c) 2020, Ambiq Micro
+# Copyright (c) 2020, Ambiq Micro, Inc.
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
@@ -40,7 +40,7 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 #
-# This is part of revision 2.4.2 of the AmbiqSuite Development Package.
+# This is part of revision 2.5.1 of the AmbiqSuite Development Package.
 #
 # *****************************************************************************
 
@@ -385,10 +385,39 @@ pin
 
 # *****************************************************************************
 #  IOM2 pins.
+#  SPI I/F goes to on-board FT Bridge - Future Technology FT4222H USB2.0 to SPI.
 # *****************************************************************************
 pin
-    name            = IOM2_CS
-    desc            = I/O Master 2 chip select.
+    name            = FT_BRIDGE_SCK
+    desc            = FT_BRIDGE I/O Master 2 SPI clock signal.
+    pinnum          = 27
+    func_sel        = AM_HAL_PIN_27_M2SCK
+    GPOutcfg        = opendrain
+    drvstrength     = 12
+    pullup          = 1_5K
+    bIomMSPIn       = IOM
+    IOMnum          = 2
+
+pin
+    name            = FT_BRIDGE_MOSI
+    desc            = FT_BRIDGE I/O Master 2 SPI MOSI signal. NOTE: pin shared with AMOLED QSPI CS on Cygnus.
+    pinnum          = 28
+    func_sel        = AM_HAL_PIN_28_M2MOSI
+    drvstrength     = 12
+    bIomMSPIn       = IOM
+    IOMnum          = 2
+
+pin
+    name            = FT_BRIDGE_MISO
+    desc            = FT_BRIDGE I/O Master 2 SPI MISO signal.
+    pinnum          = 25
+    func_sel        = AM_HAL_PIN_25_M2MISO  
+    bIomMSPIn       = IOM
+    IOMnum          = 2
+
+pin
+    name            = FT_BRIDGE_SS
+    desc            = FT_BRIDGE I/O Master 2 slave select.  IOM2 CE3 shared with the Cygnus board's FTDI device.
     pinnum          = 15
     func_sel        = AM_HAL_PIN_15_NCE15
     drvstrength     = 12
@@ -399,32 +428,6 @@ pin
     IOMnum          = 2
     CEnum           = 3
     CEpol           = low
-
-pin
-    name            = IOM2_MISO
-    desc            = I/O Master 2 SPI MISO signal.
-    pinnum          = 25
-    func_sel        = AM_HAL_PIN_25_M2MISO
-    bIomMSPIn       = IOM
-    IOMnum          = 2
-
-pin
-    name            = IOM2_MOSI
-    desc            = I/O Master 2 SPI MOSI signal.
-    pinnum          = 28
-    func_sel        = AM_HAL_PIN_28_M2MOSI
-    drvstrength     = 12
-    bIomMSPIn       = IOM
-    IOMnum          = 2
-
-pin
-    name            = IOM2_SCK
-    desc            = I/O Master 2 SPI SCK signal.
-    pinnum          = 27
-    func_sel        = AM_HAL_PIN_27_M2SCK
-    drvstrength     = 12
-    bIomMSPIn       = IOM
-    IOMnum          = 2
 
 pin
     name            = IOM2_SCL
@@ -649,8 +652,8 @@ pin
 pin
     name            = MSPI0_CE0
     desc            = MSPI0 chip select 0.  Note: CE1 must be disabled or tristated when using this pin for CE.
-    pinnum          = 37
-    func_sel        = AM_HAL_PIN_37_NCE37
+    pinnum          = 28
+    func_sel        = AM_HAL_PIN_28_NCE28
     drvstrength     = 12
     intdir          = lo2hi
     GPOutcfg        = pushpull
@@ -663,15 +666,15 @@ pin
 pin
     name            = MSPI0_CE1
     desc            = MSPI0 chip select 1.  Note: CE0 must be disabled or tristated when using this pin for CE.
-    pinnum          = 12
-    func_sel        = AM_HAL_PIN_12_NCE12
+    pinnum          = 46
+    func_sel        = AM_HAL_PIN_46_NCE46
     drvstrength     = 12
     intdir          = lo2hi
     GPOutcfg        = pushpull
     GPinput         = false
     bIomMSPIn       = MSPI
     MSPInum         = 0
-    CEnum           = 0
+    CEnum           = 1
     CEpol           = low
 
 pin
@@ -940,10 +943,18 @@ pin
 #  Display pins.
 # *****************************************************************************
 pin
+    name            = DISPLAY_PWRCTRL
+    desc            = Display power control.
+    pinnum          = 39
+    func_sel        = AM_HAL_PIN_39_GPIO
+    drvstrength     = 2
+    GPOutcfg        = pushpull
+
+pin
     name            = DISPLAY_TE
     desc            = Display TE signal.
-    pinnum          = 72
-    func_sel        = AM_HAL_PIN_72_GPIO
+    pinnum          = 38
+    func_sel        = AM_HAL_PIN_38_GPIO
     drvstrength     = 2
     intdir          = lo2hi
     GPinput         = true
@@ -951,12 +962,34 @@ pin
 pin
     name            = DISPLAY_RESET
     desc            = Display reset control.
-    pinnum          = 73
-    func_sel        = AM_HAL_PIN_73_GPIO
+    pinnum          = 11
+    func_sel        = AM_HAL_PIN_11_GPIO
     drvstrength     = 2
     GPOutcfg        = pushpull
 
+pin
+    name            = DISPLAY_PVIO_EN
+    desc            = Display reset control.
+    pinnum          = 40
+    func_sel        = AM_HAL_PIN_40_GPIO
+    drvstrength     = 2
+    GPOutcfg        = pushpull
 
+pin
+    name            = DISPLAY_P3V3_EN
+    desc            = Display reset control.
+    pinnum          = 31
+    func_sel        = AM_HAL_PIN_31_GPIO
+    drvstrength     = 2
+    GPOutcfg        = pushpull
+
+pin
+    name            = DISPLAY_OLED_EN
+    desc            = Display reset control.
+    pinnum          = 49
+    func_sel        = AM_HAL_PIN_49_GPIO
+    drvstrength     = 2
+    GPOutcfg        = pushpull
 
 # *****************************************************************************
 #  IOS pins.
@@ -966,7 +999,6 @@ pin
     desc            = I/O Slave chip select.
     pinnum          = 3
     func_sel        = AM_HAL_PIN_3_SLnCE
-    drvstrength     = 12
     GPinput         = true
     CEnum           = 0
     CEpol           = low
@@ -976,13 +1008,13 @@ pin
     desc            = I/O Slave SPI MISO signal.
     pinnum          = 2
     func_sel        = AM_HAL_PIN_2_SLMISO
+    drvstrength     = 12
 
 pin
     name            = IOS_MOSI
     desc            = I/O Slave SPI MOSI signal.
     pinnum          = 1
     func_sel        = AM_HAL_PIN_1_SLMOSI
-    drvstrength     = 12
     GPinput         = true
 
 pin
@@ -990,7 +1022,6 @@ pin
     desc            = I/O Slave SPI SCK signal.
     pinnum          = 0
     func_sel        = AM_HAL_PIN_0_SLSCK
-    drvstrength     = 12
     GPinput         = true
 
 pin
@@ -998,7 +1029,6 @@ pin
     desc            = I/O Slave I2C clock signal.
     pinnum          = 0
     func_sel        = AM_HAL_PIN_0_SLSCL
-    drvstrength     = 12
     GPinput         = true
 
 pin
@@ -1007,7 +1037,6 @@ pin
     pinnum          = 1
     func_sel        = AM_HAL_PIN_1_SLSDAWIR3
     GPOutcfg        = opendrain
-    drvstrength     = 12
     pullup          = 1_5K
 
 # *****************************************************************************
@@ -1077,19 +1106,3 @@ pin
     func_sel        = AM_HAL_PIN_21_SWDIO
 
 # *****************************************************************************
-#  FIREBALL pins.
-# *****************************************************************************
-
-pin
-    name            = FIREBALL_CE
-    desc            = Fireball device test board chip select.
-    pinnum          = 30
-    func_sel        = AM_HAL_PIN_30_NCE30
-    drvstrength     = 12
-    intdir          = lo2hi
-    GPOutcfg        = pushpull
-    GPinput         = false
-    bIomMSPIn       = IOM
-    IOMnum          = 5
-    CEnum           = 3
-    CEpol           = low

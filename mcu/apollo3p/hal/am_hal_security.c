@@ -13,7 +13,7 @@
 
 //*****************************************************************************
 //
-// Copyright (c) 2020, Ambiq Micro
+// Copyright (c) 2020, Ambiq Micro, Inc.
 // All rights reserved.
 //
 // Redistribution and use in source and binary forms, with or without
@@ -45,7 +45,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
-// This is part of revision 2.4.2 of the AmbiqSuite Development Package.
+// This is part of revision 2.5.1 of the AmbiqSuite Development Package.
 //
 //*****************************************************************************
 #include <stdint.h>
@@ -183,13 +183,14 @@ uint32_t am_hal_security_get_info(am_hal_security_info_t *pSecInfo)
         }
         pSecInfo->sblVersion = sblVersion & 0x7FFF;
         pSecInfo->sblVersionAddInfo = sblVersion >> 15;
-        return AM_HAL_STATUS_SUCCESS;
     }
     else
     {
         // No SBL Pre-installed
-        return AM_HAL_STATUS_FAIL;
+        pSecInfo->sblVersion = 0xFFFFFFFF;
+        pSecInfo->sblVersionAddInfo = 0xFFFFFFFF;
     }
+    return AM_HAL_STATUS_SUCCESS;
 }
 
 //*****************************************************************************

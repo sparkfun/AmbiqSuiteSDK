@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+<?xml-stylesheet type="text/xsl" href="xml_devices.xsl"?>
+<!DOCTYPE device SYSTEM "xml_devices.dtd">
+<device file_name="docs/flash_ctrl_regs.xml" file_mod_date="May 29 10:05:03 2014">
+  <short_description>Flash Controller</short_description>
+  <device_name>FLASH_CTRL</device_name>
+  <instance_base>REG_FLASH_CTRL_BASEADDR: 0x40014000</instance_base>
+  <ioregisters>
+    <ioreg_index/>
+    <ioreg>
+    <ioreg_name>STATUS</ioreg_name>
+    <ioreg_offset>0x00000000</ioreg_offset>
+    <ioreg_intro>Flash Controller Status Register</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="4" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="28" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="3" name="INFOCMDEN" readwrite="RO" access_macro="REG_FLASH_CTRL_STATUS_INFOCMDEN_RD" reset_value="0x0" width="1">
+        <ioreg_bf_description>"When set to 1, this bit indicates that write operations to the Flash INFO_CMD register are enabled. When set to 0, write and program operations are disabled to the Flash Information space."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="2" name="WRITERDY" readwrite="RO" access_macro="REG_FLASH_CTRL_STATUS_WRITERDY_RD" reset_value="0x0" width="1">
+        <ioreg_bf_description>"When set to 1, this bit indicates that the Flash Controller is ready to accept a new write data via the WR_DATA register. When set to a 0, the Flash Controller is not ready for a new write data."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="1" name="ADDRERROR" readwrite="RO" access_macro="REG_FLASH_CTRL_STATUS_ADDRERROR_RD" reset_value="0x0" width="1">
+        <ioreg_bf_description>"When set to 1, this bit indicates that an address has been written to the WRADDR register which is outside the range of valid addresses for the Flash Memory. This bit will be cleared on a write to the WRADDR register with a value that falls in the range of valid addresses."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="BUSY" readwrite="RO" access_macro="REG_FLASH_CTRL_STATUS_BUSY_RD" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit reflects the status of the most recently requested Flash operation. When set to 1, the Flash Controller is still processing the last operation. When set to 0, the controller is idle and ready to accept a new command request."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>WRADDR</ioreg_name>
+    <ioreg_offset>0x00000004</ioreg_offset>
+    <ioreg_intro>Flash Controller Write Address Register</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="18" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="14" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="ADDR" readwrite="RW" access_macro="REG_FLASH_CTRL_WRADDR_ADDR_WR" reset_value="0x0" width="18">
+        <ioreg_bf_description>"The value written to this field contains the next address to use for either an Erase or a Program operation to the Flash IP. If an invalid address is written, the Address Error bit of the Status register will be set."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>WRDATA</ioreg_name>
+    <ioreg_offset>0x00000008</ioreg_offset>
+    <ioreg_intro>Flash Controller Write Address Register</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="0" name="DATA" readwrite="WO" access_macro="REG_FLASH_CTRL_WRDATA_DATA_RD" reset_value="0x0" width="32">
+        <ioreg_bf_description>"The value written to this field contains the next data to use for a Program operation to the Flash IP. A write to this register will initiate the Program Word operation, and once complete, will auto-increment the WRADDR to allow continuous writes without the need to writing the next Address (for Data Segment writes ONLY! This auto-increment functionality is not supported for writes to the Information space of the Flash)."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>DATACMD</ioreg_name>
+    <ioreg_offset>0x0000000c</ioreg_offset>
+    <ioreg_intro>Flash Controller Data Space Command Register</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="3" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="29" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="2" name="DATAPROGRAM" readwrite="WO" access_macro="REG_FLASH_CTRL_DATACMD_DATAPROGRAM_RD" reset_value="0x0" width="1">
+        <ioreg_bf_description>"Writing a 1 to this bitfield initiates a programming operation to the Flash Data space. Writing a 0 to this bitfield terminates the programming operation."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="1" name="DATAMASSERASE" readwrite="WO" access_macro="REG_FLASH_CTRL_DATACMD_DATAMASSERASE_RD" reset_value="0x0" width="1">
+        <ioreg_bf_description>"Writing a 1 to this bitfield initiates an erase operation of the entire Flash Data space."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="DATAPAGEERASE" readwrite="WO" access_macro="REG_FLASH_CTRL_DATACMD_DATAPAGEERASE_RD" reset_value="0x0" width="1">
+        <ioreg_bf_description>"Writing a 1 to this bitfield initiates a erase operation to the Flash Data word line specified by the WRADDR register."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>INFOCMD</ioreg_name>
+    <ioreg_offset>0x00000010</ioreg_offset>
+    <ioreg_intro>Flash Controller Information Space Command Register</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="3" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="29" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="2" name="INFOPROGRAM" readwrite="WO" access_macro="REG_FLASH_CTRL_INFOCMD_INFOPROGRAM_RD" reset_value="0x0" width="1">
+        <ioreg_bf_description>"Writing a 1 to this bitfield initiates a programming operation to the Flash Information space. Writing a 0 to this bitfield terminates the programming operation."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="1" name="INFOMASSERASE" readwrite="WO" access_macro="REG_FLASH_CTRL_INFOCMD_INFOMASSERASE_RD" reset_value="0x0" width="1">
+        <ioreg_bf_description>"Writing a 1 to this bitfield initiates an erase operation of both the Flash Information and Flash Data spaces."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="INFOPAGEERASE" readwrite="WO" access_macro="REG_FLASH_CTRL_INFOCMD_INFOPAGEERASE_RD" reset_value="0x0" width="1">
+        <ioreg_bf_description>"Writing a 1 to this bitfield initiates a erase operation to the Flash Information spac. The WRADDR register is not relevant for an Information Space page erase operation."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>EVENTREGEN</ioreg_name>
+    <ioreg_offset>0x00000200</ioreg_offset>
+    <ioreg_intro>Flash Controller Event Registers</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="3" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="29" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="2" name="TIMEOUT" readwrite="RW" access_macro="REG_FLASH_CTRL_EVENTREGEN_TIMEOUT_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the operation timeout Event notification."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="1" name="ERASECOMP" readwrite="RW" access_macro="REG_FLASH_CTRL_EVENTREGEN_ERASECOMP_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the erase operation complete notification."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="WRITECOMP" readwrite="RW" access_macro="REG_FLASH_CTRL_EVENTREGEN_WRITECOMP_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the write operation complete notification."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>EVENTREGSTAT</ioreg_name>
+    <ioreg_offset>0x00000204</ioreg_offset>
+    <ioreg_intro>Flash Controller Event Registers</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="3" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="29" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="2" name="TIMEOUT" readwrite="RW" access_macro="REG_FLASH_CTRL_EVENTREGSTAT_TIMEOUT_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the operation timeout Event notification."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="1" name="ERASECOMP" readwrite="RW" access_macro="REG_FLASH_CTRL_EVENTREGSTAT_ERASECOMP_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the erase operation complete notification."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="WRITECOMP" readwrite="RW" access_macro="REG_FLASH_CTRL_EVENTREGSTAT_WRITECOMP_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the write operation complete notification."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>EVENTREGCLR</ioreg_name>
+    <ioreg_offset>0x00000208</ioreg_offset>
+    <ioreg_intro>Flash Controller Event Registers</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="3" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="29" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="2" name="TIMEOUT" readwrite="RW" access_macro="REG_FLASH_CTRL_EVENTREGCLR_TIMEOUT_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the operation timeout Event notification."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="1" name="ERASECOMP" readwrite="RW" access_macro="REG_FLASH_CTRL_EVENTREGCLR_ERASECOMP_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the erase operation complete notification."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="WRITECOMP" readwrite="RW" access_macro="REG_FLASH_CTRL_EVENTREGCLR_WRITECOMP_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the write operation complete notification."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>EVENTREGSET</ioreg_name>
+    <ioreg_offset>0x0000020c</ioreg_offset>
+    <ioreg_intro>Flash Controller Event Registers</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="3" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="29" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="2" name="TIMEOUT" readwrite="RW" access_macro="REG_FLASH_CTRL_EVENTREGSET_TIMEOUT_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the operation timeout Event notification."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="1" name="ERASECOMP" readwrite="RW" access_macro="REG_FLASH_CTRL_EVENTREGSET_ERASECOMP_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the erase operation complete notification."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="WRITECOMP" readwrite="RW" access_macro="REG_FLASH_CTRL_EVENTREGSET_WRITECOMP_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the write operation complete notification."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>ACCESS</ioreg_name>
+    <ioreg_offset>0x00000014</ioreg_offset>
+    <ioreg_intro>Key Register for the Flash Controller Registers</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="0" name="VALUE" readwrite="RW" access_macro="REG_FLASH_CTRL_ACCESS_VALUE_WR" reset_value="0x0" width="32">
+        <ioreg_bf_description>Key value. (0x37 unlocks)
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>"A write with the value of 0x37 to this register enables access to the other Flash Controller registers. Any value written to this register other than 0x37  will disable access to the remaining Flash Controller registers. The valid write of 0x37 will also enable the flash clock to the control registers, a requirement to program the Flash. When the operations to the flash are complete, the user should write any pattern other than 0x37 to this register to disable the clock."</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg_bigpicture/>
+  </ioregisters>
+</device>

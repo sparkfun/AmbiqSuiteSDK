@@ -335,7 +335,7 @@
               <MiscControls></MiscControls>
               <Define>AM_PART_APOLLO3 AM_PACKAGE_BGA keil</Define>
               <Undefine></Undefine>
-              <IncludePath>../../../../..;../../../../../utils;../src;../../../bsp;../../../../../CMSIS/AmbiqMicro/Include;../../../../../CMSIS/ARM/Include;../../../../../devices;../../../../../mcu/apollo3</IncludePath>
+              <IncludePath>../../../../..;../../../../../utils;../../../../../CMSIS/ARM/Include;../../../../../mcu/apollo3;../src;../../../../../devices;../../../bsp;../../../../../CMSIS/AmbiqMicro/Include</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -389,6 +389,11 @@
         <Group>
           <GroupName>utils</GroupName>
           <Files>
+            <File>
+              <FileName>am_util_ble.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../../../../../utils/am_util_ble.c</FilePath>
+            </File>
             <File>
               <FileName>am_util_delay.c</FileName>
               <FileType>1</FileType>

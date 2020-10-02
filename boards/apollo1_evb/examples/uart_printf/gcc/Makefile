@@ -2,7 +2,7 @@
 #
 # Makefile - Rules for building the libraries, examples and docs.
 #
-# Copyright (c) 2020, Ambiq Micro
+# Copyright (c) 2020, Ambiq Micro, Inc.
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
@@ -34,7 +34,7 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 #
-# This is part of revision 2.4.2 of the AmbiqSuite Development Package.
+# This is part of revision 2.5.1 of the AmbiqSuite Development Package.
 #
 #******************************************************************************
 TARGET := uart_printf
@@ -85,15 +85,15 @@ DEFINES+= -DAM_PACKAGE_BGA
 DEFINES+= -DAM_PART_APOLLO
 DEFINES+= -Dgcc
 
-INCLUDES = -I../../../../..
+INCLUDES = -I../../../../../mcu/apollo
+INCLUDES+= -I../src
+INCLUDES+= -I../../../../..
 INCLUDES+= -I../../../bsp
 INCLUDES+= -I../../../../../devices
-INCLUDES+= -I../../../../../mcu/apollo
 INCLUDES+= -I../../../../../utils
-INCLUDES+= -I../src
 
-VPATH = ../../../../../utils
-VPATH+=:../src
+VPATH = ../src
+VPATH+=:../../../../../utils
 
 SRC = uart_printf.c
 SRC += am_util_delay.c
@@ -110,8 +110,8 @@ OBJS+= $(ASRC:%.s=$(CONFIG)/%.o)
 DEPS = $(CSRC:%.c=$(CONFIG)/%.d)
 DEPS+= $(ASRC:%.s=$(CONFIG)/%.d)
 
-LIBS = ../../../../../mcu/apollo/hal/gcc/bin/libam_hal.a
-LIBS += ../../../bsp/gcc/bin/libam_bsp.a
+LIBS = ../../../bsp/gcc/bin/libam_bsp.a
+LIBS += ../../../../../mcu/apollo/hal/gcc/bin/libam_hal.a
 
 CFLAGS = -mthumb -mcpu=$(CPU) -mfpu=$(FPU) -mfloat-abi=$(FABI)
 CFLAGS+= -ffunction-sections -fdata-sections
@@ -158,6 +158,7 @@ $(CONFIG)/$(TARGET).bin: $(CONFIG)/$(TARGET).axf
 	@echo " Copying $(COMPILERNAME) $@..." ;\
 	$(CP) $(CPFLAGS) $< $@ ;\
 	$(OD) $(ODFLAGS) $< > $(CONFIG)/$(TARGET).lst
+	@$(SIZE) $(OBJS) $(LIBS) $(CONFIG)/$(TARGET).axf >$(CONFIG)/$(TARGET).size
 
 clean:
 	@echo "Cleaning..." ;\
@@ -167,11 +168,11 @@ clean:
 
 $(CONFIG)/%.d: ;
 
-../../../../../mcu/apollo/hal/gcc/bin/libam_hal.a:
-	$(MAKE) -C ../../../../../mcu/apollo/hal
-
 ../../../bsp/gcc/bin/libam_bsp.a:
 	$(MAKE) -C ../../../bsp
+
+../../../../../mcu/apollo/hal/gcc/bin/libam_hal.a:
+	$(MAKE) -C ../../../../../mcu/apollo/hal
 
 # Automatically include any generated dependencies
 -include $(DEPS)

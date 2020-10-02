@@ -25,7 +25,7 @@
                             <img alt="Logo" src="../resources/am_logo.png" />
                         </td>
                         <td style="padding-left: 0.5em;">
-                            <div id="projectname">Apollo Register Documentation &#160;<span id="projectnumber">v2.4.2</span></div>
+                            <div id="projectname">Apollo Register Documentation &#160;<span id="projectnumber">v${version}</span></div>
                         </td>
                     </tr>
                 </tbody>
@@ -119,7 +119,73 @@
                         </td>
                         <td class="entry">
                             <span style="width:32px;display:inline-block;">&#160;</span>
-                            <a class="el" href="#DEBUGGER" target="_self">DEBUGGER - Debugger Control</a>
+                            <a class="el" href="#DEBUGGER" target="_self">DEBUGGER - Debugger Access Control</a>
+                        </td>
+                    </tr>
+
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x00000060:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <a class="el" href="#BUCK" target="_self">BUCK - Analog Buck Control</a>
+                        </td>
+                    </tr>
+
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x00000068:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <a class="el" href="#BUCK3" target="_self">BUCK3 - Buck control reg 3</a>
+                        </td>
+                    </tr>
+
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x00000080:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <a class="el" href="#LDOREG1" target="_self">LDOREG1 - Analog LDO Reg 1</a>
+                        </td>
+                    </tr>
+
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x00000088:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <a class="el" href="#LDOREG3" target="_self">LDOREG3 - LDO Control Register 3</a>
+                        </td>
+                    </tr>
+
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x00000100:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <a class="el" href="#BODPORCTRL" target="_self">BODPORCTRL - BOD and PDR control Register</a>
+                        </td>
+                    </tr>
+
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x00000104:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <a class="el" href="#ADCPWRDLY" target="_self">ADCPWRDLY - ADC Power Up Delay Control</a>
                         </td>
                     </tr>
 
@@ -148,11 +214,11 @@
                     <tr id="row_0_0_">
                         <td class="entry">
                             <span style="width:32px;display:inline-block;">&#160;</span>
-                            <span class="h5">0x0000011C:</span>
+                            <span class="h5">0x00000114:</span>
                         </td>
                         <td class="entry">
                             <span style="width:32px;display:inline-block;">&#160;</span>
-                            <a class="el" href="#ADCREFCOMP" target="_self">ADCREFCOMP - ADC Referece Keeper and Comparator Control</a>
+                            <a class="el" href="#BUCKTRIM" target="_self">BUCKTRIM - Trim settings for Core and Mem buck modules</a>
                         </td>
                     </tr>
 
@@ -288,17 +354,6 @@
                         </td>
                     </tr>
 
-                    <tr id="row_0_0_">
-                        <td class="entry">
-                            <span style="width:32px;display:inline-block;">&#160;</span>
-                            <span class="h5">0x00000348:</span>
-                        </td>
-                        <td class="entry">
-                            <span style="width:32px;display:inline-block;">&#160;</span>
-                            <a class="el" href="#KEXTCLKSEL" target="_self">KEXTCLKSEL - Key Register to enable the use of external clock selects via the EXTCLKSEL reg</a>
-                        </td>
-                    </tr>
-
                 </table>
             </div>
         </div>
@@ -385,7 +440,7 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                     <tbody>
                         <tr>
                             <td align="center" colspan="32">PARTNUM
-                                <br>0x0</td>
+                                <br>0x3000000</td>
 
                         </tr>
                     </tbody>
@@ -407,7 +462,9 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                             <td>PARTNUM</td>
                             <td>RO</td>
                             <td>BCD part number.<br><br>
-                                 APOLLO2              = 0x0 - Apollo2 part number.</td>
+                                 APOLLO2              = 0x3000000 - Apollo2 part number is 0x03XXXXXX.<br>
+                             APOLLO               = 0x1000000 - Apollo part number is 0x01XXXXXX.<br>
+                             PN_M                 = 0xFF000000 - Mask for the PN field.</td>
                         </tr>
 
                     </tbody>
@@ -520,7 +577,7 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                             <td>VALUE</td>
                             <td>RO</td>
                             <td>Unique chip ID 0.<br><br>
-                                 APOLLO2              = 0x0 - Apollo2 CHIPID0.</td>
+                                 APOLLO2              = 0x0 - Apollo2 CHIPID0. The lower 32-bits of the 64-bit CHIPID value, which is unique for each part.</td>
                         </tr>
 
                     </tbody>
@@ -633,7 +690,7 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                             <td>VALUE</td>
                             <td>RO</td>
                             <td>Unique chip ID 1.<br><br>
-                                 APOLLO2              = 0x0 - Apollo2 CHIPID1.</td>
+                                 APOLLO2              = 0x0 - Apollo2 CHIPID1. The upper 32-bits of the 64-bit CHIPID value, which is unique for each part.</td>
                         </tr>
 
                     </tbody>
@@ -760,7 +817,8 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                             <td>REVMAJ</td>
                             <td>RO</td>
                             <td>Major Revision ID.<br><br>
-                                 A                    = 0x1 - Apollo2 revision A</td>
+                                 B                    = 0x2 - Apollo2 revision B<br>
+                             A                    = 0x1 - Apollo2 revision A</td>
                         </tr>
 
                         <tr>
@@ -768,7 +826,8 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                             <td>REVMIN</td>
                             <td>RO</td>
                             <td>Minor Revision ID.<br><br>
-                                 REV0                 = 0x1 - Apollo2 minor revision value.</td>
+                                 REV0                 = 0x0 - Apollo2 minor revision value. Succeeding minor revisions will increment from this value.<br>
+                             REV2                 = 0x2 - Apollo2 minor revision value.</td>
                         </tr>
 
                     </tbody>
@@ -881,7 +940,7 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                             <td>VALUE</td>
                             <td>RO</td>
                             <td>Unique Vendor ID<br><br>
-                                 AMBIQ                = 0x414D4251 - Ambiq Venfor ID</td>
+                                 AMBIQ                = 0x414D4251 - Ambiq Vendor ID</td>
                         </tr>
 
                     </tbody>
@@ -892,7 +951,7 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
 
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 id="DEBUGGER" class="panel-title">DEBUGGER - Debugger Control</h3>
+                <h3 id="DEBUGGER" class="panel-title">DEBUGGER - Debugger Access Control</h3>
             </div>
             <div class="panel-body">
                 <h3>Address:</h3>
@@ -910,7 +969,7 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
 
                 </table>
                 <h3>Description:</h3>
-                <p>Debugger Control</p>
+                <p>Debugger Access Control</p>
                 <h3>Example Macro Usage:</h3>
                 <pre style="margin:10px" class="language-pascal"><span style='color:#3f7f59; '>//
 // All macro-based register writes follow the same basic format. For
@@ -1005,6 +1064,1004 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                             <td>LOCKOUT</td>
                             <td>RW</td>
                             <td>Lockout of debugger (SWD).<br><br>
+                                </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+                <br>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 id="BUCK" class="panel-title">BUCK - Analog Buck Control</h3>
+            </div>
+            <div class="panel-body">
+                <h3>Address:</h3>
+                <table style="margin:10px">
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">Instance 0 Address:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x40020060</span>
+                        </td>
+                    </tr>
+
+                </table>
+                <h3>Description:</h3>
+                <p>Analog Buck Control</p>
+                <h3>Example Macro Usage:</h3>
+                <pre style="margin:10px" class="language-pascal"><span style='color:#3f7f59; '>//
+// All macro-based register writes follow the same basic format. For
+// single-instance modules, you may use the simpler AM_REG macro. For
+// multi-instance macros, you will need to specify the instance number using
+// the AM_REGn macro format.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+// AM_REGn(&lt;MODULE&gt;, &lt;INSTANCE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+//
+// For registers that do not have specific enumeration values, you may use this alternate format instead.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;(&lt;NUMBER&gt;);
+//
+// For example, the following three lines of code are equivalent methods of
+// writing the value for 12MHZ to the CLKSEL field in the ADC_CFG register.
+//</span>
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REGn(ADC, 0, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
+                <h3>Register Fields:</h3>
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>31</th>
+                            <th>30</th>
+                            <th>29</th>
+                            <th>28</th>
+                            <th>27</th>
+                            <th>26</th>
+                            <th>25</th>
+                            <th>24</th>
+                            <th>23</th>
+                            <th>22</th>
+                            <th>21</th>
+                            <th>20</th>
+                            <th>19</th>
+                            <th>18</th>
+                            <th>17</th>
+                            <th>16</th>
+                            <th>15</th>
+                            <th>14</th>
+                            <th>13</th>
+                            <th>12</th>
+                            <th>11</th>
+                            <th>10</th>
+                            <th>9</th>
+                            <th>8</th>
+                            <th>7</th>
+                            <th>6</th>
+                            <th>5</th>
+                            <th>4</th>
+                            <th>3</th>
+                            <th>2</th>
+                            <th>1</th>
+                            <th>0</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td align="center" colspan="24">RSVD
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">MEMBUCKRST
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">COREBUCKRST
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">BYPBUCKMEM
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">MEMBUCKPWD
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">SLEEPBUCKANA
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">COREBUCKPWD
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">BYPBUCKCORE
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">BUCKSWE
+                                <br>0x0</td>
+
+                        </tr>
+                    </tbody>
+                </table>
+                <br>
+
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>Bits</th>
+                            <th>Name</th>
+                            <th>RW</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>31:8</td>
+                            <td>RSVD</td>
+                            <td>RO</td>
+                            <td>RESERVED.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>7</td>
+                            <td>MEMBUCKRST</td>
+                            <td>RW</td>
+                            <td>Reset control override for Mem Buck; 0=enabled, 1=reset; Value is propagated only when the BUCKSWE bit is active, otherwise contrl is from the power control module.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>6</td>
+                            <td>COREBUCKRST</td>
+                            <td>RW</td>
+                            <td>Reset control override for Core Buck; 0=enabled, 1=reset; Value is propagated only when the BUCKSWE bit is active, otherwise control is from the power control module.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>5</td>
+                            <td>BYPBUCKMEM</td>
+                            <td>RW</td>
+                            <td>Not used.  Additional control of buck is available in the power control module<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>4</td>
+                            <td>MEMBUCKPWD</td>
+                            <td>RW</td>
+                            <td>Memory buck power down override. 1=Powered Down; 0=Enabled; Value is propagated only when the BUCKSWE bit is active, otherwise control is from the power control module.<br><br>
+                                 EN                   = 0x0 - Memory Buck Enable.</td>
+                        </tr>
+
+                        <tr>
+                            <td>3</td>
+                            <td>SLEEPBUCKANA</td>
+                            <td>RW</td>
+                            <td>HFRC clkgen bit 0 override. When set, this will override to 0 bit 0 of the hfrc_freq_clkgen internal bus (see internal Shelby-1473)<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>2</td>
+                            <td>COREBUCKPWD</td>
+                            <td>RW</td>
+                            <td>Core buck power down override. 1=Powered Down; 0=Enabled; Value is propagated only when the BUCKSWE bit is active, otherwise control is from the power control module.<br><br>
+                                 EN                   = 0x0 - Core Buck enable.</td>
+                        </tr>
+
+                        <tr>
+                            <td>1</td>
+                            <td>BYPBUCKCORE</td>
+                            <td>RW</td>
+                            <td>Not used.  Additional control of buck is available in the power control module<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>0</td>
+                            <td>BUCKSWE</td>
+                            <td>RW</td>
+                            <td>Buck Register Software Override Enable.  This will enable the override values for MEMBUCKPWD, COREBUCKPWD, COREBUCKRST, MEMBUCKRST, all to be propagated to the control logic, instead of the normal power control module signal.  Note - Must take care to have correct value for ALL the register bits when this SWE is enabled.<br><br>
+                                 OVERRIDE_DIS         = 0x0 - BUCK Software Override Disable.<br>
+                             OVERRIDE_EN          = 0x1 - BUCK Software Override Enable.</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+                <br>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 id="BUCK3" class="panel-title">BUCK3 - Buck control reg 3</h3>
+            </div>
+            <div class="panel-body">
+                <h3>Address:</h3>
+                <table style="margin:10px">
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">Instance 0 Address:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x40020068</span>
+                        </td>
+                    </tr>
+
+                </table>
+                <h3>Description:</h3>
+                <p>Buck control reg 3</p>
+                <h3>Example Macro Usage:</h3>
+                <pre style="margin:10px" class="language-pascal"><span style='color:#3f7f59; '>//
+// All macro-based register writes follow the same basic format. For
+// single-instance modules, you may use the simpler AM_REG macro. For
+// multi-instance macros, you will need to specify the instance number using
+// the AM_REGn macro format.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+// AM_REGn(&lt;MODULE&gt;, &lt;INSTANCE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+//
+// For registers that do not have specific enumeration values, you may use this alternate format instead.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;(&lt;NUMBER&gt;);
+//
+// For example, the following three lines of code are equivalent methods of
+// writing the value for 12MHZ to the CLKSEL field in the ADC_CFG register.
+//</span>
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REGn(ADC, 0, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
+                <h3>Register Fields:</h3>
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>31</th>
+                            <th>30</th>
+                            <th>29</th>
+                            <th>28</th>
+                            <th>27</th>
+                            <th>26</th>
+                            <th>25</th>
+                            <th>24</th>
+                            <th>23</th>
+                            <th>22</th>
+                            <th>21</th>
+                            <th>20</th>
+                            <th>19</th>
+                            <th>18</th>
+                            <th>17</th>
+                            <th>16</th>
+                            <th>15</th>
+                            <th>14</th>
+                            <th>13</th>
+                            <th>12</th>
+                            <th>11</th>
+                            <th>10</th>
+                            <th>9</th>
+                            <th>8</th>
+                            <th>7</th>
+                            <th>6</th>
+                            <th>5</th>
+                            <th>4</th>
+                            <th>3</th>
+                            <th>2</th>
+                            <th>1</th>
+                            <th>0</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td align="center" colspan="10">RSVD
+                                <br>0x0</td>
+
+                            <td align="center" colspan="4">MEMBUCKLOTON
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">MEMBUCKBURSTEN
+                                <br>0x0</td>
+
+                            <td align="center" colspan="4">MEMBUCKZXTRIM
+                                <br>0x0</td>
+
+                            <td align="center" colspan="2">MEMBUCKHYSTTRIM
+                                <br>0x0</td>
+
+                            <td align="center" colspan="4">COREBUCKLOTON
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">COREBUCKBURSTEN
+                                <br>0x0</td>
+
+                            <td align="center" colspan="4">COREBUCKZXTRIM
+                                <br>0x0</td>
+
+                            <td align="center" colspan="2">COREBUCKHYSTTRIM
+                                <br>0x0</td>
+
+                        </tr>
+                    </tbody>
+                </table>
+                <br>
+
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>Bits</th>
+                            <th>Name</th>
+                            <th>RW</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>31:22</td>
+                            <td>RSVD</td>
+                            <td>RO</td>
+                            <td>RESERVED.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>21:18</td>
+                            <td>MEMBUCKLOTON</td>
+                            <td>RW</td>
+                            <td>MEM Buck low TON trim value<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>17</td>
+                            <td>MEMBUCKBURSTEN</td>
+                            <td>RW</td>
+                            <td>MEM Buck burst enable 0=disable, 0=disabled, 1=enable.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>16:13</td>
+                            <td>MEMBUCKZXTRIM</td>
+                            <td>RW</td>
+                            <td>Memory buck zero crossing trim value<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>12:11</td>
+                            <td>MEMBUCKHYSTTRIM</td>
+                            <td>RW</td>
+                            <td>Hysterisis trim for mem buck<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>10:7</td>
+                            <td>COREBUCKLOTON</td>
+                            <td>RW</td>
+                            <td>Core Buck low TON trim value<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>6</td>
+                            <td>COREBUCKBURSTEN</td>
+                            <td>RW</td>
+                            <td>Core Buck burst enable. 0=disabled, 1=enabled<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>5:2</td>
+                            <td>COREBUCKZXTRIM</td>
+                            <td>RW</td>
+                            <td>Core buck  zero crossing trim value<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>1:0</td>
+                            <td>COREBUCKHYSTTRIM</td>
+                            <td>RW</td>
+                            <td>Hysterisis trim for core buck<br><br>
+                                </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+                <br>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 id="LDOREG1" class="panel-title">LDOREG1 - Analog LDO Reg 1</h3>
+            </div>
+            <div class="panel-body">
+                <h3>Address:</h3>
+                <table style="margin:10px">
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">Instance 0 Address:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x40020080</span>
+                        </td>
+                    </tr>
+
+                </table>
+                <h3>Description:</h3>
+                <p>Analog LDO Reg 1</p>
+                <h3>Example Macro Usage:</h3>
+                <pre style="margin:10px" class="language-pascal"><span style='color:#3f7f59; '>//
+// All macro-based register writes follow the same basic format. For
+// single-instance modules, you may use the simpler AM_REG macro. For
+// multi-instance macros, you will need to specify the instance number using
+// the AM_REGn macro format.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+// AM_REGn(&lt;MODULE&gt;, &lt;INSTANCE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+//
+// For registers that do not have specific enumeration values, you may use this alternate format instead.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;(&lt;NUMBER&gt;);
+//
+// For example, the following three lines of code are equivalent methods of
+// writing the value for 12MHZ to the CLKSEL field in the ADC_CFG register.
+//</span>
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REGn(ADC, 0, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
+                <h3>Register Fields:</h3>
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>31</th>
+                            <th>30</th>
+                            <th>29</th>
+                            <th>28</th>
+                            <th>27</th>
+                            <th>26</th>
+                            <th>25</th>
+                            <th>24</th>
+                            <th>23</th>
+                            <th>22</th>
+                            <th>21</th>
+                            <th>20</th>
+                            <th>19</th>
+                            <th>18</th>
+                            <th>17</th>
+                            <th>16</th>
+                            <th>15</th>
+                            <th>14</th>
+                            <th>13</th>
+                            <th>12</th>
+                            <th>11</th>
+                            <th>10</th>
+                            <th>9</th>
+                            <th>8</th>
+                            <th>7</th>
+                            <th>6</th>
+                            <th>5</th>
+                            <th>4</th>
+                            <th>3</th>
+                            <th>2</th>
+                            <th>1</th>
+                            <th>0</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td align="center" colspan="11">RSVD
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">CORELDOIBSTRM
+                                <br>0x0</td>
+
+                            <td align="center" colspan="6">CORELDOLPTRIM
+                                <br>0x0</td>
+
+                            <td align="center" colspan="4">TRIMCORELDOR3
+                                <br>0x0</td>
+
+                            <td align="center" colspan="10">TRIMCORELDOR1
+                                <br>0x0</td>
+
+                        </tr>
+                    </tbody>
+                </table>
+                <br>
+
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>Bits</th>
+                            <th>Name</th>
+                            <th>RW</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>31:21</td>
+                            <td>RSVD</td>
+                            <td>RO</td>
+                            <td>Reserved<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>20</td>
+                            <td>CORELDOIBSTRM</td>
+                            <td>RW</td>
+                            <td>CORE LDO IBIAS Trim<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>19:14</td>
+                            <td>CORELDOLPTRIM</td>
+                            <td>RW</td>
+                            <td>CORE LDO Low Power Trim<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>13:10</td>
+                            <td>TRIMCORELDOR3</td>
+                            <td>RW</td>
+                            <td>CORE LDO tempco trim (R3).<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>9:0</td>
+                            <td>TRIMCORELDOR1</td>
+                            <td>RW</td>
+                            <td>CORE LDO Active mode ouput trim (R1).<br><br>
+                                </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+                <br>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 id="LDOREG3" class="panel-title">LDOREG3 - LDO Control Register 3</h3>
+            </div>
+            <div class="panel-body">
+                <h3>Address:</h3>
+                <table style="margin:10px">
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">Instance 0 Address:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x40020088</span>
+                        </td>
+                    </tr>
+
+                </table>
+                <h3>Description:</h3>
+                <p>LDO Control Register 3</p>
+                <h3>Example Macro Usage:</h3>
+                <pre style="margin:10px" class="language-pascal"><span style='color:#3f7f59; '>//
+// All macro-based register writes follow the same basic format. For
+// single-instance modules, you may use the simpler AM_REG macro. For
+// multi-instance macros, you will need to specify the instance number using
+// the AM_REGn macro format.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+// AM_REGn(&lt;MODULE&gt;, &lt;INSTANCE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+//
+// For registers that do not have specific enumeration values, you may use this alternate format instead.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;(&lt;NUMBER&gt;);
+//
+// For example, the following three lines of code are equivalent methods of
+// writing the value for 12MHZ to the CLKSEL field in the ADC_CFG register.
+//</span>
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REGn(ADC, 0, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
+                <h3>Register Fields:</h3>
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>31</th>
+                            <th>30</th>
+                            <th>29</th>
+                            <th>28</th>
+                            <th>27</th>
+                            <th>26</th>
+                            <th>25</th>
+                            <th>24</th>
+                            <th>23</th>
+                            <th>22</th>
+                            <th>21</th>
+                            <th>20</th>
+                            <th>19</th>
+                            <th>18</th>
+                            <th>17</th>
+                            <th>16</th>
+                            <th>15</th>
+                            <th>14</th>
+                            <th>13</th>
+                            <th>12</th>
+                            <th>11</th>
+                            <th>10</th>
+                            <th>9</th>
+                            <th>8</th>
+                            <th>7</th>
+                            <th>6</th>
+                            <th>5</th>
+                            <th>4</th>
+                            <th>3</th>
+                            <th>2</th>
+                            <th>1</th>
+                            <th>0</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td align="center" colspan="14">RSVD
+                                <br>0x0</td>
+
+                            <td align="center" colspan="6">TRIMMEMLDOR1
+                                <br>0x0</td>
+
+                            <td align="center" colspan="6">MEMLDOLPALTTRIM
+                                <br>0x0</td>
+
+                            <td align="center" colspan="6">MEMLDOLPTRIM
+                                <br>0x0</td>
+
+                        </tr>
+                    </tbody>
+                </table>
+                <br>
+
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>Bits</th>
+                            <th>Name</th>
+                            <th>RW</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>31:18</td>
+                            <td>RSVD</td>
+                            <td>RO</td>
+                            <td>RESERVED.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>17:12</td>
+                            <td>TRIMMEMLDOR1</td>
+                            <td>RW</td>
+                            <td>MEM LDO active mode trim (R1).<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>11:6</td>
+                            <td>MEMLDOLPALTTRIM</td>
+                            <td>RW</td>
+                            <td>MEM LDO TRIM for low power mode with ADC active<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>5:0</td>
+                            <td>MEMLDOLPTRIM</td>
+                            <td>RW</td>
+                            <td>MEM LDO TRIM for low power mode with ADC inactive<br><br>
+                                </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+                <br>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 id="BODPORCTRL" class="panel-title">BODPORCTRL - BOD and PDR control Register</h3>
+            </div>
+            <div class="panel-body">
+                <h3>Address:</h3>
+                <table style="margin:10px">
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">Instance 0 Address:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x40020100</span>
+                        </td>
+                    </tr>
+
+                </table>
+                <h3>Description:</h3>
+                <p>BOD and PDR control Register</p>
+                <h3>Example Macro Usage:</h3>
+                <pre style="margin:10px" class="language-pascal"><span style='color:#3f7f59; '>//
+// All macro-based register writes follow the same basic format. For
+// single-instance modules, you may use the simpler AM_REG macro. For
+// multi-instance macros, you will need to specify the instance number using
+// the AM_REGn macro format.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+// AM_REGn(&lt;MODULE&gt;, &lt;INSTANCE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+//
+// For registers that do not have specific enumeration values, you may use this alternate format instead.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;(&lt;NUMBER&gt;);
+//
+// For example, the following three lines of code are equivalent methods of
+// writing the value for 12MHZ to the CLKSEL field in the ADC_CFG register.
+//</span>
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REGn(ADC, 0, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
+                <h3>Register Fields:</h3>
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>31</th>
+                            <th>30</th>
+                            <th>29</th>
+                            <th>28</th>
+                            <th>27</th>
+                            <th>26</th>
+                            <th>25</th>
+                            <th>24</th>
+                            <th>23</th>
+                            <th>22</th>
+                            <th>21</th>
+                            <th>20</th>
+                            <th>19</th>
+                            <th>18</th>
+                            <th>17</th>
+                            <th>16</th>
+                            <th>15</th>
+                            <th>14</th>
+                            <th>13</th>
+                            <th>12</th>
+                            <th>11</th>
+                            <th>10</th>
+                            <th>9</th>
+                            <th>8</th>
+                            <th>7</th>
+                            <th>6</th>
+                            <th>5</th>
+                            <th>4</th>
+                            <th>3</th>
+                            <th>2</th>
+                            <th>1</th>
+                            <th>0</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td align="center" colspan="28">RSVD
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">BODEXTREFSEL
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">PDREXTREFSEL
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">PWDBOD
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">PWDPDR
+                                <br>0x0</td>
+
+                        </tr>
+                    </tbody>
+                </table>
+                <br>
+
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>Bits</th>
+                            <th>Name</th>
+                            <th>RW</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>31:4</td>
+                            <td>RSVD</td>
+                            <td>RO</td>
+                            <td>RESERVED.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>3</td>
+                            <td>BODEXTREFSEL</td>
+                            <td>RW</td>
+                            <td>BOD External Reference Select.<br><br>
+                                 SELECT               = 0x1 - BOD external reference select.</td>
+                        </tr>
+
+                        <tr>
+                            <td>2</td>
+                            <td>PDREXTREFSEL</td>
+                            <td>RW</td>
+                            <td>PDR External Reference Select.<br><br>
+                                 SELECT               = 0x1 - PDR external reference select.</td>
+                        </tr>
+
+                        <tr>
+                            <td>1</td>
+                            <td>PWDBOD</td>
+                            <td>RW</td>
+                            <td>BOD Power Down.<br><br>
+                                 PWR_DN               = 0x1 - BOD power down.</td>
+                        </tr>
+
+                        <tr>
+                            <td>0</td>
+                            <td>PWDPDR</td>
+                            <td>RW</td>
+                            <td>PDR Power Down.<br><br>
+                                 PWR_DN               = 0x1 - PDR power down</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+                <br>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 id="ADCPWRDLY" class="panel-title">ADCPWRDLY - ADC Power Up Delay Control</h3>
+            </div>
+            <div class="panel-body">
+                <h3>Address:</h3>
+                <table style="margin:10px">
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">Instance 0 Address:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x40020104</span>
+                        </td>
+                    </tr>
+
+                </table>
+                <h3>Description:</h3>
+                <p>ADC Power Up Delay Control</p>
+                <h3>Example Macro Usage:</h3>
+                <pre style="margin:10px" class="language-pascal"><span style='color:#3f7f59; '>//
+// All macro-based register writes follow the same basic format. For
+// single-instance modules, you may use the simpler AM_REG macro. For
+// multi-instance macros, you will need to specify the instance number using
+// the AM_REGn macro format.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+// AM_REGn(&lt;MODULE&gt;, &lt;INSTANCE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+//
+// For registers that do not have specific enumeration values, you may use this alternate format instead.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;(&lt;NUMBER&gt;);
+//
+// For example, the following three lines of code are equivalent methods of
+// writing the value for 12MHZ to the CLKSEL field in the ADC_CFG register.
+//</span>
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REGn(ADC, 0, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
+                <h3>Register Fields:</h3>
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>31</th>
+                            <th>30</th>
+                            <th>29</th>
+                            <th>28</th>
+                            <th>27</th>
+                            <th>26</th>
+                            <th>25</th>
+                            <th>24</th>
+                            <th>23</th>
+                            <th>22</th>
+                            <th>21</th>
+                            <th>20</th>
+                            <th>19</th>
+                            <th>18</th>
+                            <th>17</th>
+                            <th>16</th>
+                            <th>15</th>
+                            <th>14</th>
+                            <th>13</th>
+                            <th>12</th>
+                            <th>11</th>
+                            <th>10</th>
+                            <th>9</th>
+                            <th>8</th>
+                            <th>7</th>
+                            <th>6</th>
+                            <th>5</th>
+                            <th>4</th>
+                            <th>3</th>
+                            <th>2</th>
+                            <th>1</th>
+                            <th>0</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td align="center" colspan="16">RSVD
+                                <br>0x0</td>
+
+                            <td align="center" colspan="8">ADCPWR1
+                                <br>0x0</td>
+
+                            <td align="center" colspan="8">ADCPWR0
+                                <br>0x0</td>
+
+                        </tr>
+                    </tbody>
+                </table>
+                <br>
+
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>Bits</th>
+                            <th>Name</th>
+                            <th>RW</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>31:16</td>
+                            <td>RSVD</td>
+                            <td>RO</td>
+                            <td>RESERVED.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>15:8</td>
+                            <td>ADCPWR1</td>
+                            <td>RW</td>
+                            <td>ADC Reference Keeper enable delay in 16 ADC CLK increments for ADC_CLKSEL = 0x1, 8 ADC CLOCK increments for ADC_CLKSEL = 0x2.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>7:0</td>
+                            <td>ADCPWR0</td>
+                            <td>RW</td>
+                            <td>ADC Reference Buffer Power Enable delay in 64 ADC CLK increments for ADC_CLKSEL = 0x1, 32 ADC CLOCK increments for ADC_CLKSEL = 0x2.<br><br>
                                 </td>
                         </tr>
 
@@ -1278,7 +2335,7 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
 
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 id="ADCREFCOMP" class="panel-title">ADCREFCOMP - ADC Referece Keeper and Comparator Control</h3>
+                <h3 id="BUCKTRIM" class="panel-title">BUCKTRIM - Trim settings for Core and Mem buck modules</h3>
             </div>
             <div class="panel-body">
                 <h3>Address:</h3>
@@ -1290,13 +2347,13 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                         </td>
                         <td class="entry">
                             <span style="width:32px;display:inline-block;">&#160;</span>
-                            <span class="h5">0x4002011C</span>
+                            <span class="h5">0x40020114</span>
                         </td>
                     </tr>
 
                 </table>
                 <h3>Description:</h3>
-                <p>ADC Referece Keeper and Comparator Control</p>
+                <p>Trim settings for Core and Mem buck modules</p>
                 <h3>Example Macro Usage:</h3>
                 <pre style="margin:10px" class="language-pascal"><span style='color:#3f7f59; '>//
 // All macro-based register writes follow the same basic format. For
@@ -1357,22 +2414,31 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                     </thead>
                     <tbody>
                         <tr>
-                            <td align="center" colspan="15">RSVD
+                            <td align="center" colspan="2">RSVD
                                 <br>0x0</td>
 
-                            <td align="center" colspan="1">ADCRFCMPEN
+                            <td align="center" colspan="6">RSVD2
                                 <br>0x0</td>
 
-                            <td align="center" colspan="3">RSVD
+                            <td align="center" colspan="2">RSVD
                                 <br>0x0</td>
 
-                            <td align="center" colspan="5">ADCREFKEEPTRIM
+                            <td align="center" colspan="2">RSVD
                                 <br>0x0</td>
 
-                            <td align="center" colspan="7">RSVD
+                            <td align="center" colspan="4">COREBUCKR1_HI
                                 <br>0x0</td>
 
-                            <td align="center" colspan="1">ADC_REFCOMP_OUT
+                            <td align="center" colspan="2">RSVD
+                                <br>0x0</td>
+
+                            <td align="center" colspan="6">COREBUCKR1_LO
+                                <br>0x0</td>
+
+                            <td align="center" colspan="2">RSVD
+                                <br>0x0</td>
+
+                            <td align="center" colspan="6">MEMBUCKR1
                                 <br>0x0</td>
 
                         </tr>
@@ -1391,50 +2457,74 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                     </thead>
                     <tbody>
                         <tr>
-                            <td>31:17</td>
+                            <td>31:30</td>
                             <td>RSVD</td>
                             <td>RO</td>
-                            <td>RESERVED<br><br>
+                            <td>RESERVED.<br><br>
                                 </td>
                         </tr>
 
                         <tr>
-                            <td>16</td>
-                            <td>ADCRFCMPEN</td>
+                            <td>29:24</td>
+                            <td>RSVD2</td>
                             <td>RW</td>
-                            <td>ADC Reference comparator power down<br><br>
+                            <td>RESERVED.<br><br>
                                 </td>
                         </tr>
 
                         <tr>
-                            <td>15:13</td>
+                            <td>23:22</td>
                             <td>RSVD</td>
                             <td>RO</td>
-                            <td>RESERVED<br><br>
+                            <td>RESERVED.<br><br>
                                 </td>
                         </tr>
 
                         <tr>
-                            <td>12:8</td>
-                            <td>ADCREFKEEPTRIM</td>
+                            <td>21:20</td>
+                            <td>RSVD</td>
                             <td>RW</td>
-                            <td>ADC Reference Keeper Trim<br><br>
+                            <td>RESERVED.<br><br>
                                 </td>
                         </tr>
 
                         <tr>
-                            <td>7:1</td>
+                            <td>19:16</td>
+                            <td>COREBUCKR1_HI</td>
+                            <td>RW</td>
+                            <td>Core Buck voltage output trim bits[9:6]. Concatenate with field COREBUCKR1_LO for the full trim value.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>15:14</td>
                             <td>RSVD</td>
                             <td>RO</td>
-                            <td>RESERVED<br><br>
+                            <td>RESERVED.<br><br>
                                 </td>
                         </tr>
 
                         <tr>
-                            <td>0</td>
-                            <td>ADC_REFCOMP_OUT</td>
+                            <td>13:8</td>
+                            <td>COREBUCKR1_LO</td>
+                            <td>RW</td>
+                            <td>Core Buck voltage output trim bits[5:0], Concatenate with field COREBUCKR1_HI for the full trim value.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>7:6</td>
+                            <td>RSVD</td>
                             <td>RO</td>
-                            <td>Output of the ADC reference comparator<br><br>
+                            <td>RESERVED.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>5:0</td>
+                            <td>MEMBUCKR1</td>
+                            <td>RW</td>
+                            <td>Trim values for BUCK regulator.<br><br>
                                 </td>
                         </tr>
 
@@ -1564,7 +2654,7 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                             <td>13:8</td>
                             <td>XTALKSBIASTRIM</td>
                             <td>RW</td>
-                            <td>XTAL IBIAS Kick start trim . This trim value is used during the startup prcess to enable a faster lock<br><br>
+                            <td>XTAL IBIAS Kick start trim . This trim value is used during the startup process to enable a faster lock and is applied when the kickstart signal is active.<br><br>
                                 </td>
                         </tr>
 
@@ -2939,10 +4029,10 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                             <td>This field selects the frequency of the ARM M4 TPIU port.<br><br>
                                  LOW_PWR              = 0x0 - Low power state.<br>
                              0MHz                 = 0x0 - Low power state.<br>
-                             24MHZ                = 0x1 - Selects 6MHz frequency.<br>
-                             6MHZ                 = 0x2 - Selects 6MHz frequency.<br>
-                             3MHZ                 = 0x3 - Selects 3MHz frequency.<br>
-                             1_5MHZ               = 0x4 - Selects 1.5 MHz frequency.</td>
+                             HFRC_DIV_2           = 0x1 - Selects HFRC divided by 2 as the source TPIU clk<br>
+                             HFRC_DIV_8           = 0x2 - Selects HFRC divided by 8 as the source TPIU clk<br>
+                             HFRC_DIV_16          = 0x3 - Selects HFRC divided by 16 as the source TPIU clk<br>
+                             HFRC_DIV_32          = 0x4 - Selects HFRC divided by 32 as the source TPIU clk</td>
                         </tr>
 
                         <tr>
@@ -2968,119 +4058,6 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
             </div>
         </div>
 
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 id="KEXTCLKSEL" class="panel-title">KEXTCLKSEL - Key Register to enable the use of external clock selects via the EXTCLKSEL reg</h3>
-            </div>
-            <div class="panel-body">
-                <h3>Address:</h3>
-                <table style="margin:10px">
-                    <tr id="row_0_0_">
-                        <td class="entry">
-                            <span style="width:32px;display:inline-block;">&#160;</span>
-                            <span class="h5">Instance 0 Address:</span>
-                        </td>
-                        <td class="entry">
-                            <span style="width:32px;display:inline-block;">&#160;</span>
-                            <span class="h5">0x40020348</span>
-                        </td>
-                    </tr>
-
-                </table>
-                <h3>Description:</h3>
-                <p>Key Register to enable the use of external clock selects via the EXTCLKSEL reg</p>
-                <h3>Example Macro Usage:</h3>
-                <pre style="margin:10px" class="language-pascal"><span style='color:#3f7f59; '>//
-// All macro-based register writes follow the same basic format. For
-// single-instance modules, you may use the simpler AM_REG macro. For
-// multi-instance macros, you will need to specify the instance number using
-// the AM_REGn macro format.
-//
-// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
-// AM_REGn(&lt;MODULE&gt;, &lt;INSTANCE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
-//
-// For registers that do not have specific enumeration values, you may use this alternate format instead.
-//
-// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;(&lt;NUMBER&gt;);
-//
-// For example, the following three lines of code are equivalent methods of
-// writing the value for 12MHZ to the CLKSEL field in the ADC_CFG register.
-//</span>
-AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
-AM_REGn(ADC, 0, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
-AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
-                <h3>Register Fields:</h3>
-                <table style="margin:10px" class="table table-bordered table-condensed">
-                    <thead>
-                        <tr>
-                            <th>31</th>
-                            <th>30</th>
-                            <th>29</th>
-                            <th>28</th>
-                            <th>27</th>
-                            <th>26</th>
-                            <th>25</th>
-                            <th>24</th>
-                            <th>23</th>
-                            <th>22</th>
-                            <th>21</th>
-                            <th>20</th>
-                            <th>19</th>
-                            <th>18</th>
-                            <th>17</th>
-                            <th>16</th>
-                            <th>15</th>
-                            <th>14</th>
-                            <th>13</th>
-                            <th>12</th>
-                            <th>11</th>
-                            <th>10</th>
-                            <th>9</th>
-                            <th>8</th>
-                            <th>7</th>
-                            <th>6</th>
-                            <th>5</th>
-                            <th>4</th>
-                            <th>3</th>
-                            <th>2</th>
-                            <th>1</th>
-                            <th>0</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td align="center" colspan="32">KEXTCLKSEL
-                                <br>0x0</td>
-
-                        </tr>
-                    </tbody>
-                </table>
-                <br>
-
-                <table style="margin:10px" class="table table-bordered table-condensed">
-                    <thead>
-                        <tr>
-                            <th>Bits</th>
-                            <th>Name</th>
-                            <th>RW</th>
-                            <th>Description</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>31:0</td>
-                            <td>KEXTCLKSEL</td>
-                            <td>RW</td>
-                            <td>Key register value.<br><br>
-                                 Key                  = 0x53 - Key</td>
-                        </tr>
-
-                    </tbody>
-                </table>
-                <br>
-            </div>
-        </div>
-
     </body>
 
     <hr size="1">
@@ -3089,7 +4066,7 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
             <small>
                 AmbiqSuite Register Documentation&nbsp;
                 <a href="http://www.ambiqmicro.com">
-                <img class="footer" src="../resources/ambiqmicro_logo.png" alt="Ambiq Micro"/></a>&nbsp&nbsp Copyright &copy; 2014&nbsp&nbsp<br />
+                <img class="footer" src="../resources/ambiqmicro_logo.png" alt="Ambiq Micro"/></a>&nbsp&nbsp Copyright &copy; 2020&nbsp&nbsp<br />
                 This documentation is licensed and distributed under the <a rel="license" href="http://opensource.org/licenses/BSD-3-Clause">BSD 3-Clause License</a>.&nbsp&nbsp<br/>
             </small>
         </div>

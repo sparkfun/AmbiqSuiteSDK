@@ -8,7 +8,7 @@
 
 # *****************************************************************************
 #
-# Copyright (c) 2020, Ambiq Micro
+# Copyright (c) 2020, Ambiq Micro, Inc.
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
@@ -40,7 +40,7 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 #
-# This is part of revision 2.4.2 of the AmbiqSuite Development Package.
+# This is part of revision 2.5.1 of the AmbiqSuite Development Package.
 #
 # *****************************************************************************
 
@@ -666,7 +666,7 @@ pin
     name            = MSPI_D3
     desc            = MSPI data 3.
     pinnum          = 23
-    func_sel        = AM_HAL_PIN_23_MSPI13
+    func_sel        = AM_HAL_PIN_23_MSPI3
     drvstrength     = 8
     intdir          = lo2hi
     IOMnum          = 6
@@ -765,6 +765,47 @@ pin
     pullup          = 1_5K
 
 # *****************************************************************************
+#  PDM pins.
+# *****************************************************************************
+pin
+    name            = PDMCLK
+    desc            = PDM CLK.
+    pinnum          = 12
+    func_sel        = AM_HAL_PIN_12_PDMCLK
+    drvstrength     = 2
+
+pin
+    name            = PDM_DATA
+    desc            = PDM DATA.
+    pinnum          = 11
+    func_sel        = AM_HAL_PIN_11_PDMDATA
+    drvstrength     = 2
+
+# *****************************************************************************
+#  SCARD pins.
+# *****************************************************************************
+pin
+    name            = SCARD_SCCCLK
+    desc            = SCARD SCCCLK.
+    pinnum          = 8
+    func_sel        = AM_HAL_PIN_8_SCCCLK
+    drvstrength     = 12
+
+pin
+    name            = SCARD_SCCIO
+    desc            = Fireball device test board chip select.
+    pinnum          = 9
+    func_sel        = AM_HAL_PIN_9_SCCIO
+    drvstrength     = 2
+
+pin
+    name            = SCARD_SCCRST
+    desc            = SCARD SCCRST.
+    pinnum          = 46
+    func_sel        = AM_HAL_PIN_46_SCCRST
+    drvstrength     = 2
+
+# *****************************************************************************
 #  ITM pins.
 # *****************************************************************************
 pin
@@ -790,17 +831,3 @@ pin
     func_sel        = AM_HAL_PIN_21_SWDIO
 
 # *****************************************************************************
-#  FIREBALL pins.
-# *****************************************************************************
-pin
-    name            = FIREBALL_CE
-    desc            = Fireball device test board chip select.
-    pinnum          = 30
-    func_sel        = AM_HAL_PIN_30_NCE30
-    drvstrength     = 12
-    intdir          = lo2hi
-    GPOutcfg        = pushpull
-    GPinput         = false
-    IOMnum          = 5
-    CEnum           = 3
-    CEpol           = low

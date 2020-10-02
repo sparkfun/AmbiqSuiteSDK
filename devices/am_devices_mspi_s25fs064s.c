@@ -8,7 +8,7 @@
 
 //*****************************************************************************
 //
-// Copyright (c) 2020, Ambiq Micro
+// Copyright (c) 2020, Ambiq Micro, Inc.
 // All rights reserved.
 //
 // Redistribution and use in source and binary forms, with or without
@@ -40,7 +40,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
-// This is part of revision 2.4.2 of the AmbiqSuite Development Package.
+// This is part of revision 2.5.1 of the AmbiqSuite Development Package.
 //
 //*****************************************************************************
 
@@ -80,7 +80,6 @@ am_hal_mspi_dev_config_t MSPI_S25fs064s_Serial_CE0_MSPIConfig =
     .eClockFreq           = AM_HAL_MSPI_CLK_24MHZ,
     .bSendAddr            = true,
     .bSendInstr           = true,
-    .bSeparateIO          = true,
     .bTurnaround          = true,
 #if defined(AM_PART_APOLLO3P)
     .ui8WriteLatency      = 0,
@@ -103,7 +102,6 @@ am_hal_mspi_dev_config_t MSPI_S25fs064s_Serial_CE1_MSPIConfig =
     .eAddrCfg             = AM_HAL_MSPI_ADDR_3_BYTE,
     .eInstrCfg            = AM_HAL_MSPI_INSTR_1_BYTE,
     .eDeviceConfig        = AM_HAL_MSPI_FLASH_SERIAL_CE1,
-    .bSeparateIO          = true,
     .bSendInstr           = true,
     .bSendAddr            = true,
     .bTurnaround          = true,
@@ -130,7 +128,6 @@ am_hal_mspi_dev_config_t MSPI_S25fs064s_Dual_CE0_MSPIConfig =
   .eAddrCfg             = AM_HAL_MSPI_ADDR_3_BYTE,
   .eInstrCfg            = AM_HAL_MSPI_INSTR_1_BYTE,
   .eDeviceConfig        = AM_HAL_MSPI_FLASH_DUAL_CE0,
-  .bSeparateIO          = false,
   .bSendInstr           = true,
   .bSendAddr            = true,
   .bTurnaround          = true,
@@ -157,7 +154,6 @@ am_hal_mspi_dev_config_t MSPI_S25fs064s_Dual_CE1_MSPIConfig =
   .eAddrCfg             = AM_HAL_MSPI_ADDR_3_BYTE,
   .eInstrCfg            = AM_HAL_MSPI_INSTR_1_BYTE,
   .eDeviceConfig        = AM_HAL_MSPI_FLASH_DUAL_CE1,
-  .bSeparateIO          = false,
   .bSendInstr           = true,
   .bSendAddr            = true,
   .bTurnaround          = true,
@@ -188,7 +184,6 @@ am_hal_mspi_dev_config_t MSPI_S25fs064s_Quad_CE0_MSPIConfig =
     .eClockFreq           = AM_HAL_MSPI_CLK_24MHZ,
     .bSendAddr            = true,
     .bSendInstr           = true,
-    .bSeparateIO          = false,
     .bTurnaround          = true,
 #if defined(AM_PART_APOLLO3P)
     .ui8WriteLatency      = 0,
@@ -211,7 +206,6 @@ am_hal_mspi_dev_config_t MSPI_S25fs064s_Quad_CE1_MSPIConfig =
   .eAddrCfg             = AM_HAL_MSPI_ADDR_3_BYTE,
   .eInstrCfg            = AM_HAL_MSPI_INSTR_1_BYTE,
   .eDeviceConfig        = AM_HAL_MSPI_FLASH_QUAD_CE1,
-  .bSeparateIO          = false,
   .bSendInstr           = true,
   .bSendAddr            = true,
   .bTurnaround          = true,
@@ -230,28 +224,22 @@ am_hal_mspi_dev_config_t MSPI_S25fs064s_Quad_CE1_MSPIConfig =
   .scramblingEndAddr    = 0,
 };
 
-//! MSPI interrupts.
-static const IRQn_Type mspi_s25fs064s_interrupts[] =
-{
-    MSPI0_IRQn,
-#if defined(AM_PART_APOLLO3P)
-    MSPI1_IRQn,
-    MSPI2_IRQn,
-#endif
-};
-
 struct
 {
     am_hal_mspi_device_e eHalDeviceEnum;
     am_hal_mspi_dev_config_t *psDevConfig;
 }g_MSPIS25fs064s_DevConfig[] =
 {
-    {AM_HAL_MSPI_FLASH_SERIAL_CE0,    &MSPI_S25fs064s_Serial_CE0_MSPIConfig},
-    {AM_HAL_MSPI_FLASH_SERIAL_CE1,    &MSPI_S25fs064s_Serial_CE1_MSPIConfig},
-    {AM_HAL_MSPI_FLASH_DUAL_CE0,      &MSPI_S25fs064s_Dual_CE0_MSPIConfig},
-    {AM_HAL_MSPI_FLASH_DUAL_CE1,      &MSPI_S25fs064s_Dual_CE1_MSPIConfig},
-    {AM_HAL_MSPI_FLASH_QUAD_CE0,      &MSPI_S25fs064s_Quad_CE0_MSPIConfig},
-    {AM_HAL_MSPI_FLASH_QUAD_CE1,      &MSPI_S25fs064s_Quad_CE1_MSPIConfig},
+    {AM_HAL_MSPI_FLASH_SERIAL_CE0,       &MSPI_S25fs064s_Serial_CE0_MSPIConfig},
+    {AM_HAL_MSPI_FLASH_SERIAL_CE1,       &MSPI_S25fs064s_Serial_CE1_MSPIConfig},
+    {AM_HAL_MSPI_FLASH_DUAL_CE0,         &MSPI_S25fs064s_Dual_CE0_MSPIConfig},
+    {AM_HAL_MSPI_FLASH_DUAL_CE0_1_2_2,   &MSPI_S25fs064s_Dual_CE0_MSPIConfig},
+    {AM_HAL_MSPI_FLASH_DUAL_CE1,         &MSPI_S25fs064s_Dual_CE1_MSPIConfig},
+    {AM_HAL_MSPI_FLASH_DUAL_CE1_1_2_2,   &MSPI_S25fs064s_Dual_CE1_MSPIConfig},
+    {AM_HAL_MSPI_FLASH_QUAD_CE0,         &MSPI_S25fs064s_Quad_CE0_MSPIConfig},
+    {AM_HAL_MSPI_FLASH_QUAD_CE0_1_4_4,   &MSPI_S25fs064s_Quad_CE0_MSPIConfig},
+    {AM_HAL_MSPI_FLASH_QUAD_CE1,         &MSPI_S25fs064s_Quad_CE1_MSPIConfig},
+    {AM_HAL_MSPI_FLASH_QUAD_CE1_1_4_4,   &MSPI_S25fs064s_Quad_CE1_MSPIConfig},
 };
 
 //
@@ -383,36 +371,28 @@ uint32_t am_device_init_flash(void *pHandle)
     //
     // Configure the read latency turnaround value.
     //
-    switch (pFlash->stSetting.eXipMixedMode)
-    {
-        case AM_HAL_MSPI_XIPMIXED_NORMAL:
-        case AM_HAL_MSPI_XIPMIXED_D2:
-        case AM_HAL_MSPI_XIPMIXED_D4:
-            ui8Value |= pFlash->stSetting.ui8TurnAround;  // Read latency
-            break;
-        case AM_HAL_MSPI_XIPMIXED_AD2:
-            ui8Value |= pFlash->stSetting.ui8TurnAround - AM_DEVICES_MSPI_S25FS064S_ADDR_DUAL_EXT_DELAY;  // Read latency + Mode Bits
-            break;
-        case AM_HAL_MSPI_XIPMIXED_AD4:
-            ui8Value |= pFlash->stSetting.ui8TurnAround - AM_DEVICES_MSPI_S25FS064S_ADDR_QUAD_EXT_DELAY;  // Read latency + Mode Bits
-            break;
-    }
-
     switch (pFlash->stSetting.eDeviceConfig)
     {
         case AM_HAL_MSPI_FLASH_SERIAL_CE0:
         case AM_HAL_MSPI_FLASH_SERIAL_CE1:
         case AM_HAL_MSPI_FLASH_DUAL_CE0:
         case AM_HAL_MSPI_FLASH_DUAL_CE1:
+            ui8Value |= pFlash->stSetting.ui8TurnAround;  // Read latency
             break;
         case AM_HAL_MSPI_FLASH_QUAD_CE0:
         case AM_HAL_MSPI_FLASH_QUAD_CE1:
+            ui8Value |= pFlash->stSetting.ui8TurnAround;  // Read latency
             ui8Value |= 0x40;
             break;
-        case AM_HAL_MSPI_FLASH_OCTAL_CE0:
-        case AM_HAL_MSPI_FLASH_OCTAL_CE1:
-        case AM_HAL_MSPI_FLASH_QUADPAIRED:
-        case AM_HAL_MSPI_FLASH_QUADPAIRED_SERIAL:
+        case AM_HAL_MSPI_FLASH_DUAL_CE0_1_2_2:
+        case AM_HAL_MSPI_FLASH_DUAL_CE1_1_2_2:
+            ui8Value |= pFlash->stSetting.ui8TurnAround - AM_DEVICES_MSPI_S25FS064S_ADDR_DUAL_EXT_DELAY;  // Read latency + Mode Bits
+            break;
+        case AM_HAL_MSPI_FLASH_QUAD_CE0_1_4_4:
+        case AM_HAL_MSPI_FLASH_QUAD_CE1_1_4_4:
+            ui8Value |= pFlash->stSetting.ui8TurnAround - AM_DEVICES_MSPI_S25FS064S_ADDR_QUAD_EXT_DELAY;  // Read latency + Mode Bits
+            break;
+        default:
             return AM_DEVICES_MSPI_S25FS064S_STATUS_ERROR;
     }
     ui32PIOBuffer[0] = AM_DEVICES_MSPI_S25FS064S_CR2V | AM_DEVICES_MSPI_S25FS064S_CR2V_VALUE(ui8Value);
@@ -454,84 +434,6 @@ uint32_t am_device_deinit_flash(void *pHandle)
     }
 }
 
-am_devices_mspi_s25fs064s_config_t am_devices_mspi_s25fs064s_mode_switch(void *pHandle,
-                                                                         am_devices_mspi_s25fs064s_config_t *psMSPISettings)
-{
-    uint32_t ui32Status = AM_DEVICES_MSPI_S25FS064S_STATUS_SUCCESS;
-    am_devices_mspi_s25fs064s_config_t MSPISettingsBak;
-    am_hal_mspi_dev_config_t *psConfig = NULL;
-    am_devices_mspi_s25fs064s_t *pFlash = (am_devices_mspi_s25fs064s_t *)pHandle;
-
-    for ( uint32_t i = 0; i < (sizeof(g_MSPIS25fs064s_DevConfig) / sizeof(g_MSPIS25fs064s_DevConfig[0])); i++ )
-    {
-        if ( psMSPISettings->eDeviceConfig == g_MSPIS25fs064s_DevConfig[i].eHalDeviceEnum )
-        {
-            psConfig = g_MSPIS25fs064s_DevConfig[i].psDevConfig;
-            psConfig->eClockFreq = psMSPISettings->eClockFreq;
-            psConfig->pTCB = psMSPISettings->pNBTxnBuf;
-            psConfig->ui32TCBSize = psMSPISettings->ui32NBTxnBufLength;
-            psConfig->scramblingStartAddr = psMSPISettings->ui32ScramblingStartAddr;
-            psConfig->scramblingEndAddr = psMSPISettings->ui32ScramblingEndAddr;
-            psConfig->eXipMixedMode = psMSPISettings->eMixedMode;
-            break;
-        }
-    }
-    MSPISettingsBak.eClockFreq = pFlash->stSetting.eClockFreq;
-    MSPISettingsBak.eDeviceConfig = pFlash->stSetting.eDeviceConfig;
-    MSPISettingsBak.eMixedMode = pFlash->stSetting.eXipMixedMode;
-    MSPISettingsBak.pNBTxnBuf = pFlash->stSetting.pTCB;
-    MSPISettingsBak.ui32NBTxnBufLength = pFlash->stSetting.ui32TCBSize;
-    MSPISettingsBak.ui32ScramblingEndAddr = pFlash->stSetting.scramblingEndAddr;
-    MSPISettingsBak.ui32ScramblingStartAddr = pFlash->stSetting.scramblingStartAddr;
-    pFlash->stSetting = *psConfig;
-
-    ui32Status = am_hal_mspi_disable(pFlash->pMspiHandle);
-
-    ui32Status |= am_hal_mspi_device_configure(pFlash->pMspiHandle, &pFlash->stSetting);
-
-    ui32Status |= am_hal_mspi_enable(pFlash->pMspiHandle);
-
-    am_bsp_mspi_pins_enable(pFlash->ui32Module, pFlash->stSetting.eDeviceConfig);
-
-    ui32Status |= am_hal_mspi_interrupt_clear(pFlash->pMspiHandle, AM_HAL_MSPI_INT_CQUPD | AM_HAL_MSPI_INT_ERR );
-    ui32Status |= am_hal_mspi_interrupt_enable(pFlash->pMspiHandle, AM_HAL_MSPI_INT_CQUPD | AM_HAL_MSPI_INT_ERR );
-
-    NVIC_EnableIRQ(mspi_s25fs064s_interrupts[pFlash->ui32Module]);
-
-    return MSPISettingsBak;
-}
-
-#if defined (MSPI_XIPMIXED)
-static
-am_hal_mspi_dev_config_t am_devices_mspi_s25fs064s_mode_switch_static(void *pHandle,
-                                                                      am_hal_mspi_dev_config_t *pMSPISettings)
-{
-    uint32_t ui32Status = AM_DEVICES_MSPI_S25FS064S_STATUS_SUCCESS;
-    am_devices_mspi_s25fs064s_t *pFlash = (am_devices_mspi_s25fs064s_t *)pHandle;
-    am_hal_mspi_dev_config_t MSPISettingsBak;
-    if ( pMSPISettings )
-    {
-       MSPISettingsBak = pFlash->stSetting;
-       pFlash->stSetting = *pMSPISettings;
-
-       ui32Status = am_hal_mspi_disable(pFlash->pMspiHandle);
-
-       ui32Status |= am_hal_mspi_device_configure(pFlash->pMspiHandle, &pFlash->stSetting);
-
-       ui32Status |= am_hal_mspi_enable(pFlash->pMspiHandle);
-
-       am_bsp_mspi_pins_enable(pFlash->ui32Module, pFlash->stSetting.eDeviceConfig);
-
-       ui32Status |= am_hal_mspi_interrupt_clear(pFlash->pMspiHandle, AM_HAL_MSPI_INT_CQUPD | AM_HAL_MSPI_INT_ERR );
-       ui32Status |= am_hal_mspi_interrupt_enable(pFlash->pMspiHandle, AM_HAL_MSPI_INT_CQUPD | AM_HAL_MSPI_INT_ERR );
-
-       NVIC_EnableIRQ(mspi_s25fs064s_interrupts[pFlash->ui32Module]);
-    }
-
-    return MSPISettingsBak;
-}
-#endif
-
 //*****************************************************************************
 //
 // Generic Command Write function.
@@ -563,14 +465,15 @@ uint32_t am_devices_mspi_s25fsp64s_command_write(void *pHandle, uint8_t ui8Instr
     stMSPIFlashPIOTransaction.pui32Buffer        = pData;
 
 #if defined (MSPI_XIPMIXED)
-    am_hal_mspi_dev_config_t mode = am_devices_mspi_s25fs064s_mode_switch_static(pHandle, &MSPI_S25fs064s_Serial_CE0_MSPIConfig);
+    uint32_t u32Arg = (pFlash->stSetting.eDeviceConfig % 2) ? AM_HAL_MSPI_FLASH_SERIAL_CE1 : AM_HAL_MSPI_FLASH_SERIAL_CE0;
+    am_hal_mspi_control(pHandle, AM_HAL_MSPI_REQ_DEVICE_CONFIG, &u32Arg);
 #endif
 
     // Execute the transction over MSPI.
     ui32Status = am_hal_mspi_blocking_transfer(pFlash->pMspiHandle, &stMSPIFlashPIOTransaction,
                                          AM_DEVICES_MSPI_S25FS064S_TIMEOUT);
 #if defined (MSPI_XIPMIXED)
-    am_devices_mspi_s25fs064s_mode_switch_static(pHandle, &mode);
+    am_hal_mspi_control(pHandle, AM_HAL_MSPI_REQ_DEVICE_CONFIG, &pFlash->stSetting.eDeviceConfig);
 #endif
 
     return ui32Status;
@@ -607,14 +510,15 @@ uint32_t am_devices_mspi_s25fsp64s_command_read(void *pHandle, uint8_t ui8Instr,
     stMSPIFlashPIOTransaction.pui32Buffer        = pData;
 
 #if defined (MSPI_XIPMIXED)
-    am_hal_mspi_dev_config_t mode = am_devices_mspi_s25fs064s_mode_switch_static(pHandle, &MSPI_S25fs064s_Serial_CE0_MSPIConfig);
+    uint32_t u32Arg = (pFlash->stSetting.eDeviceConfig % 2) ? AM_HAL_MSPI_FLASH_SERIAL_CE1 : AM_HAL_MSPI_FLASH_SERIAL_CE0;
+    am_hal_mspi_control(pHandle, AM_HAL_MSPI_REQ_DEVICE_CONFIG, &u32Arg);
 #endif
 
     // Execute the transction over MSPI.
     ui32Status = am_hal_mspi_blocking_transfer(pFlash->pMspiHandle, &stMSPIFlashPIOTransaction,
                                          AM_DEVICES_MSPI_S25FS064S_TIMEOUT);
 #if defined (MSPI_XIPMIXED)
-    am_devices_mspi_s25fs064s_mode_switch_static(pHandle, &mode);
+    am_hal_mspi_control(pHandle, AM_HAL_MSPI_REQ_DEVICE_CONFIG, &pFlash->stSetting.eDeviceConfig);
 #endif
 
     return ui32Status;
@@ -678,12 +582,12 @@ am_devices_mspi_s25fs064s_init(uint32_t ui32Module, am_devices_mspi_s25fs064s_co
         if ( psMSPISettings->eDeviceConfig == g_MSPIS25fs064s_DevConfig[i].eHalDeviceEnum )
         {
             psConfig = g_MSPIS25fs064s_DevConfig[i].psDevConfig;
+            psConfig->eDeviceConfig = psMSPISettings->eDeviceConfig;
             psConfig->eClockFreq = psMSPISettings->eClockFreq;
             psConfig->pTCB = psMSPISettings->pNBTxnBuf;
             psConfig->ui32TCBSize = psMSPISettings->ui32NBTxnBufLength;
             psConfig->scramblingStartAddr = psMSPISettings->ui32ScramblingStartAddr;
             psConfig->scramblingEndAddr = psMSPISettings->ui32ScramblingEndAddr;
-            psConfig->eXipMixedMode = psMSPISettings->eMixedMode;
             break;
         }
     }
@@ -704,7 +608,9 @@ am_devices_mspi_s25fs064s_init(uint32_t ui32Module, am_devices_mspi_s25fs064s_co
     {
         case AM_HAL_MSPI_FLASH_SERIAL_CE0:
         case AM_HAL_MSPI_FLASH_DUAL_CE0:
+        case AM_HAL_MSPI_FLASH_DUAL_CE0_1_2_2:
         case AM_HAL_MSPI_FLASH_QUAD_CE0:
+        case AM_HAL_MSPI_FLASH_QUAD_CE0_1_4_4:
             gAmS25fs064s[ui32Index].stSetting = MSPI_S25fs064s_Serial_CE0_MSPIConfig;
             if (AM_HAL_STATUS_SUCCESS != am_hal_mspi_initialize(ui32Module, &pMspiHandle))
             {
@@ -732,7 +638,9 @@ am_devices_mspi_s25fs064s_init(uint32_t ui32Module, am_devices_mspi_s25fs064s_co
             break;
         case AM_HAL_MSPI_FLASH_SERIAL_CE1:
         case AM_HAL_MSPI_FLASH_DUAL_CE1:
+        case AM_HAL_MSPI_FLASH_DUAL_CE1_1_2_2:
         case AM_HAL_MSPI_FLASH_QUAD_CE1:
+        case AM_HAL_MSPI_FLASH_QUAD_CE1_1_4_4:
             gAmS25fs064s[ui32Index].stSetting = MSPI_S25fs064s_Serial_CE1_MSPIConfig;
             if (AM_HAL_STATUS_SUCCESS != am_hal_mspi_initialize(ui32Module, &pMspiHandle))
             {
@@ -758,12 +666,8 @@ am_devices_mspi_s25fs064s_init(uint32_t ui32Module, am_devices_mspi_s25fs064s_co
             }
             am_bsp_mspi_pins_enable(ui32Module, MSPI_S25fs064s_Serial_CE1_MSPIConfig.eDeviceConfig);
             break;
-        case AM_HAL_MSPI_FLASH_OCTAL_CE0:
-        case AM_HAL_MSPI_FLASH_OCTAL_CE1:
-        case AM_HAL_MSPI_FLASH_QUADPAIRED:
-        case AM_HAL_MSPI_FLASH_QUADPAIRED_SERIAL:
+        default:
             return AM_DEVICES_MSPI_S25FS064S_STATUS_ERROR;
-            //break;
     }
 
     gAmS25fs064s[ui32Index].pMspiHandle = pMspiHandle;

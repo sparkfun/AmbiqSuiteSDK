@@ -13,7 +13,7 @@
 
 //*****************************************************************************
 //
-// Copyright (c) 2020, Ambiq Micro
+// Copyright (c) 2020, Ambiq Micro, Inc.
 // All rights reserved.
 //
 // Redistribution and use in source and binary forms, with or without
@@ -45,7 +45,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
-// This is part of revision 2.4.2 of the AmbiqSuite Development Package.
+// This is part of revision 2.5.1 of the AmbiqSuite Development Package.
 //
 //*****************************************************************************
 
@@ -81,6 +81,8 @@
 #define CHKBUCKZX_TIMER     0x04    // A valid timer has been allocated
 #define CHKBUCKZX_DEVEN     0x08    // Devices are powered up and enabled
 
+#define TIMER_OFFSET        (AM_REG_CTIMER_TMR1_O - AM_REG_CTIMER_TMR0_O)
+
 //*****************************************************************************
 //
 //  Prototypes
@@ -102,29 +104,10 @@ static          uint32_t g_ui32SaveCoreBuckZX, g_ui32SaveMemBuckZX;
 static          uint32_t g_buckZX_chk = 0;
 static volatile uint32_t g_ui32CoreBuck;
 
-//
-// Timer configuration for BUCK inputs.
-//
-static const am_hal_ctimer_config_t g_sBuckTimer =
-{
-    // Don't link timers.
-    0,
-
-    // Set up Timer0A.
-    (AM_HAL_CTIMER_FN_ONCE      |
-     AM_HAL_CTIMER_INT_ENABLE   |
-     AM_HAL_CTIMER_BUCK),
-
-    // Set up Timer0B.
-    (AM_HAL_CTIMER_FN_ONCE      |
-     AM_HAL_CTIMER_INT_ENABLE   |
-     AM_HAL_CTIMER_BUCK),
-};
-
 //*****************************************************************************
 //
 // Determine if we need to do the zero cross workaround on this device.
-// Three criteria are used.  All three must be true.
+// Four criteria are used.  All four must be true.
 //  1. Are the bucks enabled?
 //  2. Is the chip rev appropriate for the workaround?
 //  3. Has a timer been allocated to do the workaround?
@@ -300,7 +283,8 @@ setBuckZX(uint32_t ui32CoreBuckZX, uint32_t ui32MemBuckZX, uint32_t ui32Flags)
     // Done with critical section.
     //
     AM_CRITICAL_END
-}
+
+} // setBuckZX()
 
 //*****************************************************************************
 //
@@ -322,7 +306,6 @@ void
 am_hal_sysctrl_sleep(bool bSleepDeep)
 {
     uint32_t ui32Critical;
-//  uint32_t ui32DebugGpioSleep = g_ui32DebugGpioSleep - 1;
     bool bBuckZX_chk;
     volatile uint32_t ui32BuckTimer;
 
@@ -352,6 +335,10 @@ am_hal_sysctrl_sleep(bool bSleepDeep)
         {
             ui32BuckTimer = g_ui32BuckTimer - 1;
 
+            am_hal_ctimer_int_disable((AM_HAL_CTIMER_INT_TIMERA0C0 |
+                                       AM_HAL_CTIMER_INT_TIMERB0C0 ) <<
+                                       (ui32BuckTimer * 2));
+
             //
             // Before going to sleep, clear the buck timers.
             // This will also handle the case where we're going back to
@@ -360,20 +347,18 @@ am_hal_sysctrl_sleep(bool bSleepDeep)
             am_hal_ctimer_clear(ui32BuckTimer, AM_HAL_CTIMER_BOTH);
 
             //
-            // Set CMPR0 of both timerA and timerB to the period value
+            // Enable the interrupts for timers A and B
             //
-            #define     TIMER_PERIOD_BUCKS  1
-            am_hal_ctimer_period_set(ui32BuckTimer,
-                                     AM_HAL_CTIMER_BOTH,
-                                     TIMER_PERIOD_BUCKS |
-                                     (TIMER_PERIOD_BUCKS << 16),
-                                     0);
+            am_hal_ctimer_int_enable( (AM_HAL_CTIMER_INT_TIMERA0C0 |
+                                       AM_HAL_CTIMER_INT_TIMERB0C0 ) <<
+                                       (ui32BuckTimer * 2) );
 
             //
             // Disable bucks before going to sleep.
             //
             am_hal_pwrctrl_bucks_disable();
         }
+
         //
         // Before executing WFI, flush any buffered core and peripheral writes.
         //
@@ -471,7 +456,8 @@ am_hal_sysctrl_sleep(bool bSleepDeep)
     // Restore the interrupt state.
     //
     am_hal_interrupt_master_set(ui32Critical);
-}
+
+} // am_hal_sysctrl_sleep()
 
 //*****************************************************************************
 //
@@ -491,7 +477,8 @@ am_hal_sysctrl_fpu_enable(void)
     //
     AM_REG(SYSCTRL, CPACR) = (AM_REG_SYSCTRL_CPACR_CP11(0x3) |
                              AM_REG_SYSCTRL_CPACR_CP10(0x3));
-}
+
+} // am_hal_sysctrl_fpu_enable()
 
 //*****************************************************************************
 //
@@ -512,7 +499,7 @@ am_hal_sysctrl_fpu_disable(void)
     AM_REG(SYSCTRL, CPACR) = 0x00000000                     &
                           ~(AM_REG_SYSCTRL_CPACR_CP11(0x3) |
                             AM_REG_SYSCTRL_CPACR_CP10(0x3));
-}
+} // am_hal_sysctrl_fpu_disable()
 
 //*****************************************************************************
 //
@@ -562,7 +549,8 @@ am_hal_sysctrl_fpu_stacking_enable(bool bLazy)
     ui32fpccr |= (bLazy ? SYSCTRL_FPCCR_LAZY : AM_REG_SYSCTRL_FPCCR_ASPEN_M);
     AM_REG(SYSCTRL, FPCCR) = ui32fpccr;
     AM_CRITICAL_END
-}
+
+} // am_hal_sysctrl_fpu_stacking_enable()
 
 //*****************************************************************************
 //
@@ -584,7 +572,8 @@ am_hal_sysctrl_fpu_stacking_disable(void)
     AM_CRITICAL_BEGIN
     AM_REG(SYSCTRL, FPCCR) &= ~SYSCTRL_FPCCR_LAZY;
     AM_CRITICAL_END
-}
+
+} // am_hal_sysctrl_fpu_stacking_disable()
 
 //*****************************************************************************
 //
@@ -603,7 +592,8 @@ am_hal_sysctrl_aircr_reset(void)
     //
     AM_REG(SYSCTRL, AIRCR) = AM_REG_SYSCTRL_AIRCR_VECTKEY(0x5FA) |
                              AM_REG_SYSCTRL_AIRCR_SYSRESETREQ(1);
-}
+
+} // am_hal_sysctrl_aircr_reset()
 
 //*****************************************************************************
 //
@@ -726,15 +716,30 @@ am_hal_sysctrl_buck_ctimer_isr_init(uint32_t ui32BuckTimerNumber)
         //
         am_hal_ctimer_clear(ui32BuckTimerNumber, AM_HAL_CTIMER_BOTH);
 
-        am_hal_ctimer_config(ui32BuckTimerNumber,
-                             (am_hal_ctimer_config_t*)&g_sBuckTimer);
+        //
+        // Find the correct register to write based on the timer number.
+        //
+        volatile uint32_t *pui32CmprReg, *pui32ConfigReg;
+        pui32CmprReg   = (uint32_t *)(AM_REG_CTIMERn(0) + AM_REG_CTIMER_CMPRA0_O +
+                                      (ui32BuckTimerNumber * TIMER_OFFSET));
+        pui32ConfigReg = (uint32_t *)(AM_REG_CTIMERn(0) + AM_REG_CTIMER_CTRL0_O +
+                                      (ui32BuckTimerNumber * TIMER_OFFSET));
+        //
+        // Configure the timer.
+        //
+        AM_REGVAL(pui32ConfigReg) =
+            AM_REG_CTIMER_CTRL0_TMRB0IE0(1)     |   // Interrupt on CMPR0 only
+            AM_REG_CTIMER_CTRL0_TMRB0FN(4)      |   // Func 4=Continuous
+            AM_REG_CTIMER_CTRL0_TMRB0CLK(0x10)  |   // Clock=BUCKB
+            AM_REG_CTIMER_CTRL0_TMRA0IE0(1)     |   // Interrupt on CMPR0 only
+            AM_REG_CTIMER_CTRL0_TMRA0FN(4)      |   // Func 4=Continuous
+            AM_REG_CTIMER_CTRL0_TMRA0CLK(0x10);     // Clock=BUCKA
 
-        //
-        // Enable the interrupts for timers A and B
-        //
-        am_hal_ctimer_int_enable( (AM_HAL_CTIMER_INT_TIMERA0C0 |
-                                   AM_HAL_CTIMER_INT_TIMERB0C0 ) <<
-                                   (ui32BuckTimerNumber * 2) );
+        #define     TIMER_BUCK_PULSES  10
+
+        AM_REGVAL(pui32CmprReg) = (0 << 16) | TIMER_BUCK_PULSES;    // Timer A CMPR0
+        pui32CmprReg++;
+        AM_REGVAL(pui32CmprReg) = (0 << 16) | TIMER_BUCK_PULSES;    // Timer B CMPR0
 
         //
         // Enable the timer interrupt in the NVIC.
@@ -743,7 +748,8 @@ am_hal_sysctrl_buck_ctimer_isr_init(uint32_t ui32BuckTimerNumber)
     }
 
     return ui32RetVal;
-}
+
+} // am_hal_sysctrl_buck_ctimer_isr_init()
 
 //*****************************************************************************
 //
@@ -754,7 +760,26 @@ bool
 am_hal_sysctrl_buck_update_complete(void)
 {
     return g_bBuckRestoreComplete;
-}
+} // am_hal_sysctrl_buck_update_complete()
+
+
+//*****************************************************************************
+//
+// Perform a short delay.
+//
+//*****************************************************************************
+static void
+short_delay(volatile register uint32_t ui32iters)
+{
+    //
+    // Note: for a 1us delay, we need 48 cycles at 48MHz.
+    // When optimized, we would expect this function to be inlined by
+    // the compiler and the loop itself to end up with about 6 instructions.
+    // Therefore iters should be about 8 for 1us.
+    //   6=0.52us, 10=0.76us, 13=0.9us, 15=1us, 20=1.36us
+    //
+    while ( ui32iters-- );
+} // short_delay()
 
 //*****************************************************************************
 //
@@ -766,18 +791,18 @@ am_hal_sysctrl_buck_update_complete(void)
 static void
 am_hal_sysctrl_buckA_ctimer_isr(void)
 {
+    uint32_t ui32CTaddr, ui32InitVal;
+
     //
     // Begin critical section.
-    // Although a relatively long time, the following 2us delay is critically
-    // timed for re-trimming the buck and thus cannot be extended.  Therefore,
-    // we must keep it inside the critical section.
     //
     AM_CRITICAL_BEGIN
 
     //
-    // Delay for 2us.
+    // Disable Timer A interrupts
     //
-    am_hal_flash_delay( FLASH_CYCLES_US(2) );
+    am_hal_ctimer_int_disable( AM_HAL_CTIMER_INT_TIMERA0C0 <<
+                               ((g_ui32BuckTimer - 1) * 2));
 
     //
     // Determine which buck (core or mem) needs to be updated.
@@ -786,6 +811,28 @@ am_hal_sysctrl_buckA_ctimer_isr(void)
     {
         //
         // Timer A buck signal is the CORE buck.
+        // For the core buck, timing is critical as we cannot change the trims
+        // during a buck event.
+        // In order to assure optimal timing while the trims are changed, the
+        // beginning of the next pulse must be determined by polling.
+        //
+        ui32CTaddr  = AM_REGADDRn(CTIMER, (g_ui32BuckTimer - 1), TMR0);
+        ui32InitVal = AM_REGVAL(ui32CTaddr) & AM_HAL_CTIMER_TIMERA;
+
+        //
+        // We can safely assume that we're nowhere near a rollover since the
+        // interrupt that got us here was based on a single digit TMR value.
+        // Wait for the next buck pulse.
+        //
+        while ( (AM_REGVAL(ui32CTaddr) & AM_HAL_CTIMER_TIMERA) <= ui32InitVal ) {};
+
+        //
+        // The following delay ensures that we're far enough away from the
+        // pulse to avoid any problems. It must be inside the critical section.
+        //
+        short_delay(10);    // 10 = about 750ns delay
+
+        //
         // Restore the core buck.
         //
         setBuckZX(0, 0, SETBUCKZX_RESTORE_CORE_ONLY |
@@ -813,7 +860,8 @@ am_hal_sysctrl_buckA_ctimer_isr(void)
     // End critical section.
     //
     AM_CRITICAL_END
-}
+
+} // am_hal_sysctrl_buckA_ctimer_isr
 
 //*****************************************************************************
 //
@@ -825,18 +873,18 @@ am_hal_sysctrl_buckA_ctimer_isr(void)
 static void
 am_hal_sysctrl_buckB_ctimer_isr(void)
 {
+    uint32_t ui32CTaddr, ui32InitVal;
+
     //
     // Begin critical section.
-    // Although a relatively long time, the following 2us delay is critically
-    // timed for re-trimming the buck and thus cannot be extended.  Therefore,
-    // we must keep it inside the critical section.
     //
     AM_CRITICAL_BEGIN
 
     //
-    // Delay for 2us.
+    // Disable Timer B interrupts
     //
-    am_hal_flash_delay( FLASH_CYCLES_US(2) );
+    am_hal_ctimer_int_disable( AM_HAL_CTIMER_INT_TIMERB0C0 <<
+                               ((g_ui32BuckTimer - 1) * 2));
 
     //
     // Determine which buck (core or mem) needs to be updated.
@@ -845,6 +893,28 @@ am_hal_sysctrl_buckB_ctimer_isr(void)
     {
         //
         // Timer B buck signal is the CORE buck.
+        // For the core buck, timing is critical as we cannot change the trims
+        // during a buck event.
+        // In order to assure optimal timing while the trims are changed, the
+        // beginning of the next pulse must be determined by polling.
+        //
+        ui32CTaddr  = AM_REGADDRn(CTIMER, (g_ui32BuckTimer - 1), TMR0);
+        ui32InitVal = AM_REGVAL(ui32CTaddr) & AM_HAL_CTIMER_TIMERB;
+
+        //
+        // We can safely assume that we're nowhere near a rollover since the
+        // interrupt that got us here was based on a single digit TMR value.
+        // Wait for the next buck pulse.
+        //
+        while ( (AM_REGVAL(ui32CTaddr) & AM_HAL_CTIMER_TIMERB) <= ui32InitVal ) {};
+
+        //
+        // The following delay ensures that we're far enough away from the
+        // pulse to avoid any problems. It must be inside the critical section.
+        //
+        short_delay(10);    // 10 = about 750ns delay
+
+        //
         // Restore the core buck.
         //
         setBuckZX(0, 0, SETBUCKZX_RESTORE_CORE_ONLY |
@@ -872,7 +942,8 @@ am_hal_sysctrl_buckB_ctimer_isr(void)
     // End critical section.
     //
     AM_CRITICAL_END
-}
+
+} // am_hal_sysctrl_buckB_ctimer_isr
 
 //*****************************************************************************
 //

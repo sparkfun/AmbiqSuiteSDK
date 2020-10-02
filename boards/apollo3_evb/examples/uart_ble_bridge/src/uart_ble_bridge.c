@@ -16,7 +16,7 @@
 
 //*****************************************************************************
 //
-// Copyright (c) 2020, Ambiq Micro
+// Copyright (c) 2020, Ambiq Micro, Inc.
 // All rights reserved.
 //
 // Redistribution and use in source and binary forms, with or without
@@ -48,7 +48,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
-// This is part of revision 2.4.2 of the AmbiqSuite Development Package.
+// This is part of revision 2.5.1 of the AmbiqSuite Development Package.
 //
 //*****************************************************************************
 
@@ -331,7 +331,7 @@ main(void)
     // Default setup.
     //
     am_hal_clkgen_control(AM_HAL_CLKGEN_CONTROL_SYSCLK_MAX, 0);
-    //am_bsp_low_power_init();
+    am_bsp_low_power_init();
 
 #ifdef AM_DEBUG_BLE_TIMING
     //
@@ -390,9 +390,6 @@ main(void)
     // Setting the TX power to the highest power value.
     //
     am_hal_ble_tx_power_set(g_pvBLEHandle, 0xf);
-
-    // if do the BQB /SRRC /FCC / CE test , please enable here
-    //am_hal_ble_BQB_test_init(g_pvBLEHandle, true);
 
     am_hal_ble_int_clear(g_pvBLEHandle, BLEIF_INTSTAT_BLECIRQ_Msk);
 

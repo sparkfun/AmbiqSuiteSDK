@@ -13,7 +13,7 @@
 
 //*****************************************************************************
 //
-// Copyright (c) 2020, Ambiq Micro
+// Copyright (c) 2020, Ambiq Micro, Inc.
 // All rights reserved.
 //
 // Redistribution and use in source and binary forms, with or without
@@ -45,7 +45,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
-// This is part of revision 2.4.2 of the AmbiqSuite Development Package.
+// This is part of revision 2.5.1 of the AmbiqSuite Development Package.
 //
 //*****************************************************************************
 
@@ -160,7 +160,7 @@ typedef enum
 {
     AM_HAL_IOM_TX,
     AM_HAL_IOM_RX,
-    AM_HAL_IOM_FULLDUPLEX, // Not supported currently - TODO
+    AM_HAL_IOM_FULLDUPLEX, // Only supported for blocking transactions
 } am_hal_iom_dir_e;
 
 //
@@ -397,7 +397,7 @@ typedef enum
     // Pass uint32_t as pArgs
     AM_HAL_IOM_REQ_SPI_LSB,
     // Pass uint32_t as pArgs
-    AM_HAL_IOM_REQ_SPI_FULLDUPLEX,
+    AM_HAL_IOM_REQ_SPI_FULLDUPLEX, // To be Deprecated
     // Pass uint32_t as pArgs
     AM_HAL_IOM_REQ_SPI_RDTHRESH,
     // Pass uint32_t as pArgs

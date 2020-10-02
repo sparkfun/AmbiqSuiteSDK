@@ -13,7 +13,7 @@
 
 //*****************************************************************************
 //
-// Copyright (c) 2020, Ambiq Micro
+// Copyright (c) 2020, Ambiq Micro, Inc.
 // All rights reserved.
 //
 // Redistribution and use in source and binary forms, with or without
@@ -45,7 +45,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
-// This is part of revision 2.4.2 of the AmbiqSuite Development Package.
+// This is part of revision 2.5.1 of the AmbiqSuite Development Package.
 //
 //*****************************************************************************
 
@@ -85,9 +85,17 @@
 //  The pMaskNm parameter is not used for Apollo and is simply ignored.
 //  n is the desired bitnumber.
 //
-#define AM_HAL_GPIO_MASKBIT(pMaskNm, n)    (((uint64_t) 0x1) << n)
-#define AM_HAL_GPIO_MASKCREATE(MaskNm)
-#define AM_HAL_GPIO_MASKCLR(pMaskNm)
+#define AM_HAL_GPIO_MASKBIT(pMaskNm, n)         pMaskNm = (((uint64_t) 0x1) << n)
+//
+// AM_HAL_GPIO_MASKBITSMULT(pMaskNm,n)
+//  The pMaskNm parameter is used for multiple bits operation here.
+//  n is the desired bitnumber.
+//
+#define AM_HAL_GPIO_MASKBITSMULT(pMaskNm, n)    pMaskNm |= (((uint64_t) 0x1) << n)
+#define AM_HAL_GPIO_MASKCREATE(MaskVar)         \
+            uint64_t p##MaskVar;                \
+            p##MaskVar=0
+#define AM_HAL_GPIO_MASKCLR(pMaskNm)            pMaskNm = 0
 
 //*****************************************************************************
 //

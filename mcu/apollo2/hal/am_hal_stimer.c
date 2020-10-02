@@ -13,7 +13,7 @@
 
 //*****************************************************************************
 //
-// Copyright (c) 2020, Ambiq Micro
+// Copyright (c) 2020, Ambiq Micro, Inc.
 // All rights reserved.
 //
 // Redistribution and use in source and binary forms, with or without
@@ -45,7 +45,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
-// This is part of revision 2.4.2 of the AmbiqSuite Development Package.
+// This is part of revision 2.5.1 of the AmbiqSuite Development Package.
 //
 //*****************************************************************************
 
@@ -107,7 +107,33 @@ am_hal_stimer_config(uint32_t ui32STimerConfig)
 uint32_t
 am_hal_stimer_counter_get(void)
 {
-    return AM_REG(CTIMER, STTMR);
+    uint32_t ui32TmrAddr = AM_REGADDRn(CTIMER, 0, STTMR);
+    uint32_t ui32Values[3];
+    uint32_t ui32RetVal;
+
+    //
+    // Read the register into ui32Values[].
+    //
+    am_hal_triple_read(ui32TmrAddr, ui32Values);
+
+    //
+    // Now determine which of the three values is the correct value.
+    // If the first 2 match, then the values are both correct and we're done.
+    // Otherwise, the third value is taken to be the correct value.
+    //
+    if ( ui32Values[0] == ui32Values[1] )
+    {
+        //
+        // If the first two values match, then neither one was a bad read.
+        // We'll take this as the current time.
+        //
+        ui32RetVal = ui32Values[1];
+    }
+    else
+    {
+        ui32RetVal = ui32Values[2];
+    }
+    return ui32RetVal;
 }
 
 //*****************************************************************************

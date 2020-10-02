@@ -11,7 +11,7 @@
 
 //*****************************************************************************
 //
-// Copyright (c) 2020, Ambiq Micro
+// Copyright (c) 2020, Ambiq Micro, Inc.
 // All rights reserved.
 //
 // Redistribution and use in source and binary forms, with or without
@@ -43,7 +43,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
-// This is part of revision 2.4.2 of the AmbiqSuite Development Package.
+// This is part of revision 2.5.1 of the AmbiqSuite Development Package.
 //
 //*****************************************************************************
 
@@ -347,11 +347,11 @@ am_multiboot_ios_acc_isr_handler(void)
                 //
                 // Perform a software reset.
                 //
-#if AM_APOLLO3_RESET
+#if (defined(AM_PART_APOLLO3) || defined(AM_PART_APOLLO3P) || defined(AM_PART_APOLLO4) || defined(AM_PART_APOLLO4B))
                 am_hal_reset_control(AM_HAL_RESET_CONTROL_SWPOI, 0);
-#else // AM_APOLLO3_RESET
+#else
                 am_hal_reset_poi();
-#endif // AM_APOLLO3_RESET
+#endif
 
                 //
                 // Wait for the reset to take effect.

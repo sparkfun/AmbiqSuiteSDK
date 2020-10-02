@@ -2,7 +2,7 @@
 #
 # Makefile - Rules for building the libraries, examples and docs.
 #
-# Copyright (c) 2020, Ambiq Micro
+# Copyright (c) 2020, Ambiq Micro, Inc.
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
@@ -34,7 +34,7 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 #
-# This is part of revision 2.4.2 of the AmbiqSuite Development Package.
+# This is part of revision 2.5.1 of the AmbiqSuite Development Package.
 #
 #******************************************************************************
 TARGET := multi_boot
@@ -86,12 +86,12 @@ DEFINES+= -D'AM_MULTIBOOT_CONFIG_FILE="am_multi_boot_config.h"'
 DEFINES+= -Dgcc
 
 INCLUDES = -I../../../../../bootloader
-INCLUDES+= -I../../../../..
-INCLUDES+= -I../../../../../devices
-INCLUDES+= -I../../../bsp
 INCLUDES+= -I../../../../../utils
-INCLUDES+= -I../src
+INCLUDES+= -I../../../../..
 INCLUDES+= -I../../../../../mcu/apollo2
+INCLUDES+= -I../../../bsp
+INCLUDES+= -I../src
+INCLUDES+= -I../../../../../devices
 
 VPATH = ../../../../../bootloader
 VPATH+=:../../../../../utils
@@ -165,6 +165,7 @@ $(CONFIG)/$(TARGET).bin: $(CONFIG)/$(TARGET).axf
 	@echo " Copying $(COMPILERNAME) $@..." ;\
 	$(CP) $(CPFLAGS) $< $@ ;\
 	$(OD) $(ODFLAGS) $< > $(CONFIG)/$(TARGET).lst
+	@$(SIZE) $(OBJS) $(LIBS) $(CONFIG)/$(TARGET).axf >$(CONFIG)/$(TARGET).size
 
 clean:
 	@echo "Cleaning..." ;\

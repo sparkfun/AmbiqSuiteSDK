@@ -208,9 +208,9 @@
                 <option>
                     <name>CCDefines</name>
                     <state>iar</state>
-          <state>AM_PACKAGE_BGA</state>
           <state>AM_PART_APOLLO</state>
           <state>AM_MULTIBOOT_CONFIG_FILE="am_multi_boot_config.h"</state>
+          <state>AM_PACKAGE_BGA</state>
                 </option>
                 <option>
                     <name>CCPreprocFile</name>
@@ -335,12 +335,12 @@
                 </option>
                 <option>
                     <name>CCIncludePath2</name>
-          <state>$PROJ_DIR$\..\..\..\..\..\utils</state>
           <state>$PROJ_DIR$\..\..\..\..\..\devices</state>
-          <state>$PROJ_DIR$\..\..\..\..\..</state>
           <state>$PROJ_DIR$\..\src</state>
-          <state>$PROJ_DIR$\..\..\..\..\..\mcu\apollo</state>
           <state>$PROJ_DIR$\..\..\..\bsp</state>
+          <state>$PROJ_DIR$\..\..\..\..\..</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\utils</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\mcu\apollo</state>
           <state>$PROJ_DIR$\..\..\..\..\..\bootloader</state>
                 </option>
                 <option>
@@ -607,12 +607,12 @@
                 </option>
                 <option>
                     <name>AUserIncludes</name>
-          <state>$PROJ_DIR$\..\..\..\..\..\utils</state>
           <state>$PROJ_DIR$\..\..\..\..\..\devices</state>
-          <state>$PROJ_DIR$\..\..\..\..\..</state>
           <state>$PROJ_DIR$\..\src</state>
-          <state>$PROJ_DIR$\..\..\..\..\..\mcu\apollo</state>
           <state>$PROJ_DIR$\..\..\..\bsp</state>
+          <state>$PROJ_DIR$\..\..\..\..\..</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\utils</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\mcu\apollo</state>
           <state>$PROJ_DIR$\..\..\..\..\..\bootloader</state>
                 </option>
                 <option>
@@ -1235,9 +1235,9 @@
                     <name>CCDefines</name>
                     <state>NDEBUG</state>
                     <state>iar</state>
-          <state>AM_PACKAGE_BGA</state>
           <state>AM_PART_APOLLO</state>
           <state>AM_MULTIBOOT_CONFIG_FILE="am_multi_boot_config.h"</state>
+          <state>AM_PACKAGE_BGA</state>
                 </option>
                 <option>
                     <name>CCPreprocFile</name>
@@ -1362,12 +1362,12 @@
                 </option>
                 <option>
                     <name>CCIncludePath2</name>
-          <state>$PROJ_DIR$\..\..\..\..\..\utils</state>
           <state>$PROJ_DIR$\..\..\..\..\..\devices</state>
-          <state>$PROJ_DIR$\..\..\..\..\..</state>
           <state>$PROJ_DIR$\..\src</state>
-          <state>$PROJ_DIR$\..\..\..\..\..\mcu\apollo</state>
           <state>$PROJ_DIR$\..\..\..\bsp</state>
+          <state>$PROJ_DIR$\..\..\..\..\..</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\utils</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\mcu\apollo</state>
           <state>$PROJ_DIR$\..\..\..\..\..\bootloader</state>
                 </option>
                 <option>
@@ -2055,13 +2055,13 @@
     <name>$PROJ_DIR$\..\src\multi_boot.c</name>
   </file>
   <file>
+    <name>$PROJ_DIR$\..\..\..\..\..\devices\am_devices_spiflash.c</name>
+  </file>
+  <file>
     <name>$PROJ_DIR$\..\..\..\..\..\utils\am_util_delay.c</name>
   </file>
   <file>
     <name>$PROJ_DIR$\..\..\..\..\..\utils\am_util_stdio.c</name>
-  </file>
-  <file>
-    <name>$PROJ_DIR$\..\..\..\..\..\devices\am_devices_spiflash.c</name>
   </file>
   <file>
     <name>$PROJ_DIR$\..\..\..\..\..\bootloader\am_bootloader.c</name>

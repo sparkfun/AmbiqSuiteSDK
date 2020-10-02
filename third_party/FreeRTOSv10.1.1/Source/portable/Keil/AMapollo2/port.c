@@ -41,6 +41,13 @@
 // Set up a backup comparator to handle this case
 #define AM_FREERTOS_STIMER_BACKUP
 
+#if defined(AM_PART_APOLLO4) || defined(AM_PART_APOLLO4B)
+// FIXME!!!
+#warning FIXME!!
+#warning In Apollo4 timer API, the macro name has been changed, this is a quick-fix before a new Apollo4 port.c is created
+#define CTIMER_STCFG_CLKSEL_Msk			STIMER_STCFG_CLKSEL_Msk
+#endif // AM_PART_APOLLO4
+
 //#define AM_FREERTOS_STIMER_DIAGS
 #ifdef AM_FREERTOS_STIMER_DIAGS
 uint32_t gF_stimerHistory[256][4];
@@ -1089,7 +1096,7 @@ xPortStimerTickHandler(uint32_t delta)
 #ifdef AM_FREERTOS_STIMER_BACKUP
     am_hal_stimer_compare_delta_set(1, (ulTimerCountsForOneTick-delta+1));
 #endif
-    
+
     timerCounts = curSTimer - g_lastSTimerVal;
     numTicksElapsed = timerCounts/ulTimerCountsForOneTick;
     remainder = timerCounts % ulTimerCountsForOneTick;
@@ -1240,7 +1247,7 @@ void vPortSetupTimerInterrupt( void )
 #else
     am_hal_stimer_int_enable(AM_HAL_STIMER_INT_COMPAREA);
 #endif
-    
+
     //
     // Enable the timer interrupt in the NVIC, making sure to use the
     // appropriate priority level.
@@ -1280,7 +1287,7 @@ void vPortSetupTimerInterrupt( void )
 #else // AM_CMSIS_REGS
     am_hal_stimer_config((oldCfg & ~(AM_HAL_STIMER_CFG_FREEZE|AM_REG_CTIMER_STCFG_CLKSEL_M)) | configSTIMER_CLOCK | AM_HAL_STIMER_CFG_COMPARE_A_ENABLE);
 #endif // AM_CMSIS_REGS
-    
+
 #endif
 #else
 

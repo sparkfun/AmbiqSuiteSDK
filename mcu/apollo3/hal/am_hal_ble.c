@@ -12,7 +12,7 @@
 
 //*****************************************************************************
 //
-// Copyright (c) 2020, Ambiq Micro
+// Copyright (c) 2020, Ambiq Micro, Inc.
 // All rights reserved.
 //
 // Redistribution and use in source and binary forms, with or without
@@ -44,7 +44,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
-// This is part of revision 2.4.2 of the AmbiqSuite Development Package.
+// This is part of revision 2.5.1 of the AmbiqSuite Development Package.
 //
 //*****************************************************************************
 
@@ -204,7 +204,7 @@ static const uint16_t ccitt_table[] =
         uint32_t ui32Timeout = 0;                                             \
         while (expr)                                                          \
         {                                                                     \
-            if (ui32Timeout == (timeout * 1000))                              \
+            if (ui32Timeout >= (timeout * 1000))                              \
             {                                                                 \
                 return error;                                                 \
             }                                                                 \
@@ -219,7 +219,7 @@ static const uint16_t ccitt_table[] =
         uint32_t ui32Timeout = 0;                                             \
         while (expr)                                                          \
         {                                                                     \
-            if (ui32Timeout == (timeout * 1000))                              \
+            if (ui32Timeout >= (timeout * 1000))                              \
             {                                                                 \
                 break;                                                 \
             }                                                                 \
@@ -563,12 +563,6 @@ uint32_t
 am_hal_ble_power_control(void *pHandle, uint32_t ui32PowerState)
 {
     uint32_t ui32Module;
-
-    //
-    // BLE buck is shared by Burst as well
-    // Enable the BLE buck trim values if in use
-    //
-    am_hal_pwrctrl_blebuck_trim();
 
     //
     // Check the handle.
@@ -1531,7 +1525,7 @@ am_hal_ble_blocking_hci_read(void *pHandle, uint32_t *pui32Data, uint32_t *pui32
         // Check if the length is not out of the boundary
         //
         // Fixme: it is assumed here all the sizes of the buffer are 256
-        if (HciRead.ui16Length > 256)
+        if ( (HciRead.ui16Length == 0) || (HciRead.ui16Length > 256) )
         {
             return AM_HAL_STATUS_OUT_OF_RANGE;
         }
@@ -1847,7 +1841,7 @@ am_hal_ble_blocking_transfer(void *pHandle, am_hal_ble_transfer_t *psTransfer)
 
         while (1)
         {
-            if (am_hal_ble_check_status_edge(pBle) == true)
+            if (am_hal_ble_check_status(pBle) == true)
             {
                 if (am_hal_ble_bus_lock(pBle))
                 {
@@ -1855,7 +1849,7 @@ am_hal_ble_blocking_transfer(void *pHandle, am_hal_ble_transfer_t *psTransfer)
                     break;
                 }
             }
-            else if ((ui32Timeout == ui32TimeoutLimit) ||
+            else if ((ui32Timeout >= ui32TimeoutLimit) ||
                      (BLEIFn(ui32Module)->BSTATUS_b.BLEIRQ))
             {
                 ui32SpiStatus = AM_HAL_BLE_STATUS_SPI_NOT_READY;
@@ -2982,7 +2976,7 @@ am_hal_ble_read_trimdata_from_info1(void)
         TrimData = 0;
     }
 
-    if ( (TrimData > 0x40) || (TrimData < 0x20) )
+    if ( (TrimData > 0x50) || (TrimData < 0x20) )   // change from 0x40 to 0x50 for improving the FT2 yield.
     {
         TrimData = 0;
     }
@@ -3125,10 +3119,23 @@ am_hal_ble_tx_power_set(void *pHandle, uint8_t ui32TxPower)
     am_hal_ble_plf_reg_read(pBLE, 0x43000004, &RegValueMCGR);
 
     //
-    // Unlock the BLE registers.
+    // Unlock the BLE controller registers.
     //
     am_hal_ble_plf_reg_write(pBLE, 0x43000004, 0xFFFFFFFF);
 
+    // set tx power register at 0x52400018
+    am_hal_ble_plf_reg_write(pBLE, 0x52400018, ui32PowerValue);
+
+    // Lock BLE controller registers
+    am_hal_ble_plf_reg_write(pBLE, 0x43000004, RegValueMCGR);
+
+    //
+    // Update BLE controller RAM settings as well.
+    // Note:
+    //    Register values may be lost when BLE controller enters deepsleep.
+    //    BLE controller loads RAM settings back upon wakeup.
+    //    To retain the setting, BLE controller RAM settings should be updated.
+    //
     if (APOLLO3_B0)
     {
         am_hal_ble_plf_reg_read(pBLE, AM_HAL_BLE_IP_RAM_POWER_LEVEL_ADDR_B0, &tempreg);
@@ -3140,7 +3147,6 @@ am_hal_ble_tx_power_set(void *pHandle, uint8_t ui32TxPower)
 
     tempreg &= 0xffffff00;
     tempreg |= ui32TxPower;
-    am_hal_ble_plf_reg_write(pBLE, 0x52400018, ui32PowerValue);
 
     if (APOLLO3_B0)
     {
@@ -3150,8 +3156,6 @@ am_hal_ble_tx_power_set(void *pHandle, uint8_t ui32TxPower)
     {
         am_hal_ble_plf_reg_write(pBLE, AM_HAL_BLE_IP_RAM_POWER_LEVEL_ADDR_A1, tempreg);
     }
-
-    am_hal_ble_plf_reg_write(pBLE, 0x43000004, RegValueMCGR);
 
     return AM_HAL_STATUS_SUCCESS;
 } // am_hal_ble_tx_power_set()

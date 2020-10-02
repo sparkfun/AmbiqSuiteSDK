@@ -14,7 +14,7 @@
 
 //*****************************************************************************
 //
-// Copyright (c) 2020, Ambiq Micro
+// Copyright (c) 2020, Ambiq Micro, Inc.
 // All rights reserved.
 //
 // Redistribution and use in source and binary forms, with or without
@@ -46,7 +46,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
-// This is part of revision 2.4.2 of the AmbiqSuite Development Package.
+// This is part of revision 2.5.1 of the AmbiqSuite Development Package.
 //
 //*****************************************************************************
 
@@ -155,54 +155,54 @@ button_timer_handler(TimerHandle_t xTimer)
         case 0:
             HciDrvRadioShutdown();
             HciDrvRadioBoot(0);
-            HciVsA3_SetRfPowerLevelEx(TX_POWER_LEVEL_PLUS_3P0_dBm);
+            HciVscSetRfPowerLevelEx(TX_POWER_LEVEL_PLUS_3P0_dBm);
 
-            HciVsA3_CarrierWaveMode((2402 - 2402) / 2);
+            HciVscCarrierWaveMode((2402 - 2402) / 2);
 
             am_util_debug_printf("Continuous Wave on Channel 2402 MHz\n");
             break;
         case 1:
             HciDrvRadioShutdown();
             HciDrvRadioBoot(0);
-            HciVsA3_SetRfPowerLevelEx(TX_POWER_LEVEL_PLUS_3P0_dBm);
+            HciVscSetRfPowerLevelEx(TX_POWER_LEVEL_PLUS_3P0_dBm);
 
-            HciVsA3_CarrierWaveMode((2440 - 2402) / 2);
+            HciVscCarrierWaveMode((2440 - 2402) / 2);
             am_util_debug_printf("Continuous Wave on Channel 2440 MHz\n");
             break;
         case 2:
             HciDrvRadioShutdown();
             HciDrvRadioBoot(0);
-            HciVsA3_SetRfPowerLevelEx(TX_POWER_LEVEL_PLUS_3P0_dBm);
+            HciVscSetRfPowerLevelEx(TX_POWER_LEVEL_PLUS_3P0_dBm);
 
-            HciVsA3_CarrierWaveMode((2480 - 2402) / 2);
+            HciVscCarrierWaveMode((2480 - 2402) / 2);
             am_util_debug_printf("Continuous Wave on Channel 2480 MHz\n");
             break;
         case 3:
             HciDrvRadioShutdown();
             HciDrvRadioBoot(0);
-            HciVsA3_SetRfPowerLevelEx(TX_POWER_LEVEL_PLUS_3P0_dBm);
+            HciVscSetRfPowerLevelEx(TX_POWER_LEVEL_PLUS_3P0_dBm);
 
             am_util_debug_printf("Continuous Modulation on Channel 2402 MHz\n");
-            HciVsA3_ConstantTransmission((2402 - 2402) / 2);
+            HciVscConstantTransmission((2402 - 2402) / 2);
 
             break;
         case 4:
             HciDrvRadioShutdown();
             HciDrvRadioBoot(0);
-            HciVsA3_SetRfPowerLevelEx(TX_POWER_LEVEL_PLUS_3P0_dBm);
+            HciVscSetRfPowerLevelEx(TX_POWER_LEVEL_PLUS_3P0_dBm);
 
             am_util_debug_printf("Continuous Modulation on Channel 2440 MHz\n");
 
-            HciVsA3_ConstantTransmission((2440 - 2402) / 2);
+            HciVscConstantTransmission((2440 - 2402) / 2);
 
             break;
         case 5:
             HciDrvRadioShutdown();
             HciDrvRadioBoot(0);
-            HciVsA3_SetRfPowerLevelEx(TX_POWER_LEVEL_PLUS_3P0_dBm);
+            HciVscSetRfPowerLevelEx(TX_POWER_LEVEL_PLUS_3P0_dBm);
 
             am_util_debug_printf("Continuous Modulation on Channel 2480 MHz\n");
-            HciVsA3_ConstantTransmission((2480 - 2402) / 2);
+            HciVscConstantTransmission((2480 - 2402) / 2);
 
             break;
 
@@ -369,12 +369,9 @@ main(void)
     //
     am_hal_ble_tx_power_set(g_pvBLEHandle, 0xf);
 
-    // if do the BQB /SRRC /FCC / CE test , please enable here
-    //am_hal_ble_BQB_test_init(g_pvBLEHandle, true);
-
     am_hal_ble_int_clear(g_pvBLEHandle, BLEIF_INTSTAT_BLECIRQ_Msk);
 
-    HciVsA3_SetRfPowerLevelEx(TX_POWER_LEVEL_PLUS_3P0_dBm);
+    HciVscSetRfPowerLevelEx(TX_POWER_LEVEL_PLUS_3P0_dBm);
 
 #endif
 

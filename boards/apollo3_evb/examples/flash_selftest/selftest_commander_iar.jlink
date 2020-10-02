@@ -32,10 +32,10 @@ loadbin iar\bin\flash_selftest.bin 0x10000000
 // The SP and PC values can be found as the first words in the .bin.
 //  SP = Word 0
 //  PC = Word 1
-// IAR with PRINT_RESULTS enabled:  SP = 0x10005000, PC = 0x10002AF5
+// IAR with PRINT_RESULTS enabled:  SP = 0x10005000, PC = 0x100027C9
 //
 wreg MSP, 0x10005000
-setPC 0x10002AF5
+setPC 0x100027C9
 
 //
 // We're ready to go, start the test.

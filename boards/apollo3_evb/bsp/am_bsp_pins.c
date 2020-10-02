@@ -13,7 +13,7 @@
 
 //*****************************************************************************
 //
-// Copyright (c) 2020, Ambiq Micro
+// Copyright (c) 2020, Ambiq Micro, Inc.
 // All rights reserved.
 //
 // Redistribution and use in source and binary forms, with or without
@@ -45,7 +45,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
-// This is part of revision 2.4.2 of the AmbiqSuite Development Package.
+// This is part of revision 2.5.1 of the AmbiqSuite Development Package.
 //
 //*****************************************************************************
 
@@ -803,7 +803,7 @@ const am_hal_gpio_pincfg_t g_AM_BSP_GPIO_MSPI_D2 =
 //*****************************************************************************
 const am_hal_gpio_pincfg_t g_AM_BSP_GPIO_MSPI_D3 =
 {
-    .uFuncSel            = AM_HAL_PIN_23_MSPI13,
+    .uFuncSel            = AM_HAL_PIN_23_MSPI3,
     .eDriveStrength      = AM_HAL_GPIO_PIN_DRIVESTRENGTH_8MA,
     .eIntDir             = AM_HAL_GPIO_PIN_INTDIR_LO2HI,
     .uIOMnum             = 6
@@ -945,6 +945,61 @@ const am_hal_gpio_pincfg_t g_AM_BSP_GPIO_IOS_SDA =
 
 //*****************************************************************************
 //
+//  PDMCLK pin: PDM CLK.
+//
+//*****************************************************************************
+const am_hal_gpio_pincfg_t g_AM_BSP_GPIO_PDMCLK =
+{
+    .uFuncSel            = AM_HAL_PIN_12_PDMCLK,
+    .eDriveStrength      = AM_HAL_GPIO_PIN_DRIVESTRENGTH_2MA
+};
+
+//*****************************************************************************
+//
+//  PDM_DATA pin: PDM DATA.
+//
+//*****************************************************************************
+const am_hal_gpio_pincfg_t g_AM_BSP_GPIO_PDM_DATA =
+{
+    .uFuncSel            = AM_HAL_PIN_11_PDMDATA,
+    .eDriveStrength      = AM_HAL_GPIO_PIN_DRIVESTRENGTH_2MA
+};
+
+//*****************************************************************************
+//
+//  SCARD_SCCCLK pin: SCARD SCCCLK.
+//
+//*****************************************************************************
+const am_hal_gpio_pincfg_t g_AM_BSP_GPIO_SCARD_SCCCLK =
+{
+    .uFuncSel            = AM_HAL_PIN_8_SCCCLK,
+    .eDriveStrength      = AM_HAL_GPIO_PIN_DRIVESTRENGTH_12MA
+};
+
+//*****************************************************************************
+//
+//  SCARD_SCCIO pin: Fireball device test board chip select.
+//
+//*****************************************************************************
+const am_hal_gpio_pincfg_t g_AM_BSP_GPIO_SCARD_SCCIO =
+{
+    .uFuncSel            = AM_HAL_PIN_9_SCCIO,
+    .eDriveStrength      = AM_HAL_GPIO_PIN_DRIVESTRENGTH_2MA
+};
+
+//*****************************************************************************
+//
+//  SCARD_SCCRST pin: SCARD SCCRST.
+//
+//*****************************************************************************
+const am_hal_gpio_pincfg_t g_AM_BSP_GPIO_SCARD_SCCRST =
+{
+    .uFuncSel            = AM_HAL_PIN_46_SCCRST,
+    .eDriveStrength      = AM_HAL_GPIO_PIN_DRIVESTRENGTH_2MA
+};
+
+//*****************************************************************************
+//
 //  ITM_SWO pin: ITM Serial Wire Output.
 //
 //*****************************************************************************
@@ -972,23 +1027,6 @@ const am_hal_gpio_pincfg_t g_AM_BSP_GPIO_SWDCK =
 const am_hal_gpio_pincfg_t g_AM_BSP_GPIO_SWDIO =
 {
     .uFuncSel            = AM_HAL_PIN_21_SWDIO
-};
-
-//*****************************************************************************
-//
-//  FIREBALL_CE pin: Fireball device test board chip select.
-//
-//*****************************************************************************
-const am_hal_gpio_pincfg_t g_AM_BSP_GPIO_FIREBALL_CE =
-{
-    .uFuncSel            = AM_HAL_PIN_30_NCE30,
-    .eDriveStrength      = AM_HAL_GPIO_PIN_DRIVESTRENGTH_12MA,
-    .eGPOutcfg           = AM_HAL_GPIO_PIN_OUTCFG_PUSHPULL,
-    .eGPInput            = AM_HAL_GPIO_PIN_INPUT_NONE,
-    .eIntDir             = AM_HAL_GPIO_PIN_INTDIR_LO2HI,
-    .uIOMnum             = 5,
-    .uNCE                = 3,
-    .eCEpol              = AM_HAL_GPIO_PIN_CEPOL_ACTIVELOW
 };
 
 //*****************************************************************************

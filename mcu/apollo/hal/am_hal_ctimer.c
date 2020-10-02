@@ -13,7 +13,7 @@
 
 //*****************************************************************************
 //
-// Copyright (c) 2020, Ambiq Micro
+// Copyright (c) 2020, Ambiq Micro, Inc.
 // All rights reserved.
 //
 // Redistribution and use in source and binary forms, with or without
@@ -45,7 +45,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
-// This is part of revision 2.4.2 of the AmbiqSuite Development Package.
+// This is part of revision 2.5.1 of the AmbiqSuite Development Package.
 //
 //*****************************************************************************
 
@@ -78,109 +78,7 @@
 //*****************************************************************************
 am_hal_ctimer_handler_t am_hal_ctimer_ppfnHandlers[8];
 
-//*****************************************************************************
-//
-// Static function for reading the timer value.
-//
-//*****************************************************************************
-#if (defined (__ARMCC_VERSION)) && (__ARMCC_VERSION < 6000000)
-__asm static uint32_t
-back2back_reads( uint32_t u32TimerAddr, uint32_t u32Data[])
-{
-    push    {r4}                     // Save r4
-    push    {r1}                     // Save the data array ptr for later
-    mov     r2, r0                   // Get Timer Addr
-    mrs     r4, PRIMASK              // Save PRIMASK
-    cpsid   i                        // __disable_irq()
-    nop                              // Give the disable a cycle to take affect (but almost certainly not really needed)
-    ldr     r0, [r2, #0]             // Get TMRn register value
-    ldr     r1, [r2, #0]             // Get TMRn register value again
-    ldr     r3, [r2, #0]             // Get TMRn register value for a third time
-    msr     PRIMASK, r4              // Restore PRIMASK
-    pop     {r2}                     // Get the array ptr
-    str     r0, [r2, #0]             // Store register value to variable
-    str     r1, [r2, #4]             // Store register value to variable
-    str     r3, [r2, #8]             // Store register value to variable
-    pop     {r4}                     // Restore r4
-    bx      lr
-}
-#elif (defined (__ARMCC_VERSION)) && (__ARMCC_VERSION >= 6000000)
-static void
-back2back_reads(uint32_t u32TimerAddr, uint32_t u32Data[])
-{
-  __asm (
-    " mrs   r4, PRIMASK\n"
-    " cpsid i\n"
-    " nop\n"
-    " ldr   R0, [%[u32TimerAddr], #0]\n"
-    " ldr   R1, [%[u32TimerAddr], #0]\n"
-    " ldr   R3, [%[u32TimerAddr], #0]\n"
-    " msr   PRIMASK, r4\n"
-    " str   R0, [%[u32Data], #0]\n"
-    " str   R1, [%[u32Data], #4]\n"
-    " str   R3, [%[u32Data], #8]\n"
-    :
-    : [u32TimerAddr] "r" (u32TimerAddr),
-      [u32Data] "r" (&u32Data[0])
-    : "r0", "r1", "r3", "r4"
-  );
-}
-#elif defined(__GNUC_STDC_INLINE__)
-__attribute__((naked))
-static
-void
-back2back_reads(uint32_t u32TimerAddr, uint32_t u32Data[])
-{
-    // u32TimerAddr = address of the timer to be read.
-    // u32Data[] is a pointer to a 3 word data array provided by the caller.
-    __asm
-    (
-        // Do 3 back-to-back reads of the register
-        "   push    {r4}\n"                     // Save r4
-        "   push    {r1}\n"                     // Save the data array ptr for later
-        "   mov     r2, r0\n"                   // Get Timer Addr
-        "   mrs     r4, PRIMASK\n"              // Save PRIMASK
-        "   cpsid   i\n"                        // __disable_irq()
-        "   nop\n"                              // Give the disable a cycle to take affect (but almost certainly not really needed)
-        "   ldr     r0, [r2, #0]\n"             // Get TMRn register value
-        "   ldr     r1, [r2, #0]\n"             // Get TMRn register value again
-        "   ldr     r3, [r2, #0]\n"             // Get TMRn register value for a third time
-        "   msr     PRIMASK, r4\n"              // Restore PRIMASK
-        "   pop     {r2}\n"                     // Get the array ptr
-        "   str     r0, [r2, #0]\n"             // Store register value to variable
-        "   str     r1, [r2, #4]\n"             // Store register value to variable
-        "   str     r3, [r2, #8]\n"             // Store register value to variable
-        "   pop     {r4}\n"                     // restore r4
-        "   bx      lr\n"
-    );
-}
-#elif defined(__IAR_SYSTEMS_ICC__)
-#pragma diag_suppress = Pe940   // Suppress IAR compiler warning about missing
-                                // return statement on a non-void function
-__stackless static uint32_t
-back2back_reads( uint32_t u32TimerAddr, uint32_t u32Data[])
-{
-    __asm("    push    {r4}");          // Save r4
-    __asm("    push    {r1}");          // Save the data array ptr for later
-    __asm("    mov     r2, r0");        // Get Timer Addr
-    __asm("    mrs     r4, PRIMASK");   // Save PRIMASK"
-    __asm("    cpsid   i");             // __disable_irq()
-    __asm("    nop");                   // Give the disable a cycle to take affect (but almost certainly not really needed)
-    __asm("    ldr     r0, [r2, #0]");  // Get TMRn register value
-    __asm("    ldr     r1, [r2, #0]");  // Get TMRn register value again
-    __asm("    ldr     r3, [r2, #0]");  // Get TMRn register value for a third time
-    __asm("    msr     PRIMASK, r4");   // Restore PRIMASK
-    __asm("    pop     {r2}");          // Get the array ptr
-    __asm("    str     r0, [r2, #0]");  // Store register value to variable
-    __asm("    str     r1, [r2, #4]");  // Store register value to variable
-    __asm("    str     r3, [r2, #8]");  // Store register value to variable
-    __asm("    pop     {r4}");          // Restore r4
-    __asm("    bx      lr");
-}
-#pragma diag_default = Pe940    // Restore IAR compiler warning
-#else
-#error Compiler is unknown, please contact Ambiq support team
-#endif
+
 
 //*****************************************************************************
 //
@@ -803,7 +701,7 @@ am_hal_ctimer_read(uint32_t ui32TimerNumber, uint32_t ui32TimerSegment)
     // values. The rest of this fuction determines which value we should
     // actually use.
     //
-    back2back_reads(ui32TimerAddrTbl[ui32TimerNumber], &ui32Values[0]);
+    am_hal_triple_read(ui32TimerAddrTbl[ui32TimerNumber], ui32Values);
 
     //
     // Shift or mask the values based on the given timer segment.

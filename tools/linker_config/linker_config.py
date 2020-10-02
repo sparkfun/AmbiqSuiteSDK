@@ -1,11 +1,13 @@
 import argparse
 import apollo3p
 import os
+import apollo4
 
 DEFAULT_TOOLCHAINS = ['iar', 'keil', 'gcc']
 
 linker_generators = {
     'apollo3p': apollo3p.generate_files,
+    'apollo4': apollo4.generate_files,
 }
 
 

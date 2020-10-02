@@ -13,7 +13,7 @@
 
 //*****************************************************************************
 //
-// Copyright (c) 2020, Ambiq Micro
+// Copyright (c) 2020, Ambiq Micro, Inc.
 // All rights reserved.
 //
 // Redistribution and use in source and binary forms, with or without
@@ -45,14 +45,13 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
-// This is part of revision 2.4.2 of the AmbiqSuite Development Package.
+// This is part of revision 2.5.1 of the AmbiqSuite Development Package.
 //
 //*****************************************************************************
 
 #include <stdint.h>
 #include <stdbool.h>
 #include "am_mcu_apollo.h"
-
 
 //*****************************************************************************
 //
@@ -64,6 +63,30 @@
 // It is made global here to avoid compiler 'set but not used' warnings.
 //
 static volatile uint32_t g_ui32BusWriteFlush;
+
+
+
+// ****************************************************************************
+//
+//  am_hal_sysctrl_control()
+//      Apply various specific commands/controls on the SYSCTRL module.
+//
+// ****************************************************************************
+uint32_t
+am_hal_sysctrl_control(am_hal_sysctrl_control_e eControl, void *pArgs)
+{
+    switch ( eControl )
+    {
+        case AM_HAL_SYSCTRL_CONTROL_DEEPSLEEP_MINPWR_DIS:
+            return AM_HAL_STATUS_INVALID_OPERATION;
+
+        case AM_HAL_SYSCTRL_CONTROL_DEEPSLEEP_MINPWR_EN:
+            return AM_HAL_STATUS_INVALID_OPERATION;
+
+        default:
+            return AM_HAL_STATUS_INVALID_ARG;
+    }
+} // am_hal_sysctrl_control()
 
 
 //*****************************************************************************
@@ -123,15 +146,15 @@ am_hal_sysctrl_sleep(bool bSleepDeep)
     if ( (bSleepDeep == AM_HAL_SYSCTRL_SLEEP_DEEP)    &&
          (MCUCTRL->TPIUCTRL_b.ENABLE == MCUCTRL_TPIUCTRL_ENABLE_DIS) )
     {
-
         //
         // Retrieve the reset generator status bits
         // This gets reset on Deep Sleep, so we take a snapshot here
         //
-        if (!gAmHalResetStatus)
+        if ( !gAmHalResetStatus )
         {
             gAmHalResetStatus = RSTGEN->STAT;
         }
+
         //
         // Prepare the core for deepsleep (write 1 to the DEEPSLEEP bit).
         //
@@ -145,21 +168,21 @@ am_hal_sysctrl_sleep(bool bSleepDeep)
         SCB->SCR &= ~_VAL2FLD(SCB_SCR_SLEEPDEEP, 1);
     }
 
-    //
-    // Before executing WFI, flush any buffered core and peripheral writes.
-    //
-    __DSB();
-    am_hal_sysctrl_bus_write_flush();
+        //
+        // Before executing WFI, flush any buffered core and peripheral writes.
+        //
+        __DSB();
+        am_hal_sysctrl_bus_write_flush();
 
-    //
-    // Execute the sleep instruction.
-    //
-    __WFI();
+        //
+        // Execute the sleep instruction.
+        //
+        __WFI();
 
-    //
-    // Upon wake, execute the Instruction Sync Barrier instruction.
-    //
-    __ISB();
+        //
+        // Upon wake, execute the Instruction Sync Barrier instruction.
+        //
+        __ISB();
 
     //
     // Restore burst mode?

@@ -61,7 +61,7 @@
 
 //*****************************************************************************
 //
-// Copyright (c) 2020, Ambiq Micro
+// Copyright (c) 2020, Ambiq Micro, Inc.
 // All rights reserved.
 //
 // Redistribution and use in source and binary forms, with or without
@@ -93,7 +93,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
-// This is part of revision 2.4.2 of the AmbiqSuite Development Package.
+// This is part of revision 2.5.1 of the AmbiqSuite Development Package.
 //
 //*****************************************************************************
 
@@ -247,9 +247,6 @@ main(void)
 
 #if USE_EXTERNAL_FLASH == 1
             if (am_multiboot_ota_handler((void *)otaPtrVal, sramTempBuf, sizeof(sramTempBuf), invalidate_ota, &g_extFlash) == false)
-#else
-            if (am_multiboot_ota_handler((void *)otaPtrVal, sramTempBuf, sizeof(sramTempBuf), invalidate_ota, NULL) == false)
-#endif //USE_EXTERNAL_FLASH == 1
             {
                 if (bBootFromFlash)
                 {
@@ -261,6 +258,20 @@ main(void)
                     am_hal_reset_poi();
                 }
             }
+#else
+            if (am_multiboot_ota_handler((void *)otaPtrVal, sramTempBuf, sizeof(sramTempBuf), invalidate_ota, NULL) == false)
+            {
+                if (bBootFromFlash)
+                {
+                    // We want to run the flash image with clean slate...
+                    // So doing a POI here, and the image will be run in the next boot
+                    //
+                    // Perform a software reset.
+                    //
+                    am_hal_reset_poi();
+                }
+            }
+#endif //USE_EXTERNAL_FLASH == 1
         }
 #endif
         if (bBootFromFlash)

@@ -2,7 +2,7 @@
 #
 # Makefile - Rules for building the libraries, examples and docs.
 #
-# Copyright (c) 2020, Ambiq Micro
+# Copyright (c) 2020, Ambiq Micro, Inc.
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
@@ -34,7 +34,7 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 #
-# This is part of revision 2.4.2 of the AmbiqSuite Development Package.
+# This is part of revision 2.5.1 of the AmbiqSuite Development Package.
 #
 #******************************************************************************
 TARGET := pdm_fft
@@ -82,24 +82,24 @@ all clean:
 else
 
 DEFINES = -DPART_$(PART)
+DEFINES+= -DAM_PACKAGE_BGA
 DEFINES+= -D__FPU_PRESENT
 DEFINES+= -DAM_UTIL_FAULTISR_PRINT
-DEFINES+= -DAM_PART_APOLLO3
-DEFINES+= -DAM_PACKAGE_BGA
 DEFINES+= -DUNITY_INCLUDE_CONFIG_H
+DEFINES+= -DAM_PART_APOLLO3
 DEFINES+= -Dgcc
 
-INCLUDES = -I../../../bsp
-INCLUDES+= -I../../../../..
-INCLUDES+= -I../../../../../devices
+INCLUDES = -I../src
 INCLUDES+= -I../../../../../utils
-INCLUDES+= -I../../../../../CMSIS/AmbiqMicro/Include
+INCLUDES+= -I../../../bsp
 INCLUDES+= -I../../../../../CMSIS/ARM/Include
+INCLUDES+= -I../../../../../devices
 INCLUDES+= -I../../../../../mcu/apollo3
-INCLUDES+= -I../src
+INCLUDES+= -I../../../../../CMSIS/AmbiqMicro/Include
+INCLUDES+= -I../../../../..
 
-VPATH = ../../../../../devices
-VPATH+=:../src
+VPATH = ../src
+VPATH+=:../../../../../devices
 VPATH+=:../../../../../utils
 
 SRC = pdm_fft.c
@@ -166,6 +166,7 @@ $(CONFIG)/$(TARGET).bin: $(CONFIG)/$(TARGET).axf
 	@echo " Copying $(COMPILERNAME) $@..." ;\
 	$(CP) $(CPFLAGS) $< $@ ;\
 	$(OD) $(ODFLAGS) $< > $(CONFIG)/$(TARGET).lst
+	@$(SIZE) $(OBJS) $(LIBS) $(CONFIG)/$(TARGET).axf >$(CONFIG)/$(TARGET).size
 
 clean:
 	@echo "Cleaning..." ;\

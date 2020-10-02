@@ -1,0 +1,1190 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+<?xml-stylesheet type="text/xsl" href="xml_devices.xsl"?>
+<!DOCTYPE device SYSTEM "xml_devices.dtd">
+<device file_name="docs/mcu_ctrl_regs.xml" file_mod_date="May 29 10:05:03 2014">
+  <short_description>MCU Miscelaneous Control Logic</short_description>
+  <device_name>MCU_CTRL</device_name>
+
+  <ioregisters>
+    <ioreg_index/>
+    <ioreg>
+    <ioreg_name>CHIPPN</ioreg_name>
+    <ioreg_offset>0x00000000</ioreg_offset>
+    <ioreg_intro>Chip Information Register 1</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="0" name="PARTNUM" readwrite="RO" access_macro="REG_MCU_CTRL_CHIPPN_PARTNUM_RD" reset_value="0x0" width="32">
+        <ioreg_bf_description>"This bitfield is the BCD part number."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>CHIPID0</ioreg_name>
+    <ioreg_offset>0x00000004</ioreg_offset>
+    <ioreg_intro>Unique Chip ID 0</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="0" name="CHIPID0" readwrite="RO" access_macro="REG_MCU_CTRL_CHIPID0_CHIPID0_RD" reset_value="0x0" width="32">
+        <ioreg_bf_description>"This bitfield is the unique chip ID 0."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>CHIPID1</ioreg_name>
+    <ioreg_offset>0x00000008</ioreg_offset>
+    <ioreg_intro>Unique Chip ID 1</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="0" name="CHIPID1" readwrite="RO" access_macro="REG_MCU_CTRL_CHIPID1_CHIPID1_RD" reset_value="0x0" width="32">
+        <ioreg_bf_description>"This bitfield is the unique chip ID 1.
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>CHIPREV</ioreg_name>
+    <ioreg_offset>0x0000000c</ioreg_offset>
+    <ioreg_intro>Chip Revision</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="8" name="RSVD" readwrite="RO" access_macro="REG_MCU_CTRL_CHIPREV_RSVD_RD" reset_value="0x0" width="24">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="CHIPREV" readwrite="RO" access_macro="N/A" reset_value="0x0" width="8" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is the Chip Revision Number."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>SUPPLYSRC</ioreg_name>
+    <ioreg_offset>0x00000010</ioreg_offset>
+    <ioreg_intro>Memory and Core Voltage Supply Source Select Register</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="2" name="RSVD" readwrite="RO" access_macro="REG_MCU_CTRL_SUPPLYSRC_RSVD_RD" reset_value="0x0" width="30">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="1" name="COREBUCKEN" readwrite="RW" access_macro="N/A" reset_value="0x0" width="1" reserved="reserved">
+        <ioreg_bf_description>"This bitfield enables and selects the Core Buck as the supply for the low-voltage power domain."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="MEMBUCKEN" readwrite="RW" access_macro="REG_MCU_CTRL_SUPPLYSRC_MEMBUCKEN_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bitfield enables and selects the Memory Buck as the supply for the Flash and SRAM power domain."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>SUPPLYSTATUS</ioreg_name>
+    <ioreg_offset>0x00000014</ioreg_offset>
+    <ioreg_intro>Memory and Core Voltage Supply Source Status Register</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="2" name="RSVD" readwrite="RO" access_macro="REG_MCU_CTRL_SUPPLYSTATUS_RSVD_RD" reset_value="0x0" width="30">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="1" name="COREBUCKON" readwrite="RO" access_macro="N/A" reset_value="0x0" width="1" reserved="reserved">
+        <ioreg_bf_description>"This bitfield indicates whether the Core low-voltage domain is supplied from the LDO (0) or the Buck (1)."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="MEMBUCKON" readwrite="RO" access_macro="REG_MCU_CTRL_SUPPLYSTATUS_MEMBUCKON_RD" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bitfield indicates whether the Memory power domain is supplied from the LDO (0) or the Buck (1)."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>CCRG</ioreg_name>
+    <ioreg_offset>0x00000020</ioreg_offset>
+    <ioreg_intro>Calibrated Current Reference Generator Control</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="9" name="RSVD" readwrite="RO" access_macro="REG_MCU_CTRL_CCRG_RSVD_RD" reset_value="0x0" width="23">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="1" name="CCRGTRIM" readwrite="RW" access_macro="N/A" reset_value="0x0" width="8" reserved="reserved">
+        <ioreg_bf_description>"This bitfield set the CCRG trim."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="CCRGPWD" readwrite="RW" access_macro="REG_MCU_CTRL_CCRG_CCRGPWD_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit powers down the CCRG."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>VREFGEN</ioreg_name>
+    <ioreg_offset>0x00000040</ioreg_offset>
+    <ioreg_intro>Voltage Reference Generator Control</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="13" name="RSVD" readwrite="RO" access_macro="REG_MCU_CTRL_VREFGEN_RSVD_RD" reset_value="0x0" width="19">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="12" name="PWDCVREF" readwrite="RW" access_macro="N/A" reset_value="0x0" width="1" reserved="reserved">
+        <ioreg_bf_description>"Power Down, Calibrated Voltage Reference Generator."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="7" name="CVREFHADJ" readwrite="RW" access_macro="REG_MCU_CTRL_VREFGEN_CVREFHADJ_WR" reset_value="0x0" width="5">
+        <ioreg_bf_description>"Calibrated Voltage Reference Generator VREF high adjust."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="4" name="CVREFLADJ" readwrite="RW" access_macro="REG_MCU_CTRL_VREFGEN_CVREFLADJ_WR" reset_value="0x0" width="3">
+        <ioreg_bf_description>"Calibrated Voltage Reference Generator VREF low adjust."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="CVREFBTRIM" readwrite="RW" access_macro="REG_MCU_CTRL_VREFGEN_CVREFBTRIM_WR" reset_value="0x0" width="4">
+        <ioreg_bf_description>"Calibrated Voltage Reference Generator tc trim (bottom transistor)"
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>BUCK</ioreg_name>
+    <ioreg_offset>0x00000060</ioreg_offset>
+    <ioreg_intro>Analog Buck Control</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="6" name="RSVD" readwrite="RO" access_macro="REG_MCU_CTRL_BUCK_RSVD_RD" reset_value="0x0" width="26">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="5" name="BYPBUCKMEM" readwrite="RW" access_macro="N/A" reset_value="0x0" width="1" reserved="reserved">
+        <ioreg_bf_description>"Memory Buck Bypass."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="4" name="ENBUCKMEM" readwrite="RW" access_macro="REG_MCU_CTRL_BUCK_ENBUCKMEM_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"Memory buck Enable."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="3" name="SLEEPBUCKANA" readwrite="RW" access_macro="REG_MCU_CTRL_BUCK_SLEEPBUCKANA_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"Analog buck sleep."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="2" name="ENBUCKCORE" readwrite="RW" access_macro="REG_MCU_CTRL_BUCK_ENBUCKCORE_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"Core buck enable."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="1" name="BYPBUCKCORE" readwrite="RW" access_macro="REG_MCU_CTRL_BUCK_BYPBUCKCORE_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"Core buck bypassp."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="BUCKSWE" readwrite="RW" access_macro="REG_MCU_CTRL_BUCK_BUCKSWE_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"Buck Register SW Override Enable."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>BUCK2</ioreg_name>
+    <ioreg_offset>0x00000064</ioreg_offset>
+    <ioreg_intro>Buck Control Reg2</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="12" name="RSVD" readwrite="RO" access_macro="REG_MCU_CTRL_BUCK2_RSVD_RD" reset_value="0x0" width="20">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="10" name="BUCKLFCLKSEL" readwrite="RW" access_macro="N/A" reset_value="0x0" width="2" reserved="reserved">
+        <ioreg_bf_description>"Enable/disable hysteresis on core buck converters internal comparators."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="9" name="HYSTBUCKCORE" readwrite="RW" access_macro="REG_MCU_CTRL_BUCK2_HYSTBUCKCORE_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"Enable/disable hysteresis on core buck converters internal comparators."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="8" name="HYSTBUCKMEM" readwrite="RW" access_macro="REG_MCU_CTRL_BUCK2_HYSTBUCKMEM_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"Enable/disable hysteresis on memory buck converters internal comparators."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="4" name="BMEMTONSEL" readwrite="RW" access_macro="REG_MCU_CTRL_BUCK2_BMEMTONSEL_WR" reset_value="0x0" width="4">
+        <ioreg_bf_description>"Flash Buck Time On Select"
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="BCORETONSEL" readwrite="RW" access_macro="REG_MCU_CTRL_BUCK2_BCORETONSEL_WR" reset_value="0x0" width="4">
+        <ioreg_bf_description>"Core Buck Time On Select"
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>LDOREG1</ioreg_name>
+    <ioreg_offset>0x00000080</ioreg_offset>
+    <ioreg_intro>Analog LDO Reg 1</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="26" name="RSVD" readwrite="RO" access_macro="REG_MCU_CTRL_LDOREG1_RSVD_RD" reset_value="0x0" width="6">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="19" name="TRIMCORELDOR3" readwrite="RW" access_macro="N/A" reset_value="0x0" width="7" reserved="reserved">
+        <ioreg_bf_description>"CORE LDO Trim R3."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="9" name="TRIMCORELDOR2" readwrite="RW" access_macro="REG_MCU_CTRL_LDOREG1_TRIMCORELDOR2_WR" reset_value="0x0" width="10">
+        <ioreg_bf_description>"CORE LDO Trim R2."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="TRIMCORELDOR1" readwrite="RW" access_macro="REG_MCU_CTRL_LDOREG1_TRIMCORELDOR1_WR" reset_value="0x0" width="9">
+        <ioreg_bf_description>"CORE LDO Trim R1."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>LDOREG2</ioreg_name>
+    <ioreg_offset>0x00000084</ioreg_offset>
+    <ioreg_intro>LDO Control Register 2</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="23" name="RSVD" readwrite="RO" access_macro="REG_MCU_CTRL_LDOREG2_RSVD_RD" reset_value="0x0" width="9">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="22" name="PWDANALDO" readwrite="RW" access_macro="N/A" reset_value="0x0" width="1" reserved="reserved">
+        <ioreg_bf_description>"Analog LDO Power Down."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="21" name="PWDMEMLDO" readwrite="RW" access_macro="REG_MCU_CTRL_LDOREG2_PWDMEMLDO_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"FLASH LDO Power Down."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="20" name="PWDCORELDO" readwrite="RW" access_macro="REG_MCU_CTRL_LDOREG2_PWDCORELDO_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"CORE LDO Power Down."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="19" name="SLEEPANALDO" readwrite="RW" access_macro="REG_MCU_CTRL_LDOREG2_SLEEPANALDO_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"Analog LDO Sleep."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="18" name="SLEEPMEMLDO" readwrite="RW" access_macro="REG_MCU_CTRL_LDOREG2_SLEEPMEMLDO_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"FLASH LDO Sleep."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="17" name="SLEEPCORELDO" readwrite="RW" access_macro="REG_MCU_CTRL_LDOREG2_SLEEPCORELDO_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"CORE LDO Sleep."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="16" name="VREFSELANALDO" readwrite="RW" access_macro="REG_MCU_CTRL_LDOREG2_VREFSELANALDO_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"Analog LDO VREF Select."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="15" name="VREFSELSRAMLDO" readwrite="RW" access_macro="REG_MCU_CTRL_LDOREG2_VREFSELSRAMLDO_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"SRAM LDO VREF Select."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="14" name="VREFSELFLASHLDO" readwrite="RW" access_macro="REG_MCU_CTRL_LDOREG2_VREFSELFLASHLDO_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"Flash LDO VREF Select."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="13" name="VREFSELCORELDO" readwrite="RW" access_macro="REG_MCU_CTRL_LDOREG2_VREFSELCORELDO_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"Core LDO VREF Select."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="9" name="TRIMANALDO" readwrite="RW" access_macro="REG_MCU_CTRL_LDOREG2_TRIMANALDO_WR" reset_value="0x0" width="4">
+        <ioreg_bf_description>"Analog LDO Trim."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="5" name="TRIMSRAMLDO" readwrite="RW" access_macro="REG_MCU_CTRL_LDOREG2_TRIMSRAMLDO_WR" reset_value="0x0" width="4">
+        <ioreg_bf_description>"SRAM LDO Trim."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="1" name="TRIMLDOMEM" readwrite="RW" access_macro="REG_MCU_CTRL_LDOREG2_TRIMLDOMEM_WR" reset_value="0x0" width="4">
+        <ioreg_bf_description>"Mem LDO Trim."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="LDO2SWE" readwrite="RW" access_macro="REG_MCU_CTRL_LDOREG2_LDO2SWE_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"LDO2 Software Override Enable."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>LDOREG3</ioreg_name>
+    <ioreg_offset>0x00000088</ioreg_offset>
+    <ioreg_intro>LDO Control Register 3</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="3" name="RSVD" readwrite="RO" access_macro="REG_MCU_CTRL_LDOREG3_RSVD_RD" reset_value="0x0" width="29">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="2" name="PWDSRAMLDO" readwrite="RW" access_macro="N/A" reset_value="0x0" width="1" reserved="reserved">
+        <ioreg_bf_description>"SRAM LDO Power Down."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="1" name="SLEEPSRAMLDO" readwrite="RW" access_macro="REG_MCU_CTRL_LDOREG3_SLEEPSRAMLDO_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"Bypass SRAM LDO."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="LDO3SWE" readwrite="RW" access_macro="REG_MCU_CTRL_LDOREG3_LDO3SWE_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"LDO3 Software Override Enable."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>UNCALVREF</ioreg_name>
+    <ioreg_offset>0x000000a0</ioreg_offset>
+    <ioreg_intro>Uncalibrated VREF Control</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="1" name="RSVD" readwrite="RO" access_macro="REG_MCU_CTRL_UNCALVREF_RSVD_RD" reset_value="0x0" width="31">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="PWDUNCALVREF" readwrite="RW" access_macro="N/A" reset_value="0x0" width="1" reserved="reserved">
+        <ioreg_bf_description>"Uncalibrated vref power down"
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>HFRC</ioreg_name>
+    <ioreg_offset>0x000000c0</ioreg_offset>
+    <ioreg_intro>HFRC Control</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="21" name="RSVD" readwrite="RO" access_macro="REG_MCU_CTRL_HFRC_RSVD_RD" reset_value="0x0" width="11">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="10" name="HFTUNE" readwrite="RW" access_macro="N/A" reset_value="0x0" width="11" reserved="reserved">
+        <ioreg_bf_description>"HFRC tuning for clk gen."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="5" name="HFRCDEL" readwrite="RW" access_macro="REG_MCU_CTRL_HFRC_HFRCDEL_WR" reset_value="0x0" width="5">
+        <ioreg_bf_description>"Power Up Delay before enabling clocks."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="4" name="DISABLEHFRC" readwrite="RW" access_macro="REG_MCU_CTRL_HFRC_DISABLEHFRC_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"Disable HFRC."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="3" name="OUTLOWHFRC" readwrite="RW" access_macro="REG_MCU_CTRL_HFRC_OUTLOWHFRC_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"Force HFRC Output Low."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="1" name="TRIMCOEFFHFRC" readwrite="RW" access_macro="REG_MCU_CTRL_HFRC_TRIMCOEFFHFRC_WR" reset_value="0x0" width="2">
+        <ioreg_bf_description>"HFRC Frequency Tune trim bits"
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="HFRCSWE" readwrite="RW" access_macro="REG_MCU_CTRL_HFRC_HFRCSWE_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"HFRC Software Override Enable."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>LFRC</ioreg_name>
+    <ioreg_offset>0x000000e0</ioreg_offset>
+    <ioreg_intro>LFRC Control</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="8" name="RSVD" readwrite="RO" access_macro="REG_MCU_CTRL_LFRC_RSVD_RD" reset_value="0x0" width="24">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="7" name="RESETLFRC" readwrite="RW" access_macro="N/A" reset_value="0x0" width="1" reserved="reserved">
+        <ioreg_bf_description>"LFRC Reset."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="6" name="PWDLFRC" readwrite="RW" access_macro="REG_MCU_CTRL_LFRC_PWDLFRC_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"Power Down LFRC."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="1" name="TRIMTUNELFRC" readwrite="RW" access_macro="REG_MCU_CTRL_LFRC_TRIMTUNELFRC_WR" reset_value="0x0" width="5">
+        <ioreg_bf_description>"LFRC Frequency Tune trim bits"
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="LFRCSWE" readwrite="RW" access_macro="REG_MCU_CTRL_LFRC_LFRCSWE_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"LFRC Software Override Enable."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>BANDGAPEN</ioreg_name>
+    <ioreg_offset>0x000000fc</ioreg_offset>
+    <ioreg_intro>Band Gap Enable</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="1" name="RSVD" readwrite="RO" access_macro="REG_MCU_CTRL_BANDGAPEN_RSVD_RD" reset_value="0x0" width="31">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="BGPEN" readwrite="RW" access_macro="N/A" reset_value="0x0" width="1" reserved="reserved">
+        <ioreg_bf_description>"Bandgap Enable"
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>TEMPSCTRL</ioreg_name>
+    <ioreg_offset>0x00000100</ioreg_offset>
+    <ioreg_intro>Temp Sensor Control</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="8" name="RSVD" readwrite="RO" access_macro="REG_MCU_CTRL_TEMPSCTRL_RSVD_RD" reset_value="0x0" width="24">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="4" name="BGTRIM" readwrite="RW" access_macro="N/A" reset_value="0x0" width="4" reserved="reserved">
+        <ioreg_bf_description>"Bandgap trim bits."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="TSTRIM" readwrite="RW" access_macro="REG_MCU_CTRL_TEMPSCTRL_TSTRIM_WR" reset_value="0x0" width="4">
+        <ioreg_bf_description>"Temperature sensor trim bits."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>BODPORCTRL</ioreg_name>
+    <ioreg_offset>0x00000104</ioreg_offset>
+    <ioreg_intro>BOD and PDR control Register</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="4" name="RSVD" readwrite="RO" access_macro="REG_MCU_CTRL_BODPORCTRL_RSVD_RD" reset_value="0x0" width="28">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="3" name="BODEXTREFSEL" readwrite="RW" access_macro="N/A" reset_value="0x0" width="1" reserved="reserved">
+        <ioreg_bf_description>"BOD External Reference Select."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="2" name="PDREXTREFSEL" readwrite="RW" access_macro="REG_MCU_CTRL_BODPORCTRL_PDREXTREFSEL_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"PDR External Reference Select."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="1" name="PWDBOD" readwrite="RW" access_macro="REG_MCU_CTRL_BODPORCTRL_PWDBOD_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"BOD Power Down."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="PWDPDR" readwrite="RW" access_macro="REG_MCU_CTRL_BODPORCTRL_PWDPDR_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"PDR Power Down."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>ADCPWRDLY</ioreg_name>
+    <ioreg_offset>0x00000108</ioreg_offset>
+    <ioreg_intro>ADC Power Up Delay Control</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="21" name="RSVD" readwrite="RO" access_macro="REG_MCU_CTRL_ADCPWRDLY_RSVD_RD" reset_value="0x0" width="11">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="16" name="ADCREFTRIM" readwrite="RW" access_macro="N/A" reset_value="0x0" width="5" reserved="reserved">
+        <ioreg_bf_description>"ADC IP enable delay"
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="8" name="ADCPWR1" readwrite="RW" access_macro="REG_MCU_CTRL_ADCPWRDLY_ADCPWR1_WR" reset_value="0x0" width="8">
+        <ioreg_bf_description>"ADC IP enable delay"
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="ADCPWR0" readwrite="RW" access_macro="REG_MCU_CTRL_ADCPWRDLY_ADCPWR0_WR" reset_value="0x0" width="8">
+        <ioreg_bf_description>"ADC Power Switch delay"
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>ADCTSBGPWD</ioreg_name>
+    <ioreg_offset>0x0000010c</ioreg_offset>
+    <ioreg_intro>ADC Temp Sensor Bandgap Power Control</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="3" name="RSVD" readwrite="RO" access_macro="REG_MCU_CTRL_ADCTSBGPWD_RSVD_RD" reset_value="0x0" width="29">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="2" name="TSPEN" readwrite="RW" access_macro="N/A" reset_value="0x0" width="1" reserved="reserved">
+        <ioreg_bf_description>"This bitfield enables the Temp Sensor Power when set to 1 if the ADCTSBGSWE bit is set."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="1" name="ADCPSEN" readwrite="RW" access_macro="REG_MCU_CTRL_ADCTSBGPWD_ADCPSEN_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bitfield enables the ADC Power Switch on when set to 1 if the ADCTSBGSWE bit is set."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="ADCTSBGSWE" readwrite="RW" access_macro="REG_MCU_CTRL_ADCTSBGPWD_ADCTSBGSWE_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"ADC Temp Sendor Bandgap Software Power Control Enable"
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>XTALCTRL</ioreg_name>
+    <ioreg_offset>0x00000120</ioreg_offset>
+    <ioreg_intro>XTAL Oscillator Control</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="12" name="RSVD" readwrite="RO" access_macro="REG_MCU_CTRL_XTALCTRL_RSVD_RD" reset_value="0x0" width="20">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="11" name="PWDCMPRXTAL" readwrite="RW" access_macro="N/A" reset_value="0x0" width="1" reserved="reserved">
+        <ioreg_bf_description>"XTAL Oscillator Power Down Comparator."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="10" name="PWDCOREXTAL" readwrite="RW" access_macro="REG_MCU_CTRL_XTALCTRL_PWDCOREXTAL_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"XTAL Oscillator Power Down Core."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="8" name="ACWARMUP" readwrite="RW" access_macro="REG_MCU_CTRL_XTALCTRL_ACWARMUP_WR" reset_value="0x0" width="2">
+        <ioreg_bf_description>"Auto-calibration delay control"
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="7" name="BYPCMPRXTAL" readwrite="RW" access_macro="REG_MCU_CTRL_XTALCTRL_BYPCMPRXTAL_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"XTAL Oscillator Bypass Comparator."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="6" name="FDBKDSBLXTAL" readwrite="RW" access_macro="REG_MCU_CTRL_XTALCTRL_FDBKDSBLXTAL_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"XTAL Oscillator Disable Feedback."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="1" name="TRIMCOREBXTAL" readwrite="RW" access_macro="REG_MCU_CTRL_XTALCTRL_TRIMCOREBXTAL_WR" reset_value="0x0" width="5">
+        <ioreg_bf_description>"XTAL Oscillator Core bias trim bits"
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="XTALSWE" readwrite="RW" access_macro="REG_MCU_CTRL_XTALCTRL_XTALSWE_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"XTAL Software Override Enable."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>SRAMPWDINSLEEP</ioreg_name>
+    <ioreg_offset>0x00000140</ioreg_offset>
+    <ioreg_intro>Powerdown an SRAM Bank in Deep Sleep mode</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="8" name="RSVD" readwrite="RO" access_macro="REG_MCU_CTRL_SRAMPWDINSLEEP_RSVD_RD" reset_value="0x0" width="24">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="7" name="BANK7PWDINSLEEP" readwrite="RW" access_macro="N/A" reset_value="0x0" width="1" reserved="reserved">
+        <ioreg_bf_description>"This bit forces SRAM Bank 7 to powerdown in deep sleep mode, causing the contents of the bank to be lost."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="6" name="BANK6PWDINSLEEP" readwrite="RW" access_macro="REG_MCU_CTRL_SRAMPWDINSLEEP_BANK6PWDINSLEEP_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit forces SRAM Bank 6 to powerdown in deep sleep mode, causing the contents of the bank to be lost."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="5" name="BANK5PWDINSLEEP" readwrite="RW" access_macro="REG_MCU_CTRL_SRAMPWDINSLEEP_BANK5PWDINSLEEP_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit forces SRAM Bank 5 to powerdown in deep sleep mode, causing the contents of the bank to be lost."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="4" name="BANK4PWDINSLEEP" readwrite="RW" access_macro="REG_MCU_CTRL_SRAMPWDINSLEEP_BANK4PWDINSLEEP_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit forces SRAM Bank 4 to powerdown in deep sleep mode, causing the contents of the bank to be lost."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="3" name="BANK3PWDINSLEEP" readwrite="RW" access_macro="REG_MCU_CTRL_SRAMPWDINSLEEP_BANK3PWDINSLEEP_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit forces SRAM Bank 3 to powerdown in deep sleep mode, causing the contents of the bank to be lost."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="2" name="BANK2PWDINSLEEP" readwrite="RW" access_macro="REG_MCU_CTRL_SRAMPWDINSLEEP_BANK2PWDINSLEEP_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit forces SRAM Bank 2 to powerdown in deep sleep mode, causing the contents of the bank to be lost."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="1" name="BANK1PWDINSLEEP" readwrite="RW" access_macro="REG_MCU_CTRL_SRAMPWDINSLEEP_BANK1PWDINSLEEP_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit forces SRAM Bank 1 to powerdown in deep sleep mode, causing the contents of the bank to be lost."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="BANK0PWDINSLEEP" readwrite="RW" access_macro="REG_MCU_CTRL_SRAMPWDINSLEEP_BANK0PWDINSLEEP_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit forces SRAM Bank 0 to powerdown in deep sleep mode, causing the contents of the bank to be lost."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>SRAMPWRDIS</ioreg_name>
+    <ioreg_offset>0x00000144</ioreg_offset>
+    <ioreg_intro>Disables individual banks of the SRAM array</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="8" name="RSVD" readwrite="RO" access_macro="REG_MCU_CTRL_SRAMPWRDIS_RSVD_RD" reset_value="0x0" width="24">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="7" name="VDDR7DIS" readwrite="RW" access_macro="N/A" reset_value="0x0" width="1" reserved="reserved">
+        <ioreg_bf_description>"This bit disables SRAM 7 array."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="6" name="VDDR6DIS" readwrite="RW" access_macro="REG_MCU_CTRL_SRAMPWRDIS_VDDR6DIS_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit disables SRAM 6 array."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="5" name="VDDR5DIS" readwrite="RW" access_macro="REG_MCU_CTRL_SRAMPWRDIS_VDDR5DIS_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit disables SRAM 5 array."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="4" name="VDDR4DIS" readwrite="RW" access_macro="REG_MCU_CTRL_SRAMPWRDIS_VDDR4DIS_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit disables SRAM 4 array."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="3" name="VDDR3DIS" readwrite="RW" access_macro="REG_MCU_CTRL_SRAMPWRDIS_VDDR3DIS_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit disables SRAM 3 array."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="2" name="VDDR2DIS" readwrite="RW" access_macro="REG_MCU_CTRL_SRAMPWRDIS_VDDR2DIS_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit disables SRAM 2 array."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="1" name="VDDR1DIS" readwrite="RW" access_macro="REG_MCU_CTRL_SRAMPWRDIS_VDDR1DIS_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit disables SRAM 1 array."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="VDDR0DIS" readwrite="RW" access_macro="REG_MCU_CTRL_SRAMPWRDIS_VDDR0DIS_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit disables SRAM 0 array."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>FLASHPWRDIS</ioreg_name>
+    <ioreg_offset>0x00000148</ioreg_offset>
+    <ioreg_intro>Disables individual banks of the Flash array</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="2" name="RSVD" readwrite="RO" access_macro="REG_MCU_CTRL_FLASHPWRDIS_RSVD_RD" reset_value="0x0" width="30">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="1" name="VDDF1DIS" readwrite="RW" access_macro="N/A" reset_value="0x0" width="1" reserved="reserved">
+        <ioreg_bf_description>"This bit disables Flash 1 instance."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="VDDF0DIS" readwrite="RW" access_macro="REG_MCU_CTRL_FLASHPWRDIS_VDDF0DIS_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit disables Flash 0 instance."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>MFGTEST1</ioreg_name>
+    <ioreg_offset>0x00000160</ioreg_offset>
+    <ioreg_intro>Manufacturing Test Register 1</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="12" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="20" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="11" name="EXT_HF" readwrite="RW" access_macro="REG_MCU_CTRL_MFGTEST1_EXT_HF_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the Manufacturing Test EXT_HF External Clock Source Select."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="10" name="EXT_LF" readwrite="RW" access_macro="REG_MCU_CTRL_MFGTEST1_EXT_LF_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the Manufacturing Test EXT_LF External Clock Source Select."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="9" name="EXT_XT" readwrite="RW" access_macro="REG_MCU_CTRL_MFGTEST1_EXT_XT_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the Manufacturing Test EXT_XT External Clock Source Select."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="8" name="CLKTEST" readwrite="RW" access_macro="REG_MCU_CTRL_MFGTEST1_CLKTEST_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the Manufacturing Test ripple counter short circuit control."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="8" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>MFGTEST2</ioreg_name>
+    <ioreg_offset>0x00000164</ioreg_offset>
+    <ioreg_intro>Manufacturing Test Register 2 : SRAM BIST Control</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="8" name="RSVD" readwrite="RO" access_macro="REG_MCU_CTRL_MFGTEST2_RSVD_RD" reset_value="0x0" width="24">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="SBISTEN" readwrite="RW" access_macro="N/A" reset_value="0x0" width="8" reserved="reserved">
+        <ioreg_bf_description>"This bitfield Enables SRAM BIST for SRAM instances."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>MFGTEST3</ioreg_name>
+    <ioreg_offset>0x00000168</ioreg_offset>
+    <ioreg_intro>Manufacturing Test Register 3 : SRAM BIST Results</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="24" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="8" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="16" name="SBISTERR" readwrite="RO" access_macro="REG_MCU_CTRL_MFGTEST3_SBISTERR_RD" reset_value="0x0" width="8">
+        <ioreg_bf_description>"SRAM BIST pass/fail results for the BIST enabled instances.  1=FAIL, 0=PASS."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="8" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="8" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="SBISTEND" readwrite="RO" access_macro="REG_MCU_CTRL_MFGTEST3_SBISTEND_RD" reset_value="0x0" width="8">
+        <ioreg_bf_description>"SRAM BIST sequence completed status for the BIST enabled instances. 1=COMPLETE, 0=IN PROGRESS."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>MFGTEST4</ioreg_name>
+    <ioreg_offset>0x0000016c</ioreg_offset>
+    <ioreg_intro>Non scannable MFGTST Register</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="4" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="28" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="PINTEST" readwrite="RW" access_macro="REG_MCU_CTRL_MFGTEST4_PINTEST_WR" reset_value="0x0" width="4">
+        <ioreg_bf_description>"This bitfield is the Manufacturing Test field for GPIO control."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>ANATEST</ioreg_name>
+    <ioreg_offset>0x00000170</ioreg_offset>
+    <ioreg_intro>Analog Test Register</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="21" name="RSVD" readwrite="RO" access_macro="REG_MCU_CTRL_ANATEST_RSVD_RD" reset_value="0x0" width="11">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="20" name="CMPCCRGCAL" readwrite="RO" access_macro="N/A" reset_value="0x0" width="1" reserved="reserved">
+        <ioreg_bf_description>"Analog Output 4."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="19" name="CMP2P2" readwrite="RO" access_macro="REG_MCU_CTRL_ANATEST_CMP2P2_RD" reset_value="0x0" width="1">
+        <ioreg_bf_description>"Analog Output 3."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="18" name="CMP1P8LP" readwrite="RO" access_macro="REG_MCU_CTRL_ANATEST_CMP1P8LP_RD" reset_value="0x0" width="1">
+        <ioreg_bf_description>"Analog Output 2."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="17" name="CMP1P8HP" readwrite="RO" access_macro="REG_MCU_CTRL_ANATEST_CMP1P8HP_RD" reset_value="0x0" width="1">
+        <ioreg_bf_description>"Analog Output 1."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="16" name="CMP1P0" readwrite="RO" access_macro="REG_MCU_CTRL_ANATEST_CMP1P0_RD" reset_value="0x0" width="1">
+        <ioreg_bf_description>"Analog Output 0."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="9" name="RSVD" readwrite="RO" access_macro="REG_MCU_CTRL_ANATEST_RSVD_RD" reset_value="0x0" width="7">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="8" name="ANAMODE" readwrite="RW" access_macro="N/A" reset_value="0x0" width="1" reserved="reserved">
+        <ioreg_bf_description>"Analog Block signal."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="7" name="ANAFRC" readwrite="RW" access_macro="REG_MCU_CTRL_ANATEST_ANAFRC_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"Analog test force, measure."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="2" name="ANABLOCK" readwrite="RW" access_macro="REG_MCU_CTRL_ANATEST_ANABLOCK_WR" reset_value="0x0" width="5">
+        <ioreg_bf_description>"Analog Block Under Test."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="ANASIG" readwrite="RW" access_macro="REG_MCU_CTRL_ANATEST_ANASIG_WR" reset_value="0x0" width="2">
+        <ioreg_bf_description>"Analog Block signal."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>PWRONRSTDLY</ioreg_name>
+    <ioreg_offset>0x00000180</ioreg_offset>
+    <ioreg_intro>Power On Sequence Delay Register</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="24" name="RSVD" readwrite="RO" access_macro="REG_MCU_CTRL_PWRONRSTDLY_RSVD_RD" reset_value="0x0" width="8">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="16" name="PORDLY3" readwrite="RW" access_macro="N/A" reset_value="0x0" width="8" reserved="reserved">
+        <ioreg_bf_description>"This bitfield controls the Power On Sequence Delay 2."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="8" name="PORDLY2" readwrite="RW" access_macro="REG_MCU_CTRL_PWRONRSTDLY_PORDLY2_WR" reset_value="0x0" width="8">
+        <ioreg_bf_description>"This bitfield controls the Power On Sequence Delay 2."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="PORDLY1" readwrite="RW" access_macro="REG_MCU_CTRL_PWRONRSTDLY_PORDLY1_WR" reset_value="0x0" width="8">
+        <ioreg_bf_description>"This bitfield controls the Power On Sequence Delay 1."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>PWRSEQ1ANA</ioreg_name>
+    <ioreg_offset>0x00000184</ioreg_offset>
+    <ioreg_intro>Power on analog sequence1</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="2" name="RSVD" readwrite="RO" access_macro="REG_MCU_CTRL_PWRSEQ1ANA_RSVD_RD" reset_value="0x0" width="30">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="1" name="CVRGHSN" readwrite="RW" access_macro="N/A" reset_value="0x1" width="1" reserved="reserved">
+        <ioreg_bf_description>"Calibrated Voltage Reference Generator speed mode (high speed = 0, low speed mode = 1)"
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="PWRSEQ1SWE" readwrite="RW" access_macro="REG_MCU_CTRL_PWRSEQ1ANA_PWRSEQ1SWE_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"Analog Power sequence signals software override enable."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>PWRSEQ2ANA</ioreg_name>
+    <ioreg_offset>0x00000188</ioreg_offset>
+    <ioreg_intro>Power on analog sequence2</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="2" name="RSVD" readwrite="RO" access_macro="REG_MCU_CTRL_PWRSEQ2ANA_RSVD_RD" reset_value="0x0" width="30">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="1" name="LDOVREFSEL" readwrite="RW" access_macro="N/A" reset_value="0x1" width="1" reserved="reserved">
+        <ioreg_bf_description>"Select to the ALDO and CLDO to use uncalibrated (0) or calibrated (1) voltage reference".
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="PWRSEQ2SWE" readwrite="RW" access_macro="REG_MCU_CTRL_PWRSEQ2ANA_PWRSEQ2SWE_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"Analog Power sequence signals software override enable."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>PWRSEQ3ANA</ioreg_name>
+    <ioreg_offset>0x0000018c</ioreg_offset>
+    <ioreg_intro>Power on analog sequence3</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="2" name="RSVD" readwrite="RO" access_macro="REG_MCU_CTRL_PWRSEQ3ANA_RSVD_RD" reset_value="0x0" width="30">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="1" name="PWDCMPP18HP" readwrite="RW" access_macro="N/A" reset_value="0x1" width="1" reserved="reserved">
+        <ioreg_bf_description>"reset power stable comparator power down."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="PWRSEQ3SWE" readwrite="RW" access_macro="REG_MCU_CTRL_PWRSEQ3ANA_PWRSEQ3SWE_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"Analog Power sequence signals software override enable."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>LABCHAR</ioreg_name>
+    <ioreg_offset>0x00000190</ioreg_offset>
+    <ioreg_intro>Lab acterization Miscellaneous Regs</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="1" name="RSVD" readwrite="RO" access_macro="REG_MCU_CTRL_LABCHAR_RSVD_RD" reset_value="0x0" width="31">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="BODLRDE" readwrite="RW" access_macro="N/A" reset_value="0x0" width="1" reserved="reserved">
+        <ioreg_bf_description>"Disable 1.8V Brown-out reset."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>BOOTLOADERLOW</ioreg_name>
+    <ioreg_offset>0x000001a0</ioreg_offset>
+    <ioreg_intro>This register determines whether the bootloader code is visible at address 0x00000000</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="1" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="31" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="BOOTLOADERLOW" readwrite="RW" access_macro="REG_MCU_CTRL_BOOTLOADERLOW_BOOTLOADERLOW_WR" reset_value="0x1" width="1">
+        <ioreg_bf_description>"This bit determines whether the bootloader code is visible at address 0x00000000 or not."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>SHADOWVALID</ioreg_name>
+    <ioreg_offset>0x000001a4</ioreg_offset>
+    <ioreg_intro>Register to indicate whether the shadow registers are valid</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="1" name="RSVD" readwrite="RO" access_macro="REG_MCU_CTRL_SHADOWVALID_RSVD_RD" reset_value="0x0" width="31">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="SHADOWVALID" readwrite="RO" access_macro="N/A" reset_value="0x1" width="1" reserved="reserved">
+        <ioreg_bf_description>"This bit indicates whether the shadow registers contain valid data from the Flash Information Space."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>ICODEFAULTADDR</ioreg_name>
+    <ioreg_offset>0x000001c0</ioreg_offset>
+    <ioreg_intro>Register to capture the address on the ICODE bus observed which causes a bus fault</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="0" name="ICODEFAULTADDR" readwrite="RO" access_macro="REG_MCU_CTRL_ICODEFAULTADDR_ICODEFAULTADDR_RD" reset_value="0x0" width="32">
+        <ioreg_bf_description>"This field contains the ICODE bus address observed when a Bus Fault occurred. Once an address is captured in this field, it is held until the corresponding Fault Observed bit is cleared in the FAULTSTATUS register."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>DCODEFAULTADDR</ioreg_name>
+    <ioreg_offset>0x000001c4</ioreg_offset>
+    <ioreg_intro>Register to capture the address on the DCODE bus observed which causes a bus fault</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="0" name="DCODEFAULTADDR" readwrite="RO" access_macro="REG_MCU_CTRL_DCODEFAULTADDR_DCODEFAULTADDR_RD" reset_value="0x0" width="32">
+        <ioreg_bf_description>"This field contains the DCODE bus address observed when a Bus Fault occurred. Once an address is captured in this field, it is held until the   corresponding Fault Observed bit is cleared in the FAULTSTATUS register."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>SYSFAULTADDR</ioreg_name>
+    <ioreg_offset>0x000001c8</ioreg_offset>
+    <ioreg_intro>Register to capture the address on the SYS bus observed which causes a bus fault</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="0" name="SYSFAULTADDR" readwrite="RO" access_macro="REG_MCU_CTRL_SYSFAULTADDR_SYSFAULTADDR_RD" reset_value="0x0" width="32">
+        <ioreg_bf_description>"This field contains the SYS bus address observed when a Bus Fault occurred. Once an address is captured in this field, it is held until the   corresponding Fault Observed bit is cleared in the FAULTSTATUS register."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>FAULTSTATUS</ioreg_name>
+    <ioreg_offset>0x000001cc</ioreg_offset>
+    <ioreg_intro>Register to reflect the status of the bus decoders' fault detection.</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="3" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="29" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="2" name="SYSFAULT" readwrite="RW" access_macro="REG_MCU_CTRL_FAULTSTATUS_SYSFAULT_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"The SYS Bus Decoder Fault Detected bit. When '1', a fault has been detected, and the SYSFAULTADDR register will contain the bus address which generated the fault. A write to this register will clear all of the status bits."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="1" name="DCODEFAULT" readwrite="RW" access_macro="REG_MCU_CTRL_FAULTSTATUS_DCODEFAULT_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"The DCODE Bus Decoder Fault Detected bit. When '1', a fault has been detected, and the DCODEFAULTADDR register will contain the bus address which generated the fault. A write to this register will clear all of the status bits."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="ICODEFAULT" readwrite="RW" access_macro="REG_MCU_CTRL_FAULTSTATUS_ICODEFAULT_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"The ICODE Bus Decoder Fault Detected bit. When '1', a fault has been detected, and the ICODEFAULTADDR register will contain the bus address which generated the fault. A write to this register will clear all of the status bits."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>FAULTCAPTUREEN</ioreg_name>
+    <ioreg_offset>0x000001d0</ioreg_offset>
+    <ioreg_intro>Register to enable the fault capture registers</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="1" name="RSVD" readwrite="RO" access_macro="REG_MCU_CTRL_FAULTCAPTUREEN_RSVD_RD" reset_value="0x0" width="31">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="FAULTCAPTUREEN" readwrite="RW" access_macro="N/A" reset_value="0x0" width="1" reserved="reserved">
+        <ioreg_bf_description>"This bit enables (1) or disables (0) the fault capture mechanism."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>SRAMPWRKEY</ioreg_name>
+    <ioreg_offset>0x00000200</ioreg_offset>
+    <ioreg_intro>Key Register for SRAM POWER CONTROL</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="0" name="VALUE" readwrite="RW" access_macro="REG_MCU_CTRL_SRAMPWRKEY_VALUE_WR" reset_value="0x0" width="32">
+        <ioreg_bf_description>Key value. (0x19 unlocks)
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>FLASHPWRKEY</ioreg_name>
+    <ioreg_offset>0x00000204</ioreg_offset>
+    <ioreg_intro>Key Register for FLASH POWER CONTROL</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="0" name="VALUE" readwrite="RW" access_macro="REG_MCU_CTRL_FLASHPWRKEY_VALUE_WR" reset_value="0x0" width="32">
+        <ioreg_bf_description>Key value. (0xd3 unlocks)
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>AIKEY</ioreg_name>
+    <ioreg_offset>0x00000208</ioreg_offset>
+    <ioreg_intro>Key Register for Ambiq Internal Settings (mfg test, trims)</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="0" name="VALUE" readwrite="RW" access_macro="REG_MCU_CTRL_AIKEY_VALUE_WR" reset_value="0x0" width="32">
+        <ioreg_bf_description>Key value. (0x73 unlocks)
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>PMUENABLE</ioreg_name>
+    <ioreg_offset>0x00000220</ioreg_offset>
+    <ioreg_intro>Control bit to enable/disable the PMU</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="1" name="RSVD" readwrite="RO" access_macro="REG_MCU_CTRL_PMUENABLE_RSVD_RD" reset_value="0x0" width="31">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="PMUENABLE" readwrite="RW" access_macro="N/A" reset_value="0x1" width="1" reserved="reserved">
+        <ioreg_bf_description>"This bit selectively enables (1) or disables (0) the Power Management unit of the MCU."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>MISCDEVST</ioreg_name>
+    <ioreg_offset>0x00000240</ioreg_offset>
+    <ioreg_intro>Miscellaneous Device State</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="2" name="RSVD" readwrite="RO" access_macro="REG_MCU_CTRL_MISCDEVST_RSVD_RD" reset_value="0x0" width="30">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="1" name="FABD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="1" reserved="reserved">
+        <ioreg_bf_description>"This bit reflects the state of the chip's FA_BD control."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="SRAMWIPED" readwrite="RO" access_macro="REG_MCU_CTRL_MISCDEVST_SRAMWIPED_RD" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit indicates that the SRAM was forced to power-off when a debugger was attached."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg_bigpicture/>
+  </ioregisters>
+</device>

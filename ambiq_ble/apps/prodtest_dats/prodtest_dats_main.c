@@ -11,7 +11,7 @@
 
 //*****************************************************************************
 //
-// Copyright (c) 2020, Ambiq Micro
+// Copyright (c) 2020, Ambiq Micro, Inc.
 // All rights reserved.
 //
 // Redistribution and use in source and binary forms, with or without
@@ -43,7 +43,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
-// This is part of revision 2.4.2 of the AmbiqSuite Development Package.
+// This is part of revision 2.5.1 of the AmbiqSuite Development Package.
 //
 //*****************************************************************************
 
@@ -446,145 +446,145 @@ static void datsSetup(dmEvt_t *pMsg)
 /*************************************************************************************************/
 static void datsProcMsg(dmEvt_t *pMsg)
 {
-  uint8_t uiEvent = APP_UI_NONE;
+    uint8_t uiEvent = APP_UI_NONE;
 
-  switch(pMsg->hdr.event)
-  {
-    case ATT_MTU_UPDATE_IND:
-      APP_TRACE_INFO1("Negotiated MTU %d", ((attEvt_t *)pMsg)->mtu);
-      break;
+    switch(pMsg->hdr.event)
+    {
+        case ATT_MTU_UPDATE_IND:
+            APP_TRACE_INFO1("Negotiated MTU %d", ((attEvt_t *)pMsg)->mtu);
+            break;
 
-    case DM_RESET_CMPL_IND:
-      AttsCalculateDbHash();
-      DmSecGenerateEccKeyReq();
-      datsSetup(NULL);
-      uiEvent = APP_UI_RESET_CMPL;
-      HciVsEM_SetRfPowerLevelEx(TX_POWER_LEVEL_PLUS_0P4_dBm);
-      break;
+        case DM_RESET_CMPL_IND:
+            AttsCalculateDbHash();
+            DmSecGenerateEccKeyReq();
+            datsSetup(NULL);
+            uiEvent = APP_UI_RESET_CMPL;
+            HciVsEM_SetRfPowerLevelEx(TX_POWER_LEVEL_PLUS_0P4_dBm);
+            break;
 
 
-    case DM_ADV_SET_START_IND:
-        uiEvent = APP_UI_ADV_SET_START_IND;
-        break;
+        case DM_ADV_SET_START_IND:
+            uiEvent = APP_UI_ADV_SET_START_IND;
+            break;
 
-    case DM_ADV_SET_STOP_IND:
-        uiEvent = APP_UI_ADV_SET_STOP_IND;
-        break;
+        case DM_ADV_SET_STOP_IND:
+            uiEvent = APP_UI_ADV_SET_STOP_IND;
+            break;
 
-    case DM_ADV_START_IND:
-        uiEvent = APP_UI_ADV_START;
-        break;
+        case DM_ADV_START_IND:
+            uiEvent = APP_UI_ADV_START;
+            break;
 
-    case DM_ADV_STOP_IND:
-        uiEvent = APP_UI_ADV_STOP;
-        break;
+        case DM_ADV_STOP_IND:
+            uiEvent = APP_UI_ADV_STOP;
+            break;
 
-    case DM_CONN_OPEN_IND:
-      uiEvent = APP_UI_CONN_OPEN;
+        case DM_CONN_OPEN_IND:
+            uiEvent = APP_UI_CONN_OPEN;
 #if CS50_INCLUDED == TRUE
-      datsCb.phyMode = DATS_PHY_1M;
+            datsCb.phyMode = DATS_PHY_1M;
 #endif /* CS50_INCLUDED */
-      break;
+            break;
 
-    case DM_CONN_CLOSE_IND:
-      uiEvent = APP_UI_CONN_CLOSE;
-      break;
+        case DM_CONN_CLOSE_IND:
+            uiEvent = APP_UI_CONN_CLOSE;
+            break;
 
-    case DM_SEC_PAIR_CMPL_IND:
-      DmSecGenerateEccKeyReq();
-      uiEvent = APP_UI_SEC_PAIR_CMPL;
-      break;
+        case DM_SEC_PAIR_CMPL_IND:
+            DmSecGenerateEccKeyReq();
+            uiEvent = APP_UI_SEC_PAIR_CMPL;
+            break;
 
-    case DM_SEC_PAIR_FAIL_IND:
-      DmSecGenerateEccKeyReq();
-      uiEvent = APP_UI_SEC_PAIR_FAIL;
-      break;
+        case DM_SEC_PAIR_FAIL_IND:
+            DmSecGenerateEccKeyReq();
+            uiEvent = APP_UI_SEC_PAIR_FAIL;
+            break;
 
-    case DM_SEC_ENCRYPT_IND:
-      uiEvent = APP_UI_SEC_ENCRYPT;
-      break;
+        case DM_SEC_ENCRYPT_IND:
+            uiEvent = APP_UI_SEC_ENCRYPT;
+            break;
 
-    case DM_SEC_ENCRYPT_FAIL_IND:
-      uiEvent = APP_UI_SEC_ENCRYPT_FAIL;
-      break;
+        case DM_SEC_ENCRYPT_FAIL_IND:
+            uiEvent = APP_UI_SEC_ENCRYPT_FAIL;
+            break;
 
-    case DM_SEC_AUTH_REQ_IND:
+        case DM_SEC_AUTH_REQ_IND:
 
-      if (pMsg->authReq.oob)
-      {
-        dmConnId_t connId = (dmConnId_t) pMsg->hdr.param;
+            if (pMsg->authReq.oob)
+            {
+                dmConnId_t connId = (dmConnId_t) pMsg->hdr.param;
 
-        /* TODO: Perform OOB Exchange with the peer. */
+                /* TODO: Perform OOB Exchange with the peer. */
 
 
-        /* TODO: Fill datsOobCfg peerConfirm and peerRandom with value passed out of band */
+                /* TODO: Fill datsOobCfg peerConfirm and peerRandom with value passed out of band */
 
-        if (datsOobCfg != NULL)
+                if (datsOobCfg != NULL)
+                {
+                    DmSecSetOob(connId, datsOobCfg);
+                }
+
+                DmSecAuthRsp(connId, 0, NULL);
+            }
+            else
+            {
+                AppHandlePasskey(&pMsg->authReq);
+            }
+            break;
+        case DM_SEC_ECC_KEY_IND:
+            DmSecSetEccKey(&pMsg->eccMsg.data.key);
+            break;
+        case DM_SEC_COMPARE_IND:
+            AppHandleNumericComparison(&pMsg->cnfInd);
+            break;
+
+        case DM_PRIV_CLEAR_RES_LIST_IND:
+            APP_TRACE_INFO1("Clear resolving list status 0x%02x", pMsg->hdr.status);
+            break;
+
+        case DM_HW_ERROR_IND:
+            uiEvent = APP_UI_HW_ERROR;
+            break;
+        case DM_VENDOR_SPEC_CMD_CMPL_IND:
         {
-          DmSecSetOob(connId, datsOobCfg);
-        }
-
-        DmSecAuthRsp(connId, 0, NULL);
-      }
-      else
-      {
-        AppHandlePasskey(&pMsg->authReq);
-      }
-      break;
-      case DM_SEC_ECC_KEY_IND:
-        DmSecSetEccKey(&pMsg->eccMsg.data.key);
-        break;
-      case DM_SEC_COMPARE_IND:
-        AppHandleNumericComparison(&pMsg->cnfInd);
-        break;
-
-      case DM_PRIV_CLEAR_RES_LIST_IND:
-        APP_TRACE_INFO1("Clear resolving list status 0x%02x", pMsg->hdr.status);
-        break;
-
-      case DM_HW_ERROR_IND:
-        uiEvent = APP_UI_HW_ERROR;
-        break;
-      case DM_VENDOR_SPEC_CMD_CMPL_IND:
-        {
-          #if defined(AM_PART_APOLLO) || defined(AM_PART_APOLLO2)
+            #if defined(AM_PART_APOLLO) || defined(AM_PART_APOLLO2)
 
             uint8_t *param_ptr = &pMsg->vendorSpecCmdCmpl.param[0];
 
             switch (pMsg->vendorSpecCmdCmpl.opcode)
             {
-              case 0xFC20: //read at address
-              {
-                uint32_t read_value;
+                case 0xFC20: //read at address
+                {
+                    uint32_t read_value;
 
-            BSTREAM_TO_UINT32(read_value, param_ptr);
+                    BSTREAM_TO_UINT32(read_value, param_ptr);
 
-            APP_TRACE_INFO3("VSC 0x%0x complete status %x param %x",
-              pMsg->vendorSpecCmdCmpl.opcode,
-              pMsg->hdr.status,
-              read_value);
-          }
+                    APP_TRACE_INFO3("VSC 0x%0x complete status %x param %x",
+                    pMsg->vendorSpecCmdCmpl.opcode,
+                    pMsg->hdr.status,
+                    read_value);
+                }
 
-          break;
-          default:
-              APP_TRACE_INFO2("VSC 0x%0x complete status %x",
-                  pMsg->vendorSpecCmdCmpl.opcode,
-                  pMsg->hdr.status);
-          break;
+                break;
+                default:
+                    APP_TRACE_INFO2("VSC 0x%0x complete status %x",
+                                    pMsg->vendorSpecCmdCmpl.opcode,
+                                    pMsg->hdr.status);
+                break;
+            }
+
+            #endif
         }
+        break;
 
-        #endif
-      }
-      break;
+        default:
+            break;
+    }
 
-      default:
-      break;
-  }
-
-  if (uiEvent != APP_UI_NONE)
-  {
-    AppUiAction(uiEvent);
-  }
+    if (uiEvent != APP_UI_NONE)
+    {
+        AppUiAction(uiEvent);
+    }
 }
 
 /*************************************************************************************************/
@@ -633,59 +633,59 @@ void DatsHandlerInit(wsfHandlerId_t handlerId)
 static void datsBtnCback(uint8_t btn)
 {
 #if WDXS_INCLUDED == TRUE
-  static uint8_t waveform = WDXS_STREAM_WAVEFORM_SINE;
+    static uint8_t waveform = WDXS_STREAM_WAVEFORM_SINE;
 #endif /* WDXS_INCLUDED */
 
 #if CS50_INCLUDED == TRUE
-  dmConnId_t      connId;
-  if ((connId = AppConnIsOpen()) != DM_CONN_ID_NONE)
+    dmConnId_t      connId;
+    if ((connId = AppConnIsOpen()) != DM_CONN_ID_NONE)
 #else
-  if (AppConnIsOpen() != DM_CONN_ID_NONE)
+    if (AppConnIsOpen() != DM_CONN_ID_NONE)
 #endif /* CS50_INCLUDED */
-  {
-    switch (btn)
     {
+        switch (btn)
+        {
 #if CS50_INCLUDED == TRUE
-      case APP_UI_BTN_2_SHORT:
+            case APP_UI_BTN_2_SHORT:
 
-        /* Toggle PHY Test Mode */
-        if (datsCb.phyMode == DATS_PHY_1M)
-        {
-          APP_TRACE_INFO0("2 MBit TX and RX PHY Requested");
-          DmSetPhy(connId, HCI_ALL_PHY_ALL_PREFERENCES, HCI_PHY_LE_2M_BIT, HCI_PHY_LE_2M_BIT, HCI_PHY_OPTIONS_NONE);
-        }
-        else if (datsCb.phyMode == DATS_PHY_2M)
-        {
-          APP_TRACE_INFO0("LE Coded TX and RX PHY Requested");
-          DmSetPhy(connId, HCI_ALL_PHY_ALL_PREFERENCES, HCI_PHY_LE_CODED_BIT, HCI_PHY_LE_CODED_BIT, HCI_PHY_OPTIONS_NONE);
-        }
-        else
-        {
-          APP_TRACE_INFO0("1 MBit TX and RX PHY Requested");
-          DmSetPhy(connId, HCI_ALL_PHY_ALL_PREFERENCES, HCI_PHY_LE_1M_BIT, HCI_PHY_LE_1M_BIT, HCI_PHY_OPTIONS_NONE);
-        }
-        break;
+            /* Toggle PHY Test Mode */
+            if (datsCb.phyMode == DATS_PHY_1M)
+            {
+                APP_TRACE_INFO0("2 MBit TX and RX PHY Requested");
+                DmSetPhy(connId, HCI_ALL_PHY_ALL_PREFERENCES, HCI_PHY_LE_2M_BIT, HCI_PHY_LE_2M_BIT, HCI_PHY_OPTIONS_NONE);
+            }
+            else if (datsCb.phyMode == DATS_PHY_2M)
+            {
+                APP_TRACE_INFO0("LE Coded TX and RX PHY Requested");
+                DmSetPhy(connId, HCI_ALL_PHY_ALL_PREFERENCES, HCI_PHY_LE_CODED_BIT, HCI_PHY_LE_CODED_BIT, HCI_PHY_OPTIONS_NONE);
+            }
+            else
+            {
+                APP_TRACE_INFO0("1 MBit TX and RX PHY Requested");
+                DmSetPhy(connId, HCI_ALL_PHY_ALL_PREFERENCES, HCI_PHY_LE_1M_BIT, HCI_PHY_LE_1M_BIT, HCI_PHY_OPTIONS_NONE);
+            }
+            break;
 
 #endif /* CS50_INCLUDED */
 
 #if WDXS_INCLUDED == TRUE
-      case APP_UI_BTN_1_SHORT:
-        /* Change stream waveform */
-        waveform++;
+        case APP_UI_BTN_1_SHORT:
+            /* Change stream waveform */
+            waveform++;
 
-        if ( waveform > WDXS_STREAM_WAVEFORM_SAWTOOTH )
-        {
-          waveform = WDXS_STREAM_WAVEFORM_SINE;
-        }
+            if ( waveform > WDXS_STREAM_WAVEFORM_SAWTOOTH )
+            {
+                waveform = WDXS_STREAM_WAVEFORM_SINE;
+            }
 
-        wdxsSetStreamWaveform(waveform);
-        break;
+            wdxsSetStreamWaveform(waveform);
+            break;
 #endif /* WDXS_INCLUDED */
 
-      default:
-        break;
+        default:
+            break;
+        }
     }
-  }
 }
 
 /*************************************************************************************************/
@@ -722,15 +722,15 @@ static void datsWsfBufDiagnostics(WsfBufDiag_t *pInfo)
 /*************************************************************************************************/
 void DatsHandler(wsfEventMask_t event, wsfMsgHdr_t *pMsg)
 {
-  if (pMsg != NULL)
-  {
-    APP_TRACE_INFO1("Dats got evt %d", pMsg->event);
+    if (pMsg != NULL)
+    {
+        APP_TRACE_INFO1("Dats got evt %d", pMsg->event);
 
         /* process ATT messages */
         if (pMsg->event >= ATT_CBACK_START && pMsg->event <= ATT_CBACK_END)
         {
-          /* process server-related ATT messages */
-          AppServerProcAttMsg(pMsg);
+            /* process server-related ATT messages */
+            AppServerProcAttMsg(pMsg);
         }
         /* process DM messages */
         else if (pMsg->event >= DM_CBACK_START && pMsg->event <= DM_CBACK_END)
@@ -738,18 +738,18 @@ void DatsHandler(wsfEventMask_t event, wsfMsgHdr_t *pMsg)
             /* process advertising and connection-related messages */
             AppSlaveProcDmMsg((dmEvt_t *) pMsg);
 
-      /* process security-related messages */
-      AppSlaveSecProcDmMsg((dmEvt_t *) pMsg);
+            /* process security-related messages */
+            AppSlaveSecProcDmMsg((dmEvt_t *) pMsg);
 
 #if WDXS_INCLUDED == TRUE
-      /* process WDXS-related messages */
-      WdxsProcDmMsg((dmEvt_t*) pMsg);
+            /* process WDXS-related messages */
+            WdxsProcDmMsg((dmEvt_t*) pMsg);
 #endif /* WDXS_INCLUDED */
-    }
+        }
 
-    /* perform profile and user interface-related operations */
-    datsProcMsg((dmEvt_t *) pMsg);
-  }
+        /* perform profile and user interface-related operations */
+        datsProcMsg((dmEvt_t *) pMsg);
+    }
 }
 
 /*************************************************************************************************/

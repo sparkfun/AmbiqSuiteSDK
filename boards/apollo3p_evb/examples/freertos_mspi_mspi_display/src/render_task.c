@@ -8,7 +8,7 @@
 
 //*****************************************************************************
 //
-// Copyright (c) 2020, Ambiq Micro
+// Copyright (c) 2020, Ambiq Micro, Inc.
 // All rights reserved.
 //
 // Redistribution and use in source and binary forms, with or without
@@ -40,7 +40,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
-// This is part of revision 2.4.2 of the AmbiqSuite Development Package.
+// This is part of revision 2.5.1 of the AmbiqSuite Development Package.
 //
 //*****************************************************************************
 #include "freertos_mspi_mspi_display.h"
@@ -102,7 +102,6 @@ static am_devices_mspi_rm67162_config_t SerialDisplayMSPICfg =
 {
     .eDeviceConfig            = AM_HAL_MSPI_FLASH_SERIAL_CE0,
     .eClockFreq               = AM_HAL_MSPI_CLK_48MHZ,
-    .eMixedMode               = AM_HAL_MSPI_XIPMIXED_NORMAL,
     .ui32NBTxnBufLength       = sizeof(g_MspiDisplayQBuffer) / sizeof(uint32_t),
     .pNBTxnBuf                = g_MspiDisplayQBuffer,
     .ui32ScramblingStartAddr  = 0,

@@ -10,7 +10,7 @@
 
 //*****************************************************************************
 //
-// Copyright (c) 2020, Ambiq Micro
+// Copyright (c) 2020, Ambiq Micro, Inc.
 // All rights reserved.
 //
 // Redistribution and use in source and binary forms, with or without
@@ -42,10 +42,11 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
-// This is part of revision 2.4.2 of the AmbiqSuite Development Package.
+// This is part of revision 2.5.1 of the AmbiqSuite Development Package.
 //
 //*****************************************************************************
-#include <stdint.h>
+
+#include  <stdint.h>
 #include <stdbool.h>
 #include "am_mcu_apollo.h"
 #include "am_util_delay.h"
@@ -69,10 +70,12 @@
 void
 am_util_delay_cycles(uint32_t ui32Iterations)
 {
+#if (!defined(AM_PART_APOLLO4) && !defined(AM_PART_APOLLO4B))
     //
     // Call the BOOTROM cycle delay function
     //
     am_hal_flash_delay(ui32Iterations);
+#endif // !AM_PART_APOLLO4
 }
 
 //*****************************************************************************
@@ -89,6 +92,9 @@ am_util_delay_cycles(uint32_t ui32Iterations)
 void
 am_util_delay_ms(uint32_t ui32MilliSeconds)
 {
+#if (defined(AM_PART_APOLLO4) || defined(AM_PART_APOLLO4B))
+    am_hal_delay_us( ui32MilliSeconds * 1000);
+#else // AM_PART_APOLLO4
     uint32_t ui32Loops, ui32HFRC;
 #if AM_APOLLO3_CLKGEN
     am_hal_clkgen_status_t sClkgenStatus;
@@ -103,6 +109,7 @@ am_util_delay_ms(uint32_t ui32MilliSeconds)
     // Call the BOOTROM cycle delay function
     //
     am_hal_flash_delay(ui32Loops);
+#endif // AM_PART_APOLLO4
 }
 
 //*****************************************************************************
@@ -119,6 +126,9 @@ am_util_delay_ms(uint32_t ui32MilliSeconds)
 void
 am_util_delay_us(uint32_t ui32MicroSeconds)
 {
+#if (defined(AM_PART_APOLLO4) || defined(AM_PART_APOLLO4B))
+    am_hal_delay_us( ui32MicroSeconds );
+#else // AM_PART_APOLLO4
     uint32_t ui32Loops, ui32HFRC;
 
 #if AM_APOLLO3_CLKGEN
@@ -134,4 +144,5 @@ am_util_delay_us(uint32_t ui32MicroSeconds)
     // Call the BOOTROM cycle delay function
     //
     am_hal_flash_delay(ui32Loops);
+#endif // AM_PART_APOLLO4
 }

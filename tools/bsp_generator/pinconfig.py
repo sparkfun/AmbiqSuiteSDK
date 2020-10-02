@@ -2,61 +2,60 @@
 
 # *****************************************************************************
 #
-#	pinconfig.py
+#    pinconfig.py
 #
-#	@brief Script for generating a BSP pin file.
+#    @brief Script for generating a BSP pin file.
 
 # *****************************************************************************
 
 # *****************************************************************************
 #
-#	Copyright (c) 2020, Ambiq Micro
-#	All rights reserved.
+#    Copyright (c) 2020, Ambiq Micro, Inc.
+#    All rights reserved.
 #
-#	Redistribution and use in source and binary forms, with or without
-#	modification, are permitted provided that the following conditions are met:
+#    Redistribution and use in source and binary forms, with or without
+#    modification, are permitted provided that the following conditions are met:
 #
-#	1. Redistributions of source code must retain the above copyright notice,
-#	this list of conditions and the following disclaimer.
+#    1. Redistributions of source code must retain the above copyright notice,
+#    this list of conditions and the following disclaimer.
 #
-#	2. Redistributions in binary form must reproduce the above copyright
-#	notice, this list of conditions and the following disclaimer in the
-#	documentation and/or other materials provided with the distribution.
+#    2. Redistributions in binary form must reproduce the above copyright
+#    notice, this list of conditions and the following disclaimer in the
+#    documentation and/or other materials provided with the distribution.
 #
-#	3. Neither the name of the copyright holder nor the names of its
-#	contributors may be used to endorse or promote products derived from this
-#	software without specific prior written permission.
+#    3. Neither the name of the copyright holder nor the names of its
+#    contributors may be used to endorse or promote products derived from this
+#    software without specific prior written permission.
 #
-#	Third party software included in this distribution is subject to the
-#	additional license terms as defined in the /docs/licenses directory.
+#    Third party software included in this distribution is subject to the
+#    additional license terms as defined in the /docs/licenses directory.
 #
-#	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-#	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-#	IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-#	ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
-#	LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-#	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-#	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-#	INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-#	CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-#	ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
-#	POSSIBILITY OF SUCH DAMAGE.
+#    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+#    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+#    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+#    ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+#    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+#    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+#    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+#    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+#    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+#    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+#    POSSIBILITY OF SUCH DAMAGE.
 #
-#  This is part of revision 2.4.2 of the AmbiqSuite Development Package.
+#  This is part of revision 2.5.1 of the AmbiqSuite Development Package.
 #
 # *****************************************************************************
 
 # *****************************************************************************
-#	Imported modules
+#    Imported modules
 # *****************************************************************************
 import argparse
-import textwrap
 import os.path
 import rsonlite
-
+import apollo4_pinconfig
 
 # *****************************************************************************
-#	Templates
+#    Templates
 # *****************************************************************************
 filetemplateC = '''
 //*****************************************************************************
@@ -74,7 +73,7 @@ filetemplateC = '''
 
 //*****************************************************************************
 //
-// Copyright (c) 2020, Ambiq Micro
+// Copyright (c) 2020, Ambiq Micro, Inc.
 // All rights reserved.
 //
 // Redistribution and use in source and binary forms, with or without
@@ -106,7 +105,7 @@ filetemplateC = '''
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
-// This is part of revision 2.4.2 of the AmbiqSuite Development Package.
+// This is part of revision 2.5.1 of the AmbiqSuite Development Package.
 //
 //*****************************************************************************
 
@@ -138,7 +137,7 @@ filetemplateH = '''
 
 //*****************************************************************************
 //
-// Copyright (c) 2020, Ambiq Micro
+// Copyright (c) 2020, Ambiq Micro, Inc.
 // All rights reserved.
 //
 // Redistribution and use in source and binary forms, with or without
@@ -170,7 +169,7 @@ filetemplateH = '''
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
-// This is part of revision 2.4.2 of the AmbiqSuite Development Package.
+// This is part of revision 2.5.1 of the AmbiqSuite Development Package.
 //
 //*****************************************************************************
 
@@ -466,17 +465,17 @@ class pinobj:
         self.pins = []
 
         if 'pinsrc_ver' in pindict:
-			# Convert rson list object to int
+            # Convert rson list object to int
             ssrcver = pindict["pinsrc_ver"][0]
             if ssrcver[0:2].lower() == "0x":
                 self.srcver = int(ssrcver,16)
             else:
                 self.srcver = int(ssrcver,10)
         else:
-			# If no src file version given, assume version for Apollo3
+            # If no src file version given, assume version for Apollo3
             self.srcver = 0x0003
 
-		# Run through all the pins given in the src file
+        # Run through all the pins given in the src file
         if 'pin' in pindict:
             #
             # Run through the 'pin' list.
@@ -583,7 +582,7 @@ def write_Cfiles(pinobj, bCreateC):
             if (pin.intdir.lower() == "none")       or          \
                (pin.intdir.lower() == "lo2hi")      or          \
                (pin.intdir.lower() == "hi2lo")      or          \
-               (pin.intdir.lower() == "either"):
+               (pin.intdir.lower() == "both"):
                 strCfile += '%-25s' % '    .eIntDir' + '= AM_HAL_GPIO_PIN_INTDIR_%s,\n' % pin.intdir.upper()
             else:
                 strCfile += '%-25s' % '    .eIntDir' + '= %s,\n' % pin.intdir
@@ -660,6 +659,10 @@ if __name__ == '__main__':
     version = get_version(args.input)
 
     # Redirect the script based on the version number.
+    #### INTERNAL normal apollo4_nemagfx BEGIN ####
+    if version == 0x0004:
+        apollo4_pinconfig.write_c_files(args.input, bCreateC)
+    #### INTERNAL normal apollo4_nemagfx END ####
 
     if version & 0xFF == 0x03:
         pinobj = get_pinobj(args.input)

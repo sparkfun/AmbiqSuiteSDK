@@ -1,0 +1,728 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+<?xml-stylesheet type="text/xsl" href="xml_devices.xsl"?>
+<!DOCTYPE device SYSTEM "xml_devices.dtd">
+<device file_name="docs/ctimer_regs.xml" file_mod_date="May 29 10:05:02 2014">
+  <short_description>Counter/Timer</short_description>
+  <device_name>CTIMER</device_name>
+  <instance_base>REG_CTIMER_BASEADDR: 0x40008000</instance_base>
+  <ioregisters>
+    <ioreg_index/>
+    <ioreg>
+    <ioreg_name>CTTMR0</ioreg_name>
+    <ioreg_offset>0x00000000</ioreg_offset>
+    <ioreg_intro>Counter/Timer Register</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="16" name="CTTMRB0" readwrite="RO" access_macro="REG_CTIMER_CTTMR0_CTTMRB0_RD" reset_value="0x0" width="16">
+        <ioreg_bf_description>"Counter/Timer B0."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="CTTMRA0" readwrite="RO" access_macro="REG_CTIMER_CTTMR0_CTTMRA0_RD" reset_value="0x0" width="16">
+        <ioreg_bf_description>"Counter/Timer A0."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>CMPRA0</ioreg_name>
+    <ioreg_offset>0x00000004</ioreg_offset>
+    <ioreg_intro>Counter/Timer A0 Compare Registers</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="16" name="CMPR1A0" readwrite="RW" access_macro="REG_CTIMER_CMPRA0_CMPR1A0_WR" reset_value="0x0" width="16">
+        <ioreg_bf_description>"Counter/Timer A0 Compare Register 1."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="CMPR0A0" readwrite="RW" access_macro="REG_CTIMER_CMPRA0_CMPR0A0_WR" reset_value="0x0" width="16">
+        <ioreg_bf_description>"Counter/Timer A0 Compare Register 0."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>CMPRB0</ioreg_name>
+    <ioreg_offset>0x00000008</ioreg_offset>
+    <ioreg_intro>Counter/Timer B0 Compare Registers</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="16" name="CMPR1B0" readwrite="RW" access_macro="REG_CTIMER_CMPRB0_CMPR1B0_WR" reset_value="0x0" width="16">
+        <ioreg_bf_description>"Counter/Timer B0 Compare Register 1."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="CMPR0B0" readwrite="RW" access_macro="REG_CTIMER_CMPRB0_CMPR0B0_WR" reset_value="0x0" width="16">
+        <ioreg_bf_description>"Counter/Timer B0 Compare Register 0."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>CTCTRL0</ioreg_name>
+    <ioreg_offset>0x0000000c</ioreg_offset>
+    <ioreg_intro>Counter/Timer Control</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="31" name="CTLINK0" readwrite="RW" access_macro="REG_CTIMER_CTCTRL0_CTLINK0_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"Counter/Timer A0/B0 Link bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="29" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="2" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="28" name="TMRB0POL" readwrite="RW" access_macro="REG_CTIMER_CTCTRL0_TMRB0POL_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"Counter/Timer B0 output polarity."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="27" name="TMRB0CLR" readwrite="RW" access_macro="REG_CTIMER_CTCTRL0_TMRB0CLR_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"Counter/Timer B0 Clear bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="26" name="TMRB0PE" readwrite="RW" access_macro="REG_CTIMER_CTCTRL0_TMRB0PE_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"Counter/Timer B0 Output Enable bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="25" name="TMRB0IE" readwrite="RW" access_macro="REG_CTIMER_CTCTRL0_TMRB0IE_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"Counter/Timer B0 Interrupt Enable bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="22" name="TMRB0FN" readwrite="RW" access_macro="REG_CTIMER_CTCTRL0_TMRB0FN_WR" reset_value="0x0" width="3">
+        <ioreg_bf_description>"Counter/Timer B0 Function Select."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="17" name="TMRB0CLK" readwrite="RW" access_macro="REG_CTIMER_CTCTRL0_TMRB0CLK_WR" reset_value="0x1" width="5">
+        <ioreg_bf_description>"Counter/Timer B0 Clock Select."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="16" name="TMRB0EN" readwrite="RW" access_macro="REG_CTIMER_CTCTRL0_TMRB0EN_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"Counter/Timer B0 Enable bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="13" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="3" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="12" name="TMRA0POL" readwrite="RW" access_macro="REG_CTIMER_CTCTRL0_TMRA0POL_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"Counter/Timer A0 output polarity."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="11" name="TMRA0CLR" readwrite="RW" access_macro="REG_CTIMER_CTCTRL0_TMRA0CLR_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"Counter/Timer A0 Clear bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="10" name="TMRA0PE" readwrite="RW" access_macro="REG_CTIMER_CTCTRL0_TMRA0PE_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"Counter/Timer A0 Output Enable bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="9" name="TMRA0IE" readwrite="RW" access_macro="REG_CTIMER_CTCTRL0_TMRA0IE_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"Counter/Timer A0 Interrupt Enable bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="6" name="TMRA0FN" readwrite="RW" access_macro="REG_CTIMER_CTCTRL0_TMRA0FN_WR" reset_value="0x0" width="3">
+        <ioreg_bf_description>"Counter/Timer A0 Function Select."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="1" name="TMRA0CLK" readwrite="RW" access_macro="REG_CTIMER_CTCTRL0_TMRA0CLK_WR" reset_value="0x1" width="5">
+        <ioreg_bf_description>"Counter/Timer A0 Clock Select."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="TMRA0EN" readwrite="RW" access_macro="REG_CTIMER_CTCTRL0_TMRA0EN_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"Counter/Timer A0 Enable bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>CTTMR1</ioreg_name>
+    <ioreg_offset>0x00000010</ioreg_offset>
+    <ioreg_intro>Counter/Timer Register</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="16" name="CTTMRB1" readwrite="RO" access_macro="REG_CTIMER_CTTMR1_CTTMRB1_RD" reset_value="0x0" width="16">
+        <ioreg_bf_description>"Counter/Timer B1."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="CTTMRA1" readwrite="RO" access_macro="REG_CTIMER_CTTMR1_CTTMRA1_RD" reset_value="0x0" width="16">
+        <ioreg_bf_description>"Counter/Timer A1."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>CMPRA1</ioreg_name>
+    <ioreg_offset>0x00000014</ioreg_offset>
+    <ioreg_intro>Counter/Timer A1 Compare Registers</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="16" name="CMPR1A1" readwrite="RW" access_macro="REG_CTIMER_CMPRA1_CMPR1A1_WR" reset_value="0x0" width="16">
+        <ioreg_bf_description>"Counter/Timer A1 Compare Register 1."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="CMPR0A1" readwrite="RW" access_macro="REG_CTIMER_CMPRA1_CMPR0A1_WR" reset_value="0x0" width="16">
+        <ioreg_bf_description>"Counter/Timer A1 Compare Register 0."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>CMPRB1</ioreg_name>
+    <ioreg_offset>0x00000018</ioreg_offset>
+    <ioreg_intro>Counter/Timer B1 Compare Registers</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="16" name="CMPR1B1" readwrite="RW" access_macro="REG_CTIMER_CMPRB1_CMPR1B1_WR" reset_value="0x0" width="16">
+        <ioreg_bf_description>"Counter/Timer B1 Compare Register 1."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="CMPR0B1" readwrite="RW" access_macro="REG_CTIMER_CMPRB1_CMPR0B1_WR" reset_value="0x0" width="16">
+        <ioreg_bf_description>"Counter/Timer B1 Compare Register 0."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>CTCTRL1</ioreg_name>
+    <ioreg_offset>0x0000001c</ioreg_offset>
+    <ioreg_intro>Counter/Timer Control</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="31" name="CTLINK1" readwrite="RW" access_macro="REG_CTIMER_CTCTRL1_CTLINK1_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"Counter/Timer A1/B1 Link bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="29" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="2" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="28" name="TMRB1POL" readwrite="RW" access_macro="REG_CTIMER_CTCTRL1_TMRB1POL_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"Counter/Timer B1 output polarity."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="27" name="TMRB1CLR" readwrite="RW" access_macro="REG_CTIMER_CTCTRL1_TMRB1CLR_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"Counter/Timer B1 Clear bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="26" name="TMRB1PE" readwrite="RW" access_macro="REG_CTIMER_CTCTRL1_TMRB1PE_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"Counter/Timer B1 Output Enable bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="25" name="TMRB1IE" readwrite="RW" access_macro="REG_CTIMER_CTCTRL1_TMRB1IE_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"Counter/Timer B1 Interrupt Enable bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="22" name="TMRB1FN" readwrite="RW" access_macro="REG_CTIMER_CTCTRL1_TMRB1FN_WR" reset_value="0x0" width="3">
+        <ioreg_bf_description>"Counter/Timer B1 Function Select."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="17" name="TMRB1CLK" readwrite="RW" access_macro="REG_CTIMER_CTCTRL1_TMRB1CLK_WR" reset_value="0x1" width="5">
+        <ioreg_bf_description>"Counter/Timer B1 Clock Select."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="16" name="TMRB1EN" readwrite="RW" access_macro="REG_CTIMER_CTCTRL1_TMRB1EN_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"Counter/Timer B1 Enable bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="13" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="3" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="12" name="TMRA1POL" readwrite="RW" access_macro="REG_CTIMER_CTCTRL1_TMRA1POL_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"Counter/Timer A1 output polarity."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="11" name="TMRA1CLR" readwrite="RW" access_macro="REG_CTIMER_CTCTRL1_TMRA1CLR_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"Counter/Timer A1 Clear bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="10" name="TMRA1PE" readwrite="RW" access_macro="REG_CTIMER_CTCTRL1_TMRA1PE_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"Counter/Timer A1 Output Enable bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="9" name="TMRA1IE" readwrite="RW" access_macro="REG_CTIMER_CTCTRL1_TMRA1IE_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"Counter/Timer A1 Interrupt Enable bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="6" name="TMRA1FN" readwrite="RW" access_macro="REG_CTIMER_CTCTRL1_TMRA1FN_WR" reset_value="0x0" width="3">
+        <ioreg_bf_description>"Counter/Timer A1 Function Select."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="1" name="TMRA1CLK" readwrite="RW" access_macro="REG_CTIMER_CTCTRL1_TMRA1CLK_WR" reset_value="0x1" width="5">
+        <ioreg_bf_description>"Counter/Timer A1 Clock Select."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="TMRA1EN" readwrite="RW" access_macro="REG_CTIMER_CTCTRL1_TMRA1EN_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"Counter/Timer A1 Enable bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>CTTMR2</ioreg_name>
+    <ioreg_offset>0x00000020</ioreg_offset>
+    <ioreg_intro>Counter/Timer Register</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="16" name="CTTMRB2" readwrite="RO" access_macro="REG_CTIMER_CTTMR2_CTTMRB2_RD" reset_value="0x0" width="16">
+        <ioreg_bf_description>"Counter/Timer B2."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="CTTMRA2" readwrite="RO" access_macro="REG_CTIMER_CTTMR2_CTTMRA2_RD" reset_value="0x0" width="16">
+        <ioreg_bf_description>"Counter/Timer A2."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>CMPRA2</ioreg_name>
+    <ioreg_offset>0x00000024</ioreg_offset>
+    <ioreg_intro>Counter/Timer A2 Compare Registers</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="16" name="CMPR1A2" readwrite="RW" access_macro="REG_CTIMER_CMPRA2_CMPR1A2_WR" reset_value="0x0" width="16">
+        <ioreg_bf_description>"Counter/Timer A2 Compare Register 1."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="CMPR0A2" readwrite="RW" access_macro="REG_CTIMER_CMPRA2_CMPR0A2_WR" reset_value="0x0" width="16">
+        <ioreg_bf_description>"Counter/Timer A2 Compare Register 0."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>CMPRB2</ioreg_name>
+    <ioreg_offset>0x00000028</ioreg_offset>
+    <ioreg_intro>Counter/Timer B2 Compare Registers</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="16" name="CMPR1B2" readwrite="RW" access_macro="REG_CTIMER_CMPRB2_CMPR1B2_WR" reset_value="0x0" width="16">
+        <ioreg_bf_description>"Counter/Timer B2 Compare Register 1."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="CMPR0B2" readwrite="RW" access_macro="REG_CTIMER_CMPRB2_CMPR0B2_WR" reset_value="0x0" width="16">
+        <ioreg_bf_description>"Counter/Timer B2 Compare Register 0."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>CTCTRL2</ioreg_name>
+    <ioreg_offset>0x0000002c</ioreg_offset>
+    <ioreg_intro>Counter/Timer Control</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="31" name="CTLINK2" readwrite="RW" access_macro="REG_CTIMER_CTCTRL2_CTLINK2_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"Counter/Timer A2/B2 Link bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="29" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="2" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="28" name="TMRB2POL" readwrite="RW" access_macro="REG_CTIMER_CTCTRL2_TMRB2POL_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"Counter/Timer B2 output polarity."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="27" name="TMRB2CLR" readwrite="RW" access_macro="REG_CTIMER_CTCTRL2_TMRB2CLR_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"Counter/Timer B2 Clear bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="26" name="TMRB2PE" readwrite="RW" access_macro="REG_CTIMER_CTCTRL2_TMRB2PE_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"Counter/Timer B2 Output Enable bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="25" name="TMRB2IE" readwrite="RW" access_macro="REG_CTIMER_CTCTRL2_TMRB2IE_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"Counter/Timer B2 Interrupt Enable bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="22" name="TMRB2FN" readwrite="RW" access_macro="REG_CTIMER_CTCTRL2_TMRB2FN_WR" reset_value="0x0" width="3">
+        <ioreg_bf_description>"Counter/Timer B2 Function Select."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="17" name="TMRB2CLK" readwrite="RW" access_macro="REG_CTIMER_CTCTRL2_TMRB2CLK_WR" reset_value="0x1" width="5">
+        <ioreg_bf_description>"Counter/Timer B2 Clock Select."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="16" name="TMRB2EN" readwrite="RW" access_macro="REG_CTIMER_CTCTRL2_TMRB2EN_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"Counter/Timer B2 Enable bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="13" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="3" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="12" name="TMRA2POL" readwrite="RW" access_macro="REG_CTIMER_CTCTRL2_TMRA2POL_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"Counter/Timer A2 output polarity."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="11" name="TMRA2CLR" readwrite="RW" access_macro="REG_CTIMER_CTCTRL2_TMRA2CLR_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"Counter/Timer A2 Clear bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="10" name="TMRA2PE" readwrite="RW" access_macro="REG_CTIMER_CTCTRL2_TMRA2PE_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"Counter/Timer A2 Output Enable bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="9" name="TMRA2IE" readwrite="RW" access_macro="REG_CTIMER_CTCTRL2_TMRA2IE_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"Counter/Timer A2 Interrupt Enable bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="6" name="TMRA2FN" readwrite="RW" access_macro="REG_CTIMER_CTCTRL2_TMRA2FN_WR" reset_value="0x0" width="3">
+        <ioreg_bf_description>"Counter/Timer A2 Function Select."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="1" name="TMRA2CLK" readwrite="RW" access_macro="REG_CTIMER_CTCTRL2_TMRA2CLK_WR" reset_value="0x1" width="5">
+        <ioreg_bf_description>"Counter/Timer A2 Clock Select."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="TMRA2EN" readwrite="RW" access_macro="REG_CTIMER_CTCTRL2_TMRA2EN_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"Counter/Timer A2 Enable bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>CTTMR3</ioreg_name>
+    <ioreg_offset>0x00000030</ioreg_offset>
+    <ioreg_intro>Counter/Timer Register</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="16" name="CTTMRB3" readwrite="RO" access_macro="REG_CTIMER_CTTMR3_CTTMRB3_RD" reset_value="0x0" width="16">
+        <ioreg_bf_description>"Counter/Timer B3."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="CTTMRA3" readwrite="RO" access_macro="REG_CTIMER_CTTMR3_CTTMRA3_RD" reset_value="0x0" width="16">
+        <ioreg_bf_description>"Counter/Timer A3."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>CMPRA3</ioreg_name>
+    <ioreg_offset>0x00000034</ioreg_offset>
+    <ioreg_intro>Counter/Timer A3 Compare Registers</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="16" name="CMPR1A3" readwrite="RW" access_macro="REG_CTIMER_CMPRA3_CMPR1A3_WR" reset_value="0x0" width="16">
+        <ioreg_bf_description>"Counter/Timer A3 Compare Register 1."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="CMPR0A3" readwrite="RW" access_macro="REG_CTIMER_CMPRA3_CMPR0A3_WR" reset_value="0x0" width="16">
+        <ioreg_bf_description>"Counter/Timer A3 Compare Register 0."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>CMPRB3</ioreg_name>
+    <ioreg_offset>0x00000038</ioreg_offset>
+    <ioreg_intro>Counter/Timer B3 Compare Registers</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="16" name="CMPR1B3" readwrite="RW" access_macro="REG_CTIMER_CMPRB3_CMPR1B3_WR" reset_value="0x0" width="16">
+        <ioreg_bf_description>"Counter/Timer B3 Compare Register 1."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="CMPR0B3" readwrite="RW" access_macro="REG_CTIMER_CMPRB3_CMPR0B3_WR" reset_value="0x0" width="16">
+        <ioreg_bf_description>"Counter/Timer B3 Compare Register 0."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>CTCTRL3</ioreg_name>
+    <ioreg_offset>0x0000003c</ioreg_offset>
+    <ioreg_intro>Counter/Timer Control</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="31" name="CTLINK3" readwrite="RW" access_macro="REG_CTIMER_CTCTRL3_CTLINK3_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"Counter/Timer A/B Link bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="29" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="2" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="28" name="TMRB3POL" readwrite="RW" access_macro="REG_CTIMER_CTCTRL3_TMRB3POL_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"Counter/Timer B3 output polarity."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="27" name="TMRB3CLR" readwrite="RW" access_macro="REG_CTIMER_CTCTRL3_TMRB3CLR_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"Counter/Timer B3 Clear bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="26" name="TMRB3PE" readwrite="RW" access_macro="REG_CTIMER_CTCTRL3_TMRB3PE_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"Counter/Timer B3 Output Enable bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="25" name="TMRB3IE" readwrite="RW" access_macro="REG_CTIMER_CTCTRL3_TMRB3IE_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"Counter/Timer B3 Interrupt Enable bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="22" name="TMRB3FN" readwrite="RW" access_macro="REG_CTIMER_CTCTRL3_TMRB3FN_WR" reset_value="0x0" width="3">
+        <ioreg_bf_description>"Counter/Timer B3 Function Select."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="17" name="TMRB3CLK" readwrite="RW" access_macro="REG_CTIMER_CTCTRL3_TMRB3CLK_WR" reset_value="0x1" width="5">
+        <ioreg_bf_description>"Counter/Timer B3 Clock Select."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="16" name="TMRB3EN" readwrite="RW" access_macro="REG_CTIMER_CTCTRL3_TMRB3EN_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"Counter/Timer B3 Enable bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="15" name="ADCEN" readwrite="RW" access_macro="REG_CTIMER_CTCTRL3_ADCEN_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"Special Timer A3 enable for ADC function."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="13" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="2" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="12" name="TMRA3POL" readwrite="RW" access_macro="REG_CTIMER_CTCTRL3_TMRA3POL_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"Counter/Timer A3 output polarity."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="11" name="TMRA3CLR" readwrite="RW" access_macro="REG_CTIMER_CTCTRL3_TMRA3CLR_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"Counter/Timer A3 Clear bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="10" name="TMRA3PE" readwrite="RW" access_macro="REG_CTIMER_CTCTRL3_TMRA3PE_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"Counter/Timer A3 Output Enable bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="9" name="TMRA3IE" readwrite="RW" access_macro="REG_CTIMER_CTCTRL3_TMRA3IE_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"Counter/Timer A3 Interrupt Enable bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="6" name="TMRA3FN" readwrite="RW" access_macro="REG_CTIMER_CTCTRL3_TMRA3FN_WR" reset_value="0x0" width="3">
+        <ioreg_bf_description>"Counter/Timer A3 Function Select."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="1" name="TMRA3CLK" readwrite="RW" access_macro="REG_CTIMER_CTCTRL3_TMRA3CLK_WR" reset_value="0x1" width="5">
+        <ioreg_bf_description>"Counter/Timer A3 Clock Select."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="TMRA3EN" readwrite="RW" access_macro="REG_CTIMER_CTCTRL3_TMRA3EN_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"Counter/Timer A3 Enable bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>CTIMERINTEN</ioreg_name>
+    <ioreg_offset>0x00000200</ioreg_offset>
+    <ioreg_intro>Counter/Timer Interrupts</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="8" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="24" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="7" name="CTMRB3INT" readwrite="RW" access_macro="REG_CTIMER_CTIMERINTEN_CTMRB3INT_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"Counter/Timer B3 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="6" name="CTMRA3INT" readwrite="RW" access_macro="REG_CTIMER_CTIMERINTEN_CTMRA3INT_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"Counter/Timer A3 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="5" name="CTMRB2INT" readwrite="RW" access_macro="REG_CTIMER_CTIMERINTEN_CTMRB2INT_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"Counter/Timer B2 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="4" name="CTMRA2INT" readwrite="RW" access_macro="REG_CTIMER_CTIMERINTEN_CTMRA2INT_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"Counter/Timer A2 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="3" name="CTMRB1INT" readwrite="RW" access_macro="REG_CTIMER_CTIMERINTEN_CTMRB1INT_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"Counter/Timer B1 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="2" name="CTMRA1INT" readwrite="RW" access_macro="REG_CTIMER_CTIMERINTEN_CTMRA1INT_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"Counter/Timer A1 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="1" name="CTMRB0INT" readwrite="RW" access_macro="REG_CTIMER_CTIMERINTEN_CTMRB0INT_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"Counter/Timer B0 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="CTMRA0INT" readwrite="RW" access_macro="REG_CTIMER_CTIMERINTEN_CTMRA0INT_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"Counter/Timer A0 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>CTIMERINTSTAT</ioreg_name>
+    <ioreg_offset>0x00000204</ioreg_offset>
+    <ioreg_intro>Counter/Timer Interrupts</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="8" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="24" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="7" name="CTMRB3INT" readwrite="RW" access_macro="REG_CTIMER_CTIMERINTSTAT_CTMRB3INT_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"Counter/Timer B3 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="6" name="CTMRA3INT" readwrite="RW" access_macro="REG_CTIMER_CTIMERINTSTAT_CTMRA3INT_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"Counter/Timer A3 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="5" name="CTMRB2INT" readwrite="RW" access_macro="REG_CTIMER_CTIMERINTSTAT_CTMRB2INT_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"Counter/Timer B2 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="4" name="CTMRA2INT" readwrite="RW" access_macro="REG_CTIMER_CTIMERINTSTAT_CTMRA2INT_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"Counter/Timer A2 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="3" name="CTMRB1INT" readwrite="RW" access_macro="REG_CTIMER_CTIMERINTSTAT_CTMRB1INT_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"Counter/Timer B1 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="2" name="CTMRA1INT" readwrite="RW" access_macro="REG_CTIMER_CTIMERINTSTAT_CTMRA1INT_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"Counter/Timer A1 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="1" name="CTMRB0INT" readwrite="RW" access_macro="REG_CTIMER_CTIMERINTSTAT_CTMRB0INT_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"Counter/Timer B0 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="CTMRA0INT" readwrite="RW" access_macro="REG_CTIMER_CTIMERINTSTAT_CTMRA0INT_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"Counter/Timer A0 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>CTIMERINTCLR</ioreg_name>
+    <ioreg_offset>0x00000208</ioreg_offset>
+    <ioreg_intro>Counter/Timer Interrupts</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="8" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="24" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="7" name="CTMRB3INT" readwrite="RW" access_macro="REG_CTIMER_CTIMERINTCLR_CTMRB3INT_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"Counter/Timer B3 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="6" name="CTMRA3INT" readwrite="RW" access_macro="REG_CTIMER_CTIMERINTCLR_CTMRA3INT_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"Counter/Timer A3 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="5" name="CTMRB2INT" readwrite="RW" access_macro="REG_CTIMER_CTIMERINTCLR_CTMRB2INT_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"Counter/Timer B2 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="4" name="CTMRA2INT" readwrite="RW" access_macro="REG_CTIMER_CTIMERINTCLR_CTMRA2INT_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"Counter/Timer A2 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="3" name="CTMRB1INT" readwrite="RW" access_macro="REG_CTIMER_CTIMERINTCLR_CTMRB1INT_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"Counter/Timer B1 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="2" name="CTMRA1INT" readwrite="RW" access_macro="REG_CTIMER_CTIMERINTCLR_CTMRA1INT_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"Counter/Timer A1 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="1" name="CTMRB0INT" readwrite="RW" access_macro="REG_CTIMER_CTIMERINTCLR_CTMRB0INT_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"Counter/Timer B0 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="CTMRA0INT" readwrite="RW" access_macro="REG_CTIMER_CTIMERINTCLR_CTMRA0INT_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"Counter/Timer A0 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>CTIMERINTSET</ioreg_name>
+    <ioreg_offset>0x0000020c</ioreg_offset>
+    <ioreg_intro>Counter/Timer Interrupts</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="8" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="24" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="7" name="CTMRB3INT" readwrite="RW" access_macro="REG_CTIMER_CTIMERINTSET_CTMRB3INT_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"Counter/Timer B3 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="6" name="CTMRA3INT" readwrite="RW" access_macro="REG_CTIMER_CTIMERINTSET_CTMRA3INT_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"Counter/Timer A3 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="5" name="CTMRB2INT" readwrite="RW" access_macro="REG_CTIMER_CTIMERINTSET_CTMRB2INT_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"Counter/Timer B2 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="4" name="CTMRA2INT" readwrite="RW" access_macro="REG_CTIMER_CTIMERINTSET_CTMRA2INT_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"Counter/Timer A2 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="3" name="CTMRB1INT" readwrite="RW" access_macro="REG_CTIMER_CTIMERINTSET_CTMRB1INT_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"Counter/Timer B1 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="2" name="CTMRA1INT" readwrite="RW" access_macro="REG_CTIMER_CTIMERINTSET_CTMRA1INT_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"Counter/Timer A1 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="1" name="CTMRB0INT" readwrite="RW" access_macro="REG_CTIMER_CTIMERINTSET_CTMRB0INT_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"Counter/Timer B0 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="CTMRA0INT" readwrite="RW" access_macro="REG_CTIMER_CTIMERINTSET_CTMRA0INT_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"Counter/Timer A0 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg_bigpicture/>
+  </ioregisters>
+</device>

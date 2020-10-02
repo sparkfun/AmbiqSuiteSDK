@@ -25,7 +25,7 @@
                             <img alt="Logo" src="../resources/am_logo.png" />
                         </td>
                         <td style="padding-left: 0.5em;">
-                            <div id="projectname">Apollo Register Documentation &#160;<span id="projectnumber">v2.4.2</span></div>
+                            <div id="projectname">Apollo Register Documentation &#160;<span id="projectnumber">v${version}</span></div>
                         </td>
                     </tr>
                 </tbody>
@@ -57,6 +57,28 @@
             </div>
             <div class="panel-body">
                 <table>
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0xE000E004:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <a class="el" href="#ICTR" target="_self">ICTR - Interrupt Controller Type Register (NVIC)</a>
+                        </td>
+                    </tr>
+
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0xE000E008:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <a class="el" href="#ACTLR" target="_self">ACTLR - Auxilliary Control Register</a>
+                        </td>
+                    </tr>
+
                     <tr id="row_0_0_">
                         <td class="entry">
                             <span style="width:32px;display:inline-block;">&#160;</span>
@@ -267,6 +289,309 @@
                     </tr>
 
                 </table>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 id="ICTR" class="panel-title">ICTR - Interrupt Controller Type Register (NVIC)</h3>
+            </div>
+            <div class="panel-body">
+                <h3>Address:</h3>
+                <table style="margin:10px">
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">Instance 0 Address:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0xE000E004</span>
+                        </td>
+                    </tr>
+
+                </table>
+                <h3>Description:</h3>
+                <p>Interrupt Controller Type Register (NVIC)</p>
+                <h3>Example Macro Usage:</h3>
+                <pre style="margin:10px" class="language-pascal"><span style='color:#3f7f59; '>//
+// All macro-based register writes follow the same basic format. For
+// single-instance modules, you may use the simpler AM_REG macro. For
+// multi-instance macros, you will need to specify the instance number using
+// the AM_REGn macro format.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+// AM_REGn(&lt;MODULE&gt;, &lt;INSTANCE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+//
+// For registers that do not have specific enumeration values, you may use this alternate format instead.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;(&lt;NUMBER&gt;);
+//
+// For example, the following three lines of code are equivalent methods of
+// writing the value for 12MHZ to the CLKSEL field in the ADC_CFG register.
+//</span>
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REGn(ADC, 0, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
+                <h3>Register Fields:</h3>
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>31</th>
+                            <th>30</th>
+                            <th>29</th>
+                            <th>28</th>
+                            <th>27</th>
+                            <th>26</th>
+                            <th>25</th>
+                            <th>24</th>
+                            <th>23</th>
+                            <th>22</th>
+                            <th>21</th>
+                            <th>20</th>
+                            <th>19</th>
+                            <th>18</th>
+                            <th>17</th>
+                            <th>16</th>
+                            <th>15</th>
+                            <th>14</th>
+                            <th>13</th>
+                            <th>12</th>
+                            <th>11</th>
+                            <th>10</th>
+                            <th>9</th>
+                            <th>8</th>
+                            <th>7</th>
+                            <th>6</th>
+                            <th>5</th>
+                            <th>4</th>
+                            <th>3</th>
+                            <th>2</th>
+                            <th>1</th>
+                            <th>0</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td align="center" colspan="28">RSVD
+                                <br>0x0</td>
+
+                            <td align="center" colspan="4">INTLINESNUM
+                                <br>0x0</td>
+
+                        </tr>
+                    </tbody>
+                </table>
+                <br>
+
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>Bits</th>
+                            <th>Name</th>
+                            <th>RW</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>31:4</td>
+                            <td>RSVD</td>
+                            <td>RO</td>
+                            <td>RESERVED.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>3:0</td>
+                            <td>INTLINESNUM</td>
+                            <td>RW</td>
+                            <td>Total number of interrupt lines in groups of 32.<br><br>
+                                </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+                <br>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 id="ACTLR" class="panel-title">ACTLR - Auxilliary Control Register</h3>
+            </div>
+            <div class="panel-body">
+                <h3>Address:</h3>
+                <table style="margin:10px">
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">Instance 0 Address:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0xE000E008</span>
+                        </td>
+                    </tr>
+
+                </table>
+                <h3>Description:</h3>
+                <p>Auxilliary Control Register</p>
+                <h3>Example Macro Usage:</h3>
+                <pre style="margin:10px" class="language-pascal"><span style='color:#3f7f59; '>//
+// All macro-based register writes follow the same basic format. For
+// single-instance modules, you may use the simpler AM_REG macro. For
+// multi-instance macros, you will need to specify the instance number using
+// the AM_REGn macro format.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+// AM_REGn(&lt;MODULE&gt;, &lt;INSTANCE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
+//
+// For registers that do not have specific enumeration values, you may use this alternate format instead.
+//
+// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;(&lt;NUMBER&gt;);
+//
+// For example, the following three lines of code are equivalent methods of
+// writing the value for 12MHZ to the CLKSEL field in the ADC_CFG register.
+//</span>
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REGn(ADC, 0, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
+AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
+                <h3>Register Fields:</h3>
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>31</th>
+                            <th>30</th>
+                            <th>29</th>
+                            <th>28</th>
+                            <th>27</th>
+                            <th>26</th>
+                            <th>25</th>
+                            <th>24</th>
+                            <th>23</th>
+                            <th>22</th>
+                            <th>21</th>
+                            <th>20</th>
+                            <th>19</th>
+                            <th>18</th>
+                            <th>17</th>
+                            <th>16</th>
+                            <th>15</th>
+                            <th>14</th>
+                            <th>13</th>
+                            <th>12</th>
+                            <th>11</th>
+                            <th>10</th>
+                            <th>9</th>
+                            <th>8</th>
+                            <th>7</th>
+                            <th>6</th>
+                            <th>5</th>
+                            <th>4</th>
+                            <th>3</th>
+                            <th>2</th>
+                            <th>1</th>
+                            <th>0</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td align="center" colspan="21">RSVD
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">DISFPCA
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">DISOOFP
+                                <br>0x0</td>
+
+                            <td align="center" colspan="4">RSVD
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">DISFOLD
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">DISDEFWBUF
+                                <br>0x0</td>
+
+                            <td align="center" colspan="1">DISMCYCINT
+                                <br>0x0</td>
+
+                        </tr>
+                    </tbody>
+                </table>
+                <br>
+
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>Bits</th>
+                            <th>Name</th>
+                            <th>RW</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>30:10</td>
+                            <td>RSVD</td>
+                            <td>RO</td>
+                            <td>RESERVED.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>9</td>
+                            <td>DISFPCA</td>
+                            <td>RW</td>
+                            <td>Disables lazy stacking of floating point context.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>8</td>
+                            <td>DISOOFP</td>
+                            <td>RW</td>
+                            <td>Disables floating point instructions completing out of order with respect to integer instructions.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>6:3</td>
+                            <td>RSVD</td>
+                            <td>RO</td>
+                            <td>RESERVED.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>2</td>
+                            <td>DISFOLD</td>
+                            <td>RW</td>
+                            <td>Disables folding of IT instructions.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>1</td>
+                            <td>DISDEFWBUF</td>
+                            <td>RW</td>
+                            <td>Disables write buffer use during default memory map accesses.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>0</td>
+                            <td>DISMCYCINT</td>
+                            <td>RW</td>
+                            <td>Disables interruption of multi-cycle instructions.<br><br>
+                                </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+                <br>
             </div>
         </div>
 
@@ -3602,7 +3927,7 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
             <small>
                 AmbiqSuite Register Documentation&nbsp;
                 <a href="http://www.ambiqmicro.com">
-                <img class="footer" src="../resources/ambiqmicro_logo.png" alt="Ambiq Micro"/></a>&nbsp&nbsp Copyright &copy; 2014&nbsp&nbsp<br />
+                <img class="footer" src="../resources/ambiqmicro_logo.png" alt="Ambiq Micro"/></a>&nbsp&nbsp Copyright &copy; 2020&nbsp&nbsp<br />
                 This documentation is licensed and distributed under the <a rel="license" href="http://opensource.org/licenses/BSD-3-Clause">BSD 3-Clause License</a>.&nbsp&nbsp<br/>
             </small>
         </div>

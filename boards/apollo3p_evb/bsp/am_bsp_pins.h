@@ -14,7 +14,7 @@
 
 //*****************************************************************************
 //
-// Copyright (c) 2020, Ambiq Micro
+// Copyright (c) 2020, Ambiq Micro, Inc.
 // All rights reserved.
 //
 // Redistribution and use in source and binary forms, with or without
@@ -46,7 +46,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
-// This is part of revision 2.4.2 of the AmbiqSuite Development Package.
+// This is part of revision 2.5.1 of the AmbiqSuite Development Package.
 //
 //*****************************************************************************
 
@@ -299,36 +299,36 @@ extern const am_hal_gpio_pincfg_t       g_AM_BSP_GPIO_IOM1_SDA;
 
 //*****************************************************************************
 //
-//  IOM2_CS pin: I/O Master 2 chip select.
+//  FT_BRIDGE_SCK pin: FT_BRIDGE I/O Master 2 SPI clock signal.
 //
 //*****************************************************************************
-#define AM_BSP_GPIO_IOM2_CS             15
-extern const am_hal_gpio_pincfg_t       g_AM_BSP_GPIO_IOM2_CS;
-#define AM_BSP_IOM2_CS_CHNL             3
+#define AM_BSP_GPIO_FT_BRIDGE_SCK       27
+extern const am_hal_gpio_pincfg_t       g_AM_BSP_GPIO_FT_BRIDGE_SCK;
 
 //*****************************************************************************
 //
-//  IOM2_MISO pin: I/O Master 2 SPI MISO signal.
+//  FT_BRIDGE_MOSI pin: FT_BRIDGE I/O Master 2 SPI MOSI signal. NOTE: pin shared with AMOLED QSPI CS on Cygnus.
 //
 //*****************************************************************************
-#define AM_BSP_GPIO_IOM2_MISO           25
-extern const am_hal_gpio_pincfg_t       g_AM_BSP_GPIO_IOM2_MISO;
+#define AM_BSP_GPIO_FT_BRIDGE_MOSI      28
+extern const am_hal_gpio_pincfg_t       g_AM_BSP_GPIO_FT_BRIDGE_MOSI;
 
 //*****************************************************************************
 //
-//  IOM2_MOSI pin: I/O Master 2 SPI MOSI signal.
+//  FT_BRIDGE_MISO pin: FT_BRIDGE I/O Master 2 SPI MISO signal.
 //
 //*****************************************************************************
-#define AM_BSP_GPIO_IOM2_MOSI           28
-extern const am_hal_gpio_pincfg_t       g_AM_BSP_GPIO_IOM2_MOSI;
+#define AM_BSP_GPIO_FT_BRIDGE_MISO      25
+extern const am_hal_gpio_pincfg_t       g_AM_BSP_GPIO_FT_BRIDGE_MISO;
 
 //*****************************************************************************
 //
-//  IOM2_SCK pin: I/O Master 2 SPI SCK signal.
+//  FT_BRIDGE_SS pin: FT_BRIDGE I/O Master 2 slave select.  IOM2 CE3 shared with the Cygnus board's FTDI device.
 //
 //*****************************************************************************
-#define AM_BSP_GPIO_IOM2_SCK            27
-extern const am_hal_gpio_pincfg_t       g_AM_BSP_GPIO_IOM2_SCK;
+#define AM_BSP_GPIO_FT_BRIDGE_SS        15
+extern const am_hal_gpio_pincfg_t       g_AM_BSP_GPIO_FT_BRIDGE_SS;
+#define AM_BSP_FT_BRIDGE_SS_CHNL        3
 
 //*****************************************************************************
 //
@@ -498,7 +498,7 @@ extern const am_hal_gpio_pincfg_t       g_AM_BSP_GPIO_IOM5_SDA;
 //  MSPI0_CE0 pin: MSPI0 chip select 0.  Note: CE1 must be disabled or tristated when using this pin for CE.
 //
 //*****************************************************************************
-#define AM_BSP_GPIO_MSPI0_CE0           37
+#define AM_BSP_GPIO_MSPI0_CE0           28
 extern const am_hal_gpio_pincfg_t       g_AM_BSP_GPIO_MSPI0_CE0;
 #define AM_BSP_MSPI0_CE0_CHNL           0
 
@@ -507,9 +507,9 @@ extern const am_hal_gpio_pincfg_t       g_AM_BSP_GPIO_MSPI0_CE0;
 //  MSPI0_CE1 pin: MSPI0 chip select 1.  Note: CE0 must be disabled or tristated when using this pin for CE.
 //
 //*****************************************************************************
-#define AM_BSP_GPIO_MSPI0_CE1           12
+#define AM_BSP_GPIO_MSPI0_CE1           46
 extern const am_hal_gpio_pincfg_t       g_AM_BSP_GPIO_MSPI0_CE1;
-#define AM_BSP_MSPI0_CE1_CHNL           0
+#define AM_BSP_MSPI0_CE1_CHNL           1
 
 //*****************************************************************************
 //
@@ -709,10 +709,18 @@ extern const am_hal_gpio_pincfg_t       g_AM_BSP_GPIO_MSPI2_SCK;
 
 //*****************************************************************************
 //
+//  DISPLAY_PWRCTRL pin: Display power control.
+//
+//*****************************************************************************
+#define AM_BSP_GPIO_DISPLAY_PWRCTRL     39
+extern const am_hal_gpio_pincfg_t       g_AM_BSP_GPIO_DISPLAY_PWRCTRL;
+
+//*****************************************************************************
+//
 //  DISPLAY_TE pin: Display TE signal.
 //
 //*****************************************************************************
-#define AM_BSP_GPIO_DISPLAY_TE          72
+#define AM_BSP_GPIO_DISPLAY_TE          38
 extern const am_hal_gpio_pincfg_t       g_AM_BSP_GPIO_DISPLAY_TE;
 
 //*****************************************************************************
@@ -720,8 +728,32 @@ extern const am_hal_gpio_pincfg_t       g_AM_BSP_GPIO_DISPLAY_TE;
 //  DISPLAY_RESET pin: Display reset control.
 //
 //*****************************************************************************
-#define AM_BSP_GPIO_DISPLAY_RESET       73
+#define AM_BSP_GPIO_DISPLAY_RESET       11
 extern const am_hal_gpio_pincfg_t       g_AM_BSP_GPIO_DISPLAY_RESET;
+
+//*****************************************************************************
+//
+//  DISPLAY_PVIO_EN pin: Display reset control.
+//
+//*****************************************************************************
+#define AM_BSP_GPIO_DISPLAY_PVIO_EN     40
+extern const am_hal_gpio_pincfg_t       g_AM_BSP_GPIO_DISPLAY_PVIO_EN;
+
+//*****************************************************************************
+//
+//  DISPLAY_P3V3_EN pin: Display reset control.
+//
+//*****************************************************************************
+#define AM_BSP_GPIO_DISPLAY_P3V3_EN     31
+extern const am_hal_gpio_pincfg_t       g_AM_BSP_GPIO_DISPLAY_P3V3_EN;
+
+//*****************************************************************************
+//
+//  DISPLAY_OLED_EN pin: Display reset control.
+//
+//*****************************************************************************
+#define AM_BSP_GPIO_DISPLAY_OLED_EN     49
+extern const am_hal_gpio_pincfg_t       g_AM_BSP_GPIO_DISPLAY_OLED_EN;
 
 //*****************************************************************************
 //
@@ -835,15 +867,6 @@ extern const am_hal_gpio_pincfg_t       g_AM_BSP_GPIO_SWDCK;
 //*****************************************************************************
 #define AM_BSP_GPIO_SWDIO               21
 extern const am_hal_gpio_pincfg_t       g_AM_BSP_GPIO_SWDIO;
-
-//*****************************************************************************
-//
-//  FIREBALL_CE pin: Fireball device test board chip select.
-//
-//*****************************************************************************
-#define AM_BSP_GPIO_FIREBALL_CE         30
-extern const am_hal_gpio_pincfg_t       g_AM_BSP_GPIO_FIREBALL_CE;
-#define AM_BSP_FIREBALL_CE_CHNL         3
 
 
 #ifdef __cplusplus

@@ -1,0 +1,482 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+<?xml-stylesheet type="text/xsl" href="xml_devices.xsl"?>
+<!DOCTYPE device SYSTEM "xml_devices.dtd">
+<device file_name="docs/ioslave_regs.xml" file_mod_date="May 29 10:05:02 2014">
+  <short_description>I2C/SPI Slave</short_description>
+  <device_name>IOSLAVE</device_name>
+  <instance_base>REG_IOSLAVE_BASEADDR: 0x50000000</instance_base>
+  <ioregisters>
+    <ioreg_index/>
+    <ioreg>
+    <ioreg_name>IORAM</ioreg_name>
+    <ioreg_offset>0x00000000</ioreg_offset>
+    <ioreg_intro></ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="0" name="VALUE" readwrite="RW" access_macro="REG_IOSLAVE_IORAM_VALUE_WR" reset_value="0x0" width="32">
+        <ioreg_bf_description>Key value. ( unlocks)
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>FIFOPTR</ioreg_name>
+    <ioreg_offset>0x00000100</ioreg_offset>
+    <ioreg_intro>Current FIFO Pointer</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="16" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="16" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="8" name="FIFOSIZ" readwrite="RW" access_macro="REG_IOSLAVE_FIFOPTR_FIFOSIZ_WR" reset_value="0x0" width="8">
+        <ioreg_bf_description>"These bits hold the current I/O FIFO size."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="FIFOPTR" readwrite="RW" access_macro="REG_IOSLAVE_FIFOPTR_FIFOPTR_WR" reset_value="0x0" width="8">
+        <ioreg_bf_description>"These bits hold the current I/O FIFO pointer."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>FIFOCFG</ioreg_name>
+    <ioreg_offset>0x00000104</ioreg_offset>
+    <ioreg_intro>FIFO Configuration</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="30" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="2" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="24" name="ROBASE" readwrite="RW" access_macro="REG_IOSLAVE_FIFOCFG_ROBASE_WR" reset_value="0x20" width="6">
+        <ioreg_bf_description>"These bits hold the FIFO read only threshold."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="16" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="8" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="14" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="2" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="8" name="FIFOMAX" readwrite="RW" access_macro="REG_IOSLAVE_FIFOCFG_FIFOMAX_WR" reset_value="0x0" width="6">
+        <ioreg_bf_description>"These bits hold the maximum FIFO address in 8 byte segments."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="5" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="3" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="FIFOBASE" readwrite="RW" access_macro="REG_IOSLAVE_FIFOCFG_FIFOBASE_WR" reset_value="0x0" width="5">
+        <ioreg_bf_description>"These bits hold the base address of the I/O FIFO in 8 byte segments."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>FIFOTHR</ioreg_name>
+    <ioreg_offset>0x00000108</ioreg_offset>
+    <ioreg_intro>FIFO Threshold Configuration</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="8" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="24" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="FIFOTHR" readwrite="RW" access_macro="REG_IOSLAVE_FIFOTHR_FIFOTHR_WR" reset_value="0x0" width="8">
+        <ioreg_bf_description>"These bits hold the FIFO size threshold."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>FUPD</ioreg_name>
+    <ioreg_offset>0x0000010c</ioreg_offset>
+    <ioreg_intro>FIFO Configuration</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="2" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="30" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="1" name="IOREAD" readwrite="RO" access_macro="REG_IOSLAVE_FUPD_IOREAD_RD" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bitfield indicates an IO read is active."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="FIFOUPD" readwrite="RW" access_macro="REG_IOSLAVE_FUPD_FIFOUPD_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit indicates that a FIFO update is underway."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>FIFOCTR</ioreg_name>
+    <ioreg_offset>0x00000110</ioreg_offset>
+    <ioreg_intro>Overall FIFO Counter</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="10" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="22" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="FIFOCTR" readwrite="RW" access_macro="REG_IOSLAVE_FIFOCTR_FIFOCTR_WR" reset_value="0x0" width="10">
+        <ioreg_bf_description>"These bits hold the overall FIFO count"
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>FIFOINC</ioreg_name>
+    <ioreg_offset>0x00000114</ioreg_offset>
+    <ioreg_intro>Overall FIFO Counter Increment</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="10" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="22" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="FIFOINC" readwrite="WO" access_macro="REG_IOSLAVE_FIFOINC_FIFOINC_RD" reset_value="0x0" width="10">
+        <ioreg_bf_description>"These bits increment the Overall FIFO Counter."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>IOSCFG</ioreg_name>
+    <ioreg_offset>0x00000118</ioreg_offset>
+    <ioreg_intro>I/O Slave Configuration</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="31" name="IFCEN" readwrite="RW" access_macro="REG_IOSLAVE_IOSCFG_IFCEN_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit enables the interface."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="20" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="11" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="8" name="I2CADDR" readwrite="RW" access_macro="REG_IOSLAVE_IOSCFG_I2CADDR_WR" reset_value="0x0" width="12">
+        <ioreg_bf_description>"These bits define the 7-bit or 10-bit I2C address."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="5" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="3" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="4" name="STARTRD" readwrite="RW" access_macro="REG_IOSLAVE_IOSCFG_STARTRD_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the cycle to initiate an I/O RAM read."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="3" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="1" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="2" name="LSB" readwrite="RW" access_macro="REG_IOSLAVE_IOSCFG_LSB_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit selects LSB first operation if 1."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="1" name="SPOL" readwrite="RW" access_macro="REG_IOSLAVE_IOSCFG_SPOL_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit selects SPI polarity."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="IFCSEL" readwrite="RW" access_macro="REG_IOSLAVE_IOSCFG_IFCSEL_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit selects the I/O interface."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>PRENC</ioreg_name>
+    <ioreg_offset>0x0000011c</ioreg_offset>
+    <ioreg_intro>I/O Slave Configuration</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="5" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="27" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="PRENC" readwrite="RO" access_macro="REG_IOSLAVE_PRENC_PRENC_RD" reset_value="0x0" width="5">
+        <ioreg_bf_description>"These bits hold the priority encode of the REGACC interrupts."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>IOINTCTL</ioreg_name>
+    <ioreg_offset>0x00000120</ioreg_offset>
+    <ioreg_intro>I/O Interrupt Control</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="24" name="IOINTSET" readwrite="WO" access_macro="REG_IOSLAVE_IOINTCTL_IOINTSET_RD" reset_value="0x0" width="8">
+        <ioreg_bf_description>"These bits set the IOINT interrupts."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="17" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="7" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="16" name="IOINTCLR" readwrite="WO" access_macro="REG_IOSLAVE_IOINTCTL_IOINTCLR_RD" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bits clear all of the IOINT interrupts."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="8" name="IOINT" readwrite="RO" access_macro="REG_IOSLAVE_IOINTCTL_IOINT_RD" reset_value="0x0" width="8">
+        <ioreg_bf_description>"These bits read the IOINT interrupts."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="IOINTEN" readwrite="RO" access_macro="REG_IOSLAVE_IOINTCTL_IOINTEN_RD" reset_value="0x0" width="8">
+        <ioreg_bf_description>"These bits setread the IOINT interrupt enables."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>GENADD</ioreg_name>
+    <ioreg_offset>0x00000124</ioreg_offset>
+    <ioreg_intro>General Address Data</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="8" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="24" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="GADATA" readwrite="RO" access_macro="REG_IOSLAVE_GENADD_GADATA_RD" reset_value="0x0" width="8">
+        <ioreg_bf_description>"These bits hold the data supplied on the last General Address reference."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>IOSLAVEINTEN</ioreg_name>
+    <ioreg_offset>0x00000200</ioreg_offset>
+    <ioreg_intro>IO Slave Interrupts</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="6" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="26" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="5" name="IOINTW" readwrite="RW" access_macro="REG_IOSLAVE_IOSLAVEINTEN_IOINTW_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This is the I2C Interrupt Write interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="4" name="GENAD" readwrite="RW" access_macro="REG_IOSLAVE_IOSLAVEINTEN_GENAD_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This is the I2C General Address interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="3" name="FRDERR" readwrite="RW" access_macro="REG_IOSLAVE_IOSLAVEINTEN_FRDERR_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This is the FIFO Read Error interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="2" name="FUNDFL" readwrite="RW" access_macro="REG_IOSLAVE_IOSLAVEINTEN_FUNDFL_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This is the FIFO Underflow interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="1" name="FOVFL" readwrite="RW" access_macro="REG_IOSLAVE_IOSLAVEINTEN_FOVFL_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This is the FIFO Overflow interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="FSIZE" readwrite="RW" access_macro="REG_IOSLAVE_IOSLAVEINTEN_FSIZE_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This is the FIFO Size interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>IOSLAVEINTSTAT</ioreg_name>
+    <ioreg_offset>0x00000204</ioreg_offset>
+    <ioreg_intro>IO Slave Interrupts</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="6" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="26" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="5" name="IOINTW" readwrite="RW" access_macro="REG_IOSLAVE_IOSLAVEINTSTAT_IOINTW_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This is the I2C Interrupt Write interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="4" name="GENAD" readwrite="RW" access_macro="REG_IOSLAVE_IOSLAVEINTSTAT_GENAD_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This is the I2C General Address interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="3" name="FRDERR" readwrite="RW" access_macro="REG_IOSLAVE_IOSLAVEINTSTAT_FRDERR_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This is the FIFO Read Error interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="2" name="FUNDFL" readwrite="RW" access_macro="REG_IOSLAVE_IOSLAVEINTSTAT_FUNDFL_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This is the FIFO Underflow interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="1" name="FOVFL" readwrite="RW" access_macro="REG_IOSLAVE_IOSLAVEINTSTAT_FOVFL_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This is the FIFO Overflow interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="FSIZE" readwrite="RW" access_macro="REG_IOSLAVE_IOSLAVEINTSTAT_FSIZE_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This is the FIFO Size interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>IOSLAVEINTCLR</ioreg_name>
+    <ioreg_offset>0x00000208</ioreg_offset>
+    <ioreg_intro>IO Slave Interrupts</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="6" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="26" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="5" name="IOINTW" readwrite="RW" access_macro="REG_IOSLAVE_IOSLAVEINTCLR_IOINTW_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This is the I2C Interrupt Write interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="4" name="GENAD" readwrite="RW" access_macro="REG_IOSLAVE_IOSLAVEINTCLR_GENAD_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This is the I2C General Address interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="3" name="FRDERR" readwrite="RW" access_macro="REG_IOSLAVE_IOSLAVEINTCLR_FRDERR_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This is the FIFO Read Error interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="2" name="FUNDFL" readwrite="RW" access_macro="REG_IOSLAVE_IOSLAVEINTCLR_FUNDFL_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This is the FIFO Underflow interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="1" name="FOVFL" readwrite="RW" access_macro="REG_IOSLAVE_IOSLAVEINTCLR_FOVFL_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This is the FIFO Overflow interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="FSIZE" readwrite="RW" access_macro="REG_IOSLAVE_IOSLAVEINTCLR_FSIZE_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This is the FIFO Size interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>IOSLAVEINTSET</ioreg_name>
+    <ioreg_offset>0x0000020c</ioreg_offset>
+    <ioreg_intro>IO Slave Interrupts</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="6" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="26" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="5" name="IOINTW" readwrite="RW" access_macro="REG_IOSLAVE_IOSLAVEINTSET_IOINTW_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This is the I2C Interrupt Write interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="4" name="GENAD" readwrite="RW" access_macro="REG_IOSLAVE_IOSLAVEINTSET_GENAD_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This is the I2C General Address interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="3" name="FRDERR" readwrite="RW" access_macro="REG_IOSLAVE_IOSLAVEINTSET_FRDERR_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This is the FIFO Read Error interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="2" name="FUNDFL" readwrite="RW" access_macro="REG_IOSLAVE_IOSLAVEINTSET_FUNDFL_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This is the FIFO Underflow interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="1" name="FOVFL" readwrite="RW" access_macro="REG_IOSLAVE_IOSLAVEINTSET_FOVFL_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This is the FIFO Overflow interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="FSIZE" readwrite="RW" access_macro="REG_IOSLAVE_IOSLAVEINTSET_FSIZE_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This is the FIFO Size interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>REGACCINTEN</ioreg_name>
+    <ioreg_offset>0x00000210</ioreg_offset>
+    <ioreg_intro>Register Access Interrupts</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="0" name="REGACC" readwrite="RW" access_macro="REG_IOSLAVE_REGACCINTEN_REGACC_WR" reset_value="0x0" width="32">
+        <ioreg_bf_description>"These bits are the Register access interrupts."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>REGACCINTSTAT</ioreg_name>
+    <ioreg_offset>0x00000214</ioreg_offset>
+    <ioreg_intro>Register Access Interrupts</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="0" name="REGACC" readwrite="RW" access_macro="REG_IOSLAVE_REGACCINTSTAT_REGACC_WR" reset_value="0x0" width="32">
+        <ioreg_bf_description>"These bits are the Register access interrupts."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>REGACCINTCLR</ioreg_name>
+    <ioreg_offset>0x00000218</ioreg_offset>
+    <ioreg_intro>Register Access Interrupts</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="0" name="REGACC" readwrite="RW" access_macro="REG_IOSLAVE_REGACCINTCLR_REGACC_WR" reset_value="0x0" width="32">
+        <ioreg_bf_description>"These bits are the Register access interrupts."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>REGACCINTSET</ioreg_name>
+    <ioreg_offset>0x0000021c</ioreg_offset>
+    <ioreg_intro>Register Access Interrupts</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="0" name="REGACC" readwrite="RW" access_macro="REG_IOSLAVE_REGACCINTSET_REGACC_WR" reset_value="0x0" width="32">
+        <ioreg_bf_description>"These bits are the Register access interrupts."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg_bigpicture/>
+  </ioregisters>
+</device>

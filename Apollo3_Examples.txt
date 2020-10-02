@@ -2210,6 +2210,98 @@ Printing takes place over the ITM at 1M Baud.
 
 Name:
 =====
+ ble_freertos_barebone
+
+
+Description:
+============
+ Example of the ble_freertos_barebone app running under FreeRTOS.
+
+
+This example implements a BLE barebone proejct within the FreeRTOS
+framework. To minimize power usage, this application is compiled without
+debug printing by default (the non-"lp" version of this example enables
+them by default).  To enable debug printing, add the following project-level
+macro definitions.
+
+AM_DEBUG_PRINTF
+WSF_TRACE_ENABLED=1
+
+When defined, debug messages will be sent over ITM/SWO.
+
+Note that when these macros are defined, the device will never achieve deep
+sleep, only normal sleep, due to the ITM (and thus the HFRC) being enabled.
+
+
+******************************************************************************
+
+
+Name:
+=====
+ ble_freertos_beaconscanner
+
+
+Description:
+============
+ ARM Cordio BLE - Beaconscanner Application Example.
+
+
+Purpose:
+========
+This example implements a BLE beacon scanner within the FreeRTOS
+framework. To minimize power usage, this application is compiled without
+debug printing by default (the non-"lp" version of this example enables
+them by default).
+
+Additional Information:
+=======================
+To enable debug printing, add the following project-level macro definitions.
+
+AM_DEBUG_PRINTF
+WSF_TRACE_ENABLED=1
+
+When defined, debug messages will be sent over ITM/SWO at 1M Baud.
+
+Note that when these macros are defined, the device will never achieve deep
+sleep, only normal sleep, due to the ITM (and thus the HFRC) being enabled.
+
+
+******************************************************************************
+
+
+Name:
+=====
+ ble_freertos_eddystone_url
+
+
+Description:
+============
+ ARM Cordio BLE - eddystone_url Example
+
+
+Purpose:
+========
+This is a standard BLE eddystone_url example.
+
+Additional Information:
+=======================
+To enable debug printing, add the following project-level macro definitions.
+
+AM_DEBUG_PRINTF
+WSF_TRACE_ENABLED=1
+
+When defined, debug messages will be sent over ITM/SWO at 1M Baud.
+
+Note that when these macros are defined, the device will never achieve deep
+sleep, only normal sleep, due to the ITM (and thus the HFRC) being enabled.
+
+
+
+******************************************************************************
+
+
+Name:
+=====
  ble_freertos_fcc_test
 
 
@@ -2298,6 +2390,30 @@ sleep, only normal sleep, due to the ITM (and thus the HFRC) being enabled.
 
 Name:
 =====
+ ble_freertos_hid
+
+
+Description:
+============
+ Example of the hid app running under FreeRTOS.
+
+
+This example implements a BLE heart rate sensor within the FreeRTOS
+framework. To save power, this application is compiled without print
+statements by default. To enable them, add the following project-level
+macro definitions.
+
+AM_DEBUG_PRINTF
+WSF_TRACE_ENABLED=1
+
+If enabled, debug messages will be sent over ITM.
+
+
+******************************************************************************
+
+
+Name:
+=====
  ble_freertos_power_cycle
 
 
@@ -2336,6 +2452,30 @@ This is a standard BLE Proximity Profile example.
 
 Printing takes place over the ITM at 1M Baud.
 
+
+
+******************************************************************************
+
+
+Name:
+=====
+ ble_freertos_throughput
+
+
+Description:
+============
+ ARM Cordio BLE - Ambiq Micro Throughput Example.
+
+
+Purpose:
+========
+This example implements is based on Over-the-Air (OTA) example,
+is designed to test the data transmitting thourghput.
+
+AM_DEBUG_PRINTF
+WSF_TRACE_ENABLED=1
+
+If enabled, debug messages will be sent over ITM at 1M Baud.
 
 
 ******************************************************************************
@@ -2460,29 +2600,6 @@ Therefore, the UART terminal must be set to simulate a CR/LF.
 
 Name:
 =====
- ctimer_pwm_output
-
-
-Description:
-============
- Breathing LED example.
-
-
-Purpose:
-========
-This example shows one way to vary the brightness of an LED using a timer
-in PWM mode.  The timer can be clocked from either the XTAL (default) or
-the LFRC, selectable by a define, USE_XTAL.
-
-Printing takes place over the ITM at 1M Baud.
-
-
-
-******************************************************************************
-
-
-Name:
-=====
  deepsleep
 
 
@@ -2499,35 +2616,6 @@ provide the opportunity to measure deepsleep current without interrupts
 interfering with the measurement.
 
 The example begins by printing out a banner announcement message through
-the UART, which is then completely disabled for the remainder of execution.
-
-Text is output to the UART at 115,200 BAUD, 8 bit, no parity.
-Please note that text end-of-line is a newline (LF) character only.
-Therefore, the UART terminal must be set to simulate a CR/LF.
-
-
-******************************************************************************
-
-
-Name:
-=====
- deepsleep_wake
-
-
-Description:
-============
- Example that goes to deepsleep and wakes from either the RTC or GPIO.
-
-
-Purpose:
-========
-This example configures the device to go into a deep sleep mode. Once in
-deep sleep the RTC peripheral will wake the device every second, check to
-see if 5 seconds has elapsed and then toggle LED1.
-
-Alternatively, it will awake when button 0 is pressed and toggle LED0.
-
-The example begins by printing out a banner annoucement message through
 the UART, which is then completely disabled for the remainder of execution.
 
 Text is output to the UART at 115,200 BAUD, 8 bit, no parity.
@@ -3042,39 +3130,6 @@ GND                                     GND
 
 Name:
 =====
- mspi_quad_example
-
-
-Description:
-============
- Example of the MSPI operation with Quad SPI Flash.
-
-
-Purpose:
-========
-This example configures an MSPI connected flash device in Quad mode
-and performs various operations - verifying the correctness of the same
-Operations include - Erase, Write, Read, Read using XIP Apperture and XIP.
-
-Printing takes place over the ITM at 1M Baud.
-
-Additional Information:
-=======================
-If the fireball device card is used, this example can work on:
-Apollo3_eb + Fireball
-Apollo3_eb + Fireball2
-Recommend to use 1.8V power supply voltage.
-Define FIREBALL_CARD in the config-template.ini file to select.
-Define CYPRESS_S25FS064S or ADESTO_ATXP032 for Fireball
-Define ADESTO_ATXP032 for Fireball2
-
-
-
-******************************************************************************
-
-
-Name:
-=====
  pdm_fft
 
 
@@ -3218,64 +3273,6 @@ Printing takes place over the ITM at 1M Baud.
 
 Name:
 =====
- uart_boot_host
-
-
-Description:
-============
- Converts UART Wired transfer commands to SPI for use with SBL SPI testing.
-
-
-Purpose:
-========
-This example running on an intermediate board, along with the standard
-uart_wired_update script running on host PC, can be used as a way to
-communicate to Apollo3 SBL using SPI mode.
-
-Printing takes place over the ITM at 1M Baud.
-
-Additional Information:
-=======================
-PIN fly lead connections assumed:
-HOST (this board)                       SLAVE (Apollo3 SBL target)
---------                                --------
-Apollo3 SPI or I2C common connections:
-GPIO[2]  GPIO Interrupt (slave to host) GPIO[4]  GPIO interrupt
-GPIO[4]  OVERRIDE pin   (host to slave) GPIO[16] Override pin or n/c
-GPIO[17] Slave reset (host to slave)    Reset Pin or n/c
-GND                                     GND
-
-Apollo3 SPI additional connections:
-GPIO[5]  IOM0 SPI CLK                   GPIO[0]  IOS SPI SCK
-GPIO[6]  IOM0 SPI MISO                  GPIO[2]  IOS SPI MISO
-GPIO[7]  IOM0 SPI MOSI                  GPIO[1]  IOS SPI MOSI
-GPIO[11] IOM0 SPI nCE                   GPIO[3]  IOS SPI nCE
-
-Apollo3 I2C additional connections:
-GPIO[5]  I2C SCL                        GPIO[0]  I2C SCL
-GPIO[6]  I2C SDA                        GPIO[1]  I2C SDA
-
-Reset and Override pin connections from Host are optional, but using them
-automates the entire process.
-
-SPI or I2C mode can be handled in a couple of ways:
-- SPI mode is the default (i.e. don't press buttons or tie pins low).
-- For I2C, press button2 during reset and hold it until the program begins,
-i.e. you see the "I2C clock = " msg.
-Alternatively the button2 pin can be tied low.
-- Note that on the Apollo3 EVB, button2 is labelled as 'BTN4', which is
-the button located nearest the end of the board.
-Also on the Apollo3 EVB, BTN4 uses pin 19.  It happens that the header
-pin for pin 19 on the EVB is adjacent to a ground pin, so a jumper can
-be used to assert I2C mode.
-
-
-
-******************************************************************************
-
-
-Name:
-=====
  watchdog
 
 
@@ -3305,18 +3302,253 @@ Printing takes place over the ITM at 1M Baud.
 
 Name:
 =====
- while
+ cache_monitor
 
 
 Description:
 ============
- Example to emulate a polling loop.
+ Example to show the performance of cache.
 
 
 Purpose:
 ========
-This example provides a demonstration of the power required while
-executing in a tight loop on the Apollo3 MCU.
+This example provides a demonstration of the cache monitor to check
+the cache hit rate and cache miss number.
+
+Additional Information:
+=======================
+If the fireball device card is used, this example can work on:
+Apollo3p_evb + Cygnus
+Recommend to use 3.3V power supply voltage.
+
+
+
+******************************************************************************
+
+
+Name:
+=====
+ freertos_mspi_display
+
+
+Description:
+============
+ Example demonstrating MSPI display rendering
+
+
+This example demonstrates FB rendering to an MSPI connected display
+Two predefined images are used. A configurable amount of frame sync's
+(TE_DELAY) controls the frequency of flipping between two buffers
+
+
+Pin connections:
+
+
+
+******************************************************************************
+
+
+Name:
+=====
+ iom_fram
+
+
+Description:
+============
+ Example that demonstrates IOM, connecting to a SPI or I2C FRAM
+
+Purpose:
+========
+FRAM is initialized with a known pattern data using Blocking IOM Write.
+This example starts a 1 second timer. At each 1 second period, it initiates
+reading a fixed size block from the FRAM device using Non-Blocking IOM
+Read, and comparing against the predefined pattern
+
+Printing takes place over the ITM at 1M Baud.
+
+Additional Information:
+=======================
+Define USE_SPI to select SPI or I2C
+Define one of FRAM_DEVICE_ macros to select the FRAM device
+Recommend to use 1.8V power supply voltage with CYGNUS shield
+
+
+
+******************************************************************************
+
+
+Name:
+=====
+ iom_power_example
+
+
+Description:
+============
+ Example that demonstrates IOM power consumption, connecting to a FRAM
+
+Purpose:
+========
+FRAM is initialized with a known pattern data using Blocking IOM Write.
+This example starts a 1 second timer. At each 1 second period, it initiates
+reading a fixed size block from the FRAM device using Non-Blocking IOM
+Read, and comparing against the predefined pattern
+
+Printing takes place over the ITM at 1M Baud.
+
+Additional Information:
+=======================
+USE I2C FRAM on Cygnus: MB85RC64TA
+Recommend to use 1.8V power supply voltage.
+
+
+
+******************************************************************************
+
+
+Name:
+=====
+ mspi_flash_loader
+
+
+Description:
+============
+ MSPI External Flash Loading and Execution Example
+
+
+Purpose:
+========
+This example demonstrates loading a binary image from internal
+flash to MSPI external Octal flash, then executing the program using
+XIP from the external flash.
+
+Printing takes place over the ITM at 1M Baud.
+
+Additional Information:
+=======================
+The binary must be linked to run from MSPI flash address range
+(as specified by BIN_INSTALL_ADDR). The location and size of the binary
+in internal flash are specified using BIN_ADDR_FLASH & BIN_SIZE
+
+This example has been enhanced to use the new 'binary patching' feature
+This example will not build if proper startup/linker files are not used.
+
+Prepare the example as follows:
+1. Generate hello_world example to load and execute at MSPI Flash XIP location 0x04000000.
+i. In the /examples/hello_world/iar directory modify the FLASH region as follows:
+change "define region ROMEM = mem:[from 0x0000C000 to 0x000FC000];"
+to "define region ROMEM = mem:[from 0x04000000 to 0x040F0000];"
+ii. Execute "make" in the /examples/hello_world/iar directory to rebuild the project.
+2. Copy /examples/hello_world/iar/bin/hello_world.bin into /examples/mspi_flash_loader/
+3. Create the binary with mspi_flash_loader + external executable from Step #1.
+./mspi_loader_binary_combiner.py --loaderbin iar/bin/mspi_flash_loader.bin --appbin hello_world.bin --install-address 0x04000000 --flags 0x2 --outbin loader_hello_world --loader-address 0x0000C000 --chipType apollo3p
+4. Open the J-Link SWO Viewer to the target board.
+5. Open the J-Flash Lite program.  Select the /examples/mspi_flash_loader/loader_hello_world.bin file and program at 0x0000C000 offset.
+
+And this example can work on:
+Apollo3p_evb + Cygnus
+Target hardware uses 1.8V power supply voltage.
+Actual Octal flash on Cygnus board is ATXP128 (Device ID: 0x00A91F) instead of ATXP032
+
+
+
+******************************************************************************
+
+
+Name:
+=====
+ mspi_octal_example
+
+
+Description:
+============
+ Example of the MSPI operation with Octal SPI Flash.
+
+
+Purpose:
+========
+This example configures an MSPI connected flash device in Octal mode
+and performs various operations - verifying the correctness of the same
+Operations include - Erase, Write, Read, and XIP
+
+Printing takes place over the ITM at 1M Baud.
+
+Additional Information:
+=======================
+this example can work on:
+Apollo3p_evb + Cygnus
+Target hardware uses 1.8V power supply voltage.
+Actual Octal flash on Cygnus board is ATXP128 (Device ID: 0x00A91F) instead of ATXP032
+Define ADESTO_ATXP032
+
+
+
+******************************************************************************
+
+
+Name:
+=====
+ mspi_power_example
+
+
+Description:
+============
+ MSPI Power Profiling Example
+
+
+Purpose:
+========
+This example is designed to provide a convenient way to assess the
+expected power to be used by the MSPI device during: a) DMA reads, b) DMA writes
+and c) XIP operation.  The example is designed to be combined with and load the
+prime number library to act as the executable in external Quad SPI flash.
+
+Additional Information:
+=======================
+
+1. Build the libprime.a with the project in \libs\prime\iar.
+
+2. Generate prime_mpi.bin using \libs\prime\make_lib.bat
+
+3. Copy prime_mpi.bin into \boards\common3\examples\mspi_power_example
+
+4. Build the mspi_power_example binaries
+
+5. Create the binary with mspi_flash_loader + external executable from Step #1.
+
+./mspi_testcase_binary_combiner.py --loaderbin iar/bin/mspi_power_example.bin --libbin prime_mpi.bin --off 0x0 --p0 1000 --p1 0 --p2 1 --r 168 --outbin mspi_power_executable --loader-address 0x0000C000 --chipType apollo3p
+
+This example can work on:
+Apollo3p_evb + Cygnus
+Recommend to use 3.3V power supply voltage.
+
+
+
+******************************************************************************
+
+
+Name:
+=====
+ mspi_quad_example
+
+
+Description:
+============
+ Example of the MSPI operation with Quad SPI Flash.
+
+
+Purpose:
+========
+This example configures an MSPI connected flash device in Quad mode
+and performs various operations - verifying the correctness of the same
+Operations include - Erase, Write, Read, Read using XIP Apperture and XIP.
+
+Printing takes place over the ITM at 1M Baud.
+
+Additional Information:
+=======================
+this example can work on:
+Apollo3p_evb + Cygnus
+Target hardware uses 1.8V power supply voltage.
 
 
 
@@ -3587,6 +3819,98 @@ Printing takes place over the ITM at 1M Baud.
 
 Name:
 =====
+ ble_freertos_barebone
+
+
+Description:
+============
+ Example of the ble_freertos_barebone app running under FreeRTOS.
+
+
+This example implements a BLE barebone proejct within the FreeRTOS
+framework. To minimize power usage, this application is compiled without
+debug printing by default (the non-"lp" version of this example enables
+them by default).  To enable debug printing, add the following project-level
+macro definitions.
+
+AM_DEBUG_PRINTF
+WSF_TRACE_ENABLED=1
+
+When defined, debug messages will be sent over ITM/SWO.
+
+Note that when these macros are defined, the device will never achieve deep
+sleep, only normal sleep, due to the ITM (and thus the HFRC) being enabled.
+
+
+******************************************************************************
+
+
+Name:
+=====
+ ble_freertos_beaconscanner
+
+
+Description:
+============
+ ARM Cordio BLE - Beaconscanner Application Example.
+
+
+Purpose:
+========
+This example implements a BLE beacon scanner within the FreeRTOS
+framework. To minimize power usage, this application is compiled without
+debug printing by default (the non-"lp" version of this example enables
+them by default).
+
+Additional Information:
+=======================
+To enable debug printing, add the following project-level macro definitions.
+
+AM_DEBUG_PRINTF
+WSF_TRACE_ENABLED=1
+
+When defined, debug messages will be sent over ITM/SWO at 1M Baud.
+
+Note that when these macros are defined, the device will never achieve deep
+sleep, only normal sleep, due to the ITM (and thus the HFRC) being enabled.
+
+
+******************************************************************************
+
+
+Name:
+=====
+ ble_freertos_eddystone_url
+
+
+Description:
+============
+ ARM Cordio BLE - eddystone_url Example
+
+
+Purpose:
+========
+This is a standard BLE eddystone_url example.
+
+Additional Information:
+=======================
+To enable debug printing, add the following project-level macro definitions.
+
+AM_DEBUG_PRINTF
+WSF_TRACE_ENABLED=1
+
+When defined, debug messages will be sent over ITM/SWO at 1M Baud.
+
+Note that when these macros are defined, the device will never achieve deep
+sleep, only normal sleep, due to the ITM (and thus the HFRC) being enabled.
+
+
+
+******************************************************************************
+
+
+Name:
+=====
  ble_freertos_fit
 
 
@@ -3653,6 +3977,30 @@ sleep, only normal sleep, due to the ITM (and thus the HFRC) being enabled.
 
 Name:
 =====
+ ble_freertos_hid
+
+
+Description:
+============
+ Example of the hid app running under FreeRTOS.
+
+
+This example implements a BLE heart rate sensor within the FreeRTOS
+framework. To save power, this application is compiled without print
+statements by default. To enable them, add the following project-level
+macro definitions.
+
+AM_DEBUG_PRINTF
+WSF_TRACE_ENABLED=1
+
+If enabled, debug messages will be sent over ITM.
+
+
+******************************************************************************
+
+
+Name:
+=====
  ble_freertos_power_cycle
 
 
@@ -3691,6 +4039,30 @@ This is a standard BLE Proximity Profile example.
 
 Printing takes place over the ITM at 1M Baud.
 
+
+
+******************************************************************************
+
+
+Name:
+=====
+ ble_freertos_throughput
+
+
+Description:
+============
+ ARM Cordio BLE - Ambiq Micro Throughput Example.
+
+
+Purpose:
+========
+This example implements is based on Over-the-Air (OTA) example,
+is designed to test the data transmitting thourghput.
+
+AM_DEBUG_PRINTF
+WSF_TRACE_ENABLED=1
+
+If enabled, debug messages will be sent over ITM at 1M Baud.
 
 
 ******************************************************************************
@@ -3799,9 +4171,8 @@ the cache hit rate and cache miss number.
 Additional Information:
 =======================
 If the fireball device card is used, this example can work on:
-Apollo3_eb + Fireball2
+Apollo3p_evb + Cygnus
 Recommend to use 3.3V power supply voltage.
-Define FIREBALL_CARD and APS6404L in the config-template.ini file to select.
 
 
 
@@ -4240,39 +4611,6 @@ printing.
 
 Name:
 =====
- iom_fram
-
-
-Description:
-============
- Example that demonstrates IOM, connecting to a SPI or I2C FRAM
-
-Purpose:
-========
-FRAM is initialized with a known pattern data using Blocking IOM Write.
-This example starts a 1 second timer. At each 1 second period, it initiates
-reading a fixed size block from the FRAM device using Non-Blocking IOM
-Read, and comparing against the predefined pattern
-
-Printing takes place over the ITM at 1M Baud.
-
-Additional Information:
-=======================
-Define USE_SPI to select SPI or I2C
-Define one of FRAM_DEVICE_ macros to select the FRAM device
-And if the fireball device card is used, this example can work on:
-Apollo3_eb + Fireball
-Apollo3_eb + Fireball2
-Recommend to use 1.8V power supply voltage.
-Define FIREBALL_CARD or FIREBALL2_CARD in the config-template.ini file to select.
-
-
-
-******************************************************************************
-
-
-Name:
-=====
  ios_fifo
 
 
@@ -4512,150 +4850,6 @@ GND                                     GND
 
 Name:
 =====
- mspi_flash_loader
-
-
-Description:
-============
- MSPI External Flash Loading and Execution Example
-
-
-Purpose:
-========
-This example demonstrates loading a binary image from internal
-flash to MSPI external quad flash, then executing the program using
-XIP from the external flash.
-
-Printing takes place over the ITM at 1M Baud.
-
-Additional Information:
-=======================
-The binary must be linked to run from MSPI flash address range
-(as specified by BIN_INSTALL_ADDR). The location and size of the binary
-in internal flash are specified using BIN_ADDR_FLASH & BIN_SIZE
-
-This example has been enhanced to use the new 'binary patching' feature
-This example will not build if proper startup/linker files are not used.
-
-Prepare the example as follows:
-1. Generate hello_world example to load and execute at MSPI Flash XIP location 0x04000000.
-i. In the /examples/hello_world/iar directory modify the FLASH region as follows:
-change "define region ROMEM = mem:[from 0x0000C000 to 0x000FC000];"
-to "define region ROMEM = mem:[from 0x04000000 to 0x040F0000];"
-ii. Execute "make" in the /examples/hello_world/iar directory to rebuild the project.
-2. Copy /examples/hello_world/iar/bin/hello_world.bin into /boards/common3/examples/mspi_flash_loader/
-3. Create the binary with mspi_flash_loader + external executable from Step #1.
-./mspi_loader_binary_combiner.py --loaderbin iar/bin/mspi_flash_loader.bin --appbin hello_world.bin --install-address 0x04000000 --flags 0x2 --outbin loader_hello_world --loader-address 0x0000C000
-4. Open the J-Link SWO Viewer to the target board.
-5. Open the J-Flash Lite program.  Select the /examples/mspi_flash_loader/loader_hello_world.bin file and program at 0x0000C000 offset.
-
-And if the fireball device card is used, this example can work on:
-Apollo3_eb + Fireball
-Apollo3_eb + Fireball2
-Recommend to use 1.8V power supply voltage.
-Define FIREBALL_CARD or FIREBALL2_CARD in the config-template.ini file to select.
-Define CYPRESS_S25FS064S or ADESTO_ATXP032 for Fireball
-Define ADESTO_ATXP032 for Fireball2
-
-
-
-******************************************************************************
-
-
-Name:
-=====
- mspi_iom_xfer
-
-
-Description:
-============
- Example demonstrating the hardware assisted MSPI to IOM transfer
-
-
-Purpose:
-========
-This example demonstrates transferring a large buffer from a flash device
-connected on MSPI, to a FRAM device connected to IOM, using hardware
-handshaking in Apollo3 - with minimal CPU involvement.
-
-At initialization, both the FRAM and Flash are initialized and a set pattern
-data is written to the flash for transfer to FRAM.
-
-The FRAM is connected to IOM using SPI interface, and hence the transactions
-are limited in size to 4095 Bytes.
-The program here creates a command queue for both the MSPI and IOM, to
-create a sequence of transactions - each reading a segment of the source
-buffer to a temp buffer in internal SRAM, and then writing the same to the
-FRAM using the IOM. It uses hardware handshaking so that the IOM transaction
-is started only once the segement is read out completely from MSPI Flash.
-
-To best utilize the buses, a ping-pong model is used using two temporary
-buffers in SRAM. This allows the interfaces to not idle while waiting for
-other to finish - essentially achieving close to the bandwidth achieved by
-the slower of the two.
-
-Printing takes place over the ITM at 1M Baud.
-
-Additional Information:
-=======================
-Configurable parameters at compile time:
-IOM to use (FRAM_IOM_MODULE)
-FRAM device to use (define one of FRAM_DEVICE_* to 1)
-MSPI Flash to use - uses compile time definitions from am_device_mspi_flash.h
-BLOCK_SIZE - total size of transaction
-SPI_TXN_SIZE - size of temporary ping-pong buffer
-CPU_SLEEP_GPIO - tracks CPU sleeping on analyzer
-VERIFY_DATA - Enables reading back of the data from IOM to check & verify the accuracy
-This can only be enabled if SEQLOOP is not being used
-
-Operating modes:
-SEQLOOP not defined - The CQ is programmed each iteration
-SEQLOOP - Advanced mode, to create sequence once, which repeats when triggered by callback at the end of each iteration
-SEQLOOP - RUN_AUTONOMOUS - Sequence created once, and it repeats indefintely till paused (as a result of timer)
-CQ_RAW - Uses Preconstructed CQ for IOM and MSPI - to save on the time to program the same at run time
-
-Best way to see the example in action is to connect logic analyzer and monitor the signals
-Apart from the IO signals below, one can also monitor CPU_SLEEP_GPIO to monitor CPU in deep sleep
-Pin connections:
-IOM:
-Particular IOM to use for this example is controlled by macro FRAM_IOM_MODULE
-This example use apollo3_eb board connected to a fireball
-Fireball is populated with MB85RS1MT SPI FRAM devices on each of the IOM's
-with respective pin definitions in the BSP
-Default pin settings for this example using IOM1 are:
-#define AM_BSP_GPIO_IOM1_CS             14
-#define AM_BSP_IOM1_CS_CHNL             2
-#define AM_BSP_GPIO_IOM1_MISO           9
-#define AM_BSP_GPIO_IOM1_MOSI           10
-#define AM_BSP_GPIO_IOM1_SCK            8
-
-MSPI:
-The MSPI flash device uses is controlled by macro FRAM_DEVICE_* (set one of them to 1)
-This example uses apollo3_eb board connected to a fireball
-Fireball is populated with CYPRESS_S25FS064S flash on CE0
-#define AM_BSP_GPIO_MSPI_CE0            19
-#define AM_BSP_MSPI_CE0_CHNL            0
-#define AM_BSP_GPIO_MSPI_D0             22
-#define AM_BSP_GPIO_MSPI_D1             26
-#define AM_BSP_GPIO_MSPI_D2             4
-#define AM_BSP_GPIO_MSPI_D3             23
-#define AM_BSP_GPIO_MSPI_SCK            24
-
-And if the fireball device card is used, this example can work on:
-Apollo3_eb + Fireball
-Apollo3_eb + Fireball2
-Recommend to use 1.8V power supply voltage.
-Define FIREBALL_CARD or FIREBALL2_CARD in the config-template.ini file to select.
-Define CYPRESS_S25FS064S or ADESTO_ATXP032 for Fireball
-Define ADESTO_ATXP032 for Fireball2
-
-
-
-******************************************************************************
-
-
-Name:
-=====
  mspi_octal_example
 
 
@@ -4674,45 +4868,11 @@ Printing takes place over the ITM at 1M Baud.
 
 Additional Information:
 =======================
-If the fireball device card is used, this example can work on:
-Apollo3_eb + Fireball
-Apollo3_eb + Fireball2
-Recommend to use 1.8V power supply voltage.
-Define FIREBALL_CARD or FIREBALL2_CARD in the config-template.ini file to select.
+this example can work on:
+Apollo3p_evb + Cygnus
+Target hardware uses 1.8V power supply voltage.
+Actual Octal flash on Cygnus board is ATXP128 (Device ID: 0x00A91F) instead of ATXP032
 Define ADESTO_ATXP032
-
-
-
-******************************************************************************
-
-
-Name:
-=====
- mspi_quad_example
-
-
-Description:
-============
- Example of the MSPI operation with Quad SPI Flash.
-
-
-Purpose:
-========
-This example configures an MSPI connected flash device in Quad mode
-and performs various operations - verifying the correctness of the same
-Operations include - Erase, Write, Read, Read using XIP Apperture and XIP.
-
-Printing takes place over the ITM at 1M Baud.
-
-Additional Information:
-=======================
-If the fireball device card is used, this example can work on:
-Apollo3_eb + Fireball
-Apollo3_eb + Fireball2
-Recommend to use 1.8V power supply voltage.
-Define FIREBALL_CARD in the config-template.ini file to select.
-Define CYPRESS_S25FS064S or ADESTO_ATXP032 for Fireball
-Define ADESTO_ATXP032 for Fireball2
 
 
 
@@ -5001,6 +5161,85 @@ executing in a tight loop on the Apollo3 MCU.
 ******************************************************************************
 
 
+Name:
+=====
+ freertos_mspi_display
+
+
+Description:
+============
+ Example demonstrating MSPI display rendering
+
+
+This example demonstrates FB rendering to an MSPI connected display
+Two predefined images are used. A configurable amount of frame sync's
+(TE_DELAY) controls the frequency of flipping between two buffers
+
+
+Pin connections:
+
+
+
+******************************************************************************
+
+
+Name:
+=====
+ iom_fram
+
+
+Description:
+============
+ Example that demonstrates IOM, connecting to a SPI or I2C FRAM
+
+Purpose:
+========
+FRAM is initialized with a known pattern data using Blocking IOM Write.
+This example starts a 1 second timer. At each 1 second period, it initiates
+reading a fixed size block from the FRAM device using Non-Blocking IOM
+Read, and comparing against the predefined pattern
+
+Printing takes place over the ITM at 1M Baud.
+
+Additional Information:
+=======================
+Define USE_SPI to select SPI or I2C
+Define one of FRAM_DEVICE_ macros to select the FRAM device
+Recommend to use 1.8V power supply voltage with CYGNUS shield
+
+
+
+******************************************************************************
+
+
+Name:
+=====
+ iom_power_example
+
+
+Description:
+============
+ Example that demonstrates IOM power consumption, connecting to a FRAM
+
+Purpose:
+========
+FRAM is initialized with a known pattern data using Blocking IOM Write.
+This example starts a 1 second timer. At each 1 second period, it initiates
+reading a fixed size block from the FRAM device using Non-Blocking IOM
+Read, and comparing against the predefined pattern
+
+Printing takes place over the ITM at 1M Baud.
+
+Additional Information:
+=======================
+USE I2C FRAM on Cygnus: MB85RC64TA
+Recommend to use 1.8V power supply voltage.
+
+
+
+******************************************************************************
+
+
 micro-ecc
 ==========
 
@@ -5230,7 +5469,7 @@ as needed.  The default is IRAM.
 
 The files em9304_patches.h and em9304_patches.c will be generated in the following directory:
 
-/third_party/exactle/sw/hci/ambiq/em9304
+/third_party/cordio/sw/hci/ambiq/em9304
 
 Patches are uniquely identified by the following meta-data embedded in *.emp files:
 	* Format Version - Container format version (increments as container is updated)

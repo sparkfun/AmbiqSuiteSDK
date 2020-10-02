@@ -25,7 +25,7 @@
                             <img alt="Logo" src="../resources/am_logo.png" />
                         </td>
                         <td style="padding-left: 0.5em;">
-                            <div id="projectname">Apollo Register Documentation &#160;<span id="projectnumber">v2.4.2</span></div>
+                            <div id="projectname">Apollo Register Documentation &#160;<span id="projectnumber">v${version}</span></div>
                         </td>
                     </tr>
                 </tbody>
@@ -532,11 +532,11 @@
 
                 </table>
                 <h3>Description:</h3>
-                <p>Provides direct random access to both input and output fifos.  The state of the FIFO is not distured by reading these locations (ie no POP will be done).   FIFO0 is accessible from addresses 0x0 - 0x1C, and is used for data outuput from the IOM to external devices.   These FIFO locations can be read and written directly.
-FIFO locations 0x20 - 0x3C provide read only access to the input fifo.  These FIFO locations cannot be directly written by the MCU, and are updated only by the internal hardware.  Writes to the FIFO0 will take effect immediately.   The currently FIFO pointers
-in register FIFOLOC indicate the current offset into each FIFO0 for the read and write operations.
-Access to the FIFOs can only be done in word increments; Byte access and writes are not supported.
-For push and pop style access to FIFO0 can be done using the FIFOPOP and FIFOPUSH registers below.</p>
+                <p>Provides direct random access to both output and input FIFOs.  The state of the FIFO is not disturbed by reading these locations (ie no POP will be done).   FIFO0 is accessible from addresses 0x0 - 0x1C, and is used for data output from the IOM to external devices.   These FIFO locations can be read and written directly.
+FIFO1 locations 0x20 - 0x3C provide read only access to the input FIFO.  These FIFO locations cannot be directly written by the MCU and are updated only by the internal hardware.  Writes to FIFO0 will take effect immediately.   The FIFO pointers
+in register FIFOLOC indicate the current offset into each FIFO for the read and write operations.
+Access to the FIFOs can only be done in word increments; byte reads and writes are not supported.
+Push and pop style access to FIFO0 can be accomplished using the FIFOPOP and FIFOPUSH registers below.</p>
                 <h3>Example Macro Usage:</h3>
                 <pre style="margin:10px" class="language-pascal"><span style='color:#3f7f59; '>//
 // Register access is all performed through the standard CMSIS structure-based
@@ -5792,8 +5792,7 @@ ADCn(0)-&gt;CFG_b.CLKSEL = ADC_CFG_CLKSEL_HFRC; <span style='color:#3f7f59; '>//
                             <td>0</td>
                             <td>CQEN</td>
                             <td>RW</td>
-                            <td>Command queue enable. When set, will enable the processing of the command queue and fetches of address/data pairs will proceed from the word address within the CQADDR register.  Can be disabled
-using a CQ executed write to this bit as well.<br><br>
+                            <td>Command queue enable. When set, will enable the processing of the command queue and fetches of address/data pairs will proceed from the word address within the CQADDR register.  Can be disabled using a CQ executed write to this bit as well.<br><br>
                                  DIS                  = 0x0 - Disable CQ Function<br>
                              EN                   = 0x1 - Enable CQ Function</td>
                         </tr>
@@ -5879,8 +5878,7 @@ using a CQ executed write to this bit as well.<br><br>
 
                 </table>
                 <h3>Description:</h3>
-                <p>The SRAM address which will be fetched next execution of the CQ operation.  This register is updated as the CQ operation progresses, and is the live version of the register.  The register can also be
-written by the Command Queue operation itself, allowing the relocation of successive CQ fetches.  In this case, the new CQ address will be used for the next CQ address/data fetch</p>
+                <p>The SRAM address which will be fetched next execution of the CQ operation.   This register is updated as the CQ operation progresses, and is the live version of the register.  The register can also be written by the Command Queue operation itself, allowing the relocation of successive CQ fetches.  In this case, the new CQ address will be used for the next CQ address/data fetch.</p>
                 <h3>Example Macro Usage:</h3>
                 <pre style="margin:10px" class="language-pascal"><span style='color:#3f7f59; '>//
 // Register access is all performed through the standard CMSIS structure-based
@@ -5982,7 +5980,7 @@ ADCn(0)-&gt;CFG_b.CLKSEL = ADC_CFG_CLKSEL_HFRC; <span style='color:#3f7f59; '>//
                             <td>28</td>
                             <td>CQADDR28</td>
                             <td>RW</td>
-                            <td>Bit 28 of target byte address for source of CQ (read only). Used to denote Flash (0) or SRAM (1) access<br><br>
+                            <td>Bit 28 of target byte address for source of CQ.  Used to denote Flash (0) or SRAM (1) access<br><br>
                                 </td>
                         </tr>
 
@@ -5998,7 +5996,7 @@ ADCn(0)-&gt;CFG_b.CLKSEL = ADC_CFG_CLKSEL_HFRC; <span style='color:#3f7f59; '>//
                             <td>19:2</td>
                             <td>CQADDR</td>
                             <td>RW</td>
-                            <td>Bits 19:2 of target byte address for source of CQ (read only). The buffer must be aligned on a word boundary<br><br>
+                            <td>Bits 19:2 of target byte address for source of CQ. The buffer must be aligned on a word boundary<br><br>
                                 </td>
                         </tr>
 
@@ -8366,7 +8364,7 @@ ADCn(0)-&gt;CFG_b.CLKSEL = ADC_CFG_CLKSEL_HFRC; <span style='color:#3f7f59; '>//
             <small>
                 AmbiqSuite Register Documentation&nbsp;
                 <a href="http://www.ambiqmicro.com">
-                <img class="footer" src="../resources/ambiqmicro_logo.png" alt="Ambiq Micro"/></a>&nbsp&nbsp Copyright &copy; 2019&nbsp&nbsp<br />
+                <img class="footer" src="../resources/ambiqmicro_logo.png" alt="Ambiq Micro"/></a>&nbsp&nbsp Copyright &copy; 2020&nbsp&nbsp<br />
                 This documentation is licensed and distributed under the <a rel="license" href="http://opensource.org/licenses/BSD-3-Clause">BSD 3-Clause License</a>.&nbsp&nbsp<br/>
             </small>
         </div>

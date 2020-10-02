@@ -7,7 +7,7 @@
 
 //*****************************************************************************
 //
-// Copyright (c) 2020, Ambiq Micro
+// Copyright (c) 2020, Ambiq Micro, Inc.
 // All rights reserved.
 //
 // Redistribution and use in source and binary forms, with or without
@@ -39,7 +39,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
-// This is part of revision 2.4.2 of the AmbiqSuite Development Package.
+// This is part of revision 2.5.1 of the AmbiqSuite Development Package.
 //
 //*****************************************************************************
 
@@ -311,7 +311,7 @@ TimerHandle_t xButtonTimer;
 txPowerLevel_t  tx_power_level = TX_POWER_LEVEL_PLUS_6P2_dBm;
 #endif
 
-#if defined(AM_PART_APOLLO3) || defined(AM_PART_APOLLO3P)
+#if defined(AM_PART_APOLLO3) || defined(AM_PART_APOLLO3P) || defined(AM_PART_APOLLO4) || defined(AM_PART_APOLLO4B)
 txPowerLevel_t  tx_power_level = TX_POWER_LEVEL_PLUS_3P0_dBm;
 #endif
 
@@ -415,7 +415,7 @@ button_timer_handler(TimerHandle_t xTimer)
 #endif
 
 #if defined(AM_PART_APOLLO3) || defined(AM_PART_APOLLO3P)
-    HciVsA3_SetRfPowerLevelEx(tx_power_level);
+    HciVscSetRfPowerLevelEx(tx_power_level);
 
     switch ( tx_power_level )
     {

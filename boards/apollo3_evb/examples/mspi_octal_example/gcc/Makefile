@@ -2,7 +2,7 @@
 #
 # Makefile - Rules for building the libraries, examples and docs.
 #
-# Copyright (c) 2020, Ambiq Micro
+# Copyright (c) 2020, Ambiq Micro, Inc.
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
@@ -34,7 +34,7 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 #
-# This is part of revision 2.4.2 of the AmbiqSuite Development Package.
+# This is part of revision 2.5.1 of the AmbiqSuite Development Package.
 #
 #******************************************************************************
 TARGET := mspi_octal_example
@@ -82,31 +82,29 @@ all clean:
 else
 
 DEFINES = -DPART_$(PART)
-DEFINES+= -DAM_PART_APOLLO3
 DEFINES+= -DAM_PACKAGE_BGA
 DEFINES+= -DAM_UTIL_FAULTISR_PRINT
-DEFINES+= -DFIREBALL_CARD
+DEFINES+= -DAM_PART_APOLLO3
 DEFINES+= -Dgcc
 
-INCLUDES = -I../../../../../mcu/apollo3
-INCLUDES+= -I../src
-INCLUDES+= -I../../../../../CMSIS/ARM/Include
-INCLUDES+= -I../../../../../devices
-INCLUDES+= -I../../../../../CMSIS/AmbiqMicro/Include
+INCLUDES = -I../../../../../devices
+INCLUDES+= -I../../../../../mcu/apollo3
 INCLUDES+= -I../../../../..
+INCLUDES+= -I../../../../../CMSIS/AmbiqMicro/Include
 INCLUDES+= -I../../../../../utils
+INCLUDES+= -I../../../../../CMSIS/ARM/Include
+INCLUDES+= -I../src
 INCLUDES+= -I../../../bsp
 
-VPATH = ../../../../../devices
-VPATH+=:../src
+VPATH = ../src
 VPATH+=:../../../../../utils
+VPATH+=:../../../../../devices
 
 SRC = mspi_octal_example.c
-SRC += am_devices_fireball.c
-SRC += am_devices_mspi_atxp032.c
 SRC += am_util_delay.c
 SRC += am_util_faultisr.c
 SRC += am_util_stdio.c
+SRC += am_devices_mspi_atxp032.c
 SRC += startup_gcc.c
 
 CSRC = $(filter %.c,$(SRC))
@@ -118,8 +116,8 @@ OBJS+= $(ASRC:%.s=$(CONFIG)/%.o)
 DEPS = $(CSRC:%.c=$(CONFIG)/%.d)
 DEPS+= $(ASRC:%.s=$(CONFIG)/%.d)
 
-LIBS = ../../../bsp/gcc/bin/libam_bsp.a
-LIBS += ../../../../../mcu/apollo3/hal/gcc/bin/libam_hal.a
+LIBS = ../../../../../mcu/apollo3/hal/gcc/bin/libam_hal.a
+LIBS += ../../../bsp/gcc/bin/libam_bsp.a
 
 CFLAGS = -mthumb -mcpu=$(CPU) -mfpu=$(FPU) -mfloat-abi=$(FABI)
 CFLAGS+= -ffunction-sections -fdata-sections -fomit-frame-pointer
@@ -166,6 +164,7 @@ $(CONFIG)/$(TARGET).bin: $(CONFIG)/$(TARGET).axf
 	@echo " Copying $(COMPILERNAME) $@..." ;\
 	$(CP) $(CPFLAGS) $< $@ ;\
 	$(OD) $(ODFLAGS) $< > $(CONFIG)/$(TARGET).lst
+	@$(SIZE) $(OBJS) $(LIBS) $(CONFIG)/$(TARGET).axf >$(CONFIG)/$(TARGET).size
 
 clean:
 	@echo "Cleaning..." ;\
@@ -175,11 +174,11 @@ clean:
 
 $(CONFIG)/%.d: ;
 
-../../../bsp/gcc/bin/libam_bsp.a:
-	$(MAKE) -C ../../../bsp
-
 ../../../../../mcu/apollo3/hal/gcc/bin/libam_hal.a:
 	$(MAKE) -C ../../../../../mcu/apollo3/hal
+
+../../../bsp/gcc/bin/libam_bsp.a:
+	$(MAKE) -C ../../../bsp
 
 # Automatically include any generated dependencies
 -include $(DEPS)

@@ -14,7 +14,7 @@
 
 //*****************************************************************************
 //
-// Copyright (c) 2020, Ambiq Micro
+// Copyright (c) 2020, Ambiq Micro, Inc.
 // All rights reserved.
 //
 // Redistribution and use in source and binary forms, with or without
@@ -46,7 +46,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
-// This is part of revision 2.4.2 of the AmbiqSuite Development Package.
+// This is part of revision 2.5.1 of the AmbiqSuite Development Package.
 //
 //*****************************************************************************
 #include <string.h>
@@ -394,7 +394,11 @@ image_start_packet_read(am_bootloader_image_t *psImage, uint32_t *pui32Packet)
     // This implementation uses the excess SRAM available in the system
     // CAUTION!!!: For this to work it is essential that the unused SRAM banks are
     // not powered down
+#if defined(AM_PART_APOLLO4) || defined(AM_PART_APOLLO4B)
+    if ((sDevice.ui32DTCMSize - MAX_SRAM_USED) >= psImage->ui32NumBytes)
+#else
     if ((sDevice.ui32SRAMSize - MAX_SRAM_USED) >= psImage->ui32NumBytes)
+#endif
     {
         g_am_multiboot.bStoreInSRAM = 1;
         g_am_multiboot.pui8RxBuffer = (uint8_t *)(SRAM_BASEADDR + MAX_SRAM_USED);
@@ -879,11 +883,11 @@ am_multiboot_ota_handler(am_multiboot_ota_t *pOtaInfo, uint32_t *pTempBuf,
     //
     // Perform a software reset.
     //
-#if AM_APOLLO3_RESET
+#if (defined(AM_PART_APOLLO3) || defined(AM_PART_APOLLO3P) || defined(AM_PART_APOLLO4) || defined(AM_PART_APOLLO4B))
     am_hal_reset_control(AM_HAL_RESET_CONTROL_SWPOI, 0);
-#else // AM_APOLLO3_RESET
+#else
     am_hal_reset_poi();
-#endif // AM_APOLLO3_RESET
+#endif
 
     // Should never reach here
     return true;

@@ -8,7 +8,7 @@
 
 //*****************************************************************************
 //
-// Copyright (c) 2020, Ambiq Micro
+// Copyright (c) 2020, Ambiq Micro, Inc.
 // All rights reserved.
 //
 // Redistribution and use in source and binary forms, with or without
@@ -40,7 +40,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
-// This is part of revision 2.4.2 of the AmbiqSuite Development Package.
+// This is part of revision 2.5.1 of the AmbiqSuite Development Package.
 //
 //*****************************************************************************
 
@@ -160,16 +160,38 @@ am_devices_mb85rs1mt_init(uint32_t ui32Module, am_devices_mb85rs1mt_config_t *pD
     am_hal_iom_config_t     stIOMMB85RS1MTSettings;
 
     uint32_t g_CS[AM_REG_IOM_NUM_MODULES] =
+#if !defined(AM_PART_APOLLO4) && !defined(AM_PART_APOLLO4B)
+#if defined(APOLLO3P_EVB_CYGNUS)
+    {
+        0,
+        AM_BSP_IOM1_CS_CHNL,
+        0,
+        AM_BSP_IOM3_CS_CHNL,
+        AM_BSP_IOM4_CS_CHNL,
+        0
+    };
+#elif defined(APOLLO3_EVB_CYGNUS)
+    {
+        0,
+        AM_BSP_IOM1_CS_CHNL,
+        0,
+        AM_BSP_IOM3_CS_CHNL,
+        AM_BSP_IOM4_CS_CHNL,
+        0
+    };
+#else
     {
       AM_BSP_IOM0_CS_CHNL,
       AM_BSP_IOM1_CS_CHNL,
-#ifndef APOLLO3_FPGA
       AM_BSP_IOM2_CS_CHNL,
       AM_BSP_IOM3_CS_CHNL,
       AM_BSP_IOM4_CS_CHNL,
       AM_BSP_IOM5_CS_CHNL,
-#endif
     };
+#endif
+#else
+    {0, 0, 0, 0, 0, 0, 0, 0};
+#endif
 
     uint32_t      ui32Index = 0;
 
@@ -199,11 +221,15 @@ am_devices_mb85rs1mt_init(uint32_t ui32Module, am_devices_mb85rs1mt_config_t *pD
     //
     // Enable fault detection.
     //
+#if defined(AM_PART_APOLLO4) || defined(AM_PART_APOLLO4B)
+    am_hal_fault_capture_enable();
+#else
 #if AM_APOLLO3_MCUCTRL
     am_hal_mcuctrl_control(AM_HAL_MCUCTRL_CONTROL_FAULT_CAPTURE_ENABLE, 0);
 #else // AM_APOLLO3_MCUCTRL
     am_hal_mcuctrl_fault_capture_enable();
 #endif // AM_APOLLO3_MCUCTRL
+#endif
 
     stIOMMB85RS1MTSettings = g_sIomMb85rs1mtCfg;
     stIOMMB85RS1MTSettings.ui32NBTxnBufLength = pDevConfig->ui32NBTxnBufLength;

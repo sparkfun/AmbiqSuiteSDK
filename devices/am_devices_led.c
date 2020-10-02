@@ -13,7 +13,7 @@
 
 //*****************************************************************************
 //
-// Copyright (c) 2020, Ambiq Micro
+// Copyright (c) 2020, Ambiq Micro, Inc.
 // All rights reserved.
 //
 // Redistribution and use in source and binary forms, with or without
@@ -45,7 +45,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
-// This is part of revision 2.4.2 of the AmbiqSuite Development Package.
+// This is part of revision 2.5.1 of the AmbiqSuite Development Package.
 //
 //*****************************************************************************
 
@@ -80,6 +80,46 @@ am_devices_led_init(am_devices_led_t *psLED)
         return;
     }
 
+#if defined(AM_PART_APOLLO4) || defined(AM_PART_APOLLO4B)
+    //
+    // Handle Direct Drive Versus 3-State (with pull-up or no buffer).
+    //
+    if ( AM_DEVICES_LED_POL_DIRECT_DRIVE_M & psLED->ui32Polarity )
+    {
+        //
+        // Configure the pin as a push-pull GPIO output.
+        //
+        am_hal_gpio_pinconfig(psLED->ui32GPIONumber, am_hal_gpio_pincfg_output);
+
+        //
+        // Disable the output driver, and set the output value to the LEDs "ON"
+        // state.  Note that for Apollo3 GPIOs in push-pull mode, the output
+        // enable, normally a tri-state control, instead functions as an enable
+        // for Fast GPIO. Its state does not matter on previous chips, so for
+        // normal GPIO usage on Apollo3, it must be disabled.
+        //
+        am_hal_gpio_state_write(psLED->ui32GPIONumber, AM_HAL_GPIO_OUTPUT_TRISTATE_DISABLE);
+        am_hal_gpio_state_write(psLED->ui32GPIONumber,
+                                psLED->ui32Polarity & AM_DEVICES_LED_POL_POLARITY_M ?
+                                AM_HAL_GPIO_OUTPUT_SET : AM_HAL_GPIO_OUTPUT_CLEAR);
+    }
+    else
+    {
+        //
+        // Configure the pin as a tri-state GPIO.
+        //
+        am_hal_gpio_pinconfig(psLED->ui32GPIONumber, am_hal_gpio_pincfg_tristate);
+
+        //
+        // Disable the output driver, and set the output value to the LEDs "ON"
+        // state.
+        //
+        am_hal_gpio_state_write(psLED->ui32GPIONumber, AM_HAL_GPIO_OUTPUT_TRISTATE_DISABLE);
+        am_hal_gpio_state_write(psLED->ui32GPIONumber,
+                                psLED->ui32Polarity & AM_DEVICES_LED_POL_POLARITY_M ?
+                                AM_HAL_GPIO_OUTPUT_SET : AM_HAL_GPIO_OUTPUT_CLEAR);
+    }
+#else
 #if AM_APOLLO3_GPIO
     //
     // Handle Direct Drive Versus 3-State (with pull-up or no buffer).
@@ -156,6 +196,7 @@ am_devices_led_init(am_devices_led_t *psLED)
                                     AM_DEVICES_LED_POL_POLARITY_M );
     }
 #endif // AM_APOLLO3_GPIO
+#endif
 }
 
 //*****************************************************************************
@@ -189,11 +230,15 @@ am_devices_led_array_disable(am_devices_led_t *psLEDs, uint32_t ui32NumLEDs)
             continue;
         }
 
+#if defined(AM_PART_APOLLO4) || defined(AM_PART_APOLLO4B)
+        am_hal_gpio_pinconfig((psLEDs + i)->ui32GPIONumber, am_hal_gpio_pincfg_disabled);
+#else
 #if AM_APOLLO3_GPIO
         am_hal_gpio_pinconfig((psLEDs + i)->ui32GPIONumber, g_AM_HAL_GPIO_DISABLE);
 #else // AM_APOLLO3_GPIO
         am_hal_gpio_pin_config((psLEDs + i)->ui32GPIONumber, AM_HAL_GPIO_DISABLE);
 #endif // AM_APOLLO3_GPIO
+#endif
     }
 }
 
@@ -251,7 +296,29 @@ am_devices_led_on(am_devices_led_t *psLEDs, uint32_t ui32LEDNum)
         return;
     }
 
-#if AM_APOLLO3_GPIO
+#if defined(AM_PART_APOLLO4) || defined(AM_PART_APOLLO4B)
+    //
+    // Handle Direct Drive Versus 3-State (with pull-up or no buffer).
+    //
+    if ( AM_DEVICES_LED_POL_DIRECT_DRIVE_M & psLEDs[ui32LEDNum].ui32Polarity )
+    {
+        //
+        // Set the output to the correct state for the LED.
+        //
+        am_hal_gpio_state_write(psLEDs[ui32LEDNum].ui32GPIONumber,
+                                psLEDs[ui32LEDNum].ui32Polarity & AM_DEVICES_LED_POL_POLARITY_M ?
+                                AM_HAL_GPIO_OUTPUT_SET : AM_HAL_GPIO_OUTPUT_CLEAR);
+    }
+    else
+    {
+        //
+        // Turn on the output driver for the LED.
+        //
+        am_hal_gpio_state_write(psLEDs[ui32LEDNum].ui32GPIONumber,
+                                AM_HAL_GPIO_OUTPUT_TRISTATE_ENABLE);
+    }
+#else
+#if (1 == AM_APOLLO3_GPIO)
     //
     // Handle Direct Drive Versus 3-State (with pull-up or no buffer).
     //
@@ -293,6 +360,7 @@ am_devices_led_on(am_devices_led_t *psLEDs, uint32_t ui32LEDNum)
         am_hal_gpio_out_enable_bit_set(psLEDs[ui32LEDNum].ui32GPIONumber);
     }
 #endif // AM_APOLLO3_GPIO
+#endif
 }
 
 //*****************************************************************************
@@ -317,7 +385,29 @@ am_devices_led_off(am_devices_led_t *psLEDs, uint32_t ui32LEDNum)
         return;
     }
 
-#if AM_APOLLO3_GPIO
+#if defined(AM_PART_APOLLO4) || defined(AM_PART_APOLLO4B)
+    //
+    // Handle Direct Drive Versus 3-State (with pull-up or no buffer).
+    //
+    if ( AM_DEVICES_LED_POL_DIRECT_DRIVE_M & psLEDs[ui32LEDNum].ui32Polarity )
+    {
+        //
+        // Set the output to the correct state for the LED.
+        //
+        am_hal_gpio_state_write(psLEDs[ui32LEDNum].ui32GPIONumber,
+                                psLEDs[ui32LEDNum].ui32Polarity & AM_DEVICES_LED_POL_POLARITY_M ?
+                                AM_HAL_GPIO_OUTPUT_CLEAR : AM_HAL_GPIO_OUTPUT_SET);
+    }
+    else
+    {
+        //
+        // Turn off the output driver for the LED.
+        //
+        am_hal_gpio_state_write(psLEDs[ui32LEDNum].ui32GPIONumber,
+                                AM_HAL_GPIO_OUTPUT_TRISTATE_DISABLE);
+    }
+#else
+#if (1 == AM_APOLLO3_GPIO)
     //
     // Handle Direct Drive Versus 3-State (with pull-up or no buffer).
     //
@@ -359,6 +449,7 @@ am_devices_led_off(am_devices_led_t *psLEDs, uint32_t ui32LEDNum)
         am_hal_gpio_out_enable_bit_clear(psLEDs[ui32LEDNum].ui32GPIONumber);
     }
 #endif // AM_APOLLO3_GPIO
+#endif
 }
 
 //*****************************************************************************
@@ -383,7 +474,47 @@ am_devices_led_toggle(am_devices_led_t *psLEDs, uint32_t ui32LEDNum)
         return;
     }
 
-#if AM_APOLLO3_GPIO
+#if defined(AM_PART_APOLLO4) || defined(AM_PART_APOLLO4B)
+    //
+    // Handle Direct Drive Versus 3-State (with pull-up or no buffer).
+    //
+    if ( AM_DEVICES_LED_POL_DIRECT_DRIVE_M & psLEDs[ui32LEDNum].ui32Polarity )
+    {
+        am_hal_gpio_state_write(psLEDs[ui32LEDNum].ui32GPIONumber,
+                                AM_HAL_GPIO_OUTPUT_TOGGLE);
+    }
+    else
+    {
+        uint32_t ui32Ret, ui32Value;
+
+        //
+        // Check to see if the LED pin is enabled.
+        //
+        ui32Ret = am_hal_gpio_state_read(psLEDs[ui32LEDNum].ui32GPIONumber,
+                                         AM_HAL_GPIO_ENABLE_READ, &ui32Value);
+
+        if ( ui32Ret == AM_HAL_STATUS_SUCCESS )
+        {
+            if ( ui32Value )
+            {
+                //
+                // If it was enabled, turn if off.
+                //
+                am_hal_gpio_state_write(psLEDs[ui32LEDNum].ui32GPIONumber,
+                                        AM_HAL_GPIO_OUTPUT_TRISTATE_DISABLE);
+            }
+            else
+            {
+                //
+                // If it was not enabled, turn it on.
+                //
+                am_hal_gpio_state_write(psLEDs[ui32LEDNum].ui32GPIONumber,
+                                        AM_HAL_GPIO_OUTPUT_TRISTATE_ENABLE);
+            }
+        }
+    }
+#else
+#if (1 == AM_APOLLO3_GPIO)
     //
     // Handle Direct Drive Versus 3-State (with pull-up or no buffer).
     //
@@ -451,6 +582,7 @@ am_devices_led_toggle(am_devices_led_t *psLEDs, uint32_t ui32LEDNum)
         }
     }
 #endif // AM_APOLLO3_GPIO
+#endif
 }
 
 //*****************************************************************************
@@ -475,7 +607,26 @@ am_devices_led_get(am_devices_led_t *psLEDs, uint32_t ui32LEDNum)
         return false;   // No error return, so return as off
     }
 
-#if AM_APOLLO3_GPIO
+#if defined(AM_PART_APOLLO4) || defined(AM_PART_APOLLO4B)
+    uint32_t ui32Ret, ui32Value;
+    am_hal_gpio_read_type_e eReadType;
+
+    eReadType = AM_DEVICES_LED_POL_DIRECT_DRIVE_M & psLEDs[ui32LEDNum].ui32Polarity ?
+                AM_HAL_GPIO_OUTPUT_READ : AM_HAL_GPIO_ENABLE_READ;
+
+    ui32Ret = am_hal_gpio_state_read(psLEDs[ui32LEDNum].ui32GPIONumber,
+                                     eReadType, &ui32Value);
+
+    if ( ui32Ret == AM_HAL_STATUS_SUCCESS )
+    {
+        return (bool)ui32Value;
+    }
+    else
+    {
+        return false;
+    }
+#else
+#if (1 == AM_APOLLO3_GPIO)
     uint32_t ui32Ret, ui32Value;
     am_hal_gpio_read_type_e eReadType;
 
@@ -514,6 +665,7 @@ am_devices_led_get(am_devices_led_t *psLEDs, uint32_t ui32LEDNum)
         return am_hal_gpio_out_enable_bit_get(psLEDs[ui32LEDNum].ui32GPIONumber);
     }
 #endif // AM_APOLLO3_GPIO
+#endif
 }
 
 //*****************************************************************************

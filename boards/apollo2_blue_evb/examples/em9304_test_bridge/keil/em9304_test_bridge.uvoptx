@@ -216,7 +216,7 @@
   </Group>
 
   <Group>
-    <GroupName>utils</GroupName>
+    <GroupName>devices</GroupName>
     <tvExp>1</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
@@ -232,8 +232,8 @@
       <TopLine>0</TopLine>
       <CurrentLine>0</CurrentLine>
       <bDave2>0</bDave2>
-      <PathWithFileName>../../../../../utils/am_util_delay.c</PathWithFileName>
-      <FilenameWithoutPath>am_util_delay.c</FilenameWithoutPath>
+      <PathWithFileName>../../../../../devices/am_devices_button.c</PathWithFileName>
+      <FilenameWithoutPath>am_devices_button.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -248,13 +248,21 @@
       <TopLine>0</TopLine>
       <CurrentLine>0</CurrentLine>
       <bDave2>0</bDave2>
-      <PathWithFileName>../../../../../utils/am_util_faultisr.c</PathWithFileName>
-      <FilenameWithoutPath>am_util_faultisr.c</FilenameWithoutPath>
+      <PathWithFileName>../../../../../devices/am_devices_em9304.c</PathWithFileName>
+      <FilenameWithoutPath>am_devices_em9304.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
+  </Group>
+
+  <Group>
+    <GroupName>utils</GroupName>
+    <tvExp>1</tvExp>
+    <tvExpOptDlg>0</tvExpOptDlg>
+    <cbSel>0</cbSel>
+    <RteFlg>0</RteFlg>
     <File>
-      <GroupNumber>2</GroupNumber>
+      <GroupNumber>3</GroupNumber>
       <FileNumber>4</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
@@ -264,19 +272,11 @@
       <TopLine>0</TopLine>
       <CurrentLine>0</CurrentLine>
       <bDave2>0</bDave2>
-      <PathWithFileName>../../../../../utils/am_util_stdio.c</PathWithFileName>
-      <FilenameWithoutPath>am_util_stdio.c</FilenameWithoutPath>
+      <PathWithFileName>../../../../../utils/am_util_delay.c</PathWithFileName>
+      <FilenameWithoutPath>am_util_delay.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
-  </Group>
-
-  <Group>
-    <GroupName>devices</GroupName>
-    <tvExp>1</tvExp>
-    <tvExpOptDlg>0</tvExpOptDlg>
-    <cbSel>0</cbSel>
-    <RteFlg>0</RteFlg>
     <File>
       <GroupNumber>3</GroupNumber>
       <FileNumber>5</FileNumber>
@@ -288,8 +288,8 @@
       <TopLine>0</TopLine>
       <CurrentLine>0</CurrentLine>
       <bDave2>0</bDave2>
-      <PathWithFileName>../../../../../devices/am_devices_button.c</PathWithFileName>
-      <FilenameWithoutPath>am_devices_button.c</FilenameWithoutPath>
+      <PathWithFileName>../../../../../utils/am_util_faultisr.c</PathWithFileName>
+      <FilenameWithoutPath>am_util_faultisr.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -304,8 +304,8 @@
       <TopLine>0</TopLine>
       <CurrentLine>0</CurrentLine>
       <bDave2>0</bDave2>
-      <PathWithFileName>../../../../../devices/am_devices_em9304.c</PathWithFileName>
-      <FilenameWithoutPath>am_devices_em9304.c</FilenameWithoutPath>
+      <PathWithFileName>../../../../../utils/am_util_stdio.c</PathWithFileName>
+      <FilenameWithoutPath>am_util_stdio.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>

@@ -8,7 +8,7 @@
 
 //*****************************************************************************
 //
-// Copyright (c) 2020, Ambiq Micro
+// Copyright (c) 2020, Ambiq Micro, Inc.
 // All rights reserved.
 //
 // Redistribution and use in source and binary forms, with or without
@@ -40,7 +40,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
-// This is part of revision 2.4.2 of the AmbiqSuite Development Package.
+// This is part of revision 2.5.1 of the AmbiqSuite Development Package.
 //
 //*****************************************************************************
 
@@ -184,6 +184,9 @@ am_devices_mb85rc256v_init(uint32_t ui32Module, am_devices_mb85rc256v_config_t *
     //
     // Enable fault detection.
     //
+#if defined(AM_PART_APOLLO4) || defined(AM_PART_APOLLO4B)
+    am_hal_fault_capture_enable();
+#endif
 #if defined (AM_PART_APOLLO3) || defined (AM_PART_APOLLO3P)
 #if AM_APOLLO3_MCUCTRL
     am_hal_mcuctrl_control(AM_HAL_MCUCTRL_CONTROL_FAULT_CAPTURE_ENABLE, 0);
@@ -263,6 +266,11 @@ am_devices_mb85rc256v_term(void *pHandle)
 
     // Free this device handle
     pIom->bOccupied = false;
+
+    //
+    // Configure the IOM pins.
+    //
+    am_bsp_iom_pins_disable(pIom->ui32Module, AM_HAL_IOM_I2C_MODE);
 
     //
     // Return the status.

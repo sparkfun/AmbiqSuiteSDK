@@ -2,7 +2,7 @@
 #
 # Makefile - Rules for building the libraries, examples and docs.
 #
-# Copyright (c) 2020, Ambiq Micro
+# Copyright (c) 2020, Ambiq Micro, Inc.
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
@@ -34,7 +34,7 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 #
-# This is part of revision 2.4.2 of the AmbiqSuite Development Package.
+# This is part of revision 2.5.1 of the AmbiqSuite Development Package.
 #
 #******************************************************************************
 TARGET := hello_fault
@@ -87,17 +87,17 @@ DEFINES+= -DAM_UTIL_FAULTISR_PRINT
 DEFINES+= -DAM_PART_APOLLO3P
 DEFINES+= -Dgcc
 
-INCLUDES = -I../../../../../devices
-INCLUDES+= -I../../../../../CMSIS/AmbiqMicro/Include
-INCLUDES+= -I../../../bsp
+INCLUDES = -I../../../../..
 INCLUDES+= -I../../../../../CMSIS/ARM/Include
-INCLUDES+= -I../../../../../mcu/apollo3p
+INCLUDES+= -I../../../../../CMSIS/AmbiqMicro/Include
+INCLUDES+= -I../../../../../devices
+INCLUDES+= -I../../../bsp
 INCLUDES+= -I../../../../../utils
+INCLUDES+= -I../../../../../mcu/apollo3p
 INCLUDES+= -I../src
-INCLUDES+= -I../../../../..
 
-VPATH = ../src
-VPATH+=:../../../../../utils
+VPATH = ../../../../../utils
+VPATH+=:../src
 
 SRC = hello_fault.c
 SRC += am_util_delay.c
@@ -162,6 +162,7 @@ $(CONFIG)/$(TARGET).bin: $(CONFIG)/$(TARGET).axf
 	@echo " Copying $(COMPILERNAME) $@..." ;\
 	$(CP) $(CPFLAGS) $< $@ ;\
 	$(OD) $(ODFLAGS) $< > $(CONFIG)/$(TARGET).lst
+	@$(SIZE) $(OBJS) $(LIBS) $(CONFIG)/$(TARGET).axf >$(CONFIG)/$(TARGET).size
 
 clean:
 	@echo "Cleaning..." ;\

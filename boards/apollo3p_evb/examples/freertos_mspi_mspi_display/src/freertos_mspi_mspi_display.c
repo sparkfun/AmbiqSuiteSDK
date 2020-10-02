@@ -88,7 +88,7 @@
 
 //*****************************************************************************
 //
-// Copyright (c) 2020, Ambiq Micro
+// Copyright (c) 2020, Ambiq Micro, Inc.
 // All rights reserved.
 //
 // Redistribution and use in source and binary forms, with or without
@@ -120,7 +120,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
-// This is part of revision 2.4.2 of the AmbiqSuite Development Package.
+// This is part of revision 2.5.1 of the AmbiqSuite Development Package.
 //
 //*****************************************************************************
 
@@ -134,13 +134,6 @@
 #include "freertos_mspi_mspi_display.h"
 #include "rtos.h"
 
-#ifdef FIREBALL_CARD
-//
-// The Fireball device card multiplexes various devices. The Fireball device 
-// driver controls access to these devices.
-//
-#include "am_devices_fireball.h"
-#endif // FIREBALL_CARD
 
 //*****************************************************************************
 //
@@ -206,70 +199,6 @@ main(void)
     //
     am_util_debug_printf("FreeRTOS MSPI-MSPI Display Example\n");
 
-#ifdef FIREBALL_CARD
-    //
-    // Set the MUX for the Flash Device
-    //
-    uint32_t ui32Ret[3], ui32FBgen, ui32FBid, ui32FBver;
-
-    //
-    // Get Fireball ID and Rev info.
-    //
-    ui32Ret[0] = am_devices_fireball_control(AM_DEVICES_FIREBALL_STATE_FBGEN_GET, &ui32FBgen);
-    ui32Ret[1] = am_devices_fireball_control(AM_DEVICES_FIREBALL_STATE_ID_GET, &ui32FBid);
-    ui32Ret[2] = am_devices_fireball_control(AM_DEVICES_FIREBALL_STATE_VER_GET, &ui32FBver);
-    if ( ui32Ret[0]  ||  ui32Ret[1]  ||  ui32Ret[2] )
-    {
-        am_util_stdio_printf("FAIL: am_devices_fireball_control(%d) returned %d.\n"
-                             "      am_devices_fireball_control(%d) returned %d.\n",
-                             "      am_devices_fireball_control(%d) returned %d.\n",
-                             AM_DEVICES_FIREBALL_STATE_FBGEN_GET, ui32Ret[0],
-                             AM_DEVICES_FIREBALL_STATE_ID_GET,    ui32Ret[1],
-                             AM_DEVICES_FIREBALL_STATE_VER_GET,   ui32Ret[2]);
-        return -1;
-    }
-
-    if ( ui32FBgen < 10 )   // The value 10 is arbitrary
-    {
-        am_util_stdio_printf("Fireball%d (fwver=%d) found, ID is 0x%X.\n",
-                             ui32FBgen, ui32FBver, ui32FBid);
-        if ( ui32FBgen < 3 )
-        {
-            am_util_stdio_printf("ERROR!  This example requires Fireball3.\n");
-            am_util_stdio_printf("        Exiting example.\n");
-            return -1;
-        }
-    }
-    else
-    {
-        am_util_stdio_printf("Unknown Fireball device returned ID as 0x%X.\n", ui32FBid);
-        return -1;
-    }
-
-    am_util_stdio_printf("Setting the FB3 mux to the MSPI0 PSRAM and MSPI1 to Display...\n\n");
-
-    //
-    // Set the Fireball3 MUX to the MSPI0 PSRAM.
-    //
-    ui32Ret[0] = am_devices_fireball_control(AM_DEVICES_FIREBALL3_STATE_MSPI0_PSRAM_1P8, 0);
-    if ( ui32Ret[0] != 0 )
-    {
-        am_util_stdio_printf("FAIL: am_devices_fireball_control(%d) returned 0x%X.\n",
-                             AM_DEVICES_FIREBALL3_STATE_MSPI0_PSRAM_1P8, ui32Ret[0]);
-        return -1;
-    }
-    
-    //
-    // Set the Fireball3 MUX to the MSPI1 Display.
-    //
-    ui32Ret[0] = am_devices_fireball_control(AM_DEVICES_FIREBALL3_STATE_MSPI1_DISPLAY, 0);
-    if ( ui32Ret[0] != 0 )
-    {
-        am_util_stdio_printf("FAIL: am_devices_fireball_control(%d) returned 0x%X.\n",
-                             AM_DEVICES_FIREBALL3_STATE_MSPI1_DISPLAY, ui32Ret[0]);
-        return -1;
-    }
-#endif // FIREBALL_CARD
 
     //
     // Debug GPIO

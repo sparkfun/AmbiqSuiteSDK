@@ -14,7 +14,7 @@
 
 //*****************************************************************************
 //
-// Copyright (c) 2020, Ambiq Micro
+// Copyright (c) 2020, Ambiq Micro, Inc.
 // All rights reserved.
 //
 // Redistribution and use in source and binary forms, with or without
@@ -46,7 +46,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
-// This is part of revision 2.4.2 of the AmbiqSuite Development Package.
+// This is part of revision 2.5.1 of the AmbiqSuite Development Package.
 //
 //*****************************************************************************
 
@@ -259,7 +259,11 @@ void
 am_util_faultisr_collect_data(uint32_t u32IsrSP)
 {
     volatile am_fault_t sFaultData;
+#if (defined(AM_PART_APOLLO4) || defined(AM_PART_APOLLO4B))
+    am_hal_fault_status_t  sHalFaultData = {0};
+#else
     am_hal_mcuctrl_fault_t sHalFaultData = {0};
+#endif // if defined(AM_PART_APOLLO4)
 
     uint32_t u32Mask = 0;
 
@@ -346,11 +350,15 @@ am_util_faultisr_collect_data(uint32_t u32IsrSP)
     //
     // Use the HAL MCUCTRL functions to read the fault data.
     //
+#if (defined(AM_PART_APOLLO4) || defined(AM_PART_APOLLO4B))
+    am_hal_fault_status_get(&sHalFaultData);
+#else
 #if AM_APOLLO3_MCUCTRL
     am_hal_mcuctrl_info_get(AM_HAL_MCUCTRL_INFO_FAULT_STATUS, &sHalFaultData);
 #else // AM_APOLLO3_MCUCTRL
     am_hal_mcuctrl_fault_status(&sHalFaultData);
 #endif // AM_APOLLO3_MCUCTRL
+#endif // ifndef AM_PART_APOLLO4
 
 
 #ifdef AM_UTIL_FAULTISR_PRINT

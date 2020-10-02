@@ -2,7 +2,7 @@
 #
 # Makefile - Rules for building the libraries, examples and docs.
 #
-# Copyright (c) 2020, Ambiq Micro
+# Copyright (c) 2020, Ambiq Micro, Inc.
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
@@ -34,7 +34,7 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 #
-# This is part of revision 2.4.2 of the AmbiqSuite Development Package.
+# This is part of revision 2.5.1 of the AmbiqSuite Development Package.
 #
 #******************************************************************************
 TARGET := multi_boot
@@ -81,29 +81,29 @@ all clean:
 else
 
 DEFINES = -DPART_$(PART)
-DEFINES+= -DAM_PACKAGE_BGA
 DEFINES+= -DAM_PART_APOLLO
 DEFINES+= -D'AM_MULTIBOOT_CONFIG_FILE="am_multi_boot_config.h"'
+DEFINES+= -DAM_PACKAGE_BGA
 DEFINES+= -Dgcc
 
-INCLUDES = -I../../../../../utils
-INCLUDES+= -I../../../../../devices
-INCLUDES+= -I../../../../..
+INCLUDES = -I../../../../../devices
 INCLUDES+= -I../src
-INCLUDES+= -I../../../../../mcu/apollo
 INCLUDES+= -I../../../bsp
+INCLUDES+= -I../../../../..
+INCLUDES+= -I../../../../../utils
+INCLUDES+= -I../../../../../mcu/apollo
 INCLUDES+= -I../../../../../bootloader
 
-VPATH = ../../../../../utils
-VPATH+=:../../../../../devices
-VPATH+=:../../../../../bootloader
+VPATH = ../../../../../devices
 VPATH+=:../src
+VPATH+=:../../../../../utils
+VPATH+=:../../../../../bootloader
 
 SRC = extflash.c
 SRC += multi_boot.c
+SRC += am_devices_spiflash.c
 SRC += am_util_delay.c
 SRC += am_util_stdio.c
-SRC += am_devices_spiflash.c
 SRC += am_bootloader.c
 SRC += am_ios_boot_handlers.c
 SRC += am_multi_boot.c
@@ -167,6 +167,7 @@ $(CONFIG)/$(TARGET).bin: $(CONFIG)/$(TARGET).axf
 	@echo " Copying $(COMPILERNAME) $@..." ;\
 	$(CP) $(CPFLAGS) $< $@ ;\
 	$(OD) $(ODFLAGS) $< > $(CONFIG)/$(TARGET).lst
+	@$(SIZE) $(OBJS) $(LIBS) $(CONFIG)/$(TARGET).axf >$(CONFIG)/$(TARGET).size
 
 clean:
 	@echo "Cleaning..." ;\

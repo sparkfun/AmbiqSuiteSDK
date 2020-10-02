@@ -14,7 +14,7 @@
 
 //*****************************************************************************
 //
-// Copyright (c) 2020, Ambiq Micro
+// Copyright (c) 2020, Ambiq Micro, Inc.
 // All rights reserved.
 //
 // Redistribution and use in source and binary forms, with or without
@@ -46,7 +46,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
-// This is part of revision 2.4.2 of the AmbiqSuite Development Package.
+// This is part of revision 2.5.1 of the AmbiqSuite Development Package.
 //
 //*****************************************************************************
 
@@ -634,6 +634,46 @@ extern const am_hal_gpio_pincfg_t       g_AM_BSP_GPIO_IOS_SDA;
 
 //*****************************************************************************
 //
+//  PDMCLK pin: PDM CLK.
+//
+//*****************************************************************************
+#define AM_BSP_GPIO_PDMCLK              12
+extern const am_hal_gpio_pincfg_t       g_AM_BSP_GPIO_PDMCLK;
+
+//*****************************************************************************
+//
+//  PDM_DATA pin: PDM DATA.
+//
+//*****************************************************************************
+#define AM_BSP_GPIO_PDM_DATA            11
+extern const am_hal_gpio_pincfg_t       g_AM_BSP_GPIO_PDM_DATA;
+
+//*****************************************************************************
+//
+//  SCARD_SCCCLK pin: SCARD SCCCLK.
+//
+//*****************************************************************************
+#define AM_BSP_GPIO_SCARD_SCCCLK        8
+extern const am_hal_gpio_pincfg_t       g_AM_BSP_GPIO_SCARD_SCCCLK;
+
+//*****************************************************************************
+//
+//  SCARD_SCCIO pin: Fireball device test board chip select.
+//
+//*****************************************************************************
+#define AM_BSP_GPIO_SCARD_SCCIO         9
+extern const am_hal_gpio_pincfg_t       g_AM_BSP_GPIO_SCARD_SCCIO;
+
+//*****************************************************************************
+//
+//  SCARD_SCCRST pin: SCARD SCCRST.
+//
+//*****************************************************************************
+#define AM_BSP_GPIO_SCARD_SCCRST        46
+extern const am_hal_gpio_pincfg_t       g_AM_BSP_GPIO_SCARD_SCCRST;
+
+//*****************************************************************************
+//
 //  ITM_SWO pin: ITM Serial Wire Output.
 //
 //*****************************************************************************
@@ -655,15 +695,6 @@ extern const am_hal_gpio_pincfg_t       g_AM_BSP_GPIO_SWDCK;
 //*****************************************************************************
 #define AM_BSP_GPIO_SWDIO               21
 extern const am_hal_gpio_pincfg_t       g_AM_BSP_GPIO_SWDIO;
-
-//*****************************************************************************
-//
-//  FIREBALL_CE pin: Fireball device test board chip select.
-//
-//*****************************************************************************
-#define AM_BSP_GPIO_FIREBALL_CE         30
-extern const am_hal_gpio_pincfg_t       g_AM_BSP_GPIO_FIREBALL_CE;
-#define AM_BSP_FIREBALL_CE_CHNL         3
 
 
 #ifdef __cplusplus

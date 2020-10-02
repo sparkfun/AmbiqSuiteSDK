@@ -335,7 +335,7 @@
               <MiscControls></MiscControls>
               <Define>AM_PACKAGE_BGA AM_PART_APOLLO2 keil</Define>
               <Undefine></Undefine>
-              <IncludePath>../../../bsp;../../../../../devices;../../../../../utils;../src;../../../../..;../../../../../mcu/apollo2</IncludePath>
+              <IncludePath>../../../bsp;../../../../..;../../../../../mcu/apollo2;../../../../../devices;../../../../../utils;../src</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -430,14 +430,14 @@
           <GroupName>lib</GroupName>
           <Files>
             <File>
-              <FileName>libam_hal.lib</FileName>
-              <FileType>4</FileType>
-              <FilePath>../../../../../mcu/apollo2/hal/keil/bin/libam_hal.lib</FilePath>
-            </File>
-            <File>
               <FileName>libam_bsp.lib</FileName>
               <FileType>4</FileType>
               <FilePath>../../../bsp/keil/bin/libam_bsp.lib</FilePath>
+            </File>
+            <File>
+              <FileName>libam_hal.lib</FileName>
+              <FileType>4</FileType>
+              <FilePath>../../../../../mcu/apollo2/hal/keil/bin/libam_hal.lib</FilePath>
             </File>
           </Files>
         </Group>

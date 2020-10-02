@@ -333,9 +333,9 @@
             <v6Rtti>0</v6Rtti>
             <VariousControls>
               <MiscControls></MiscControls>
-              <Define>AM_PART_APOLLO3 AM_PACKAGE_BGA AM_UTIL_FAULTISR_PRINT FIREBALL_CARD keil</Define>
+              <Define>AM_PACKAGE_BGA AM_UTIL_FAULTISR_PRINT AM_PART_APOLLO3 keil</Define>
               <Undefine></Undefine>
-              <IncludePath>../../../../../mcu/apollo3;../src;../../../../../CMSIS/ARM/Include;../../../../../devices;../../../../../CMSIS/AmbiqMicro/Include;../../../../..;../../../../../utils;../../../bsp</IncludePath>
+              <IncludePath>../../../../../devices;../../../../../mcu/apollo3;../../../../..;../../../../../CMSIS/AmbiqMicro/Include;../../../../../utils;../../../../../CMSIS/ARM/Include;../src;../../../bsp</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -387,21 +387,6 @@
           </Files>
         </Group>
         <Group>
-          <GroupName>devices</GroupName>
-          <Files>
-            <File>
-              <FileName>am_devices_fireball.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../devices/am_devices_fireball.c</FilePath>
-            </File>
-            <File>
-              <FileName>am_devices_mspi_atxp032.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../devices/am_devices_mspi_atxp032.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
           <GroupName>utils</GroupName>
           <Files>
             <File>
@@ -422,6 +407,16 @@
           </Files>
         </Group>
         <Group>
+          <GroupName>devices</GroupName>
+          <Files>
+            <File>
+              <FileName>am_devices_mspi_atxp032.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../../../../../devices/am_devices_mspi_atxp032.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
           <GroupName>keil</GroupName>
           <Files>
             <File>
@@ -435,14 +430,14 @@
           <GroupName>lib</GroupName>
           <Files>
             <File>
-              <FileName>libam_bsp.lib</FileName>
-              <FileType>4</FileType>
-              <FilePath>../../../bsp/keil/bin/libam_bsp.lib</FilePath>
-            </File>
-            <File>
               <FileName>libam_hal.lib</FileName>
               <FileType>4</FileType>
               <FilePath>../../../../../mcu/apollo3/hal/keil/bin/libam_hal.lib</FilePath>
+            </File>
+            <File>
+              <FileName>libam_bsp.lib</FileName>
+              <FileType>4</FileType>
+              <FilePath>../../../bsp/keil/bin/libam_bsp.lib</FilePath>
             </File>
           </Files>
         </Group>

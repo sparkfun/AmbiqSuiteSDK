@@ -8,7 +8,7 @@
 
 //*****************************************************************************
 //
-// Copyright (c) 2020, Ambiq Micro
+// Copyright (c) 2020, Ambiq Micro, Inc.
 // All rights reserved.
 //
 // Redistribution and use in source and binary forms, with or without
@@ -40,7 +40,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
-// This is part of revision 2.4.2 of the AmbiqSuite Development Package.
+// This is part of revision 2.5.1 of the AmbiqSuite Development Package.
 //
 //*****************************************************************************
 #include <stdint.h>
@@ -310,8 +310,13 @@ am_bootloader_flash_check(am_bootloader_image_t *psImage)
     //
     // Make sure the link address is in flash.
     //
+#if defined(AM_PART_APOLLO4) || defined(AM_PART_APOLLO4B)
+    if (((AM_HAL_MRAM_ADDR != 0) && (ui32LinkAddress < AM_HAL_MRAM_ADDR)) ||
+        (ui32LinkAddress >= (AM_HAL_MRAM_ADDR + sDevice.ui32FlashSize)))
+#else
     if (((AM_HAL_FLASH_ADDR != 0) && (ui32LinkAddress < AM_HAL_FLASH_ADDR)) ||
         (ui32LinkAddress >= (AM_HAL_FLASH_ADDR + sDevice.ui32FlashSize)))
+#endif
     {
         DPRINTF(("Link address outside of flash. 0x%08x\r\n", ui32LinkAddress));
         return false;
@@ -332,6 +337,17 @@ am_bootloader_flash_check(am_bootloader_image_t *psImage)
         ui32ResetVector = (uint32_t) psImage->pui32ResetVector;
     }
 
+#if defined(AM_PART_APOLLO4) || defined(AM_PART_APOLLO4B)
+    //
+    // Make sure the stack is in SRAM.
+    //
+    if (((SRAM_BASEADDR != 0) && (ui32StackPointer < SRAM_BASEADDR))
+        || (ui32StackPointer >= (SRAM_BASEADDR + sDevice.ui32DTCMSize)))
+    {
+        DPRINTF(("Stack not in SRAM 0x%08x\r\n", ui32StackPointer));
+        return false;
+    }
+#else
     //
     // Make sure the stack is in SRAM.
     //
@@ -341,7 +357,8 @@ am_bootloader_flash_check(am_bootloader_image_t *psImage)
         DPRINTF(("Stack not in SRAM 0x%08x\r\n", ui32StackPointer));
         return false;
     }
-
+#endif
+    
     //
     // Make sure the reset vector points somewhere in the image.
     //
@@ -410,19 +427,26 @@ am_hal_bootloader_override_check(am_bootloader_image_t *psImage)
         //
         // Temporarily configure the override pin as an input.
         //
+#if defined(AM_PART_APOLLO4) || defined(AM_PART_APOLLO4B)
+        am_hal_gpio_pinconfig(psImage->ui32OverrideGPIO, am_hal_gpio_pincfg_input);
+#else
 #if defined(AM_PART_APOLLO3) || defined(AM_PART_APOLLO3P)
         am_hal_gpio_pinconfig(psImage->ui32OverrideGPIO, g_AM_HAL_GPIO_INPUT_ENABLE);
 #else
         am_hal_gpio_pin_config(psImage->ui32OverrideGPIO, AM_HAL_PIN_INPUT);
 #endif
-
+#endif
         //
         // If the override pin matches the specified polarity, force a failure.
         //
+#if defined(AM_PART_APOLLO4) || defined(AM_PART_APOLLO4B)
+        am_hal_gpio_state_read(psImage->ui32OverrideGPIO, AM_HAL_GPIO_INPUT_READ, &ui32OverridePin );
+#else
 #if defined(AM_PART_APOLLO3) || defined(AM_PART_APOLLO3P)
         am_hal_gpio_state_read(psImage->ui32OverrideGPIO, AM_HAL_GPIO_INPUT_READ, &ui32OverridePin );
 #else
         ui32OverridePin = am_hal_gpio_input_bit_read(psImage->ui32OverrideGPIO);
+#endif
 #endif
         if ( ui32OverridePin == (psImage->ui32OverridePolarity & 0x1) )
         {
@@ -430,10 +454,14 @@ am_hal_bootloader_override_check(am_bootloader_image_t *psImage)
             //
             // Make sure to disable the pin before continuing.
             //
+#if defined(AM_PART_APOLLO4) || defined(AM_PART_APOLLO4B)
+            am_hal_gpio_pinconfig(psImage->ui32OverrideGPIO, am_hal_gpio_pincfg_disabled);
+#else
 #if defined(AM_PART_APOLLO3) || defined(AM_PART_APOLLO3P)
             am_hal_gpio_pinconfig(psImage->ui32OverrideGPIO, g_AM_HAL_GPIO_INPUT_DISABLE);
 #else
             am_hal_gpio_pin_config(psImage->ui32OverrideGPIO, AM_HAL_PIN_DISABLE);
+#endif
 #endif
             return true;
         }
@@ -449,10 +477,14 @@ am_hal_bootloader_override_check(am_bootloader_image_t *psImage)
         // as it might interfere with the program we are (presumably) about to
         // boot.
         //
+#if defined(AM_PART_APOLLO4) || defined(AM_PART_APOLLO4B)
+            am_hal_gpio_pinconfig(psImage->ui32OverrideGPIO, am_hal_gpio_pincfg_disabled);
+#else
 #if defined(AM_PART_APOLLO3) || defined(AM_PART_APOLLO3P)
             am_hal_gpio_pinconfig(psImage->ui32OverrideGPIO, g_AM_HAL_GPIO_INPUT_DISABLE);
 #else
             am_hal_gpio_pin_config(psImage->ui32OverrideGPIO, AM_HAL_PIN_DISABLE);
+#endif
 #endif
     }
 
@@ -543,11 +575,25 @@ int
 am_bootloader_flag_page_update(am_bootloader_image_t *psImage,
                                uint32_t *pui32FlagPage)
 {
-    uint32_t ui32Block, ui32Page;
     uint32_t ui32Critical;
     psImage->ui32Checksum = 0;
     DPRINTF(("Image to use: 0x%08x\r\n", (uintptr_t)psImage));
     DPRINTF(("Flag page address: 0x%08x\r\n", (uintptr_t)pui32FlagPage));
+
+    // Compute CRC of the structure
+    am_bootloader_partial_crc32(psImage, sizeof(*psImage) - 4, &psImage->ui32Checksum);
+    //
+    // Start a critical section.
+    //
+    ui32Critical = am_hal_interrupt_master_disable();
+#if defined(AM_PART_APOLLO4) || defined(AM_PART_APOLLO4B)
+    int rc = am_hal_mram_main_program(AM_HAL_MRAM_PROGRAM_KEY,
+                              (uint32_t *) psImage,
+                              pui32FlagPage,
+                              sizeof(am_bootloader_image_t) / 4);
+#else
+    uint32_t ui32Block, ui32Page;
+
     //
     // Calculate the correct flag page number.
     //
@@ -556,18 +602,11 @@ am_bootloader_flag_page_update(am_bootloader_image_t *psImage,
     ui32Block = AM_HAL_FLASH_ADDR2INST((uint32_t)pui32FlagPage);
     DPRINTF(("Flag page in block %d\r\n", ui32Block));
 
-    // Compute CRC of the structure
-    am_bootloader_partial_crc32(psImage, sizeof(*psImage) - 4, &psImage->ui32Checksum);
-    //
-    // Start a critical section.
-    //
-    ui32Critical = am_hal_interrupt_master_disable();
     //
     // Erase the page.
     //
     int rc = am_hal_flash_page_erase(AM_HAL_FLASH_PROGRAM_KEY, ui32Block, ui32Page);
     DPRINTF(("Flash Erased %d\r\n", rc));
-
     //
     // Write the psImage structure directly to the flag page.
     //
@@ -575,6 +614,7 @@ am_bootloader_flag_page_update(am_bootloader_image_t *psImage,
                               (uint32_t *) psImage,
                               pui32FlagPage,
                               sizeof(am_bootloader_image_t) / 4);
+#endif
     //
     // Exit the critical section.
     //
@@ -632,6 +672,7 @@ am_bootloader_check_index(uint32_t index, uint32_t *pMask)
 void
 am_bootloader_erase_flash_page(uint32_t ui32Addr)
 {
+#if !defined(AM_PART_APOLLO4) && !defined(AM_PART_APOLLO4B)
     uint32_t ui32Critical;
     uint32_t ui32CurrentPage, ui32CurrentBlock;
     //
@@ -649,6 +690,7 @@ am_bootloader_erase_flash_page(uint32_t ui32Addr)
     // Exit the critical section.
     //
     am_hal_interrupt_master_set(ui32Critical);
+#endif
 }
 
 //*****************************************************************************
@@ -683,8 +725,13 @@ am_bootloader_write_flash_within_page(uint32_t ui32WriteAddr,
     //
     // Program the flash page with the data we just received.
     //
+#if defined(AM_PART_APOLLO4) || defined(AM_PART_APOLLO4B)
+    am_hal_mram_main_program(AM_HAL_MRAM_PROGRAM_KEY, pui32ReadAddr,
+                              (uint32_t *)ui32WriteAddr, ui32NumWords);
+#else
     am_hal_flash_program_main(AM_HAL_FLASH_PROGRAM_KEY, pui32ReadAddr,
                               (uint32_t *)ui32WriteAddr, ui32NumWords);
+#endif
     //
     // Exit the critical section.
     //
@@ -723,8 +770,13 @@ am_bootloader_program_flash_page(uint32_t ui32WriteAddr,
     //
     // Program the flash page with the data we just received.
     //
+#if defined(AM_PART_APOLLO4) || defined(AM_PART_APOLLO4B)
+    am_hal_mram_main_program(AM_HAL_MRAM_PROGRAM_KEY, pui32ReadAddr,
+                              (uint32_t *)ui32WriteAddr, ui32WordsInBuffer);
+#else
     am_hal_flash_program_main(AM_HAL_FLASH_PROGRAM_KEY, pui32ReadAddr,
                               (uint32_t *)ui32WriteAddr, ui32WordsInBuffer);
+#endif
     //
     // Exit the critical section.
     //

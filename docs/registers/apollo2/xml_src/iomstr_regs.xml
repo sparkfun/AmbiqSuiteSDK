@@ -1,0 +1,459 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+<?xml-stylesheet type="text/xsl" href="xml_devices.xsl"?>
+<!DOCTYPE device SYSTEM "xml_devices.dtd">
+<device file_name="docs/iomstr_regs.xml" file_mod_date="May 29 10:05:03 2014">
+  <short_description>I2C/SPI Master</short_description>
+  <device_name>IOMSTR</device_name>
+  <instance_base>REG_IOMSTR0_BASEADDR: 0x50004000</instance_base>
+  <instance_base>REG_IOMSTR1_BASEADDR: 0x50005000</instance_base>
+  <ioregisters>
+    <ioreg_index/>
+    <ioreg>
+    <ioreg_name>FIFO</ioreg_name>
+    <ioreg_offset>0x00000000</ioreg_offset>
+    <ioreg_intro>FIFO Access Port</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="0" name="FIFO" readwrite="RW" access_macro="REG_IOMSTR_FIFO_FIFO_WR" reset_value="0x0" width="32">
+        <ioreg_bf_description>"This is the FIFO access port."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>FIFOPTR</ioreg_name>
+    <ioreg_offset>0x00000100</ioreg_offset>
+    <ioreg_intro>Current FIFO Pointers</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="23" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="9" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="16" name="FIFOREM" readwrite="RO" access_macro="REG_IOMSTR_FIFOPTR_FIFOREM_RD" reset_value="0x0" width="7">
+        <ioreg_bf_description>"These bits hold the remaining FIFO size."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="7" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="9" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="FIFOSIZ" readwrite="RO" access_macro="REG_IOMSTR_FIFOPTR_FIFOSIZ_RD" reset_value="0x0" width="7">
+        <ioreg_bf_description>"These bits hold the current I/O FIFO size."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>TLNGTH</ioreg_name>
+    <ioreg_offset>0x00000104</ioreg_offset>
+    <ioreg_intro>Transfer Length</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="12" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="20" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="TLNGTH" readwrite="RO" access_macro="REG_IOMSTR_TLNGTH_TLNGTH_RD" reset_value="0x0" width="12">
+        <ioreg_bf_description>"These bits hold the remaining transfer length."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>FIFOTHR</ioreg_name>
+    <ioreg_offset>0x00000108</ioreg_offset>
+    <ioreg_intro>FIFO Threshold Configuration</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="14" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="18" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="8" name="FIFOWTHR" readwrite="RW" access_macro="REG_IOMSTR_FIFOTHR_FIFOWTHR_WR" reset_value="0x0" width="6">
+        <ioreg_bf_description>"These bits hold the FIFO write threshold."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="6" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="2" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="FIFORTHR" readwrite="RW" access_macro="REG_IOMSTR_FIFOTHR_FIFORTHR_WR" reset_value="0x0" width="6">
+        <ioreg_bf_description>"These bits hold the FIFO read threshold."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>CLKCFG</ioreg_name>
+    <ioreg_offset>0x0000010c</ioreg_offset>
+    <ioreg_intro>I/O Clock Configuration</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="24" name="TOTPER" readwrite="RW" access_macro="REG_IOMSTR_CLKCFG_TOTPER_WR" reset_value="0x0" width="8">
+        <ioreg_bf_description>"These bits hold the clock total count minus 1."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="16" name="LOWPER" readwrite="RW" access_macro="REG_IOMSTR_CLKCFG_LOWPER_WR" reset_value="0x0" width="8">
+        <ioreg_bf_description>"These bits hold the clock low count minus 1."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="13" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="3" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="12" name="DIVEN" readwrite="RW" access_macro="REG_IOMSTR_CLKCFG_DIVEN_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit enables clock division."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="11" name="DIV3" readwrite="RW" access_macro="REG_IOMSTR_CLKCFG_DIV3_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit enables the divide by 3."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="8" name="FSEL" readwrite="RW" access_macro="REG_IOMSTR_CLKCFG_FSEL_WR" reset_value="0x0" width="3">
+        <ioreg_bf_description>"This field selects the input clock frequency."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="8" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>CMD</ioreg_name>
+    <ioreg_offset>0x00000110</ioreg_offset>
+    <ioreg_intro>Command Register</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="0" name="CMD" readwrite="RW" access_macro="REG_IOMSTR_CMD_CMD_WR" reset_value="0x0" width="32">
+        <ioreg_bf_description>"These bits hold the I/O Command."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>CMDRPT</ioreg_name>
+    <ioreg_offset>0x00000114</ioreg_offset>
+    <ioreg_intro>Command Repeat Register</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="5" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="27" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="CMDRPT" readwrite="RW" access_macro="REG_IOMSTR_CMDRPT_CMDRPT_WR" reset_value="0x0" width="5">
+        <ioreg_bf_description>"These bits hold the Command repeat count."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>STATUS</ioreg_name>
+    <ioreg_offset>0x00000118</ioreg_offset>
+    <ioreg_intro>Status Register</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="3" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="29" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="2" name="IDLEST" readwrite="RO" access_macro="REG_IOMSTR_STATUS_IDLEST_RD" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit indicates if the I/O state machine is IDLE."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="1" name="CMDACT" readwrite="RO" access_macro="REG_IOMSTR_STATUS_CMDACT_RD" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit indicates if the I/O Command is active."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="ERR" readwrite="RO" access_macro="REG_IOMSTR_STATUS_ERR_RD" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit indicates if an error interrupt has occurred."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>IOMCFG</ioreg_name>
+    <ioreg_offset>0x0000011c</ioreg_offset>
+    <ioreg_intro>I/O Master Configuration</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="31" name="IFCEN" readwrite="RW" access_macro="REG_IOMSTR_IOMCFG_IFCEN_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit enables the IO Master."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="4" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="27" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="3" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="1" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="2" name="SPHA" readwrite="RW" access_macro="REG_IOMSTR_IOMCFG_SPHA_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit selects SPI phase."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="1" name="SPOL" readwrite="RW" access_macro="REG_IOMSTR_IOMCFG_SPOL_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit selects SPI polarity."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="IFCSEL" readwrite="RW" access_macro="REG_IOMSTR_IOMCFG_IFCSEL_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit selects the I/O interface."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>IOMSTRINTEN</ioreg_name>
+    <ioreg_offset>0x00000200</ioreg_offset>
+    <ioreg_intro>IO Master Interrupts</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="11" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="21" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="10" name="ARB" readwrite="RW" access_macro="REG_IOMSTR_IOMSTRINTEN_ARB_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This is the arbitration loss interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="9" name="STOP" readwrite="RW" access_macro="REG_IOMSTR_IOMSTRINTEN_STOP_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This is the STOP command interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="8" name="START" readwrite="RW" access_macro="REG_IOMSTR_IOMSTRINTEN_START_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This is the START command interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="7" name="ICMD" readwrite="RW" access_macro="REG_IOMSTR_IOMSTRINTEN_ICMD_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This is the illegal command interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="6" name="IACC" readwrite="RW" access_macro="REG_IOMSTR_IOMSTRINTEN_IACC_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This is the illegal FIFO access interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="5" name="WTLEN" readwrite="RW" access_macro="REG_IOMSTR_IOMSTRINTEN_WTLEN_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This is the write length mismatch interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="4" name="NAK" readwrite="RW" access_macro="REG_IOMSTR_IOMSTRINTEN_NAK_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This is the I2C NAK interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="3" name="FOVFL" readwrite="RW" access_macro="REG_IOMSTR_IOMSTRINTEN_FOVFL_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This is the Read FIFO Overflow interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="2" name="FUNDFL" readwrite="RW" access_macro="REG_IOMSTR_IOMSTRINTEN_FUNDFL_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This is the Write FIFO Underflow interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="1" name="THR" readwrite="RW" access_macro="REG_IOMSTR_IOMSTRINTEN_THR_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This is the FIFO Threshold interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="CMDCMP" readwrite="RW" access_macro="REG_IOMSTR_IOMSTRINTEN_CMDCMP_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This is the Command Complete interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>IOMSTRINTSTAT</ioreg_name>
+    <ioreg_offset>0x00000204</ioreg_offset>
+    <ioreg_intro>IO Master Interrupts</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="11" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="21" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="10" name="ARB" readwrite="RW" access_macro="REG_IOMSTR_IOMSTRINTSTAT_ARB_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This is the arbitration loss interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="9" name="STOP" readwrite="RW" access_macro="REG_IOMSTR_IOMSTRINTSTAT_STOP_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This is the STOP command interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="8" name="START" readwrite="RW" access_macro="REG_IOMSTR_IOMSTRINTSTAT_START_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This is the START command interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="7" name="ICMD" readwrite="RW" access_macro="REG_IOMSTR_IOMSTRINTSTAT_ICMD_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This is the illegal command interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="6" name="IACC" readwrite="RW" access_macro="REG_IOMSTR_IOMSTRINTSTAT_IACC_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This is the illegal FIFO access interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="5" name="WTLEN" readwrite="RW" access_macro="REG_IOMSTR_IOMSTRINTSTAT_WTLEN_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This is the write length mismatch interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="4" name="NAK" readwrite="RW" access_macro="REG_IOMSTR_IOMSTRINTSTAT_NAK_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This is the I2C NAK interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="3" name="FOVFL" readwrite="RW" access_macro="REG_IOMSTR_IOMSTRINTSTAT_FOVFL_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This is the Read FIFO Overflow interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="2" name="FUNDFL" readwrite="RW" access_macro="REG_IOMSTR_IOMSTRINTSTAT_FUNDFL_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This is the Write FIFO Underflow interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="1" name="THR" readwrite="RW" access_macro="REG_IOMSTR_IOMSTRINTSTAT_THR_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This is the FIFO Threshold interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="CMDCMP" readwrite="RW" access_macro="REG_IOMSTR_IOMSTRINTSTAT_CMDCMP_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This is the Command Complete interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>IOMSTRINTCLR</ioreg_name>
+    <ioreg_offset>0x00000208</ioreg_offset>
+    <ioreg_intro>IO Master Interrupts</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="11" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="21" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="10" name="ARB" readwrite="RW" access_macro="REG_IOMSTR_IOMSTRINTCLR_ARB_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This is the arbitration loss interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="9" name="STOP" readwrite="RW" access_macro="REG_IOMSTR_IOMSTRINTCLR_STOP_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This is the STOP command interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="8" name="START" readwrite="RW" access_macro="REG_IOMSTR_IOMSTRINTCLR_START_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This is the START command interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="7" name="ICMD" readwrite="RW" access_macro="REG_IOMSTR_IOMSTRINTCLR_ICMD_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This is the illegal command interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="6" name="IACC" readwrite="RW" access_macro="REG_IOMSTR_IOMSTRINTCLR_IACC_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This is the illegal FIFO access interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="5" name="WTLEN" readwrite="RW" access_macro="REG_IOMSTR_IOMSTRINTCLR_WTLEN_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This is the write length mismatch interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="4" name="NAK" readwrite="RW" access_macro="REG_IOMSTR_IOMSTRINTCLR_NAK_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This is the I2C NAK interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="3" name="FOVFL" readwrite="RW" access_macro="REG_IOMSTR_IOMSTRINTCLR_FOVFL_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This is the Read FIFO Overflow interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="2" name="FUNDFL" readwrite="RW" access_macro="REG_IOMSTR_IOMSTRINTCLR_FUNDFL_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This is the Write FIFO Underflow interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="1" name="THR" readwrite="RW" access_macro="REG_IOMSTR_IOMSTRINTCLR_THR_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This is the FIFO Threshold interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="CMDCMP" readwrite="RW" access_macro="REG_IOMSTR_IOMSTRINTCLR_CMDCMP_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This is the Command Complete interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>IOMSTRINTSET</ioreg_name>
+    <ioreg_offset>0x0000020c</ioreg_offset>
+    <ioreg_intro>IO Master Interrupts</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="11" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="21" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="10" name="ARB" readwrite="RW" access_macro="REG_IOMSTR_IOMSTRINTSET_ARB_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This is the arbitration loss interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="9" name="STOP" readwrite="RW" access_macro="REG_IOMSTR_IOMSTRINTSET_STOP_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This is the STOP command interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="8" name="START" readwrite="RW" access_macro="REG_IOMSTR_IOMSTRINTSET_START_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This is the START command interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="7" name="ICMD" readwrite="RW" access_macro="REG_IOMSTR_IOMSTRINTSET_ICMD_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This is the illegal command interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="6" name="IACC" readwrite="RW" access_macro="REG_IOMSTR_IOMSTRINTSET_IACC_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This is the illegal FIFO access interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="5" name="WTLEN" readwrite="RW" access_macro="REG_IOMSTR_IOMSTRINTSET_WTLEN_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This is the write length mismatch interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="4" name="NAK" readwrite="RW" access_macro="REG_IOMSTR_IOMSTRINTSET_NAK_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This is the I2C NAK interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="3" name="FOVFL" readwrite="RW" access_macro="REG_IOMSTR_IOMSTRINTSET_FOVFL_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This is the Read FIFO Overflow interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="2" name="FUNDFL" readwrite="RW" access_macro="REG_IOMSTR_IOMSTRINTSET_FUNDFL_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This is the Write FIFO Underflow interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="1" name="THR" readwrite="RW" access_macro="REG_IOMSTR_IOMSTRINTSET_THR_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This is the FIFO Threshold interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="CMDCMP" readwrite="RW" access_macro="REG_IOMSTR_IOMSTRINTSET_CMDCMP_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This is the Command Complete interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg_bigpicture/>
+  </ioregisters>
+</device>

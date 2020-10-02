@@ -13,14 +13,14 @@
       <pArmCC></pArmCC>
       <TargetOption>
         <TargetCommonOption>
-          <Device>AMA3B1KK-KBR</Device>
+          <Device>AMA3B2KK-KBR</Device>
           <Vendor>Ambiq Micro</Vendor>
-          <PackID>AmbiqMicro.Apollo_DFP.1.1.0</PackID>
+          <PackID>AmbiqMicro.Apollo_DFP.1.2.0</PackID>
           <PackURL>http://s3.asia.ambiqmicro.com/pack/</PackURL>
           <Cpu>IROM(0x00000000,0x100000) IRAM(0x10000000,0x60000) CPUTYPE("Cortex-M4") FPU2 CLOCK(48000000) ELITTLE</Cpu>
           <FlashUtilSpec></FlashUtilSpec>
           <StartupFile></StartupFile>
-          <FlashDriverDll>UL2CM3(-S0 -C0 -P0 -FD10000000 -FC4000 -FN1 -FF0Apollo3 -FS00 -FL010000 -FP0($$Device:AMA3B1KK-KBR$Flash\Apollo3.FLM))</FlashDriverDll>
+          <FlashDriverDll>UL2CM3(-S0 -C0 -P0 -FD10000000 -FC4000 -FN1 -FF0Apollo3p -FS00 -FL010000 -FP0($$Device:AMA3B2KK-KBR$Flash\Apollo3p.FLM))</FlashDriverDll>
           <DeviceId>0</DeviceId>
           <RegisterFile></RegisterFile>
           <MemoryEnv></MemoryEnv>
@@ -32,14 +32,14 @@
           <SLE66CMisc></SLE66CMisc>
           <SLE66AMisc></SLE66AMisc>
           <SLE66LinkerMisc></SLE66LinkerMisc>
-          <SFDFile>$$Device:AMA3B1KK-KBR$SVD\apollo3.svd</SFDFile>
+          <SFDFile>$$Device:AMA3B2KK-KBR$SVD\apollo3p.svd</SFDFile>
           <bCustSvd>0</bCustSvd>
           <UseEnv>0</UseEnv>
           <BinPath></BinPath>
           <IncludePath></IncludePath>
           <LibPath></LibPath>
-          <RegisterFilePath>1024 BGA$Device\Include\apollo3.h\</RegisterFilePath>
-          <DBRegisterFilePath>1024 BGA$Device\Include\apollo3.h\</DBRegisterFilePath>
+          <RegisterFilePath>1024 BGA$Device\Include\apollo3p.h\</RegisterFilePath>
+          <DBRegisterFilePath>1024 BGA$Device\Include\apollo3p.h\</DBRegisterFilePath>
           <TargetStatus>
             <Error>0</Error>
             <ExitCodeStop>0</ExitCodeStop>
@@ -335,7 +335,7 @@
               <MiscControls></MiscControls>
               <Define>AM_ASSERT_INVALID_THRESHOLD=0 AM_PART_APOLLO3P AM_DEBUG_ASSERT keil</Define>
               <Undefine></Undefine>
-              <IncludePath>../../../../mcu/apollo3p;../../../../CMSIS/ARM/Include;../../../../CMSIS/AmbiqMicro/Include</IncludePath>
+              <IncludePath>../../../../CMSIS/AmbiqMicro/Include;../../../../mcu/apollo3p;../../../../CMSIS/ARM/Include</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>

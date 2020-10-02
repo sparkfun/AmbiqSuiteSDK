@@ -25,7 +25,7 @@
                             <img alt="Logo" src="../resources/am_logo.png" />
                         </td>
                         <td style="padding-left: 0.5em;">
-                            <div id="projectname">Apollo Register Documentation &#160;<span id="projectnumber">v2.4.2</span></div>
+                            <div id="projectname">Apollo Register Documentation &#160;<span id="projectnumber">v${version}</span></div>
                         </td>
                     </tr>
                 </tbody>
@@ -279,7 +279,7 @@
 
                 </table>
                 <h3>Description:</h3>
-                <p>This is the XT Oscillator Calibration value.  This value allows any derived XT clocks to be "calibrated".  This means that the original 32KHz version of XT will not be changed, but a 16KHz version (divided down version) can be modified.  This register value will add or subtract the number of cycles programmed in this register across a 32 seconds interval.  For example, if a value of 100 is programmed in this register, then 100 additional clock cycles will be added into a 16KHz clock period across a 32 second interval.</p>
+                <p>This is the XT Oscillator Calibration value.  This value allows any derived XT clocks to be calibrated.  This means that the original 32KHz version of XT will not be changed, but a 16KHz version (divided down version) can be modified.  This register value will add or subtract the number of cycles programmed in this register across a 32 seconds interval.  For example, if a value of 100 is programmed in this register, then 100 additional clock cycles will be added into a 16KHz clock period across a 32 second interval.</p>
                 <h3>Example Macro Usage:</h3>
                 <pre style="margin:10px" class="language-pascal"><span style='color:#3f7f59; '>//
 // Register access is all performed through the standard CMSIS structure-based
@@ -951,7 +951,7 @@ ADCn(0)-&gt;CFG_b.CLKSEL = ADC_CFG_CLKSEL_HFRC; <span style='color:#3f7f59; '>//
                             <td>CKSEL</td>
                             <td>RW</td>
                             <td>CLKOUT signal select<br><br>
-                                 LFRC                 = 0x0 - LFRC<br>
+                                 LFRC                 = 0x0 - Low Frequency RC<br>
                              XT_DIV2              = 0x1 - XT / 2<br>
                              XT_DIV4              = 0x2 - XT / 4<br>
                              XT_DIV8              = 0x3 - XT / 8<br>
@@ -959,9 +959,9 @@ ADCn(0)-&gt;CFG_b.CLKSEL = ADC_CFG_CLKSEL_HFRC; <span style='color:#3f7f59; '>//
                              XT_DIV32             = 0x5 - XT / 32<br>
                              RTC_1Hz              = 0x10 - 1 Hz as selected in RTC<br>
                              XT_DIV2M             = 0x16 - XT / 2^21<br>
-                             XT                   = 0x17 - XT<br>
+                             XT                   = 0x17 - Crystal<br>
                              CG_100Hz             = 0x18 - 100 Hz as selected in CLKGEN<br>
-                             HFRC                 = 0x19 - HFRC<br>
+                             HFRC                 = 0x19 - High Frequency RC<br>
                              HFRC_DIV4            = 0x1A - HFRC / 4<br>
                              HFRC_DIV8            = 0x1B - HFRC / 8<br>
                              HFRC_DIV16           = 0x1C - HFRC / 16<br>
@@ -1019,7 +1019,7 @@ ADCn(0)-&gt;CFG_b.CLKSEL = ADC_CFG_CLKSEL_HFRC; <span style='color:#3f7f59; '>//
 
                 </table>
                 <h3>Description:</h3>
-                <p>Key Register for Clock Control Register</p>
+                <p>This controls the write access to the CCTRL register.  This prevents customers from accidentally setting the HFRC clocks to be half of what they are set to.</p>
                 <h3>Example Macro Usage:</h3>
                 <pre style="margin:10px" class="language-pascal"><span style='color:#3f7f59; '>//
 // Register access is all performed through the standard CMSIS structure-based
@@ -1102,7 +1102,7 @@ ADCn(0)-&gt;CFG_b.CLKSEL = ADC_CFG_CLKSEL_HFRC; <span style='color:#3f7f59; '>//
                             <td>CLKKEY</td>
                             <td>RW</td>
                             <td>Key register value.<br><br>
-                                 Key                  = 0x47 - Key</td>
+                                 Key                  = 0x47 - Key value to unlock the register.</td>
                         </tr>
 
                     </tbody>
@@ -2887,7 +2887,7 @@ ADCn(0)-&gt;CFG_b.CLKSEL = ADC_CFG_CLKSEL_HFRC; <span style='color:#3f7f59; '>//
             <small>
                 AmbiqSuite Register Documentation&nbsp;
                 <a href="http://www.ambiqmicro.com">
-                <img class="footer" src="../resources/ambiqmicro_logo.png" alt="Ambiq Micro"/></a>&nbsp&nbsp Copyright &copy; 2019&nbsp&nbsp<br />
+                <img class="footer" src="../resources/ambiqmicro_logo.png" alt="Ambiq Micro"/></a>&nbsp&nbsp Copyright &copy; 2020&nbsp&nbsp<br />
                 This documentation is licensed and distributed under the <a rel="license" href="http://opensource.org/licenses/BSD-3-Clause">BSD 3-Clause License</a>.&nbsp&nbsp<br/>
             </small>
         </div>

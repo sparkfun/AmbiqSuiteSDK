@@ -31,8 +31,8 @@
     Program header entries: 1
     Section header entries: 16
 
-    Program header offset: 73356 (0x00011e8c)
-    Section header offset: 73388 (0x00011eac)
+    Program header offset: 72616 (0x00011ba8)
+    Section header offset: 72648 (0x00011bc8)
 
     Section header string table index: 15
 
@@ -2262,12 +2262,12 @@
     $d
         0x00001420:    000002e9    ....    DCD    745
         0x00001424:    40010000    ...@    DCD    1073807360
-        0x00001428:    333a3731    17:3    DCD    859453233
-        0x0000142c:    31313a37    7:11    DCD    825309751
+        0x00001428:    303a3731    17:0    DCD    809121585
+        0x0000142c:    37353a30    0:57    DCD    926235184
         0x00001430:    00000000    ....    DCD    0
         0x00001434:    10000074    t...    DCD    268435572
-        0x00001438:    20626546    Feb     DCD    543319366
-        0x0000143c:    32203720     7 2    DCD    840972064
+        0x00001438:    20706553    Sep     DCD    544236883
+        0x0000143c:    32203132    21 2    DCD    840970546
         0x00001440:    00303230    020.    DCD    3158576
         0x00001444:    20435452    RTC     DCD    541283410
         0x00001448:    6e697250    Prin    DCD    1852404304
@@ -2855,7 +2855,7 @@
 
 
 ** Section #6 '.debug_info' (SHT_PROGBITS)
-    Size   : 15088 bytes
+    Size   : 13668 bytes
 
 
 ** Section #7 '.debug_line' (SHT_PROGBITS)
@@ -3039,22 +3039,22 @@
     143  $v0                        0x00000070   Lc    1   --   De 
     144  .text                      0x0000017c   Lc    1  Sect  De   0x18
     145  $v0                        0x0000017c   Lc    1   --   De 
-    146  ../am_hal_global.c         0x00000000   Lc  Abs  File  De 
-    147  .data                      0x10000070   Lc    2  Sect  De   0x4
-    148  ../am_bsp.c                0x00000000   Lc  Abs  File  De 
-    149  i.am_bsp_debug_printf_disable
+    146  ..\am_hal_global.c         0x00000000   Lc  Abs  File  De 
+    147  ../am_hal_global.c         0x00000000   Lc  Abs  File  De 
+    148  .data                      0x10000070   Lc    2  Sect  De   0x4
+    149  ../am_bsp.c                0x00000000   Lc  Abs  File  De 
+    150  i.am_bsp_debug_printf_disable
                                     0x0000025c   Lc    1  Sect  De 
-    150  i.am_bsp_debug_printf_enable
+    151  i.am_bsp_debug_printf_enable
                                     0x000002a0   Lc    1  Sect  De 
-    151  i.am_bsp_itm_string_print  0x000002e8   Lc    1  Sect  De 
-    152  i.am_bsp_low_power_init    0x000002ec   Lc    1  Sect  De 
-    153  ../am_hal_clkgen.c         0x00000000   Lc  Abs  File  De 
-    154  i.am_hal_clkgen_osc_start  0x00000324   Lc    1  Sect  De 
-    155  i.am_hal_clkgen_osc_stop   0x0000033a   Lc    1  Sect  De 
-    156  i.am_hal_clkgen_sysclk_get 0x00000350   Lc    1  Sect  De 
-    157  i.am_hal_clkgen_sysclk_select
+    152  i.am_bsp_itm_string_print  0x000002e8   Lc    1  Sect  De 
+    153  i.am_bsp_low_power_init    0x000002ec   Lc    1  Sect  De 
+    154  ../am_hal_clkgen.c         0x00000000   Lc  Abs  File  De 
+    155  i.am_hal_clkgen_osc_start  0x00000324   Lc    1  Sect  De 
+    156  i.am_hal_clkgen_osc_stop   0x0000033a   Lc    1  Sect  De 
+    157  i.am_hal_clkgen_sysclk_get 0x00000350   Lc    1  Sect  De 
+    158  i.am_hal_clkgen_sysclk_select
                                     0x000003b0   Lc    1  Sect  De 
-    158  ..\am_hal_ctimer.c         0x00000000   Lc  Abs  File  De 
     159  ../am_hal_ctimer.c         0x00000000   Lc  Abs  File  De 
     160  i.am_hal_ctimer_clear      0x000003c0   Lc    1  Sect  De 
     161  i.am_hal_ctimer_config     0x000003e8   Lc    1  Sect  De 
@@ -3259,7 +3259,7 @@
     316  !!handler_copy             0x000000d4   Lc    1  Sect  De   0x1a
     317  ../clib/angel/handlers.s   0x00000000   Lc  Abs  File  De 
     318  !!handler_zi               0x000000f0   Lc    1  Sect  De   0x1c
-    319  BuildAttributes$$THM_ISAv4$E$P$D$K$B$S$7EM$VFPi3$EXTD16$VFPS$VFMA$PE$A:L22UL41UL21$X:L11$S22US41US21$IEEE1$IW$USESV6$~STKCKD$USESV7$~SHL$OTIME$ROPI$EBA8$UX$STANDARDLIB$REQ8$EABIv2
+    319  BuildAttributes$$THM_ISAv4$E$P$D$K$B$S$7EM$VFPi3$EXTD16$VFPS$VFMA$PE$A:L22UL41UL21$X:L11$S22US41US21$IEEE1$IW$USESV6$~STKCKD$USESV7$~SHL$OTIME$ROPI$EBA8$UX$STANDARDLIB$REQ8$PRES8$EABIv2
                                     0x00000000   Gb  Abs   --   Hi 
     320  __ARM_use_no_argv          0x00000000   Gb  Abs   --   Hi 
     321  __Vectors                  0x00000000   Gb    1  Data  Hi 
@@ -3436,7 +3436,7 @@
 
 
 ** Section #12 '.strtab' (SHT_STRTAB)
-    Size   : 7164 bytes
+    Size   : 7168 bytes
 
             #  Offset String
         ====================================
@@ -3500,18 +3500,18 @@
            57    945: HeapMem
            58    953: RESET
            59    959: .text
-           60    965: ../am_hal_global.c
-           61    984: ../am_bsp.c
-           62    996: i.am_bsp_debug_printf_disable
-           63   1026: i.am_bsp_debug_printf_enable
-           64   1055: i.am_bsp_itm_string_print
-           65   1081: i.am_bsp_low_power_init
-           66   1105: ../am_hal_clkgen.c
-           67   1124: i.am_hal_clkgen_osc_start
-           68   1150: i.am_hal_clkgen_osc_stop
-           69   1175: i.am_hal_clkgen_sysclk_get
-           70   1202: i.am_hal_clkgen_sysclk_select
-           71   1232: ..\am_hal_ctimer.c
+           60    965: ..\am_hal_global.c
+           61    984: ../am_hal_global.c
+           62   1003: ../am_bsp.c
+           63   1015: i.am_bsp_debug_printf_disable
+           64   1045: i.am_bsp_debug_printf_enable
+           65   1074: i.am_bsp_itm_string_print
+           66   1100: i.am_bsp_low_power_init
+           67   1124: ../am_hal_clkgen.c
+           68   1143: i.am_hal_clkgen_osc_start
+           69   1169: i.am_hal_clkgen_osc_stop
+           70   1194: i.am_hal_clkgen_sysclk_get
+           71   1221: i.am_hal_clkgen_sysclk_select
            72   1251: ../am_hal_ctimer.c
            73   1270: i.am_hal_ctimer_clear
            74   1292: i.am_hal_ctimer_config
@@ -3623,164 +3623,162 @@
           180   3921: ../clib/angel/handlers.s
           181   3946: !!handler_copy
           182   3961: !!handler_zi
-          183   3974: BuildAttributes$$THM_ISAv4$E$P$D$K$B$S$7EM$VFPi3$EXTD16$VFPS$VFMA$PE$A:L22UL41UL21$X:L11$S22US41US21$IEEE1$IW$USESV6$~STKCKD$USESV7$~SHL$OTIME$ROPI$EBA8$UX$STANDARDLIB$REQ8$EABIv2
-          184   4154: __ARM_use_no_argv
-          185   4172: __Vectors
-          186   4182: Reset_Handler
-          187   4196: am_nmi_isr
-          188   4207: am_memmanage_isr
-          189   4224: am_adc_isr
-          190   4235: am_brownout_isr
-          191   4251: am_clkgen_isr
-          192   4265: am_debugmon_isr
-          193   4281: am_gpio_isr
-          194   4293: am_iomaster0_isr
-          195   4310: am_iomaster1_isr
-          196   4327: am_ioslave_acc_isr
-          197   4346: am_ioslave_ios_isr
-          198   4365: am_pendsv_isr
-          199   4379: am_svcall_isr
-          200   4393: am_systick_isr
-          201   4408: am_uart_isr
-          202   4420: am_vcomp_isr
-          203   4433: am_watchdog_isr
-          204   4449: __main
-          205   4456: __scatterload
-          206   4470: __scatterload_rt2
-          207   4488: __scatterload_rt2_thumb_only
-          208   4517: __scatterload_null
-          209   4536: __scatterload_copy
-          210   4555: __scatterload_zeroinit
-          211   4578: __rt_lib_init
-          212   4592: __rt_lib_init_fp_1
-          213   4611: __rt_lib_init_alloca_1
-          214   4634: __rt_lib_init_argv_1
-          215   4655: __rt_lib_init_atexit_1
-          216   4678: __rt_lib_init_clock_1
-          217   4700: __rt_lib_init_cpp_1
-          218   4720: __rt_lib_init_exceptions_1
-          219   4747: __rt_lib_init_fp_trap_1
-          220   4771: __rt_lib_init_getenv_1
-          221   4794: __rt_lib_init_heap_1
-          222   4815: __rt_lib_init_lc_collate_1
-          223   4842: __rt_lib_init_lc_ctype_1
-          224   4867: __rt_lib_init_lc_monetary_1
-          225   4895: __rt_lib_init_lc_numeric_1
-          226   4922: __rt_lib_init_lc_time_1
-          227   4946: __rt_lib_init_preinit_1
-          228   4970: __rt_lib_init_rand_1
-          229   4991: __rt_lib_init_return
-          230   5012: __rt_lib_init_signal_1
-          231   5035: __rt_lib_init_stdio_1
-          232   5057: __rt_lib_init_user_alloc_1
-          233   5084: __rt_lib_shutdown
-          234   5102: __rt_lib_shutdown_cpp_1
-          235   5126: __rt_lib_shutdown_fp_trap_1
-          236   5154: __rt_lib_shutdown_heap_1
-          237   5179: __rt_lib_shutdown_return
-          238   5204: __rt_lib_shutdown_signal_1
-          239   5231: __rt_lib_shutdown_stdio_1
-          240   5257: __rt_lib_shutdown_user_alloc_1
-          241   5288: __rt_entry
-          242   5299: __rt_entry_presh_1
-          243   5318: __rt_entry_sh
-          244   5332: __rt_entry_li
-          245   5346: __rt_entry_postsh_1
-          246   5366: __rt_entry_main
-          247   5382: __rt_entry_postli_1
-          248   5402: __rt_exit
-          249   5412: __rt_exit_ls
-          250   5425: __rt_exit_prels_1
-          251   5443: __rt_exit_exit
-          252   5458: am_fault_isr
-          253   5471: getStackedReg
-          254   5485: am_hal_flash_delay
-          255   5504: am_hal_interrupt_master_enable
-          256   5535: am_hal_interrupt_master_disable
-          257   5567: am_hal_interrupt_master_set
-          258   5595: __user_initial_stackheap
-          259   5620: __aeabi_memclr4
-          260   5636: __aeabi_memclr8
-          261   5652: __rt_memclr_w
-          262   5666: _memset_w
-          263   5676: __use_two_region_memory
-          264   5700: __rt_heap_escrow$2region
-          265   5725: __rt_heap_expand$2region
-          266   5750: __user_setup_stackheap
-          267   5773: exit
-          268   5778: __user_libspace
-          269   5794: __user_perproc_libspace
-          270   5818: __user_perthread_libspace
-          271   5844: _sys_exit
-          272   5854: __I$use$semihosting
-          273   5874: __use_no_semihosting_swi
-          274   5899: __semihosting_library_function
-          275   5930: am_bsp_debug_printf_disable
-          276   5958: am_bsp_debug_printf_enable
-          277   5985: am_bsp_itm_string_print
-          278   6009: am_bsp_low_power_init
-          279   6031: am_ctimer_isr
-          280   6045: am_hal_clkgen_osc_start
-          281   6069: am_hal_clkgen_osc_stop
-          282   6092: am_hal_clkgen_sysclk_get
-          283   6117: am_hal_clkgen_sysclk_select
-          284   6145: am_hal_ctimer_clear
-          285   6165: am_hal_ctimer_config
-          286   6186: am_hal_ctimer_int_clear
-          287   6210: am_hal_ctimer_int_enable
-          288   6235: am_hal_ctimer_period_set
-          289   6260: am_hal_ctimer_start
-          290   6280: am_hal_interrupt_enable
-          291   6304: am_hal_itm_enable
-          292   6322: am_hal_itm_not_busy
-          293   6342: am_hal_itm_print
-          294   6359: am_hal_mcuctrl_bandgap_disable
-          295   6390: am_hal_mcuctrl_bucks_enable
-          296   6418: am_hal_mcuctrl_fault_status
-          297   6446: am_hal_rtc_osc_disable
-          298   6469: am_hal_rtc_osc_enable
-          299   6491: am_hal_rtc_osc_select
-          300   6513: am_hal_rtc_time_get
-          301   6533: am_hal_rtc_time_set
-          302   6553: am_hal_sysctrl_sleep
-          303   6574: am_hal_tpiu_disable
-          304   6594: am_hal_tpiu_enable
-          305   6613: am_hal_vcomp_disable
-          306   6634: am_util_faultisr_collect_data
-          307   6664: am_util_stdio_printf
-          308   6685: am_util_stdio_printf_init
-          309   6711: am_util_stdio_terminal_clear
-          310   6740: am_util_stdio_vsprintf
-          311   6763: am_util_string_strnicmp
-          312   6787: am_util_time_computeDayofWeek
-          313   6817: main
-          314   6822: mthToIndex
-          315   6833: timerA0_init
-          316   6846: toVal
-          317   6852: __aeabi_d2f
-          318   6864: _d2f
-          319   6869: __fpl_dnaninf
-          320   6883: _fp_init
-          321   6892: __fplib_config_fpu_vfp
-          322   6915: __fplib_config_pureend_doubles
-          323   6946: __fpl_fretinf
-          324   6960: __I$use$fp
-          325   6971: am_cattr
-          326   6980: Region$$Table$$Base
-          327   7000: Region$$Table$$Limit
-          328   7021: pcWeekday
-          329   7031: pcMonth
-          330   7039: g_sTimer0
-          331   7049: g_LastSecond
-          332   7062: g_TestCount
-          333   7074: g_pfnCharPrint
-          334   7089: g_ui32HALflags
-          335   7104: hal_time
-          336   7113: __libspace_start
-          337   7130: __temporary_stack_top$libspace
-          338   7161: 
-          339   7162: 
-          340   7163: 
+          183   3974: BuildAttributes$$THM_ISAv4$E$P$D$K$B$S$7EM$VFPi3$EXTD16$VFPS$VFMA$PE$A:L22UL41UL21$X:L11$S22US41US21$IEEE1$IW$USESV6$~STKCKD$USESV7$~SHL$OTIME$ROPI$EBA8$UX$STANDARDLIB$REQ8$PRES8$EABIv2
+          184   4160: __ARM_use_no_argv
+          185   4178: __Vectors
+          186   4188: Reset_Handler
+          187   4202: am_nmi_isr
+          188   4213: am_memmanage_isr
+          189   4230: am_adc_isr
+          190   4241: am_brownout_isr
+          191   4257: am_clkgen_isr
+          192   4271: am_debugmon_isr
+          193   4287: am_gpio_isr
+          194   4299: am_iomaster0_isr
+          195   4316: am_iomaster1_isr
+          196   4333: am_ioslave_acc_isr
+          197   4352: am_ioslave_ios_isr
+          198   4371: am_pendsv_isr
+          199   4385: am_svcall_isr
+          200   4399: am_systick_isr
+          201   4414: am_uart_isr
+          202   4426: am_vcomp_isr
+          203   4439: am_watchdog_isr
+          204   4455: __main
+          205   4462: __scatterload
+          206   4476: __scatterload_rt2
+          207   4494: __scatterload_rt2_thumb_only
+          208   4523: __scatterload_null
+          209   4542: __scatterload_copy
+          210   4561: __scatterload_zeroinit
+          211   4584: __rt_lib_init
+          212   4598: __rt_lib_init_fp_1
+          213   4617: __rt_lib_init_alloca_1
+          214   4640: __rt_lib_init_argv_1
+          215   4661: __rt_lib_init_atexit_1
+          216   4684: __rt_lib_init_clock_1
+          217   4706: __rt_lib_init_cpp_1
+          218   4726: __rt_lib_init_exceptions_1
+          219   4753: __rt_lib_init_fp_trap_1
+          220   4777: __rt_lib_init_getenv_1
+          221   4800: __rt_lib_init_heap_1
+          222   4821: __rt_lib_init_lc_collate_1
+          223   4848: __rt_lib_init_lc_ctype_1
+          224   4873: __rt_lib_init_lc_monetary_1
+          225   4901: __rt_lib_init_lc_numeric_1
+          226   4928: __rt_lib_init_lc_time_1
+          227   4952: __rt_lib_init_preinit_1
+          228   4976: __rt_lib_init_rand_1
+          229   4997: __rt_lib_init_return
+          230   5018: __rt_lib_init_signal_1
+          231   5041: __rt_lib_init_stdio_1
+          232   5063: __rt_lib_init_user_alloc_1
+          233   5090: __rt_lib_shutdown
+          234   5108: __rt_lib_shutdown_cpp_1
+          235   5132: __rt_lib_shutdown_fp_trap_1
+          236   5160: __rt_lib_shutdown_heap_1
+          237   5185: __rt_lib_shutdown_return
+          238   5210: __rt_lib_shutdown_signal_1
+          239   5237: __rt_lib_shutdown_stdio_1
+          240   5263: __rt_lib_shutdown_user_alloc_1
+          241   5294: __rt_entry
+          242   5305: __rt_entry_presh_1
+          243   5324: __rt_entry_sh
+          244   5338: __rt_entry_li
+          245   5352: __rt_entry_postsh_1
+          246   5372: __rt_entry_main
+          247   5388: __rt_entry_postli_1
+          248   5408: __rt_exit
+          249   5418: __rt_exit_ls
+          250   5431: __rt_exit_prels_1
+          251   5449: __rt_exit_exit
+          252   5464: am_fault_isr
+          253   5477: getStackedReg
+          254   5491: am_hal_flash_delay
+          255   5510: am_hal_interrupt_master_enable
+          256   5541: am_hal_interrupt_master_disable
+          257   5573: am_hal_interrupt_master_set
+          258   5601: __user_initial_stackheap
+          259   5626: __aeabi_memclr4
+          260   5642: __aeabi_memclr8
+          261   5658: __rt_memclr_w
+          262   5672: _memset_w
+          263   5682: __use_two_region_memory
+          264   5706: __rt_heap_escrow$2region
+          265   5731: __rt_heap_expand$2region
+          266   5756: __user_setup_stackheap
+          267   5779: exit
+          268   5784: __user_libspace
+          269   5800: __user_perproc_libspace
+          270   5824: __user_perthread_libspace
+          271   5850: _sys_exit
+          272   5860: __I$use$semihosting
+          273   5880: __use_no_semihosting_swi
+          274   5905: __semihosting_library_function
+          275   5936: am_bsp_debug_printf_disable
+          276   5964: am_bsp_debug_printf_enable
+          277   5991: am_bsp_itm_string_print
+          278   6015: am_bsp_low_power_init
+          279   6037: am_ctimer_isr
+          280   6051: am_hal_clkgen_osc_start
+          281   6075: am_hal_clkgen_osc_stop
+          282   6098: am_hal_clkgen_sysclk_get
+          283   6123: am_hal_clkgen_sysclk_select
+          284   6151: am_hal_ctimer_clear
+          285   6171: am_hal_ctimer_config
+          286   6192: am_hal_ctimer_int_clear
+          287   6216: am_hal_ctimer_int_enable
+          288   6241: am_hal_ctimer_period_set
+          289   6266: am_hal_ctimer_start
+          290   6286: am_hal_interrupt_enable
+          291   6310: am_hal_itm_enable
+          292   6328: am_hal_itm_not_busy
+          293   6348: am_hal_itm_print
+          294   6365: am_hal_mcuctrl_bandgap_disable
+          295   6396: am_hal_mcuctrl_bucks_enable
+          296   6424: am_hal_mcuctrl_fault_status
+          297   6452: am_hal_rtc_osc_disable
+          298   6475: am_hal_rtc_osc_enable
+          299   6497: am_hal_rtc_osc_select
+          300   6519: am_hal_rtc_time_get
+          301   6539: am_hal_rtc_time_set
+          302   6559: am_hal_sysctrl_sleep
+          303   6580: am_hal_tpiu_disable
+          304   6600: am_hal_tpiu_enable
+          305   6619: am_hal_vcomp_disable
+          306   6640: am_util_faultisr_collect_data
+          307   6670: am_util_stdio_printf
+          308   6691: am_util_stdio_printf_init
+          309   6717: am_util_stdio_terminal_clear
+          310   6746: am_util_stdio_vsprintf
+          311   6769: am_util_string_strnicmp
+          312   6793: am_util_time_computeDayofWeek
+          313   6823: main
+          314   6828: mthToIndex
+          315   6839: timerA0_init
+          316   6852: toVal
+          317   6858: __aeabi_d2f
+          318   6870: _d2f
+          319   6875: __fpl_dnaninf
+          320   6889: _fp_init
+          321   6898: __fplib_config_fpu_vfp
+          322   6921: __fplib_config_pureend_doubles
+          323   6952: __fpl_fretinf
+          324   6966: __I$use$fp
+          325   6977: am_cattr
+          326   6986: Region$$Table$$Base
+          327   7006: Region$$Table$$Limit
+          328   7027: pcWeekday
+          329   7037: pcMonth
+          330   7045: g_sTimer0
+          331   7055: g_LastSecond
+          332   7068: g_TestCount
+          333   7080: g_pfnCharPrint
+          334   7095: g_ui32HALflags
+          335   7110: hal_time
+          336   7119: __libspace_start
+          337   7136: __temporary_stack_top$libspace
+          338   7167: 
 
 
 ** Section #13 '.note' (SHT_NOTE)
@@ -3788,7 +3786,7 @@
 
 
 ** Section #14 '.comment' (SHT_PROGBITS)
-    Size   : 15940 bytes
+    Size   : 16616 bytes
 
 
 ** Section #15 '.shstrtab' (SHT_STRTAB)

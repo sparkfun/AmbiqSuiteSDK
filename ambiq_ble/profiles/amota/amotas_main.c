@@ -10,7 +10,7 @@
 
 //*****************************************************************************
 //
-// Copyright (c) 2020, Ambiq Micro
+// Copyright (c) 2020, Ambiq Micro, Inc.
 // All rights reserved.
 //
 // Redistribution and use in source and binary forms, with or without
@@ -42,7 +42,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
-// This is part of revision 2.4.2 of the AmbiqSuite Development Package.
+// This is part of revision 2.5.1 of the AmbiqSuite Development Package.
 //
 //*****************************************************************************
 #include <string.h>
@@ -294,10 +294,14 @@ amotas_conn_update(dmEvt_t *pMsg)
     (void)evt;
 
     APP_TRACE_INFO1("connection update status = 0x%x", evt->status);
-    APP_TRACE_INFO1("handle = 0x%x", evt->handle);
-    APP_TRACE_INFO1("connInterval = 0x%x", evt->connInterval);
-    APP_TRACE_INFO1("connLatency = 0x%x", evt->connLatency);
-    APP_TRACE_INFO1("supTimeout = 0x%x", evt->supTimeout);
+    
+    if (evt->status == 0)
+    {
+        APP_TRACE_INFO1("handle = 0x%x", evt->handle);
+        APP_TRACE_INFO1("connInterval = 0x%x", evt->connInterval);
+        APP_TRACE_INFO1("connLatency = 0x%x", evt->connLatency);
+        APP_TRACE_INFO1("supTimeout = 0x%x", evt->supTimeout);
+    }
 }
 
 //*****************************************************************************
@@ -352,11 +356,11 @@ amotas_reset_timer_expired(wsfMsgHdr_t *pMsg)
 {
     APP_TRACE_INFO0("amotas_reset_board");
     am_util_delay_ms(10);
-#if AM_APOLLO3_RESET
+#if (defined(AM_PART_APOLLO3) || defined(AM_PART_APOLLO3P) || defined(AM_PART_APOLLO4) || defined(AM_PART_APOLLO4B))
     am_hal_reset_control(AM_HAL_RESET_CONTROL_SWPOI, 0);
-#else // AM_APOLLO3_RESET
+#else
     am_hal_reset_poi();
-#endif // AM_APOLLO3_RESET
+#endif
 }
 
 //*****************************************************************************

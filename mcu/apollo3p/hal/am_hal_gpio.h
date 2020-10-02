@@ -13,7 +13,7 @@
 
 //*****************************************************************************
 //
-// Copyright (c) 2020, Ambiq Micro
+// Copyright (c) 2020, Ambiq Micro, Inc.
 // All rights reserved.
 //
 // Redistribution and use in source and binary forms, with or without
@@ -45,7 +45,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
-// This is part of revision 2.4.2 of the AmbiqSuite Development Package.
+// This is part of revision 2.5.1 of the AmbiqSuite Development Package.
 //
 //*****************************************************************************
 
@@ -71,8 +71,8 @@ extern "C"
 //
 //! Macros to assist with defining a GPIO mask given a GPIO number.
 //!
-//! IMPORTANT: AM_HAL_GPIO_BIT(n) is DEPRECATED and is replaced with
-//!            AM_HAL_GPIO_MASKBIT().
+//! IMPORTANT: AM_HAL_GPIO_BIT(n) is DEPRECATED and is
+//!            replaced with AM_HAL_GPIO_MASKBIT().
 //
 #define AM_HAL_GPIO_BIT(n)          DEPRECATED_USE_AM_HAL_GPIO_MASKBIT  // Force a compile error if used
 
@@ -239,7 +239,50 @@ AM_HAL_GPIO_MASKBIT(am_hal_gpio_mask_t*psMaskNm, uint32_t n)
 
 //*****************************************************************************
 //!
+//! AM_HAL_GPIO_MASKBITSMULT()
+//!
+//*****************************************************************************
+//
+// AM_HAL_GPIO_MASKBITSMULT(psMaskNm, n)
+//
+// Entry:
+//  psMaskNm is a pointer to the structure type, am_hal_gpio_mask_t.
+//  n is the desired bitnumber.
+//
+// Returns ptr to the bit structure.
+//
+// Since the ptr is required as a return value, a macro does not work.
+// Therefore an inline function is used.
+//
+static inline am_hal_gpio_mask_t*
+AM_HAL_GPIO_MASKBITSMULT(am_hal_gpio_mask_t*psMaskNm, uint32_t n)
+{
+    psMaskNm->U.Msk[n / 32] |= (1 << (n % 32));
+    return psMaskNm;
+}
+
+//*****************************************************************************
+//!
 //! Read types for am_hal_gpio_state_read().
+//!
+//! AM_HAL_GPIO_INPUT_READ
+//!     Used for reading the value on the pad whether the pad is configured
+//!     as an input or an output. Assumes that the pin is configured with
+//!     AM_HAL_GPIO_PIN_INPUT_ENABLE and AM_HAL_GPIO_PIN_RDZERO_READPIN, even
+//!     if configured for output (e.g. see g_AM_HAL_GPIO_OUTPUT_WITH_READ).
+//!     Perhaps a reasonable alias would be AM_HAL_GPIO_PAD_READ.
+//!
+//! AM_HAL_GPIO_OUTPUT_READ
+//!     Used for reading the last value written to the GPIO output, e.g via
+//!     am_hal_gpio_state_write(AM_HAL_GPIO_OUTPUT_SET) or even the macro
+//!     am_hal_gpio_output_set(n).
+//!
+//! AM_HAL_GPIO_ENABLE_READ
+//!     Used for reading the state of the tristate enable, e.g. the state
+//!     of the tristate enable after calling
+//!     am_hal_gpio_state_write(AM_HAL_GPIO_OUTPUT_TRISTATE_ENABLE) or
+//!     am_hal_gpio_state_write(AM_HAL_GPIO_OUTPUT_TRISTATE_DISABLE), or even
+//!     the macro am_hal_gpio_output_tristate_disable(n).
 //!
 //*****************************************************************************
 typedef enum
@@ -762,6 +805,29 @@ extern uint32_t am_hal_gpio_interrupt_register_adv(uint32_t ui32GPIONumber,
 //*****************************************************************************
 extern uint32_t am_hal_gpio_interrupt_service(am_hal_gpio_mask_t *pGpioIntMask);
 
+//*****************************************************************************
+//!
+//! am_hal_gpio_isinput()
+//!
+//! Determine whether a pad is configured with input enable.
+//! Returns true if input enable is set, false otherwise.
+//!
+//*****************************************************************************
+extern bool am_hal_gpio_isinput(uint32_t ui32Pin);
+
+//*****************************************************************************
+//!
+//! am_hal_gpio_isgpio()
+//!
+//! Determine whether the GPIO is configured as input or output.
+//!
+//! Return values:
+//!     0: Pin is not configured as GPIO.
+//!     1: Pin is configured as GPIO input.
+//!     2: Pin is configured as GPIO output.
+//!
+//*****************************************************************************
+extern uint32_t am_hal_gpio_isgpio(uint32_t ui32Pin);
 
 //*****************************************************************************
 //
@@ -820,12 +886,12 @@ extern uint32_t am_hal_gpio_interrupt_service(am_hal_gpio_mask_t *pGpioIntMask);
 //! Note that the macros are named as lower-case counterparts to the
 //! enumerations for the am_hal_gpio_state_read() function.  That is:
 //!
-//!    AM_HAL_GPIO_OUTPUT_CLEAR            -> am_hal_gpio_output_clear(n,v)
-//!    AM_HAL_GPIO_OUTPUT_SET              -> am_hal_gpio_output_set(n,v)
-//!    AM_HAL_GPIO_OUTPUT_TOGGLE           -> am_hal_gpio_output_toggle(n,v)
-//!    AM_HAL_GPIO_OUTPUT_TRISTATE_DISABLE -> am_hal_gpio_output_tristate_disable(n,v)
-//!    AM_HAL_GPIO_OUTPUT_TRISTATE_ENABLE  -> am_hal_gpio_output_tristate_enable(n,v)
-//!    AM_HAL_GPIO_OUTPUT_TRISTATE_TOGGLE  -> am_hal_gpio_output_toggle(n,v)
+//!    AM_HAL_GPIO_OUTPUT_CLEAR            -> am_hal_gpio_output_clear(n)
+//!    AM_HAL_GPIO_OUTPUT_SET              -> am_hal_gpio_output_set(n)
+//!    AM_HAL_GPIO_OUTPUT_TOGGLE           -> am_hal_gpio_output_toggle(n)
+//!    AM_HAL_GPIO_OUTPUT_TRISTATE_DISABLE -> am_hal_gpio_output_tristate_disable(n)
+//!    AM_HAL_GPIO_OUTPUT_TRISTATE_ENABLE  -> am_hal_gpio_output_tristate_enable(n)
+//!    AM_HAL_GPIO_OUTPUT_TRISTATE_TOGGLE  -> am_hal_gpio_output_tristate_toggle(n)
 //!
 //! @return None.
 //!

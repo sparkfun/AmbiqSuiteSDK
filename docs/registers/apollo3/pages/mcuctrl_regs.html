@@ -25,7 +25,7 @@
                             <img alt="Logo" src="../resources/am_logo.png" />
                         </td>
                         <td style="padding-left: 0.5em;">
-                            <div id="projectname">Apollo Register Documentation &#160;<span id="projectnumber">v2.4.2</span></div>
+                            <div id="projectname">Apollo Register Documentation &#160;<span id="projectnumber">v${version}</span></div>
                         </td>
                     </tr>
                 </tbody>
@@ -207,7 +207,7 @@
                         </td>
                         <td class="entry">
                             <span style="width:32px;display:inline-block;">&#160;</span>
-                            <a class="el" href="#ADCREFCOMP" target="_self">ADCREFCOMP - ADC Referece Keeper and Comparator Control</a>
+                            <a class="el" href="#ADCREFCOMP" target="_self">ADCREFCOMP - ADC Reference Keeper and Comparator Control</a>
                         </td>
                     </tr>
 
@@ -394,7 +394,7 @@
                         </td>
                         <td class="entry">
                             <span style="width:32px;display:inline-block;">&#160;</span>
-                            <a class="el" href="#OTAPOINTER" target="_self">OTAPOINTER - OTA (Over the Air) Update Pointer/Status.  Reset only by POA</a>
+                            <a class="el" href="#OTAPOINTER" target="_self">OTAPOINTER - OTA (Over the Air) Update Pointer/Status. Reset only by POA</a>
                         </td>
                     </tr>
 
@@ -434,11 +434,44 @@
                     <tr id="row_0_0_">
                         <td class="entry">
                             <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x00000350:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <a class="el" href="#SIMOBUCK1" target="_self">SIMOBUCK1 - SIMO Buck Control Reg 1</a>
+                        </td>
+                    </tr>
+
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x00000354:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <a class="el" href="#SIMOBUCK2" target="_self">SIMOBUCK2 - SIMO Buck Control Reg 2</a>
+                        </td>
+                    </tr>
+
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x00000358:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <a class="el" href="#SIMOBUCK3" target="_self">SIMOBUCK3 - SIMO Buck Control Reg 3</a>
+                        </td>
+                    </tr>
+
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
                             <span class="h5">0x0000035C:</span>
                         </td>
                         <td class="entry">
                             <span style="width:32px;display:inline-block;">&#160;</span>
-                            <a class="el" href="#SIMOBUCK4" target="_self">SIMOBUCK4 - SIMO Buck Control Reg1</a>
+                            <a class="el" href="#SIMOBUCK4" target="_self">SIMOBUCK4 - SIMO Buck Control Reg 4</a>
                         </td>
                     </tr>
 
@@ -648,7 +681,7 @@ ADCn(0)-&gt;CFG_b.CLKSEL = ADC_CFG_CLKSEL_HFRC; <span style='color:#3f7f59; '>//
                             <td>PARTNUM</td>
                             <td>RO</td>
                             <td>BCD part number.<br><br>
-                                 APOLLO3              = 0x6000000 - Apollo3 part number is 0x06xxxxxx.<br>
+                                 APOLLO3              = 0x6000000 - Apollo3 Blue part number is 0x06xxxxxx.<br>
                              APOLLO2              = 0x3000000 - Apollo2 part number is 0x03xxxxxx.<br>
                              APOLLO               = 0x1000000 - Apollo part number is 0x01xxxxxx.<br>
                              PN_M                 = 0xFF000000 - Mask for the part number field.<br>
@@ -673,7 +706,8 @@ Values:
 4: 256KB
 5: 512KB
 6: 1MB
-7: 384KB<br>
+7: 384KB
+8: 768KB<br>
                              SRAMSIZE_S           = 0x10 - Bit position for the SRAM_SIZE field.<br>
                              REV_M                = 0xFF00 - Mask for the revision field. Bits [15:12] are major rev, [11:8] are minor rev.
 Values:
@@ -692,13 +726,14 @@ Values:
 0: 25 pins
 1: 49 pins
 2: 64 pins
-3: 81 pins<br>
+3: 81 pins
+4: 104 pins<br>
                              PINS_S               = 0x3 - Bit position for the pins field.<br>
                              TEMP_M               = 0x6 - Mask for the temperature field.
 Values:
 0: Commercial
 1: Military
-2: Automative
+2: Automotive
 3: Industrial<br>
                              TEMP_S               = 0x1 - Bit position for the temperature field.<br>
                              QUAL_M               = 0x1 - Mask for the qualified field.
@@ -817,7 +852,7 @@ ADCn(0)-&gt;CFG_b.CLKSEL = ADC_CFG_CLKSEL_HFRC; <span style='color:#3f7f59; '>//
                             <td>CHIPID0</td>
                             <td>RO</td>
                             <td>Unique chip ID 0.<br><br>
-                                 APOLLO3              = 0x0 - Apollo3 CHIPID0.</td>
+                                 APOLLO3              = 0x0 - Apollo3 Blue CHIPID0.</td>
                         </tr>
 
                     </tbody>
@@ -929,7 +964,7 @@ ADCn(0)-&gt;CFG_b.CLKSEL = ADC_CFG_CLKSEL_HFRC; <span style='color:#3f7f59; '>//
                             <td>CHIPID1</td>
                             <td>RO</td>
                             <td>Unique chip ID 1.<br><br>
-                                 APOLLO3              = 0x0 - Apollo3 CHIPID1.</td>
+                                 APOLLO3              = 0x0 - Apollo3 Blue CHIPID1.</td>
                         </tr>
 
                     </tbody>
@@ -1049,7 +1084,7 @@ ADCn(0)-&gt;CFG_b.CLKSEL = ADC_CFG_CLKSEL_HFRC; <span style='color:#3f7f59; '>//
                             <td>31:20</td>
                             <td>RSVD</td>
                             <td>RO</td>
-                            <td>RESERVED.<br><br>
+                            <td>RESERVED<br><br>
                                 </td>
                         </tr>
 
@@ -1066,8 +1101,8 @@ ADCn(0)-&gt;CFG_b.CLKSEL = ADC_CFG_CLKSEL_HFRC; <span style='color:#3f7f59; '>//
                             <td>REVMAJ</td>
                             <td>RO</td>
                             <td>Major Revision ID.<br><br>
-                                 B                    = 0x2 - Apollo3 revision B<br>
-                             A                    = 0x1 - Apollo3 revision A</td>
+                                 B                    = 0x2 - Apollo3 Blue revision B<br>
+                             A                    = 0x1 - Apollo3 Blue revision A</td>
                         </tr>
 
                         <tr>
@@ -1075,8 +1110,8 @@ ADCn(0)-&gt;CFG_b.CLKSEL = ADC_CFG_CLKSEL_HFRC; <span style='color:#3f7f59; '>//
                             <td>REVMIN</td>
                             <td>RO</td>
                             <td>Minor Revision ID.<br><br>
-                                 REV1                 = 0x2 - Apollo3 minor rev 1.<br>
-                             REV0                 = 0x1 - Apollo3 minor rev 0.  Minor revision value, succeeding minor revisions will increment from this value.</td>
+                                 REV1                 = 0x2 - Apollo3 Blue minor rev 1.<br>
+                             REV0                 = 0x1 - Apollo3 Blue minor rev 0. Minor revision value, succeeding minor revisions will increment from this value.</td>
                         </tr>
 
                     </tbody>
@@ -1188,7 +1223,7 @@ ADCn(0)-&gt;CFG_b.CLKSEL = ADC_CFG_CLKSEL_HFRC; <span style='color:#3f7f59; '>//
                             <td>VENDORID</td>
                             <td>RO</td>
                             <td>Unique Vendor ID<br><br>
-                                 AMBIQ                = 0x414D4251 - Ambiq Vendor ID</td>
+                                 AMBIQ                = 0x414D4251 - Ambiq Vendor ID 'AMBQ'</td>
                         </tr>
 
                     </tbody>
@@ -1308,7 +1343,7 @@ ADCn(0)-&gt;CFG_b.CLKSEL = ADC_CFG_CLKSEL_HFRC; <span style='color:#3f7f59; '>//
                             <td>31:3</td>
                             <td>RSVD</td>
                             <td>RO</td>
-                            <td>RESERVED.<br><br>
+                            <td>RESERVED<br><br>
                                 </td>
                         </tr>
 
@@ -1465,7 +1500,7 @@ ADCn(0)-&gt;CFG_b.CLKSEL = ADC_CFG_CLKSEL_HFRC; <span style='color:#3f7f59; '>//
                             <td>31:7</td>
                             <td>RSVD</td>
                             <td>RO</td>
-                            <td>RESERVED.<br><br>
+                            <td>RESERVED<br><br>
                                 </td>
                         </tr>
 
@@ -1499,7 +1534,7 @@ ADCn(0)-&gt;CFG_b.CLKSEL = ADC_CFG_CLKSEL_HFRC; <span style='color:#3f7f59; '>//
                             <td>3</td>
                             <td>RSVD</td>
                             <td>RO</td>
-                            <td>RESERVED.<br><br>
+                            <td>RESERVED<br><br>
                                 </td>
                         </tr>
 
@@ -1778,7 +1813,7 @@ ADCn(0)-&gt;CFG_b.CLKSEL = ADC_CFG_CLKSEL_HFRC; <span style='color:#3f7f59; '>//
                             <td>31:6</td>
                             <td>RSVD</td>
                             <td>RO</td>
-                            <td>RESERVED.<br><br>
+                            <td>RESERVED<br><br>
                                 </td>
                         </tr>
 
@@ -1944,7 +1979,7 @@ ADCn(0)-&gt;CFG_b.CLKSEL = ADC_CFG_CLKSEL_HFRC; <span style='color:#3f7f59; '>//
                             <td>31:16</td>
                             <td>RSVD</td>
                             <td>RO</td>
-                            <td>RESERVED.<br><br>
+                            <td>RESERVED<br><br>
                                 </td>
                         </tr>
 
@@ -2078,7 +2113,7 @@ ADCn(0)-&gt;CFG_b.CLKSEL = ADC_CFG_CLKSEL_HFRC; <span style='color:#3f7f59; '>//
                             <td>31:2</td>
                             <td>RSVD</td>
                             <td>RO</td>
-                            <td>RESERVED.<br><br>
+                            <td>RESERVED<br><br>
                                 </td>
                         </tr>
 
@@ -2211,7 +2246,7 @@ ADCn(0)-&gt;CFG_b.CLKSEL = ADC_CFG_CLKSEL_HFRC; <span style='color:#3f7f59; '>//
                             <td>31:1</td>
                             <td>RSVD</td>
                             <td>RO</td>
-                            <td>RESERVED.<br><br>
+                            <td>RESERVED<br><br>
                                 </td>
                         </tr>
 
@@ -2344,7 +2379,7 @@ ADCn(0)-&gt;CFG_b.CLKSEL = ADC_CFG_CLKSEL_HFRC; <span style='color:#3f7f59; '>//
                             <td>31:13</td>
                             <td>RSVD</td>
                             <td>RO</td>
-                            <td>RESERVED.<br><br>
+                            <td>RESERVED<br><br>
                                 </td>
                         </tr>
 
@@ -2368,7 +2403,7 @@ ADCn(0)-&gt;CFG_b.CLKSEL = ADC_CFG_CLKSEL_HFRC; <span style='color:#3f7f59; '>//
                             <td>5:2</td>
                             <td>RSVD</td>
                             <td>RO</td>
-                            <td>RESERVED.<br><br>
+                            <td>RESERVED<br><br>
                                 </td>
                         </tr>
 
@@ -2388,7 +2423,7 @@ ADCn(0)-&gt;CFG_b.CLKSEL = ADC_CFG_CLKSEL_HFRC; <span style='color:#3f7f59; '>//
 
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 id="ADCREFCOMP" class="panel-title">ADCREFCOMP - ADC Referece Keeper and Comparator Control</h3>
+                <h3 id="ADCREFCOMP" class="panel-title">ADCREFCOMP - ADC Reference Keeper and Comparator Control</h3>
             </div>
             <div class="panel-body">
                 <h3>Address:</h3>
@@ -2406,7 +2441,7 @@ ADCn(0)-&gt;CFG_b.CLKSEL = ADC_CFG_CLKSEL_HFRC; <span style='color:#3f7f59; '>//
 
                 </table>
                 <h3>Description:</h3>
-                <p>ADC Referece Keeper and Comparator Control</p>
+                <p>ADC Reference Keeper and Comparator Control</p>
                 <h3>Example Macro Usage:</h3>
                 <pre style="margin:10px" class="language-pascal"><span style='color:#3f7f59; '>//
 // Register access is all performed through the standard CMSIS structure-based
@@ -2679,7 +2714,7 @@ ADCn(0)-&gt;CFG_b.CLKSEL = ADC_CFG_CLKSEL_HFRC; <span style='color:#3f7f59; '>//
                             <td>31:10</td>
                             <td>RSVD</td>
                             <td>RO</td>
-                            <td>RESERVED.<br><br>
+                            <td>RESERVED<br><br>
                                 </td>
                         </tr>
 
@@ -2704,7 +2739,7 @@ ADCn(0)-&gt;CFG_b.CLKSEL = ADC_CFG_CLKSEL_HFRC; <span style='color:#3f7f59; '>//
                             <td>PWDBODXTAL</td>
                             <td>RW</td>
                             <td>XTAL Power down on brown out.<br><br>
-                                 PWRUPBOD             = 0x0 - Power up xtal on BOD<br>
+                                 PWRUPBOD             = 0x0 - Power up XTAL on BOD.<br>
                              PWRDNBOD             = 0x1 - Power down XTAL on BOD.</td>
                         </tr>
 
@@ -2870,7 +2905,7 @@ ADCn(0)-&gt;CFG_b.CLKSEL = ADC_CFG_CLKSEL_HFRC; <span style='color:#3f7f59; '>//
                             <td>31:14</td>
                             <td>RSVD</td>
                             <td>RO</td>
-                            <td>RESERVED.<br><br>
+                            <td>RESERVED<br><br>
                                 </td>
                         </tr>
 
@@ -2895,10 +2930,10 @@ ADCn(0)-&gt;CFG_b.CLKSEL = ADC_CFG_CLKSEL_HFRC; <span style='color:#3f7f59; '>//
                             <td>ACWARMUP</td>
                             <td>RW</td>
                             <td>Auto-calibration delay control<br><br>
-                                 SEC1                 = 0x0 - Warmup period of 1-2 seconds<br>
-                             SEC2                 = 0x1 - Warmup period of 2-4 seconds<br>
-                             SEC4                 = 0x2 - Warmup period of 4-8 seconds<br>
-                             SEC8                 = 0x3 - Warmup period of 8-16 seconds</td>
+                                 SEC1                 = 0x0 - Warm-up period of 1-2 seconds<br>
+                             SEC2                 = 0x1 - Warm-up period of 2-4 seconds<br>
+                             SEC4                 = 0x2 - Warm-up period of 4-8 seconds<br>
+                             SEC8                 = 0x3 - Warm-up period of 8-16 seconds</td>
                         </tr>
 
                     </tbody>
@@ -3015,7 +3050,7 @@ ADCn(0)-&gt;CFG_b.CLKSEL = ADC_CFG_CLKSEL_HFRC; <span style='color:#3f7f59; '>//
                             <td>31:6</td>
                             <td>RSVD</td>
                             <td>RO</td>
-                            <td>RESERVED.<br><br>
+                            <td>RESERVED<br><br>
                                 </td>
                         </tr>
 
@@ -3031,7 +3066,7 @@ ADCn(0)-&gt;CFG_b.CLKSEL = ADC_CFG_CLKSEL_HFRC; <span style='color:#3f7f59; '>//
                             <td>4:0</td>
                             <td>RESERVED_RW_0</td>
                             <td>RW</td>
-                            <td>Reserved bits, always leave unchanged.  The MISCCTRL register must be modified via atomic RMW, leaving this bitfield completely unmodified.  Failure to do so will result in unpredictable behavior.<br><br>
+                            <td>Reserved bits, always leave unchanged. The MISCCTRL register must be modified via atomic RMW, leaving this bit field completely unmodified. Failure to do so will result in unpredictable behavior.<br><br>
                                 </td>
                         </tr>
 
@@ -3191,7 +3226,7 @@ ADCn(0)-&gt;CFG_b.CLKSEL = ADC_CFG_CLKSEL_HFRC; <span style='color:#3f7f59; '>//
                             <td>25:3</td>
                             <td>RSVD</td>
                             <td>RO</td>
-                            <td>RESERVED.<br><br>
+                            <td>RESERVED<br><br>
                                 </td>
                         </tr>
 
@@ -3199,7 +3234,7 @@ ADCn(0)-&gt;CFG_b.CLKSEL = ADC_CFG_CLKSEL_HFRC; <span style='color:#3f7f59; '>//
                             <td>2</td>
                             <td>PROTLOCK</td>
                             <td>RW</td>
-                            <td>Flash protection lock.  Always resets to 1, write 1 to clear.  Enables writes to flash protection register set.<br><br>
+                            <td>Flash protection lock. Always resets to 1, write 1 to clear. Enables writes to flash protection register set.<br><br>
                                  LOCK                 = 0x1 - Enable the secure boot lock</td>
                         </tr>
 
@@ -3207,7 +3242,7 @@ ADCn(0)-&gt;CFG_b.CLKSEL = ADC_CFG_CLKSEL_HFRC; <span style='color:#3f7f59; '>//
                             <td>1</td>
                             <td>SBLOCK</td>
                             <td>RW</td>
-                            <td>Secure boot lock.  Always resets to 1, write 1 to clear.  Enables system visibility to bootloader until set.<br><br>
+                            <td>Secure boot lock. Always resets to 1, write 1 to clear. Enables system visibility to bootloader until set.<br><br>
                                  LOCK                 = 0x1 - Enable the secure boot lock</td>
                         </tr>
 
@@ -3215,7 +3250,7 @@ ADCn(0)-&gt;CFG_b.CLKSEL = ADC_CFG_CLKSEL_HFRC; <span style='color:#3f7f59; '>//
                             <td>0</td>
                             <td>BOOTLOADERLOW</td>
                             <td>RW</td>
-                            <td>Determines whether the bootloader code is visible at address 0x00000000 or not.  Resets to 1, write 1 to clear.<br><br>
+                            <td>Determines whether the bootloader code is visible at address 0x00000000 or not. Resets to 1, write 1 to clear.<br><br>
                                  ADDR0                = 0x1 - Bootloader code at 0x00000000.</td>
                         </tr>
 
@@ -3336,7 +3371,7 @@ ADCn(0)-&gt;CFG_b.CLKSEL = ADC_CFG_CLKSEL_HFRC; <span style='color:#3f7f59; '>//
                             <td>31:3</td>
                             <td>RSVD</td>
                             <td>RO</td>
-                            <td>RESERVED.<br><br>
+                            <td>RESERVED<br><br>
                                 </td>
                         </tr>
 
@@ -3344,8 +3379,8 @@ ADCn(0)-&gt;CFG_b.CLKSEL = ADC_CFG_CLKSEL_HFRC; <span style='color:#3f7f59; '>//
                             <td>2</td>
                             <td>INFO0_VALID</td>
                             <td>RO</td>
-                            <td>Indicates whether info0 contains valid data<br><br>
-                                 VALID                = 0x1 - Flash info0 (customer) space contains valid data.</td>
+                            <td>Indicates whether INFO0 contains valid data<br><br>
+                                 VALID                = 0x1 - Flash INFO0 (customer) space contains valid data.</td>
                         </tr>
 
                         <tr>
@@ -4041,7 +4076,7 @@ ADCn(0)-&gt;CFG_b.CLKSEL = ADC_CFG_CLKSEL_HFRC; <span style='color:#3f7f59; '>//
                             <td>31:3</td>
                             <td>RSVD</td>
                             <td>RO</td>
-                            <td>RESERVED.<br><br>
+                            <td>RESERVED<br><br>
                                 </td>
                         </tr>
 
@@ -4183,7 +4218,7 @@ ADCn(0)-&gt;CFG_b.CLKSEL = ADC_CFG_CLKSEL_HFRC; <span style='color:#3f7f59; '>//
                             <td>31:1</td>
                             <td>RSVD</td>
                             <td>RO</td>
-                            <td>RESERVED.<br><br>
+                            <td>RESERVED<br><br>
                                 </td>
                         </tr>
 
@@ -4531,7 +4566,7 @@ ADCn(0)-&gt;CFG_b.CLKSEL = ADC_CFG_CLKSEL_HFRC; <span style='color:#3f7f59; '>//
                             <td>31:1</td>
                             <td>RSVD</td>
                             <td>RO</td>
-                            <td>RESERVED.<br><br>
+                            <td>RESERVED<br><br>
                                 </td>
                         </tr>
 
@@ -4661,7 +4696,7 @@ ADCn(0)-&gt;CFG_b.CLKSEL = ADC_CFG_CLKSEL_HFRC; <span style='color:#3f7f59; '>//
                             <td>31:11</td>
                             <td>RSVD</td>
                             <td>RO</td>
-                            <td>RESERVED.<br><br>
+                            <td>RESERVED<br><br>
                                 </td>
                         </tr>
 
@@ -4671,22 +4706,22 @@ ADCn(0)-&gt;CFG_b.CLKSEL = ADC_CFG_CLKSEL_HFRC; <span style='color:#3f7f59; '>//
                             <td>RW</td>
                             <td>This field selects the frequency of the ARM M4 TPIU port.<br><br>
                                  LOWPWR               = 0x0 - Low power state.<br>
-                             HFRCDIV2             = 0x1 - Selects HFRC divided by 2 as the source TPIU clk<br>
-                             HFRCDIV8             = 0x2 - Selects HFRC divided by 8 as the source TPIU clk<br>
-                             HFRCDIV16            = 0x3 - Selects HFRC divided by 16 as the source TPIU clk<br>
-                             HFRCDIV32            = 0x4 - Selects HFRC divided by 32 as the source TPIU clk<br>
+                             HFRCDIV2             = 0x1 - Selects HFRC divided by 2 as the source TPIU clock<br>
+                             HFRCDIV8             = 0x2 - Selects HFRC divided by 8 as the source TPIU clock<br>
+                             HFRCDIV16            = 0x3 - Selects HFRC divided by 16 as the source TPIU clock<br>
+                             HFRCDIV32            = 0x4 - Selects HFRC divided by 32 as the source TPIU clock<br>
                              LOW_PWR              = 0x0 - Deprecated-do not use. Low power state.<br>
-                             HFRC_DIV_2           = 0x1 - Deprecated-do not use. Selects HFRC divided by 2 as the source TPIU clk<br>
-                             HFRC_DIV_8           = 0x2 - Deprecated-do not use. Selects HFRC divided by 8 as the source TPIU clk<br>
-                             HFRC_DIV_16          = 0x3 - Deprecated-do not use. Selects HFRC divided by 16 as the source TPIU clk<br>
-                             HFRC_DIV_32          = 0x4 - Deprecated-do not use. Selects HFRC divided by 32 as the source TPIU clk</td>
+                             HFRC_DIV_2           = 0x1 - Deprecated-do not use. Selects HFRC divided by 2 as the source TPIU clock<br>
+                             HFRC_DIV_8           = 0x2 - Deprecated-do not use. Selects HFRC divided by 8 as the source TPIU clock<br>
+                             HFRC_DIV_16          = 0x3 - Deprecated-do not use. Selects HFRC divided by 16 as the source TPIU clock<br>
+                             HFRC_DIV_32          = 0x4 - Deprecated-do not use. Selects HFRC divided by 32 as the source TPIU clock</td>
                         </tr>
 
                         <tr>
                             <td>7:1</td>
                             <td>RSVD</td>
                             <td>RO</td>
-                            <td>RESERVED.<br><br>
+                            <td>RESERVED<br><br>
                                 </td>
                         </tr>
 
@@ -4707,7 +4742,7 @@ ADCn(0)-&gt;CFG_b.CLKSEL = ADC_CFG_CLKSEL_HFRC; <span style='color:#3f7f59; '>//
 
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 id="OTAPOINTER" class="panel-title">OTAPOINTER - OTA (Over the Air) Update Pointer/Status.  Reset only by POA</h3>
+                <h3 id="OTAPOINTER" class="panel-title">OTAPOINTER - OTA (Over the Air) Update Pointer/Status. Reset only by POA</h3>
             </div>
             <div class="panel-body">
                 <h3>Address:</h3>
@@ -4725,7 +4760,7 @@ ADCn(0)-&gt;CFG_b.CLKSEL = ADC_CFG_CLKSEL_HFRC; <span style='color:#3f7f59; '>//
 
                 </table>
                 <h3>Description:</h3>
-                <p>OTA (Over the Air) Update Pointer/Status.  Reset only by POA</p>
+                <p>OTA (Over the Air) Update Pointer/Status. Reset only by POA</p>
                 <h3>Example Macro Usage:</h3>
                 <pre style="margin:10px" class="language-pascal"><span style='color:#3f7f59; '>//
 // Register access is all performed through the standard CMSIS structure-based
@@ -4953,7 +4988,7 @@ ADCn(0)-&gt;CFG_b.CLKSEL = ADC_CFG_CLKSEL_HFRC; <span style='color:#3f7f59; '>//
                             <td>31:16</td>
                             <td>RSVD</td>
                             <td>RO</td>
-                            <td>RESERVED.<br><br>
+                            <td>RESERVED<br><br>
                                 </td>
                         </tr>
 
@@ -4961,7 +4996,7 @@ ADCn(0)-&gt;CFG_b.CLKSEL = ADC_CFG_CLKSEL_HFRC; <span style='color:#3f7f59; '>//
                             <td>15:8</td>
                             <td>HYSTERESIS</td>
                             <td>RW</td>
-                            <td>This field determines how long the DMA will remain active during deep sleep before shutting down and returning the system to full deep sleep.  Values are based on a 94KHz clock and are roughly 10us increments for a range of ~10us to 2.55ms<br><br>
+                            <td>This field determines how long the DMA will remain active during deep sleep before shutting down and returning the system to full deep sleep. Values are based on a 94KHz clock and are roughly 10 us increments for a range of ~10 us to 2.55 ms<br><br>
                                 </td>
                         </tr>
 
@@ -4969,7 +5004,7 @@ ADCn(0)-&gt;CFG_b.CLKSEL = ADC_CFG_CLKSEL_HFRC; <span style='color:#3f7f59; '>//
                             <td>7:2</td>
                             <td>RSVD</td>
                             <td>RO</td>
-                            <td>RESERVED.<br><br>
+                            <td>RESERVED<br><br>
                                 </td>
                         </tr>
 
@@ -4986,7 +5021,7 @@ ADCn(0)-&gt;CFG_b.CLKSEL = ADC_CFG_CLKSEL_HFRC; <span style='color:#3f7f59; '>//
                             <td>0</td>
                             <td>DMA_ENABLE</td>
                             <td>RW</td>
-                            <td>Enable the DMA controller.  When disabled, DMA requests will be ignored by the controller<br><br>
+                            <td>Enable the DMA controller. When disabled, DMA requests will be ignored by the controller<br><br>
                                  DISABLE              = 0x0 - DMA operations disabled<br>
                              ENABLE               = 0x1 - DMA operations enabled</td>
                         </tr>
@@ -5117,7 +5152,7 @@ ADCn(0)-&gt;CFG_b.CLKSEL = ADC_CFG_CLKSEL_HFRC; <span style='color:#3f7f59; '>//
                             <td>31:8</td>
                             <td>RSVD</td>
                             <td>RO</td>
-                            <td>RESERVED.<br><br>
+                            <td>RESERVED<br><br>
                                 </td>
                         </tr>
 
@@ -5125,7 +5160,7 @@ ADCn(0)-&gt;CFG_b.CLKSEL = ADC_CFG_CLKSEL_HFRC; <span style='color:#3f7f59; '>//
                             <td>7:6</td>
                             <td>RSVD</td>
                             <td>RO</td>
-                            <td>RESERVED.<br><br>
+                            <td>RESERVED<br><br>
                                 </td>
                         </tr>
 
@@ -5133,7 +5168,7 @@ ADCn(0)-&gt;CFG_b.CLKSEL = ADC_CFG_CLKSEL_HFRC; <span style='color:#3f7f59; '>//
                             <td>5</td>
                             <td>DPREFETCH_CACHE</td>
                             <td>RW</td>
-                            <td>Secondary prefetch feature that will cache prefetched data across bus waitstates (requires DPREFETCH to be set).<br><br>
+                            <td>Secondary pre-fetch feature that will cache pre-fetched data across bus wait states (requires DPREFETCH to be set).<br><br>
                                 </td>
                         </tr>
 
@@ -5141,7 +5176,7 @@ ADCn(0)-&gt;CFG_b.CLKSEL = ADC_CFG_CLKSEL_HFRC; <span style='color:#3f7f59; '>//
                             <td>4</td>
                             <td>DPREFETCH</td>
                             <td>RW</td>
-                            <td>When set, data bus accesses to the SRAM banks will be prefetched (normally 2 cycle read access).  Use of this mode bit is only recommended if the work flow has a large number of sequential accesses.<br><br>
+                            <td>When set, data bus accesses to the SRAM banks will be pre-fetched (normally 2 cycle read access). Use of this mode bit is only recommended if the work flow has a large number of sequential accesses.<br><br>
                                 </td>
                         </tr>
 
@@ -5149,7 +5184,7 @@ ADCn(0)-&gt;CFG_b.CLKSEL = ADC_CFG_CLKSEL_HFRC; <span style='color:#3f7f59; '>//
                             <td>3:2</td>
                             <td>RSVD</td>
                             <td>RO</td>
-                            <td>RESERVED.<br><br>
+                            <td>RESERVED<br><br>
                                 </td>
                         </tr>
 
@@ -5157,7 +5192,7 @@ ADCn(0)-&gt;CFG_b.CLKSEL = ADC_CFG_CLKSEL_HFRC; <span style='color:#3f7f59; '>//
                             <td>1</td>
                             <td>IPREFETCH_CACHE</td>
                             <td>RW</td>
-                            <td>Secondary prefetch feature that will cache prefetched data across bus waitstates (requires IPREFETCH to be set).<br><br>
+                            <td>Secondary pre-fetch feature that will cache pre-fetched data across bus wait states (requires IPREFETCH to be set).<br><br>
                                 </td>
                         </tr>
 
@@ -5165,7 +5200,7 @@ ADCn(0)-&gt;CFG_b.CLKSEL = ADC_CFG_CLKSEL_HFRC; <span style='color:#3f7f59; '>//
                             <td>0</td>
                             <td>IPREFETCH</td>
                             <td>RW</td>
-                            <td>When set, instruction accesses to the SRAM banks will be prefetched (normally 2 cycle read access).  Generally, this mode bit should be set for improved performance when executing instructions from SRAM.<br><br>
+                            <td>When set, instruction accesses to the SRAM banks will be pre-fetched (normally 2 cycle read access). Generally, this mode bit should be set for improved performance when executing instructions from SRAM.<br><br>
                                 </td>
                         </tr>
 
@@ -5195,7 +5230,7 @@ ADCn(0)-&gt;CFG_b.CLKSEL = ADC_CFG_CLKSEL_HFRC; <span style='color:#3f7f59; '>//
 
                 </table>
                 <h3>Description:</h3>
-                <p>Key Register to enable the use of external clock selects via the EXTCLKSEL reg</p>
+                <p>Locks the state of the EXTCLKSEL register from writes. This is done to prevent errant writes to the register, as this could cause the chip to halt. Write a value of 0x53 to unlock write access to the EXTCLKSEL register. Once unlocked, the register will read back a 1 to indicate this is unlocked. Writing the register with any other value other than 0x53 will enable the lock.</p>
                 <h3>Example Macro Usage:</h3>
                 <pre style="margin:10px" class="language-pascal"><span style='color:#3f7f59; '>//
 // Register access is all performed through the standard CMSIS structure-based
@@ -5278,7 +5313,7 @@ ADCn(0)-&gt;CFG_b.CLKSEL = ADC_CFG_CLKSEL_HFRC; <span style='color:#3f7f59; '>//
                             <td>KEXTCLKSEL</td>
                             <td>RW</td>
                             <td>Key register value.<br><br>
-                                 Key                  = 0x53 - Key</td>
+                                 Key                  = 0x53 - Key value to unlock the register.</td>
                         </tr>
 
                     </tbody>
@@ -5289,7 +5324,7 @@ ADCn(0)-&gt;CFG_b.CLKSEL = ADC_CFG_CLKSEL_HFRC; <span style='color:#3f7f59; '>//
 
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 id="SIMOBUCK4" class="panel-title">SIMOBUCK4 - SIMO Buck Control Reg1</h3>
+                <h3 id="SIMOBUCK1" class="panel-title">SIMOBUCK1 - SIMO Buck Control Reg 1</h3>
             </div>
             <div class="panel-body">
                 <h3>Address:</h3>
@@ -5301,13 +5336,13 @@ ADCn(0)-&gt;CFG_b.CLKSEL = ADC_CFG_CLKSEL_HFRC; <span style='color:#3f7f59; '>//
                         </td>
                         <td class="entry">
                             <span style="width:32px;display:inline-block;">&#160;</span>
-                            <span class="h5">0x4002035C</span>
+                            <span class="h5">0x40020350</span>
                         </td>
                     </tr>
 
                 </table>
                 <h3>Description:</h3>
-                <p>SIMO Buck Control Reg1</p>
+                <p>SIMO Buck Control Reg 1</p>
                 <h3>Example Macro Usage:</h3>
                 <pre style="margin:10px" class="language-pascal"><span style='color:#3f7f59; '>//
 // Register access is all performed through the standard CMSIS structure-based
@@ -5367,13 +5402,503 @@ ADCn(0)-&gt;CFG_b.CLKSEL = ADC_CFG_CLKSEL_HFRC; <span style='color:#3f7f59; '>//
                     </thead>
                     <tbody>
                         <tr>
-                            <td align="center" colspan="4">SIMOBUCKIBIASTRIM
+                            <td align="center" colspan="4">RESERVED_RW_23
+                                <br>0x0</td>
+
+                            <td align="center" colspan="6">SIMOBUCKMEMLPTRIM
+                                <br>0x20</td>
+
+                            <td align="center" colspan="22">RESERVED_RW_00
+                                <br>0x0</td>
+
+                        </tr>
+                    </tbody>
+                </table>
+                <br>
+
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>Bits</th>
+                            <th>Name</th>
+                            <th>RW</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>31:28</td>
+                            <td>RESERVED_RW_23</td>
+                            <td>RW</td>
+                            <td>Reserved bits, always leave unchanged. The SIMOBUCK1 register must be modified via atomic RMW, leaving this bit field completely unmodified. Failure to do so will result in unpredictable behavior.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>27:22</td>
+                            <td>SIMOBUCKMEMLPTRIM</td>
+                            <td>RW</td>
+                            <td>simobuck_mem_lp_trim<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>21:0</td>
+                            <td>RESERVED_RW_00</td>
+                            <td>RW</td>
+                            <td>Reserved bits, always leave unchanged. The SIMOBUCK1 register must be modified via atomic RMW, leaving this bit field completely unmodified. Failure to do so will result in unpredictable behavior.<br><br>
+                                </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+                <br>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 id="SIMOBUCK2" class="panel-title">SIMOBUCK2 - SIMO Buck Control Reg 2</h3>
+            </div>
+            <div class="panel-body">
+                <h3>Address:</h3>
+                <table style="margin:10px">
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">Instance 0 Address:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x40020354</span>
+                        </td>
+                    </tr>
+
+                </table>
+                <h3>Description:</h3>
+                <p>SIMO Buck Control Reg 2</p>
+                <h3>Example Macro Usage:</h3>
+                <pre style="margin:10px" class="language-pascal"><span style='color:#3f7f59; '>//
+// Register access is all performed through the standard CMSIS structure-based
+// interface. This includes module-level structure definitions with members and
+// bitfields corresponding to the physical registers and bitfields within each
+// module. In addition, Ambiq has provided instance-level macros for modules
+// that have more than one physical instance and a generic AM_REGVAL() macro
+// for directly accessing memory by address.
+//
+// The following examples show how to use these structures and macros:
+
+// Setting the ADC configuration register...</span>
+AM_REGVAL(0x50010000) = 0x1234;              <span style='color:#3f7f59; '>// by address.</span>
+ADC-&gt;CFG = 0x1234;                           <span style='color:#3f7f59; '>// by structure pointer.</span>
+ADCn(0)-&gt;CFG = 0x1234;                       <span style='color:#3f7f59; '>// by structure pointer (with instance number).</span>
+
+<span style='color:#3f7f59; '>// Changing the ADC clock...</span>
+ADCn(0)-&gt;CFG_b.CLKSEL = 0x2;                 <span style='color:#3f7f59; '>// by raw value.</span>
+ADCn(0)-&gt;CFG_b.CLKSEL = ADC_CFG_CLKSEL_HFRC; <span style='color:#3f7f59; '>// using an enumerated value.</span></pre>
+                <h3>Register Fields:</h3>
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>31</th>
+                            <th>30</th>
+                            <th>29</th>
+                            <th>28</th>
+                            <th>27</th>
+                            <th>26</th>
+                            <th>25</th>
+                            <th>24</th>
+                            <th>23</th>
+                            <th>22</th>
+                            <th>21</th>
+                            <th>20</th>
+                            <th>19</th>
+                            <th>18</th>
+                            <th>17</th>
+                            <th>16</th>
+                            <th>15</th>
+                            <th>14</th>
+                            <th>13</th>
+                            <th>12</th>
+                            <th>11</th>
+                            <th>10</th>
+                            <th>9</th>
+                            <th>8</th>
+                            <th>7</th>
+                            <th>6</th>
+                            <th>5</th>
+                            <th>4</th>
+                            <th>3</th>
+                            <th>2</th>
+                            <th>1</th>
+                            <th>0</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td align="center" colspan="2">RESERVED_RW_30
+                                <br>0x0</td>
+
+                            <td align="center" colspan="2">SIMOBUCKCORELEAKAGETRIM
+                                <br>0x0</td>
+
+                            <td align="center" colspan="4">RESERVED_RW_24
+                                <br>0x0</td>
+
+                            <td align="center" colspan="4">SIMOBUCKCORELPLOWTONTRIM
+                                <br>0xa</td>
+
+                            <td align="center" colspan="4">SIMOBUCKCORELPHIGHTONTRIM
+                                <br>0xa</td>
+
+                            <td align="center" colspan="11">RESERVED_RW_5
+                                <br>0x0</td>
+
+                            <td align="center" colspan="5">SIMOBUCKTONGENTRIM
+                                <br>0x10</td>
+
+                        </tr>
+                    </tbody>
+                </table>
+                <br>
+
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>Bits</th>
+                            <th>Name</th>
+                            <th>RW</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>31:30</td>
+                            <td>RESERVED_RW_30</td>
+                            <td>RW</td>
+                            <td>Reserved bits, always leave unchanged. The SIMOBUCK2 register must be modified via atomic RMW, leaving this bit field completely unmodified. Failure to do so will result in unpredictable behavior.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>29:28</td>
+                            <td>SIMOBUCKCORELEAKAGETRIM</td>
+                            <td>RW</td>
+                            <td>simobuck_core_leakage_trim<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>27:24</td>
+                            <td>RESERVED_RW_24</td>
+                            <td>RW</td>
+                            <td>Reserved bits, always leave unchanged. The SIMOBUCK2 register must be modified via atomic RMW, leaving this bit field completely unmodified. Failure to do so will result in unpredictable behavior.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>23:20</td>
+                            <td>SIMOBUCKCORELPLOWTONTRIM</td>
+                            <td>RW</td>
+                            <td>simobuck_core_lp_low_ton_trim<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>19:16</td>
+                            <td>SIMOBUCKCORELPHIGHTONTRIM</td>
+                            <td>RW</td>
+                            <td>simobuck_core_lp_high_ton_trim<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>15:5</td>
+                            <td>RESERVED_RW_5</td>
+                            <td>RW</td>
+                            <td>Reserved bits, always leave unchanged. The SIMOBUCK2 register must be modified via atomic RMW, leaving this bit field completely unmodified. Failure to do so will result in unpredictable behavior.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>4:0</td>
+                            <td>SIMOBUCKTONGENTRIM</td>
+                            <td>RW</td>
+                            <td>simobuck_tongen_trim<br><br>
+                                </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+                <br>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 id="SIMOBUCK3" class="panel-title">SIMOBUCK3 - SIMO Buck Control Reg 3</h3>
+            </div>
+            <div class="panel-body">
+                <h3>Address:</h3>
+                <table style="margin:10px">
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">Instance 0 Address:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x40020358</span>
+                        </td>
+                    </tr>
+
+                </table>
+                <h3>Description:</h3>
+                <p>SIMO Buck Control Reg 3</p>
+                <h3>Example Macro Usage:</h3>
+                <pre style="margin:10px" class="language-pascal"><span style='color:#3f7f59; '>//
+// Register access is all performed through the standard CMSIS structure-based
+// interface. This includes module-level structure definitions with members and
+// bitfields corresponding to the physical registers and bitfields within each
+// module. In addition, Ambiq has provided instance-level macros for modules
+// that have more than one physical instance and a generic AM_REGVAL() macro
+// for directly accessing memory by address.
+//
+// The following examples show how to use these structures and macros:
+
+// Setting the ADC configuration register...</span>
+AM_REGVAL(0x50010000) = 0x1234;              <span style='color:#3f7f59; '>// by address.</span>
+ADC-&gt;CFG = 0x1234;                           <span style='color:#3f7f59; '>// by structure pointer.</span>
+ADCn(0)-&gt;CFG = 0x1234;                       <span style='color:#3f7f59; '>// by structure pointer (with instance number).</span>
+
+<span style='color:#3f7f59; '>// Changing the ADC clock...</span>
+ADCn(0)-&gt;CFG_b.CLKSEL = 0x2;                 <span style='color:#3f7f59; '>// by raw value.</span>
+ADCn(0)-&gt;CFG_b.CLKSEL = ADC_CFG_CLKSEL_HFRC; <span style='color:#3f7f59; '>// using an enumerated value.</span></pre>
+                <h3>Register Fields:</h3>
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>31</th>
+                            <th>30</th>
+                            <th>29</th>
+                            <th>28</th>
+                            <th>27</th>
+                            <th>26</th>
+                            <th>25</th>
+                            <th>24</th>
+                            <th>23</th>
+                            <th>22</th>
+                            <th>21</th>
+                            <th>20</th>
+                            <th>19</th>
+                            <th>18</th>
+                            <th>17</th>
+                            <th>16</th>
+                            <th>15</th>
+                            <th>14</th>
+                            <th>13</th>
+                            <th>12</th>
+                            <th>11</th>
+                            <th>10</th>
+                            <th>9</th>
+                            <th>8</th>
+                            <th>7</th>
+                            <th>6</th>
+                            <th>5</th>
+                            <th>4</th>
+                            <th>3</th>
+                            <th>2</th>
+                            <th>1</th>
+                            <th>0</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td align="center" colspan="1">RESERVED_RW_31
+                                <br>0x0</td>
+
+                            <td align="center" colspan="4">SIMOBUCKMEMLPHIGHTONTRIM
+                                <br>0xa</td>
+
+                            <td align="center" colspan="11">RESERVED_RW_16
+                                <br>0x0</td>
+
+                            <td align="center" colspan="4">SIMOBUCKMEMLPLOWTOFFTRIM
+                                <br>0xa</td>
+
+                            <td align="center" colspan="4">SIMOBUCKMEMLPHIGHTOFFTRIM
+                                <br>0xa</td>
+
+                            <td align="center" colspan="4">SIMOBUCKCORELPLOWTOFFTRIM
+                                <br>0xa</td>
+
+                            <td align="center" colspan="4">SIMOBUCKCORELPHIGHTOFFTRIM
+                                <br>0xa</td>
+
+                        </tr>
+                    </tbody>
+                </table>
+                <br>
+
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>Bits</th>
+                            <th>Name</th>
+                            <th>RW</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>31</td>
+                            <td>RESERVED_RW_31</td>
+                            <td>RW</td>
+                            <td>Reserved bits, always leave unchanged. The SIMOBUCK2 register must be modified via atomic RMW, leaving this bit field completely unmodified. Failure to do so will result in unpredictable behavior.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>30:27</td>
+                            <td>SIMOBUCKMEMLPHIGHTONTRIM</td>
+                            <td>RW</td>
+                            <td>simobuck_mem_lp_high_ton_trim<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>26:16</td>
+                            <td>RESERVED_RW_16</td>
+                            <td>RW</td>
+                            <td>Reserved bits, always leave unchanged. The SIMOBUCK3 register must be modified via atomic RMW, leaving this bit field completely unmodified. Failure to do so will result in unpredictable behavior.<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>15:12</td>
+                            <td>SIMOBUCKMEMLPLOWTOFFTRIM</td>
+                            <td>RW</td>
+                            <td>simobuck_mem_lp_low_toff_trim<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>11:8</td>
+                            <td>SIMOBUCKMEMLPHIGHTOFFTRIM</td>
+                            <td>RW</td>
+                            <td>simobuck_mem_lp_high_toff_trim<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>7:4</td>
+                            <td>SIMOBUCKCORELPLOWTOFFTRIM</td>
+                            <td>RW</td>
+                            <td>simobuck_core_lp_low_toff_trim<br><br>
+                                </td>
+                        </tr>
+
+                        <tr>
+                            <td>3:0</td>
+                            <td>SIMOBUCKCORELPHIGHTOFFTRIM</td>
+                            <td>RW</td>
+                            <td>simobuck_core_lp_high_toff_trim<br><br>
+                                </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+                <br>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 id="SIMOBUCK4" class="panel-title">SIMOBUCK4 - SIMO Buck Control Reg 4</h3>
+            </div>
+            <div class="panel-body">
+                <h3>Address:</h3>
+                <table style="margin:10px">
+                    <tr id="row_0_0_">
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">Instance 0 Address:</span>
+                        </td>
+                        <td class="entry">
+                            <span style="width:32px;display:inline-block;">&#160;</span>
+                            <span class="h5">0x4002035C</span>
+                        </td>
+                    </tr>
+
+                </table>
+                <h3>Description:</h3>
+                <p>SIMO Buck Control Reg 4</p>
+                <h3>Example Macro Usage:</h3>
+                <pre style="margin:10px" class="language-pascal"><span style='color:#3f7f59; '>//
+// Register access is all performed through the standard CMSIS structure-based
+// interface. This includes module-level structure definitions with members and
+// bitfields corresponding to the physical registers and bitfields within each
+// module. In addition, Ambiq has provided instance-level macros for modules
+// that have more than one physical instance and a generic AM_REGVAL() macro
+// for directly accessing memory by address.
+//
+// The following examples show how to use these structures and macros:
+
+// Setting the ADC configuration register...</span>
+AM_REGVAL(0x50010000) = 0x1234;              <span style='color:#3f7f59; '>// by address.</span>
+ADC-&gt;CFG = 0x1234;                           <span style='color:#3f7f59; '>// by structure pointer.</span>
+ADCn(0)-&gt;CFG = 0x1234;                       <span style='color:#3f7f59; '>// by structure pointer (with instance number).</span>
+
+<span style='color:#3f7f59; '>// Changing the ADC clock...</span>
+ADCn(0)-&gt;CFG_b.CLKSEL = 0x2;                 <span style='color:#3f7f59; '>// by raw value.</span>
+ADCn(0)-&gt;CFG_b.CLKSEL = ADC_CFG_CLKSEL_HFRC; <span style='color:#3f7f59; '>// using an enumerated value.</span></pre>
+                <h3>Register Fields:</h3>
+                <table style="margin:10px" class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>31</th>
+                            <th>30</th>
+                            <th>29</th>
+                            <th>28</th>
+                            <th>27</th>
+                            <th>26</th>
+                            <th>25</th>
+                            <th>24</th>
+                            <th>23</th>
+                            <th>22</th>
+                            <th>21</th>
+                            <th>20</th>
+                            <th>19</th>
+                            <th>18</th>
+                            <th>17</th>
+                            <th>16</th>
+                            <th>15</th>
+                            <th>14</th>
+                            <th>13</th>
+                            <th>12</th>
+                            <th>11</th>
+                            <th>10</th>
+                            <th>9</th>
+                            <th>8</th>
+                            <th>7</th>
+                            <th>6</th>
+                            <th>5</th>
+                            <th>4</th>
+                            <th>3</th>
+                            <th>2</th>
+                            <th>1</th>
+                            <th>0</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td align="center" colspan="4">RSVD28
                                 <br>0x3</td>
 
-                            <td align="center" colspan="2">SIMOBUCKUVLOMODE
+                            <td align="center" colspan="2">RSVD26
                                 <br>0x3</td>
 
-                            <td align="center" colspan="1">SIMOBUCKPRIORITYSEL
+                            <td align="center" colspan="1">RSVD25
                                 <br>0x0</td>
 
                             <td align="center" colspan="1">SIMOBUCKCOMP2TIMEOUTEN
@@ -5385,25 +5910,25 @@ ADCn(0)-&gt;CFG_b.CLKSEL = ADC_CFG_CLKSEL_HFRC; <span style='color:#3f7f59; '>//
                             <td align="center" colspan="2">SIMOBUCKCLKDIVSEL
                                 <br>0x0</td>
 
-                            <td align="center" colspan="1">SIMOBUCKEXTCLKSEL
+                            <td align="center" colspan="1">RSVD20
                                 <br>0x0</td>
 
-                            <td align="center" colspan="3">SIMOBUCKUVLODRVSTRTRIM
+                            <td align="center" colspan="3">RSVD17
                                 <br>0x6</td>
 
-                            <td align="center" colspan="3">SIMOBUCKUVLOCNTRTRIM
+                            <td align="center" colspan="3">RSVD14
                                 <br>0x6</td>
 
-                            <td align="center" colspan="4">SIMOBUCKZXTRIM
+                            <td align="center" colspan="4">RSVD10
                                 <br>0x0</td>
 
-                            <td align="center" colspan="2">SIMOBUCKMEMLEAKAGETRIM
+                            <td align="center" colspan="2">RSVD08
                                 <br>0x0</td>
 
-                            <td align="center" colspan="2">SIMOBUCKMEMLPDRVSTRTRIM
+                            <td align="center" colspan="2">RSVD06
                                 <br>0x2</td>
 
-                            <td align="center" colspan="2">SIMOBUCKMEMACTDRVSTRTRIM
+                            <td align="center" colspan="2">RSVD04
                                 <br>0x2</td>
 
                             <td align="center" colspan="4">SIMOBUCKMEMLPLOWTONTRIM
@@ -5426,27 +5951,25 @@ ADCn(0)-&gt;CFG_b.CLKSEL = ADC_CFG_CLKSEL_HFRC; <span style='color:#3f7f59; '>//
                     <tbody>
                         <tr>
                             <td>31:28</td>
-                            <td>SIMOBUCKIBIASTRIM</td>
+                            <td>RSVD28</td>
                             <td>RW</td>
-                            <td>simobuck_bias_trim<br><br>
+                            <td>RESERVED - this field should not be modified<br><br>
                                 </td>
                         </tr>
 
                         <tr>
                             <td>27:26</td>
-                            <td>SIMOBUCKUVLOMODE</td>
+                            <td>RSVD26</td>
                             <td>RW</td>
-                            <td>simobuck_uvlo_mode.  In B0, these bits are used as SIMOBUCK mode bits.  uvlo_mode[0] enables use of tonclk_lp for all operations and uvlo_mode[1] controls core_low/mem_low synchronization.<br><br>
-                                 USE_LP_CLOCK         = 0x1 - LP clock is used for simobuck in both active and low-power mode.<br>
-                             X_LOW_NOSYNC         = 0x2 - No synchronization is applied to core_low/mem_low inputs (A1 behavior)<br>
-                             X_LOW_SYNC           = 0x0 - Synchronization is applied to core_low/mem_low inputs</td>
+                            <td>RESERVED - this field should not be modified<br><br>
+                                </td>
                         </tr>
 
                         <tr>
                             <td>25</td>
-                            <td>SIMOBUCKPRIORITYSEL</td>
+                            <td>RSVD25</td>
                             <td>RW</td>
-                            <td>simobuck_priority_sel<br><br>
+                            <td>RESERVED - this field should not be modified<br><br>
                                 </td>
                         </tr>
 
@@ -5476,59 +5999,57 @@ ADCn(0)-&gt;CFG_b.CLKSEL = ADC_CFG_CLKSEL_HFRC; <span style='color:#3f7f59; '>//
 
                         <tr>
                             <td>20</td>
-                            <td>SIMOBUCKEXTCLKSEL</td>
+                            <td>RSVD20</td>
                             <td>RW</td>
-                            <td>simobuck_extclk_sel<br><br>
+                            <td>RESERVED - this field should not be modified<br><br>
                                 </td>
                         </tr>
 
                         <tr>
                             <td>19:17</td>
-                            <td>SIMOBUCKUVLODRVSTRTRIM</td>
+                            <td>RSVD17</td>
                             <td>RW</td>
-                            <td>simobuck_uvlo_drvstr_trim<br><br>
+                            <td>RESERVED - this field should not be modified<br><br>
                                 </td>
                         </tr>
 
                         <tr>
                             <td>16:14</td>
-                            <td>SIMOBUCKUVLOCNTRTRIM</td>
+                            <td>RSVD14</td>
                             <td>RW</td>
-                            <td>For B0, this register has been redefined as mode bits for the Simobuck.  Each bit is independent:  [0]=always enable LP clock [1]=enable priority_state [2]=enable zx_comp reset removal fix<br><br>
-                                 ENABLE_LP_CLK        = 0x1 - When set to 1, the LP clock will always be activated.  When 0, the logic will request the clock when needed<br>
-                             DISABLE_PRIORITY_STATE = 0x2 - (Inverse polarity mode bit) When set to 1, the priority state logic will be disabled and when set to 0, priority_state will enforce that both core and mem bucks get equal priority.<br>
-                             ENABLE_ZXCOMP_SYNC   = 0x4 - When set to 1, ZXCOMP will be routed through a flop and removal synchronized to the internal clock.  When set to 0, logic will act like A1 logic and will be asynchronous.</td>
+                            <td>RESERVED - this field should not be modified<br><br>
+                                </td>
                         </tr>
 
                         <tr>
                             <td>13:10</td>
-                            <td>SIMOBUCKZXTRIM</td>
+                            <td>RSVD10</td>
                             <td>RW</td>
-                            <td>simobuck_zx_trim<br><br>
+                            <td>RESERVED - this field should not be modified<br><br>
                                 </td>
                         </tr>
 
                         <tr>
                             <td>9:8</td>
-                            <td>SIMOBUCKMEMLEAKAGETRIM</td>
+                            <td>RSVD08</td>
                             <td>RW</td>
-                            <td>simobuck_mem_leakage_trim<br><br>
+                            <td>RESERVED - this field should not be modified<br><br>
                                 </td>
                         </tr>
 
                         <tr>
                             <td>7:6</td>
-                            <td>SIMOBUCKMEMLPDRVSTRTRIM</td>
+                            <td>RSVD06</td>
                             <td>RW</td>
-                            <td>simobuck_mem_lp_drvstr_trim<br><br>
+                            <td>RESERVED - this field should not be modified<br><br>
                                 </td>
                         </tr>
 
                         <tr>
                             <td>5:4</td>
-                            <td>SIMOBUCKMEMACTDRVSTRTRIM</td>
+                            <td>RSVD04</td>
                             <td>RW</td>
-                            <td>simobuck_mem_act_drvstr_trim<br><br>
+                            <td>RESERVED - this field should not be modified<br><br>
                                 </td>
                         </tr>
 
@@ -5657,7 +6178,7 @@ ADCn(0)-&gt;CFG_b.CLKSEL = ADC_CFG_CLKSEL_HFRC; <span style='color:#3f7f59; '>//
                             <td>31:18</td>
                             <td>RSVD</td>
                             <td>RO</td>
-                            <td>RESERVED.<br><br>
+                            <td>RESERVED<br><br>
                                 </td>
                         </tr>
 
@@ -5793,7 +6314,7 @@ ADCn(0)-&gt;CFG_b.CLKSEL = ADC_CFG_CLKSEL_HFRC; <span style='color:#3f7f59; '>//
                             <td>31:0</td>
                             <td>FW0BITS</td>
                             <td>RW</td>
-                            <td>Write protect flash 0x00000000 - 0x0007FFFF. Each bit provides write protection for 16KB chunks of flash data space.  Bits are cleared by writing a 1 to the bit.  When read, 0 indicates the region is protected.   Bits are sticky (can be set when PROTLOCK is 1, but only cleared by reset)<br><br>
+                            <td>Write protect flash 0x00000000 - 0x0007FFFF. Each bit provides write protection for 16KB chunks of flash data space. Bits are cleared by writing a 1 to the bit. When read, 0 indicates the region is protected. Bits are sticky (can be set when PROTLOCK is 1, but only cleared by reset)<br><br>
                                 </td>
                         </tr>
 
@@ -5905,7 +6426,7 @@ ADCn(0)-&gt;CFG_b.CLKSEL = ADC_CFG_CLKSEL_HFRC; <span style='color:#3f7f59; '>//
                             <td>31:0</td>
                             <td>FW1BITS</td>
                             <td>RW</td>
-                            <td>Write protect flash 0x00080000 - 0x000FFFFF. Each bit provides write protection for 16KB chunks of flash data space.  Bits are cleared by writing a 1 to the bit.  When read, 0 indicates the region is protected. Bits are sticky (can be set when PROTLOCK is 1, but only cleared by reset)<br><br>
+                            <td>Write protect flash 0x00080000 - 0x000FFFFF. Each bit provides write protection for 16KB chunks of flash data space. Bits are cleared by writing a 1 to the bit. When read, 0 indicates the region is protected. Bits are sticky (can be set when PROTLOCK is 1, but only cleared by reset)<br><br>
                                 </td>
                         </tr>
 
@@ -6017,7 +6538,7 @@ ADCn(0)-&gt;CFG_b.CLKSEL = ADC_CFG_CLKSEL_HFRC; <span style='color:#3f7f59; '>//
                             <td>31:0</td>
                             <td>FR0BITS</td>
                             <td>RW</td>
-                            <td>Copy (read) protect flash 0x00000000 - 0x0007FFFF. Each bit provides read protection for 16KB chunks of flash.  Bits are cleared by writing a 1 to the bit.  When read, 0 indicates the region is protected. Bits are sticky (can be set when PROTLOCK is 1, but only cleared by reset)<br><br>
+                            <td>Copy (read) protect flash 0x00000000 - 0x0007FFFF. Each bit provides read protection for 16KB chunks of flash. Bits are cleared by writing a 1 to the bit. When read, 0 indicates the region is protected. Bits are sticky (can be set when PROTLOCK is 1, but only cleared by reset)<br><br>
                                 </td>
                         </tr>
 
@@ -6129,7 +6650,7 @@ ADCn(0)-&gt;CFG_b.CLKSEL = ADC_CFG_CLKSEL_HFRC; <span style='color:#3f7f59; '>//
                             <td>31:0</td>
                             <td>FR1BITS</td>
                             <td>RW</td>
-                            <td>Copy (read) protect flash 0x00080000 - 0x000FFFFF. Each bit provides read protection for 16KB chunks of flash.  Bits are cleared by writing a 1 to the bit.  When read, 0 indicates the region is protected. Bits are sticky (can be set when PROTLOCK is 1, but only cleared by reset)<br><br>
+                            <td>Copy (read) protect flash 0x00080000 - 0x000FFFFF. Each bit provides read protection for 16KB chunks of flash. Bits are cleared by writing a 1 to the bit. When read, 0 indicates the region is protected. Bits are sticky (can be set when PROTLOCK is 1, but only cleared by reset)<br><br>
                                 </td>
                         </tr>
 
@@ -6241,7 +6762,7 @@ ADCn(0)-&gt;CFG_b.CLKSEL = ADC_CFG_CLKSEL_HFRC; <span style='color:#3f7f59; '>//
                             <td>31:0</td>
                             <td>DMA_WPROT0</td>
                             <td>RW</td>
-                            <td>Write protect SRAM from DMA.  Each bit provides write protection for an 8KB region of memory.  When set to 1, the region will be protected from DMA writes, when set to 0, DMA may write the region.<br><br>
+                            <td>Write protect SRAM from DMA. Each bit provides write protection for an 8KB region of memory. When set to 1, the region will be protected from DMA writes, when set to 0, DMA may write the region.<br><br>
                                 </td>
                         </tr>
 
@@ -6356,7 +6877,7 @@ ADCn(0)-&gt;CFG_b.CLKSEL = ADC_CFG_CLKSEL_HFRC; <span style='color:#3f7f59; '>//
                             <td>31:16</td>
                             <td>RSVD</td>
                             <td>RO</td>
-                            <td>RESERVED.<br><br>
+                            <td>RESERVED<br><br>
                                 </td>
                         </tr>
 
@@ -6364,7 +6885,7 @@ ADCn(0)-&gt;CFG_b.CLKSEL = ADC_CFG_CLKSEL_HFRC; <span style='color:#3f7f59; '>//
                             <td>15:0</td>
                             <td>DMA_WPROT1</td>
                             <td>RW</td>
-                            <td>Write protect SRAM from DMA.  Each bit provides write protection for an 8KB region of memory.  When set to 1, the region will be protected from DMA writes, when set to 0, DMA may write the region.<br><br>
+                            <td>Write protect SRAM from DMA. Each bit provides write protection for an 8KB region of memory. When set to 1, the region will be protected from DMA writes, when set to 0, DMA may write the region.<br><br>
                                 </td>
                         </tr>
 
@@ -6476,7 +6997,7 @@ ADCn(0)-&gt;CFG_b.CLKSEL = ADC_CFG_CLKSEL_HFRC; <span style='color:#3f7f59; '>//
                             <td>31:0</td>
                             <td>DMA_RPROT0</td>
                             <td>RW</td>
-                            <td>Read protect SRAM from DMA.  Each bit provides write protection for an 8KB region of memory.  When set to 1, the region will be protected from DMA reads, when set to 0, DMA may read the region.<br><br>
+                            <td>Read protect SRAM from DMA. Each bit provides write protection for an 8KB region of memory. When set to 1, the region will be protected from DMA reads, when set to 0, DMA may read the region.<br><br>
                                 </td>
                         </tr>
 
@@ -6591,7 +7112,7 @@ ADCn(0)-&gt;CFG_b.CLKSEL = ADC_CFG_CLKSEL_HFRC; <span style='color:#3f7f59; '>//
                             <td>31:16</td>
                             <td>RSVD</td>
                             <td>RO</td>
-                            <td>RESERVED.<br><br>
+                            <td>RESERVED<br><br>
                                 </td>
                         </tr>
 
@@ -6599,7 +7120,7 @@ ADCn(0)-&gt;CFG_b.CLKSEL = ADC_CFG_CLKSEL_HFRC; <span style='color:#3f7f59; '>//
                             <td>15:0</td>
                             <td>DMA_RPROT1</td>
                             <td>RW</td>
-                            <td>Read protect SRAM from DMA.  Each bit provides write protection for an 8KB region of memory.  When set to 1, the region will be protected from DMA reads, when set to 0, DMA may read the region.<br><br>
+                            <td>Read protect SRAM from DMA. Each bit provides write protection for an 8KB region of memory. When set to 1, the region will be protected from DMA reads, when set to 0, DMA may read the region.<br><br>
                                 </td>
                         </tr>
 
@@ -6617,7 +7138,7 @@ ADCn(0)-&gt;CFG_b.CLKSEL = ADC_CFG_CLKSEL_HFRC; <span style='color:#3f7f59; '>//
             <small>
                 AmbiqSuite Register Documentation&nbsp;
                 <a href="http://www.ambiqmicro.com">
-                <img class="footer" src="../resources/ambiqmicro_logo.png" alt="Ambiq Micro"/></a>&nbsp&nbsp Copyright &copy; 2019&nbsp&nbsp<br />
+                <img class="footer" src="../resources/ambiqmicro_logo.png" alt="Ambiq Micro"/></a>&nbsp&nbsp Copyright &copy; 2020&nbsp&nbsp<br />
                 This documentation is licensed and distributed under the <a rel="license" href="http://opensource.org/licenses/BSD-3-Clause">BSD 3-Clause License</a>.&nbsp&nbsp<br/>
             </small>
         </div>

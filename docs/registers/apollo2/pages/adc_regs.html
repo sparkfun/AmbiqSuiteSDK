@@ -25,7 +25,7 @@
                             <img alt="Logo" src="../resources/am_logo.png" />
                         </td>
                         <td style="padding-left: 0.5em;">
-                            <div id="projectname">Apollo Register Documentation &#160;<span id="projectnumber">v2.4.2</span></div>
+                            <div id="projectname">Apollo Register Documentation &#160;<span id="projectnumber">v${version}</span></div>
                         </td>
                     </tr>
                 </tbody>
@@ -273,7 +273,7 @@
                         </td>
                         <td class="entry">
                             <span style="width:32px;display:inline-block;">&#160;</span>
-                            <span class="h5">0x50008000</span>
+                            <span class="h5">0x50010000</span>
                         </td>
                     </tr>
 
@@ -408,8 +408,8 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                             <td>RW</td>
                             <td>Select the source and frequency for the ADC clock.  All values not enumerated below are undefined.<br><br>
                                  OFF                  = 0x0 - Off mode. The HFRC or HFRC_DIV2 clock must be selected for the ADC to function. The ADC controller automatically shuts off the clock in it's low power modes.  When setting ADCEN to '0', the CLKSEL should remain set to one of the two clock selects for proper power down sequencing.<br>
-                             HFRC                 = 0x1 - HFRC Core Clock divided by (CORESEL+1)<br>
-                             HFRC_DIV2            = 0x2 - HFRC Core Clock / 2 further divided by (CORESEL+1)</td>
+                             HFRC                 = 0x1 - HFRC Core Clock Frequency<br>
+                             HFRC_DIV2            = 0x2 - HFRC Core Clock / 2</td>
                         </tr>
 
                         <tr>
@@ -508,7 +508,7 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                             <td>0</td>
                             <td>ADCEN</td>
                             <td>RW</td>
-                            <td>This bit enables the ADC module. While the ADC is enabled, the ADCCFG and SLOT Configuration regsiter settings must remain stable and unchanged.<br><br>
+                            <td>This bit enables the ADC module. While the ADC is enabled, the ADCCFG and SLOT Configuration regsiter settings must remain stable and unchanged. All configuration register settings, slot configuration settings and window comparison settings should be written prior to setting the ADCEN bit to '1'.<br><br>
                                  DIS                  = 0x0 - Disable the ADC module.<br>
                              EN                   = 0x1 - Enable the ADC module.</td>
                         </tr>
@@ -533,7 +533,7 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                         </td>
                         <td class="entry">
                             <span style="width:32px;display:inline-block;">&#160;</span>
-                            <span class="h5">0x50008004</span>
+                            <span class="h5">0x50010004</span>
                         </td>
                     </tr>
 
@@ -658,7 +658,7 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                         </td>
                         <td class="entry">
                             <span style="width:32px;display:inline-block;">&#160;</span>
-                            <span class="h5">0x50008008</span>
+                            <span class="h5">0x50010008</span>
                         </td>
                     </tr>
 
@@ -782,7 +782,7 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                         </td>
                         <td class="entry">
                             <span style="width:32px;display:inline-block;">&#160;</span>
-                            <span class="h5">0x5000800C</span>
+                            <span class="h5">0x5001000C</span>
                         </td>
                     </tr>
 
@@ -960,7 +960,7 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                              DF1                  = 0xB - differential external GPIO connections to pad15(N) and pad14(P).<br>
                              TEMP                 = 0xC - internal temperature sensor.<br>
                              BATT                 = 0xD - internal voltage divide-by-3 connection.<br>
-                             VSS                  = 0xE - VSS</td>
+                             VSS                  = 0xE - Input VSS</td>
                         </tr>
 
                         <tr>
@@ -1007,7 +1007,7 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                         </td>
                         <td class="entry">
                             <span style="width:32px;display:inline-block;">&#160;</span>
-                            <span class="h5">0x50008010</span>
+                            <span class="h5">0x50010010</span>
                         </td>
                     </tr>
 
@@ -1185,7 +1185,7 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                              DF1                  = 0xB - differential external GPIO connections to pad15(N) and pad14(P).<br>
                              TEMP                 = 0xC - internal temperature sensor.<br>
                              BATT                 = 0xD - internal voltage divide-by-3 connection.<br>
-                             VSS                  = 0xE - VSS</td>
+                             VSS                  = 0xE - Input VSS</td>
                         </tr>
 
                         <tr>
@@ -1232,7 +1232,7 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                         </td>
                         <td class="entry">
                             <span style="width:32px;display:inline-block;">&#160;</span>
-                            <span class="h5">0x50008014</span>
+                            <span class="h5">0x50010014</span>
                         </td>
                     </tr>
 
@@ -1410,7 +1410,7 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                              DF1                  = 0xB - differential external GPIO connections to pad15(N) and pad14(P).<br>
                              TEMP                 = 0xC - internal temperature sensor.<br>
                              BATT                 = 0xD - internal voltage divide-by-3 connection.<br>
-                             VSS                  = 0xE - VSS</td>
+                             VSS                  = 0xE - Input VSS</td>
                         </tr>
 
                         <tr>
@@ -1457,7 +1457,7 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                         </td>
                         <td class="entry">
                             <span style="width:32px;display:inline-block;">&#160;</span>
-                            <span class="h5">0x50008018</span>
+                            <span class="h5">0x50010018</span>
                         </td>
                     </tr>
 
@@ -1635,7 +1635,7 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                              DF1                  = 0xB - differential external GPIO connections to pad15(N) and pad14(P).<br>
                              TEMP                 = 0xC - internal temperature sensor.<br>
                              BATT                 = 0xD - internal voltage divide-by-3 connection.<br>
-                             VSS                  = 0xE - VSS</td>
+                             VSS                  = 0xE - Input VSS</td>
                         </tr>
 
                         <tr>
@@ -1682,7 +1682,7 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                         </td>
                         <td class="entry">
                             <span style="width:32px;display:inline-block;">&#160;</span>
-                            <span class="h5">0x5000801C</span>
+                            <span class="h5">0x5001001C</span>
                         </td>
                     </tr>
 
@@ -1860,7 +1860,7 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                              DF1                  = 0xB - differential external GPIO connections to pad15(N) and pad14(P).<br>
                              TEMP                 = 0xC - internal temperature sensor.<br>
                              BATT                 = 0xD - internal voltage divide-by-3 connection.<br>
-                             VSS                  = 0xE - VSS</td>
+                             VSS                  = 0xE - Input VSS</td>
                         </tr>
 
                         <tr>
@@ -1907,7 +1907,7 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                         </td>
                         <td class="entry">
                             <span style="width:32px;display:inline-block;">&#160;</span>
-                            <span class="h5">0x50008020</span>
+                            <span class="h5">0x50010020</span>
                         </td>
                     </tr>
 
@@ -2085,7 +2085,7 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                              DF1                  = 0xB - differential external GPIO connections to pad15(N) and pad14(P).<br>
                              TEMP                 = 0xC - internal temperature sensor.<br>
                              BATT                 = 0xD - internal voltage divide-by-3 connection.<br>
-                             VSS                  = 0xE - VSS</td>
+                             VSS                  = 0xE - Input VSS</td>
                         </tr>
 
                         <tr>
@@ -2132,7 +2132,7 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                         </td>
                         <td class="entry">
                             <span style="width:32px;display:inline-block;">&#160;</span>
-                            <span class="h5">0x50008024</span>
+                            <span class="h5">0x50010024</span>
                         </td>
                     </tr>
 
@@ -2310,7 +2310,7 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                              DF1                  = 0xB - differential external GPIO connections to pad15(N) and pad14(P).<br>
                              TEMP                 = 0xC - internal temperature sensor.<br>
                              BATT                 = 0xD - internal voltage divide-by-3 connection.<br>
-                             VSS                  = 0xE - VSS</td>
+                             VSS                  = 0xE - Input VSS</td>
                         </tr>
 
                         <tr>
@@ -2357,7 +2357,7 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                         </td>
                         <td class="entry">
                             <span style="width:32px;display:inline-block;">&#160;</span>
-                            <span class="h5">0x50008028</span>
+                            <span class="h5">0x50010028</span>
                         </td>
                     </tr>
 
@@ -2535,7 +2535,7 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                              DF1                  = 0xB - differential external GPIO connections to pad15(N) and pad14(P).<br>
                              TEMP                 = 0xC - internal temperature sensor.<br>
                              BATT                 = 0xD - internal voltage divide-by-3 connection.<br>
-                             VSS                  = 0xE - VSS</td>
+                             VSS                  = 0xE - Input VSS</td>
                         </tr>
 
                         <tr>
@@ -2582,7 +2582,7 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                         </td>
                         <td class="entry">
                             <span style="width:32px;display:inline-block;">&#160;</span>
-                            <span class="h5">0x5000802C</span>
+                            <span class="h5">0x5001002C</span>
                         </td>
                     </tr>
 
@@ -2706,7 +2706,7 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                         </td>
                         <td class="entry">
                             <span style="width:32px;display:inline-block;">&#160;</span>
-                            <span class="h5">0x50008030</span>
+                            <span class="h5">0x50010030</span>
                         </td>
                     </tr>
 
@@ -2830,7 +2830,7 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                         </td>
                         <td class="entry">
                             <span style="width:32px;display:inline-block;">&#160;</span>
-                            <span class="h5">0x50008038</span>
+                            <span class="h5">0x50010038</span>
                         </td>
                     </tr>
 
@@ -2976,7 +2976,7 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                         </td>
                         <td class="entry">
                             <span style="width:32px;display:inline-block;">&#160;</span>
-                            <span class="h5">0x50008200</span>
+                            <span class="h5">0x50010200</span>
                         </td>
                     </tr>
 
@@ -3107,16 +3107,16 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                             <td>3</td>
                             <td>FIFOOVR2</td>
                             <td>RW</td>
-                            <td>FIFO 100% full interrupt.<br><br>
-                                 FIFOFULLINT          = 0x1 - FIFO 100% full interrupt.</td>
+                            <td>FIFO 100 percent full interrupt.<br><br>
+                                 FIFOFULLINT          = 0x1 - FIFO 100 percent full interrupt.</td>
                         </tr>
 
                         <tr>
                             <td>2</td>
                             <td>FIFOOVR1</td>
                             <td>RW</td>
-                            <td>FIFO 75% full interrupt.<br><br>
-                                 FIFO75INT            = 0x1 - FIFO 75% full interrupt.</td>
+                            <td>FIFO 75 percent full interrupt.<br><br>
+                                 FIFO75INT            = 0x1 - FIFO 75 percent full interrupt.</td>
                         </tr>
 
                         <tr>
@@ -3155,7 +3155,7 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                         </td>
                         <td class="entry">
                             <span style="width:32px;display:inline-block;">&#160;</span>
-                            <span class="h5">0x50008204</span>
+                            <span class="h5">0x50010204</span>
                         </td>
                     </tr>
 
@@ -3286,16 +3286,16 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                             <td>3</td>
                             <td>FIFOOVR2</td>
                             <td>RW</td>
-                            <td>FIFO 100% full interrupt.<br><br>
-                                 FIFOFULLINT          = 0x1 - FIFO 100% full interrupt.</td>
+                            <td>FIFO 100 percent full interrupt.<br><br>
+                                 FIFOFULLINT          = 0x1 - FIFO 100 percent full interrupt.</td>
                         </tr>
 
                         <tr>
                             <td>2</td>
                             <td>FIFOOVR1</td>
                             <td>RW</td>
-                            <td>FIFO 75% full interrupt.<br><br>
-                                 FIFO75INT            = 0x1 - FIFO 75% full interrupt.</td>
+                            <td>FIFO 75 percent full interrupt.<br><br>
+                                 FIFO75INT            = 0x1 - FIFO 75 percent full interrupt.</td>
                         </tr>
 
                         <tr>
@@ -3334,7 +3334,7 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                         </td>
                         <td class="entry">
                             <span style="width:32px;display:inline-block;">&#160;</span>
-                            <span class="h5">0x50008208</span>
+                            <span class="h5">0x50010208</span>
                         </td>
                     </tr>
 
@@ -3465,16 +3465,16 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                             <td>3</td>
                             <td>FIFOOVR2</td>
                             <td>RW</td>
-                            <td>FIFO 100% full interrupt.<br><br>
-                                 FIFOFULLINT          = 0x1 - FIFO 100% full interrupt.</td>
+                            <td>FIFO 100 percent full interrupt.<br><br>
+                                 FIFOFULLINT          = 0x1 - FIFO 100 percent full interrupt.</td>
                         </tr>
 
                         <tr>
                             <td>2</td>
                             <td>FIFOOVR1</td>
                             <td>RW</td>
-                            <td>FIFO 75% full interrupt.<br><br>
-                                 FIFO75INT            = 0x1 - FIFO 75% full interrupt.</td>
+                            <td>FIFO 75 percent full interrupt.<br><br>
+                                 FIFO75INT            = 0x1 - FIFO 75 percent full interrupt.</td>
                         </tr>
 
                         <tr>
@@ -3513,7 +3513,7 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                         </td>
                         <td class="entry">
                             <span style="width:32px;display:inline-block;">&#160;</span>
-                            <span class="h5">0x5000820C</span>
+                            <span class="h5">0x5001020C</span>
                         </td>
                     </tr>
 
@@ -3644,16 +3644,16 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                             <td>3</td>
                             <td>FIFOOVR2</td>
                             <td>RW</td>
-                            <td>FIFO 100% full interrupt.<br><br>
-                                 FIFOFULLINT          = 0x1 - FIFO 100% full interrupt.</td>
+                            <td>FIFO 100 percent full interrupt.<br><br>
+                                 FIFOFULLINT          = 0x1 - FIFO 100 percent full interrupt.</td>
                         </tr>
 
                         <tr>
                             <td>2</td>
                             <td>FIFOOVR1</td>
                             <td>RW</td>
-                            <td>FIFO 75% full interrupt.<br><br>
-                                 FIFO75INT            = 0x1 - FIFO 75% full interrupt.</td>
+                            <td>FIFO 75 percent full interrupt.<br><br>
+                                 FIFO75INT            = 0x1 - FIFO 75 percent full interrupt.</td>
                         </tr>
 
                         <tr>
@@ -3686,7 +3686,7 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
             <small>
                 AmbiqSuite Register Documentation&nbsp;
                 <a href="http://www.ambiqmicro.com">
-                <img class="footer" src="../resources/ambiqmicro_logo.png" alt="Ambiq Micro"/></a>&nbsp&nbsp Copyright &copy; 2014&nbsp&nbsp<br />
+                <img class="footer" src="../resources/ambiqmicro_logo.png" alt="Ambiq Micro"/></a>&nbsp&nbsp Copyright &copy; 2020&nbsp&nbsp<br />
                 This documentation is licensed and distributed under the <a rel="license" href="http://opensource.org/licenses/BSD-3-Clause">BSD 3-Clause License</a>.&nbsp&nbsp<br/>
             </small>
         </div>

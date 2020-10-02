@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="iso-8859-2" ?>
+
+<!--
+================================================================================
+== 
+== Filename: xml_devices.dtd
+== 
+== Description: Document type definition for device definition xml.
+== 
+================================================================================
+==  Each xml file defines the programmable I/O registers within a single device.
+==  The base address for devices I/O space comes from a separate xml data base.
+== 
+================================================================================
+==  COPYRIGHT 2003 A6LABS
+== 
+================================================================================
+-->
+
+
+
+<!ELEMENT device            (short_description, 
+                             device_name,
+                             instance_base+,
+                             ioregisters)>
+<!ATTLIST device            file_name CDATA #REQUIRED
+                            file_mod_date CDATA #REQUIRED
+>
+<!ELEMENT short_description (#PCDATA)>
+<!ELEMENT device_name       (#PCDATA)>
+<!ELEMENT instance_base     (#PCDATA)>
+<!ELEMENT ioregisters       (ioreg_index, 
+                             ioreg+,
+                             ioreg_bigpicture)>
+<!ELEMENT ioreg             (ioreg_name,
+                             ioreg_offset, 
+                             ioreg_intro, 
+			     ioreg_encoding, 
+			     ioreg_description, 
+                             ioreg_no_debug?,
+                             ioreg_example?)>
+<!ELEMENT ioreg_name        (#PCDATA)>
+<!ELEMENT ioreg_offset      (#PCDATA)>
+<!ELEMENT ioreg_encoding    (ioreg_bitfield+)>
+<!ELEMENT ioreg_bitfield    (
+                             ioreg_bf_description,
+                             ioreg_bf_enum*)>
+<!ATTLIST ioreg_bitfield   name                CDATA #REQUIRED
+                           width               CDATA #REQUIRED
+                           lsb                 CDATA #REQUIRED
+                           reset_value         CDATA #REQUIRED 
+                           readwrite           CDATA #REQUIRED 
+                           access_macro        CDATA #REQUIRED 
+                           interrupt           CDATA #IMPLIED
+                           reserved            CDATA #IMPLIED
+                           do_not_autotest     CDATA #IMPLIED
+                           empty               CDATA #IMPLIED
+                           backdoor            CDATA #IMPLIED
+                           bd_set              CDATA #IMPLIED
+                           bd_reset            CDATA #IMPLIED
+                           softreset           CDATA #IMPLIED
+>
+<!ELEMENT ioreg_bf_description (#PCDATA)>
+<!ELEMENT ioreg_bf_enum (#PCDATA)>
+<!ATTLIST ioreg_bf_enum      name                CDATA #REQUIRED
+                           value               CDATA #REQUIRED
+>
+<!ELEMENT ioreg_example     (#PCDATA)>
+<!ELEMENT ioreg_no_debug    (#PCDATA)>
+<!ELEMENT ioreg_description (#PCDATA)>
+<!ELEMENT ioreg_intro       (#PCDATA)>
+<!ELEMENT ioreg_index       (#PCDATA)>
+<!ELEMENT ioreg_bigpicture  (#PCDATA)>
+

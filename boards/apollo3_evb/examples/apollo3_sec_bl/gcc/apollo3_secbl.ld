@@ -7,7 +7,7 @@ ENTRY(Reset_Handler)
 
 MEMORY
 {
-    ROMEM (rx) : ORIGIN = 0xC000, LENGTH = 960K
+    ROMEM (rx) : ORIGIN = 0xC000, LENGTH = 976K
     RWMEM (rwx) : ORIGIN = 0x10000000, LENGTH = 384K
 }
 

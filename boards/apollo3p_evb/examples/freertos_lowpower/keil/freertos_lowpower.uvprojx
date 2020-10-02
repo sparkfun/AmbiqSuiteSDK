@@ -333,9 +333,9 @@
             <v6Rtti>0</v6Rtti>
             <VariousControls>
               <MiscControls></MiscControls>
-              <Define>AM_FREERTOS AM_PACKAGE_BGA AM_UTIL_FAULTISR_PRINT AM_PART_APOLLO3P AM_DEBUG_PRINTF keil</Define>
+              <Define>AM_PART_APOLLO3P AM_DEBUG_PRINTF AM_FREERTOS AM_PACKAGE_BGA AM_UTIL_FAULTISR_PRINT keil</Define>
               <Undefine></Undefine>
-              <IncludePath>../../../../../third_party/FreeRTOSv10.1.1/Source/include;../../../../../CMSIS/ARM/Include;../../../../../CMSIS/AmbiqMicro/Include;../../../../../utils;../src;../../../../../mcu/apollo3p;../../../bsp;../../../../..;../../../../../third_party/FreeRTOSv10.1.1/Source/portable/Keil/AMapollo2;../../../../../devices</IncludePath>
+              <IncludePath>../src;../../../../..;../../../../../CMSIS/ARM/Include;../../../../../CMSIS/AmbiqMicro/Include;../../../../../third_party/FreeRTOSv10.1.1/Source/portable/Keil/AMapollo2;../../../bsp;../../../../../mcu/apollo3p;../../../../../devices;../../../../../utils;../../../../../third_party/FreeRTOSv10.1.1/Source/include</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -447,21 +447,6 @@
           </Files>
         </Group>
         <Group>
-          <GroupName>devices</GroupName>
-          <Files>
-            <File>
-              <FileName>am_devices_button.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../devices/am_devices_button.c</FilePath>
-            </File>
-            <File>
-              <FileName>am_devices_led.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../devices/am_devices_led.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
           <GroupName>utils</GroupName>
           <Files>
             <File>
@@ -483,6 +468,21 @@
               <FileName>am_util_stdio.c</FileName>
               <FileType>1</FileType>
               <FilePath>../../../../../utils/am_util_stdio.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>devices</GroupName>
+          <Files>
+            <File>
+              <FileName>am_devices_button.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../../../../../devices/am_devices_button.c</FilePath>
+            </File>
+            <File>
+              <FileName>am_devices_led.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../../../../../devices/am_devices_led.c</FilePath>
             </File>
           </Files>
         </Group>

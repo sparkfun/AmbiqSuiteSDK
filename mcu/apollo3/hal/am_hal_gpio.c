@@ -13,7 +13,7 @@
 
 //*****************************************************************************
 //
-// Copyright (c) 2020, Ambiq Micro
+// Copyright (c) 2020, Ambiq Micro, Inc.
 // All rights reserved.
 //
 // Redistribution and use in source and binary forms, with or without
@@ -45,7 +45,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
-// This is part of revision 2.4.2 of the AmbiqSuite Development Package.
+// This is part of revision 2.5.1 of the AmbiqSuite Development Package.
 //
 //*****************************************************************************
 
@@ -756,6 +756,8 @@ am_hal_gpio_fast_pinconfig(uint64_t ui64PinMask,
 //! This function reads a pin state as given by ui32Type.
 //!
 //! @return Status.
+//!
+//! This function is intended for use only when the pin is configured as GPIO.
 //
 //*****************************************************************************
 uint32_t
@@ -777,6 +779,20 @@ am_hal_gpio_state_read(uint32_t ui32Pin,
         *pui32ReadState = ui32ReadValue;
         return AM_HAL_STATUS_OUT_OF_RANGE;
     }
+
+#if 0   // By default, disable this additional validation check as it is very time consuming.
+    //
+    // Validate that the pin is configured for GPIO. Return error if not.
+    //
+    uint32_t ui32Regval, ui32PadShft, ui32FncselMsk;
+    ui32Regval    = AM_REGVAL( AM_REGADDR(GPIO, PADREGA) + (ui32Pin & ~0x3) );
+    ui32PadShft   = ((ui32Pin & 0x3) << 3);
+    ui32FncselMsk = (uint32_t)0x38 << ui32PadShft;
+    if ( (ui32Regval & ui32FncselMsk) != (0x3 << (ui32PadShft + 3)) )
+    {
+        return AM_HAL_STATUS_INVALID_ARG;
+    }
+#endif
 #endif // AM_HAL_DISABLE_API_VALIDATION
 
     //
@@ -817,7 +833,7 @@ am_hal_gpio_state_read(uint32_t ui32Pin,
 //
 //! @brief Write GPIO.
 //!
-//! @param ui32Pin    - pin number to be read.
+//! @param ui32Pin    - pin number to be written.
 //!
 //! @param ui32Type   - State type to write.  One of:
 //!     AM_HAL_GPIO_OUTPUT_SET              - Write a one to a GPIO.
@@ -830,7 +846,8 @@ am_hal_gpio_state_read(uint32_t ui32Pin,
 //! This function writes a GPIO value.
 //!
 //! @return Status.
-//!         Fails if the pad is not configured for GPIO (PADFNCSEL != 3).
+//!
+//! This function is intended for use only when the pin is configured as GPIO.
 //
 //*****************************************************************************
 uint32_t
@@ -849,6 +866,20 @@ am_hal_gpio_state_write(uint32_t ui32Pin, am_hal_gpio_write_type_e eWriteType)
     {
         return AM_HAL_STATUS_INVALID_ARG;
     }
+
+#if 0   // By default, disable this additional validation check as it is very time consuming.
+    //
+    // Validate that the pin is configured for GPIO. Return error if not.
+    //
+    uint32_t ui32Regval, ui32PadShft, ui32FncselMsk;
+    ui32Regval    = AM_REGVAL( AM_REGADDR(GPIO, PADREGA) + (ui32Pin & ~0x3) );
+    ui32PadShft   = ((ui32Pin & 0x3) << 3);
+    ui32FncselMsk = (uint32_t)0x38 << ui32PadShft;
+    if ( (ui32Regval & ui32FncselMsk) != (0x3 << (ui32PadShft + 3)) )
+    {
+        return AM_HAL_STATUS_INVALID_ARG;
+    }
+#endif
 #endif // AM_HAL_DISABLE_API_VALIDATION
 
     ui32Mask = (uint32_t)0x1 << (ui32Pin % 32);
@@ -1225,6 +1256,71 @@ am_hal_gpio_interrupt_service(uint64_t ui64Status)
 
 } // am_hal_gpio_interrupt_service()
 
+//*****************************************************************************
+//
+//  am_hal_gpio_isinput()
+//
+//  Determine whether a pad is configured with input enable.
+//  Returns true if input enable is set, false otherwise.
+//
+//*****************************************************************************
+bool am_hal_gpio_isinput(uint32_t ui32Pin)
+{
+    uint32_t ui32Regval, ui32PadShft, ui32InpenMsk;
+    ui32Regval    = AM_REGVAL( AM_REGADDR(GPIO, PADREGA) + (ui32Pin & ~0x3) );
+    ui32PadShft   = ((ui32Pin & 0x3) << 3);
+    ui32InpenMsk = (uint32_t)0x02 << ui32PadShft;
+
+    return (ui32Regval & ui32InpenMsk) ? true : false;
+} // am_hal_gpio_isinput()
+
+//*****************************************************************************
+//  am_hal_gpio_isgpio()
+//
+//  Determine whether the GPIO is configured as input or output.
+//
+//  Return values:
+//      0: Pin is not configured as GPIO.
+//      1: Pin is configured as GPIO input.
+//      2: Pin is configured as GPIO output.
+//*****************************************************************************
+uint32_t am_hal_gpio_isgpio(uint32_t ui32Pin)
+{
+    uint32_t ui32Padval, ui32Cfgval;
+
+    //
+    // Check PADREGx field for this pin.
+    // [5:3] is FNCSEL (must be 0x18 for GPIO), [1:1] is INPEN.
+    //
+    ui32Padval   = AM_REGVAL( AM_REGADDR(GPIO, PADREGA) + (ui32Pin & ~0x3) );
+    ui32Padval >>= ((ui32Pin & 0x3) << 3);
+    if ( (ui32Padval & 0x38) != 0x18 )
+    {
+        //
+        // Not configured as GPIO
+        //
+        return 0;
+    }
+
+    //
+    // Determine if an input or an output.
+    //
+    ui32Cfgval = AM_REGVAL( AM_REGADDR(GPIO, CFGA) + ((ui32Pin >> 1) & ~0x3) );
+    ui32Cfgval >>= ((ui32Pin & 0x7) * 4);
+    if ( (ui32Padval & 0x02) )
+    {
+        //
+        // INPEN is set, so probably a GPIO input.
+        // However, GPIO outputs can also be set to read the pin state,
+        // which requires INPEN be set.
+        //
+        return (ui32Cfgval & 0x6) == 0 ? 1 : 2;
+    }
+    else
+    {
+        return 2;
+    }
+} // am_hal_gpio_isgpio()
 
 //*****************************************************************************
 //

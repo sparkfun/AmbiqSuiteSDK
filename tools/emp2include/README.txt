@@ -19,7 +19,7 @@ as needed.  The default is IRAM.
 
 The files em9304_patches.h and em9304_patches.c will be generated in the following directory:
 
-/third_party/exactle/sw/hci/ambiq/em9304
+/third_party/cordio/sw/hci/ambiq/em9304
 
 Patches are uniquely identified by the following meta-data embedded in *.emp files:
 	* Format Version - Container format version (increments as container is updated)

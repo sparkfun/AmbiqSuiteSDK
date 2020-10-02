@@ -13,7 +13,7 @@
 
 //*****************************************************************************
 //
-// Copyright (c) 2020, Ambiq Micro
+// Copyright (c) 2020, Ambiq Micro, Inc.
 // All rights reserved.
 //
 // Redistribution and use in source and binary forms, with or without
@@ -45,7 +45,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
-// This is part of revision 2.4.2 of the AmbiqSuite Development Package.
+// This is part of revision 2.5.1 of the AmbiqSuite Development Package.
 //
 //*****************************************************************************
 
@@ -1112,7 +1112,6 @@ uint32_t am_hal_adc_samples_read(void *pHandle, bool bFullSample,
         //
         do
         {
-            ui32Sample = ADCn(ui32Module)->FIFOPR;
             pui32OutBuffer->ui32Slot   = AM_HAL_ADC_FIFO_SLOT(*pui32InSampleBuffer);
             pui32OutBuffer->ui32Sample = AM_HAL_ADC_FIFO_SAMPLE(*pui32InSampleBuffer);
             pui32InSampleBuffer++;

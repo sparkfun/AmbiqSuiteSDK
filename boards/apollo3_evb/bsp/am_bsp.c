@@ -14,7 +14,7 @@
 
 //*****************************************************************************
 //
-// Copyright (c) 2020, Ambiq Micro
+// Copyright (c) 2020, Ambiq Micro, Inc.
 // All rights reserved.
 //
 // Redistribution and use in source and binary forms, with or without
@@ -46,7 +46,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
-// This is part of revision 2.4.2 of the AmbiqSuite Development Package.
+// This is part of revision 2.5.1 of the AmbiqSuite Development Package.
 //
 //*****************************************************************************
 
@@ -330,6 +330,63 @@ am_bsp_itm_printf_disable(void)
     am_hal_gpio_pinconfig(AM_BSP_GPIO_ITM_SWO, g_AM_HAL_GPIO_DISABLE);
 } // am_bsp_itm_printf_disable()
 
+#if defined(BLE_3P3V_SW_WORKAROUND)
+//*****************************************************************************
+//
+// @brief Set BLE into low-power state (for 3.3V operation only)
+//
+//*****************************************************************************
+void
+am_bsp_ble_3p3v_low_power_mode(void)
+{
+  // BLE module handle
+  void *BLE;
+
+  am_hal_ble_initialize(0, &BLE);
+  am_hal_ble_power_control(BLE, AM_HAL_BLE_POWER_ACTIVE);
+  am_hal_ble_config_t sBleConfig =
+  {
+    // Configure the HCI interface clock for 6 MHz
+    .ui32SpiClkCfg = AM_HAL_BLE_HCI_CLK_DIV8,
+
+    // Set HCI read and write thresholds to 32 bytes each.
+    .ui32ReadThreshold = 32,
+    .ui32WriteThreshold = 32,
+
+    // The MCU will supply the clock to the BLE core.
+    .ui32BleClockConfig = AM_HAL_BLE_CORE_MCU_CLK,
+
+    // Default settings for expected BLE clock drift (measured in PPM).
+    .ui32ClockDrift = 0,
+    .ui32SleepClockDrift = 50,
+
+    // Default setting - AGC Enabled
+    .bAgcEnabled = true,
+
+    // Default setting - Sleep Algo enabled
+    .bSleepEnabled = true,
+
+    // Apply the default patches when am_hal_ble_boot() is called.
+    .bUseDefaultPatches = true,
+  };
+
+  am_hal_ble_config(BLE, &sBleConfig);
+
+  //
+  // Attempt to boot the radio.
+  //
+  am_hal_ble_patch_complete(BLE);
+
+  //
+  // Send a reset to the BLE Controller.
+  am_util_ble_hci_reset(BLE);
+
+  // set IO clock off
+  BLEIFn(0)->BLEDBG_b.IOCLKON = 0;
+
+} // am_bsp_ble_3p3v_low_power_mode()
+#endif
+
 //*****************************************************************************
 //
 //! @brief Set up the IOM pins based on mode and module.
@@ -559,30 +616,38 @@ am_bsp_mspi_pins_enable(uint32_t ui32Module, am_hal_mspi_device_e eMSPIDevice)
             switch ( eMSPIDevice )
             {
                 case AM_HAL_MSPI_FLASH_SERIAL_CE0:
+                case AM_HAL_MSPI_FLASH_SERIAL_CE0_3WIRE:
                     am_hal_gpio_pinconfig(AM_BSP_GPIO_MSPI_CE0, g_AM_BSP_GPIO_MSPI_CE0);
                     am_hal_gpio_pinconfig(AM_BSP_GPIO_MSPI_D0,  g_AM_BSP_GPIO_MSPI_D0);
                     am_hal_gpio_pinconfig(AM_BSP_GPIO_MSPI_D1,  g_AM_BSP_GPIO_MSPI_D1);
                     am_hal_gpio_pinconfig(AM_BSP_GPIO_MSPI_SCK, g_AM_BSP_GPIO_MSPI_SCK);
                     break;
                 case AM_HAL_MSPI_FLASH_SERIAL_CE1:
+                case AM_HAL_MSPI_FLASH_SERIAL_CE1_3WIRE:
                     am_hal_gpio_pinconfig(AM_BSP_GPIO_MSPI_CE1, g_AM_BSP_GPIO_MSPI_CE1);
                     am_hal_gpio_pinconfig(AM_BSP_GPIO_MSPI_D4,  g_AM_BSP_GPIO_MSPI_D4);
                     am_hal_gpio_pinconfig(AM_BSP_GPIO_MSPI_D5,  g_AM_BSP_GPIO_MSPI_D5);
                     am_hal_gpio_pinconfig(AM_BSP_GPIO_MSPI_SCK, g_AM_BSP_GPIO_MSPI_SCK);
                     break;
                 case AM_HAL_MSPI_FLASH_DUAL_CE0:
+                case AM_HAL_MSPI_FLASH_DUAL_CE0_1_1_2:
+                case AM_HAL_MSPI_FLASH_DUAL_CE0_1_2_2:
                     am_hal_gpio_pinconfig(AM_BSP_GPIO_MSPI_CE0, g_AM_BSP_GPIO_MSPI_CE0);
                     am_hal_gpio_pinconfig(AM_BSP_GPIO_MSPI_D0,  g_AM_BSP_GPIO_MSPI_D0);
                     am_hal_gpio_pinconfig(AM_BSP_GPIO_MSPI_D1,  g_AM_BSP_GPIO_MSPI_D1);
                     am_hal_gpio_pinconfig(AM_BSP_GPIO_MSPI_SCK, g_AM_BSP_GPIO_MSPI_SCK);
                     break;
                 case AM_HAL_MSPI_FLASH_DUAL_CE1:
+                case AM_HAL_MSPI_FLASH_DUAL_CE1_1_1_2:
+                case AM_HAL_MSPI_FLASH_DUAL_CE1_1_2_2:
                     am_hal_gpio_pinconfig(AM_BSP_GPIO_MSPI_CE1, g_AM_BSP_GPIO_MSPI_CE1);
                     am_hal_gpio_pinconfig(AM_BSP_GPIO_MSPI_D4,  g_AM_BSP_GPIO_MSPI_D4);
                     am_hal_gpio_pinconfig(AM_BSP_GPIO_MSPI_D5,  g_AM_BSP_GPIO_MSPI_D5);
                     am_hal_gpio_pinconfig(AM_BSP_GPIO_MSPI_SCK, g_AM_BSP_GPIO_MSPI_SCK);
                     break;
                 case AM_HAL_MSPI_FLASH_QUAD_CE0:
+                case AM_HAL_MSPI_FLASH_QUAD_CE0_1_1_4:
+                case AM_HAL_MSPI_FLASH_QUAD_CE0_1_4_4:
                     am_hal_gpio_pinconfig(AM_BSP_GPIO_MSPI_CE0, g_AM_BSP_GPIO_MSPI_CE0);
                     am_hal_gpio_pinconfig(AM_BSP_GPIO_MSPI_D0,  g_AM_BSP_GPIO_MSPI_D0);
                     am_hal_gpio_pinconfig(AM_BSP_GPIO_MSPI_D1,  g_AM_BSP_GPIO_MSPI_D1);
@@ -591,6 +656,8 @@ am_bsp_mspi_pins_enable(uint32_t ui32Module, am_hal_mspi_device_e eMSPIDevice)
                     am_hal_gpio_pinconfig(AM_BSP_GPIO_MSPI_SCK, g_AM_BSP_GPIO_MSPI_SCK);
                     break;
                 case AM_HAL_MSPI_FLASH_QUAD_CE1:
+                case AM_HAL_MSPI_FLASH_QUAD_CE1_1_1_4:
+                case AM_HAL_MSPI_FLASH_QUAD_CE1_1_4_4:
                     am_hal_gpio_pinconfig(AM_BSP_GPIO_MSPI_CE1, g_AM_BSP_GPIO_MSPI_CE1);
                     am_hal_gpio_pinconfig(AM_BSP_GPIO_MSPI_D4,  g_AM_BSP_GPIO_MSPI_D4);
                     am_hal_gpio_pinconfig(AM_BSP_GPIO_MSPI_D5,  g_AM_BSP_GPIO_MSPI_D5);
@@ -664,30 +731,38 @@ am_bsp_mspi_pins_disable(uint32_t ui32Module, am_hal_mspi_device_e eMSPIDevice)
             switch ( eMSPIDevice )
             {
                 case AM_HAL_MSPI_FLASH_SERIAL_CE0:
+                case AM_HAL_MSPI_FLASH_SERIAL_CE0_3WIRE:
                     am_hal_gpio_pinconfig(AM_BSP_GPIO_MSPI_CE0, g_AM_HAL_GPIO_DISABLE);
                     am_hal_gpio_pinconfig(AM_BSP_GPIO_MSPI_D0,  g_AM_HAL_GPIO_DISABLE);
                     am_hal_gpio_pinconfig(AM_BSP_GPIO_MSPI_D1,  g_AM_HAL_GPIO_DISABLE);
                     am_hal_gpio_pinconfig(AM_BSP_GPIO_MSPI_SCK, g_AM_HAL_GPIO_DISABLE);
                     break;
                 case AM_HAL_MSPI_FLASH_SERIAL_CE1:
+                case AM_HAL_MSPI_FLASH_SERIAL_CE1_3WIRE:
                     am_hal_gpio_pinconfig(AM_BSP_GPIO_MSPI_CE1, g_AM_HAL_GPIO_DISABLE);
                     am_hal_gpio_pinconfig(AM_BSP_GPIO_MSPI_D4,  g_AM_HAL_GPIO_DISABLE);
                     am_hal_gpio_pinconfig(AM_BSP_GPIO_MSPI_D5,  g_AM_HAL_GPIO_DISABLE);
                     am_hal_gpio_pinconfig(AM_BSP_GPIO_MSPI_SCK, g_AM_HAL_GPIO_DISABLE);
                     break;
                 case AM_HAL_MSPI_FLASH_DUAL_CE0:
+                case AM_HAL_MSPI_FLASH_DUAL_CE0_1_1_2:
+                case AM_HAL_MSPI_FLASH_DUAL_CE0_1_2_2:
                     am_hal_gpio_pinconfig(AM_BSP_GPIO_MSPI_CE0, g_AM_HAL_GPIO_DISABLE);
                     am_hal_gpio_pinconfig(AM_BSP_GPIO_MSPI_D0,  g_AM_HAL_GPIO_DISABLE);
                     am_hal_gpio_pinconfig(AM_BSP_GPIO_MSPI_D1,  g_AM_HAL_GPIO_DISABLE);
                     am_hal_gpio_pinconfig(AM_BSP_GPIO_MSPI_SCK, g_AM_HAL_GPIO_DISABLE);
                     break;
                 case AM_HAL_MSPI_FLASH_DUAL_CE1:
+                case AM_HAL_MSPI_FLASH_DUAL_CE1_1_1_2:
+                case AM_HAL_MSPI_FLASH_DUAL_CE1_1_2_2:
                     am_hal_gpio_pinconfig(AM_BSP_GPIO_MSPI_CE1, g_AM_HAL_GPIO_DISABLE);
                     am_hal_gpio_pinconfig(AM_BSP_GPIO_MSPI_D4,  g_AM_HAL_GPIO_DISABLE);
                     am_hal_gpio_pinconfig(AM_BSP_GPIO_MSPI_D5,  g_AM_HAL_GPIO_DISABLE);
                     am_hal_gpio_pinconfig(AM_BSP_GPIO_MSPI_SCK, g_AM_HAL_GPIO_DISABLE);
                     break;
                 case AM_HAL_MSPI_FLASH_QUAD_CE0:
+                case AM_HAL_MSPI_FLASH_QUAD_CE0_1_1_4:
+                case AM_HAL_MSPI_FLASH_QUAD_CE0_1_4_4:
                     am_hal_gpio_pinconfig(AM_BSP_GPIO_MSPI_CE0, g_AM_HAL_GPIO_DISABLE);
                     am_hal_gpio_pinconfig(AM_BSP_GPIO_MSPI_D0,  g_AM_HAL_GPIO_DISABLE);
                     am_hal_gpio_pinconfig(AM_BSP_GPIO_MSPI_D1,  g_AM_HAL_GPIO_DISABLE);
@@ -696,6 +771,8 @@ am_bsp_mspi_pins_disable(uint32_t ui32Module, am_hal_mspi_device_e eMSPIDevice)
                     am_hal_gpio_pinconfig(AM_BSP_GPIO_MSPI_SCK, g_AM_HAL_GPIO_DISABLE);
                     break;
                 case AM_HAL_MSPI_FLASH_QUAD_CE1:
+                case AM_HAL_MSPI_FLASH_QUAD_CE1_1_1_4:
+                case AM_HAL_MSPI_FLASH_QUAD_CE1_1_4_4:
                     am_hal_gpio_pinconfig(AM_BSP_GPIO_MSPI_CE1, g_AM_HAL_GPIO_DISABLE);
                     am_hal_gpio_pinconfig(AM_BSP_GPIO_MSPI_D4,  g_AM_HAL_GPIO_DISABLE);
                     am_hal_gpio_pinconfig(AM_BSP_GPIO_MSPI_D5,  g_AM_HAL_GPIO_DISABLE);
@@ -757,7 +834,8 @@ am_bsp_mspi_pins_disable(uint32_t ui32Module, am_hal_mspi_device_e eMSPIDevice)
 //! @return None.
 //
 //*****************************************************************************
-void am_bsp_ios_pins_enable(uint32_t ui32Module, uint32_t ui32IOSMode)
+void
+am_bsp_ios_pins_enable(uint32_t ui32Module, uint32_t ui32IOSMode)
 {
     uint32_t ui32Combined;
 
@@ -787,7 +865,7 @@ void am_bsp_ios_pins_enable(uint32_t ui32Module, uint32_t ui32IOSMode)
         default:
             break;
     }
-} // am_bsp_iom_pins_enable()
+} // am_bsp_ios_pins_enable()
 
 //*****************************************************************************
 //
@@ -796,7 +874,8 @@ void am_bsp_ios_pins_enable(uint32_t ui32Module, uint32_t ui32IOSMode)
 //! @return None.
 //
 //*****************************************************************************
-void am_bsp_ios_pins_disable(uint32_t ui32Module, uint32_t ui32IOSMode)
+void
+am_bsp_ios_pins_disable(uint32_t ui32Module, uint32_t ui32IOSMode)
 {
     uint32_t ui32Combined;
 
@@ -826,7 +905,7 @@ void am_bsp_ios_pins_disable(uint32_t ui32Module, uint32_t ui32IOSMode)
         default:
             break;
     }
-} // am_bsp_iom_pins_disable()
+} // am_bsp_ios_pins_disable()
 
 //*****************************************************************************
 //

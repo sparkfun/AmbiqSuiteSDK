@@ -2,7 +2,7 @@
 #
 # Makefile - Rules for building the libraries, examples and docs.
 #
-# Copyright (c) 2020, Ambiq Micro
+# Copyright (c) 2020, Ambiq Micro, Inc.
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
@@ -34,7 +34,7 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 #
-# This is part of revision 2.4.2 of the AmbiqSuite Development Package.
+# This is part of revision 2.5.1 of the AmbiqSuite Development Package.
 #
 #******************************************************************************
 TARGET := ios_fifo
@@ -80,16 +80,16 @@ all clean:
 else
 
 DEFINES = -DPART_$(PART)
-DEFINES+= -DAM_PART_APOLLO2
 DEFINES+= -DAM_PACKAGE_BGA
+DEFINES+= -DAM_PART_APOLLO2
 DEFINES+= -Dgcc
 
-INCLUDES = -I../src
+INCLUDES = -I../../../bsp
+INCLUDES+= -I../../../../../devices
+INCLUDES+= -I../src
+INCLUDES+= -I../../../../../mcu/apollo2
 INCLUDES+= -I../../../../..
 INCLUDES+= -I../../../../../utils
-INCLUDES+= -I../../../bsp
-INCLUDES+= -I../../../../../mcu/apollo2
-INCLUDES+= -I../../../../../devices
 
 VPATH = ../src
 VPATH+=:../../../../../utils
@@ -156,6 +156,7 @@ $(CONFIG)/$(TARGET).bin: $(CONFIG)/$(TARGET).axf
 	@echo " Copying $(COMPILERNAME) $@..." ;\
 	$(CP) $(CPFLAGS) $< $@ ;\
 	$(OD) $(ODFLAGS) $< > $(CONFIG)/$(TARGET).lst
+	@$(SIZE) $(OBJS) $(LIBS) $(CONFIG)/$(TARGET).axf >$(CONFIG)/$(TARGET).size
 
 clean:
 	@echo "Cleaning..." ;\

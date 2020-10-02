@@ -333,9 +333,9 @@
             <v6Rtti>0</v6Rtti>
             <VariousControls>
               <MiscControls></MiscControls>
-              <Define>AM_FREERTOS AM_PACKAGE_BGA AM_DEBUG_PRINTF AM_PART_APOLLO2 keil</Define>
+              <Define>AM_DEBUG_PRINTF AM_PART_APOLLO2 AM_FREERTOS AM_PACKAGE_BGA keil</Define>
               <Undefine></Undefine>
-              <IncludePath>../../../bsp;../../../../..;../../../../../third_party/FreeRTOSv10.1.1/Source/include;../../../../../devices;../src;../../../../../mcu/apollo2;../../../../../third_party/FreeRTOSv10.1.1/Source/portable/Keil/AMapollo2;../../../../../utils</IncludePath>
+              <IncludePath>../../../../../third_party/FreeRTOSv10.1.1/Source/include;../../../../../devices;../src;../../../../../third_party/FreeRTOSv10.1.1/Source/portable/Keil/AMapollo2;../../../../..;../../../../../utils;../../../bsp;../../../../../mcu/apollo2</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -377,6 +377,16 @@
       </TargetOption>
       <Groups>
         <Group>
+          <GroupName>FreeRTOSv10.1.1_AMapollo2</GroupName>
+          <Files>
+            <File>
+              <FileName>port.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../../../../../third_party/FreeRTOSv10.1.1/Source/portable/Keil/AMapollo2/port.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
           <GroupName>src</GroupName>
           <Files>
             <File>
@@ -393,41 +403,6 @@
               <FileName>rtos.c</FileName>
               <FileType>1</FileType>
               <FilePath>../src/rtos.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>FreeRTOSv10.1.1_AMapollo2</GroupName>
-          <Files>
-            <File>
-              <FileName>port.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../third_party/FreeRTOSv10.1.1/Source/portable/Keil/AMapollo2/port.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>FreeRTOSv10.1.1_MemMang</GroupName>
-          <Files>
-            <File>
-              <FileName>heap_2.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../third_party/FreeRTOSv10.1.1/Source/portable/MemMang/heap_2.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>devices</GroupName>
-          <Files>
-            <File>
-              <FileName>am_devices_button.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../devices/am_devices_button.c</FilePath>
-            </File>
-            <File>
-              <FileName>am_devices_led.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../devices/am_devices_led.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -458,6 +433,31 @@
               <FileName>timers.c</FileName>
               <FileType>1</FileType>
               <FilePath>../../../../../third_party/FreeRTOSv10.1.1/Source/timers.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>devices</GroupName>
+          <Files>
+            <File>
+              <FileName>am_devices_button.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../../../../../devices/am_devices_button.c</FilePath>
+            </File>
+            <File>
+              <FileName>am_devices_led.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../../../../../devices/am_devices_led.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>FreeRTOSv10.1.1_MemMang</GroupName>
+          <Files>
+            <File>
+              <FileName>heap_2.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../../../../../third_party/FreeRTOSv10.1.1/Source/portable/MemMang/heap_2.c</FilePath>
             </File>
           </Files>
         </Group>

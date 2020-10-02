@@ -1,0 +1,2966 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+<?xml-stylesheet type="text/xsl" href="xml_devices.xsl"?>
+<!DOCTYPE device SYSTEM "xml_devices.dtd">
+<device file_name="docs/gpio_regs.xml" file_mod_date="May 29 10:05:02 2014">
+  <short_description>General Purpose IO</short_description>
+  <device_name>GPIO</device_name>
+  <instance_base>REG_GPIO_BASEADDR: 0x40010000</instance_base>
+  <ioregisters>
+    <ioreg_index/>
+    <ioreg>
+    <ioreg_name>PADREGA</ioreg_name>
+    <ioreg_offset>0x00000000</ioreg_offset>
+    <ioreg_intro>Pad Configuration Register A</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="31" name="PAD3PWRUP" readwrite="RW" access_macro="REG_GPIO_PADREGA_PAD3PWRUP_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 3 upper power switch enable bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="30" name="PAD3PWRDN" readwrite="RW" access_macro="REG_GPIO_PADREGA_PAD3PWRDN_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 3 lower power switch enable bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="27" name="PAD3FNCSEL" readwrite="RW" access_macro="REG_GPIO_PADREGA_PAD3FNCSEL_WR" reset_value="0x3" width="3">
+        <ioreg_bf_description>"These bits hold the Pad 3 function select bits."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="26" name="PAD3STRNG" readwrite="RW" access_macro="REG_GPIO_PADREGA_PAD3STRNG_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 3 configuration bits."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="25" name="PAD3INPEN" readwrite="RW" access_macro="REG_GPIO_PADREGA_PAD3INPEN_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 3 configuration bits."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="24" name="PAD3PULL" readwrite="RW" access_macro="REG_GPIO_PADREGA_PAD3PULL_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 3 configuration bits."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="22" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="2" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="19" name="PAD2FNCSEL" readwrite="RW" access_macro="REG_GPIO_PADREGA_PAD2FNCSEL_WR" reset_value="0x3" width="3">
+        <ioreg_bf_description>"These bits hold the Pad 2 function select bits."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="18" name="PAD2STRNG" readwrite="RW" access_macro="REG_GPIO_PADREGA_PAD2STRNG_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 2 drive strength bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="17" name="PAD2INPEN" readwrite="RW" access_macro="REG_GPIO_PADREGA_PAD2INPEN_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 2 input enable bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="16" name="PAD2PULL" readwrite="RW" access_macro="REG_GPIO_PADREGA_PAD2PULL_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 2 pullup bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="14" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="2" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="11" name="PAD1FNCSEL" readwrite="RW" access_macro="REG_GPIO_PADREGA_PAD1FNCSEL_WR" reset_value="0x3" width="3">
+        <ioreg_bf_description>"These bits hold the Pad 1 function select bits."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="10" name="PAD1STRNG" readwrite="RW" access_macro="REG_GPIO_PADREGA_PAD1STRNG_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 1 drive strength bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="9" name="PAD1INPEN" readwrite="RW" access_macro="REG_GPIO_PADREGA_PAD1INPEN_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 1 input enable bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="8" name="PAD1PULL" readwrite="RW" access_macro="REG_GPIO_PADREGA_PAD1PULL_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 1 pullup bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="6" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="2" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="3" name="PAD0FNCSEL" readwrite="RW" access_macro="REG_GPIO_PADREGA_PAD0FNCSEL_WR" reset_value="0x3" width="3">
+        <ioreg_bf_description>"These bits hold the Pad 0 function select bits."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="2" name="PAD0STRNG" readwrite="RW" access_macro="REG_GPIO_PADREGA_PAD0STRNG_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 0 drive strength bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="1" name="PAD0INPEN" readwrite="RW" access_macro="REG_GPIO_PADREGA_PAD0INPEN_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 0 input enable bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="PAD0PULL" readwrite="RW" access_macro="REG_GPIO_PADREGA_PAD0PULL_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 0 pullup bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>PADREGB</ioreg_name>
+    <ioreg_offset>0x00000004</ioreg_offset>
+    <ioreg_intro>Pad Configuration Register B</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="30" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="2" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="27" name="PAD7FNCSEL" readwrite="RW" access_macro="REG_GPIO_PADREGB_PAD7FNCSEL_WR" reset_value="0x3" width="3">
+        <ioreg_bf_description>"These bits hold the Pad 7 function select bits."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="26" name="PAD7STRNG" readwrite="RW" access_macro="REG_GPIO_PADREGB_PAD7STRNG_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 7 configuration bits."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="25" name="PAD7INPEN" readwrite="RW" access_macro="REG_GPIO_PADREGB_PAD7INPEN_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 7 configuration bits."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="24" name="PAD7PULL" readwrite="RW" access_macro="REG_GPIO_PADREGB_PAD7PULL_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 7 configuration bits."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="22" name="PAD6RSEL" readwrite="RW" access_macro="REG_GPIO_PADREGB_PAD6RSEL_WR" reset_value="0x0" width="2">
+        <ioreg_bf_description>"This bitfield holds the Pad 6 pullup resistor selection."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="19" name="PAD6FNCSEL" readwrite="RW" access_macro="REG_GPIO_PADREGB_PAD6FNCSEL_WR" reset_value="0x3" width="3">
+        <ioreg_bf_description>"These bits hold the Pad 6 function select bits."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="18" name="PAD6STRNG" readwrite="RW" access_macro="REG_GPIO_PADREGB_PAD6STRNG_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 6 drive strength bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="17" name="PAD6INPEN" readwrite="RW" access_macro="REG_GPIO_PADREGB_PAD6INPEN_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 6 input enable bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="16" name="PAD6PULL" readwrite="RW" access_macro="REG_GPIO_PADREGB_PAD6PULL_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 6 pullup bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="14" name="PAD5RSEL" readwrite="RW" access_macro="REG_GPIO_PADREGB_PAD5RSEL_WR" reset_value="0x0" width="2">
+        <ioreg_bf_description>"This bitfield holds the Pad 5 pullup resistor selection."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="11" name="PAD5FNCSEL" readwrite="RW" access_macro="REG_GPIO_PADREGB_PAD5FNCSEL_WR" reset_value="0x3" width="3">
+        <ioreg_bf_description>"These bits hold the Pad 5 function select bits."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="10" name="PAD5STRNG" readwrite="RW" access_macro="REG_GPIO_PADREGB_PAD5STRNG_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 5 drive strength bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="9" name="PAD5INPEN" readwrite="RW" access_macro="REG_GPIO_PADREGB_PAD5INPEN_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 5 input enable bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="8" name="PAD5PULL" readwrite="RW" access_macro="REG_GPIO_PADREGB_PAD5PULL_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 5 pullup bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="7" name="PAD4PWRUP" readwrite="RW" access_macro="REG_GPIO_PADREGB_PAD4PWRUP_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 4 upper power switch enable bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="6" name="PAD4PWRDN" readwrite="RW" access_macro="REG_GPIO_PADREGB_PAD4PWRDN_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 4 lower power switch enable bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="3" name="PAD4FNCSEL" readwrite="RW" access_macro="REG_GPIO_PADREGB_PAD4FNCSEL_WR" reset_value="0x3" width="3">
+        <ioreg_bf_description>"These bits hold the Pad 4 function select bits."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="2" name="PAD4STRNG" readwrite="RW" access_macro="REG_GPIO_PADREGB_PAD4STRNG_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 4 drive strength bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="1" name="PAD4INPEN" readwrite="RW" access_macro="REG_GPIO_PADREGB_PAD4INPEN_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 4 input enable bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="PAD4PULL" readwrite="RW" access_macro="REG_GPIO_PADREGB_PAD4PULL_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 4 pullup bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>PADREGC</ioreg_name>
+    <ioreg_offset>0x00000008</ioreg_offset>
+    <ioreg_intro>Pad Configuration Register C</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="31" name="PAD11PWRUP" readwrite="RW" access_macro="REG_GPIO_PADREGC_PAD11PWRUP_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 11 upper power switch enable bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="30" name="PAD11PWRDN" readwrite="RW" access_macro="REG_GPIO_PADREGC_PAD11PWRDN_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 11 lower power switch enable bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="29" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="1" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="27" name="PAD11FNCSEL" readwrite="RW" access_macro="REG_GPIO_PADREGC_PAD11FNCSEL_WR" reset_value="0x3" width="2">
+        <ioreg_bf_description>"These bits hold the Pad 11 function select bits."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="26" name="PAD11STRNG" readwrite="RW" access_macro="REG_GPIO_PADREGC_PAD11STRNG_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 11 configuration bits."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="25" name="PAD11INPEN" readwrite="RW" access_macro="REG_GPIO_PADREGC_PAD11INPEN_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 11 configuration bits."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="24" name="PAD11PULL" readwrite="RW" access_macro="REG_GPIO_PADREGC_PAD11PULL_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 11 configuration bits."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="22" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="2" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="19" name="PAD10FNCSEL" readwrite="RW" access_macro="REG_GPIO_PADREGC_PAD10FNCSEL_WR" reset_value="0x3" width="3">
+        <ioreg_bf_description>"These bits hold the Pad 10 function select bits."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="18" name="PAD10STRNG" readwrite="RW" access_macro="REG_GPIO_PADREGC_PAD10STRNG_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 10 drive strength bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="17" name="PAD10INPEN" readwrite="RW" access_macro="REG_GPIO_PADREGC_PAD10INPEN_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 10 input enable bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="16" name="PAD10PULL" readwrite="RW" access_macro="REG_GPIO_PADREGC_PAD10PULL_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 10 pullup bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="14" name="PAD9RSEL" readwrite="RW" access_macro="REG_GPIO_PADREGC_PAD9RSEL_WR" reset_value="0x0" width="2">
+        <ioreg_bf_description>"This bitfield holds the Pad 9 pullup resistor selection."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="11" name="PAD9FNCSEL" readwrite="RW" access_macro="REG_GPIO_PADREGC_PAD9FNCSEL_WR" reset_value="0x3" width="3">
+        <ioreg_bf_description>"These bits hold the Pad 9 function select bits."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="10" name="PAD9STRNG" readwrite="RW" access_macro="REG_GPIO_PADREGC_PAD9STRNG_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 9 drive strength bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="9" name="PAD9INPEN" readwrite="RW" access_macro="REG_GPIO_PADREGC_PAD9INPEN_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 9 input enable bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="8" name="PAD9PULL" readwrite="RW" access_macro="REG_GPIO_PADREGC_PAD9PULL_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 9 pullup bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="6" name="PAD8RSEL" readwrite="RW" access_macro="REG_GPIO_PADREGC_PAD8RSEL_WR" reset_value="0x0" width="2">
+        <ioreg_bf_description>"This bitfield holds the Pad 8 pullup resistor selection."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="3" name="PAD8FNCSEL" readwrite="RW" access_macro="REG_GPIO_PADREGC_PAD8FNCSEL_WR" reset_value="0x3" width="3">
+        <ioreg_bf_description>"These bits hold the Pad 8 function select bits."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="2" name="PAD8STRNG" readwrite="RW" access_macro="REG_GPIO_PADREGC_PAD8STRNG_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 8 drive strength bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="1" name="PAD8INPEN" readwrite="RW" access_macro="REG_GPIO_PADREGC_PAD8INPEN_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 8 input enable bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="PAD8PULL" readwrite="RW" access_macro="REG_GPIO_PADREGC_PAD8PULL_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 8 pullup bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>PADREGD</ioreg_name>
+    <ioreg_offset>0x0000000c</ioreg_offset>
+    <ioreg_intro>Pad Configuration Register D</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="30" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="2" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="27" name="PAD15FNCSEL" readwrite="RW" access_macro="REG_GPIO_PADREGD_PAD15FNCSEL_WR" reset_value="0x3" width="3">
+        <ioreg_bf_description>"These bits hold the Pad 15 function select bits."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="26" name="PAD15STRNG" readwrite="RW" access_macro="REG_GPIO_PADREGD_PAD15STRNG_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 15 configuration bits."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="25" name="PAD15INPEN" readwrite="RW" access_macro="REG_GPIO_PADREGD_PAD15INPEN_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 15 configuration bits."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="24" name="PAD15PULL" readwrite="RW" access_macro="REG_GPIO_PADREGD_PAD15PULL_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 15 configuration bits."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="22" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="2" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="19" name="PAD14FNCSEL" readwrite="RW" access_macro="REG_GPIO_PADREGD_PAD14FNCSEL_WR" reset_value="0x3" width="3">
+        <ioreg_bf_description>"These bits hold the Pad 14 function select bits."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="18" name="PAD14STRNG" readwrite="RW" access_macro="REG_GPIO_PADREGD_PAD14STRNG_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 14 drive strength bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="17" name="PAD14INPEN" readwrite="RW" access_macro="REG_GPIO_PADREGD_PAD14INPEN_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 14 input enable bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="16" name="PAD14PULL" readwrite="RW" access_macro="REG_GPIO_PADREGD_PAD14PULL_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 14 pullup bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="14" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="2" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="11" name="PAD13FNCSEL" readwrite="RW" access_macro="REG_GPIO_PADREGD_PAD13FNCSEL_WR" reset_value="0x3" width="3">
+        <ioreg_bf_description>"These bits hold the Pad 13 function select bits."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="10" name="PAD13STRNG" readwrite="RW" access_macro="REG_GPIO_PADREGD_PAD13STRNG_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 13 drive strength bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="9" name="PAD13INPEN" readwrite="RW" access_macro="REG_GPIO_PADREGD_PAD13INPEN_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 13 input enable bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="8" name="PAD13PULL" readwrite="RW" access_macro="REG_GPIO_PADREGD_PAD13PULL_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 13 pullup bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="5" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="3" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="3" name="PAD12FNCSEL" readwrite="RW" access_macro="REG_GPIO_PADREGD_PAD12FNCSEL_WR" reset_value="0x3" width="2">
+        <ioreg_bf_description>"These bits hold the Pad 12 function select bits."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="2" name="PAD12STRNG" readwrite="RW" access_macro="REG_GPIO_PADREGD_PAD12STRNG_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 12 drive strength bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="1" name="PAD12INPEN" readwrite="RW" access_macro="REG_GPIO_PADREGD_PAD12INPEN_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 12 input enable bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="PAD12PULL" readwrite="RW" access_macro="REG_GPIO_PADREGD_PAD12PULL_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 12 pullup bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>PADREGE</ioreg_name>
+    <ioreg_offset>0x00000010</ioreg_offset>
+    <ioreg_intro>Pad Configuration Register E</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="29" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="3" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="27" name="PAD19FNCSEL" readwrite="RW" access_macro="REG_GPIO_PADREGE_PAD19FNCSEL_WR" reset_value="0x3" width="2">
+        <ioreg_bf_description>"These bits hold the Pad 19 function select bits."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="26" name="PAD19STRNG" readwrite="RW" access_macro="REG_GPIO_PADREGE_PAD19STRNG_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 19 configuration bits."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="25" name="PAD19INPEN" readwrite="RW" access_macro="REG_GPIO_PADREGE_PAD19INPEN_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 19 configuration bits."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="24" name="PAD19PULL" readwrite="RW" access_macro="REG_GPIO_PADREGE_PAD19PULL_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 19 configuration bits."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="21" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="3" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="19" name="PAD18FNCSEL" readwrite="RW" access_macro="REG_GPIO_PADREGE_PAD18FNCSEL_WR" reset_value="0x3" width="2">
+        <ioreg_bf_description>"These bits hold the Pad 18 function select bits."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="18" name="PAD18STRNG" readwrite="RW" access_macro="REG_GPIO_PADREGE_PAD18STRNG_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 18 drive strength bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="17" name="PAD18INPEN" readwrite="RW" access_macro="REG_GPIO_PADREGE_PAD18INPEN_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 18 input enable bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="16" name="PAD18PULL" readwrite="RW" access_macro="REG_GPIO_PADREGE_PAD18PULL_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 18 pullup bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="14" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="2" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="11" name="PAD17FNCSEL" readwrite="RW" access_macro="REG_GPIO_PADREGE_PAD17FNCSEL_WR" reset_value="0x3" width="3">
+        <ioreg_bf_description>"These bits hold the Pad 17 function select bits."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="10" name="PAD17STRNG" readwrite="RW" access_macro="REG_GPIO_PADREGE_PAD17STRNG_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 17 drive strength bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="9" name="PAD17INPEN" readwrite="RW" access_macro="REG_GPIO_PADREGE_PAD17INPEN_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 17 input enable bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="8" name="PAD17PULL" readwrite="RW" access_macro="REG_GPIO_PADREGE_PAD17PULL_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 17 pullup bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="5" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="3" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="3" name="PAD16FNCSEL" readwrite="RW" access_macro="REG_GPIO_PADREGE_PAD16FNCSEL_WR" reset_value="0x3" width="2">
+        <ioreg_bf_description>"These bits hold the Pad 16 function select bits."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="2" name="PAD16STRNG" readwrite="RW" access_macro="REG_GPIO_PADREGE_PAD16STRNG_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 16 drive strength bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="1" name="PAD16INPEN" readwrite="RW" access_macro="REG_GPIO_PADREGE_PAD16INPEN_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 16 input enable bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="PAD16PULL" readwrite="RW" access_macro="REG_GPIO_PADREGE_PAD16PULL_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 16 pullup bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>PADREGF</ioreg_name>
+    <ioreg_offset>0x00000014</ioreg_offset>
+    <ioreg_intro>Pad Configuration Register F</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="29" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="3" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="27" name="PAD23FNCSEL" readwrite="RW" access_macro="REG_GPIO_PADREGF_PAD23FNCSEL_WR" reset_value="0x3" width="2">
+        <ioreg_bf_description>"These bits hold the Pad 23 function select bits."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="26" name="PAD23STRNG" readwrite="RW" access_macro="REG_GPIO_PADREGF_PAD23STRNG_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 23 configuration bits."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="25" name="PAD23INPEN" readwrite="RW" access_macro="REG_GPIO_PADREGF_PAD23INPEN_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 23 configuration bits."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="24" name="PAD23PULL" readwrite="RW" access_macro="REG_GPIO_PADREGF_PAD23PULL_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 23 configuration bits."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="21" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="3" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="19" name="PAD22FNCSEL" readwrite="RW" access_macro="REG_GPIO_PADREGF_PAD22FNCSEL_WR" reset_value="0x3" width="2">
+        <ioreg_bf_description>"These bits hold the Pad 22 function select bits."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="18" name="PAD22STRNG" readwrite="RW" access_macro="REG_GPIO_PADREGF_PAD22STRNG_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 22 drive strength bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="17" name="PAD22INPEN" readwrite="RW" access_macro="REG_GPIO_PADREGF_PAD22INPEN_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 22 input enable bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="16" name="PAD22PULL" readwrite="RW" access_macro="REG_GPIO_PADREGF_PAD22PULL_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 22 pullup bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="13" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="3" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="11" name="PAD21FNCSEL" readwrite="RW" access_macro="REG_GPIO_PADREGF_PAD21FNCSEL_WR" reset_value="0x0" width="2">
+        <ioreg_bf_description>"These bits hold the Pad 21 function select bits."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="10" name="PAD21STRNG" readwrite="RW" access_macro="REG_GPIO_PADREGF_PAD21STRNG_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 21 drive strength bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="9" name="PAD21INPEN" readwrite="RW" access_macro="REG_GPIO_PADREGF_PAD21INPEN_WR" reset_value="0x1" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 21 input enable bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="8" name="PAD21PULL" readwrite="RW" access_macro="REG_GPIO_PADREGF_PAD21PULL_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 21 pullup bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="5" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="3" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="3" name="PAD20FNCSEL" readwrite="RW" access_macro="REG_GPIO_PADREGF_PAD20FNCSEL_WR" reset_value="0x0" width="2">
+        <ioreg_bf_description>"These bits hold the Pad 20 function select bits."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="2" name="PAD20STRNG" readwrite="RW" access_macro="REG_GPIO_PADREGF_PAD20STRNG_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 20 drive strength bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="1" name="PAD20INPEN" readwrite="RW" access_macro="REG_GPIO_PADREGF_PAD20INPEN_WR" reset_value="0x1" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 20 input enable bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="PAD20PULL" readwrite="RW" access_macro="REG_GPIO_PADREGF_PAD20PULL_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 20 pullup bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>PADREGG</ioreg_name>
+    <ioreg_offset>0x00000018</ioreg_offset>
+    <ioreg_intro>Pad Configuration Register G</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="29" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="3" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="27" name="PAD27FNCSEL" readwrite="RW" access_macro="REG_GPIO_PADREGG_PAD27FNCSEL_WR" reset_value="0x3" width="2">
+        <ioreg_bf_description>"These bits hold the Pad 27 function select bits."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="26" name="PAD27STRNG" readwrite="RW" access_macro="REG_GPIO_PADREGG_PAD27STRNG_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 27 configuration bits."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="25" name="PAD27INPEN" readwrite="RW" access_macro="REG_GPIO_PADREGG_PAD27INPEN_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 27 configuration bits."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="24" name="PAD27PULL" readwrite="RW" access_macro="REG_GPIO_PADREGG_PAD27PULL_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 27 configuration bits."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="21" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="3" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="19" name="PAD26FNCSEL" readwrite="RW" access_macro="REG_GPIO_PADREGG_PAD26FNCSEL_WR" reset_value="0x3" width="2">
+        <ioreg_bf_description>"These bits hold the Pad 26 function select bits."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="18" name="PAD26STRNG" readwrite="RW" access_macro="REG_GPIO_PADREGG_PAD26STRNG_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 26 drive strength bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="17" name="PAD26INPEN" readwrite="RW" access_macro="REG_GPIO_PADREGG_PAD26INPEN_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 26 input enable bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="16" name="PAD26PULL" readwrite="RW" access_macro="REG_GPIO_PADREGG_PAD26PULL_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 26 pullup bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="13" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="3" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="11" name="PAD25FNCSEL" readwrite="RW" access_macro="REG_GPIO_PADREGG_PAD25FNCSEL_WR" reset_value="0x3" width="2">
+        <ioreg_bf_description>"These bits hold the Pad 25 function select bits."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="10" name="PAD25STRNG" readwrite="RW" access_macro="REG_GPIO_PADREGG_PAD25STRNG_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 25 drive strength bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="9" name="PAD25INPEN" readwrite="RW" access_macro="REG_GPIO_PADREGG_PAD25INPEN_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 25 input enable bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="8" name="PAD25PULL" readwrite="RW" access_macro="REG_GPIO_PADREGG_PAD25PULL_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 25 pullup bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="5" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="3" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="3" name="PAD24FNCSEL" readwrite="RW" access_macro="REG_GPIO_PADREGG_PAD24FNCSEL_WR" reset_value="0x3" width="2">
+        <ioreg_bf_description>"These bits hold the Pad 24 function select bits."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="2" name="PAD24STRNG" readwrite="RW" access_macro="REG_GPIO_PADREGG_PAD24STRNG_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 24 drive strength bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="1" name="PAD24INPEN" readwrite="RW" access_macro="REG_GPIO_PADREGG_PAD24INPEN_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 24 input enable bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="PAD24PULL" readwrite="RW" access_macro="REG_GPIO_PADREGG_PAD24PULL_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 24 pullup bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>PADREGH</ioreg_name>
+    <ioreg_offset>0x0000001c</ioreg_offset>
+    <ioreg_intro>Pad Configuration Register H</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="29" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="3" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="27" name="PAD31FNCSEL" readwrite="RW" access_macro="REG_GPIO_PADREGH_PAD31FNCSEL_WR" reset_value="0x3" width="2">
+        <ioreg_bf_description>"These bits hold the Pad 31 function select bits."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="26" name="PAD31STRNG" readwrite="RW" access_macro="REG_GPIO_PADREGH_PAD31STRNG_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 31 configuration bits."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="25" name="PAD31INPEN" readwrite="RW" access_macro="REG_GPIO_PADREGH_PAD31INPEN_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 31 configuration bits."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="24" name="PAD31PULL" readwrite="RW" access_macro="REG_GPIO_PADREGH_PAD31PULL_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 31 configuration bits."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="21" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="3" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="19" name="PAD30FNCSEL" readwrite="RW" access_macro="REG_GPIO_PADREGH_PAD30FNCSEL_WR" reset_value="0x3" width="2">
+        <ioreg_bf_description>"These bits hold the Pad 30 function select bits."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="18" name="PAD30STRNG" readwrite="RW" access_macro="REG_GPIO_PADREGH_PAD30STRNG_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 30 drive strength bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="17" name="PAD30INPEN" readwrite="RW" access_macro="REG_GPIO_PADREGH_PAD30INPEN_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 30 input enable bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="16" name="PAD30PULL" readwrite="RW" access_macro="REG_GPIO_PADREGH_PAD30PULL_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 30 pullup bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="13" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="3" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="11" name="PAD29FNCSEL" readwrite="RW" access_macro="REG_GPIO_PADREGH_PAD29FNCSEL_WR" reset_value="0x3" width="2">
+        <ioreg_bf_description>"These bits hold the Pad 29 function select bits."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="10" name="PAD29STRNG" readwrite="RW" access_macro="REG_GPIO_PADREGH_PAD29STRNG_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 29 drive strength bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="9" name="PAD29INPEN" readwrite="RW" access_macro="REG_GPIO_PADREGH_PAD29INPEN_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 29 input enable bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="8" name="PAD29PULL" readwrite="RW" access_macro="REG_GPIO_PADREGH_PAD29PULL_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 29 pullup bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="5" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="3" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="3" name="PAD28FNCSEL" readwrite="RW" access_macro="REG_GPIO_PADREGH_PAD28FNCSEL_WR" reset_value="0x3" width="2">
+        <ioreg_bf_description>"These bits hold the Pad 28 function select bits."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="2" name="PAD28STRNG" readwrite="RW" access_macro="REG_GPIO_PADREGH_PAD28STRNG_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 28 drive strength bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="1" name="PAD28INPEN" readwrite="RW" access_macro="REG_GPIO_PADREGH_PAD28INPEN_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 28 input enable bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="PAD28PULL" readwrite="RW" access_macro="REG_GPIO_PADREGH_PAD28PULL_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 28 pullup bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>PADREGI</ioreg_name>
+    <ioreg_offset>0x00000020</ioreg_offset>
+    <ioreg_intro>Pad Configuration Register I</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="29" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="3" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="27" name="PAD35FNCSEL" readwrite="RW" access_macro="REG_GPIO_PADREGI_PAD35FNCSEL_WR" reset_value="0x3" width="2">
+        <ioreg_bf_description>"These bits hold the Pad 35 function select bits."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="26" name="PAD35STRNG" readwrite="RW" access_macro="REG_GPIO_PADREGI_PAD35STRNG_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 35 configuration bits."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="25" name="PAD35INPEN" readwrite="RW" access_macro="REG_GPIO_PADREGI_PAD35INPEN_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 35 configuration bits."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="24" name="PAD35PULL" readwrite="RW" access_macro="REG_GPIO_PADREGI_PAD35PULL_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 35 configuration bits."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="21" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="3" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="19" name="PAD34FNCSEL" readwrite="RW" access_macro="REG_GPIO_PADREGI_PAD34FNCSEL_WR" reset_value="0x3" width="2">
+        <ioreg_bf_description>"These bits hold the Pad 34 function select bits."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="18" name="PAD34STRNG" readwrite="RW" access_macro="REG_GPIO_PADREGI_PAD34STRNG_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 34 drive strength bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="17" name="PAD34INPEN" readwrite="RW" access_macro="REG_GPIO_PADREGI_PAD34INPEN_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 34 input enable bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="16" name="PAD34PULL" readwrite="RW" access_macro="REG_GPIO_PADREGI_PAD34PULL_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 34 pullup bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="13" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="3" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="11" name="PAD33FNCSEL" readwrite="RW" access_macro="REG_GPIO_PADREGI_PAD33FNCSEL_WR" reset_value="0x3" width="2">
+        <ioreg_bf_description>"These bits hold the Pad 33 function select bits."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="10" name="PAD33STRNG" readwrite="RW" access_macro="REG_GPIO_PADREGI_PAD33STRNG_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 33 drive strength bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="9" name="PAD33INPEN" readwrite="RW" access_macro="REG_GPIO_PADREGI_PAD33INPEN_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 33 input enable bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="8" name="PAD33PULL" readwrite="RW" access_macro="REG_GPIO_PADREGI_PAD33PULL_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 33 pullup bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="5" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="3" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="3" name="PAD32FNCSEL" readwrite="RW" access_macro="REG_GPIO_PADREGI_PAD32FNCSEL_WR" reset_value="0x3" width="2">
+        <ioreg_bf_description>"These bits hold the Pad 32 function select bits."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="2" name="PAD32STRNG" readwrite="RW" access_macro="REG_GPIO_PADREGI_PAD32STRNG_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 32 drive strength bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="1" name="PAD32INPEN" readwrite="RW" access_macro="REG_GPIO_PADREGI_PAD32INPEN_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 32 input enable bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="PAD32PULL" readwrite="RW" access_macro="REG_GPIO_PADREGI_PAD32PULL_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 32 pullup bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>PADREGJ</ioreg_name>
+    <ioreg_offset>0x00000024</ioreg_offset>
+    <ioreg_intro>Pad Configuration Register J</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="29" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="3" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="27" name="PAD39FNCSEL" readwrite="RW" access_macro="REG_GPIO_PADREGJ_PAD39FNCSEL_WR" reset_value="0x3" width="2">
+        <ioreg_bf_description>"These bits hold the Pad 39 function select bits."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="26" name="PAD39STRNG" readwrite="RW" access_macro="REG_GPIO_PADREGJ_PAD39STRNG_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 39 configuration bits."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="25" name="PAD39INPEN" readwrite="RW" access_macro="REG_GPIO_PADREGJ_PAD39INPEN_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 39 configuration bits."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="24" name="PAD39PULL" readwrite="RW" access_macro="REG_GPIO_PADREGJ_PAD39PULL_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 39 configuration bits."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="21" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="3" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="19" name="PAD38FNCSEL" readwrite="RW" access_macro="REG_GPIO_PADREGJ_PAD38FNCSEL_WR" reset_value="0x3" width="2">
+        <ioreg_bf_description>"These bits hold the Pad 38 function select bits."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="18" name="PAD38STRNG" readwrite="RW" access_macro="REG_GPIO_PADREGJ_PAD38STRNG_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 38 drive strength bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="17" name="PAD38INPEN" readwrite="RW" access_macro="REG_GPIO_PADREGJ_PAD38INPEN_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 38 input enable bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="16" name="PAD38PULL" readwrite="RW" access_macro="REG_GPIO_PADREGJ_PAD38PULL_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 38 pullup bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="13" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="3" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="11" name="PAD37FNCSEL" readwrite="RW" access_macro="REG_GPIO_PADREGJ_PAD37FNCSEL_WR" reset_value="0x3" width="2">
+        <ioreg_bf_description>"These bits hold the Pad 37 function select bits."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="10" name="PAD37STRNG" readwrite="RW" access_macro="REG_GPIO_PADREGJ_PAD37STRNG_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 37 drive strength bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="9" name="PAD37INPEN" readwrite="RW" access_macro="REG_GPIO_PADREGJ_PAD37INPEN_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 37 input enable bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="8" name="PAD37PULL" readwrite="RW" access_macro="REG_GPIO_PADREGJ_PAD37PULL_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 37 pullup bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="5" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="3" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="3" name="PAD36FNCSEL" readwrite="RW" access_macro="REG_GPIO_PADREGJ_PAD36FNCSEL_WR" reset_value="0x3" width="2">
+        <ioreg_bf_description>"These bits hold the Pad 36 function select bits."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="2" name="PAD36STRNG" readwrite="RW" access_macro="REG_GPIO_PADREGJ_PAD36STRNG_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 36 drive strength bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="1" name="PAD36INPEN" readwrite="RW" access_macro="REG_GPIO_PADREGJ_PAD36INPEN_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 36 input enable bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="PAD36PULL" readwrite="RW" access_macro="REG_GPIO_PADREGJ_PAD36PULL_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 36 pullup bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>PADREGK</ioreg_name>
+    <ioreg_offset>0x00000028</ioreg_offset>
+    <ioreg_intro>Pad Configuration Register K</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="29" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="3" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="27" name="PAD43FNCSEL" readwrite="RW" access_macro="REG_GPIO_PADREGK_PAD43FNCSEL_WR" reset_value="0x3" width="2">
+        <ioreg_bf_description>"These bits hold the Pad 43 function select bits."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="26" name="PAD43STRNG" readwrite="RW" access_macro="REG_GPIO_PADREGK_PAD43STRNG_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 43 configuration bits."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="25" name="PAD43INPEN" readwrite="RW" access_macro="REG_GPIO_PADREGK_PAD43INPEN_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 43 configuration bits."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="24" name="PAD43PULL" readwrite="RW" access_macro="REG_GPIO_PADREGK_PAD43PULL_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 43 configuration bits."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="21" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="3" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="19" name="PAD42FNCSEL" readwrite="RW" access_macro="REG_GPIO_PADREGK_PAD42FNCSEL_WR" reset_value="0x3" width="2">
+        <ioreg_bf_description>"These bits hold the Pad 42 function select bits."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="18" name="PAD42STRNG" readwrite="RW" access_macro="REG_GPIO_PADREGK_PAD42STRNG_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 42 drive strength bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="17" name="PAD42INPEN" readwrite="RW" access_macro="REG_GPIO_PADREGK_PAD42INPEN_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 42 input enable bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="16" name="PAD42PULL" readwrite="RW" access_macro="REG_GPIO_PADREGK_PAD42PULL_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 42 pullup bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="13" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="3" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="11" name="PAD41FNCSEL" readwrite="RW" access_macro="REG_GPIO_PADREGK_PAD41FNCSEL_WR" reset_value="0x3" width="2">
+        <ioreg_bf_description>"These bits hold the Pad 41 function select bits."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="10" name="PAD41STRNG" readwrite="RW" access_macro="REG_GPIO_PADREGK_PAD41STRNG_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 41 drive strength bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="9" name="PAD41INPEN" readwrite="RW" access_macro="REG_GPIO_PADREGK_PAD41INPEN_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 41 input enable bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="8" name="PAD41PULL" readwrite="RW" access_macro="REG_GPIO_PADREGK_PAD41PULL_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 41 pullup bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="5" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="3" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="3" name="PAD40FNCSEL" readwrite="RW" access_macro="REG_GPIO_PADREGK_PAD40FNCSEL_WR" reset_value="0x3" width="2">
+        <ioreg_bf_description>"These bits hold the Pad 40 function select bits."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="2" name="PAD40STRNG" readwrite="RW" access_macro="REG_GPIO_PADREGK_PAD40STRNG_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 40 drive strength bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="1" name="PAD40INPEN" readwrite="RW" access_macro="REG_GPIO_PADREGK_PAD40INPEN_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 40 input enable bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="PAD40PULL" readwrite="RW" access_macro="REG_GPIO_PADREGK_PAD40PULL_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 40 pullup bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>PADREGL</ioreg_name>
+    <ioreg_offset>0x0000002c</ioreg_offset>
+    <ioreg_intro>Pad Configuration Register L</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="29" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="3" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="27" name="PAD47FNCSEL" readwrite="RW" access_macro="REG_GPIO_PADREGL_PAD47FNCSEL_WR" reset_value="0x3" width="2">
+        <ioreg_bf_description>"These bits hold the Pad 47 function select bits."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="26" name="PAD47STRNG" readwrite="RW" access_macro="REG_GPIO_PADREGL_PAD47STRNG_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 47 configuration bits."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="25" name="PAD47INPEN" readwrite="RW" access_macro="REG_GPIO_PADREGL_PAD47INPEN_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 47 configuration bits."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="24" name="PAD47PULL" readwrite="RW" access_macro="REG_GPIO_PADREGL_PAD47PULL_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 47 configuration bits."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="21" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="3" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="19" name="PAD46FNCSEL" readwrite="RW" access_macro="REG_GPIO_PADREGL_PAD46FNCSEL_WR" reset_value="0x3" width="2">
+        <ioreg_bf_description>"These bits hold the Pad 46 function select bits."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="18" name="PAD46STRNG" readwrite="RW" access_macro="REG_GPIO_PADREGL_PAD46STRNG_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 46 drive strength bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="17" name="PAD46INPEN" readwrite="RW" access_macro="REG_GPIO_PADREGL_PAD46INPEN_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 46 input enable bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="16" name="PAD46PULL" readwrite="RW" access_macro="REG_GPIO_PADREGL_PAD46PULL_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 46 pullup bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="13" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="3" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="11" name="PAD45FNCSEL" readwrite="RW" access_macro="REG_GPIO_PADREGL_PAD45FNCSEL_WR" reset_value="0x3" width="2">
+        <ioreg_bf_description>"These bits hold the Pad 45 function select bits."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="10" name="PAD45STRNG" readwrite="RW" access_macro="REG_GPIO_PADREGL_PAD45STRNG_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 45 drive strength bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="9" name="PAD45INPEN" readwrite="RW" access_macro="REG_GPIO_PADREGL_PAD45INPEN_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 45 input enable bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="8" name="PAD45PULL" readwrite="RW" access_macro="REG_GPIO_PADREGL_PAD45PULL_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 45 pullup bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="5" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="3" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="3" name="PAD44FNCSEL" readwrite="RW" access_macro="REG_GPIO_PADREGL_PAD44FNCSEL_WR" reset_value="0x3" width="2">
+        <ioreg_bf_description>"These bits hold the Pad 44 function select bits."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="2" name="PAD44STRNG" readwrite="RW" access_macro="REG_GPIO_PADREGL_PAD44STRNG_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 44 drive strength bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="1" name="PAD44INPEN" readwrite="RW" access_macro="REG_GPIO_PADREGL_PAD44INPEN_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 44 input enable bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="PAD44PULL" readwrite="RW" access_macro="REG_GPIO_PADREGL_PAD44PULL_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 44 pullup bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>PADREGM</ioreg_name>
+    <ioreg_offset>0x00000030</ioreg_offset>
+    <ioreg_intro>Pad Configuration Register M</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="13" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="19" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="11" name="PAD49FNCSEL" readwrite="RW" access_macro="REG_GPIO_PADREGM_PAD49FNCSEL_WR" reset_value="0x3" width="2">
+        <ioreg_bf_description>"These bits hold the Pad 49 function select bits."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="10" name="PAD49STRNG" readwrite="RW" access_macro="REG_GPIO_PADREGM_PAD49STRNG_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 49 drive strength bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="9" name="PAD49INPEN" readwrite="RW" access_macro="REG_GPIO_PADREGM_PAD49INPEN_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 49 input enable bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="8" name="PAD49PULL" readwrite="RW" access_macro="REG_GPIO_PADREGM_PAD49PULL_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 49 pullup bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="5" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="3" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="3" name="PAD48FNCSEL" readwrite="RW" access_macro="REG_GPIO_PADREGM_PAD48FNCSEL_WR" reset_value="0x3" width="2">
+        <ioreg_bf_description>"These bits hold the Pad 48 function select bits."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="2" name="PAD48STRNG" readwrite="RW" access_macro="REG_GPIO_PADREGM_PAD48STRNG_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 48 drive strength bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="1" name="PAD48INPEN" readwrite="RW" access_macro="REG_GPIO_PADREGM_PAD48INPEN_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 48 input enable bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="PAD48PULL" readwrite="RW" access_macro="REG_GPIO_PADREGM_PAD48PULL_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"These bits hold the Pad 48 pullup bit."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>GPIOCFGA</ioreg_name>
+    <ioreg_offset>0x00000040</ioreg_offset>
+    <ioreg_intro>GPIO Configuration Register A</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="31" name="GPIO7INTD" readwrite="RW" access_macro="REG_GPIO_GPIOCFGA_GPIO7INTD_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the GPIO7 interrupt direction."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="29" name="GPIO7OUTCFG" readwrite="RW" access_macro="REG_GPIO_GPIOCFGA_GPIO7OUTCFG_WR" reset_value="0x0" width="2">
+        <ioreg_bf_description>"This bit holds the GPIO7 output configuration."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="28" name="GPIO7INCFG" readwrite="RW" access_macro="REG_GPIO_GPIOCFGA_GPIO7INCFG_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the GPIO7 input enable."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="27" name="GPIO6INTD" readwrite="RW" access_macro="REG_GPIO_GPIOCFGA_GPIO6INTD_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the GPIO6 interrupt direction."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="25" name="GPIO6OUTCFG" readwrite="RW" access_macro="REG_GPIO_GPIOCFGA_GPIO6OUTCFG_WR" reset_value="0x0" width="2">
+        <ioreg_bf_description>"This bit holds the GPIO6 output configuration."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="24" name="GPIO6INCFG" readwrite="RW" access_macro="REG_GPIO_GPIOCFGA_GPIO6INCFG_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the GPIO6 input enable."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="23" name="GPIO5INTD" readwrite="RW" access_macro="REG_GPIO_GPIOCFGA_GPIO5INTD_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the GPIO5 interrupt direction."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="21" name="GPIO5OUTCFG" readwrite="RW" access_macro="REG_GPIO_GPIOCFGA_GPIO5OUTCFG_WR" reset_value="0x0" width="2">
+        <ioreg_bf_description>"This bit holds the GPIO5 output configuration."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="20" name="GPIO5INCFG" readwrite="RW" access_macro="REG_GPIO_GPIOCFGA_GPIO5INCFG_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the GPIO5 input enable."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="19" name="GPIO4INTD" readwrite="RW" access_macro="REG_GPIO_GPIOCFGA_GPIO4INTD_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the GPIO4 interrupt direction."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="17" name="GPIO4OUTCFG" readwrite="RW" access_macro="REG_GPIO_GPIOCFGA_GPIO4OUTCFG_WR" reset_value="0x0" width="2">
+        <ioreg_bf_description>"This bit holds the GPIO4 output configuration."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="16" name="GPIO4INCFG" readwrite="RW" access_macro="REG_GPIO_GPIOCFGA_GPIO4INCFG_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the GPIO4 input enable."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="15" name="GPIO3INTD" readwrite="RW" access_macro="REG_GPIO_GPIOCFGA_GPIO3INTD_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the GPIO3 interrupt direction."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="13" name="GPIO3OUTCFG" readwrite="RW" access_macro="REG_GPIO_GPIOCFGA_GPIO3OUTCFG_WR" reset_value="0x0" width="2">
+        <ioreg_bf_description>"This bit holds the GPIO3 output configuration."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="12" name="GPIO3INCFG" readwrite="RW" access_macro="REG_GPIO_GPIOCFGA_GPIO3INCFG_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the GPIO3 input enable."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="11" name="GPIO2INTD" readwrite="RW" access_macro="REG_GPIO_GPIOCFGA_GPIO2INTD_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the GPIO2 interrupt direction."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="9" name="GPIO2OUTCFG" readwrite="RW" access_macro="REG_GPIO_GPIOCFGA_GPIO2OUTCFG_WR" reset_value="0x0" width="2">
+        <ioreg_bf_description>"This bit holds the GPIO2 output configuration."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="8" name="GPIO2INCFG" readwrite="RW" access_macro="REG_GPIO_GPIOCFGA_GPIO2INCFG_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the GPIO2 input enable."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="7" name="GPIO1INTD" readwrite="RW" access_macro="REG_GPIO_GPIOCFGA_GPIO1INTD_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the GPIO1 interrupt direction."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="5" name="GPIO1OUTCFG" readwrite="RW" access_macro="REG_GPIO_GPIOCFGA_GPIO1OUTCFG_WR" reset_value="0x0" width="2">
+        <ioreg_bf_description>"This bit holds the GPIO1 output configuration."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="4" name="GPIO1INCFG" readwrite="RW" access_macro="REG_GPIO_GPIOCFGA_GPIO1INCFG_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the GPIO1 input enable."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="3" name="GPIO0INTD" readwrite="RW" access_macro="REG_GPIO_GPIOCFGA_GPIO0INTD_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the GPIO0 interrupt direction."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="1" name="GPIO0OUTCFG" readwrite="RW" access_macro="REG_GPIO_GPIOCFGA_GPIO0OUTCFG_WR" reset_value="0x0" width="2">
+        <ioreg_bf_description>"This bit holds the GPIO0 output configuration."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="GPIO0INCFG" readwrite="RW" access_macro="REG_GPIO_GPIOCFGA_GPIO0INCFG_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the GPIO0 input enable."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>GPIOCFGB</ioreg_name>
+    <ioreg_offset>0x00000044</ioreg_offset>
+    <ioreg_intro>GPIO Configuration Register B</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="31" name="GPIO15INTD" readwrite="RW" access_macro="REG_GPIO_GPIOCFGB_GPIO15INTD_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the GPIO15 interrupt direction."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="29" name="GPIO15OUTCFG" readwrite="RW" access_macro="REG_GPIO_GPIOCFGB_GPIO15OUTCFG_WR" reset_value="0x0" width="2">
+        <ioreg_bf_description>"This bit holds the GPIO15 output configuration."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="28" name="GPIO15INCFG" readwrite="RW" access_macro="REG_GPIO_GPIOCFGB_GPIO15INCFG_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the GPIO15 input enable."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="27" name="GPIO14INTD" readwrite="RW" access_macro="REG_GPIO_GPIOCFGB_GPIO14INTD_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the GPIO14 interrupt direction."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="25" name="GPIO14OUTCFG" readwrite="RW" access_macro="REG_GPIO_GPIOCFGB_GPIO14OUTCFG_WR" reset_value="0x0" width="2">
+        <ioreg_bf_description>"This bit holds the GPIO14 output configuration."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="24" name="GPIO14INCFG" readwrite="RW" access_macro="REG_GPIO_GPIOCFGB_GPIO14INCFG_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the GPIO14 input enable."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="23" name="GPIO13INTD" readwrite="RW" access_macro="REG_GPIO_GPIOCFGB_GPIO13INTD_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the GPIO13 interrupt direction."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="21" name="GPIO13OUTCFG" readwrite="RW" access_macro="REG_GPIO_GPIOCFGB_GPIO13OUTCFG_WR" reset_value="0x0" width="2">
+        <ioreg_bf_description>"This bit holds the GPIO13 output configuration."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="20" name="GPIO13INCFG" readwrite="RW" access_macro="REG_GPIO_GPIOCFGB_GPIO13INCFG_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the GPIO13 input enable."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="19" name="GPIO12INTD" readwrite="RW" access_macro="REG_GPIO_GPIOCFGB_GPIO12INTD_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the GPIO12 interrupt direction."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="17" name="GPIO12OUTCFG" readwrite="RW" access_macro="REG_GPIO_GPIOCFGB_GPIO12OUTCFG_WR" reset_value="0x0" width="2">
+        <ioreg_bf_description>"This bit holds the GPIO12 output configuration."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="16" name="GPIO12INCFG" readwrite="RW" access_macro="REG_GPIO_GPIOCFGB_GPIO12INCFG_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the GPIO12 input enable."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="15" name="GPIO11INTD" readwrite="RW" access_macro="REG_GPIO_GPIOCFGB_GPIO11INTD_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the GPIO11 interrupt direction."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="13" name="GPIO11OUTCFG" readwrite="RW" access_macro="REG_GPIO_GPIOCFGB_GPIO11OUTCFG_WR" reset_value="0x0" width="2">
+        <ioreg_bf_description>"This bit holds the GPIO11 output configuration."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="12" name="GPIO11INCFG" readwrite="RW" access_macro="REG_GPIO_GPIOCFGB_GPIO11INCFG_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the GPIO11 input enable."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="11" name="GPIO10INTD" readwrite="RW" access_macro="REG_GPIO_GPIOCFGB_GPIO10INTD_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the GPIO10 interrupt direction."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="9" name="GPIO10OUTCFG" readwrite="RW" access_macro="REG_GPIO_GPIOCFGB_GPIO10OUTCFG_WR" reset_value="0x0" width="2">
+        <ioreg_bf_description>"This bit holds the GPIO10 output configuration."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="8" name="GPIO10INCFG" readwrite="RW" access_macro="REG_GPIO_GPIOCFGB_GPIO10INCFG_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the GPIO10 input enable."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="7" name="GPIO9INTD" readwrite="RW" access_macro="REG_GPIO_GPIOCFGB_GPIO9INTD_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the GPIO9 interrupt direction."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="5" name="GPIO9OUTCFG" readwrite="RW" access_macro="REG_GPIO_GPIOCFGB_GPIO9OUTCFG_WR" reset_value="0x0" width="2">
+        <ioreg_bf_description>"This bit holds the GPIO9 output configuration."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="4" name="GPIO9INCFG" readwrite="RW" access_macro="REG_GPIO_GPIOCFGB_GPIO9INCFG_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the GPIO9 input enable."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="3" name="GPIO8INTD" readwrite="RW" access_macro="REG_GPIO_GPIOCFGB_GPIO8INTD_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the GPIO8 interrupt direction."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="1" name="GPIO8OUTCFG" readwrite="RW" access_macro="REG_GPIO_GPIOCFGB_GPIO8OUTCFG_WR" reset_value="0x0" width="2">
+        <ioreg_bf_description>"This bit holds the GPIO8 output configuration."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="GPIO8INCFG" readwrite="RW" access_macro="REG_GPIO_GPIOCFGB_GPIO8INCFG_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the GPIO8 input enable."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>GPIOCFGC</ioreg_name>
+    <ioreg_offset>0x00000048</ioreg_offset>
+    <ioreg_intro>GPIO Configuration Register C</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="31" name="GPIO23INTD" readwrite="RW" access_macro="REG_GPIO_GPIOCFGC_GPIO23INTD_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the GPIO23 interrupt direction."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="29" name="GPIO23OUTCFG" readwrite="RW" access_macro="REG_GPIO_GPIOCFGC_GPIO23OUTCFG_WR" reset_value="0x0" width="2">
+        <ioreg_bf_description>"This bit holds the GPIO23 output configuration."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="28" name="GPIO23INCFG" readwrite="RW" access_macro="REG_GPIO_GPIOCFGC_GPIO23INCFG_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the GPIO23 input enable."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="27" name="GPIO22INTD" readwrite="RW" access_macro="REG_GPIO_GPIOCFGC_GPIO22INTD_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the GPIO22 interrupt direction."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="25" name="GPIO22OUTCFG" readwrite="RW" access_macro="REG_GPIO_GPIOCFGC_GPIO22OUTCFG_WR" reset_value="0x0" width="2">
+        <ioreg_bf_description>"This bit holds the GPIO22 output configuration."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="24" name="GPIO22INCFG" readwrite="RW" access_macro="REG_GPIO_GPIOCFGC_GPIO22INCFG_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the GPIO22 input enable."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="23" name="GPIO21INTD" readwrite="RW" access_macro="REG_GPIO_GPIOCFGC_GPIO21INTD_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the GPIO21 interrupt direction."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="21" name="GPIO21OUTCFG" readwrite="RW" access_macro="REG_GPIO_GPIOCFGC_GPIO21OUTCFG_WR" reset_value="0x0" width="2">
+        <ioreg_bf_description>"This bit holds the GPIO21 output configuration."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="20" name="GPIO21INCFG" readwrite="RW" access_macro="REG_GPIO_GPIOCFGC_GPIO21INCFG_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the GPIO21 input enable."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="19" name="GPIO20INTD" readwrite="RW" access_macro="REG_GPIO_GPIOCFGC_GPIO20INTD_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the GPIO20 interrupt direction."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="17" name="GPIO20OUTCFG" readwrite="RW" access_macro="REG_GPIO_GPIOCFGC_GPIO20OUTCFG_WR" reset_value="0x0" width="2">
+        <ioreg_bf_description>"This bit holds the GPIO20 output configuration."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="16" name="GPIO20INCFG" readwrite="RW" access_macro="REG_GPIO_GPIOCFGC_GPIO20INCFG_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the GPIO20 input enable."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="15" name="GPIO19INTD" readwrite="RW" access_macro="REG_GPIO_GPIOCFGC_GPIO19INTD_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the GPIO19 interrupt direction."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="13" name="GPIO19OUTCFG" readwrite="RW" access_macro="REG_GPIO_GPIOCFGC_GPIO19OUTCFG_WR" reset_value="0x0" width="2">
+        <ioreg_bf_description>"This bit holds the GPIO19 output configuration."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="12" name="GPIO19INCFG" readwrite="RW" access_macro="REG_GPIO_GPIOCFGC_GPIO19INCFG_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the GPIO19 input enable."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="11" name="GPIO18INTD" readwrite="RW" access_macro="REG_GPIO_GPIOCFGC_GPIO18INTD_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the GPIO18 interrupt direction."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="9" name="GPIO18OUTCFG" readwrite="RW" access_macro="REG_GPIO_GPIOCFGC_GPIO18OUTCFG_WR" reset_value="0x0" width="2">
+        <ioreg_bf_description>"This bit holds the GPIO18 output configuration."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="8" name="GPIO18INCFG" readwrite="RW" access_macro="REG_GPIO_GPIOCFGC_GPIO18INCFG_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the GPIO18 input enable."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="7" name="GPIO17INTD" readwrite="RW" access_macro="REG_GPIO_GPIOCFGC_GPIO17INTD_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the GPIO17 interrupt direction."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="5" name="GPIO17OUTCFG" readwrite="RW" access_macro="REG_GPIO_GPIOCFGC_GPIO17OUTCFG_WR" reset_value="0x0" width="2">
+        <ioreg_bf_description>"This bit holds the GPIO17 output configuration."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="4" name="GPIO17INCFG" readwrite="RW" access_macro="REG_GPIO_GPIOCFGC_GPIO17INCFG_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the GPIO17 input enable."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="3" name="GPIO16INTD" readwrite="RW" access_macro="REG_GPIO_GPIOCFGC_GPIO16INTD_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the GPIO16 interrupt direction."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="1" name="GPIO16OUTCFG" readwrite="RW" access_macro="REG_GPIO_GPIOCFGC_GPIO16OUTCFG_WR" reset_value="0x0" width="2">
+        <ioreg_bf_description>"This bit holds the GPIO16 output configuration."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="GPIO16INCFG" readwrite="RW" access_macro="REG_GPIO_GPIOCFGC_GPIO16INCFG_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the GPIO16 input enable."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>GPIOCFGD</ioreg_name>
+    <ioreg_offset>0x0000004c</ioreg_offset>
+    <ioreg_intro>GPIO Configuration Register D</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="31" name="GPIO31INTD" readwrite="RW" access_macro="REG_GPIO_GPIOCFGD_GPIO31INTD_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the GPIO31 interrupt direction."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="29" name="GPIO31OUTCFG" readwrite="RW" access_macro="REG_GPIO_GPIOCFGD_GPIO31OUTCFG_WR" reset_value="0x0" width="2">
+        <ioreg_bf_description>"This bit holds the GPIO31 output configuration."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="28" name="GPIO31INCFG" readwrite="RW" access_macro="REG_GPIO_GPIOCFGD_GPIO31INCFG_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the GPIO31 input enable."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="27" name="GPIO30INTD" readwrite="RW" access_macro="REG_GPIO_GPIOCFGD_GPIO30INTD_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the GPIO30 interrupt direction."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="25" name="GPIO30OUTCFG" readwrite="RW" access_macro="REG_GPIO_GPIOCFGD_GPIO30OUTCFG_WR" reset_value="0x0" width="2">
+        <ioreg_bf_description>"This bit holds the GPIO30 output configuration."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="24" name="GPIO30INCFG" readwrite="RW" access_macro="REG_GPIO_GPIOCFGD_GPIO30INCFG_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the GPIO30 input enable."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="23" name="GPIO29INTD" readwrite="RW" access_macro="REG_GPIO_GPIOCFGD_GPIO29INTD_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the GPIO29 interrupt direction."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="21" name="GPIO29OUTCFG" readwrite="RW" access_macro="REG_GPIO_GPIOCFGD_GPIO29OUTCFG_WR" reset_value="0x0" width="2">
+        <ioreg_bf_description>"This bit holds the GPIO29 output configuration."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="20" name="GPIO29INCFG" readwrite="RW" access_macro="REG_GPIO_GPIOCFGD_GPIO29INCFG_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the GPIO29 input enable."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="19" name="GPIO28INTD" readwrite="RW" access_macro="REG_GPIO_GPIOCFGD_GPIO28INTD_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the GPIO28 interrupt direction."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="17" name="GPIO28OUTCFG" readwrite="RW" access_macro="REG_GPIO_GPIOCFGD_GPIO28OUTCFG_WR" reset_value="0x0" width="2">
+        <ioreg_bf_description>"This bit holds the GPIO28 output configuration."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="16" name="GPIO28INCFG" readwrite="RW" access_macro="REG_GPIO_GPIOCFGD_GPIO28INCFG_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the GPIO28 input enable."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="15" name="GPIO27INTD" readwrite="RW" access_macro="REG_GPIO_GPIOCFGD_GPIO27INTD_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the GPIO27 interrupt direction."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="13" name="GPIO27OUTCFG" readwrite="RW" access_macro="REG_GPIO_GPIOCFGD_GPIO27OUTCFG_WR" reset_value="0x0" width="2">
+        <ioreg_bf_description>"This bit holds the GPIO27 output configuration."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="12" name="GPIO27INCFG" readwrite="RW" access_macro="REG_GPIO_GPIOCFGD_GPIO27INCFG_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the GPIO27 input enable."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="11" name="GPIO26INTD" readwrite="RW" access_macro="REG_GPIO_GPIOCFGD_GPIO26INTD_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the GPIO26 interrupt direction."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="9" name="GPIO26OUTCFG" readwrite="RW" access_macro="REG_GPIO_GPIOCFGD_GPIO26OUTCFG_WR" reset_value="0x0" width="2">
+        <ioreg_bf_description>"This bit holds the GPIO26 output configuration."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="8" name="GPIO26INCFG" readwrite="RW" access_macro="REG_GPIO_GPIOCFGD_GPIO26INCFG_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the GPIO26 input enable."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="7" name="GPIO25INTD" readwrite="RW" access_macro="REG_GPIO_GPIOCFGD_GPIO25INTD_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the GPIO25 interrupt direction."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="5" name="GPIO25OUTCFG" readwrite="RW" access_macro="REG_GPIO_GPIOCFGD_GPIO25OUTCFG_WR" reset_value="0x0" width="2">
+        <ioreg_bf_description>"This bit holds the GPIO25 output configuration."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="4" name="GPIO25INCFG" readwrite="RW" access_macro="REG_GPIO_GPIOCFGD_GPIO25INCFG_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the GPIO25 input enable."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="3" name="GPIO24INTD" readwrite="RW" access_macro="REG_GPIO_GPIOCFGD_GPIO24INTD_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the GPIO24 interrupt direction."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="1" name="GPIO24OUTCFG" readwrite="RW" access_macro="REG_GPIO_GPIOCFGD_GPIO24OUTCFG_WR" reset_value="0x0" width="2">
+        <ioreg_bf_description>"This bit holds the GPIO24 output configuration."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="GPIO24INCFG" readwrite="RW" access_macro="REG_GPIO_GPIOCFGD_GPIO24INCFG_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the GPIO24 input enable."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>GPIOCFGE</ioreg_name>
+    <ioreg_offset>0x00000050</ioreg_offset>
+    <ioreg_intro>GPIO Configuration Register E</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="31" name="GPIO39INTD" readwrite="RW" access_macro="REG_GPIO_GPIOCFGE_GPIO39INTD_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the GPIO39 interrupt direction."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="29" name="GPIO39OUTCFG" readwrite="RW" access_macro="REG_GPIO_GPIOCFGE_GPIO39OUTCFG_WR" reset_value="0x0" width="2">
+        <ioreg_bf_description>"This bit holds the GPIO39 output configuration."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="28" name="GPIO39INCFG" readwrite="RW" access_macro="REG_GPIO_GPIOCFGE_GPIO39INCFG_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the GPIO39 input enable."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="27" name="GPIO38INTD" readwrite="RW" access_macro="REG_GPIO_GPIOCFGE_GPIO38INTD_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the GPIO38 interrupt direction."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="25" name="GPIO38OUTCFG" readwrite="RW" access_macro="REG_GPIO_GPIOCFGE_GPIO38OUTCFG_WR" reset_value="0x0" width="2">
+        <ioreg_bf_description>"This bit holds the GPIO38 output configuration."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="24" name="GPIO38INCFG" readwrite="RW" access_macro="REG_GPIO_GPIOCFGE_GPIO38INCFG_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the GPIO38 input enable."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="23" name="GPIO37INTD" readwrite="RW" access_macro="REG_GPIO_GPIOCFGE_GPIO37INTD_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the GPIO37 interrupt direction."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="21" name="GPIO37OUTCFG" readwrite="RW" access_macro="REG_GPIO_GPIOCFGE_GPIO37OUTCFG_WR" reset_value="0x0" width="2">
+        <ioreg_bf_description>"This bit holds the GPIO37 output configuration."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="20" name="GPIO37INCFG" readwrite="RW" access_macro="REG_GPIO_GPIOCFGE_GPIO37INCFG_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the GPIO37 input enable."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="19" name="GPIO36INTD" readwrite="RW" access_macro="REG_GPIO_GPIOCFGE_GPIO36INTD_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the GPIO36 interrupt direction."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="17" name="GPIO36OUTCFG" readwrite="RW" access_macro="REG_GPIO_GPIOCFGE_GPIO36OUTCFG_WR" reset_value="0x0" width="2">
+        <ioreg_bf_description>"This bit holds the GPIO36 output configuration."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="16" name="GPIO36INCFG" readwrite="RW" access_macro="REG_GPIO_GPIOCFGE_GPIO36INCFG_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the GPIO36 input enable."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="15" name="GPIO35INTD" readwrite="RW" access_macro="REG_GPIO_GPIOCFGE_GPIO35INTD_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the GPIO35 interrupt direction."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="13" name="GPIO35OUTCFG" readwrite="RW" access_macro="REG_GPIO_GPIOCFGE_GPIO35OUTCFG_WR" reset_value="0x0" width="2">
+        <ioreg_bf_description>"This bit holds the GPIO35 output configuration."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="12" name="GPIO35INCFG" readwrite="RW" access_macro="REG_GPIO_GPIOCFGE_GPIO35INCFG_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the GPIO35 input enable."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="11" name="GPIO34INTD" readwrite="RW" access_macro="REG_GPIO_GPIOCFGE_GPIO34INTD_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the GPIO34 interrupt direction."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="9" name="GPIO34OUTCFG" readwrite="RW" access_macro="REG_GPIO_GPIOCFGE_GPIO34OUTCFG_WR" reset_value="0x0" width="2">
+        <ioreg_bf_description>"This bit holds the GPIO34 output configuration."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="8" name="GPIO34INCFG" readwrite="RW" access_macro="REG_GPIO_GPIOCFGE_GPIO34INCFG_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the GPIO34 input enable."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="7" name="GPIO33INTD" readwrite="RW" access_macro="REG_GPIO_GPIOCFGE_GPIO33INTD_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the GPIO33 interrupt direction."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="5" name="GPIO33OUTCFG" readwrite="RW" access_macro="REG_GPIO_GPIOCFGE_GPIO33OUTCFG_WR" reset_value="0x0" width="2">
+        <ioreg_bf_description>"This bit holds the GPIO33 output configuration."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="4" name="GPIO33INCFG" readwrite="RW" access_macro="REG_GPIO_GPIOCFGE_GPIO33INCFG_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the GPIO33 input enable."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="3" name="GPIO32INTD" readwrite="RW" access_macro="REG_GPIO_GPIOCFGE_GPIO32INTD_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the GPIO32 interrupt direction."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="1" name="GPIO32OUTCFG" readwrite="RW" access_macro="REG_GPIO_GPIOCFGE_GPIO32OUTCFG_WR" reset_value="0x0" width="2">
+        <ioreg_bf_description>"This bit holds the GPIO32 output configuration."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="GPIO32INCFG" readwrite="RW" access_macro="REG_GPIO_GPIOCFGE_GPIO32INCFG_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the GPIO32 input enable."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>GPIOCFGF</ioreg_name>
+    <ioreg_offset>0x00000054</ioreg_offset>
+    <ioreg_intro>GPIO Configuration Register F</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="31" name="GPIO47INTD" readwrite="RW" access_macro="REG_GPIO_GPIOCFGF_GPIO47INTD_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the GPIO47 interrupt direction."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="29" name="GPIO47OUTCFG" readwrite="RW" access_macro="REG_GPIO_GPIOCFGF_GPIO47OUTCFG_WR" reset_value="0x0" width="2">
+        <ioreg_bf_description>"This bit holds the GPIO47 output configuration."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="28" name="GPIO47INCFG" readwrite="RW" access_macro="REG_GPIO_GPIOCFGF_GPIO47INCFG_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the GPIO47 input enable."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="27" name="GPIO46INTD" readwrite="RW" access_macro="REG_GPIO_GPIOCFGF_GPIO46INTD_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the GPIO46 interrupt direction."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="25" name="GPIO46OUTCFG" readwrite="RW" access_macro="REG_GPIO_GPIOCFGF_GPIO46OUTCFG_WR" reset_value="0x0" width="2">
+        <ioreg_bf_description>"This bit holds the GPIO46 output configuration."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="24" name="GPIO46INCFG" readwrite="RW" access_macro="REG_GPIO_GPIOCFGF_GPIO46INCFG_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the GPIO46 input enable."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="23" name="GPIO45INTD" readwrite="RW" access_macro="REG_GPIO_GPIOCFGF_GPIO45INTD_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the GPIO45 interrupt direction."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="21" name="GPIO45OUTCFG" readwrite="RW" access_macro="REG_GPIO_GPIOCFGF_GPIO45OUTCFG_WR" reset_value="0x0" width="2">
+        <ioreg_bf_description>"This bit holds the GPIO45 output configuration."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="20" name="GPIO45INCFG" readwrite="RW" access_macro="REG_GPIO_GPIOCFGF_GPIO45INCFG_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the GPIO45 input enable."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="19" name="GPIO44INTD" readwrite="RW" access_macro="REG_GPIO_GPIOCFGF_GPIO44INTD_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the GPIO44 interrupt direction."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="17" name="GPIO44OUTCFG" readwrite="RW" access_macro="REG_GPIO_GPIOCFGF_GPIO44OUTCFG_WR" reset_value="0x0" width="2">
+        <ioreg_bf_description>"This bit holds the GPIO44 output configuration."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="16" name="GPIO44INCFG" readwrite="RW" access_macro="REG_GPIO_GPIOCFGF_GPIO44INCFG_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the GPIO44 input enable."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="15" name="GPIO43INTD" readwrite="RW" access_macro="REG_GPIO_GPIOCFGF_GPIO43INTD_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the GPIO43 interrupt direction."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="13" name="GPIO43OUTCFG" readwrite="RW" access_macro="REG_GPIO_GPIOCFGF_GPIO43OUTCFG_WR" reset_value="0x0" width="2">
+        <ioreg_bf_description>"This bit holds the GPIO43 output configuration."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="12" name="GPIO43INCFG" readwrite="RW" access_macro="REG_GPIO_GPIOCFGF_GPIO43INCFG_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the GPIO43 input enable."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="11" name="GPIO42INTD" readwrite="RW" access_macro="REG_GPIO_GPIOCFGF_GPIO42INTD_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the GPIO42 interrupt direction."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="9" name="GPIO42OUTCFG" readwrite="RW" access_macro="REG_GPIO_GPIOCFGF_GPIO42OUTCFG_WR" reset_value="0x0" width="2">
+        <ioreg_bf_description>"This bit holds the GPIO42 output configuration."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="8" name="GPIO42INCFG" readwrite="RW" access_macro="REG_GPIO_GPIOCFGF_GPIO42INCFG_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the GPIO42 input enable."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="7" name="GPIO41INTD" readwrite="RW" access_macro="REG_GPIO_GPIOCFGF_GPIO41INTD_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the GPIO41 interrupt direction."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="5" name="GPIO41OUTCFG" readwrite="RW" access_macro="REG_GPIO_GPIOCFGF_GPIO41OUTCFG_WR" reset_value="0x0" width="2">
+        <ioreg_bf_description>"This bit holds the GPIO41 output configuration."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="4" name="GPIO41INCFG" readwrite="RW" access_macro="REG_GPIO_GPIOCFGF_GPIO41INCFG_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the GPIO41 input enable."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="3" name="GPIO40INTD" readwrite="RW" access_macro="REG_GPIO_GPIOCFGF_GPIO40INTD_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the GPIO40 interrupt direction."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="1" name="GPIO40OUTCFG" readwrite="RW" access_macro="REG_GPIO_GPIOCFGF_GPIO40OUTCFG_WR" reset_value="0x0" width="2">
+        <ioreg_bf_description>"This bit holds the GPIO40 output configuration."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="GPIO40INCFG" readwrite="RW" access_macro="REG_GPIO_GPIOCFGF_GPIO40INCFG_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the GPIO40 input enable."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>GPIOCFGG</ioreg_name>
+    <ioreg_offset>0x00000058</ioreg_offset>
+    <ioreg_intro>GPIO Configuration Register G</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="8" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="24" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="7" name="GPIO49INTD" readwrite="RW" access_macro="REG_GPIO_GPIOCFGG_GPIO49INTD_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the GPIO49 interrupt direction."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="5" name="GPIO49OUTCFG" readwrite="RW" access_macro="REG_GPIO_GPIOCFGG_GPIO49OUTCFG_WR" reset_value="0x0" width="2">
+        <ioreg_bf_description>"This bit holds the GPIO49 output configuration."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="4" name="GPIO49INCFG" readwrite="RW" access_macro="REG_GPIO_GPIOCFGG_GPIO49INCFG_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the GPIO49 input enable."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="3" name="GPIO48INTD" readwrite="RW" access_macro="REG_GPIO_GPIOCFGG_GPIO48INTD_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the GPIO48 interrupt direction."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="1" name="GPIO48OUTCFG" readwrite="RW" access_macro="REG_GPIO_GPIOCFGG_GPIO48OUTCFG_WR" reset_value="0x0" width="2">
+        <ioreg_bf_description>"This bit holds the GPIO48 output configuration."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="GPIO48INCFG" readwrite="RW" access_macro="REG_GPIO_GPIOCFGG_GPIO48INCFG_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the GPIO48 input enable."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>PADKEY</ioreg_name>
+    <ioreg_offset>0x00000060</ioreg_offset>
+    <ioreg_intro>Key Register for all pad configuration registers</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="0" name="VALUE" readwrite="RW" access_macro="REG_GPIO_PADKEY_VALUE_WR" reset_value="0x0" width="32">
+        <ioreg_bf_description>Key value. (0x73 unlocks)
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>GPIORDA</ioreg_name>
+    <ioreg_offset>0x00000080</ioreg_offset>
+    <ioreg_intro>GPIO Input Register A</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="0" name="GPIORDA" readwrite="RO" access_macro="REG_GPIO_GPIORDA_GPIORDA_RD" reset_value="0x0" width="32">
+        <ioreg_bf_description>"This field returns the GPIO0-31 read data."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>GPIORDB</ioreg_name>
+    <ioreg_offset>0x00000084</ioreg_offset>
+    <ioreg_intro>GPIO Input Register B</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="18" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="14" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="GPIORDB" readwrite="RO" access_macro="REG_GPIO_GPIORDB_GPIORDB_RD" reset_value="0x0" width="18">
+        <ioreg_bf_description>"This field returns the GPIO32-49 read data."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>GPIOWTA</ioreg_name>
+    <ioreg_offset>0x00000088</ioreg_offset>
+    <ioreg_intro>GPIO Output Register A</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="0" name="GPIOWTA" readwrite="RW" access_macro="REG_GPIO_GPIOWTA_GPIOWTA_WR" reset_value="0x0" width="32">
+        <ioreg_bf_description>"This field contains the GPIO0-31 write data."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>GPIOWTB</ioreg_name>
+    <ioreg_offset>0x0000008c</ioreg_offset>
+    <ioreg_intro>GPIO Output Register B</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="18" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="14" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="GPIOWTB" readwrite="RW" access_macro="REG_GPIO_GPIOWTB_GPIOWTB_WR" reset_value="0x0" width="18">
+        <ioreg_bf_description>"This field contains the GPIO32-49 write data."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>GPIOWTSA</ioreg_name>
+    <ioreg_offset>0x00000090</ioreg_offset>
+    <ioreg_intro>GPIO Output Register A Set</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="0" name="GPIOWTSA" readwrite="RW" access_macro="REG_GPIO_GPIOWTSA_GPIOWTSA_WR" reset_value="0x0" width="32">
+        <ioreg_bf_description>"This field sets the GPIO0-31 write data."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>GPIOWTSB</ioreg_name>
+    <ioreg_offset>0x00000094</ioreg_offset>
+    <ioreg_intro>GPIO Output Register B Set</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="18" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="14" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="GPIOWTSB" readwrite="RW" access_macro="REG_GPIO_GPIOWTSB_GPIOWTSB_WR" reset_value="0x0" width="18">
+        <ioreg_bf_description>"This field sets the GPIO32-49 write data."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>GPIOWTCA</ioreg_name>
+    <ioreg_offset>0x00000098</ioreg_offset>
+    <ioreg_intro>GPIO Output Register A Clear</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="0" name="GPIOWTCA" readwrite="RW" access_macro="REG_GPIO_GPIOWTCA_GPIOWTCA_WR" reset_value="0x0" width="32">
+        <ioreg_bf_description>"This field clears the GPIO0-31 write data."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>GPIOWTCB</ioreg_name>
+    <ioreg_offset>0x0000009c</ioreg_offset>
+    <ioreg_intro>GPIO Output Register B Clear</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="18" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="14" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="GPIOWTCB" readwrite="RW" access_macro="REG_GPIO_GPIOWTCB_GPIOWTCB_WR" reset_value="0x0" width="18">
+        <ioreg_bf_description>"This field clears the GPIO32-49 write data."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>GPIOENA</ioreg_name>
+    <ioreg_offset>0x000000a0</ioreg_offset>
+    <ioreg_intro>GPIO Enable Register A</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="0" name="GPIOENA" readwrite="RW" access_macro="REG_GPIO_GPIOENA_GPIOENA_WR" reset_value="0x0" width="32">
+        <ioreg_bf_description>"This field contains the GPIO0-31 enable data."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>GPIOENB</ioreg_name>
+    <ioreg_offset>0x000000a4</ioreg_offset>
+    <ioreg_intro>GPIO Enable Register B</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="18" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="14" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="GPIOENB" readwrite="RW" access_macro="REG_GPIO_GPIOENB_GPIOENB_WR" reset_value="0x0" width="18">
+        <ioreg_bf_description>"This field contains the GPIO32-49 enable data."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>GPIOENSA</ioreg_name>
+    <ioreg_offset>0x000000a8</ioreg_offset>
+    <ioreg_intro>GPIO Enable Register A Set</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="0" name="GPIOENSA" readwrite="RW" access_macro="REG_GPIO_GPIOENSA_GPIOENSA_WR" reset_value="0x0" width="32">
+        <ioreg_bf_description>"This field sets the GPIO0-31 enable data."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>GPIOENSB</ioreg_name>
+    <ioreg_offset>0x000000ac</ioreg_offset>
+    <ioreg_intro>GPIO Enable Register B Set</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="18" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="14" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="GPIOENSB" readwrite="RW" access_macro="REG_GPIO_GPIOENSB_GPIOENSB_WR" reset_value="0x0" width="18">
+        <ioreg_bf_description>"This field sets the GPIO32-49 enable data."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>GPIOENCA</ioreg_name>
+    <ioreg_offset>0x000000b4</ioreg_offset>
+    <ioreg_intro>GPIO Enable Register A Clear</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="0" name="GPIOENCA" readwrite="RW" access_macro="REG_GPIO_GPIOENCA_GPIOENCA_WR" reset_value="0x0" width="32">
+        <ioreg_bf_description>"This field clears the GPIO0-31 enable data."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>GPIOENCB</ioreg_name>
+    <ioreg_offset>0x000000b8</ioreg_offset>
+    <ioreg_intro>GPIO Enable Register B Clear</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="18" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="14" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="GPIOENCB" readwrite="RW" access_macro="REG_GPIO_GPIOENCB_GPIOENCB_WR" reset_value="0x0" width="18">
+        <ioreg_bf_description>"This field clears the GPIO32-49 enable data."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>INTRPT0EN</ioreg_name>
+    <ioreg_offset>0x00000200</ioreg_offset>
+    <ioreg_intro>GPIO Interrupt Registers 31-0</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="31" name="GPIO31" readwrite="RW" access_macro="REG_GPIO_INTRPT0EN_GPIO31_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO31 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="30" name="GPIO30" readwrite="RW" access_macro="REG_GPIO_INTRPT0EN_GPIO30_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO30 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="29" name="GPIO29" readwrite="RW" access_macro="REG_GPIO_INTRPT0EN_GPIO29_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO29 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="28" name="GPIO28" readwrite="RW" access_macro="REG_GPIO_INTRPT0EN_GPIO28_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO28 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="27" name="GPIO27" readwrite="RW" access_macro="REG_GPIO_INTRPT0EN_GPIO27_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO27 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="26" name="GPIO26" readwrite="RW" access_macro="REG_GPIO_INTRPT0EN_GPIO26_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO26 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="25" name="GPIO25" readwrite="RW" access_macro="REG_GPIO_INTRPT0EN_GPIO25_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO25 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="24" name="GPIO24" readwrite="RW" access_macro="REG_GPIO_INTRPT0EN_GPIO24_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO24 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="23" name="GPIO23" readwrite="RW" access_macro="REG_GPIO_INTRPT0EN_GPIO23_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO23 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="22" name="GPIO22" readwrite="RW" access_macro="REG_GPIO_INTRPT0EN_GPIO22_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO22 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="21" name="GPIO21" readwrite="RW" access_macro="REG_GPIO_INTRPT0EN_GPIO21_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO21 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="20" name="GPIO20" readwrite="RW" access_macro="REG_GPIO_INTRPT0EN_GPIO20_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO20 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="19" name="GPIO19" readwrite="RW" access_macro="REG_GPIO_INTRPT0EN_GPIO19_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO19 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="18" name="GPIO18" readwrite="RW" access_macro="REG_GPIO_INTRPT0EN_GPIO18_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO18interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="17" name="GPIO17" readwrite="RW" access_macro="REG_GPIO_INTRPT0EN_GPIO17_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO17 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="16" name="GPIO16" readwrite="RW" access_macro="REG_GPIO_INTRPT0EN_GPIO16_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO16 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="15" name="GPIO15" readwrite="RW" access_macro="REG_GPIO_INTRPT0EN_GPIO15_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO15 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="14" name="GPIO14" readwrite="RW" access_macro="REG_GPIO_INTRPT0EN_GPIO14_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO14 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="13" name="GPIO13" readwrite="RW" access_macro="REG_GPIO_INTRPT0EN_GPIO13_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO13 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="12" name="GPIO12" readwrite="RW" access_macro="REG_GPIO_INTRPT0EN_GPIO12_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO12 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="11" name="GPIO11" readwrite="RW" access_macro="REG_GPIO_INTRPT0EN_GPIO11_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO11 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="10" name="GPIO10" readwrite="RW" access_macro="REG_GPIO_INTRPT0EN_GPIO10_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO10 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="9" name="GPIO9" readwrite="RW" access_macro="REG_GPIO_INTRPT0EN_GPIO9_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO9 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="8" name="GPIO8" readwrite="RW" access_macro="REG_GPIO_INTRPT0EN_GPIO8_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO8 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="7" name="GPIO7" readwrite="RW" access_macro="REG_GPIO_INTRPT0EN_GPIO7_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO7 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="6" name="GPIO6" readwrite="RW" access_macro="REG_GPIO_INTRPT0EN_GPIO6_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO6 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="5" name="GPIO5" readwrite="RW" access_macro="REG_GPIO_INTRPT0EN_GPIO5_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO5 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="4" name="GPIO4" readwrite="RW" access_macro="REG_GPIO_INTRPT0EN_GPIO4_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO4 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="3" name="GPIO3" readwrite="RW" access_macro="REG_GPIO_INTRPT0EN_GPIO3_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO3 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="2" name="GPIO2" readwrite="RW" access_macro="REG_GPIO_INTRPT0EN_GPIO2_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO2 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="1" name="GPIO1" readwrite="RW" access_macro="REG_GPIO_INTRPT0EN_GPIO1_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO1 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="GPIO0" readwrite="RW" access_macro="REG_GPIO_INTRPT0EN_GPIO0_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO0 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>INTRPT0STAT</ioreg_name>
+    <ioreg_offset>0x00000204</ioreg_offset>
+    <ioreg_intro>GPIO Interrupt Registers 31-0</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="31" name="GPIO31" readwrite="RW" access_macro="REG_GPIO_INTRPT0STAT_GPIO31_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO31 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="30" name="GPIO30" readwrite="RW" access_macro="REG_GPIO_INTRPT0STAT_GPIO30_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO30 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="29" name="GPIO29" readwrite="RW" access_macro="REG_GPIO_INTRPT0STAT_GPIO29_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO29 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="28" name="GPIO28" readwrite="RW" access_macro="REG_GPIO_INTRPT0STAT_GPIO28_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO28 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="27" name="GPIO27" readwrite="RW" access_macro="REG_GPIO_INTRPT0STAT_GPIO27_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO27 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="26" name="GPIO26" readwrite="RW" access_macro="REG_GPIO_INTRPT0STAT_GPIO26_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO26 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="25" name="GPIO25" readwrite="RW" access_macro="REG_GPIO_INTRPT0STAT_GPIO25_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO25 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="24" name="GPIO24" readwrite="RW" access_macro="REG_GPIO_INTRPT0STAT_GPIO24_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO24 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="23" name="GPIO23" readwrite="RW" access_macro="REG_GPIO_INTRPT0STAT_GPIO23_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO23 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="22" name="GPIO22" readwrite="RW" access_macro="REG_GPIO_INTRPT0STAT_GPIO22_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO22 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="21" name="GPIO21" readwrite="RW" access_macro="REG_GPIO_INTRPT0STAT_GPIO21_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO21 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="20" name="GPIO20" readwrite="RW" access_macro="REG_GPIO_INTRPT0STAT_GPIO20_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO20 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="19" name="GPIO19" readwrite="RW" access_macro="REG_GPIO_INTRPT0STAT_GPIO19_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO19 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="18" name="GPIO18" readwrite="RW" access_macro="REG_GPIO_INTRPT0STAT_GPIO18_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO18interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="17" name="GPIO17" readwrite="RW" access_macro="REG_GPIO_INTRPT0STAT_GPIO17_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO17 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="16" name="GPIO16" readwrite="RW" access_macro="REG_GPIO_INTRPT0STAT_GPIO16_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO16 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="15" name="GPIO15" readwrite="RW" access_macro="REG_GPIO_INTRPT0STAT_GPIO15_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO15 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="14" name="GPIO14" readwrite="RW" access_macro="REG_GPIO_INTRPT0STAT_GPIO14_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO14 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="13" name="GPIO13" readwrite="RW" access_macro="REG_GPIO_INTRPT0STAT_GPIO13_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO13 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="12" name="GPIO12" readwrite="RW" access_macro="REG_GPIO_INTRPT0STAT_GPIO12_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO12 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="11" name="GPIO11" readwrite="RW" access_macro="REG_GPIO_INTRPT0STAT_GPIO11_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO11 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="10" name="GPIO10" readwrite="RW" access_macro="REG_GPIO_INTRPT0STAT_GPIO10_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO10 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="9" name="GPIO9" readwrite="RW" access_macro="REG_GPIO_INTRPT0STAT_GPIO9_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO9 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="8" name="GPIO8" readwrite="RW" access_macro="REG_GPIO_INTRPT0STAT_GPIO8_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO8 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="7" name="GPIO7" readwrite="RW" access_macro="REG_GPIO_INTRPT0STAT_GPIO7_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO7 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="6" name="GPIO6" readwrite="RW" access_macro="REG_GPIO_INTRPT0STAT_GPIO6_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO6 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="5" name="GPIO5" readwrite="RW" access_macro="REG_GPIO_INTRPT0STAT_GPIO5_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO5 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="4" name="GPIO4" readwrite="RW" access_macro="REG_GPIO_INTRPT0STAT_GPIO4_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO4 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="3" name="GPIO3" readwrite="RW" access_macro="REG_GPIO_INTRPT0STAT_GPIO3_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO3 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="2" name="GPIO2" readwrite="RW" access_macro="REG_GPIO_INTRPT0STAT_GPIO2_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO2 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="1" name="GPIO1" readwrite="RW" access_macro="REG_GPIO_INTRPT0STAT_GPIO1_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO1 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="GPIO0" readwrite="RW" access_macro="REG_GPIO_INTRPT0STAT_GPIO0_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO0 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>INTRPT0CLR</ioreg_name>
+    <ioreg_offset>0x00000208</ioreg_offset>
+    <ioreg_intro>GPIO Interrupt Registers 31-0</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="31" name="GPIO31" readwrite="RW" access_macro="REG_GPIO_INTRPT0CLR_GPIO31_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO31 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="30" name="GPIO30" readwrite="RW" access_macro="REG_GPIO_INTRPT0CLR_GPIO30_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO30 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="29" name="GPIO29" readwrite="RW" access_macro="REG_GPIO_INTRPT0CLR_GPIO29_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO29 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="28" name="GPIO28" readwrite="RW" access_macro="REG_GPIO_INTRPT0CLR_GPIO28_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO28 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="27" name="GPIO27" readwrite="RW" access_macro="REG_GPIO_INTRPT0CLR_GPIO27_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO27 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="26" name="GPIO26" readwrite="RW" access_macro="REG_GPIO_INTRPT0CLR_GPIO26_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO26 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="25" name="GPIO25" readwrite="RW" access_macro="REG_GPIO_INTRPT0CLR_GPIO25_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO25 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="24" name="GPIO24" readwrite="RW" access_macro="REG_GPIO_INTRPT0CLR_GPIO24_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO24 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="23" name="GPIO23" readwrite="RW" access_macro="REG_GPIO_INTRPT0CLR_GPIO23_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO23 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="22" name="GPIO22" readwrite="RW" access_macro="REG_GPIO_INTRPT0CLR_GPIO22_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO22 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="21" name="GPIO21" readwrite="RW" access_macro="REG_GPIO_INTRPT0CLR_GPIO21_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO21 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="20" name="GPIO20" readwrite="RW" access_macro="REG_GPIO_INTRPT0CLR_GPIO20_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO20 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="19" name="GPIO19" readwrite="RW" access_macro="REG_GPIO_INTRPT0CLR_GPIO19_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO19 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="18" name="GPIO18" readwrite="RW" access_macro="REG_GPIO_INTRPT0CLR_GPIO18_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO18interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="17" name="GPIO17" readwrite="RW" access_macro="REG_GPIO_INTRPT0CLR_GPIO17_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO17 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="16" name="GPIO16" readwrite="RW" access_macro="REG_GPIO_INTRPT0CLR_GPIO16_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO16 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="15" name="GPIO15" readwrite="RW" access_macro="REG_GPIO_INTRPT0CLR_GPIO15_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO15 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="14" name="GPIO14" readwrite="RW" access_macro="REG_GPIO_INTRPT0CLR_GPIO14_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO14 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="13" name="GPIO13" readwrite="RW" access_macro="REG_GPIO_INTRPT0CLR_GPIO13_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO13 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="12" name="GPIO12" readwrite="RW" access_macro="REG_GPIO_INTRPT0CLR_GPIO12_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO12 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="11" name="GPIO11" readwrite="RW" access_macro="REG_GPIO_INTRPT0CLR_GPIO11_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO11 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="10" name="GPIO10" readwrite="RW" access_macro="REG_GPIO_INTRPT0CLR_GPIO10_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO10 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="9" name="GPIO9" readwrite="RW" access_macro="REG_GPIO_INTRPT0CLR_GPIO9_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO9 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="8" name="GPIO8" readwrite="RW" access_macro="REG_GPIO_INTRPT0CLR_GPIO8_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO8 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="7" name="GPIO7" readwrite="RW" access_macro="REG_GPIO_INTRPT0CLR_GPIO7_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO7 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="6" name="GPIO6" readwrite="RW" access_macro="REG_GPIO_INTRPT0CLR_GPIO6_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO6 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="5" name="GPIO5" readwrite="RW" access_macro="REG_GPIO_INTRPT0CLR_GPIO5_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO5 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="4" name="GPIO4" readwrite="RW" access_macro="REG_GPIO_INTRPT0CLR_GPIO4_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO4 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="3" name="GPIO3" readwrite="RW" access_macro="REG_GPIO_INTRPT0CLR_GPIO3_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO3 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="2" name="GPIO2" readwrite="RW" access_macro="REG_GPIO_INTRPT0CLR_GPIO2_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO2 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="1" name="GPIO1" readwrite="RW" access_macro="REG_GPIO_INTRPT0CLR_GPIO1_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO1 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="GPIO0" readwrite="RW" access_macro="REG_GPIO_INTRPT0CLR_GPIO0_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO0 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>INTRPT0SET</ioreg_name>
+    <ioreg_offset>0x0000020c</ioreg_offset>
+    <ioreg_intro>GPIO Interrupt Registers 31-0</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="31" name="GPIO31" readwrite="RW" access_macro="REG_GPIO_INTRPT0SET_GPIO31_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO31 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="30" name="GPIO30" readwrite="RW" access_macro="REG_GPIO_INTRPT0SET_GPIO30_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO30 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="29" name="GPIO29" readwrite="RW" access_macro="REG_GPIO_INTRPT0SET_GPIO29_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO29 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="28" name="GPIO28" readwrite="RW" access_macro="REG_GPIO_INTRPT0SET_GPIO28_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO28 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="27" name="GPIO27" readwrite="RW" access_macro="REG_GPIO_INTRPT0SET_GPIO27_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO27 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="26" name="GPIO26" readwrite="RW" access_macro="REG_GPIO_INTRPT0SET_GPIO26_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO26 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="25" name="GPIO25" readwrite="RW" access_macro="REG_GPIO_INTRPT0SET_GPIO25_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO25 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="24" name="GPIO24" readwrite="RW" access_macro="REG_GPIO_INTRPT0SET_GPIO24_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO24 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="23" name="GPIO23" readwrite="RW" access_macro="REG_GPIO_INTRPT0SET_GPIO23_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO23 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="22" name="GPIO22" readwrite="RW" access_macro="REG_GPIO_INTRPT0SET_GPIO22_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO22 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="21" name="GPIO21" readwrite="RW" access_macro="REG_GPIO_INTRPT0SET_GPIO21_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO21 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="20" name="GPIO20" readwrite="RW" access_macro="REG_GPIO_INTRPT0SET_GPIO20_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO20 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="19" name="GPIO19" readwrite="RW" access_macro="REG_GPIO_INTRPT0SET_GPIO19_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO19 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="18" name="GPIO18" readwrite="RW" access_macro="REG_GPIO_INTRPT0SET_GPIO18_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO18interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="17" name="GPIO17" readwrite="RW" access_macro="REG_GPIO_INTRPT0SET_GPIO17_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO17 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="16" name="GPIO16" readwrite="RW" access_macro="REG_GPIO_INTRPT0SET_GPIO16_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO16 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="15" name="GPIO15" readwrite="RW" access_macro="REG_GPIO_INTRPT0SET_GPIO15_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO15 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="14" name="GPIO14" readwrite="RW" access_macro="REG_GPIO_INTRPT0SET_GPIO14_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO14 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="13" name="GPIO13" readwrite="RW" access_macro="REG_GPIO_INTRPT0SET_GPIO13_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO13 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="12" name="GPIO12" readwrite="RW" access_macro="REG_GPIO_INTRPT0SET_GPIO12_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO12 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="11" name="GPIO11" readwrite="RW" access_macro="REG_GPIO_INTRPT0SET_GPIO11_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO11 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="10" name="GPIO10" readwrite="RW" access_macro="REG_GPIO_INTRPT0SET_GPIO10_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO10 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="9" name="GPIO9" readwrite="RW" access_macro="REG_GPIO_INTRPT0SET_GPIO9_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO9 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="8" name="GPIO8" readwrite="RW" access_macro="REG_GPIO_INTRPT0SET_GPIO8_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO8 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="7" name="GPIO7" readwrite="RW" access_macro="REG_GPIO_INTRPT0SET_GPIO7_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO7 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="6" name="GPIO6" readwrite="RW" access_macro="REG_GPIO_INTRPT0SET_GPIO6_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO6 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="5" name="GPIO5" readwrite="RW" access_macro="REG_GPIO_INTRPT0SET_GPIO5_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO5 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="4" name="GPIO4" readwrite="RW" access_macro="REG_GPIO_INTRPT0SET_GPIO4_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO4 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="3" name="GPIO3" readwrite="RW" access_macro="REG_GPIO_INTRPT0SET_GPIO3_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO3 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="2" name="GPIO2" readwrite="RW" access_macro="REG_GPIO_INTRPT0SET_GPIO2_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO2 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="1" name="GPIO1" readwrite="RW" access_macro="REG_GPIO_INTRPT0SET_GPIO1_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO1 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="GPIO0" readwrite="RW" access_macro="REG_GPIO_INTRPT0SET_GPIO0_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO0 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>INTRPT1EN</ioreg_name>
+    <ioreg_offset>0x00000210</ioreg_offset>
+    <ioreg_intro>GPIO Interrupt Registers 49-32</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="18" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="14" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="17" name="GPIO49" readwrite="RW" access_macro="REG_GPIO_INTRPT1EN_GPIO49_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO49 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="16" name="GPIO48" readwrite="RW" access_macro="REG_GPIO_INTRPT1EN_GPIO48_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO48 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="15" name="GPIO47" readwrite="RW" access_macro="REG_GPIO_INTRPT1EN_GPIO47_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO47 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="14" name="GPIO46" readwrite="RW" access_macro="REG_GPIO_INTRPT1EN_GPIO46_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO46 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="13" name="GPIO45" readwrite="RW" access_macro="REG_GPIO_INTRPT1EN_GPIO45_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO45 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="12" name="GPIO44" readwrite="RW" access_macro="REG_GPIO_INTRPT1EN_GPIO44_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO44 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="11" name="GPIO43" readwrite="RW" access_macro="REG_GPIO_INTRPT1EN_GPIO43_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO43 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="10" name="GPIO42" readwrite="RW" access_macro="REG_GPIO_INTRPT1EN_GPIO42_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO42 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="9" name="GPIO41" readwrite="RW" access_macro="REG_GPIO_INTRPT1EN_GPIO41_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO41 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="8" name="GPIO40" readwrite="RW" access_macro="REG_GPIO_INTRPT1EN_GPIO40_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO40 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="7" name="GPIO39" readwrite="RW" access_macro="REG_GPIO_INTRPT1EN_GPIO39_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO39 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="6" name="GPIO38" readwrite="RW" access_macro="REG_GPIO_INTRPT1EN_GPIO38_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO38 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="5" name="GPIO37" readwrite="RW" access_macro="REG_GPIO_INTRPT1EN_GPIO37_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO37 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="4" name="GPIO36" readwrite="RW" access_macro="REG_GPIO_INTRPT1EN_GPIO36_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO36 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="3" name="GPIO35" readwrite="RW" access_macro="REG_GPIO_INTRPT1EN_GPIO35_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO35 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="2" name="GPIO34" readwrite="RW" access_macro="REG_GPIO_INTRPT1EN_GPIO34_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO34 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="1" name="GPIO33" readwrite="RW" access_macro="REG_GPIO_INTRPT1EN_GPIO33_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO33 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="GPIO32" readwrite="RW" access_macro="REG_GPIO_INTRPT1EN_GPIO32_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO32 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>INTRPT1STAT</ioreg_name>
+    <ioreg_offset>0x00000214</ioreg_offset>
+    <ioreg_intro>GPIO Interrupt Registers 49-32</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="18" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="14" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="17" name="GPIO49" readwrite="RW" access_macro="REG_GPIO_INTRPT1STAT_GPIO49_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO49 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="16" name="GPIO48" readwrite="RW" access_macro="REG_GPIO_INTRPT1STAT_GPIO48_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO48 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="15" name="GPIO47" readwrite="RW" access_macro="REG_GPIO_INTRPT1STAT_GPIO47_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO47 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="14" name="GPIO46" readwrite="RW" access_macro="REG_GPIO_INTRPT1STAT_GPIO46_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO46 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="13" name="GPIO45" readwrite="RW" access_macro="REG_GPIO_INTRPT1STAT_GPIO45_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO45 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="12" name="GPIO44" readwrite="RW" access_macro="REG_GPIO_INTRPT1STAT_GPIO44_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO44 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="11" name="GPIO43" readwrite="RW" access_macro="REG_GPIO_INTRPT1STAT_GPIO43_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO43 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="10" name="GPIO42" readwrite="RW" access_macro="REG_GPIO_INTRPT1STAT_GPIO42_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO42 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="9" name="GPIO41" readwrite="RW" access_macro="REG_GPIO_INTRPT1STAT_GPIO41_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO41 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="8" name="GPIO40" readwrite="RW" access_macro="REG_GPIO_INTRPT1STAT_GPIO40_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO40 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="7" name="GPIO39" readwrite="RW" access_macro="REG_GPIO_INTRPT1STAT_GPIO39_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO39 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="6" name="GPIO38" readwrite="RW" access_macro="REG_GPIO_INTRPT1STAT_GPIO38_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO38 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="5" name="GPIO37" readwrite="RW" access_macro="REG_GPIO_INTRPT1STAT_GPIO37_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO37 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="4" name="GPIO36" readwrite="RW" access_macro="REG_GPIO_INTRPT1STAT_GPIO36_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO36 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="3" name="GPIO35" readwrite="RW" access_macro="REG_GPIO_INTRPT1STAT_GPIO35_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO35 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="2" name="GPIO34" readwrite="RW" access_macro="REG_GPIO_INTRPT1STAT_GPIO34_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO34 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="1" name="GPIO33" readwrite="RW" access_macro="REG_GPIO_INTRPT1STAT_GPIO33_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO33 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="GPIO32" readwrite="RW" access_macro="REG_GPIO_INTRPT1STAT_GPIO32_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO32 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>INTRPT1CLR</ioreg_name>
+    <ioreg_offset>0x00000218</ioreg_offset>
+    <ioreg_intro>GPIO Interrupt Registers 49-32</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="18" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="14" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="17" name="GPIO49" readwrite="RW" access_macro="REG_GPIO_INTRPT1CLR_GPIO49_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO49 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="16" name="GPIO48" readwrite="RW" access_macro="REG_GPIO_INTRPT1CLR_GPIO48_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO48 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="15" name="GPIO47" readwrite="RW" access_macro="REG_GPIO_INTRPT1CLR_GPIO47_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO47 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="14" name="GPIO46" readwrite="RW" access_macro="REG_GPIO_INTRPT1CLR_GPIO46_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO46 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="13" name="GPIO45" readwrite="RW" access_macro="REG_GPIO_INTRPT1CLR_GPIO45_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO45 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="12" name="GPIO44" readwrite="RW" access_macro="REG_GPIO_INTRPT1CLR_GPIO44_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO44 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="11" name="GPIO43" readwrite="RW" access_macro="REG_GPIO_INTRPT1CLR_GPIO43_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO43 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="10" name="GPIO42" readwrite="RW" access_macro="REG_GPIO_INTRPT1CLR_GPIO42_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO42 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="9" name="GPIO41" readwrite="RW" access_macro="REG_GPIO_INTRPT1CLR_GPIO41_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO41 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="8" name="GPIO40" readwrite="RW" access_macro="REG_GPIO_INTRPT1CLR_GPIO40_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO40 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="7" name="GPIO39" readwrite="RW" access_macro="REG_GPIO_INTRPT1CLR_GPIO39_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO39 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="6" name="GPIO38" readwrite="RW" access_macro="REG_GPIO_INTRPT1CLR_GPIO38_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO38 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="5" name="GPIO37" readwrite="RW" access_macro="REG_GPIO_INTRPT1CLR_GPIO37_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO37 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="4" name="GPIO36" readwrite="RW" access_macro="REG_GPIO_INTRPT1CLR_GPIO36_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO36 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="3" name="GPIO35" readwrite="RW" access_macro="REG_GPIO_INTRPT1CLR_GPIO35_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO35 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="2" name="GPIO34" readwrite="RW" access_macro="REG_GPIO_INTRPT1CLR_GPIO34_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO34 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="1" name="GPIO33" readwrite="RW" access_macro="REG_GPIO_INTRPT1CLR_GPIO33_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO33 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="GPIO32" readwrite="RW" access_macro="REG_GPIO_INTRPT1CLR_GPIO32_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO32 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>INTRPT1SET</ioreg_name>
+    <ioreg_offset>0x0000021c</ioreg_offset>
+    <ioreg_intro>GPIO Interrupt Registers 49-32</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="18" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="14" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="17" name="GPIO49" readwrite="RW" access_macro="REG_GPIO_INTRPT1SET_GPIO49_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO49 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="16" name="GPIO48" readwrite="RW" access_macro="REG_GPIO_INTRPT1SET_GPIO48_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO48 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="15" name="GPIO47" readwrite="RW" access_macro="REG_GPIO_INTRPT1SET_GPIO47_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO47 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="14" name="GPIO46" readwrite="RW" access_macro="REG_GPIO_INTRPT1SET_GPIO46_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO46 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="13" name="GPIO45" readwrite="RW" access_macro="REG_GPIO_INTRPT1SET_GPIO45_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO45 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="12" name="GPIO44" readwrite="RW" access_macro="REG_GPIO_INTRPT1SET_GPIO44_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO44 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="11" name="GPIO43" readwrite="RW" access_macro="REG_GPIO_INTRPT1SET_GPIO43_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO43 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="10" name="GPIO42" readwrite="RW" access_macro="REG_GPIO_INTRPT1SET_GPIO42_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO42 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="9" name="GPIO41" readwrite="RW" access_macro="REG_GPIO_INTRPT1SET_GPIO41_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO41 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="8" name="GPIO40" readwrite="RW" access_macro="REG_GPIO_INTRPT1SET_GPIO40_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO40 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="7" name="GPIO39" readwrite="RW" access_macro="REG_GPIO_INTRPT1SET_GPIO39_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO39 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="6" name="GPIO38" readwrite="RW" access_macro="REG_GPIO_INTRPT1SET_GPIO38_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO38 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="5" name="GPIO37" readwrite="RW" access_macro="REG_GPIO_INTRPT1SET_GPIO37_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO37 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="4" name="GPIO36" readwrite="RW" access_macro="REG_GPIO_INTRPT1SET_GPIO36_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO36 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="3" name="GPIO35" readwrite="RW" access_macro="REG_GPIO_INTRPT1SET_GPIO35_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO35 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="2" name="GPIO34" readwrite="RW" access_macro="REG_GPIO_INTRPT1SET_GPIO34_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO34 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="1" name="GPIO33" readwrite="RW" access_macro="REG_GPIO_INTRPT1SET_GPIO33_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO33 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="GPIO32" readwrite="RW" access_macro="REG_GPIO_INTRPT1SET_GPIO32_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit is the GPIO32 interrupt."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg_bigpicture/>
+  </ioregisters>
+</device>

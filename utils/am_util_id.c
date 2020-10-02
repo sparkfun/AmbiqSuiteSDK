@@ -11,7 +11,7 @@
 
 //*****************************************************************************
 //
-// Copyright (c) 2020, Ambiq Micro
+// Copyright (c) 2020, Ambiq Micro, Inc.
 // All rights reserved.
 //
 // Redistribution and use in source and binary forms, with or without
@@ -43,7 +43,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
-// This is part of revision 2.4.2 of the AmbiqSuite Development Package.
+// This is part of revision 2.5.1 of the AmbiqSuite Development Package.
 //
 //*****************************************************************************
 #include <stdint.h>
@@ -63,6 +63,7 @@ static const uint8_t g_DeviceNameApollo[]     = "Apollo";
 static const uint8_t g_DeviceNameApollo2[]    = "Apollo2";
 static const uint8_t g_DeviceNameApollo3[]    = "Apollo3 Blue";
 static const uint8_t g_DeviceNameApollo3p[]   = "Apollo3 Blue Plus";
+static const uint8_t g_DeviceNameApollo4[]    = "Apollo4";
 static const uint8_t g_ui8VendorNameAmbq[]    = "AMBQ";
 static const uint8_t g_ui8VendorNameUnknown[] = "????";
 static const uint8_t g_ui8DeviceNameUnknown[] = "Unknown device";
@@ -205,6 +206,13 @@ am_util_id_device(am_util_id_t *psIDDevice)
     {
         psIDDevice->ui32Device = AM_UTIL_ID_APOLLO3P;
         psIDDevice->pui8DeviceName = g_DeviceNameApollo3p;
+        chiprev_set(psIDDevice, 1);
+    }
+    else if ( ( ui32PN == AM_UTIL_MCUCTRL_CHIP_INFO_PARTNUM_APOLLO4)        &&
+              ((psIDDevice->sMcuCtrlDevice.ui32JedecPN & 0x0F0) == 0x0B0) )
+    {
+        psIDDevice->ui32Device = AM_UTIL_ID_APOLLO4;
+        psIDDevice->pui8DeviceName = g_DeviceNameApollo4;
         chiprev_set(psIDDevice, 1);
     }
     else

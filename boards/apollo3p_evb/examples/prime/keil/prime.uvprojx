@@ -335,7 +335,7 @@
               <MiscControls></MiscControls>
               <Define>AM_PACKAGE_BGA AM_PART_APOLLO3P keil</Define>
               <Undefine></Undefine>
-              <IncludePath>../../../../../CMSIS/AmbiqMicro/Include;../../../../../utils;../../../../..;../../../../../devices;../../../../../mcu/apollo3p;../../../bsp;../../../../../CMSIS/ARM/Include;../src</IncludePath>
+              <IncludePath>../../../bsp;../../../../../CMSIS/AmbiqMicro/Include;../../../../../CMSIS/ARM/Include;../../../../../mcu/apollo3p;../src;../../../../..;../../../../../devices;../../../../../utils</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -377,16 +377,6 @@
       </TargetOption>
       <Groups>
         <Group>
-          <GroupName>prime_mpi_src</GroupName>
-          <Files>
-            <File>
-              <FileName>prime_mpi.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../third_party/prime_mpi/src/prime_mpi.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
           <GroupName>src</GroupName>
           <Files>
             <File>
@@ -397,12 +387,12 @@
           </Files>
         </Group>
         <Group>
-          <GroupName>devices</GroupName>
+          <GroupName>prime_mpi_src</GroupName>
           <Files>
             <File>
-              <FileName>am_devices_led.c</FileName>
+              <FileName>prime_mpi.c</FileName>
               <FileType>1</FileType>
-              <FilePath>../../../../../devices/am_devices_led.c</FilePath>
+              <FilePath>../../../../../third_party/prime_mpi/src/prime_mpi.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -427,6 +417,16 @@
           </Files>
         </Group>
         <Group>
+          <GroupName>devices</GroupName>
+          <Files>
+            <File>
+              <FileName>am_devices_led.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../../../../../devices/am_devices_led.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
           <GroupName>keil</GroupName>
           <Files>
             <File>
@@ -440,14 +440,14 @@
           <GroupName>lib</GroupName>
           <Files>
             <File>
-              <FileName>libam_hal.lib</FileName>
-              <FileType>4</FileType>
-              <FilePath>../../../../../mcu/apollo3p/hal/keil/bin/libam_hal.lib</FilePath>
-            </File>
-            <File>
               <FileName>libam_bsp.lib</FileName>
               <FileType>4</FileType>
               <FilePath>../../../bsp/keil/bin/libam_bsp.lib</FilePath>
+            </File>
+            <File>
+              <FileName>libam_hal.lib</FileName>
+              <FileType>4</FileType>
+              <FilePath>../../../../../mcu/apollo3p/hal/keil/bin/libam_hal.lib</FilePath>
             </File>
           </Files>
         </Group>

@@ -333,9 +333,9 @@
             <v6Rtti>0</v6Rtti>
             <VariousControls>
               <MiscControls></MiscControls>
-              <Define>AM_PACKAGE_BGA AM_PART_APOLLO AM_MULTIBOOT_CONFIG_FILE=\"am_multi_boot_config.h\" keil</Define>
+              <Define>AM_PART_APOLLO AM_MULTIBOOT_CONFIG_FILE=\"am_multi_boot_config.h\" AM_PACKAGE_BGA keil</Define>
               <Undefine></Undefine>
-              <IncludePath>../../../../../utils;../../../../../devices;../../../../..;../src;../../../../../mcu/apollo;../../../bsp;../../../../../bootloader</IncludePath>
+              <IncludePath>../../../../../devices;../src;../../../bsp;../../../../..;../../../../../utils;../../../../../mcu/apollo;../../../../../bootloader</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -392,6 +392,16 @@
           </Files>
         </Group>
         <Group>
+          <GroupName>devices</GroupName>
+          <Files>
+            <File>
+              <FileName>am_devices_spiflash.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../../../../../devices/am_devices_spiflash.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
           <GroupName>utils</GroupName>
           <Files>
             <File>
@@ -403,16 +413,6 @@
               <FileName>am_util_stdio.c</FileName>
               <FileType>1</FileType>
               <FilePath>../../../../../utils/am_util_stdio.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>devices</GroupName>
-          <Files>
-            <File>
-              <FileName>am_devices_spiflash.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../../../../../devices/am_devices_spiflash.c</FilePath>
             </File>
           </Files>
         </Group>

@@ -13,7 +13,7 @@
 
 //*****************************************************************************
 //
-// Copyright (c) 2020, Ambiq Micro
+// Copyright (c) 2020, Ambiq Micro, Inc.
 // All rights reserved.
 //
 // Redistribution and use in source and binary forms, with or without
@@ -45,7 +45,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
-// This is part of revision 2.4.2 of the AmbiqSuite Development Package.
+// This is part of revision 2.5.1 of the AmbiqSuite Development Package.
 //
 //*****************************************************************************
 #ifndef AM_HAL_MSPI_H
@@ -69,10 +69,11 @@ extern "C"
 //
 #define MSPI_USE_CQ  1
 
+#define AM_HAL_MSPI_MAX_TRANS_SIZE              65535   // 2^16-1
 #define AM_HAL_MSPI_MAX_FIFO_SIZE               16
 #define AM_HAL_MSPI_DEFAULT_BURST_COUNT         32
 
-// Size guideline for allocation of application supploed buffers
+// Size guideline for allocation of application supplied buffers
 #define AM_HAL_MSPI_CQ_ENTRY_SIZE               (18 * sizeof(uint32_t))
 #define AM_HAL_MSPI_HIPRIO_ENTRY_SIZE           (6 * sizeof(uint32_t))
 
@@ -193,7 +194,17 @@ extern "C"
     AM_HAL_MSPI_FLASH_OCTAL_CE1,
     AM_HAL_MSPI_FLASH_QUADPAIRED,
     AM_HAL_MSPI_FLASH_QUADPAIRED_SERIAL,
-    AM_HAL_MSPI_FLASH_MAX = AM_HAL_MSPI_FLASH_QUADPAIRED_SERIAL
+    AM_HAL_MSPI_FLASH_DUAL_CE0_1_1_2,
+    AM_HAL_MSPI_FLASH_DUAL_CE1_1_1_2,
+    AM_HAL_MSPI_FLASH_DUAL_CE0_1_2_2,
+    AM_HAL_MSPI_FLASH_DUAL_CE1_1_2_2,
+    AM_HAL_MSPI_FLASH_QUAD_CE0_1_1_4,
+    AM_HAL_MSPI_FLASH_QUAD_CE1_1_1_4,
+    AM_HAL_MSPI_FLASH_QUAD_CE0_1_4_4,
+    AM_HAL_MSPI_FLASH_QUAD_CE1_1_4_4,
+    AM_HAL_MSPI_FLASH_SERIAL_CE0_3WIRE,
+    AM_HAL_MSPI_FLASH_SERIAL_CE1_3WIRE,
+    AM_HAL_MSPI_FLASH_MAX = AM_HAL_MSPI_FLASH_SERIAL_CE1_3WIRE
   } am_hal_mspi_device_e;
 
   //
@@ -258,30 +269,32 @@ extern "C"
 
   typedef enum
   {
-    // Pass uint32_t as pConfig
+    // Pass uint32_t * as pConfig
     AM_HAL_MSPI_REQ_APBCLK,
     // Used to set/clear 8 CQ Pause flags - reserved flags are defined as AM_HAL_MSPI_PAUSE_FLAG_RESV
     AM_HAL_MSPI_REQ_FLAG_SETCLR,
-    // Pass uint32_t as pConfig indicating the IOM# to link to. AM_HAL_MSPI_LINK_IOM_NONE indicates no IOM linked
+    // Pass uint32_t * as pConfig indicating the IOM# to link to. AM_HAL_MSPI_LINK_IOM_NONE indicates no IOM linked
     AM_HAL_MSPI_REQ_LINK_IOM,
     // pConfig N/A
     AM_HAL_MSPI_REQ_SCRAMB_DIS,
     // pConfig N/A
     AM_HAL_MSPI_REQ_SCRAMB_EN,
-    // Pass uint32_t as pConfig
+    // Pass uint32_t * as pConfig
     AM_HAL_MSPI_REQ_XIPACK,
     // pConfig N/A
     AM_HAL_MSPI_REQ_XIP_DIS,
     // pConfig N/A
     AM_HAL_MSPI_REQ_XIP_EN,
-    // Pass mspi_device_info_t as pConfig
+    // Pass am_hal_mspi_device_e * as pConfig
     AM_HAL_MSPI_REQ_DEVICE_CONFIG,
+    // Pass am_hal_mspi_clock_e * as pConfig
+    AM_HAL_MSPI_REQ_CLOCK_CONFIG,
     // Pause the CQ gracefully
     AM_HAL_MSPI_REQ_PAUSE,
     // Unpause the CQ
     AM_HAL_MSPI_REQ_UNPAUSE,
     // Get in and out of Sequence Mode - which allows building a sequence, which either runs once, or repeats
-    // Pass in bool as pConfig - true/false
+    // Pass in bool * as pConfig - true/false
     AM_HAL_MSPI_REQ_SET_SEQMODE,
     // Pass am_hal_mspi_seq_end_t * as pConfig
     AM_HAL_MSPI_REQ_SEQ_END,
@@ -300,15 +313,6 @@ extern "C"
     AM_HAL_MSPI_REQ_MAX
 
   } am_hal_mspi_request_e;
-
-  typedef enum
-  {
-    AM_HAL_MSPI_XIPMIXED_NORMAL     = 0,
-    AM_HAL_MSPI_XIPMIXED_D2         = 1,    //1:1:2 timing for Instr:Addr:Data
-    AM_HAL_MSPI_XIPMIXED_AD2        = 3,    //1:2:2 timing for Instr:Addr:Data
-    AM_HAL_MSPI_XIPMIXED_D4         = 5,    //1:1:4 timing for Instr:Addr:Data
-    AM_HAL_MSPI_XIPMIXED_AD4        = 7     //1:4:4 timing for Instr:Addr:Data
-  } am_hal_mspi_xipmixed_mode_e;
 
   //
   // Device configuration structure
@@ -347,9 +351,6 @@ extern "C"
     //! Clock frequency
     am_hal_mspi_clock_e         eClockFreq;
 
-    //! XIPMIXED configure
-    am_hal_mspi_xipmixed_mode_e eXipMixedMode;
-
     //
     // MSPI device configuration for XIP/DMA/Scrambling operations.
     //
@@ -359,9 +360,6 @@ extern "C"
 
     //! Send Device Instruction
     bool                        bSendInstr;
-
-    //! Separate MOSI/MISO
-    bool                        bSeparateIO;
 
     //! Enable Turnaround between Address write and Data read.
     bool                        bTurnaround;
@@ -388,21 +386,6 @@ extern "C"
 
   } am_hal_mspi_dev_config_t;
 
-  //
-  // MSPI configuration record for determining virtual device configuration.
-  //
-  typedef struct
-  {
-    //! External Flash Device configuration
-    am_hal_mspi_device_e        eDeviceConfig;
-
-    //! XIPMIXED configure
-    am_hal_mspi_xipmixed_mode_e eXipMixedMode;
-
-    //! Separate MOSI/MISO
-    bool                        bSeparateIO;
-
-  } mspi_device_info_t;
   //
   // MSPI Capabilities structure
   //

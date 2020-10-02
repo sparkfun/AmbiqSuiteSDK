@@ -208,10 +208,10 @@
                 <option>
                     <name>CCDefines</name>
                     <state>iar</state>
-          <state>AM_PART_APOLLO</state>
-          <state>AM_PACKAGE_BGA</state>
           <state>AM_FREERTOS</state>
+          <state>AM_PART_APOLLO</state>
           <state>AM_DEBUG_PRINTF</state>
+          <state>AM_PACKAGE_BGA</state>
                 </option>
                 <option>
                     <name>CCPreprocFile</name>
@@ -336,13 +336,13 @@
                 </option>
                 <option>
                     <name>CCIncludePath2</name>
-          <state>$PROJ_DIR$\..\..\..\..\..\third_party\FreeRTOSv10.1.1\Source\include</state>
-          <state>$PROJ_DIR$\..\..\..\..\..</state>
-          <state>$PROJ_DIR$\..\..\..\bsp</state>
-          <state>$PROJ_DIR$\..\src</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\mcu\apollo</state>
           <state>$PROJ_DIR$\..\..\..\..\..\devices</state>
           <state>$PROJ_DIR$\..\..\..\..\..\third_party\FreeRTOSv10.1.1\Source\portable\IAR\AMapollo</state>
-          <state>$PROJ_DIR$\..\..\..\..\..\mcu\apollo</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\third_party\FreeRTOSv10.1.1\Source\include</state>
+          <state>$PROJ_DIR$\..\src</state>
+          <state>$PROJ_DIR$\..\..\..\..\..</state>
+          <state>$PROJ_DIR$\..\..\..\bsp</state>
           <state>$PROJ_DIR$\..\..\..\..\..\utils</state>
                 </option>
                 <option>
@@ -609,13 +609,13 @@
                 </option>
                 <option>
                     <name>AUserIncludes</name>
-          <state>$PROJ_DIR$\..\..\..\..\..\third_party\FreeRTOSv10.1.1\Source\include</state>
-          <state>$PROJ_DIR$\..\..\..\..\..</state>
-          <state>$PROJ_DIR$\..\..\..\bsp</state>
-          <state>$PROJ_DIR$\..\src</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\mcu\apollo</state>
           <state>$PROJ_DIR$\..\..\..\..\..\devices</state>
           <state>$PROJ_DIR$\..\..\..\..\..\third_party\FreeRTOSv10.1.1\Source\portable\IAR\AMapollo</state>
-          <state>$PROJ_DIR$\..\..\..\..\..\mcu\apollo</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\third_party\FreeRTOSv10.1.1\Source\include</state>
+          <state>$PROJ_DIR$\..\src</state>
+          <state>$PROJ_DIR$\..\..\..\..\..</state>
+          <state>$PROJ_DIR$\..\..\..\bsp</state>
           <state>$PROJ_DIR$\..\..\..\..\..\utils</state>
                 </option>
                 <option>
@@ -1238,10 +1238,10 @@
                     <name>CCDefines</name>
                     <state>NDEBUG</state>
                     <state>iar</state>
-          <state>AM_PART_APOLLO</state>
-          <state>AM_PACKAGE_BGA</state>
           <state>AM_FREERTOS</state>
+          <state>AM_PART_APOLLO</state>
           <state>AM_DEBUG_PRINTF</state>
+          <state>AM_PACKAGE_BGA</state>
                 </option>
                 <option>
                     <name>CCPreprocFile</name>
@@ -1366,13 +1366,13 @@
                 </option>
                 <option>
                     <name>CCIncludePath2</name>
-          <state>$PROJ_DIR$\..\..\..\..\..\third_party\FreeRTOSv10.1.1\Source\include</state>
-          <state>$PROJ_DIR$\..\..\..\..\..</state>
-          <state>$PROJ_DIR$\..\..\..\bsp</state>
-          <state>$PROJ_DIR$\..\src</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\mcu\apollo</state>
           <state>$PROJ_DIR$\..\..\..\..\..\devices</state>
           <state>$PROJ_DIR$\..\..\..\..\..\third_party\FreeRTOSv10.1.1\Source\portable\IAR\AMapollo</state>
-          <state>$PROJ_DIR$\..\..\..\..\..\mcu\apollo</state>
+          <state>$PROJ_DIR$\..\..\..\..\..\third_party\FreeRTOSv10.1.1\Source\include</state>
+          <state>$PROJ_DIR$\..\src</state>
+          <state>$PROJ_DIR$\..\..\..\..\..</state>
+          <state>$PROJ_DIR$\..\..\..\bsp</state>
           <state>$PROJ_DIR$\..\..\..\..\..\utils</state>
                 </option>
                 <option>
@@ -2054,12 +2054,6 @@
         </settings>
     </configuration>
   <file>
-    <name>$PROJ_DIR$\..\..\..\..\..\third_party\FreeRTOSv10.1.1\Source\portable\IAR\AMapollo\port.c</name>
-  </file>
-  <file>
-    <name>$PROJ_DIR$\..\..\..\..\..\third_party\FreeRTOSv10.1.1\Source\portable\IAR\AMapollo\portasm.s</name>
-  </file>
-  <file>
     <name>$PROJ_DIR$\..\src\freertos_lowpower.c</name>
   </file>
   <file>
@@ -2069,13 +2063,10 @@
     <name>$PROJ_DIR$\..\src\rtos.c</name>
   </file>
   <file>
-    <name>$PROJ_DIR$\..\..\..\..\..\devices\am_devices_button.c</name>
+    <name>$PROJ_DIR$\..\..\..\..\..\third_party\FreeRTOSv10.1.1\Source\portable\IAR\AMapollo\port.c</name>
   </file>
   <file>
-    <name>$PROJ_DIR$\..\..\..\..\..\devices\am_devices_led.c</name>
-  </file>
-  <file>
-    <name>$PROJ_DIR$\..\..\..\..\..\third_party\FreeRTOSv10.1.1\Source\portable\MemMang\heap_2.c</name>
+    <name>$PROJ_DIR$\..\..\..\..\..\third_party\FreeRTOSv10.1.1\Source\portable\IAR\AMapollo\portasm.s</name>
   </file>
   <file>
     <name>$PROJ_DIR$\..\..\..\..\..\third_party\FreeRTOSv10.1.1\Source\event_groups.c</name>
@@ -2091,6 +2082,15 @@
   </file>
   <file>
     <name>$PROJ_DIR$\..\..\..\..\..\third_party\FreeRTOSv10.1.1\Source\timers.c</name>
+  </file>
+  <file>
+    <name>$PROJ_DIR$\..\..\..\..\..\devices\am_devices_button.c</name>
+  </file>
+  <file>
+    <name>$PROJ_DIR$\..\..\..\..\..\devices\am_devices_led.c</name>
+  </file>
+  <file>
+    <name>$PROJ_DIR$\..\..\..\..\..\third_party\FreeRTOSv10.1.1\Source\portable\MemMang\heap_2.c</name>
   </file>
   <file>
     <name>$PROJ_DIR$\..\..\..\..\..\utils\am_util_debug.c</name>

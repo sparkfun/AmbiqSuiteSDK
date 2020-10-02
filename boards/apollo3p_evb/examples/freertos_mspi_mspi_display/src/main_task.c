@@ -8,7 +8,7 @@
 
 //*****************************************************************************
 //
-// Copyright (c) 2020, Ambiq Micro
+// Copyright (c) 2020, Ambiq Micro, Inc.
 // All rights reserved.
 //
 // Redistribution and use in source and binary forms, with or without
@@ -40,7 +40,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
-// This is part of revision 2.4.2 of the AmbiqSuite Development Package.
+// This is part of revision 2.5.1 of the AmbiqSuite Development Package.
 //
 //*****************************************************************************
 
@@ -219,9 +219,6 @@ MainTask(void *pvParameters)
 #endif
 #ifndef START_MSPI_IOM_XFER_ASAP
             if ((displayState == DISPLAY_IDLE) && numFBReadyForDisplay && (eventMask & MAIN_EVENT_TE))
-#else
-            if ((displayState == DISPLAY_IDLE) && numFBReadyForDisplay)
-#endif
             {
                 numFBReadyForDisplay--;
 #if !defined(SERIALIZE_COMPOSITION_WITH_RENDERING) && !defined(START_MSPI_IOM_XFER_ASAP)
@@ -235,6 +232,22 @@ MainTask(void *pvParameters)
                 // Initiate new frame transfer
                 xEventGroupSetBits(xRenderEventHandle, RENDER_EVENT_START_NEW_FRAME);
             }
+#else
+            if ((displayState == DISPLAY_IDLE) && numFBReadyForDisplay)
+            {
+                numFBReadyForDisplay--;
+#if !defined(SERIALIZE_COMPOSITION_WITH_RENDERING) && !defined(START_MSPI_IOM_XFER_ASAP)
+                // Frame is available for composition as soon as Rendering starts (now)
+                displayState = DISPLAY_STARTED;
+                numFBAvailForComposition++;
+#else
+                // Frame is not available for composition till Rendering starts (on next TE)
+                displayState = DISPLAY_SCHEDULED;
+#endif
+                // Initiate new frame transfer
+                xEventGroupSetBits(xRenderEventHandle, RENDER_EVENT_START_NEW_FRAME);
+            }
+#endif
             if (numFBAvailForComposition && !bCompositionInProgress)
             {
                 numFBAvailForComposition--;

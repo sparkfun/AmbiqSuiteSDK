@@ -25,7 +25,7 @@
                             <img alt="Logo" src="../resources/am_logo.png" />
                         </td>
                         <td style="padding-left: 0.5em;">
-                            <div id="projectname">Apollo Register Documentation &#160;<span id="projectnumber">v2.4.2</span></div>
+                            <div id="projectname">Apollo Register Documentation &#160;<span id="projectnumber">v${version}</span></div>
                         </td>
                     </tr>
                 </tbody>
@@ -197,28 +197,6 @@
                         <td class="entry">
                             <span style="width:32px;display:inline-block;">&#160;</span>
                             <a class="el" href="#INTSET" target="_self">INTSET - IO Master Interrupts: Set</a>
-                        </td>
-                    </tr>
-
-                    <tr id="row_0_0_">
-                        <td class="entry">
-                            <span style="width:32px;display:inline-block;">&#160;</span>
-                            <span class="h5">0x00000300:</span>
-                        </td>
-                        <td class="entry">
-                            <span style="width:32px;display:inline-block;">&#160;</span>
-                            <a class="el" href="#DBG0" target="_self">DBG0 - </a>
-                        </td>
-                    </tr>
-
-                    <tr id="row_0_0_">
-                        <td class="entry">
-                            <span style="width:32px;display:inline-block;">&#160;</span>
-                            <span class="h5">0x00000304:</span>
-                        </td>
-                        <td class="entry">
-                            <span style="width:32px;display:inline-block;">&#160;</span>
-                            <a class="el" href="#DBG1" target="_self">DBG1 - </a>
                         </td>
                     </tr>
 
@@ -569,7 +547,7 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                             <td>23:16</td>
                             <td>FIFOREM</td>
                             <td>RO</td>
-                            <td>The number of bytes remaining in the FIFO (i.e. 128-FIFOSIZ).<br><br>
+                            <td>The number of bytes remaining in the FIFO (i.e. 128-FIFOSIZ if FULLDUP = 0 or 64-FIFOSIZ if FULLDUP = 1)).<br><br>
                                 </td>
                         </tr>
 
@@ -1194,14 +1172,14 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                             <td>FSEL</td>
                             <td>RW</td>
                             <td>Select the input clock frequency.<br><br>
-                                 HFRC_DIV64           = 0x0 - Selects the HFRC / 64 as the input clock.<br>
+                                 MIN_PWR              = 0x0 - Selects the minimum power clock.  This setting should be used whenever the IOMSTR is not active.<br>
                              HFRC                 = 0x1 - Selects the HFRC as the input clock.<br>
                              HFRC_DIV2            = 0x2 - Selects the HFRC / 2 as the input clock.<br>
                              HFRC_DIV4            = 0x3 - Selects the HFRC / 4 as the input clock.<br>
                              HFRC_DIV8            = 0x4 - Selects the HFRC / 8 as the input clock.<br>
                              HFRC_DIV16           = 0x5 - Selects the HFRC / 16 as the input clock.<br>
                              HFRC_DIV32           = 0x6 - Selects the HFRC / 32 as the input clock.<br>
-                             RSVD                 = 0x7 - Reserved.</td>
+                             HFRC_DIV64           = 0x7 - Selects the HFRC / 64 as the input clock.</td>
                         </tr>
 
                         <tr>
@@ -1376,25 +1354,8 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                             <td>31:0</td>
                             <td>CMD</td>
                             <td>RW</td>
-                            <td>This register is the I/O Command.  The command fields are as follow:<br><br>
-                                 POS_LENGTH           = 0x0 - LSB bit position of the CMD LENGTH field.<br>
-                             POS_OFFSET           = 0x8 - LSB bit position of the CMD OFFSET field.<br>
-                             POS_ADDRESS          = 0x16 - LSB bit position of the I2C CMD ADDRESS field.<br>
-                             POS_CHNL             = 0x16 - LSB bit position of the SPI CMD CHANNEL field.<br>
-                             POS_UPLNGTH          = 0x23 - LSB bit position of the SPI CMD UPLNGTH field.<br>
-                             POS_10BIT            = 0x26 - LSB bit position of the I2C CMD 10-bit field.<br>
-                             POS_LSB              = 0x27 - LSB bit position of the CMD LSB-first field.<br>
-                             POS_CONT             = 0x28 - LSB bit position of the CMD CONTinue field.<br>
-                             POS_OPER             = 0x29 - LSB bit position of the CMD OPERation field.<br>
-                             MSK_LENGTH           = 0xFF - LSB bit mask of the CMD LENGTH field.<br>
-                             MSK_OFFSET           = 0xFF00 - LSB bit mask of the CMD OFFSET field.<br>
-                             MSK_ADDRESS          = 0xFF0000 - LSB bit mask of the I2C CMD ADDRESS field.<br>
-                             MSK_CHNL             = 0x70000 - LSB bit mask of the SPI CMD CHANNEL field.<br>
-                             MSK_UPLNGTH          = 0x7800000 - LSB bit mask of the SPI CMD UPLNGTH field.<br>
-                             MSK_10BIT            = 0x4000000 - LSB bit mask of the I2C CMD 10-bit field.<br>
-                             MSK_LSB              = 0x8000000 - LSB bit mask of the CMD LSB-first field.<br>
-                             MSK_CONT             = 0x10000000 - LSB bit mask of the CMD CONTinue field.<br>
-                             MSK_OPER             = 0xE0000000 - LSB bit mask of the CMD OPERation field.</td>
+                            <td>This register holds the I/O Command<br><br>
+                                </td>
                         </tr>
 
                     </tbody>
@@ -2027,9 +1988,8 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                             <td>11</td>
                             <td>FCDEL</td>
                             <td>RW</td>
-                            <td>This bit enables a pause cycle in flow control mode.<br><br>
-                                 DIS                  = 0x0 - No pause cycle is inserted.<br>
-                             EN                   = 0x1 - One pause cycle is inserted.</td>
+                            <td>This bit must be left at the default value of 0.<br><br>
+                                </td>
                         </tr>
 
                         <tr>
@@ -2319,7 +2279,7 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                             <td>10</td>
                             <td>ARB</td>
                             <td>RW</td>
-                            <td>This is the arbitration loss interrupt.<br><br>
+                            <td>This is the arbitration loss interrupt. This error occurs if another master collides with an IO Master transfer. Generally, the IOM started an operation but found SDA already low.<br><br>
                                 </td>
                         </tr>
 
@@ -2327,7 +2287,7 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                             <td>9</td>
                             <td>STOP</td>
                             <td>RW</td>
-                            <td>This is the STOP command interrupt.<br><br>
+                            <td>This is the STOP command interrupt. A STOP bit was detected by the IOM.<br><br>
                                 </td>
                         </tr>
 
@@ -2335,7 +2295,7 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                             <td>8</td>
                             <td>START</td>
                             <td>RW</td>
-                            <td>This is the START command interrupt.<br><br>
+                            <td>This is the START command interrupt. A START from another master was detected. Software must wait for a STOP before proceeding.<br><br>
                                 </td>
                         </tr>
 
@@ -2343,7 +2303,7 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                             <td>7</td>
                             <td>ICMD</td>
                             <td>RW</td>
-                            <td>This is the illegal command interrupt.<br><br>
+                            <td>This is the illegal command interrupt. Software attempted to issue a CMD while another CMD was already in progress. Or an attempt was made to issue a non-zero-length write CMD with an empty FIFO.<br><br>
                                 </td>
                         </tr>
 
@@ -2351,7 +2311,7 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                             <td>6</td>
                             <td>IACC</td>
                             <td>RW</td>
-                            <td>This is the illegal FIFO access interrupt.<br><br>
+                            <td>This is the illegal FIFO access interrupt. An attempt was made to read the FIFO during a write CMD. Or an attempt was made to write the FIFO on a read CMD.<br><br>
                                 </td>
                         </tr>
 
@@ -2359,7 +2319,7 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                             <td>5</td>
                             <td>WTLEN</td>
                             <td>RW</td>
-                            <td>This is the write length mismatch interrupt.<br><br>
+                            <td>This is the WTLEN interrupt.<br><br>
                                 </td>
                         </tr>
 
@@ -2367,7 +2327,7 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                             <td>4</td>
                             <td>NAK</td>
                             <td>RW</td>
-                            <td>This is the I2C NAK interrupt.<br><br>
+                            <td>This is the I2C NAK interrupt. The expected ACK from the slave was not received by the IOM.<br><br>
                                 </td>
                         </tr>
 
@@ -2375,7 +2335,7 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                             <td>3</td>
                             <td>FOVFL</td>
                             <td>RW</td>
-                            <td>This is the Read FIFO Overflow interrupt.<br><br>
+                            <td>This is the Write FIFO Overflow interrupt. An attempt was made to write the FIFO while it was full (i.e. while FIFOSIZ > 124).<br><br>
                                 </td>
                         </tr>
 
@@ -2383,7 +2343,7 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                             <td>2</td>
                             <td>FUNDFL</td>
                             <td>RW</td>
-                            <td>This is the Write FIFO Underflow interrupt.<br><br>
+                            <td>This is the Read FIFO Underflow interrupt. An attempt was made to read FIFO when empty (i.e. while FIFOSIZ less than 4).<br><br>
                                 </td>
                         </tr>
 
@@ -2608,7 +2568,7 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                             <td>10</td>
                             <td>ARB</td>
                             <td>RW</td>
-                            <td>This is the arbitration loss interrupt.<br><br>
+                            <td>This is the arbitration loss interrupt. This error occurs if another master collides with an IO Master transfer. Generally, the IOM started an operation but found SDA already low.<br><br>
                                 </td>
                         </tr>
 
@@ -2616,7 +2576,7 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                             <td>9</td>
                             <td>STOP</td>
                             <td>RW</td>
-                            <td>This is the STOP command interrupt.<br><br>
+                            <td>This is the STOP command interrupt. A STOP bit was detected by the IOM.<br><br>
                                 </td>
                         </tr>
 
@@ -2624,7 +2584,7 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                             <td>8</td>
                             <td>START</td>
                             <td>RW</td>
-                            <td>This is the START command interrupt.<br><br>
+                            <td>This is the START command interrupt. A START from another master was detected. Software must wait for a STOP before proceeding.<br><br>
                                 </td>
                         </tr>
 
@@ -2632,7 +2592,7 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                             <td>7</td>
                             <td>ICMD</td>
                             <td>RW</td>
-                            <td>This is the illegal command interrupt.<br><br>
+                            <td>This is the illegal command interrupt. Software attempted to issue a CMD while another CMD was already in progress. Or an attempt was made to issue a non-zero-length write CMD with an empty FIFO.<br><br>
                                 </td>
                         </tr>
 
@@ -2640,7 +2600,7 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                             <td>6</td>
                             <td>IACC</td>
                             <td>RW</td>
-                            <td>This is the illegal FIFO access interrupt.<br><br>
+                            <td>This is the illegal FIFO access interrupt. An attempt was made to read the FIFO during a write CMD. Or an attempt was made to write the FIFO on a read CMD.<br><br>
                                 </td>
                         </tr>
 
@@ -2648,7 +2608,7 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                             <td>5</td>
                             <td>WTLEN</td>
                             <td>RW</td>
-                            <td>This is the write length mismatch interrupt.<br><br>
+                            <td>This is the WTLEN interrupt.<br><br>
                                 </td>
                         </tr>
 
@@ -2656,7 +2616,7 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                             <td>4</td>
                             <td>NAK</td>
                             <td>RW</td>
-                            <td>This is the I2C NAK interrupt.<br><br>
+                            <td>This is the I2C NAK interrupt. The expected ACK from the slave was not received by the IOM.<br><br>
                                 </td>
                         </tr>
 
@@ -2664,7 +2624,7 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                             <td>3</td>
                             <td>FOVFL</td>
                             <td>RW</td>
-                            <td>This is the Read FIFO Overflow interrupt.<br><br>
+                            <td>This is the Write FIFO Overflow interrupt. An attempt was made to write the FIFO while it was full (i.e. while FIFOSIZ > 124).<br><br>
                                 </td>
                         </tr>
 
@@ -2672,7 +2632,7 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                             <td>2</td>
                             <td>FUNDFL</td>
                             <td>RW</td>
-                            <td>This is the Write FIFO Underflow interrupt.<br><br>
+                            <td>This is the Read FIFO Underflow interrupt. An attempt was made to read FIFO when empty (i.e. while FIFOSIZ less than 4).<br><br>
                                 </td>
                         </tr>
 
@@ -2897,7 +2857,7 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                             <td>10</td>
                             <td>ARB</td>
                             <td>RW</td>
-                            <td>This is the arbitration loss interrupt.<br><br>
+                            <td>This is the arbitration loss interrupt. This error occurs if another master collides with an IO Master transfer. Generally, the IOM started an operation but found SDA already low.<br><br>
                                 </td>
                         </tr>
 
@@ -2905,7 +2865,7 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                             <td>9</td>
                             <td>STOP</td>
                             <td>RW</td>
-                            <td>This is the STOP command interrupt.<br><br>
+                            <td>This is the STOP command interrupt. A STOP bit was detected by the IOM.<br><br>
                                 </td>
                         </tr>
 
@@ -2913,7 +2873,7 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                             <td>8</td>
                             <td>START</td>
                             <td>RW</td>
-                            <td>This is the START command interrupt.<br><br>
+                            <td>This is the START command interrupt. A START from another master was detected. Software must wait for a STOP before proceeding.<br><br>
                                 </td>
                         </tr>
 
@@ -2921,7 +2881,7 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                             <td>7</td>
                             <td>ICMD</td>
                             <td>RW</td>
-                            <td>This is the illegal command interrupt.<br><br>
+                            <td>This is the illegal command interrupt. Software attempted to issue a CMD while another CMD was already in progress. Or an attempt was made to issue a non-zero-length write CMD with an empty FIFO.<br><br>
                                 </td>
                         </tr>
 
@@ -2929,7 +2889,7 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                             <td>6</td>
                             <td>IACC</td>
                             <td>RW</td>
-                            <td>This is the illegal FIFO access interrupt.<br><br>
+                            <td>This is the illegal FIFO access interrupt. An attempt was made to read the FIFO during a write CMD. Or an attempt was made to write the FIFO on a read CMD.<br><br>
                                 </td>
                         </tr>
 
@@ -2937,7 +2897,7 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                             <td>5</td>
                             <td>WTLEN</td>
                             <td>RW</td>
-                            <td>This is the write length mismatch interrupt.<br><br>
+                            <td>This is the WTLEN interrupt.<br><br>
                                 </td>
                         </tr>
 
@@ -2945,7 +2905,7 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                             <td>4</td>
                             <td>NAK</td>
                             <td>RW</td>
-                            <td>This is the I2C NAK interrupt.<br><br>
+                            <td>This is the I2C NAK interrupt. The expected ACK from the slave was not received by the IOM.<br><br>
                                 </td>
                         </tr>
 
@@ -2953,7 +2913,7 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                             <td>3</td>
                             <td>FOVFL</td>
                             <td>RW</td>
-                            <td>This is the Read FIFO Overflow interrupt.<br><br>
+                            <td>This is the Write FIFO Overflow interrupt. An attempt was made to write the FIFO while it was full (i.e. while FIFOSIZ > 124).<br><br>
                                 </td>
                         </tr>
 
@@ -2961,7 +2921,7 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                             <td>2</td>
                             <td>FUNDFL</td>
                             <td>RW</td>
-                            <td>This is the Write FIFO Underflow interrupt.<br><br>
+                            <td>This is the Read FIFO Underflow interrupt. An attempt was made to read FIFO when empty (i.e. while FIFOSIZ less than 4).<br><br>
                                 </td>
                         </tr>
 
@@ -3186,7 +3146,7 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                             <td>10</td>
                             <td>ARB</td>
                             <td>RW</td>
-                            <td>This is the arbitration loss interrupt.<br><br>
+                            <td>This is the arbitration loss interrupt. This error occurs if another master collides with an IO Master transfer. Generally, the IOM started an operation but found SDA already low.<br><br>
                                 </td>
                         </tr>
 
@@ -3194,7 +3154,7 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                             <td>9</td>
                             <td>STOP</td>
                             <td>RW</td>
-                            <td>This is the STOP command interrupt.<br><br>
+                            <td>This is the STOP command interrupt. A STOP bit was detected by the IOM.<br><br>
                                 </td>
                         </tr>
 
@@ -3202,7 +3162,7 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                             <td>8</td>
                             <td>START</td>
                             <td>RW</td>
-                            <td>This is the START command interrupt.<br><br>
+                            <td>This is the START command interrupt. A START from another master was detected. Software must wait for a STOP before proceeding.<br><br>
                                 </td>
                         </tr>
 
@@ -3210,7 +3170,7 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                             <td>7</td>
                             <td>ICMD</td>
                             <td>RW</td>
-                            <td>This is the illegal command interrupt.<br><br>
+                            <td>This is the illegal command interrupt. Software attempted to issue a CMD while another CMD was already in progress. Or an attempt was made to issue a non-zero-length write CMD with an empty FIFO.<br><br>
                                 </td>
                         </tr>
 
@@ -3218,7 +3178,7 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                             <td>6</td>
                             <td>IACC</td>
                             <td>RW</td>
-                            <td>This is the illegal FIFO access interrupt.<br><br>
+                            <td>This is the illegal FIFO access interrupt. An attempt was made to read the FIFO during a write CMD. Or an attempt was made to write the FIFO on a read CMD.<br><br>
                                 </td>
                         </tr>
 
@@ -3226,7 +3186,7 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                             <td>5</td>
                             <td>WTLEN</td>
                             <td>RW</td>
-                            <td>This is the write length mismatch interrupt.<br><br>
+                            <td>This is the WTLEN interrupt.<br><br>
                                 </td>
                         </tr>
 
@@ -3234,7 +3194,7 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                             <td>4</td>
                             <td>NAK</td>
                             <td>RW</td>
-                            <td>This is the I2C NAK interrupt.<br><br>
+                            <td>This is the I2C NAK interrupt. The expected ACK from the slave was not received by the IOM.<br><br>
                                 </td>
                         </tr>
 
@@ -3242,7 +3202,7 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                             <td>3</td>
                             <td>FOVFL</td>
                             <td>RW</td>
-                            <td>This is the Read FIFO Overflow interrupt.<br><br>
+                            <td>This is the Write FIFO Overflow interrupt. An attempt was made to write the FIFO while it was full (i.e. while FIFOSIZ > 124).<br><br>
                                 </td>
                         </tr>
 
@@ -3250,7 +3210,7 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                             <td>2</td>
                             <td>FUNDFL</td>
                             <td>RW</td>
-                            <td>This is the Write FIFO Underflow interrupt.<br><br>
+                            <td>This is the Read FIFO Underflow interrupt. An attempt was made to read FIFO when empty (i.e. while FIFOSIZ less than 4).<br><br>
                                 </td>
                         </tr>
 
@@ -3276,342 +3236,6 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
             </div>
         </div>
 
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 id="DBG0" class="panel-title">DBG0 - </h3>
-            </div>
-            <div class="panel-body">
-                <h3>Address:</h3>
-                <table style="margin:10px">
-                    <tr id="row_0_0_">
-                        <td class="entry">
-                            <span style="width:32px;display:inline-block;">&#160;</span>
-                            <span class="h5">Instance 0 Address:</span>
-                        </td>
-                        <td class="entry">
-                            <span style="width:32px;display:inline-block;">&#160;</span>
-                            <span class="h5">0x50004300</span>
-                        </td>
-                    </tr>
-
-                    <tr id="row_0_0_">
-                        <td class="entry">
-                            <span style="width:32px;display:inline-block;">&#160;</span>
-                            <span class="h5">Instance 1 Address:</span>
-                        </td>
-                        <td class="entry">
-                            <span style="width:32px;display:inline-block;">&#160;</span>
-                            <span class="h5">0x50005300</span>
-                        </td>
-                    </tr>
-
-                    <tr id="row_0_0_">
-                        <td class="entry">
-                            <span style="width:32px;display:inline-block;">&#160;</span>
-                            <span class="h5">Instance 2 Address:</span>
-                        </td>
-                        <td class="entry">
-                            <span style="width:32px;display:inline-block;">&#160;</span>
-                            <span class="h5">0x50006300</span>
-                        </td>
-                    </tr>
-
-                    <tr id="row_0_0_">
-                        <td class="entry">
-                            <span style="width:32px;display:inline-block;">&#160;</span>
-                            <span class="h5">Instance 3 Address:</span>
-                        </td>
-                        <td class="entry">
-                            <span style="width:32px;display:inline-block;">&#160;</span>
-                            <span class="h5">0x50007300</span>
-                        </td>
-                    </tr>
-
-                    <tr id="row_0_0_">
-                        <td class="entry">
-                            <span style="width:32px;display:inline-block;">&#160;</span>
-                            <span class="h5">Instance 4 Address:</span>
-                        </td>
-                        <td class="entry">
-                            <span style="width:32px;display:inline-block;">&#160;</span>
-                            <span class="h5">0x50008300</span>
-                        </td>
-                    </tr>
-
-                    <tr id="row_0_0_">
-                        <td class="entry">
-                            <span style="width:32px;display:inline-block;">&#160;</span>
-                            <span class="h5">Instance 5 Address:</span>
-                        </td>
-                        <td class="entry">
-                            <span style="width:32px;display:inline-block;">&#160;</span>
-                            <span class="h5">0x50009300</span>
-                        </td>
-                    </tr>
-
-                </table>
-                <h3>Description:</h3>
-                <p></p>
-                <h3>Example Macro Usage:</h3>
-                <pre style="margin:10px" class="language-pascal"><span style='color:#3f7f59; '>//
-// All macro-based register writes follow the same basic format. For
-// single-instance modules, you may use the simpler AM_REG macro. For
-// multi-instance macros, you will need to specify the instance number using
-// the AM_REGn macro format.
-//
-// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
-// AM_REGn(&lt;MODULE&gt;, &lt;INSTANCE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
-//
-// For registers that do not have specific enumeration values, you may use this alternate format instead.
-//
-// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;(&lt;NUMBER&gt;);
-//
-// For example, the following three lines of code are equivalent methods of
-// writing the value for 12MHZ to the CLKSEL field in the ADC_CFG register.
-//</span>
-AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
-AM_REGn(ADC, 0, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
-AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
-                <h3>Register Fields:</h3>
-                <table style="margin:10px" class="table table-bordered table-condensed">
-                    <thead>
-                        <tr>
-                            <th>31</th>
-                            <th>30</th>
-                            <th>29</th>
-                            <th>28</th>
-                            <th>27</th>
-                            <th>26</th>
-                            <th>25</th>
-                            <th>24</th>
-                            <th>23</th>
-                            <th>22</th>
-                            <th>21</th>
-                            <th>20</th>
-                            <th>19</th>
-                            <th>18</th>
-                            <th>17</th>
-                            <th>16</th>
-                            <th>15</th>
-                            <th>14</th>
-                            <th>13</th>
-                            <th>12</th>
-                            <th>11</th>
-                            <th>10</th>
-                            <th>9</th>
-                            <th>8</th>
-                            <th>7</th>
-                            <th>6</th>
-                            <th>5</th>
-                            <th>4</th>
-                            <th>3</th>
-                            <th>2</th>
-                            <th>1</th>
-                            <th>0</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td align="center" colspan="32">DBG0
-                                <br>0x0</td>
-
-                        </tr>
-                    </tbody>
-                </table>
-                <br>
-
-                <table style="margin:10px" class="table table-bordered table-condensed">
-                    <thead>
-                        <tr>
-                            <th>Bits</th>
-                            <th>Name</th>
-                            <th>RW</th>
-                            <th>Description</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>31:0</td>
-                            <td>DBG0</td>
-                            <td>RO</td>
-                            <td><br><br>
-                                </td>
-                        </tr>
-
-                    </tbody>
-                </table>
-                <br>
-            </div>
-        </div>
-
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 id="DBG1" class="panel-title">DBG1 - </h3>
-            </div>
-            <div class="panel-body">
-                <h3>Address:</h3>
-                <table style="margin:10px">
-                    <tr id="row_0_0_">
-                        <td class="entry">
-                            <span style="width:32px;display:inline-block;">&#160;</span>
-                            <span class="h5">Instance 0 Address:</span>
-                        </td>
-                        <td class="entry">
-                            <span style="width:32px;display:inline-block;">&#160;</span>
-                            <span class="h5">0x50004304</span>
-                        </td>
-                    </tr>
-
-                    <tr id="row_0_0_">
-                        <td class="entry">
-                            <span style="width:32px;display:inline-block;">&#160;</span>
-                            <span class="h5">Instance 1 Address:</span>
-                        </td>
-                        <td class="entry">
-                            <span style="width:32px;display:inline-block;">&#160;</span>
-                            <span class="h5">0x50005304</span>
-                        </td>
-                    </tr>
-
-                    <tr id="row_0_0_">
-                        <td class="entry">
-                            <span style="width:32px;display:inline-block;">&#160;</span>
-                            <span class="h5">Instance 2 Address:</span>
-                        </td>
-                        <td class="entry">
-                            <span style="width:32px;display:inline-block;">&#160;</span>
-                            <span class="h5">0x50006304</span>
-                        </td>
-                    </tr>
-
-                    <tr id="row_0_0_">
-                        <td class="entry">
-                            <span style="width:32px;display:inline-block;">&#160;</span>
-                            <span class="h5">Instance 3 Address:</span>
-                        </td>
-                        <td class="entry">
-                            <span style="width:32px;display:inline-block;">&#160;</span>
-                            <span class="h5">0x50007304</span>
-                        </td>
-                    </tr>
-
-                    <tr id="row_0_0_">
-                        <td class="entry">
-                            <span style="width:32px;display:inline-block;">&#160;</span>
-                            <span class="h5">Instance 4 Address:</span>
-                        </td>
-                        <td class="entry">
-                            <span style="width:32px;display:inline-block;">&#160;</span>
-                            <span class="h5">0x50008304</span>
-                        </td>
-                    </tr>
-
-                    <tr id="row_0_0_">
-                        <td class="entry">
-                            <span style="width:32px;display:inline-block;">&#160;</span>
-                            <span class="h5">Instance 5 Address:</span>
-                        </td>
-                        <td class="entry">
-                            <span style="width:32px;display:inline-block;">&#160;</span>
-                            <span class="h5">0x50009304</span>
-                        </td>
-                    </tr>
-
-                </table>
-                <h3>Description:</h3>
-                <p></p>
-                <h3>Example Macro Usage:</h3>
-                <pre style="margin:10px" class="language-pascal"><span style='color:#3f7f59; '>//
-// All macro-based register writes follow the same basic format. For
-// single-instance modules, you may use the simpler AM_REG macro. For
-// multi-instance macros, you will need to specify the instance number using
-// the AM_REGn macro format.
-//
-// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
-// AM_REGn(&lt;MODULE&gt;, &lt;INSTANCE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;_&lt;VALUE&gt;;
-//
-// For registers that do not have specific enumeration values, you may use this alternate format instead.
-//
-// AM_REG(&lt;MODULE&gt;, &lt;REGISTER&gt;) |= AM_REG_&lt;MODULE&gt;_&lt;REGISTER&gt;_&lt;FIELD&gt;(&lt;NUMBER&gt;);
-//
-// For example, the following three lines of code are equivalent methods of
-// writing the value for 12MHZ to the CLKSEL field in the ADC_CFG register.
-//</span>
-AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
-AM_REGn(ADC, 0, CFG) |= AM_REG_ADC_CFG_CLKSEL_12MHZ;
-AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
-                <h3>Register Fields:</h3>
-                <table style="margin:10px" class="table table-bordered table-condensed">
-                    <thead>
-                        <tr>
-                            <th>31</th>
-                            <th>30</th>
-                            <th>29</th>
-                            <th>28</th>
-                            <th>27</th>
-                            <th>26</th>
-                            <th>25</th>
-                            <th>24</th>
-                            <th>23</th>
-                            <th>22</th>
-                            <th>21</th>
-                            <th>20</th>
-                            <th>19</th>
-                            <th>18</th>
-                            <th>17</th>
-                            <th>16</th>
-                            <th>15</th>
-                            <th>14</th>
-                            <th>13</th>
-                            <th>12</th>
-                            <th>11</th>
-                            <th>10</th>
-                            <th>9</th>
-                            <th>8</th>
-                            <th>7</th>
-                            <th>6</th>
-                            <th>5</th>
-                            <th>4</th>
-                            <th>3</th>
-                            <th>2</th>
-                            <th>1</th>
-                            <th>0</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td align="center" colspan="32">DBG1
-                                <br>0x0</td>
-
-                        </tr>
-                    </tbody>
-                </table>
-                <br>
-
-                <table style="margin:10px" class="table table-bordered table-condensed">
-                    <thead>
-                        <tr>
-                            <th>Bits</th>
-                            <th>Name</th>
-                            <th>RW</th>
-                            <th>Description</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>31:0</td>
-                            <td>DBG1</td>
-                            <td>RO</td>
-                            <td><br><br>
-                                </td>
-                        </tr>
-
-                    </tbody>
-                </table>
-                <br>
-            </div>
-        </div>
-
     </body>
 
     <hr size="1">
@@ -3620,7 +3244,7 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
             <small>
                 AmbiqSuite Register Documentation&nbsp;
                 <a href="http://www.ambiqmicro.com">
-                <img class="footer" src="../resources/ambiqmicro_logo.png" alt="Ambiq Micro"/></a>&nbsp&nbsp Copyright &copy; 2014&nbsp&nbsp<br />
+                <img class="footer" src="../resources/ambiqmicro_logo.png" alt="Ambiq Micro"/></a>&nbsp&nbsp Copyright &copy; 2020&nbsp&nbsp<br />
                 This documentation is licensed and distributed under the <a rel="license" href="http://opensource.org/licenses/BSD-3-Clause">BSD 3-Clause License</a>.&nbsp&nbsp<br/>
             </small>
         </div>

@@ -2,7 +2,7 @@
 #
 # Makefile - Rules for building the libraries, examples and docs.
 #
-# Copyright (c) 2020, Ambiq Micro
+# Copyright (c) 2020, Ambiq Micro, Inc.
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
@@ -34,7 +34,7 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 #
-# This is part of revision 2.4.2 of the AmbiqSuite Development Package.
+# This is part of revision 2.5.1 of the AmbiqSuite Development Package.
 #
 #******************************************************************************
 TARGET := freertos_mspi_mspi_display
@@ -82,53 +82,51 @@ all clean:
 else
 
 DEFINES = -DPART_$(PART)
+DEFINES+= -DAM_UTIL_FAULTISR_PRINT
 DEFINES+= -DAM_FREERTOS
-DEFINES+= -DAM_DEBUG_PRINTF
 DEFINES+= -DAPS6404L
+DEFINES+= -DAM_DEBUG_PRINTF
 DEFINES+= -DAM_PART_APOLLO3P
 DEFINES+= -DAM_PACKAGE_BGA
-DEFINES+= -DFIREBALL_CARD
-DEFINES+= -DAM_UTIL_FAULTISR_PRINT
 DEFINES+= -Dgcc
 
-INCLUDES = -I../../../../../CMSIS/AmbiqMicro/Include
-INCLUDES+= -I../../../../../mcu/apollo3p
+INCLUDES = -I../../../../../mcu/apollo3p
+INCLUDES+= -I../src
+INCLUDES+= -I../../../../../CMSIS/AmbiqMicro/Include
+INCLUDES+= -I../../../../../devices
 INCLUDES+= -I../../../../../third_party/FreeRTOSv10.1.1/Source/portable/GCC/AMapollo2
 INCLUDES+= -I../../../bsp
-INCLUDES+= -I../src
-INCLUDES+= -I../../../../../utils
 INCLUDES+= -I../../../../../third_party/FreeRTOSv10.1.1/Source/include
-INCLUDES+= -I../../../../../CMSIS/ARM/Include
-INCLUDES+= -I../../../../../devices
 INCLUDES+= -I../../../../..
+INCLUDES+= -I../../../../../CMSIS/ARM/Include
+INCLUDES+= -I../../../../../utils
 
-VPATH = ../../../../../third_party/FreeRTOSv10.1.1/Source
+VPATH = ../src
+VPATH+=:../../../../../third_party/FreeRTOSv10.1.1/Source/portable/GCC/AMapollo2
+VPATH+=:../../../../../third_party/FreeRTOSv10.1.1/Source
+VPATH+=:../../../../../utils
 VPATH+=:../../../../../devices
 VPATH+=:../../../../../third_party/FreeRTOSv10.1.1/Source/portable/MemMang
-VPATH+=:../../../../../third_party/FreeRTOSv10.1.1/Source/portable/GCC/AMapollo2
-VPATH+=:../src
-VPATH+=:../../../../../utils
 
-SRC = port.c
-SRC += ambiq_logo_bmp.c
+SRC = ambiq_logo_bmp.c
 SRC += compose_task.c
 SRC += freertos_mspi_mspi_display.c
 SRC += main_task.c
 SRC += render_task.c
 SRC += rtos.c
+SRC += port.c
+SRC += am_util_debug.c
+SRC += am_util_delay.c
+SRC += am_util_faultisr.c
+SRC += am_util_stdio.c
+SRC += am_devices_mspi_psram_aps6404l.c
+SRC += am_devices_mspi_rm67162.c
+SRC += heap_2.c
 SRC += event_groups.c
 SRC += list.c
 SRC += queue.c
 SRC += tasks.c
 SRC += timers.c
-SRC += am_util_debug.c
-SRC += am_util_delay.c
-SRC += am_util_faultisr.c
-SRC += am_util_stdio.c
-SRC += am_devices_fireball.c
-SRC += am_devices_mspi_psram_aps6404l.c
-SRC += am_devices_mspi_rm67162.c
-SRC += heap_2.c
 SRC += startup_gcc.c
 
 CSRC = $(filter %.c,$(SRC))
@@ -140,8 +138,8 @@ OBJS+= $(ASRC:%.s=$(CONFIG)/%.o)
 DEPS = $(CSRC:%.c=$(CONFIG)/%.d)
 DEPS+= $(ASRC:%.s=$(CONFIG)/%.d)
 
-LIBS = ../../../bsp/gcc/bin/libam_bsp.a
-LIBS += ../../../../../mcu/apollo3p/hal/gcc/bin/libam_hal.a
+LIBS = ../../../../../mcu/apollo3p/hal/gcc/bin/libam_hal.a
+LIBS += ../../../bsp/gcc/bin/libam_bsp.a
 
 CFLAGS = -mthumb -mcpu=$(CPU) -mfpu=$(FPU) -mfloat-abi=$(FABI)
 CFLAGS+= -ffunction-sections -fdata-sections -fomit-frame-pointer
@@ -188,6 +186,7 @@ $(CONFIG)/$(TARGET).bin: $(CONFIG)/$(TARGET).axf
 	@echo " Copying $(COMPILERNAME) $@..." ;\
 	$(CP) $(CPFLAGS) $< $@ ;\
 	$(OD) $(ODFLAGS) $< > $(CONFIG)/$(TARGET).lst
+	@$(SIZE) $(OBJS) $(LIBS) $(CONFIG)/$(TARGET).axf >$(CONFIG)/$(TARGET).size
 
 clean:
 	@echo "Cleaning..." ;\
@@ -197,11 +196,11 @@ clean:
 
 $(CONFIG)/%.d: ;
 
-../../../bsp/gcc/bin/libam_bsp.a:
-	$(MAKE) -C ../../../bsp
-
 ../../../../../mcu/apollo3p/hal/gcc/bin/libam_hal.a:
 	$(MAKE) -C ../../../../../mcu/apollo3p/hal
+
+../../../bsp/gcc/bin/libam_bsp.a:
+	$(MAKE) -C ../../../bsp
 
 # Automatically include any generated dependencies
 -include $(DEPS)

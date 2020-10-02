@@ -1,14 +1,14 @@
 //*****************************************************************************
 //
-//! @file freertos_fit.h
+//! @file freertos_amota.h
 //!
-//! @brief Global includes for the freertos_fit app.
+//! @brief Global includes for the freertos_amota app.
 //
 //*****************************************************************************
 
 //*****************************************************************************
 //
-// Copyright (c) 2020, Ambiq Micro
+// Copyright (c) 2020, Ambiq Micro, Inc.
 // All rights reserved.
 //
 // Redistribution and use in source and binary forms, with or without
@@ -40,12 +40,12 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
-// This is part of revision 2.4.2 of the AmbiqSuite Development Package.
+// This is part of revision 2.5.1 of the AmbiqSuite Development Package.
 //
 //*****************************************************************************
 
-#ifndef FREERTOS_FIT_H
-#define FREERTOS_FIT_H
+#ifndef FREERTOS_AMOTA_H
+#define FREERTOS_AMOTA_H
 
 //*****************************************************************************
 //
@@ -86,4 +86,4 @@
 //*****************************************************************************
 #include "radio_task.h"
 
-#endif // FREERTOS_FIT_H
+#endif // FREERTOS_AMOTA_H

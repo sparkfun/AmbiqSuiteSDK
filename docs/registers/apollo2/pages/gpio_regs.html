@@ -25,7 +25,7 @@
                             <img alt="Logo" src="../resources/am_logo.png" />
                         </td>
                         <td style="padding-left: 0.5em;">
-                            <div id="projectname">Apollo Register Documentation &#160;<span id="projectnumber">v2.4.2</span></div>
+                            <div id="projectname">Apollo Register Documentation &#160;<span id="projectnumber">v${version}</span></div>
                         </td>
                     </tr>
                 </tbody>
@@ -460,7 +460,7 @@
                         </td>
                         <td class="entry">
                             <span style="width:32px;display:inline-block;">&#160;</span>
-                            <a class="el" href="#IOM0IRQ" target="_self">IOM0IRQ - STIMER Capture Control</a>
+                            <a class="el" href="#IOM0IRQ" target="_self">IOM0IRQ - IOM0 Flow Control IRQ Select</a>
                         </td>
                     </tr>
 
@@ -471,7 +471,7 @@
                         </td>
                         <td class="entry">
                             <span style="width:32px;display:inline-block;">&#160;</span>
-                            <a class="el" href="#IOM1IRQ" target="_self">IOM1IRQ - STIMER Capture Control</a>
+                            <a class="el" href="#IOM1IRQ" target="_self">IOM1IRQ - IOM1 Flow Control IRQ Select</a>
                         </td>
                     </tr>
 
@@ -482,7 +482,7 @@
                         </td>
                         <td class="entry">
                             <span style="width:32px;display:inline-block;">&#160;</span>
-                            <a class="el" href="#IOM2IRQ" target="_self">IOM2IRQ - STIMER Capture Control</a>
+                            <a class="el" href="#IOM2IRQ" target="_self">IOM2IRQ - IOM2 Flow Control IRQ Select</a>
                         </td>
                     </tr>
 
@@ -493,7 +493,7 @@
                         </td>
                         <td class="entry">
                             <span style="width:32px;display:inline-block;">&#160;</span>
-                            <a class="el" href="#IOM3IRQ" target="_self">IOM3IRQ - STIMER Capture Control</a>
+                            <a class="el" href="#IOM3IRQ" target="_self">IOM3IRQ - IOM3 Flow Control IRQ Select</a>
                         </td>
                     </tr>
 
@@ -504,7 +504,7 @@
                         </td>
                         <td class="entry">
                             <span style="width:32px;display:inline-block;">&#160;</span>
-                            <a class="el" href="#IOM4IRQ" target="_self">IOM4IRQ - STIMER Capture Control</a>
+                            <a class="el" href="#IOM4IRQ" target="_self">IOM4IRQ - IOM4 Flow Control IRQ Select</a>
                         </td>
                     </tr>
 
@@ -515,7 +515,7 @@
                         </td>
                         <td class="entry">
                             <span style="width:32px;display:inline-block;">&#160;</span>
-                            <a class="el" href="#IOM5IRQ" target="_self">IOM5IRQ - STIMER Capture Control</a>
+                            <a class="el" href="#IOM5IRQ" target="_self">IOM5IRQ - IOM5 Flow Control IRQ Select</a>
                         </td>
                     </tr>
 
@@ -945,13 +945,14 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                             <td>PAD3FNCSEL</td>
                             <td>RW</td>
                             <td>Pad 3 function select<br><br>
-                                 UA0RTS               = 0x0 - Configure as the UART 0 RTS output<br>
+                                 UA0RTS               = 0x0 - Configure as the UART0 RTS output<br>
                              SLnCE                = 0x1 - Configure as the IOSLAVE SPI nCE signal<br>
                              M1nCE4               = 0x2 - Configure as the SPI channel 4 nCE signal from IOMSTR1<br>
                              GPIO3                = 0x3 - Configure as GPIO3<br>
-                             M0nCE                = 0x4 - Configure as the IOSLAVE SPI nCE loopback signal from IOMSTR0<br>
-                             M1nCE                = 0x5 - Configure as the IOSLAVE SPI nCE loopback signal from IOMSTR1<br>
-                             TRIG1                = 0x6 - Configure as the ADC Trigger 1 signal</td>
+                             MxnCELB              = 0x4 - Configure as the IOSLAVE SPI nCE loopback signal from IOMSTRx<br>
+                             M2nCE0               = 0x5 - Configure as the SPI channel 0 nCE signal from IOMSTR2<br>
+                             TRIG1                = 0x6 - Configure as the ADC Trigger 1 signal<br>
+                             I2S_WCLK             = 0x7 - Configure as the I2S Word Clock input</td>
                         </tr>
 
                         <tr>
@@ -996,12 +997,12 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                             <td>Pad 2 function select<br><br>
                                  SLWIR3               = 0x0 - Configure as the IOSLAVE SPI 3-wire MOSI/MISO signal<br>
                              SLMOSI               = 0x1 - Configure as the IOSLAVE SPI MOSI signal<br>
-                             CLKOUT               = 0x2 - Configure as the CLKOUT signal<br>
+                             UART0RX              = 0x2 - Configure as the UART0 RX input<br>
                              GPIO2                = 0x3 - Configure as GPIO2<br>
-                             M0MOSI               = 0x4 - Configure as the IOSLAVE SPI MOSI loopback signal from IOMSTR0<br>
-                             M1MOSI               = 0x5 - Configure as the IOSLAVE SPI MOSI loopback signal from IOMSTR1<br>
-                             M0WIR3               = 0x6 - Configure as the IOSLAVE SPI 3-wire MOSI/MISO loopback signal from IOMSTR0<br>
-                             M1WIR3               = 0x7 - Configure as the IOSLAVE SPI 3-wire MOSI/MISO loopback signal from IOMSTR1</td>
+                             MxMOSILB             = 0x4 - Configure as the IOSLAVE SPI MOSI loopback signal from IOMSTRx<br>
+                             M2MOSI               = 0x5 - Configure as the IOMSTR2 SPI MOSI output signal<br>
+                             MxWIR3LB             = 0x6 - Configure as the IOSLAVE SPI 3-wire MOSI/MISO loopback signal from IOMSTRx<br>
+                             M2WIR3               = 0x7 - Configure as the IOMSTR2 SPI 3-wire MOSI/MISO signal</td>
                         </tr>
 
                         <tr>
@@ -1049,12 +1050,12 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                             <td>Pad 1 function select<br><br>
                                  SLSDA                = 0x0 - Configure as the IOSLAVE I2C SDA signal<br>
                              SLMISO               = 0x1 - Configure as the IOSLAVE SPI MISO signal<br>
-                             UARTRX               = 0x2 - Configure as the UART RX signal<br>
+                             UART0TX              = 0x2 - Configure as the UART0 TX output signal<br>
                              GPIO1                = 0x3 - Configure as GPIO1<br>
-                             M0MISO               = 0x4 - Configure as the IOSLAVE SPI MISO loopback signal from IOMSTR0<br>
-                             M1MISO               = 0x5 - Configure as the IOSLAVE SPI MISO loopback signal from IOMSTR1<br>
-                             M0SDA                = 0x6 - Configure as the IOSLAVE I2C SDA loopback signal from IOMSTR0<br>
-                             M1SDA                = 0x7 - Configure as the IOSLAVE I2C SDA loopback signal from IOMSTR1</td>
+                             MxMISOLB             = 0x4 - Configure as the IOSLAVE SPI MISO loopback signal from IOMSTRx<br>
+                             M2MISO               = 0x5 - Configure as the IOMSTR2 SPI MISO input signal<br>
+                             MxSDALB              = 0x6 - Configure as the IOSLAVE I2C SDA loopback signal from IOMSTRx<br>
+                             M2SDA                = 0x7 - Configure as the IOMSTR2 I2C Serial data I/O signal</td>
                         </tr>
 
                         <tr>
@@ -1102,12 +1103,12 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                             <td>Pad 0 function select<br><br>
                                  SLSCL                = 0x0 - Configure as the IOSLAVE I2C SCL signal<br>
                              SLSCK                = 0x1 - Configure as the IOSLAVE SPI SCK signal<br>
-                             UARTTX               = 0x2 - Configure as the UART TX signal<br>
+                             CLKOUT               = 0x2 - Configure as the CLKOUT signal<br>
                              GPIO0                = 0x3 - Configure as GPIO0<br>
-                             M0SCK                = 0x4 - Configure as the IOSLAVE SPI SCK loopback signal from IOMSTR0<br>
-                             M1SCK                = 0x5 - Configure as the IOSLAVE SPI SCK loopback signal from IOMSTR1<br>
-                             M0SCL                = 0x6 - Configure as the IOSLAVE I2C SCL loopback signal from IOMSTR0<br>
-                             M1SCL                = 0x7 - Configure as the IOSLAVE I2C SCL loopback signal from IOMSTR1</td>
+                             MxSCKLB              = 0x4 - Configure as the IOSLAVE SPI SCK loopback signal from IOMSTRx<br>
+                             M2SCK                = 0x5 - Configure as the IOMSTR2 SPI SCK output<br>
+                             MxSCLLB              = 0x6 - Configure as the IOSLAVE I2C SCL loopback signal from IOMSTRx<br>
+                             M2SCL                = 0x7 - Configure as the IOMSTR2 I2C SCL clock I/O signal</td>
                         </tr>
 
                         <tr>
@@ -1320,15 +1321,16 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                              CLKOUT               = 0x2 - Configure as the CLKOUT signal<br>
                              GPIO7                = 0x3 - Configure as GPIO7<br>
                              TRIG0                = 0x4 - Configure as the ADC Trigger 0 signal<br>
-                             SLWIR3               = 0x6 - Configure as the IOMSTR0 SPI 3-wire MOSI/MISO loopback signal from IOSLAVE<br>
-                             DIS                  = 0x7 - Pad disabled</td>
+                             UART0TX              = 0x5 - Configure as the UART0 TX output signal<br>
+                             SLWIR3LB             = 0x6 - Configure as the IOMSTR0 SPI 3-wire MOSI/MISO loopback signal from IOSLAVE<br>
+                             M1nCE1               = 0x7 - Configure as the SPI channel 1 nCE signal from IOMSTR1</td>
                         </tr>
 
                         <tr>
                             <td>26</td>
                             <td>PAD7STRNG</td>
                             <td>RW</td>
-                            <td>Pad 7 drive strentgh<br><br>
+                            <td>Pad 7 drive strength<br><br>
                                  LOW                  = 0x0 - Low drive strength<br>
                              HIGH                 = 0x1 - High drive strength</td>
                         </tr>
@@ -1369,11 +1371,12 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                             <td>Pad 6 function select<br><br>
                                  M0SDA                = 0x0 - Configure as the IOMSTR0 I2C SDA signal<br>
                              M0MISO               = 0x1 - Configure as the IOMSTR0 SPI MISO signal<br>
-                             UACTS                = 0x2 - Configure as the UART CTS signal<br>
+                             UA0CTS               = 0x2 - Configure as the UART0 CTS input signal<br>
                              GPIO6                = 0x3 - Configure as GPIO6<br>
-                             SLMISO               = 0x4 - Configure as the IOMSTR0 SPI MISO loopback signal from IOSLAVE<br>
-                             SLSDA                = 0x6 - Configure as the IOMSTR0 I2C SDA loopback signal from IOSLAVE<br>
-                             DIS                  = 0x7 - Pad disabled</td>
+                             SLMISOLB             = 0x4 - Configure as the IOMSTR0 SPI MISO loopback signal from IOSLAVE<br>
+                             M1nCE0               = 0x5 - Configure as the SPI channel 0 nCE signal from IOMSTR1<br>
+                             SLSDALB              = 0x6 - Configure as the IOMSTR0 I2C SDA loopback signal from IOSLAVE<br>
+                             I2S_DAT              = 0x7 - Configure as the I2S Data output signal</td>
                         </tr>
 
                         <tr>
@@ -1421,11 +1424,12 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                             <td>Pad 5 function select<br><br>
                                  M0SCL                = 0x0 - Configure as the IOMSTR0 I2C SCL signal<br>
                              M0SCK                = 0x1 - Configure as the IOMSTR0 SPI SCK signal<br>
-                             UARTS                = 0x2 - Configure as the UART RTS signal<br>
+                             UA0RTS               = 0x2 - Configure as the UART0 RTS signal output<br>
                              GPIO5                = 0x3 - Configure as GPIO5<br>
-                             SLSCK                = 0x4 - Configure as the IOMSTR0 SPI SCK loopback signal from IOSLAVE<br>
-                             SLSCL                = 0x6 - Configure as the IOMSTR0 I2C SCL loopback signal from IOSLAVE<br>
-                             DIS                  = 0x7 - Pad disabled</td>
+                             M0SCKLB              = 0x4 - Configure as the IOMSTR0 SPI SCK loopback signal from IOSLAVE<br>
+                             EXTHFA               = 0x5 - Configure as the External HFA input clock<br>
+                             M0SCLLB              = 0x6 - Configure as the IOMSTR0 I2C SCL loopback signal from IOSLAVE<br>
+                             M1nCE2               = 0x7 - Configure as the SPI Channel 2 nCE signal from IOMSTR1</td>
                         </tr>
 
                         <tr>
@@ -1477,14 +1481,14 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                             <td>PAD4FNCSEL</td>
                             <td>RW</td>
                             <td>Pad 4 function select<br><br>
-                                 UA0RTS               = 0x0 - Configure as the UART0 RTS output signal<br>
+                                 UA0CTS               = 0x0 - Configure as the UART0 CTS input signal<br>
                              SLINT                = 0x1 - Configure as the IOSLAVE interrupt out signal<br>
                              M0nCE5               = 0x2 - Configure as the SPI channel 5 nCE signal from IOMSTR0<br>
                              GPIO4                = 0x3 - Configure as GPIO4<br>
-                             SLINTGP              = 0x4 - Configure as the IOSLAVE interrupt loopback signal to GPIO4<br>
-                             SWO                  = 0x5 - Configure as the serial wire debug SWO signal<br>
+                             SLINTGP              = 0x4 - Configure as the IOSLAVE interrupt loopback signal<br>
+                             M2nCE5               = 0x5 - Configure as the SPI channel 5 nCE signal from IOMSTR2<br>
                              CLKOUT               = 0x6 - Configure as the CLKOUT signal<br>
-                             DIS                  = 0x7 - Pad disabled</td>
+                             32khz_XT             = 0x7 - Configure as the 32kHz crystal output signal</td>
                         </tr>
 
                         <tr>
@@ -1689,17 +1693,21 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                             <td>PAD11FNCSEL</td>
                             <td>RW</td>
                             <td>Pad 11 function select<br><br>
-                                 ANATST               = 0x0 - Configure as the analog test output signal<br>
+                                 ADCSE2               = 0x0 - Configure as the analog input for ADC single ended input 2<br>
                              M0nCE0               = 0x1 - Configure as the SPI channel 0 nCE signal from IOMSTR0<br>
                              CLKOUT               = 0x2 - Configure as the CLKOUT signal<br>
-                             GPIO11               = 0x3 - Configure as GPIO11</td>
+                             GPIO11               = 0x3 - Configure as GPIO11<br>
+                             M2nCE7               = 0x4 - Configure as the SPI channel 7 nCE signal from IOMSTR2<br>
+                             UA1CTS               = 0x5 - Configure as the UART1 CTS input signal<br>
+                             UART0RX              = 0x6 - Configure as the UART0 RX input signal<br>
+                             PDM_DATA             = 0x7 - Configure as the PDM Data input signal</td>
                         </tr>
 
                         <tr>
                             <td>26</td>
                             <td>PAD11STRNG</td>
                             <td>RW</td>
-                            <td>Pad 11 drive strentgh<br><br>
+                            <td>Pad 11 drive strength<br><br>
                                  LOW                  = 0x0 - Low drive strength<br>
                              HIGH                 = 0x1 - High drive strength</td>
                         </tr>
@@ -1739,9 +1747,10 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                              M1MOSI               = 0x1 - Configure as the IOMSTR1 SPI MOSI signal<br>
                              M0nCE6               = 0x2 - Configure as the SPI channel 6 nCE signal from IOMSTR0<br>
                              GPIO10               = 0x3 - Configure as GPIO10<br>
-                             EXTHFA               = 0x5 - Configure as the external HFRC A clock signal<br>
-                             DIS                  = 0x6 - Pad disabled<br>
-                             SLWIR3               = 0x7 - Configure as the IOMSTR1 SPI 3-wire MOSI/MISO loopback signal from IOSLAVE</td>
+                             M2nCE6               = 0x4 - Configure as the SPI channel 6 nCE signal from IOMSTR2<br>
+                             UA1RTS               = 0x5 - Configure as the UART1 RTS output signal<br>
+                             M4nCE4               = 0x6 - Configure as the SPI channel 4 nCE signal from the IOMSTR4<br>
+                             SLWIR3LB             = 0x7 - Configure as the IOMSTR1 SPI 3-wire MOSI/MISO loopback signal from IOSLAVE</td>
                         </tr>
 
                         <tr>
@@ -1791,9 +1800,10 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                              M1MISO               = 0x1 - Configure as the IOMSTR1 SPI MISO signal<br>
                              M0nCE5               = 0x2 - Configure as the SPI channel 5 nCE signal from IOMSTR0<br>
                              GPIO9                = 0x3 - Configure as GPIO9<br>
-                             SLMISO               = 0x5 - Configure as the IOMSTR1 SPI MISO loopback signal from IOSLAVE<br>
-                             DIS                  = 0x6 - Pad disabled<br>
-                             SLSDA                = 0x7 - Configure as the IOMSTR1 I2C SDA loopback signal from IOSLAVE</td>
+                             M4nCE5               = 0x4 - Configure as the SPI channel 5 nCE signal from IOMSTR4<br>
+                             SLMISOLB             = 0x5 - Configure as the IOMSTR1 SPI MISO loopback signal from IOSLAVE<br>
+                             UART1RX              = 0x6 - Configure as UART1 RX input signal<br>
+                             SLSDALB              = 0x7 - Configure as the IOMSTR1 I2C SDA loopback signal from IOSLAVE</td>
                         </tr>
 
                         <tr>
@@ -1843,9 +1853,10 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                              M1SCK                = 0x1 - Configure as the IOMSTR1 SPI SCK signal<br>
                              M0nCE4               = 0x2 - Configure as the SPI channel 4 nCE signal from IOMSTR0<br>
                              GPIO8                = 0x3 - Configure as GPIO8<br>
-                             SLSCK                = 0x5 - Configure as the IOMSTR1 SPI SCK loopback signal from IOSLAVE<br>
-                             DIS                  = 0x6 - Pad disabled<br>
-                             SLSCL                = 0x7 - Configure as the IOMSTR1 I2C SCL loopback signal from IOSLAVE</td>
+                             M2nCE4               = 0x4 - Configure as the SPI channel 4 nCE signal from IOMSTR2<br>
+                             M1SCKLB              = 0x5 - Configure as the IOMSTR1 SPI SCK loopback signal from IOSLAVE<br>
+                             UART1TX              = 0x6 - Configure as the UART1 TX output signal<br>
+                             M1SCLLB              = 0x7 - Configure as the IOMSTR1 I2C SCL loopback signal from IOSLAVE</td>
                         </tr>
 
                         <tr>
@@ -2050,19 +2061,21 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                             <td>PAD15FNCSEL</td>
                             <td>RW</td>
                             <td>Pad 15 function select<br><br>
-                                 ADC3                 = 0x0 - Configure as the analog ADC input 3<br>
+                                 ADCD1N               = 0x0 - Configure as the analog ADC differential pair 1 N input signal<br>
                              M1nCE3               = 0x1 - Configure as the SPI channel 3 nCE signal from IOMSTR1<br>
-                             UARTRX               = 0x2 - Configure as the UART RX signal<br>
+                             UART1RX              = 0x2 - Configure as the UART1 RX signal<br>
                              GPIO15               = 0x3 - Configure as GPIO15<br>
-                             EXTXT                = 0x5 - Configure as the external XT clock signal<br>
-                             DIS                  = 0x7 - Pad disabled</td>
+                             M2nCE2               = 0x4 - Configure as the SPI Channel 2 nCE signal from IOMSTR2<br>
+                             EXTXT                = 0x5 - Configure as the external XTAL oscillator input<br>
+                             SWDIO                = 0x6 - Configure as an alternate port for the SWDIO I/O signal<br>
+                             SWO                  = 0x7 - Configure as an SWO (Serial Wire Trace output)</td>
                         </tr>
 
                         <tr>
                             <td>26</td>
                             <td>PAD15STRNG</td>
                             <td>RW</td>
-                            <td>Pad 15 drive strentgh<br><br>
+                            <td>Pad 15 drive strength<br><br>
                                  LOW                  = 0x0 - Low drive strength<br>
                              HIGH                 = 0x1 - High drive strength</td>
                         </tr>
@@ -2098,12 +2111,14 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                             <td>PAD14FNCSEL</td>
                             <td>RW</td>
                             <td>Pad 14 function select<br><br>
-                                 ADC2                 = 0x0 - Configure as the analog ADC input 2<br>
+                                 ADCD1P               = 0x0 - Configure as the analog ADC differential pair 1 P input signal<br>
                              M1nCE2               = 0x1 - Configure as the SPI channel 2 nCE signal from IOMSTR1<br>
-                             UARTTX               = 0x2 - Configure as the UART TX signal<br>
+                             UART1TX              = 0x2 - Configure as the UART1 TX output signal<br>
                              GPIO14               = 0x3 - Configure as GPIO14<br>
-                             EXTHFS               = 0x5 - Configure as the external HFRC select signal<br>
-                             DIS                  = 0x7 - Pad disabled</td>
+                             M2nCE1               = 0x4 - Configure as the SPI channel 1 nCE signal from IOMSTR2<br>
+                             EXTHFS               = 0x5 - Configure as the External HFRC oscillator input select<br>
+                             SWDCK                = 0x6 - Configure as the alternate input for the SWDCK input signal<br>
+                             32khz_XT             = 0x7 - Configure as the 32kHz crystal output signal</td>
                         </tr>
 
                         <tr>
@@ -2146,13 +2161,14 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                             <td>PAD13FNCSEL</td>
                             <td>RW</td>
                             <td>Pad 13 function select<br><br>
-                                 ADC1                 = 0x0 - Configure as the analog ADC input 1<br>
+                                 ADCD0PSE8            = 0x0 - Configure as the ADC Differential pair 0 P, or Single Ended input 8 analog input signal. Determination of the D0P vs SE8 usage is done when the particular channel is selected within the ADC module<br>
                              M1nCE1               = 0x1 - Configure as the SPI channel 1 nCE signal from IOMSTR1<br>
                              TCTB0                = 0x2 - Configure as the input/output signal from CTIMER B0<br>
                              GPIO13               = 0x3 - Configure as GPIO13<br>
-                             EXTHFA               = 0x5 - Configure as the external HFRC B clock signal<br>
-                             SWO                  = 0x6 - Configure as the serial wire debug SWO signal<br>
-                             DIS                  = 0x7 - Pad disabled</td>
+                             M2nCE3               = 0x4 - Configure as the SPI channel 3 nCE signal from IOMSTR2<br>
+                             EXTHFB               = 0x5 - Configure as the external HFRC oscillator input<br>
+                             UA0RTS               = 0x6 - Configure as the UART0 RTS signal output<br>
+                             UART1RX              = 0x7 - Configure as the UART1 RX input signal</td>
                         </tr>
 
                         <tr>
@@ -2195,10 +2211,14 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                             <td>PAD12FNCSEL</td>
                             <td>RW</td>
                             <td>Pad 12 function select<br><br>
-                                 ADC0                 = 0x0 - Configure as the analog ADC input 0<br>
+                                 ADCD0NSE9            = 0x0 - Configure as the ADC Differential pair 0 N, or Single Ended input 9 analog input signal. Determination of the D0N vs SE9 usage is done when the particular channel is selected within the ADC module<br>
                              M1nCE0               = 0x1 - Configure as the SPI channel 0 nCE signal from IOMSTR1<br>
                              TCTA0                = 0x2 - Configure as the input/output signal from CTIMER A0<br>
-                             GPIO12               = 0x3 - Configure as GPIO12</td>
+                             GPIO12               = 0x3 - Configure as GPIO12<br>
+                             CLKOUT               = 0x4 - Configure as CLKOUT signal<br>
+                             PDM_CLK              = 0x5 - Configure as the PDM CLK output signal<br>
+                             UA0CTS               = 0x6 - Configure as the UART0 CTS input signal<br>
+                             UART1TX              = 0x7 - Configure as the UART1 TX output signal</td>
                         </tr>
 
                         <tr>
@@ -2403,17 +2423,21 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                             <td>PAD19FNCSEL</td>
                             <td>RW</td>
                             <td>Pad 19 function select<br><br>
-                                 CMPRF                = 0x0 - Configure as the analog comparator reference signal<br>
+                                 CMPRF0               = 0x0 - Configure as the analog comparator reference 0 signal<br>
                              M0nCE3               = 0x1 - Configure as the SPI channel 3 nCE signal from IOMSTR0<br>
                              TCTB1                = 0x2 - Configure as the input/output signal from CTIMER B1<br>
-                             GPIO19               = 0x3 - Configure as GPIO19</td>
+                             GPIO19               = 0x3 - Configure as GPIO19<br>
+                             TCTA1                = 0x4 - Configure as the input/output signal from CTIMER A1<br>
+                             ANATEST1             = 0x5 - Configure as the ANATEST1 I/O signal<br>
+                             UART1RX              = 0x6 - Configure as the UART1 RX input signal<br>
+                             I2S_BCLK             = 0x7 - Configure as the I2S Byte clock input signal</td>
                         </tr>
 
                         <tr>
                             <td>26</td>
                             <td>PAD19STRNG</td>
                             <td>RW</td>
-                            <td>Pad 19 drive strentgh<br><br>
+                            <td>Pad 19 drive strength<br><br>
                                  LOW                  = 0x0 - Low drive strength<br>
                              HIGH                 = 0x1 - High drive strength</td>
                         </tr>
@@ -2452,7 +2476,11 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                                  CMPIN1               = 0x0 - Configure as the analog comparator input 1 signal<br>
                              M0nCE2               = 0x1 - Configure as the SPI channel 2 nCE signal from IOMSTR0<br>
                              TCTA1                = 0x2 - Configure as the input/output signal from CTIMER A1<br>
-                             GPIO18               = 0x3 - Configure as GPIO18</td>
+                             GPIO18               = 0x3 - Configure as GPIO18<br>
+                             M4nCE1               = 0x4 - Configure as the SPI nCE channel 1 from IOMSTR4<br>
+                             ANATEST2             = 0x5 - Configure as ANATEST2 I/O signal<br>
+                             UART1TX              = 0x6 - Configure as UART1 TX output signal<br>
+                             32khz_XT             = 0x7 - Configure as the 32kHz output clock from the crystal</td>
                         </tr>
 
                         <tr>
@@ -2495,12 +2523,14 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                             <td>PAD17FNCSEL</td>
                             <td>RW</td>
                             <td>Pad 17 function select<br><br>
-                                 CMPIN0               = 0x0 - Configure as the analog comparator input 0 signal<br>
-                             M0nCE4               = 0x1 - Configure as the SPI channel 4 nCE signal from IOMSTR0<br>
+                                 CMPRF1               = 0x0 - Configure as the analog comparator reference signal 1 input signal<br>
+                             M0nCE1               = 0x1 - Configure as the SPI channel 1 nCE signal from IOMSTR0<br>
                              TRIG1                = 0x2 - Configure as the ADC Trigger 1 signal<br>
                              GPIO17               = 0x3 - Configure as GPIO17<br>
-                             EXTLF                = 0x5 - Configure as the external LFRC clock signal<br>
-                             DIS                  = 0x7 - Pad disabled</td>
+                             M4nCE3               = 0x4 - Configure as the SPI channel 3 nCE signal from IOMSTR4<br>
+                             EXTLF                = 0x5 - Configure as external LFRC oscillator input<br>
+                             UART0RX              = 0x6 - Configure as UART0 RX input signal<br>
+                             UA1CTS               = 0x7 - Configure as UART1 CTS input signal</td>
                         </tr>
 
                         <tr>
@@ -2543,10 +2573,14 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                             <td>PAD16FNCSEL</td>
                             <td>RW</td>
                             <td>Pad 16 function select<br><br>
-                                 ADCREF               = 0x0 - Configure as the analog ADC reference input signal<br>
+                                 ADCSE0               = 0x0 - Configure as the analog ADC single ended port 0 input signal<br>
                              M0nCE4               = 0x1 - Configure as the SPI channel 4 nCE signal from IOMSTR0<br>
                              TRIG0                = 0x2 - Configure as the ADC Trigger 0 signal<br>
-                             GPIO16               = 0x3 - Configure as GPIO16</td>
+                             GPIO16               = 0x3 - Configure as GPIO16<br>
+                             M2nCE3               = 0x4 - Configure as SPI channel 3 nCE for IOMSTR2<br>
+                             CMPIN0               = 0x5 - Configure as comparator input 0 signal<br>
+                             UART0TX              = 0x6 - Configure as UART0 TX output signal<br>
+                             UA1RTS               = 0x7 - Configure as UART1 RTS output signal</td>
                         </tr>
 
                         <tr>
@@ -2754,18 +2788,21 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                             <td>PAD23FNCSEL</td>
                             <td>RW</td>
                             <td>Pad 23 function select<br><br>
-                                 UARTRX               = 0x0 - Configure as the UART RX signal<br>
+                                 UART0RX              = 0x0 - Configure as the UART0 RX signal<br>
                              M0nCE0               = 0x1 - Configure as the SPI channel 0 nCE signal from IOMSTR0<br>
                              TCTB3                = 0x2 - Configure as the input/output signal from CTIMER B3<br>
                              GPIO23               = 0x3 - Configure as GPIO23<br>
-                             PDM_DATA             = 0x4 - Configure as PDM Data input to the PDM module</td>
+                             PDM_DATA             = 0x4 - Configure as PDM Data input to the PDM module<br>
+                             CMPOUT               = 0x5 - Configure as voltage comparitor output<br>
+                             TCTB1                = 0x6 - Configure as the input/output signal from CTIMER B1<br>
+                             UNDEF7               = 0x7 - Undefined/should not be used</td>
                         </tr>
 
                         <tr>
                             <td>26</td>
                             <td>PAD23STRNG</td>
                             <td>RW</td>
-                            <td>Pad 23 drive strentgh<br><br>
+                            <td>Pad 23 drive strength<br><br>
                                  LOW                  = 0x0 - Low drive strength<br>
                              HIGH                 = 0x1 - High drive strength</td>
                         </tr>
@@ -2810,11 +2847,14 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                             <td>PAD22FNCSEL</td>
                             <td>RW</td>
                             <td>Pad 22 function select<br><br>
-                                 UARTTX               = 0x0 - Configure as the UART TX signal<br>
+                                 UART0TX              = 0x0 - Configure as the UART0 TX signal<br>
                              M1nCE7               = 0x1 - Configure as the SPI channel 7 nCE signal from IOMSTR1<br>
                              TCTA3                = 0x2 - Configure as the input/output signal from CTIMER A3<br>
                              GPIO22               = 0x3 - Configure as GPIO22<br>
-                             PDM_CLK              = 0x4 - Configure as the PDM CLK output</td>
+                             PDM_CLK              = 0x4 - Configure as the PDM CLK output<br>
+                             UNDEF5               = 0x5 - Undefined/should not be used<br>
+                             TCTB1                = 0x6 - Configure as the input/output signal from CTIMER B1<br>
+                             SWO                  = 0x7 - Configure as the serial trace data output signal</td>
                         </tr>
 
                         <tr>
@@ -2860,7 +2900,11 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                                  SWDIO                = 0x0 - Configure as the serial wire debug data signal<br>
                              M1nCE6               = 0x1 - Configure as the SPI channel 6 nCE signal from IOMSTR1<br>
                              TCTB2                = 0x2 - Configure as the input/output signal from CTIMER B2<br>
-                             GPIO21               = 0x3 - Configure as GPIO21</td>
+                             GPIO21               = 0x3 - Configure as GPIO21<br>
+                             UART0RX              = 0x4 - Configure as UART0 RX input signal<br>
+                             UART1RX              = 0x5 - Configure as UART1 RX input signal<br>
+                             UNDEF6               = 0x6 - Undefined/should not be used<br>
+                             UNDEF7               = 0x7 - Undefined/should not be used</td>
                         </tr>
 
                         <tr>
@@ -2906,7 +2950,11 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                                  SWDCK                = 0x0 - Configure as the serial wire debug clock signal<br>
                              M1nCE5               = 0x1 - Configure as the SPI channel 5 nCE signal from IOMSTR1<br>
                              TCTA2                = 0x2 - Configure as the input/output signal from CTIMER A2<br>
-                             GPIO20               = 0x3 - Configure as GPIO20</td>
+                             GPIO20               = 0x3 - Configure as GPIO20<br>
+                             UART0TX              = 0x4 - Configure as UART0 TX output signal<br>
+                             UART1TX              = 0x5 - Configure as UART1 TX output signal<br>
+                             UNDEF6               = 0x6 - Undefined/should not be used<br>
+                             UNDEF7               = 0x7 - Undefined/should not be used</td>
                         </tr>
 
                         <tr>
@@ -3114,17 +3162,21 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                             <td>PAD27FNCSEL</td>
                             <td>RW</td>
                             <td>Pad 27 function select<br><br>
-                                 EXTHF                = 0x0 - Configure as the external HFRC clock signal<br>
+                                 EXTHF                = 0x0 - Configure as the external HFRC oscillator input<br>
                              M1nCE4               = 0x1 - Configure as the SPI channel 4 nCE signal from IOMSTR1<br>
                              TCTA1                = 0x2 - Configure as the input/output signal from CTIMER A1<br>
-                             GPIO27               = 0x3 - Configure as GPIO27</td>
+                             GPIO27               = 0x3 - Configure as GPIO27<br>
+                             M2SCL                = 0x4 - Configure as I2C clock I/O signal from IOMSTR2<br>
+                             M2SCK                = 0x5 - Configure as SPI clock output signal from IOMSTR2<br>
+                             M2SCKLB              = 0x6 - Configure as IOMSTR2 SPI SCK loopback signal from IOSLAVE<br>
+                             M2SCLLB              = 0x7 - Configure as IOMSTR2 I2C SCL loopback signal from IOSLAVE</td>
                         </tr>
 
                         <tr>
                             <td>26</td>
                             <td>PAD27STRNG</td>
                             <td>RW</td>
-                            <td>Pad 27 drive strentgh<br><br>
+                            <td>Pad 27 drive strength<br><br>
                                  LOW                  = 0x0 - Low drive strength<br>
                              HIGH                 = 0x1 - High drive strength</td>
                         </tr>
@@ -3160,10 +3212,14 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                             <td>PAD26FNCSEL</td>
                             <td>RW</td>
                             <td>Pad 26 function select<br><br>
-                                 EXTLF                = 0x0 - Configure as the external LFRC clock signal<br>
+                                 EXTLF                = 0x0 - Configure as the external LFRC oscillator input<br>
                              M0nCE3               = 0x1 - Configure as the SPI channel 3 nCE signal from IOMSTR0<br>
                              TCTB0                = 0x2 - Configure as the input/output signal from CTIMER B0<br>
-                             GPIO26               = 0x3 - Configure as GPIO26</td>
+                             GPIO26               = 0x3 - Configure as GPIO26<br>
+                             M2nCE0               = 0x4 - Configure as the SPI channel 0 nCE signal from IOMSTR2<br>
+                             TCTA1                = 0x5 - Configure as the input/output signal from CTIMER A1<br>
+                             M5nCE1               = 0x6 - Configure as the SPI channel 1 nCE signal from IOMSTR5<br>
+                             M3nCE0               = 0x7 - Configure as the SPI channel 0 nCE signal from IOMSTR3</td>
                         </tr>
 
                         <tr>
@@ -3209,10 +3265,14 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                             <td>PAD25FNCSEL</td>
                             <td>RW</td>
                             <td>Pad 25 function select<br><br>
-                                 EXTXT                = 0x0 - Configure as the external XT clock signal<br>
+                                 EXTXT                = 0x0 - Configure as the external XTAL oscillator input<br>
                              M0nCE2               = 0x1 - Configure as the SPI channel 2 nCE signal from IOMSTR0<br>
                              TCTA0                = 0x2 - Configure as the input/output signal from CTIMER A0<br>
-                             GPIO25               = 0x3 - Configure as GPIO25</td>
+                             GPIO25               = 0x3 - Configure as GPIO25<br>
+                             M2SDA                = 0x4 - Configure as the IOMSTR2 I2C Serial data I/O signal<br>
+                             M2MISO               = 0x5 - Configure as the IOMSTR2 SPI MISO input signal<br>
+                             SLMISOLB             = 0x6 - Configure as the IOMSTR0 SPI MISO loopback signal from IOSLAVE<br>
+                             SLSDALB              = 0x7 - Configure as the IOMSTR0 I2C SDA loopback signal from IOSLAVE</td>
                         </tr>
 
                         <tr>
@@ -3255,10 +3315,14 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                             <td>PAD24FNCSEL</td>
                             <td>RW</td>
                             <td>Pad 24 function select<br><br>
-                                 DIS                  = 0x0 - Pad disabled<br>
+                                 M2nCE1               = 0x0 - Configure as the SPI channel 1 nCE signal from IOMSTR2<br>
                              M0nCE1               = 0x1 - Configure as the SPI channel 1 nCE signal from IOMSTR0<br>
                              CLKOUT               = 0x2 - Configure as the CLKOUT signal<br>
-                             GPIO24               = 0x3 - Configure as GPIO24</td>
+                             GPIO24               = 0x3 - Configure as GPIO24<br>
+                             M5nCE0               = 0x4 - Configure as the SPI channel 0 nCE signal from IOMSTR5<br>
+                             TCTA1                = 0x5 - Configure as the input/output signal from CTIMER A1<br>
+                             I2S_BCLK             = 0x6 - Configure as the I2S Byte clock input signal<br>
+                             SWO                  = 0x7 - Configure as the serial trace data output signal</td>
                         </tr>
 
                         <tr>
@@ -3463,17 +3527,21 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                             <td>PAD31FNCSEL</td>
                             <td>RW</td>
                             <td>Pad 31 function select<br><br>
-                                 ADC6                 = 0x0 - Configure as the analog ADC input 6 signal<br>
+                                 ADCSE3               = 0x0 - Configure as the analog input for ADC single ended input 3<br>
                              M0nCE4               = 0x1 - Configure as the SPI channel 4 nCE signal from IOMSTR0<br>
                              TCTA3                = 0x2 - Configure as the input/output signal from CTIMER A3<br>
-                             GPIO31               = 0x3 - Configure as GPIO31</td>
+                             GPIO31               = 0x3 - Configure as GPIO31<br>
+                             UART0RX              = 0x4 - Configure as the UART0 RX input signal<br>
+                             TCTB1                = 0x5 - Configure as the input/output signal from CTIMER B1<br>
+                             UNDEF6               = 0x6 - Undefined/should not be used<br>
+                             UNDEF7               = 0x7 - Undefined/should not be used</td>
                         </tr>
 
                         <tr>
                             <td>26</td>
                             <td>PAD31STRNG</td>
                             <td>RW</td>
-                            <td>Pad 31 drive strentgh<br><br>
+                            <td>Pad 31 drive strength<br><br>
                                  LOW                  = 0x0 - Low drive strength<br>
                              HIGH                 = 0x1 - High drive strength</td>
                         </tr>
@@ -3509,10 +3577,14 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                             <td>PAD30FNCSEL</td>
                             <td>RW</td>
                             <td>Pad 30 function select<br><br>
-                                 ADC5                 = 0x0 - Configure as the analog ADC input 5 signal<br>
+                                 UNDEF0               = 0x0 - Undefined/should not be used<br>
                              M1nCE7               = 0x1 - Configure as the SPI channel 7 nCE signal from IOMSTR1<br>
                              TCTB2                = 0x2 - Configure as the input/output signal from CTIMER B2<br>
-                             GPIO30               = 0x3 - Configure as GPIO30</td>
+                             GPIO30               = 0x3 - Configure as GPIO30<br>
+                             UART0TX              = 0x4 - Configure as UART0 TX output signal<br>
+                             UA1RTS               = 0x5 - Configure as UART1 RTS output signal<br>
+                             UNDEF6               = 0x6 - Undefined/should not be used<br>
+                             I2S_DAT              = 0x7 - Configure as the I2S Data output signal</td>
                         </tr>
 
                         <tr>
@@ -3555,11 +3627,14 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                             <td>PAD29FNCSEL</td>
                             <td>RW</td>
                             <td>Pad 29 function select<br><br>
-                                 ADC4                 = 0x0 - Configure as the analog ADC input 4 signal<br>
+                                 ADCSE1               = 0x0 - Configure as the analog input for ADC single ended input 1<br>
                              M1nCE6               = 0x1 - Configure as the SPI channel 6 nCE signal from IOMSTR1<br>
                              TCTA2                = 0x2 - Configure as the input/output signal from CTIMER A2<br>
                              GPIO29               = 0x3 - Configure as GPIO29<br>
-                             PDM CLK              = 0x7 - Configure as PDM Clock output</td>
+                             UA0CTS               = 0x4 - Configure as the UART0 CTS signal<br>
+                             UA1CTS               = 0x5 - Configure as the UART1 CTS signal<br>
+                             M4nCE0               = 0x6 - Configure as the SPI channel 0 nCE signal from IOMSTR4<br>
+                             PDM_DATA             = 0x7 - Configure as PDM DATA input</td>
                         </tr>
 
                         <tr>
@@ -3602,10 +3677,14 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                             <td>PAD28FNCSEL</td>
                             <td>RW</td>
                             <td>Pad 28 function select<br><br>
-                                 DIS                  = 0x0 - Pad disabled<br>
+                                 I2S_WCLK             = 0x0 - Configure as the I2S Word Clock input<br>
                              M1nCE5               = 0x1 - Configure as the SPI channel 5 nCE signal from IOMSTR1<br>
                              TCTB1                = 0x2 - Configure as the input/output signal from CTIMER B1<br>
-                             GPIO28               = 0x3 - Configure as GPIO28</td>
+                             GPIO28               = 0x3 - Configure as GPIO28<br>
+                             M2WIR3               = 0x4 - Configure as the IOMSTR2 SPI 3-wire MOSI/MISO signal<br>
+                             M2MOSI               = 0x5 - Configure as the IOMSTR2 SPI MOSI output signal<br>
+                             M5nCE3               = 0x6 - Configure as the SPI channel 3 nCE signal from IOMSTR5<br>
+                             SLWIR3LB             = 0x7 - Configure as the IOMSTR2 SPI 3-wire MOSI/MISO loopback signal from IOSLAVE</td>
                         </tr>
 
                         <tr>
@@ -3810,17 +3889,21 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                             <td>PAD35FNCSEL</td>
                             <td>RW</td>
                             <td>Pad 35 function select<br><br>
-                                 DIS                  = 0x0 - Pad disabled<br>
+                                 ADCSE7               = 0x0 - Configure as the analog input for ADC single ended input 7<br>
                              M1nCE0               = 0x1 - Configure as the SPI channel 0 nCE signal from IOMSTR1<br>
-                             UARTTX               = 0x2 - Configure as the UART TX signal<br>
-                             GPIO35               = 0x3 - Configure as GPIO35</td>
+                             UART1TX              = 0x2 - Configure as the UART1 TX signal<br>
+                             GPIO35               = 0x3 - Configure as GPIO35<br>
+                             M4nCE6               = 0x4 - Configure as the SPI channel 6 nCE signal from IOMSTR4<br>
+                             TCTA1                = 0x5 - Configure as the input/output signal from CTIMER A1<br>
+                             UA0RTS               = 0x6 - Configure as the UART0 RTS output<br>
+                             M3nCE2               = 0x7 - Configure as the SPI channel 2 nCE signal from IOMSTR3</td>
                         </tr>
 
                         <tr>
                             <td>26</td>
                             <td>PAD35STRNG</td>
                             <td>RW</td>
-                            <td>Pad 35 drive strentgh<br><br>
+                            <td>Pad 35 drive strength<br><br>
                                  LOW                  = 0x0 - Low drive strength<br>
                              HIGH                 = 0x1 - High drive strength</td>
                         </tr>
@@ -3856,10 +3939,14 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                             <td>PAD34FNCSEL</td>
                             <td>RW</td>
                             <td>Pad 34 function select<br><br>
-                                 CMPRF2               = 0x0 - Configure as the analog comparator reference 2 signal<br>
+                                 ADCSE6               = 0x0 - Configure as the analog input for ADC single ended input 6<br>
                              M0nCE7               = 0x1 - Configure as the SPI channel 7 nCE signal from IOMSTR0<br>
-                             DIS                  = 0x2 - Pad disabled<br>
-                             GPIO34               = 0x3 - Configure as GPIO34</td>
+                             M2nCE3               = 0x2 - Configure as the SPI channel 3 nCE signal from IOMSTR2<br>
+                             GPIO34               = 0x3 - Configure as GPIO34<br>
+                             CMPRF2               = 0x4 - Configure as the analog comparator reference 2 signal<br>
+                             M3nCE1               = 0x5 - Configure as the SPI channel 1 nCE signal from IOMSTR3<br>
+                             M4nCE0               = 0x6 - Configure as the SPI channel 0 nCE signal from IOMSTR4<br>
+                             M5nCE2               = 0x7 - Configure as the SPI channel 2 nCE signal from IOMSTR5</td>
                         </tr>
 
                         <tr>
@@ -3902,10 +3989,14 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                             <td>PAD33FNCSEL</td>
                             <td>RW</td>
                             <td>Pad 33 function select<br><br>
-                                 CMPRF1               = 0x0 - Configure as the analog comparator reference 1 signal<br>
+                                 ADCSE5               = 0x0 - Configure as the analog ADC single ended port 5 input signal<br>
                              M0nCE6               = 0x1 - Configure as the SPI channel 6 nCE signal from IOMSTR0<br>
-                             DIS                  = 0x2 - Pad disabled<br>
-                             GPIO33               = 0x3 - Configure as GPIO33</td>
+                             32khz_XT             = 0x2 - Configure as the 32kHz crystal output signal<br>
+                             GPIO33               = 0x3 - Configure as GPIO33<br>
+                             UNDEF4               = 0x4 - Undefined/should not be used<br>
+                             M3nCE7               = 0x5 - Configure as the SPI channel 7 nCE signal from IOMSTR3<br>
+                             TCTB1                = 0x6 - Configure as the input/output signal from CTIMER B1<br>
+                             SWO                  = 0x7 - Configure as the serial trace data output signal</td>
                         </tr>
 
                         <tr>
@@ -3948,10 +4039,14 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                             <td>PAD32FNCSEL</td>
                             <td>RW</td>
                             <td>Pad 32 function select<br><br>
-                                 ADC7                 = 0x0 - Configure as the analog ADC input 7 signal<br>
+                                 ADCSE4               = 0x0 - Configure as the analog input for ADC single ended input 4<br>
                              M0nCE5               = 0x1 - Configure as the SPI channel 5 nCE signal from IOMSTR0<br>
                              TCTB3                = 0x2 - Configure as the input/output signal from CTIMER B3<br>
-                             GPIO32               = 0x3 - Configure as GPIO32</td>
+                             GPIO32               = 0x3 - Configure as GPIO32<br>
+                             UNDEF4               = 0x4 - Undefined/should not be used<br>
+                             TCTB1                = 0x5 - Configure as the input/output signal from CTIMER B1<br>
+                             UNDEF6               = 0x6 - Undefined/should not be used<br>
+                             UNDEF7               = 0x7 - Undefined/should not be used</td>
                         </tr>
 
                         <tr>
@@ -4160,16 +4255,20 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                             <td>RW</td>
                             <td>Pad 39 function select<br><br>
                                  UART0TX              = 0x0 - Configure as the UART0 TX Signal<br>
-                             UARTTX               = 0x1 - Configure as the UART TX signal<br>
+                             UART1TX              = 0x1 - Configure as the UART1 TX signal<br>
                              CLKOUT               = 0x2 - Configure as the CLKOUT signal<br>
-                             GPIO39               = 0x3 - Configure as GPIO39</td>
+                             GPIO39               = 0x3 - Configure as GPIO39<br>
+                             M4SCL                = 0x4 - Configure as the IOMSTR4 I2C SCL signal<br>
+                             M4SCK                = 0x5 - Configure as the IOMSTR4 SPI SCK signal<br>
+                             M4SCKLB              = 0x6 - Configure as the IOMSTR4 SPI SCK loopback signal from IOSLAVE<br>
+                             M4SCLLB              = 0x7 - Configure as the IOMSTR4 I2C SCL loopback signal from IOSLAVE</td>
                         </tr>
 
                         <tr>
                             <td>26</td>
                             <td>PAD39STRNG</td>
                             <td>RW</td>
-                            <td>Pad 39 drive strentgh<br><br>
+                            <td>Pad 39 drive strength<br><br>
                                  LOW                  = 0x0 - Low drive strength<br>
                              HIGH                 = 0x1 - High drive strength</td>
                         </tr>
@@ -4207,8 +4306,12 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                             <td>Pad 38 function select<br><br>
                                  TRIG3                = 0x0 - Configure as the ADC Trigger 3 signal<br>
                              M1nCE3               = 0x1 - Configure as the SPI channel 3 nCE signal from IOMSTR1<br>
-                             UACTS                = 0x2 - Configure as the UART CTS signal<br>
-                             GPIO38               = 0x3 - Configure as GPIO38</td>
+                             UA0CTS               = 0x2 - Configure as the UART0 CTS signal<br>
+                             GPIO38               = 0x3 - Configure as GPIO38<br>
+                             M3WIR3               = 0x4 - Configure as the IOSLAVE SPI 3-wire MOSI/MISO signal<br>
+                             M3MOSI               = 0x5 - Configure as the IOMSTR3 SPI MOSI output signal<br>
+                             M4nCE7               = 0x6 - Configure as the SPI channel 7 nCE signal from IOMSTR4<br>
+                             SLWIR3LB             = 0x7 - Configure as the IOMSTR3 SPI 3-wire MOSI/MISO loopback signal from IOSLAVE</td>
                         </tr>
 
                         <tr>
@@ -4253,9 +4356,12 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                             <td>Pad 37 function select<br><br>
                                  TRIG2                = 0x0 - Configure as the ADC Trigger 2 signal<br>
                              M1nCE2               = 0x1 - Configure as the SPI channel 2 nCE signal from IOMSTR1<br>
-                             UARTS                = 0x2 - Configure as the UART RTS signal<br>
+                             UA0RTS               = 0x2 - Configure as the UART0 RTS signal<br>
                              GPIO37               = 0x3 - Configure as GPIO37<br>
-                             PDM_DATA             = 0x6 - Configure as PDM DATA input</td>
+                             M3nCE4               = 0x4 - Configure as the SPI channel 4 nCE signal from IOMSTR3<br>
+                             M4nCE1               = 0x5 - Configure as the SPI channel 1 nCE signal from IOMSTR4<br>
+                             PDM_CLK              = 0x6 - Configure as the PDM CLK output signal<br>
+                             TCTA1                = 0x7 - Configure as the input/output signal from CTIMER A1</td>
                         </tr>
 
                         <tr>
@@ -4300,8 +4406,12 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                             <td>Pad 36 function select<br><br>
                                  TRIG1                = 0x0 - Configure as the ADC Trigger 1 signal<br>
                              M1nCE1               = 0x1 - Configure as the SPI channel 1 nCE signal from IOMSTR1<br>
-                             UARTRX               = 0x2 - Configure as the UART RX signal<br>
-                             GPIO36               = 0x3 - Configure as GPIO36</td>
+                             UART1RX              = 0x2 - Configure as the UART1 RX signal<br>
+                             GPIO36               = 0x3 - Configure as GPIO36<br>
+                             32khz_XT             = 0x4 - Configure as the 32kHz output clock from the crystal<br>
+                             M2nCE0               = 0x5 - Configure as the SPI channel 0 nCE signal from IOMSTR2<br>
+                             UA0CTS               = 0x6 - Configure as the UART0 CTS signal<br>
+                             M3nCE3               = 0x7 - Configure as the SPI channel 3 nCE signal from IOMSTR3</td>
                         </tr>
 
                         <tr>
@@ -4515,14 +4625,18 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                                  M2nCE4               = 0x0 - Configure as the SPI channel 4 nCE signal from IOMSTR2<br>
                              M0nCE1               = 0x1 - Configure as the SPI channel 1 nCE signal from IOMSTR0<br>
                              TCTB0                = 0x2 - Configure as the input/output signal from CTIMER B0<br>
-                             GPIO43               = 0x3 - Configure as GPIO43</td>
+                             GPIO43               = 0x3 - Configure as GPIO43<br>
+                             M3SDA                = 0x4 - Configure as the IOMSTR3 I2C SDA signal<br>
+                             M3MISO               = 0x5 - Configure as the IOMSTR3 SPI MISO signal<br>
+                             SLMISOLB             = 0x6 - Configure as the IOMSTR3 SPI MISO loopback signal from IOSLAVE<br>
+                             SLSDALB              = 0x7 - Configure as the IOMSTR3 I2C SDA loopback signal from IOSLAVE</td>
                         </tr>
 
                         <tr>
                             <td>26</td>
                             <td>PAD43STRNG</td>
                             <td>RW</td>
-                            <td>Pad 43 drive strentgh<br><br>
+                            <td>Pad 43 drive strength<br><br>
                                  LOW                  = 0x0 - Low drive strength<br>
                              HIGH                 = 0x1 - High drive strength</td>
                         </tr>
@@ -4564,7 +4678,11 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                                  M2nCE2               = 0x0 - Configure as the SPI channel 2 nCE signal from IOMSTR2<br>
                              M0nCE0               = 0x1 - Configure as the SPI channel 0 nCE signal from IOMSTR0<br>
                              TCTA0                = 0x2 - Configure as the input/output signal from CTIMER A0<br>
-                             GPIO42               = 0x3 - Configure as GPIO42</td>
+                             GPIO42               = 0x3 - Configure as GPIO42<br>
+                             M3SCL                = 0x4 - Configure as the IOMSTR3 I2C SCL clock I/O signal<br>
+                             M3SCK                = 0x5 - Configure as the IOMSTR3 SPI SCK output<br>
+                             M3SCKLB              = 0x6 - Configure as the IOMSTR3 SPI clock loopback to the IOSLAVE device<br>
+                             M3SCLLB              = 0x7 - Configure as the IOMSTR3 I2C clock loopback to the IOSLAVE device</td>
                         </tr>
 
                         <tr>
@@ -4617,9 +4735,13 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                             <td>RW</td>
                             <td>Pad 41 function select<br><br>
                                  M2nCE1               = 0x0 - Configure as the SPI channel 1 nCE signal from IOMSTR2<br>
-                             DIS                  = 0x1 - Pad disabled<br>
+                             CLKOUT               = 0x1 - Configure as the CLKOUT signal<br>
                              SWO                  = 0x2 - Configure as the serial wire debug SWO signal<br>
-                             GPIO41               = 0x3 - Configure as GPIO41</td>
+                             GPIO41               = 0x3 - Configure as GPIO41<br>
+                             M3nCE5               = 0x4 - Configure as the SPI channel 5 nCE signal from IOMSTR3<br>
+                             M5nCE7               = 0x5 - Configure as the SPI channel 7 nCE signal from IOMSTR5<br>
+                             M4nCE2               = 0x6 - Configure as the SPI channel 2 nCE signal from IOMSTR4<br>
+                             UA0RTS               = 0x7 - Configure as the UART0 RTS output</td>
                         </tr>
 
                         <tr>
@@ -4666,9 +4788,13 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                             <td>RW</td>
                             <td>Pad 40 function select<br><br>
                                  UART0RX              = 0x0 - Configure as the UART0 RX input signal<br>
-                             UARTRX               = 0x1 - Configure as the UART RX signal<br>
+                             UART1RX              = 0x1 - Configure as the UART1 RX input signal<br>
                              TRIG0                = 0x2 - Configure as the ADC Trigger 0 signal<br>
-                             GPIO40               = 0x3 - Configure as GPIO40</td>
+                             GPIO40               = 0x3 - Configure as GPIO40<br>
+                             M4SDA                = 0x4 - Configure as the IOMSTR4 I2C serial data I/O signal<br>
+                             M4MISO               = 0x5 - Configure as the IOMSTR4 SPI MISO input signal<br>
+                             SLMISOLB             = 0x6 - Configure as the IOMSTR4 SPI MISO loopback signal from IOSLAVE<br>
+                             SLSDALB              = 0x7 - Configure as the IOMSTR4 I2C SDA loopback signal from IOSLAVE</td>
                         </tr>
 
                         <tr>
@@ -4873,17 +4999,21 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                             <td>PAD47FNCSEL</td>
                             <td>RW</td>
                             <td>Pad 47 function select<br><br>
-                                 DIS                  = 0x0 - Pad disabled<br>
+                                 M2nCE5               = 0x0 - Configure as the SPI channel 5 nCE signal from IOMSTR2<br>
                              M0nCE5               = 0x1 - Configure as the SPI channel 5 nCE signal from IOMSTR0<br>
                              TCTB2                = 0x2 - Configure as the input/output signal from CTIMER B2<br>
-                             GPIO47               = 0x3 - Configure as GPIO47</td>
+                             GPIO47               = 0x3 - Configure as GPIO47<br>
+                             M5WIR3               = 0x4 - Configure as the IOMSTR5 SPI 3-wire MOSI/MISO signal<br>
+                             M5MOSI               = 0x5 - Configure as the IOMSTR5 SPI MOSI output signal<br>
+                             M4nCE5               = 0x6 - Configure as the SPI channel 5 nCE signal from IOMSTR4<br>
+                             SLWIR3LB             = 0x7 - Configure as the IOMSTR5 SPI 3-wire MOSI/MISO loopback signal from IOSLAVE</td>
                         </tr>
 
                         <tr>
                             <td>26</td>
                             <td>PAD47STRNG</td>
                             <td>RW</td>
-                            <td>Pad 47 drive strentgh<br><br>
+                            <td>Pad 47 drive strength<br><br>
                                  LOW                  = 0x0 - Low drive strength<br>
                              HIGH                 = 0x1 - High drive strength</td>
                         </tr>
@@ -4919,10 +5049,14 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                             <td>PAD46FNCSEL</td>
                             <td>RW</td>
                             <td>Pad 46 function select<br><br>
-                                 DIS                  = 0x0 - Pad disabled<br>
+                                 32khz_XT             = 0x0 - Configure as the 32kHz output clock from the crystal<br>
                              M0nCE4               = 0x1 - Configure as the SPI channel 4 nCE signal from IOMSTR0<br>
                              TCTA2                = 0x2 - Configure as the input/output signal from CTIMER A2<br>
-                             GPIO46               = 0x3 - Configure as GPIO46</td>
+                             GPIO46               = 0x3 - Configure as GPIO46<br>
+                             TCTA1                = 0x4 - Configure as the input/output signal from CTIMER A1<br>
+                             M5nCE4               = 0x5 - Configure as the SPI channel 4 nCE signal from IOMSTR5<br>
+                             M4nCE4               = 0x6 - Configure as the SPI channel 4 nCE signal from IOMSTR4<br>
+                             SWO                  = 0x7 - Configure as the serial wire debug SWO signal</td>
                         </tr>
 
                         <tr>
@@ -4965,10 +5099,14 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                             <td>PAD45FNCSEL</td>
                             <td>RW</td>
                             <td>Pad 45 function select<br><br>
-                                 DIS                  = 0x0 - Pad disabled<br>
+                                 UA1CTS               = 0x0 - Configure as the UART1 CTS input signal<br>
                              M0nCE3               = 0x1 - Configure as the SPI channel 3 nCE signal from IOMSTR0<br>
                              TCTB1                = 0x2 - Configure as the input/output signal from CTIMER B1<br>
-                             GPIO45               = 0x3 - Configure as GPIO45</td>
+                             GPIO45               = 0x3 - Configure as GPIO45<br>
+                             M4nCE3               = 0x4 - Configure as the SPI channel 3 nCE signal from IOMSTR4<br>
+                             M3nCE6               = 0x5 - Configure as the SPI channel 6 nCE signal from IOMSTR3<br>
+                             M5nCE5               = 0x6 - Configure as the SPI channel 5 nCE signal from IOMSTR5<br>
+                             TCTA1                = 0x7 - Configure as the input/output signal from CTIMER A1</td>
                         </tr>
 
                         <tr>
@@ -5014,7 +5152,11 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                                  UA1RTS               = 0x0 - Configure as the UART1 RTS output signal<br>
                              M0nCE2               = 0x1 - Configure as the SPI channel 2 nCE signal from IOMSTR0<br>
                              TCTA1                = 0x2 - Configure as the input/output signal from CTIMER A1<br>
-                             GPIO44               = 0x3 - Configure as GPIO44</td>
+                             GPIO44               = 0x3 - Configure as GPIO44<br>
+                             M4WIR3               = 0x4 - Configure as the IOMSTR4 SPI 3-wire MOSI/MISO signal<br>
+                             M4MOSI               = 0x5 - Configure as the IOMSTR4 SPI MOSI signal<br>
+                             M5nCE6               = 0x6 - Configure as the SPI channel 6 nCE signal from IOMSTR5<br>
+                             SLWIR3LB             = 0x7 - Configure as the IOMSTR4 SPI 3-wire MOSI/MISO loopback signal from IOSLAVE</td>
                         </tr>
 
                         <tr>
@@ -5203,10 +5345,14 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                             <td>PAD49FNCSEL</td>
                             <td>RW</td>
                             <td>Pad 49 function select<br><br>
-                                 DIS                  = 0x0 - Pad disabled<br>
+                                 M2nCE7               = 0x0 - Configure as the SPI channel 7 nCE signal from IOMSTR2<br>
                              M0nCE7               = 0x1 - Configure as the SPI channel 7 nCE signal from IOMSTR0<br>
                              TCTB3                = 0x2 - Configure as the input/output signal from CTIMER B3<br>
-                             GPIO49               = 0x3 - Configure as GPIO49</td>
+                             GPIO49               = 0x3 - Configure as GPIO49<br>
+                             M5SDA                = 0x4 - Configure as the IOMSTR5 I2C serial data I/O signal<br>
+                             M5MISO               = 0x5 - Configure as the IOMSTR5 SPI MISO input signal<br>
+                             SLMISOLB             = 0x6 - Configure as the IOMSTR5 SPI MISO loopback signal from IOSLAVE<br>
+                             SLSDALB              = 0x7 - Configure as the IOMSTR5 I2C SDA loopback signal from IOSLAVE</td>
                         </tr>
 
                         <tr>
@@ -5252,10 +5398,14 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                             <td>PAD48FNCSEL</td>
                             <td>RW</td>
                             <td>Pad 48 function select<br><br>
-                                 DIS                  = 0x0 - Pad disabled<br>
+                                 M2nCE6               = 0x0 - Configure as the SPI channel 6 nCE signal from IOMSTR2<br>
                              M0nCE6               = 0x1 - Configure as the SPI channel 6 nCE signal from IOMSTR0<br>
                              TCTA3                = 0x2 - Configure as the input/output signal from CTIMER A3<br>
-                             GPIO48               = 0x3 - Configure as GPIO48</td>
+                             GPIO48               = 0x3 - Configure as GPIO48<br>
+                             M5SCL                = 0x4 - Configure as the IOMSTR5 I2C SCL clock I/O signal<br>
+                             M5SCK                = 0x5 - Configure as the IOMSTR5 SPI SCK output<br>
+                             M5SCKLB              = 0x6 - Configure as the IOMSTR5 SPI clock loopback to the IOSLAVE device<br>
+                             M5SCLLB              = 0x7 - Configure as the IOMSTR5 I2C clock loopback to the IOSLAVE device</td>
                         </tr>
 
                         <tr>
@@ -9823,7 +9973,7 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                         <tr>
                             <td>31</td>
                             <td>RSVD</td>
-                            <td>R0</td>
+                            <td>RO</td>
                             <td>RESERVED<br><br>
                                 </td>
                         </tr>
@@ -9848,7 +9998,7 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                         <tr>
                             <td>23</td>
                             <td>RSVD</td>
-                            <td>R0</td>
+                            <td>RO</td>
                             <td>RESERVED<br><br>
                                 </td>
                         </tr>
@@ -9873,7 +10023,7 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                         <tr>
                             <td>15</td>
                             <td>RSVD</td>
-                            <td>R0</td>
+                            <td>RO</td>
                             <td>RESERVED<br><br>
                                 </td>
                         </tr>
@@ -9898,7 +10048,7 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                         <tr>
                             <td>7</td>
                             <td>RSVD</td>
-                            <td>R0</td>
+                            <td>RO</td>
                             <td>RESERVED<br><br>
                                 </td>
                         </tr>
@@ -9928,7 +10078,7 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
 
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 id="IOM0IRQ" class="panel-title">IOM0IRQ - STIMER Capture Control</h3>
+                <h3 id="IOM0IRQ" class="panel-title">IOM0IRQ - IOM0 Flow Control IRQ Select</h3>
             </div>
             <div class="panel-body">
                 <h3>Address:</h3>
@@ -10031,7 +10181,7 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                         <tr>
                             <td>31:6</td>
                             <td>RSVD</td>
-                            <td>R0</td>
+                            <td>RO</td>
                             <td>RESERVED<br><br>
                                 </td>
                         </tr>
@@ -10052,7 +10202,7 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
 
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 id="IOM1IRQ" class="panel-title">IOM1IRQ - STIMER Capture Control</h3>
+                <h3 id="IOM1IRQ" class="panel-title">IOM1IRQ - IOM1 Flow Control IRQ Select</h3>
             </div>
             <div class="panel-body">
                 <h3>Address:</h3>
@@ -10155,7 +10305,7 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                         <tr>
                             <td>31:6</td>
                             <td>RSVD</td>
-                            <td>R0</td>
+                            <td>RO</td>
                             <td>RESERVED<br><br>
                                 </td>
                         </tr>
@@ -10176,7 +10326,7 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
 
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 id="IOM2IRQ" class="panel-title">IOM2IRQ - STIMER Capture Control</h3>
+                <h3 id="IOM2IRQ" class="panel-title">IOM2IRQ - IOM2 Flow Control IRQ Select</h3>
             </div>
             <div class="panel-body">
                 <h3>Address:</h3>
@@ -10279,7 +10429,7 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                         <tr>
                             <td>31:6</td>
                             <td>RSVD</td>
-                            <td>R0</td>
+                            <td>RO</td>
                             <td>RESERVED<br><br>
                                 </td>
                         </tr>
@@ -10300,7 +10450,7 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
 
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 id="IOM3IRQ" class="panel-title">IOM3IRQ - STIMER Capture Control</h3>
+                <h3 id="IOM3IRQ" class="panel-title">IOM3IRQ - IOM3 Flow Control IRQ Select</h3>
             </div>
             <div class="panel-body">
                 <h3>Address:</h3>
@@ -10403,7 +10553,7 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                         <tr>
                             <td>31:6</td>
                             <td>RSVD</td>
-                            <td>R0</td>
+                            <td>RO</td>
                             <td>RESERVED<br><br>
                                 </td>
                         </tr>
@@ -10424,7 +10574,7 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
 
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 id="IOM4IRQ" class="panel-title">IOM4IRQ - STIMER Capture Control</h3>
+                <h3 id="IOM4IRQ" class="panel-title">IOM4IRQ - IOM4 Flow Control IRQ Select</h3>
             </div>
             <div class="panel-body">
                 <h3>Address:</h3>
@@ -10527,7 +10677,7 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                         <tr>
                             <td>31:6</td>
                             <td>RSVD</td>
-                            <td>R0</td>
+                            <td>RO</td>
                             <td>RESERVED<br><br>
                                 </td>
                         </tr>
@@ -10548,7 +10698,7 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
 
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 id="IOM5IRQ" class="panel-title">IOM5IRQ - STIMER Capture Control</h3>
+                <h3 id="IOM5IRQ" class="panel-title">IOM5IRQ - IOM5 Flow Control IRQ Select</h3>
             </div>
             <div class="panel-body">
                 <h3>Address:</h3>
@@ -10651,7 +10801,7 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                         <tr>
                             <td>31:6</td>
                             <td>RSVD</td>
-                            <td>R0</td>
+                            <td>RO</td>
                             <td>RESERVED<br><br>
                                 </td>
                         </tr>
@@ -10775,7 +10925,7 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                         <tr>
                             <td>31:3</td>
                             <td>RSVD</td>
-                            <td>R0</td>
+                            <td>RO</td>
                             <td>RESERVED<br><br>
                                 </td>
                         </tr>
@@ -10787,8 +10937,11 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                             <td>IOM to IOS loopback control.<br><br>
                                  LOOP0                = 0x0 - Loop IOM0 to IOS<br>
                              LOOP1                = 0x1 - Loop IOM1 to IOS<br>
-                             LOOP2                = 0x2 - Loop IOM02to IOS<br>
-                             LOOPNONE             = 0x3 - No loopback connections</td>
+                             LOOP2                = 0x2 - Loop IOM2 to IOS<br>
+                             LOOP3                = 0x3 - Loop IOM3 to IOS<br>
+                             LOOP4                = 0x4 - Loop IOM4 to IOS<br>
+                             LOOP5                = 0x5 - Loop IOM5 to IOS<br>
+                             LOOPNONE             = 0x6 - No loopback connections</td>
                         </tr>
 
                     </tbody>
@@ -10902,7 +11055,7 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
                         <tr>
                             <td>31:16</td>
                             <td>RSVD</td>
-                            <td>R0</td>
+                            <td>RO</td>
                             <td>RESERVED<br><br>
                                 </td>
                         </tr>
@@ -17515,7 +17668,7 @@ AM_REG(ADC, CFG) |= AM_REG_ADC_CFG_CLKSEL(0x1);</pre>
             <small>
                 AmbiqSuite Register Documentation&nbsp;
                 <a href="http://www.ambiqmicro.com">
-                <img class="footer" src="../resources/ambiqmicro_logo.png" alt="Ambiq Micro"/></a>&nbsp&nbsp Copyright &copy; 2014&nbsp&nbsp<br />
+                <img class="footer" src="../resources/ambiqmicro_logo.png" alt="Ambiq Micro"/></a>&nbsp&nbsp Copyright &copy; 2020&nbsp&nbsp<br />
                 This documentation is licensed and distributed under the <a rel="license" href="http://opensource.org/licenses/BSD-3-Clause">BSD 3-Clause License</a>.&nbsp&nbsp<br/>
             </small>
         </div>

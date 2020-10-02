@@ -2,7 +2,7 @@
 #
 # Makefile - Rules for building the libraries, examples and docs.
 #
-# Copyright (c) 2020, Ambiq Micro
+# Copyright (c) 2020, Ambiq Micro, Inc.
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
@@ -34,7 +34,7 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 #
-# This is part of revision 2.4.2 of the AmbiqSuite Development Package.
+# This is part of revision 2.5.1 of the AmbiqSuite Development Package.
 #
 #******************************************************************************
 TARGET := libam_bsp
@@ -78,15 +78,15 @@ all clean:
 	$(RM) -rf bin
 else
 
-DEFINES = -DAM_PART_APOLLO3P
-DEFINES+= -DAM_PACKAGE_BGA
+DEFINES = -DAM_PACKAGE_BGA
+DEFINES+= -DAM_PART_APOLLO3P
 DEFINES+= -Dgcc
 
-INCLUDES = -I../../../../utils
+INCLUDES = -I../../../../mcu/apollo3p
+INCLUDES+= -I../../../../CMSIS/ARM/Include
+INCLUDES+= -I../../../../utils
 INCLUDES+= -I../../../../devices
 INCLUDES+= -I../../../../CMSIS/AmbiqMicro/Include
-INCLUDES+= -I../../../../mcu/apollo3p
-INCLUDES+= -I../../../../CMSIS/ARM/Include
 
 VPATH = ..
 

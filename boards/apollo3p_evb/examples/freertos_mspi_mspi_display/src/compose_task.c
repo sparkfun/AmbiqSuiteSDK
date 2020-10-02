@@ -8,7 +8,7 @@
 
 //*****************************************************************************
 //
-// Copyright (c) 2020, Ambiq Micro
+// Copyright (c) 2020, Ambiq Micro, Inc.
 // All rights reserved.
 //
 // Redistribution and use in source and binary forms, with or without
@@ -40,7 +40,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
-// This is part of revision 2.4.2 of the AmbiqSuite Development Package.
+// This is part of revision 2.5.1 of the AmbiqSuite Development Package.
 //
 //*****************************************************************************
 #include "freertos_mspi_mspi_display.h"
@@ -140,7 +140,6 @@ am_devices_mspi_psram_config_t MSPI_PSRAM_QuadCE0MSPIConfig =
 {
     .eDeviceConfig            = AM_HAL_MSPI_FLASH_QUAD_CE0,
     .eClockFreq               = AM_HAL_MSPI_CLK_24MHZ,
-    .eMixedMode               = AM_HAL_MSPI_XIPMIXED_NORMAL,
     .ui32NBTxnBufLength       = sizeof(g_MspiPsramQBuffer) / sizeof(uint32_t),
     .pNBTxnBuf                = g_MspiPsramQBuffer,
     .ui32ScramblingStartAddr  = 0,
@@ -207,7 +206,7 @@ uint32_t
 psram_init(void)
 {
     uint32_t ui32Status;
-    
+
     // Set up the MSPI configuraton for the N25Q256A part.
     ui32Status = am_devices_mspi_psram_init(PSRAM_MSPI_MODULE,
                                             &MSPI_PSRAM_QuadCE0MSPIConfig,

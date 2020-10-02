@@ -11,7 +11,7 @@
 
 //*****************************************************************************
 //
-// Copyright (c) 2020, Ambiq Micro
+// Copyright (c) 2020, Ambiq Micro, Inc.
 // All rights reserved.
 //
 // Redistribution and use in source and binary forms, with or without
@@ -43,7 +43,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
-// This is part of revision 2.4.2 of the AmbiqSuite Development Package.
+// This is part of revision 2.5.1 of the AmbiqSuite Development Package.
 //
 //*****************************************************************************
 #include <stdint.h>
@@ -1252,37 +1252,27 @@ am_util_regdump_print(uint32_t ui32PeriphMask, uint32_t ui32ModuleMask)
 
     if ( ui32PeriphMask & AM_UTIL_REGDUMP_ITM )
     {
-        dump_reg(AM_REG_ITM_NUM_MODULES, AM_REG_ITMn(0),
-                 AM_REG_ITMn(1) - AM_REG_ITMn(0),
-                 ui32ModuleMask, "ITM", &g_sRegdumpITM[0]);
+        dump_reg(1, 0, 0, ui32ModuleMask, "ITM", &g_sRegdumpITM[0]);
     }
 
     if ( ui32PeriphMask & AM_UTIL_REGDUMP_NVIC )
     {
-        dump_reg(AM_REG_NVIC_NUM_MODULES, AM_REG_NVICn(0),
-                 AM_REG_NVICn(1) - AM_REG_NVICn(0),
-                 ui32ModuleMask, "NVIC", &g_sRegdumpNVIC[0]);
+        dump_reg(1, 0, 0, ui32ModuleMask, "NVIC", &g_sRegdumpNVIC[0]);
     }
 
     if ( ui32PeriphMask & AM_UTIL_REGDUMP_SYSCTRL )
     {
-        dump_reg(AM_REG_SYSCTRL_NUM_MODULES, AM_REG_SYSCTRLn(0),
-                 AM_REG_SYSCTRLn(1) - AM_REG_SYSCTRLn(0),
-                 ui32ModuleMask, "SYSCTRL", &g_sRegdumpSYSCTRL[0]);
+        dump_reg(1, 0, 0, ui32ModuleMask, "SYSCTRL", &g_sRegdumpSYSCTRL[0]);
     }
 
     if ( ui32PeriphMask & AM_UTIL_REGDUMP_SYSTICK )
     {
-        dump_reg(AM_REG_SYSTICK_NUM_MODULES, AM_REG_SYSTICKn(0),
-                 AM_REG_SYSTICKn(1) - AM_REG_SYSTICKn(0),
-                 ui32ModuleMask, "SYSTICK", &g_sRegdumpSYSTICK[0]);
+        dump_reg(1, 0, 0, ui32ModuleMask, "SYSTICK", &g_sRegdumpSYSTICK[0]);
     }
 
     if ( ui32PeriphMask & AM_UTIL_REGDUMP_TPIU )
     {
-        dump_reg(AM_REG_TPIU_NUM_MODULES, AM_REG_TPIUn(0),
-                 AM_REG_TPIUn(1) - AM_REG_TPIUn(0),
-                 ui32ModuleMask, "TPIU", &g_sRegdumpTPIU[0]);
+        dump_reg(1, 0, 0, ui32ModuleMask, "TPIU", &g_sRegdumpTPIU[0]);
     }
 
     if ( ui32PeriphMask & AM_UTIL_REGDUMP_MCUCTRL )

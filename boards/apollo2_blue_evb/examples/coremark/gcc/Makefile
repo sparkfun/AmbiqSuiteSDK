@@ -2,7 +2,7 @@
 #
 # Makefile - Rules for building the libraries, examples and docs.
 #
-# Copyright (c) 2020, Ambiq Micro
+# Copyright (c) 2020, Ambiq Micro, Inc.
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
@@ -34,7 +34,7 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 #
-# This is part of revision 2.4.2 of the AmbiqSuite Development Package.
+# This is part of revision 2.5.1 of the AmbiqSuite Development Package.
 #
 #******************************************************************************
 TARGET := coremark
@@ -85,16 +85,16 @@ DEFINES+= -DCOREMARK
 DEFINES+= -DAM_PACKAGE_BGA
 DEFINES+= -Dgcc
 
-INCLUDES = -I../../../bsp
-INCLUDES+= -I../../../../..
-INCLUDES+= -I../src
+INCLUDES = -I../../../../..
 INCLUDES+= -I../../../../../devices
+INCLUDES+= -I../src
 INCLUDES+= -I../../../../../utils
 INCLUDES+= -I../../../../../mcu/apollo2
+INCLUDES+= -I../../../bsp
 
-VPATH = ../../../../../utils
-VPATH+=:../src
+VPATH = ../src
 VPATH+=:../../../../../devices
+VPATH+=:../../../../../utils
 
 SRC = am_time.c
 SRC += core_list_join.c
@@ -103,10 +103,10 @@ SRC += core_matrix.c
 SRC += core_portme.c
 SRC += core_state.c
 SRC += core_util.c
+SRC += am_devices_led.c
 SRC += am_util_delay.c
 SRC += am_util_faultisr.c
 SRC += am_util_stdio.c
-SRC += am_devices_led.c
 SRC += startup_gcc.c
 
 CSRC = $(filter %.c,$(SRC))
@@ -166,6 +166,7 @@ $(CONFIG)/$(TARGET).bin: $(CONFIG)/$(TARGET).axf
 	@echo " Copying $(COMPILERNAME) $@..." ;\
 	$(CP) $(CPFLAGS) $< $@ ;\
 	$(OD) $(ODFLAGS) $< > $(CONFIG)/$(TARGET).lst
+	@$(SIZE) $(OBJS) $(LIBS) $(CONFIG)/$(TARGET).axf >$(CONFIG)/$(TARGET).size
 
 clean:
 	@echo "Cleaning..." ;\

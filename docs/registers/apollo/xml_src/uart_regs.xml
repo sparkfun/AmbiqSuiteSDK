@@ -1,0 +1,550 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+<?xml-stylesheet type="text/xsl" href="xml_devices.xsl"?>
+<!DOCTYPE device SYSTEM "xml_devices.dtd">
+<device file_name="docs/uart_regs.xml" file_mod_date="May 29 10:05:03 2014">
+  <short_description>Serial UART</short_description>
+  <device_name>UART</device_name>
+  <instance_base>REG_UART_BASEADDR: 0x4001C000</instance_base>
+  <ioregisters>
+    <ioreg_index/>
+    <ioreg>
+    <ioreg_name>UARTDR</ioreg_name>
+    <ioreg_offset>0x00000000</ioreg_offset>
+    <ioreg_intro>UART DAta Register</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="12" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="20" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="11" name="OEDATA" readwrite="RO" access_macro="REG_UART_UARTDR_OEDATA_RD" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This is the overrun error indicator."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="10" name="BEDATA" readwrite="RO" access_macro="REG_UART_UARTDR_BEDATA_RD" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This is the break error indicator."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="9" name="PEDATA" readwrite="RO" access_macro="REG_UART_UARTDR_PEDATA_RD" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This is the parity error indicator."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="8" name="FEDATA" readwrite="RO" access_macro="REG_UART_UARTDR_FEDATA_RD" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This is the framing error indicator."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="DATA" readwrite="RW" access_macro="REG_UART_UARTDR_DATA_WR" reset_value="0x0" width="8">
+        <ioreg_bf_description>"This is the UART data port."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>UARTRSR</ioreg_name>
+    <ioreg_offset>0x00000004</ioreg_offset>
+    <ioreg_intro>UART Status Register</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="4" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="28" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="3" name="OESTAT" readwrite="RW" access_macro="REG_UART_UARTRSR_OESTAT_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This is the overrun error indicator."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="2" name="BESTAT" readwrite="RW" access_macro="REG_UART_UARTRSR_BESTAT_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This is the break error indicator."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="1" name="PESTAT" readwrite="RW" access_macro="REG_UART_UARTRSR_PESTAT_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This is the parity error indicator."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="FESTAT" readwrite="RW" access_macro="REG_UART_UARTRSR_FESTAT_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This is the framing error indicator."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>UARTFR</ioreg_name>
+    <ioreg_offset>0x00000018</ioreg_offset>
+    <ioreg_intro>Flag Register</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="9" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="23" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="8" name="RI" readwrite="RO" access_macro="REG_UART_UARTFR_RI_RD" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the ring indicator."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="7" name="TXFE" readwrite="RO" access_macro="REG_UART_UARTFR_TXFE_RD" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the transmit FIFO empty indicator."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="6" name="RXFF" readwrite="RO" access_macro="REG_UART_UARTFR_RXFF_RD" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the receive FIFO full indicator."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="5" name="TXFF" readwrite="RO" access_macro="REG_UART_UARTFR_TXFF_RD" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the transmit FIFO full indicator."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="4" name="RXFE" readwrite="RO" access_macro="REG_UART_UARTFR_RXFE_RD" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the receive FIFO empty indicator."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="3" name="BUSY" readwrite="RO" access_macro="REG_UART_UARTFR_BUSY_RD" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the busy indicator."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="2" name="DCD" readwrite="RO" access_macro="REG_UART_UARTFR_DCD_RD" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the data carrier detect indicator."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="1" name="DSR" readwrite="RO" access_macro="REG_UART_UARTFR_DSR_RD" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the data set ready indicator."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="CTS" readwrite="RO" access_macro="REG_UART_UARTFR_CTS_RD" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the clear to send indicator."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>UARTILPR</ioreg_name>
+    <ioreg_offset>0x00000020</ioreg_offset>
+    <ioreg_intro>IrDA Counter</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="8" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="24" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="ILPDVSR" readwrite="RW" access_macro="REG_UART_UARTILPR_ILPDVSR_WR" reset_value="0x0" width="8">
+        <ioreg_bf_description>"These bits hold the IrDA counter divisor."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>UARTIBRD</ioreg_name>
+    <ioreg_offset>0x00000024</ioreg_offset>
+    <ioreg_intro>Integer Baud Rate Divisor</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="16" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="16" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="DIVINT" readwrite="RW" access_macro="REG_UART_UARTIBRD_DIVINT_WR" reset_value="0x0" width="16">
+        <ioreg_bf_description>"These bits hold the baud integer divisor."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>UARTFBRD</ioreg_name>
+    <ioreg_offset>0x00000028</ioreg_offset>
+    <ioreg_intro>Fractional Baud Rate Divisor</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="6" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="26" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="DIVFRAC" readwrite="RW" access_macro="REG_UART_UARTFBRD_DIVFRAC_WR" reset_value="0x0" width="6">
+        <ioreg_bf_description>"These bits hold the baud fractional divisor."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>UARTLCRH</ioreg_name>
+    <ioreg_offset>0x0000002c</ioreg_offset>
+    <ioreg_intro>Line Control High</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="8" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="24" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="7" name="SPS" readwrite="RW" access_macro="REG_UART_UARTLCRH_SPS_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit hold the stick parity select."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="5" name="WLEN" readwrite="RW" access_macro="REG_UART_UARTLCRH_WLEN_WR" reset_value="0x0" width="2">
+        <ioreg_bf_description>"These bits hold the write length."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="4" name="FEN" readwrite="RW" access_macro="REG_UART_UARTLCRH_FEN_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit hold the FIFO enable."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="3" name="STP2" readwrite="RW" access_macro="REG_UART_UARTLCRH_STP2_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit hold the two stop bits select."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="2" name="EPS" readwrite="RW" access_macro="REG_UART_UARTLCRH_EPS_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit hold the even parity select."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="1" name="PEN" readwrite="RW" access_macro="REG_UART_UARTLCRH_PEN_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit hold the parity enable."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="BRK" readwrite="RW" access_macro="REG_UART_UARTLCRH_BRK_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit hold the break set."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>UARTCR</ioreg_name>
+    <ioreg_offset>0x00000030</ioreg_offset>
+    <ioreg_intro>Control Register</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="16" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="16" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="15" name="CTSEN" readwrite="RW" access_macro="REG_UART_UARTCR_CTSEN_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit enable CTS hardware flow control."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="14" name="RTSEN" readwrite="RW" access_macro="REG_UART_UARTCR_RTSEN_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit enable RTS hardware flow control."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="13" name="OUT2" readwrite="RW" access_macro="REG_UART_UARTCR_OUT2_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit hold modem Out2."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="12" name="OUT1" readwrite="RW" access_macro="REG_UART_UARTCR_OUT1_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit hold modem Out1."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="11" name="RTS" readwrite="RW" access_macro="REG_UART_UARTCR_RTS_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit hold request to send."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="10" name="DTR" readwrite="RW" access_macro="REG_UART_UARTCR_DTR_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit hold data transmit ready."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="9" name="RXE" readwrite="RW" access_macro="REG_UART_UARTCR_RXE_WR" reset_value="0x1" width="1">
+        <ioreg_bf_description>"This bit hold the receive enable."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="8" name="TXE" readwrite="RW" access_macro="REG_UART_UARTCR_TXE_WR" reset_value="0x1" width="1">
+        <ioreg_bf_description>"This bit hold the transmit enable."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="7" name="LBE" readwrite="RW" access_macro="REG_UART_UARTCR_LBE_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit hold the loopback enable."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="6" name="RSVD" readwrite="RO" access_macro="REG_UART_UARTCR_RSVD_RD" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="4" name="CLKSEL" readwrite="RW" access_macro="REG_UART_UARTCR_CLKSEL_WR" reset_value="0x0" width="2">
+        <ioreg_bf_description>"This bit hold the UART clock select."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="3" name="CLKEN" readwrite="RW" access_macro="REG_UART_UARTCR_CLKEN_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit hold the UART clock enable."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="2" name="SIRLP" readwrite="RW" access_macro="REG_UART_UARTCR_SIRLP_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit hold the SIR low power select."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="1" name="SIREN" readwrite="RW" access_macro="REG_UART_UARTCR_SIREN_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit hold the SIR ENDEC enable."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="UARTEN" readwrite="RW" access_macro="REG_UART_UARTCR_UARTEN_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit hold the UART enable."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>UARTIFLS</ioreg_name>
+    <ioreg_offset>0x00000034</ioreg_offset>
+    <ioreg_intro>FIFO Interrupt Level Select</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="6" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="26" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="3" name="RXIFLSEL" readwrite="RW" access_macro="REG_UART_UARTIFLS_RXIFLSEL_WR" reset_value="0x2" width="3">
+        <ioreg_bf_description>"These bits hold the receive FIFO interrupt level."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="TXIFLSEL" readwrite="RW" access_macro="REG_UART_UARTIFLS_TXIFLSEL_WR" reset_value="0x2" width="3">
+        <ioreg_bf_description>"These bits hold the transmit FIFO interrupt level."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>UARTIER</ioreg_name>
+    <ioreg_offset>0x00000038</ioreg_offset>
+    <ioreg_intro>Interrupt Enable</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="11" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="21" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="10" name="OEIM" readwrite="RW" access_macro="REG_UART_UARTIER_OEIM_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the overflow interrupt enable."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="9" name="BEIM" readwrite="RW" access_macro="REG_UART_UARTIER_BEIM_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the break error interrupt enable."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="8" name="PEIM" readwrite="RW" access_macro="REG_UART_UARTIER_PEIM_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the parity error interrupt enable."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="7" name="FEIM" readwrite="RW" access_macro="REG_UART_UARTIER_FEIM_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the framing error interrupt enable."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="6" name="RTIM" readwrite="RW" access_macro="REG_UART_UARTIER_RTIM_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the receive timeout interrupt enable."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="5" name="TXIM" readwrite="RW" access_macro="REG_UART_UARTIER_TXIM_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the transmit interrupt enable."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="4" name="RXIM" readwrite="RW" access_macro="REG_UART_UARTIER_RXIM_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the receive interrupt enable."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="3" name="DSRMIM" readwrite="RW" access_macro="REG_UART_UARTIER_DSRMIM_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the modem DSR interrupt enable."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="2" name="DCDMIM" readwrite="RW" access_macro="REG_UART_UARTIER_DCDMIM_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the modem DCD interrupt enable."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="1" name="CTSMIM" readwrite="RW" access_macro="REG_UART_UARTIER_CTSMIM_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the modem CTS interrupt enable."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="RIMIM" readwrite="RW" access_macro="REG_UART_UARTIER_RIMIM_WR" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the modem RI interrupt enable."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>UARTIES</ioreg_name>
+    <ioreg_offset>0x0000003c</ioreg_offset>
+    <ioreg_intro>Interrupt Status</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="11" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="21" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="10" name="OERIS" readwrite="RO" access_macro="REG_UART_UARTIES_OERIS_RD" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the overflow interrupt status."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="9" name="BERIS" readwrite="RO" access_macro="REG_UART_UARTIES_BERIS_RD" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the break error interrupt status."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="8" name="PERIS" readwrite="RO" access_macro="REG_UART_UARTIES_PERIS_RD" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the parity error interrupt status."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="7" name="FERIS" readwrite="RO" access_macro="REG_UART_UARTIES_FERIS_RD" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the framing error interrupt status."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="6" name="RTRIS" readwrite="RO" access_macro="REG_UART_UARTIES_RTRIS_RD" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the receive timeout interrupt status."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="5" name="TXRIS" readwrite="RO" access_macro="REG_UART_UARTIES_TXRIS_RD" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the transmit interrupt status."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="4" name="RXRIS" readwrite="RO" access_macro="REG_UART_UARTIES_RXRIS_RD" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the receive interrupt status."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="3" name="DSRMRIS" readwrite="RO" access_macro="REG_UART_UARTIES_DSRMRIS_RD" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the modem DSR interrupt status."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="2" name="DCDMRIS" readwrite="RO" access_macro="REG_UART_UARTIES_DCDMRIS_RD" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the modem DCD interrupt status."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="1" name="CTSMRIS" readwrite="RO" access_macro="REG_UART_UARTIES_CTSMRIS_RD" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the modem CTS interrupt status."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="RIMRIS" readwrite="RO" access_macro="REG_UART_UARTIES_RIMRIS_RD" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the modem RI interrupt status."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>UARTMIS</ioreg_name>
+    <ioreg_offset>0x00000040</ioreg_offset>
+    <ioreg_intro>Masked Interrupt Status</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="11" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="21" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="10" name="OEMIS" readwrite="RO" access_macro="REG_UART_UARTMIS_OEMIS_RD" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the overflow interrupt status masked."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="9" name="BEMIS" readwrite="RO" access_macro="REG_UART_UARTMIS_BEMIS_RD" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the break error interrupt status masked."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="8" name="PEMIS" readwrite="RO" access_macro="REG_UART_UARTMIS_PEMIS_RD" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the parity error interrupt status masked."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="7" name="FEMIS" readwrite="RO" access_macro="REG_UART_UARTMIS_FEMIS_RD" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the framing error interrupt status masked."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="6" name="RTMIS" readwrite="RO" access_macro="REG_UART_UARTMIS_RTMIS_RD" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the receive timeout interrupt status masked."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="5" name="TXMIS" readwrite="RO" access_macro="REG_UART_UARTMIS_TXMIS_RD" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the transmit interrupt status masked."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="4" name="RXMIS" readwrite="RO" access_macro="REG_UART_UARTMIS_RXMIS_RD" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the receive interrupt status masked."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="3" name="DSRMMIS" readwrite="RO" access_macro="REG_UART_UARTMIS_DSRMMIS_RD" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the modem DSR interrupt status masked."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="2" name="DCDMMIS" readwrite="RO" access_macro="REG_UART_UARTMIS_DCDMMIS_RD" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the modem DCD interrupt status masked."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="1" name="CTSMMIS" readwrite="RO" access_macro="REG_UART_UARTMIS_CTSMMIS_RD" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the modem CTS interrupt status masked."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="RIMMIS" readwrite="RO" access_macro="REG_UART_UARTMIS_RIMMIS_RD" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the modem RI interrupt status masked."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg>
+    <ioreg_name>UARTIEC</ioreg_name>
+    <ioreg_offset>0x00000044</ioreg_offset>
+    <ioreg_intro>Interrupt Clear</ioreg_intro>
+    <ioreg_encoding>
+      <ioreg_bitfield lsb="11" name="RSVD" readwrite="RO" access_macro="N/A" reset_value="0x0" width="21" reserved="reserved">
+        <ioreg_bf_description>"This bitfield is reserved for future use."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="10" name="OEIC" readwrite="WO" access_macro="REG_UART_UARTIEC_OEIC_RD" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the overflow interrupt clear."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="9" name="BEIC" readwrite="WO" access_macro="REG_UART_UARTIEC_BEIC_RD" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the break error interrupt clear."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="8" name="PEIC" readwrite="WO" access_macro="REG_UART_UARTIEC_PEIC_RD" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the parity error interrupt clear."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="7" name="FEIC" readwrite="WO" access_macro="REG_UART_UARTIEC_FEIC_RD" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the framing error interrupt clear."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="6" name="RTIC" readwrite="WO" access_macro="REG_UART_UARTIEC_RTIC_RD" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the receive timeout interrupt clear."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="5" name="TXIC" readwrite="WO" access_macro="REG_UART_UARTIEC_TXIC_RD" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the transmit interrupt clear."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="4" name="RXIC" readwrite="WO" access_macro="REG_UART_UARTIEC_RXIC_RD" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the receive interrupt clear."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="3" name="DSRMIC" readwrite="WO" access_macro="REG_UART_UARTIEC_DSRMIC_RD" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the modem DSR interrupt clear."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="2" name="DCDMIC" readwrite="WO" access_macro="REG_UART_UARTIEC_DCDMIC_RD" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the modem DCD interrupt clear."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="1" name="CTSMIC" readwrite="WO" access_macro="REG_UART_UARTIEC_CTSMIC_RD" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the modem CTS interrupt clear."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+      <ioreg_bitfield lsb="0" name="RIMIC" readwrite="WO" access_macro="REG_UART_UARTIEC_RIMIC_RD" reset_value="0x0" width="1">
+        <ioreg_bf_description>"This bit holds the modem RI interrupt clear."
+        </ioreg_bf_description>
+      </ioreg_bitfield>
+    </ioreg_encoding>
+    <ioreg_description>Needs a description.</ioreg_description>
+    <ioreg_example>No example yet!!
+    </ioreg_example>
+    </ioreg>
+    <ioreg_bigpicture/>
+  </ioregisters>
+</device>
