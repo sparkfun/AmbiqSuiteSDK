@@ -59,6 +59,10 @@
 extern "C" {
 #endif
 
+#ifdef OVERFLOW
+#define POP_OVERFLOW OVERFLOW
+#undef OVERFLOW
+#endif
 
 /** @addtogroup Configuration_of_CMSIS
   * @{
@@ -24411,6 +24415,11 @@ typedef enum {                                  /*!< WDT_LOCK_LOCK              
 
 /** @} */ /* End of group EnumValue_peripherals */
 
+
+#ifdef POP_OVERFLOW
+#define OVERFLOW POP_OVERFLOW
+#undef POP_OVERFLOW
+#endif
 
 #ifdef __cplusplus
 }
