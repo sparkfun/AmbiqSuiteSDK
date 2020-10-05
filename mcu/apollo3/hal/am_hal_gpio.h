@@ -398,6 +398,29 @@ typedef struct
     uint32_t uRsvd22        : 10;    // [31:22]
 } am_hal_gpio_pincfg_t;
 
+//!
+//! Define the am_hal_gpio_pincfg_allow_t() bitfield structure.
+//! Each named field is a boolean value indicating whether the
+//! corresponding am_hal_gpio_pincfg_t() field should be modified
+//! in an operation
+//!
+typedef struct
+{
+    uint16_t uFuncSel : 1;
+    uint16_t ePowerSw : 1;
+    uint16_t ePullup : 1;
+    uint16_t eDriveStrength : 1;
+    uint16_t eGPOutcfg : 1;
+    uint16_t eGPInput : 1;
+    uint16_t eIntDir : 1;
+    uint16_t eGPRdZero : 1;
+    uint16_t uIOMnum : 1;
+    uint16_t uNCE : 1;
+    uint16_t eCEpol : 1;
+
+    uint16_t _reserved : 5;
+} am_hal_gpio_pincfg_allow_t;
+
 #define IOMNUM_MSPI         6
 #define IOMNUM_MAX          IOMNUM_MSPI
 
