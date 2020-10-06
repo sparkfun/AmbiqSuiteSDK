@@ -159,10 +159,6 @@ extern volatile uint32_t g_ui32HALflags;
 extern const    uint8_t  g_ui8HALcompiler[];
 extern const    am_hal_version_t g_ui32HALversion;
 
-#ifdef __cplusplus
-}
-#endif
-
 #if (defined (__ARMCC_VERSION)) && (__ARMCC_VERSION < 6000000)
 __asm void
 am_hal_triple_read( uint32_t u32TimerAddr, uint32_t ui32Data[]);
@@ -178,6 +174,10 @@ __stackless void
 am_hal_triple_read( uint32_t u32TimerAddr, uint32_t ui32Data[]);
 #else
 #error Compiler is unknown, please contact Ambiq support team
+#endif
+
+#ifdef __cplusplus
+}
 #endif
 
 #endif // AM_HAL_GLOBAL_H
