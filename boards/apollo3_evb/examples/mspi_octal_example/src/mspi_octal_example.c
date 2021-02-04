@@ -70,7 +70,7 @@
 #define MSPI_TARGET_SECTOR      (16)
 #define MSPI_BUFFER_SIZE        (4*1024)  // 16K example buffer size.
 
-#define MSPI_TEST_MODULE        1
+#define MSPI_TEST_MODULE        0
 
 #define DEFAULT_TIMEOUT         10000
 
@@ -303,7 +303,7 @@ main(void)
     // Print the banner.
     //
     am_util_stdio_terminal_clear();
-    am_util_stdio_printf("Apollo3p Octal MSPI Example\n\n");
+    am_util_stdio_printf("Apollo3 Octal MSPI Example\n\n");
 
     //
     // Configure the MSPI and Flash Device.
@@ -447,7 +447,7 @@ main(void)
     //
     //  End banner.
     //
-    am_util_stdio_printf("Apollo3p MSPI Example Complete\n");
+    am_util_stdio_printf("Apollo3 MSPI Example Complete\n");
 
     //
     // Loop forever while sleeping.
