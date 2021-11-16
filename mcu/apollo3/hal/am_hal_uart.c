@@ -334,7 +334,17 @@ am_hal_uart_power_control(void *pHandle,
             // Clear all interrupts before sleeping as having a pending UART
             // interrupt burns power.
             //
-            am_hal_uart_interrupt_clear(pState, 0xFFFFFFFF);
+            am_hal_uart_interrupt_clear(pState, 0xFFFFFFFF); 
+            
+            //
+            // The call to am_hal_pwrctrl_periph_disable will leave some values
+            //  of the UARTn->CR register powered up which causes hte current
+            //  draw to be 2-3oonA higher than expected.
+            //
+            // the below adjustment is acceptable since the pState->sRegState.regCR
+            //  will retain the state if requested.
+            //
+            UARTn(ui32Module)->CR = 0;
 
             //
             // Disable power control.
