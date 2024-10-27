@@ -176,7 +176,7 @@ def connect_device(ser):
         print("Length = ", hex(word >> 16))
         print([hex(n) for n in response])
         print("!!!Wired Upgrade Unsuccessful!!!....Terminating the script")
-        exit()
+        sys.exit()
 
 #******************************************************************************
 #
@@ -205,10 +205,10 @@ def send_ackd_command(command, ser):
                 break
         else:
             print("!!!Wired Upgrade Unsuccessful!!!....unexpected respose - Terminating the script")
-            exit()
+            sys.exit()
     if (numTries == 4):
         print("!!!Wired Upgrade Unsuccessful!!!....numTries exceeded - Terminating the script")
-        exit()
+        sys.exit()
 
     return response
 
